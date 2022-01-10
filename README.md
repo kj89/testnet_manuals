@@ -5,24 +5,11 @@ For kira you have to choose CX41 and add extra 500GB volume to it
 LOGIN as root
 
 ### First of all you have to initialize new 500GB volume and make it primary data container for kira node
-Replace HC_Volume_13371337 to your VOLUME_name
 ```
-{ cd /var/lib && tar cf - . ; } | { cd /mnt/HC_Volume_13371337/ ; tar xvf -  ; echo EXIT=$? ; }
+$VOLUME="$(ls /mnt)"
+{ cd /var/lib && tar cf - . ; } | { cd /mnt/$VOLUME/ && tar xvf -  ; echo EXIT=$? ; }
+sed -i "s|/mnt/$VOLUME|/var/lib|g" /etc/fstab
 ```
-### Edit /etc/fstab file. Replace /mnt/HC_Volume_13371337 to /var/lib
-```
-nano /etc/fstab
-```
-
-EXAMPLE how it should look:
-```
-/dev/disk/by-id/scsi-0HC_Volume_13371337 /mnt/HC_Volume_13371337 ext4 discard,nofail,defaults 0 0
->>>>>>
-/dev/disk/by-id/scsi-0HC_Volume_13371337 /var/lib ext4 discard,nofail,defaults 0 0
-```
-After that press CTRL+O and ENTER to overwrite file contents
-
-Then press CTRL+x to close the file
 
 ### Move old lib folder and mount new lib to 500GB volume disk
 ```
@@ -31,17 +18,6 @@ mkdir /var/lib
 mount /var/lib
 ```
 
-### Install dependencies for kira server
-```
-sudo apt update && sudo apt -y upgrade
-sudo apt-get install -y network-manager
-sudo apt-get update
-sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
-sudo apt-get -y install docker-ce docker-ce-cli containerd.io
-```
 ### Create kira user
 ```
 sudo useradd kira -m -s /bin/bash
