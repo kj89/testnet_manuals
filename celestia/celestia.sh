@@ -13,6 +13,8 @@ apt-get update &&
     apt-get -o Dpkg::Options::="--force-confold" upgrade -q -y --force-yes &&
     apt-get -o Dpkg::Options::="--force-confold" dist-upgrade -q -y --force-yes
 sleep 3
+sudo apt-get install build-essential -y && sudo apt-get install jq -y
+sleep 1
 
 sudo rm -rf /usr/local/go
 curl https://dl.google.com/go/go1.17.2.linux-amd64.tar.gz | sudo tar -C/usr/local -zxvf -
@@ -23,13 +25,12 @@ export GOPATH=$HOME/go
 export GO111MODULE=on
 export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 EOF
+
 . $HOME/.bash_profile
+
 cp /usr/local/go/bin/go /usr/bin
 
 go version
-
-sudo apt-get install build-essential -y && sudo apt-get install jq -y
-sleep 1
 
 cd $HOME
 git clone https://github.com/celestiaorg/celestia-app.git
