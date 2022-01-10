@@ -8,9 +8,10 @@ fi
 
 echo 'Your node name: ' $CELESTIA_NODENAME
 sleep 2
-sudo dpkg --configure -a
-sudo apt update
-sudo apt upgrade -y < "/dev/null"
+export DEBIAN_FRONTEND=noninteractive
+apt-get update && 
+    apt-get -o Dpkg::Options::="--force-confold" upgrade -q -y --force-yes &&
+    apt-get -o Dpkg::Options::="--force-confold" dist-upgrade -q -y --force-yes
 sleep 3
 
 sudo apt-get install build-essential -y && sudo apt-get install jq -y
