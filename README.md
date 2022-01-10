@@ -6,7 +6,7 @@ LOGIN as root
 
 ### First of all you have to initialize new 500GB volume and make it primary data container for kira node
 ```
-$VOLUME="$(ls /mnt)"
+VOLUME="$(ls /mnt)"
 { cd /var/lib && tar cf - . ; } | { cd /mnt/$VOLUME/ && tar xvf -  ; echo EXIT=$? ; }
 sed -i "s|/mnt/$VOLUME|/var/lib|g" /etc/fstab
 ```
