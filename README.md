@@ -43,6 +43,18 @@ After that press CTRL+O and ENTER to overwrite file contents
 
 Then press CTRL+x to close the file
 
+### Install dependencies
+```
+sudo apt update && sudo apt -y upgrade
+sudo apt-get install -y network-manager
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get -y install docker-ce docker-ce-cli containerd.io
+```
 
 ### Run command
 
