@@ -18,10 +18,14 @@ mkdir /var/lib
 mount /var/lib
 ```
 
-### Create kira user
+### Create kira user and setup password
 ```
 sudo useradd kira -m -s /bin/bash
 sudo passwd kira
+```
+
+### Give permissions to  kira user
+```
 sudo usermod -aG sudo kira
 ```
 
