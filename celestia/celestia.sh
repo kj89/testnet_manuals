@@ -6,6 +6,8 @@ if [ ! $CELESTIA_NODENAME ]; then
 	. ~/.bash_profile
 fi
 
+echo 'export CELESTIA_WALLET=wallet' >> $HOME/.bash_profile
+
 echo 'Your node name: ' $CELESTIA_NODENAME
 sleep 2
 export DEBIAN_FRONTEND=noninteractive
