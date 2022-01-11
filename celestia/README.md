@@ -51,6 +51,11 @@ celestia-appd tx staking create-validator \
 ```
 
 ### Usefull commands
+Synchronization info
+```
+curl -s localhost:26657/status | jq .result | jq .sync_info
+```
+
 Validator info
 ```
 celestia-appd status 2>&1 | jq .ValidatorInfo
@@ -73,5 +78,8 @@ celestia-appd unsafe-reset-all
 
 Get wallet balance
 ```
-celestia-appd query bank balances <your_wallet_address>
+celestia-appd query bank balances $(celestia-appd keys show $CELESTIA_WALLET -a --keyring-backend test)
 ```
+
+### Celestia explorer
+http://celestia.observer:3080/validators
