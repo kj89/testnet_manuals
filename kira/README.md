@@ -82,7 +82,6 @@ testnet-9
 
 ![image](https://user-images.githubusercontent.com/70693118/148641513-c64d89b0-2026-4e13-b961-3bd1e1fe6471.png)
 
-### Open a new session amd copy your KEYS if you have passed KYC.
 
 ### Press 1
 

@@ -86,5 +86,10 @@ Get wallet balance
 celestia-appd query bank balances $(celestia-appd keys show $CELESTIA_WALLET -a --keyring-backend test)
 ```
 
+Delete keys
+```
+celestia-appd keys delete $CELESTIA_WALLET
+```
+
 ### Celestia explorer
 http://celestia.observer:3080/validators
