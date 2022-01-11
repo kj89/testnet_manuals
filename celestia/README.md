@@ -28,7 +28,7 @@ In the output of the above command make sure catching_up is false
 
 ### Restore your wallet in case if you created it before
 ```
-celestia-appd keys add $CELESTIA_NODENAME --recover 
+celestia-appd keys add $CELESTIA_NODENAME --recover --keyring-backend=test
 ```
 
 ### Request faucet at Discord
