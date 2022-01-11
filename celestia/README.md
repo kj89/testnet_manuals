@@ -51,6 +51,11 @@ celestia-appd tx staking create-validator \
 ```
 
 ### Usefull commands
+Delegate stake
+```
+celestia-appd tx staking delegate $(celestia-appd keys show $CELESTIA_WALLET --bech val -a --keyring-backend=test) 100000celes --from $CELESTIA_WALLET --chain-id devnet-2 --keyring-backend=test
+```
+
 Synchronization info
 ```
 curl -s localhost:26657/status | jq .result | jq .sync_info
