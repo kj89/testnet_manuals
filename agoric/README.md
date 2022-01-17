@@ -13,13 +13,6 @@ mkdir /root
 mount /root
 ```
 
-## Move old lib folder and mount new lib to volume disk
-```
-mv /root /root-
-mkdir /root 
-mount /root
-```
-
 ## Mount Hetzner storage box to /mnt/backup-server
 ```
 sb_username=<storagebox_username>
