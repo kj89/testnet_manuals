@@ -20,9 +20,31 @@ mkdir /root
 mount /root
 ```
 
-## Run script bellow to prepare your server
+## Mount Hetzner storage box to /mnt/backup-server
+```
+sb_username=<storagebox_username>
+sb_password=<storagebox_username>
+
+cat <<EOF > /etc/backup-credentials.txt
+username=$sb_username
+password=$sb_password
+EOF
+cat /etc/backup-credentials.txt
+
+grep "$sb_username" /etc/fstab || 
+printf "//$sb_username.your-storagebox.de/backup /mnt/backup-server cifs iocharset=utf8,rw,credentials=/etc/backup-credentials.txt,uid=root,gid=root,file_mode=0660,dir_mode=0770 0 0\n" >> /etc/fstab
+```
+
+
+## Run script bellow to prepare your RPC server
 ```
 wget -O agoric_mainnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/agoric_mainnet.sh && chmod +x agoric_mainnet.sh && ./agoric_mainnet.sh
+```
+
+## Run script bellow to create daily agoric chain backups
+```
+wget -O agoric_backup.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/agoric_backup.sh && chmod +x agoric_backup.sh && ./agoric_backup.sh
+(crontab -l; echo "0 0 * * * bash ./backup_agoric.sh >> /mnt/backup_output.log")|awk '!x[$0]++'|crontab -
 ```
 
 ### Usefull commands
