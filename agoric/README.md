@@ -43,8 +43,8 @@ wget -O agoric_mainnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals
 
 ## Run script bellow to create daily agoric chain backups
 ```
-wget -O agoric_backup.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/agoric_backup.sh && chmod +x agoric_backup.sh && ./agoric_backup.sh
-(crontab -l; echo "0 0 * * * bash ./backup_agoric.sh >> /mnt/backup_output.log")|awk '!x[$0]++'|crontab -
+wget -O agoric_backup.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/agoric_backup.sh && chmod +x agoric_backup.sh
+(crontab -l; echo "0 0 * * * bash ./agoric_backup.sh >> /mnt/agoric_backups.log")|awk '!x[$0]++'|crontab -
 ```
 
 ### Usefull commands
