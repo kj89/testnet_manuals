@@ -23,6 +23,7 @@ echo
 
 # Backup the files using tar.
 tar czfP $dest/$archive_file $backup_files
+echo "tar czfP $dest/$archive_file $backup_files"
 
 # Print end status message.
 echo
