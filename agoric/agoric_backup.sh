@@ -35,3 +35,4 @@ ls -lh $dest
 
 echo "Starting Agoric service"
 systemctl start agoricd.service
+echo "-----------------------------------------------"
