@@ -23,7 +23,6 @@ cat <<EOF > /etc/backup-credentials.txt
 username=$sb_username
 password=$sb_password
 EOF
-cat /etc/backup-credentials.txt
 
 grep "$sb_username" /etc/fstab || 
 printf "//$sb_username.your-storagebox.de/backup /mnt/backup-server cifs credentials=/etc/backup-credentials.txt,file_mode=0755,dir_mode=0755 0 0\n" >> /etc/fstab
