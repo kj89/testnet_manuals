@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Latest block
+latest_block=$(ag0 status 2>&1 | jq .SyncInfo.latest_block_height)
+
 # What to backup.
 backup_files="/root/.agoric/data"
 
@@ -9,6 +12,11 @@ dest="/mnt/backup-server/agoric"
 # Create archive filename.
 day=$(date +%A)
 archive_file="agoric-$day.tgz"
+
+echo
+echo "============================"
+echo "Block height: $latest_block"
+echo "============================"
 
 echo "Stoping Agoric service"
 systemctl stop agoricd.service
@@ -22,8 +30,8 @@ date
 echo
 
 # Backup the files using tar.
+echo "Command: tar czfP $dest/$archive_file $backup_files"
 tar czfP $dest/$archive_file $backup_files
-echo "tar czfP $dest/$archive_file $backup_files"
 
 # Print end status message.
 echo
@@ -35,4 +43,4 @@ ls -lh $dest
 
 echo "Starting Agoric service"
 systemctl start agoricd.service
-echo "-----------------------------------------------"
+echo "--------------------END--------------------------"
