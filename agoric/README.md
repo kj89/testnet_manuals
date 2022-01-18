@@ -15,6 +15,7 @@ mount /root
 
 ## Mount Hetzner storage box to /mnt/backup-server
 ```
+sudo apt install cifs-utils -y < "/dev/null"
 sb_username=<storagebox_username>
 sb_password=<storagebox_username>
 
