@@ -7,7 +7,7 @@ latest_block=$(ag0 status 2>&1 | jq .SyncInfo.latest_block_height)
 backup_files="/root/.agoric/data"
 
 # Where to backup to.
-dest="/mnt/backup-server"
+dest="/mnt/backup-server/agoric"
 
 # Create archive filename.
 archive_file="agoric-$(date +"%d_%m_%Y").tgz"
