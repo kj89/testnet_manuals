@@ -7,7 +7,7 @@ latest_block=$(ag0 status 2>&1 | jq .SyncInfo.latest_block_height)
 backup_files="/root/.agoric/data"
 
 # Where to backup to.
-dest="/mnt/backup-server/agoric"
+dest="/mnt/backup-server"
 
 # Create archive filename.
 archive_file="agoric-$(date +"%d_%m_%Y").tgz"
@@ -26,14 +26,12 @@ mkdir -p $dest
 # Print start status message.
 echo "Backing up $backup_files to $dest/$archive_file"
 date
-echo
 
 # Backup the files using tar.
 echo "Command: tar czfP $dest/$archive_file $backup_files"
 tar czfP $dest/$archive_file $backup_files
 
 # Print end status message.
-echo
 echo "Backup finished"
 date
 
