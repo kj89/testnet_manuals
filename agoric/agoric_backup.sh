@@ -10,8 +10,7 @@ backup_files="/root/.agoric/data"
 dest="/mnt/backup-server/agoric"
 
 # Create archive filename.
-day=$(date +%A)
-archive_file="agoric-$day.tgz"
+archive_file="agoric-$(date +"%d_%m_%Y").tgz"
 
 echo
 echo "============================"
