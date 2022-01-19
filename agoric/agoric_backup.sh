@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Latest block
-latest_block=$(ag0 status 2>&1 | jq .SyncInfo.latest_block_height)
+latest_block=$(curl -s localhost:26657/status | jq .result | jq .sync_info.latest_block_height)
 
 # What to backup.
 backup_files="/root/.agoric/data"
