@@ -50,17 +50,22 @@ journalctl -fu agoricd.service
 
 Stop agoric service
 ```
-service ag0 stop
+service agoricd stop
 ```
 
 Start agoric service
 ```
-service ag0 start
+service agoricd start
+```
+
+Restart agoric service
+```
+service agoricd restart
 ```
 
 Configuration file
 ```
-vim ~/.ag0/config/config.toml
+vim ~/.agoric/config/config.toml
 ```
 
 Check validator node status
@@ -129,23 +134,23 @@ ag0 unsafe-reset-all
 Delegate stake
 ```
 chainName=`curl https://main.agoric.net/network-config | jq -r .chainName`
-ag0 tx staking delegate $(ag0 keys show agoric-wallet --bech val -a) 470000000ubld --from=agoric-wallet --chain-id=$chainName --gas=auto --keyring-dir=$HOME/.ag0
+ag0 tx staking delegate $(ag0 keys show agoric-wallet --bech val -a) 470000000ubld --from=agoric-wallet --chain-id=$chainName --gas=auto --keyring-dir=$HOME/.agoric
 ```
 
 Redelegate stake from validator to another validator
 ```
 chainName=`curl https://main.agoric.net/network-config | jq -r .chainName`
-ag0 tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 5000000ubld --from=agoric-wallet --chain-id=$chainName --gas=auto --keyring-dir=$HOME/.ag0
+ag0 tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 5000000ubld --from=agoric-wallet --chain-id=$chainName --gas=auto --keyring-dir=$HOME/.agoric
 ```
 
 Withdraw rewards
 ```
 chainName=`curl https://main.agoric.net/network-config | jq -r .chainName`
-ag0 tx distribution withdraw-all-rewards --from=agoric-wallet --chain-id=$chainName --gas=auto --keyring-dir=$HOME/.ag0
+ag0 tx distribution withdraw-all-rewards --from=agoric-wallet --chain-id=$chainName --gas=auto --keyring-dir=$HOME/.agoric
 ```
 
 ### Migrate Agoric validator to another VPS
-1. First of all you have to backup your configuration files on your old validator node located in `~/.ag0/config/`
+1. First of all you have to backup your configuration files on your old validator node located in `~/.agoric/config/`
 2. Set up new VPS
 3. Stop service and disable daemon on old validator node
 ```
@@ -156,7 +161,7 @@ sudo systemctl disable agoricd
 _(Be sure that your ag-chain-cosmos is not running on the old machine. If it is, you will be slashed for double-signing.)_
 
 4. Use guide for validator node setup - [Validator Guide for Incentivized Testnet](https://github.com/Agoric/agoric-sdk/wiki/Validator-Guide-for-Incentivized-Testnet)
->When you reach step [Syncing Your Node](https://github.com/Agoric/agoric-sdk/wiki/Validator-Guide-for-Incentivized-Testnet#syncing-your-node) you have to copy and replace configuration files located in `~/.ag0/config/` with those we saved in step 1
+>When you reach step [Syncing Your Node](https://github.com/Agoric/agoric-sdk/wiki/Validator-Guide-for-Incentivized-Testnet#syncing-your-node) you have to copy and replace configuration files located in `~/.agoric/config/` with those we saved in step 1
 5. Finish setup by synchronizing your node with network
 6. After your node catch up you have to restore your key. For that you will need 24-word mnemonic you saved on key creation
 >To recover your key follow this guide - [How do I recover a key?](https://github.com/Agoric/agoric-sdk/wiki/Validator-Guide-for-Devnet#how-do-i-recover-a-key)
