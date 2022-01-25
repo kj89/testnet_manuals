@@ -3,6 +3,14 @@
 ## Generate validator keys
 Run as Administrator this command in Powershell
 ```
+$path = "$home\Desktop\ssv-validators"
+If(!(test-path $path))
+{
+      New-Item -ItemType Directory -Force -Path $path
+}
+
+cd $path
+
 # Download deposit app
 Invoke-WebRequest -Uri "https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.2.0/eth2deposit-cli-256ea21-windows-amd64.zip" -OutFile "./temp.zip"
 
