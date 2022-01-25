@@ -111,6 +111,11 @@ celestia-appd tx staking edit-validator --moniker="kj-nodes.xyz" --website="http
 ```
 
 ## Wallet operations
+Send funds
+```
+celestia-appd tx bank send <address1> <address2> 1000000celes
+```
+
 Recover wallet
 ```
 celestia-appd keys add celestia-wallet --recover

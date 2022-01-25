@@ -104,6 +104,11 @@ ag0 tx staking edit-validator --moniker="kj-nodes.xyz" --website="http://kj-node
 ```
 
 ## Wallet operations
+Send funds
+```
+ag0 tx bank send <address1> <address2> 5000000ubld
+```
+
 Recover wallet
 ```
 ag0 keys add agoric-wallet --recover
