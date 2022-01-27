@@ -21,10 +21,9 @@ docker run -d --name prysm --restart=always -v ~/.eth2:/data -p 4000:4000 -p 130
 --datadir=/data \
 --rpc-host=0.0.0.0 \
 --monitoring-host=0.0.0.0 \
---http-web3provider=http://$(hostname -I | awk '{print $1}'):8545 \
+--http-web3provider=http://127.0.0.1:8545 \
 --accept-terms-of-use
 ```
-Note: The $(hostname -I | awk '{print $1}') part of the command should return the IP address of the machine. This is needed for this container to talk to the Geth container
 
 ### Generate operator key
 ```
@@ -111,9 +110,11 @@ docker exec -it goerli geth attach http://127.0.0.1:8545
 ```
 
 ### Commands inside geth
-Show sync status
+Show sync status and current percent
 ```
 eth.syncing
+eth.syncing.currentBlock * 100 / eth.syncing.highestBlock
+
 ```
 
 Peer count
