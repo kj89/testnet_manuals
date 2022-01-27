@@ -17,12 +17,10 @@ ethereum/client-go:stable \
 
 ### To run Prysm beacon-chain node in a Docker container
 ```
-docker run -d --name prysm --restart=always -v ~/.eth2:/data -p 4000:4000 -p 13000:13000 -p 12000:12000/udp \gcr.io/prysmaticlabs/prysm/beacon-chain:stable \
---datadir=/data \
---rpc-host=0.0.0.0 \
---monitoring-host=0.0.0.0 \
---http-web3provider=http://127.0.0.1:8545 \
---accept-terms-of-use
+docker run -d -p 4000:4000 -p 13000:13000 -p 12000:12000/udp --name prysm --restart=always \
+-v ~/.eth2:/data \
+gcr.io/prysmaticlabs/prysm/beacon-chain:stable \
+--prater --datadir=/data --rpc-host=0.0.0.0 --monitoring-host=0.0.0.0 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use
 ```
 
 ### Generate operator key
@@ -110,7 +108,7 @@ docker exec -it goerli geth attach http://127.0.0.1:8545
 ```
 
 ### Commands inside geth
-Show sync status and current percent
+Show sync status and current completion percent
 ```
 eth.syncing
 eth.syncing.currentBlock * 100 / eth.syncing.highestBlock
