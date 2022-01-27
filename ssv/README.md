@@ -12,7 +12,7 @@ wget -O install.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/s
 docker run -d -p 30303:30303 -p 8545:8545 -p 8546:8546 --name goerli --network eth-net --restart=always \
 -v ~/.ethereum:/root/.ethereum \
 ethereum/client-go:stable \
---goerli --syncmode snap --http --http.addr "0.0.0.0" --ws --ws.addr "0.0.0.0" --cache=8192 --maxpeers 30 --metrics 
+--goerli --syncmode=snap --http --http.addr=0.0.0.0 --ws --ws.addr=0.0.0.0 --rpcvhosts=* --cache=8192 --maxpeers=30 --metrics 
 ```
 
 ### To run Prysm beacon-chain prater node in a Docker container
