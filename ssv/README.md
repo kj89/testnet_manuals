@@ -1,13 +1,13 @@
-### Set up SSV operator node
+## Set up SSV operator node
 
 LOGIN as root
 
-## Run script bellow to prepare your server
+### Run script bellow to prepare your server
 ```
 wget -O install.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/ssv/install.sh && chmod +x install.sh && ./install.sh
 ```
 
-## To run Geth in a Docker container
+### To run Geth in a Docker container
 ```
 docker run -d -p 30303:30303 -p 8545:8545 -p 8546:8546 --name goerli --restart=always \
 -v ~/.ethereum:/root/.ethereum \
@@ -15,7 +15,7 @@ ethereum/client-go:stable \
 --goerli --syncmode snap --http --http.addr "0.0.0.0" --ws --ws.addr "0.0.0.0" --cache=8192 --maxpeers 30 --metrics 
 ```
 
-## To run Prysm beacon-chain node in a Docker container
+### To run Prysm beacon-chain node in a Docker container
 ```
 docker run -d --name prysm --restart=always -v ~/.eth2:/data -p 4000:4000 -p 13000:13000 -p 12000:12000/udp \gcr.io/prysmaticlabs/prysm/beacon-chain:stable \
 --datadir=/data \
@@ -26,7 +26,7 @@ docker run -d --name prysm --restart=always -v ~/.eth2:/data -p 4000:4000 -p 130
 ```
 Note: The $(hostname -I | awk '{print $1}') part of the command should return the IP address of the machine. This is needed for this container to talk to the Geth container
 
-## Generate operator key
+### Generate operator key
 ```
 docker run -d --name=ssv_node_op_key -it 'bloxstaking/ssv-node:latest' \
 /go/bin/ssvnode generate-operator-keys && docker logs ssv_node_op_key --follow \
@@ -34,7 +34,7 @@ docker run -d --name=ssv_node_op_key -it 'bloxstaking/ssv-node:latest' \
 ```
 Save the public and private keys!
 
-## Create configruation file
+### Create configruation file
 Replacing <YOUR_BEACON_ETH2_ENDPOINT>, <YOUR_WSS_GOERLI_ETH_ENDPOINT> and <YOUR_OPERATOR_PRIVATE_KEY> with your values
 ```
 export SSV_DB=$HOME/.ssv
@@ -48,10 +48,9 @@ yq n db.Path "$SSV_DB" | tee $SSV_DB/config.yaml \
 && yq w -i $SSV_DB/config.yaml OperatorPrivateKey "<YOUR_OPERATOR_PRIVATE_KEY>"
 ```
 
+## Set up SSV validator
 
-### Set up SSV validator
-
-## Generate validator keys
+### Generate validator keys
 Run as Administrator this command in Powershell
 ```
 $path = "$home\Desktop\ssv-validators"
@@ -85,7 +84,7 @@ Start-Process -Wait -FilePath "$pwd\deposit.exe" -ArgumentList 'new-mnemonic --n
 
 ```
 
-### Usefull commands
+## Usefull commands
 list of containers
 ```
 docker ps
@@ -111,7 +110,7 @@ Open geth console
 docker exec -it goerli geth attach http://127.0.0.1:8545
 ```
 
-## Commands inside geth
+### Commands inside geth
 Show sync status
 ```
 eth.syncing
