@@ -7,20 +7,20 @@ LOGIN as root
 wget -O install.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/ssv/install.sh && chmod +x install.sh && ./install.sh
 ```
 
-### To run Geth in a Docker container
+### To run Geth goerli node in a Docker container
 ```
-docker run -d -p 30303:30303 -p 8545:8545 -p 8546:8546 --name goerli --restart=always \
+docker run -d -p 30303:30303 -p 8545:8545 -p 8546:8546 --name goerli --network eth-net --restart=always \
 -v ~/.ethereum:/root/.ethereum \
 ethereum/client-go:stable \
 --goerli --syncmode snap --http --http.addr "0.0.0.0" --ws --ws.addr "0.0.0.0" --cache=8192 --maxpeers 30 --metrics 
 ```
 
-### To run Prysm beacon-chain node in a Docker container
+### To run Prysm beacon-chain prater node in a Docker container
 ```
-docker run -d -p 4000:4000 -p 13000:13000 -p 12000:12000/udp --name prysm --restart=always \
+docker run -d -p 4000:4000 -p 13000:13000 -p 12000:12000/udp --name prater --network eth-net --restart=always \
 -v ~/.eth2:/data \
 gcr.io/prysmaticlabs/prysm/beacon-chain:stable \
---prater --datadir=/data --rpc-host=0.0.0.0 --monitoring-host=0.0.0.0 --http-web3provider=http://127.0.0.1:8545 --accept-terms-of-use
+--prater --datadir=/data --rpc-host=0.0.0.0 --monitoring-host=0.0.0.0 --http-web3provider=http://goerli:8545 --accept-terms-of-use
 ```
 
 ### Generate operator key
