@@ -9,7 +9,7 @@ wget -O install.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/s
 
 ### To run Geth goerli node in a Docker container
 ```
-docker run -d -p 30303:30303 -p 8545:8545 -p 8546:8546 --name goerli --network eth-net --restart=always \
+docker run -d --name goerli --network eth-net --restart=always \
 -v ~/.ethereum:/root/.ethereum \
 ethereum/client-go:stable \
 --goerli --syncmode=snap --http --http.addr=0.0.0.0 --ws --ws.addr=0.0.0.0 --http.vhosts=* --cache=8192 --maxpeers=30 --metrics 
@@ -17,7 +17,7 @@ ethereum/client-go:stable \
 
 ### To run Prysm beacon-chain prater node in a Docker container
 ```
-docker run -d -p 4000:4000 -p 13000:13000 -p 12000:12000/udp --name prater --network eth-net --restart=always \
+docker run -d --name prater --network eth-net --restart=always --p2p-host-ip=$(curl -s v4.ident.me) \
 -v ~/.eth2:/data \
 gcr.io/prysmaticlabs/prysm/beacon-chain:stable \
 --prater --datadir=/data --rpc-host=0.0.0.0 --monitoring-host=0.0.0.0 --http-web3provider=http://goerli:8545 --accept-terms-of-use
@@ -45,6 +45,14 @@ yq n db.Path "$SSV_DB" | tee $SSV_DB/config.yaml \
 && yq w -i $SSV_DB/config.yaml OperatorPrivateKey "<YOUR_OPERATOR_PRIVATE_KEY>"
 ```
 
+### To run SSV operator in a Docker container
+```
+docker run -d --name ssv_operator --network eth-net --restart=always \
+-v $SSV_DB/config.yaml:/config.yaml -v $SSV_DB:/data \
+bloxstaking/ssv-node:latest \
+make BUILD_PATH=/go/bin/ssvnode start-node
+```
+
 ## Set up SSV validator
 
 ### Generate validator keys
@@ -59,6 +67,7 @@ If(!(test-path $path))
 cd $path
 
 # Download deposit app
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Invoke-WebRequest -Uri "https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.2.0/eth2deposit-cli-256ea21-windows-amd64.zip" -OutFile "./temp.zip"
 
 # Load ZIP methods
