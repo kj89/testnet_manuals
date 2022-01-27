@@ -9,15 +9,15 @@ wget -O install.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/s
 
 ## To run Geth in a Docker container
 ```
-docker run -d -p 30303:30303 -p 8545:8545 --restart=always \
+docker run -d -p 30303:30303 -p 8545:8545 -p 8546:8546 --name goerli --restart=always \
 -v ~/.ethereum:/root/.ethereum \
 ethereum/client-go:stable \
---http --http.addr "0.0.0.0" --http.vhosts * --ws --ws.addr "0.0.0.0" --goerli --maxpeers=30 --metrics --graphql --graphql.vhosts *
+--goerli --syncmode snap --http --http.addr "0.0.0.0" --ws --ws.addr "0.0.0.0" --cache=8192 --maxpeers 30 --metrics 
 ```
 
 ## To run Prysm beacon-chain node in a Docker container
 ```
-docker run -d --restart=always -v ~/.eth2:/data -p 4000:4000 -p 13000:13000 -p 12000:12000/udp \gcr.io/prysmaticlabs/prysm/beacon-chain:stable \
+docker run -d --name prysm --restart=always -v ~/.eth2:/data -p 4000:4000 -p 13000:13000 -p 12000:12000/udp \gcr.io/prysmaticlabs/prysm/beacon-chain:stable \
 --datadir=/data \
 --rpc-host=0.0.0.0 \
 --monitoring-host=0.0.0.0 \
@@ -79,7 +79,45 @@ $zip.Entries | ForEach-Object {
 # Close ZIP file
 $zip.Dispose()
 
+Start-Sleep -Seconds 5
+
 Start-Process -Wait -FilePath "$pwd\deposit.exe" -ArgumentList 'new-mnemonic --num_validators 1 --chain prater' -PassThru
 
 ```
 
+### Usefull commands
+list of containers
+```
+docker ps
+```
+
+list of images
+```
+docker images
+```
+
+delete stoped containers
+```
+docker container prune -f
+```
+
+Show container logs
+```
+docker logs -f goerli
+```
+
+Open geth console
+```
+docker exec -it goerli geth attach http://127.0.0.1:8545
+```
+
+## Commands inside geth
+Show sync status
+```
+eth.syncing
+```
+
+Peer count
+```
+net.peerCount
+```
