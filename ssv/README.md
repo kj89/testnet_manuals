@@ -38,8 +38,8 @@ export SSV_DB=$HOME/.ssv
 mkdir -p $SSV_DB
 yq n db.Path "$SSV_DB" | tee $SSV_DB/config.yaml \
 && yq w -i $SSV_DB/config.yaml eth2.Network "prater" \
-&& yq w -i $SSV_DB/config.yaml eth2.BeaconNodeAddr "<YOUR_BEACON_ETH2_ENDPOINT>" \
-&& yq w -i $SSV_DB/config.yaml eth1.ETH1Addr "<YOUR_WSS_GOERLI_ETH_ENDPOINT>" \
+&& yq w -i $SSV_DB/config.yaml eth2.BeaconNodeAddr "http://prater:4000" \
+&& yq w -i $SSV_DB/config.yaml eth1.ETH1Addr "wss://goerli:8546" \
 && yq w -i $SSV_DB/config.yaml eth1.RegistryContractAddr "0x687fb596F3892904F879118e2113e1EEe8746C2E" \
 && yq w -i $SSV_DB/config.yaml MetricsAPIPort "15000" \
 && yq w -i $SSV_DB/config.yaml OperatorPrivateKey "<YOUR_OPERATOR_PRIVATE_KEY>"
@@ -118,4 +118,10 @@ eth.syncing.currentBlock * 100 / eth.syncing.highestBlock
 Peer count
 ```
 net.peerCount
+```
+
+### Create ubuntu container for testing
+```
+docker pull ubuntu:latest
+docker run -it --rm --network eth-net ubuntu:latest /bin/bash 
 ```
