@@ -9,7 +9,7 @@ wget -O install.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/s
 
 ### To run Geth goerli node in a Docker container
 ```
-docker run -d --name goerli --network eth-net --restart=always \
+docker run -d --name goerli --network eth-net -p 30303:30303 -p 8545:8545 --restart=always \
 -v ~/.ethereum:/root/.ethereum \
 ethereum/client-go:stable \
 --goerli --syncmode=snap --http --http.addr=0.0.0.0 --ws --ws.addr=0.0.0.0 --http.vhosts=* --cache=8192 --maxpeers=30 --metrics 
@@ -17,10 +17,20 @@ ethereum/client-go:stable \
 
 ### To run Prysm beacon-chain prater node in a Docker container
 ```
-docker run -d --name prater --network eth-net --restart=always --p2p-host-ip=$(curl -s v4.ident.me) \
+docker run -d --name prater --network eth-net -p 4000:4000 -p 13000:13000 -p 12000:12000/udp --restart=always \
 -v ~/.eth2:/data \
 gcr.io/prysmaticlabs/prysm/beacon-chain:stable \
---prater --datadir=/data --rpc-host=0.0.0.0 --monitoring-host=0.0.0.0 --http-web3provider=http://goerli:8545 --accept-terms-of-use
+--network prater --datadir=/data --rpc-host=0.0.0.0 --monitoring-host=0.0.0.0 --http-web3provider=http://goerli:8545 --accept-terms-of-use --p2p-host-ip=$(curl -s v4.ident.me)
+```
+
+### To run Lighthouse beacon-chain prater node in a Docker container
+```
+git clone https://github.com/sigp/lighthouse.git && cd lighthouse
+docker build . -t lighthouse:local
+docker run -d --name lighthouse --network=eth-net -p 9000:9000 -p 127.0.0.1:5052:5052 --restart=always \
+-v ~/.lighthouse:/root/.lighthouse \
+lighthouse:local lighthouse \
+--network prater beacon --http --http-address 0.0.0.0 --eth1 --eth1-endpoint=http://goerli:8545 --monitoring-endpoint https://beaconcha.in/api/v1/client/metrics?apikey=cjk0NDh5TXZCUThGcUY0RndxaFIu
 ```
 
 ### Generate operator key
@@ -38,7 +48,7 @@ export SSV_DB=$HOME/.ssv
 mkdir -p $SSV_DB
 yq n db.Path "$SSV_DB" | tee $SSV_DB/config.yaml \
 && yq w -i $SSV_DB/config.yaml eth2.Network "prater" \
-&& yq w -i $SSV_DB/config.yaml eth2.BeaconNodeAddr "http://prater:4000" \
+&& yq w -i $SSV_DB/config.yaml eth2.BeaconNodeAddr "http://lighthouse:9000" \
 && yq w -i $SSV_DB/config.yaml eth1.ETH1Addr "wss://goerli:8546" \
 && yq w -i $SSV_DB/config.yaml eth1.RegistryContractAddr "0x687fb596F3892904F879118e2113e1EEe8746C2E" \
 && yq w -i $SSV_DB/config.yaml MetricsAPIPort "15000" \
