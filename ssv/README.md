@@ -15,14 +15,6 @@ ethereum/client-go:stable \
 --goerli --syncmode=snap --http --http.addr=0.0.0.0 --ws --ws.addr=0.0.0.0 --http.vhosts=* --cache=8192 --maxpeers=30 --metrics 
 ```
 
-### To run Prysm beacon-chain prater node in a Docker container
-```
-docker run -d --name prater --network eth-net -p 4000:4000 -p 13000:13000 -p 12000:12000/udp --restart=always \
--v ~/.eth2:/data \
-gcr.io/prysmaticlabs/prysm/beacon-chain:stable \
---network prater --datadir=/data --rpc-host=0.0.0.0 --monitoring-host=0.0.0.0 --http-web3provider=http://goerli:8545 --accept-terms-of-use --p2p-host-ip=$(curl -s v4.ident.me)
-```
-
 ### To run Lighthouse beacon-chain prater node in a Docker container
 ```
 git clone https://github.com/sigp/lighthouse.git && cd lighthouse
