@@ -1,5 +1,9 @@
 # install dependencies
-sudo apt-get -y update
+export DEBIAN_FRONTEND=noninteractive
+apt-get update && 
+    apt-get -o Dpkg::Options::="--force-confold" upgrade -q -y --force-yes &&
+    apt-get -o Dpkg::Options::="--force-confold" dist-upgrade -q -y --force-yes
+
 sudo apt-get -y install \
     apt-transport-https \
     ca-certificates \
