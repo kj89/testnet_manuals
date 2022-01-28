@@ -7,7 +7,7 @@ LOGIN as root
 wget -O install.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/ssv/install.sh && chmod +x install.sh && ./install.sh
 ```
 
-### To run Geth goerli node in a Docker container
+### To run Geth goerli eth node in a Docker container
 ```
 docker run -d --name goerli --network eth-net -p 30303:30303 -p 8545:8545 --restart=always \
 -v ~/.ethereum:/root/.ethereum \
@@ -15,7 +15,7 @@ ethereum/client-go:stable \
 --goerli --syncmode=snap --http --http.addr=0.0.0.0 --ws --ws.addr=0.0.0.0 --http.vhosts=* --cache=8192 --maxpeers=30 --metrics 
 ```
 
-### To run Lighthouse beacon-chain prater node in a Docker container
+### To run Lighthouse prater eth2 node in a Docker container
 ```
 git clone https://github.com/sigp/lighthouse.git && cd lighthouse
 docker build . -t lighthouse:local
@@ -34,7 +34,7 @@ docker run -d --name=ssv_node_op_key -it 'bloxstaking/ssv-node:latest' \
 Save the public and private keys!
 
 ### Create configruation file
-Replacing <YOUR_BEACON_ETH2_ENDPOINT>, <YOUR_WSS_GOERLI_ETH_ENDPOINT> and <YOUR_OPERATOR_PRIVATE_KEY> with your values
+Replace <YOUR_OPERATOR_PRIVATE_KEY> with private key from step above
 ```
 export SSV_DB=$HOME/.ssv
 mkdir -p $SSV_DB
