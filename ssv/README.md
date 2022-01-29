@@ -19,10 +19,12 @@ ethereum/client-go:stable \
 ```
 git clone https://github.com/sigp/lighthouse.git && cd lighthouse
 docker build . -t lighthouse:local
-docker run -d --name lighthouse --network=eth-net -p 9000:9000 -p 127.0.0.1:5052:5052 --restart=always \
+docker run -d --name lighthouse --network=eth-net -p 9000:9000 -p 5052:5052 --restart=always \
 -v ~/.lighthouse:/root/.lighthouse \
-lighthouse:local lighthouse \
---network prater beacon --http --http-address 0.0.0.0 --eth1 --eth1-endpoint=http://goerli:8545 --monitoring-endpoint https://beaconcha.in/api/v1/client/metrics?apikey=cjk0NDh5TXZCUThGcUY0RndxaFIu
+lighthouse:local lighthouse bn \
+--network prater --http --http-address 0.0.0.0 --eth1 --eth1-endpoint=http://goerli:8545 \
+--monitoring-endpoint <beaconchain_api_url> \
+--checkpoint-sync-url <infura_api_url>
 ```
 
 ### Generate operator key
@@ -40,7 +42,7 @@ export SSV_DB=$HOME/.ssv
 mkdir -p $SSV_DB
 yq n db.Path "$SSV_DB" | tee $SSV_DB/config.yaml \
 && yq w -i $SSV_DB/config.yaml eth2.Network "prater" \
-&& yq w -i $SSV_DB/config.yaml eth2.BeaconNodeAddr "http://lighthouse:9000" \
+&& yq w -i $SSV_DB/config.yaml eth2.BeaconNodeAddr "http://lighthouse:5052" \
 && yq w -i $SSV_DB/config.yaml eth1.ETH1Addr "wss://goerli:8546" \
 && yq w -i $SSV_DB/config.yaml eth1.RegistryContractAddr "0x687fb596F3892904F879118e2113e1EEe8746C2E" \
 && yq w -i $SSV_DB/config.yaml MetricsAPIPort "15000" \
@@ -49,10 +51,14 @@ yq n db.Path "$SSV_DB" | tee $SSV_DB/config.yaml \
 
 ### To run SSV operator in a Docker container
 ```
-docker run -d --name ssv_operator --network eth-net --restart=always \
--v $SSV_DB/config.yaml:/config.yaml -v $SSV_DB:/data \
-bloxstaking/ssv-node:latest \
-make BUILD_PATH=/go/bin/ssvnode start-node
+export SSV_DB=$HOME/.ssv
+docker rm -f ssv
+docker pull bloxstaking/ssv-node:latest
+docker run -d --restart unless-stopped --name=ssv --network eth-net -e \
+CONFIG_PATH=./config.yaml -p 13000:13000 -p 12000:12000 -v \
+$SSV_DB/config.yaml:/config.yaml -v $SSV_DB:/data -it \
+'bloxstaking/ssv-node:latest' make BUILD_PATH=/go/bin/ssvnode start-node
+docker logs -f ssv
 ```
 
 ## Set up SSV validator
