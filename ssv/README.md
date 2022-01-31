@@ -97,12 +97,12 @@ docker container prune -f
 
 Show container logs
 ```
-docker logs -f goerli
+docker logs -f ssv-execution-1
 ```
 
 Open geth console
 ```
-docker exec -it goerli geth attach http://127.0.0.1:8545
+docker exec -it ssv-execution-1 geth attach http://127.0.0.1:8545
 ```
 
 ### Commands inside geth
