@@ -7,58 +7,39 @@ LOGIN as root
 wget -O install.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/ssv/install.sh && chmod +x install.sh && ./install.sh
 ```
 
-### To run Geth goerli eth node in a Docker container
+## Set up SSV operator
+
+### Create user and give persmissions to docker group
 ```
-docker run -d --name=goerli --network=eth-net -p 30303:30303 -p 8545:8545 --restart=always \
--v ~/.ethereum:/root/.ethereum \
-ethereum/client-go:stable \
---goerli --syncmode=snap --http --http.addr=0.0.0.0 --ws --ws.addr=0.0.0.0 --http.vhosts=* --cache=8192 --maxpeers=30 --metrics 
+adduser <USERNAME>
+usermod -aG sudo <USERNAME>
+sudo usermod -aG docker <USERNAME>
+newgrp docker
 ```
 
-### To run Lighthouse prater eth2 node in a Docker container
+### Clone eth-docker repository to ssv folder and run config
 ```
-git clone https://github.com/sigp/lighthouse.git && cd lighthouse
-docker build . -t lighthouse:local
-docker run -d --name=lighthouse --network=eth-net -p 9000:9000 -p 5052:5052 --restart=always \
--v ~/.lighthouse:/root/.lighthouse \
-lighthouse:local lighthouse bn \
---network=prater --http --http-address=0.0.0.0 --eth1 --eth1-endpoint=http://goerli:8545 \
---monitoring-endpoint=<beaconchain_api_url> \
---checkpoint-sync-url=<infura_api_url>
+cd ~ && git clone https://github.com/eth-educators/eth-docker.git ssv && cd ssv
+./ethd config
 ```
 
-### Generate operator key
-```
-docker run -d --name=ssv_node_op_key -it 'bloxstaking/ssv-node:latest' \
-/go/bin/ssvnode generate-operator-keys && docker logs ssv_node_op_key --follow \
-&& docker stop ssv_node_op_key && docker rm ssv_node_op_key
-```
-Save the public and private keys!
+### Choose execution and consensus clients and endpoints from grafana
+I prefer geth + lighthouse setup. Also you have to choose infura fallback endpoints
 
-### Create configruation file
-Replace <YOUR_OPERATOR_PRIVATE_KEY> with private key from step above
+### Generate operator keys
 ```
-export SSV_DB=$HOME/.ssv
-mkdir -p $SSV_DB
-yq n db.Path "$SSV_DB" | tee $SSV_DB/config.yaml \
-&& yq w -i $SSV_DB/config.yaml eth2.Network "prater" \
-&& yq w -i $SSV_DB/config.yaml eth2.BeaconNodeAddr "http://lighthouse:5052" \
-&& yq w -i $SSV_DB/config.yaml eth1.ETH1Addr "wss://goerli:8546" \
-&& yq w -i $SSV_DB/config.yaml eth1.RegistryContractAddr "0x687fb596F3892904F879118e2113e1EEe8746C2E" \
-&& yq w -i $SSV_DB/config.yaml MetricsAPIPort "15000" \
-&& yq w -i $SSV_DB/config.yaml OperatorPrivateKey "<YOUR_OPERATOR_PRIVATE_KEY>"
+docker-compose run --rm ssv-generate-keys
 ```
 
-### To run SSV operator in a Docker container
+### Add operator private key to config file
 ```
-export SSV_DB=$HOME/.ssv
-docker rm -f ssv
-docker pull bloxstaking/ssv-node:latest
-docker run -d --restart=unless-stopped --name=ssv --network=eth-net -e \
-CONFIG_PATH=./config.yaml -p 13000:13000 -p 12000:12000 -v \
-$SSV_DB/config.yaml:/config.yaml -v $SSV_DB:/data -it \
-'bloxstaking/ssv-node:latest' make BUILD_PATH=/go/bin/ssvnode start-node
-docker logs -f ssv
+cp blox-ssv-config-sample.yaml blox-ssv-config.yaml
+vim blox-ssv-config.yaml
+```
+
+### Run full SSV stack
+```
+./ethd up
 ```
 
 ## Set up SSV validator
