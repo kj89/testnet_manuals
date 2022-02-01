@@ -91,16 +91,17 @@ ag0 status 2>&1 | jq .NodeInfo
 ```
 
 ## Create and Modify validator
+Amounts of uBLD to BLD are 1 to 1 000 000
 Create validator
 ```
 chainName=`curl https://main.agoric.net/network-config | jq -r .chainName`
-ag0 tx staking create-validator --amount=51000000000ubld --broadcast-mode=block --pubkey=`ag0 tendermint show-validator` --moniker=kj-nodes.xyz --website="http://kj-nodes.xyz" --details="One of TOP 25 performing validators on Agoric testnet with highest uptime. Uptime is important to me. Server is constantly being monitored and maintained. You can contact me at discord: kristaps#8455 or telegram: @janispaegle" --commission-rate="0.07" --commission-max-rate="0.20" --commission-max-change-rate="0.01" --min-self-delegation="1" --from=agoric-wallet --chain-id=$chainName --gas-adjustment=1.4 --fees=5001ubld
+ag0 tx staking create-validator --amount=51000000000ubld --broadcast-mode=block --pubkey=`ag0 tendermint show-validator` --moniker=kjnodes.com --website="http://kjnodes.com" --details="One of TOP 25 performing validators on Agoric testnet with highest uptime. Uptime is important to me. Server is constantly being monitored and maintained. You can contact me at discord: kjnodes#8455 or telegram: @kjnodes" --commission-rate="0.07" --commission-max-rate="0.20" --commission-max-change-rate="0.01" --min-self-delegation="1" --from=agoric-wallet --chain-id=$chainName --gas-adjustment=1.4 --fees=5001ubld
 ```
 
 Modify validator
 ```
 chainName=`curl https://main.agoric.net/network-config | jq -r .chainName`
-ag0 tx staking edit-validator --moniker="kj-nodes.xyz" --website="http://kj-nodes.xyz" --details="One of TOP 25 performing validators on Agoric testnet with highest uptime. Uptime is important to me. Server is constantly being monitored and maintained. You can contact me at discord: kristaps#8455 or telegram: @janispaegle" --chain-id=$chainName --from=agoric-wallet
+ag0 tx staking edit-validator --moniker="kjnodes.com" --website="http://kjnodes.com" --details="One of TOP 25 performing validators on Agoric testnet with highest uptime. Server is constantly being monitored and maintained. You can contact me at discord: kjnodes#8455 or telegram: @kjnodes" --chain-id=$chainName --from=agoric-wallet
 ```
 
 ## Wallet operations
@@ -162,6 +163,11 @@ curl -s 127.0.0.1:26657/consensus_state | jq .result.round_state.height_vote_set
 ## Check voting status
 ```
 curl -s http://localhost:26657/dump_consensus_state | jq '.result.round_state.votes[0].prevotes' | grep $(curl -s http://localhost:26657/status | jq -r '.result.validator_info.address[:12]')
+```
+
+## Check connected peers
+```
+curl -sS http://localhost:26657/net_info | jq -r '.result.peers[] | "\(.node_info.moniker)"' | wc -l
 ```
 
 ## Agoric SDK update
