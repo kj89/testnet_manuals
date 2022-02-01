@@ -154,6 +154,36 @@ chainName=`curl https://main.agoric.net/network-config | jq -r .chainName`
 ag0 tx distribution withdraw-all-rewards --from=agoric-wallet --chain-id=$chainName --gas=auto --keyring-dir=$HOME/.agoric
 ```
 
+## Check consensus state
+```
+curl -s 127.0.0.1:26657/consensus_state | jq .result.round_state.height_vote_set[0].prevotes_bit_array
+```
+
+## Check voting status
+```
+curl -s http://localhost:26657/dump_consensus_state | jq '.result.round_state.votes[0].prevotes' | grep $(curl -s http://localhost:26657/status | jq -r '.result.validator_info.address[:12]')
+```
+
+## Agoric SDK update
+```
+sudo systemctl stop agoricd
+cd $HOME
+rm -rf ag0
+git clone https://github.com/Agoric/ag0.git
+cd ag0
+git pull origin
+git checkout agoric-upgrade-5
+make install
+make build
+. $HOME/.bash_profile
+cp $HOME/ag0/build/ag0 /usr/local/bin
+ag0 version
+# HEAD-a2a0dc089ca98b9eae50802d8ed866bf8c209b06
+systemctl restart agoricd.service
+# check logs
+journalctl -u agoricd -f -n 100
+```
+
 ### Migrate Agoric validator to another VPS
 1. First of all you have to backup your configuration files on your old validator node located in `~/.agoric/config/`
 2. Set up new VPS
