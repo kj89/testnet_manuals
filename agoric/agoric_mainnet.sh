@@ -43,7 +43,7 @@ go version
 export GIT_BRANCH=agoric-3
 git clone https://github.com/Agoric/ag0
 cd ag0
-git checkout agoric-3.1
+git checkout agoric-upgrade-5
 make build
 . $HOME/.bash_profile
 cp $HOME/ag0/build/ag0 /usr/local/bin
