@@ -1,9 +1,9 @@
-### Create VPS on Hetzner
+## Create VPS on Hetzner
 For agoric-validator you have to choose CCX32 and add 1TB extra volume to it
 
 LOGIN as root
 
-## Mount volume to /root where agoric validator data will be stored
+### Mount volume to /root where agoric validator data will be stored
 ```
 VOLUME="$(ls /mnt)"
 { cd /root && tar cf - . ; } | { cd /mnt/$VOLUME/ && tar xvf -  ; echo EXIT=$? ; }
@@ -13,7 +13,7 @@ mkdir /root
 mount /root
 ```
 
-## Mount Hetzner storage box to /mnt/backup-server
+### Mount Hetzner storage box to /mnt/backup-server
 ```
 sudo apt install cifs-utils -y < "/dev/null"
 sb_username=<storagebox_username>
@@ -30,18 +30,18 @@ reboot now
 ```
 
 
-## Run script bellow to prepare your RPC server
+### Run script bellow to prepare your RPC server
 ```
 wget -O agoric_mainnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/agoric_mainnet.sh && chmod +x agoric_mainnet.sh && ./agoric_mainnet.sh
 ```
 
-## Run script bellow to create daily agoric chain backups
+### Run script bellow to create daily agoric chain backups
 ```
 wget -O agoric_backup.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/agoric_backup.sh && chmod +x agoric_backup.sh
 (crontab -l; echo "0 */4 * * * bash ./agoric_backup.sh >> /mnt/agoric_backups.log")|awk '!x[$0]++'|crontab -
 ```
 
-### Usefull commands
+#### Usefull commands
 ## Service management
 Check logs
 ```
@@ -68,13 +68,22 @@ Configuration file
 vim ~/.agoric/config/config.toml
 ```
 
-Check validator node status
+Check consensus state
 ```
-curl -O https://gist.githubusercontent.com/michaelfig/2319d0573c0f6bc257de6a97e3d46b3e/raw/cf2b2b784c60359d8e49fb3fa198b5be13c816be/check-validator.js
-node check-validator.js
+curl -s 127.0.0.1:26657/consensus_state | jq .result.round_state.height_vote_set[0].prevotes_bit_array
 ```
 
-## Node info
+Check voting status
+```
+curl -s http://localhost:26657/dump_consensus_state | jq '.result.round_state.votes[0].prevotes' | grep $(curl -s http://localhost:26657/status | jq -r '.result.validator_info.address[:12]')
+```
+
+Check connected peers
+```
+curl -sS http://localhost:26657/net_info | jq -r '.result.peers[] | "\(.node_info.moniker)"' | wc -l
+```
+
+### Node info
 Synchronization info
 ```
 ag0 status 2>&1 | jq .SyncInfo
@@ -90,7 +99,7 @@ Node info
 ag0 status 2>&1 | jq .NodeInfo
 ```
 
-## Create and Modify validator
+### Create and Modify validator
 Amounts of uBLD to BLD are 1 to 1 000 000
 Create validator
 ```
@@ -104,7 +113,7 @@ chainName=`curl https://main.agoric.net/network-config | jq -r .chainName`
 ag0 tx staking edit-validator --moniker="kjnodes.com" --website="http://kjnodes.com" --details="One of TOP 25 performing validators on Agoric testnet with highest uptime. Server is constantly being monitored and maintained. You can contact me at discord: kjnodes#8455 or telegram: @kjnodes" --chain-id=$chainName --from=agoric-wallet
 ```
 
-## Wallet operations
+### Wallet operations
 Send funds
 ```
 ag0 tx bank send <address1> <address2> 5000000ubld
@@ -130,13 +139,13 @@ Delete wallet
 ag0 keys delete agoric-wallet
 ```
 
-## Configruation reset
+### Configruation reset
 Reset configs
 ```
 ag0 unsafe-reset-all
 ```
 
-## Staking, Delegation and Rewards
+### Staking, Delegation and Rewards
 Delegate stake
 ```
 chainName=`curl https://main.agoric.net/network-config | jq -r .chainName`
@@ -155,22 +164,7 @@ chainName=`curl https://main.agoric.net/network-config | jq -r .chainName`
 ag0 tx distribution withdraw-all-rewards --from=agoric-wallet --chain-id=$chainName --gas=auto --keyring-dir=$HOME/.agoric
 ```
 
-## Check consensus state
-```
-curl -s 127.0.0.1:26657/consensus_state | jq .result.round_state.height_vote_set[0].prevotes_bit_array
-```
-
-## Check voting status
-```
-curl -s http://localhost:26657/dump_consensus_state | jq '.result.round_state.votes[0].prevotes' | grep $(curl -s http://localhost:26657/status | jq -r '.result.validator_info.address[:12]')
-```
-
-## Check connected peers
-```
-curl -sS http://localhost:26657/net_info | jq -r '.result.peers[] | "\(.node_info.moniker)"' | wc -l
-```
-
-## Agoric SDK update
+### Agoric SDK update
 ```
 sudo systemctl stop agoricd
 cd $HOME
