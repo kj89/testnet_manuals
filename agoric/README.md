@@ -1,33 +1,26 @@
-### Mount Hetzner storage box to /mnt/backup-server
-```
-sudo apt install cifs-utils -y < "/dev/null"
-sb_username=<storagebox_username>
-sb_password=<storagebox_username>
-
-cat <<EOF > /etc/backup-credentials.txt
-username=$sb_username
-password=$sb_password
-EOF
-
-grep "$sb_username" /etc/fstab || 
-printf "//$sb_username.your-storagebox.de/backup /mnt/backup-server cifs credentials=/etc/backup-credentials.txt,file_mode=0755,dir_mode=0755 0 0\n" >> /etc/fstab
-reboot now
-```
-
+## Sentry setup
 
 ### Run script bellow to prepare your RPC server
 ```
 wget -O agoric_mainnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/agoric_mainnet.sh && chmod +x agoric_mainnet.sh && ./agoric_mainnet.sh
 ```
 
-### Run script bellow to create daily agoric chain backups
+## Validator setup and modify
+Amounts of uBLD to BLD are 1 to 1 000 000
+Create validator
 ```
-wget -O agoric_backup.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/agoric_backup.sh && chmod +x agoric_backup.sh
-(crontab -l; echo "0 */4 * * * bash ./agoric_backup.sh >> /mnt/agoric_backups.log")|awk '!x[$0]++'|crontab -
+chainName=`curl https://main.agoric.net/network-config | jq -r .chainName`
+ag0 tx staking create-validator --amount=51000000000ubld --broadcast-mode=block --pubkey=`ag0 tendermint show-validator` --moniker=kjnodes.com --website="http://kjnodes.com" --details="One of TOP 25 performing validators on Agoric testnet with highest uptime. Uptime is important to me. Server is constantly being monitored and maintained. You can contact me at discord: kjnodes#8455 or telegram: @kjnodes" --commission-rate="0.07" --commission-max-rate="0.20" --commission-max-change-rate="0.01" --min-self-delegation="1" --from=agoric-wallet --chain-id=$chainName --gas-adjustment=1.4 --fees=5001ubld
 ```
 
-#### Usefull commands
-## Service management
+Modify validator
+```
+chainName=`curl https://main.agoric.net/network-config | jq -r .chainName`
+ag0 tx staking edit-validator --moniker="kjnodes.com" --website="http://kjnodes.com" --details="One of TOP 25 performing validators on Agoric testnet with highest uptime. Server is constantly being monitored and maintained. You can contact me at discord: kjnodes#8455 or telegram: @kjnodes" --chain-id=$chainName --from=agoric-wallet
+```
+
+## Usefull commands
+### Service management
 Check logs
 ```
 journalctl -fu agoricd.service
@@ -82,20 +75,6 @@ ag0 status 2>&1 | jq .ValidatorInfo
 Node info
 ```
 ag0 status 2>&1 | jq .NodeInfo
-```
-
-### Create and Modify validator
-Amounts of uBLD to BLD are 1 to 1 000 000
-Create validator
-```
-chainName=`curl https://main.agoric.net/network-config | jq -r .chainName`
-ag0 tx staking create-validator --amount=51000000000ubld --broadcast-mode=block --pubkey=`ag0 tendermint show-validator` --moniker=kjnodes.com --website="http://kjnodes.com" --details="One of TOP 25 performing validators on Agoric testnet with highest uptime. Uptime is important to me. Server is constantly being monitored and maintained. You can contact me at discord: kjnodes#8455 or telegram: @kjnodes" --commission-rate="0.07" --commission-max-rate="0.20" --commission-max-change-rate="0.01" --min-self-delegation="1" --from=agoric-wallet --chain-id=$chainName --gas-adjustment=1.4 --fees=5001ubld
-```
-
-Modify validator
-```
-chainName=`curl https://main.agoric.net/network-config | jq -r .chainName`
-ag0 tx staking edit-validator --moniker="kjnodes.com" --website="http://kjnodes.com" --details="One of TOP 25 performing validators on Agoric testnet with highest uptime. Server is constantly being monitored and maintained. You can contact me at discord: kjnodes#8455 or telegram: @kjnodes" --chain-id=$chainName --from=agoric-wallet
 ```
 
 ### Wallet operations
