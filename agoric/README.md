@@ -1,18 +1,3 @@
-## Create VPS on Hetzner
-For agoric-validator you have to choose CCX32 and add 1TB extra volume to it
-
-LOGIN as root
-
-### Mount volume to /root where agoric validator data will be stored
-```
-VOLUME="$(ls /mnt)"
-{ cd /root && tar cf - . ; } | { cd /mnt/$VOLUME/ && tar xvf -  ; echo EXIT=$? ; }
-sed -i "s|/mnt/$VOLUME|/root|g" /etc/fstab
-mv /root /root-
-mkdir /root 
-mount /root
-```
-
 ### Mount Hetzner storage box to /mnt/backup-server
 ```
 sudo apt install cifs-utils -y < "/dev/null"
