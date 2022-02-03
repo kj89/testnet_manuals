@@ -1,0 +1,1922 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "prometheus-infra-prod",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    },
+    {
+      "name": "VAR_VALIDATOR_DASHBOARD_ID",
+      "type": "constant",
+      "label": "validator_dashboard_id",
+      "value": "XIbEQ37aa",
+      "description": ""
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "8.0.4"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph (old)",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": null,
+  "iteration": 1631686313507,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 40,
+      "panels": [],
+      "title": "Validators Status",
+      "type": "row"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "description": "Information on attestation duties for all validators registered to an operator",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "left",
+            "displayMode": "auto",
+            "filterable": true
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Stage"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "color-text"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "rgba(92, 92, 92, 1)",
+                        "index": 0,
+                        "text": "Not Started"
+                      },
+                      "1": {
+                        "color": "super-light-green",
+                        "index": 1,
+                        "text": "Pre Prepare"
+                      },
+                      "2": {
+                        "color": "light-green",
+                        "index": 2,
+                        "text": "Prepare"
+                      },
+                      "3": {
+                        "color": "semi-dark-green",
+                        "index": 3,
+                        "text": "Commit"
+                      },
+                      "4": {
+                        "color": "yellow",
+                        "index": 4,
+                        "text": "Change Round"
+                      },
+                      "5": {
+                        "color": "dark-green",
+                        "index": 5,
+                        "text": "Decided"
+                      },
+                      "6": {
+                        "color": "rgba(39, 39, 39, 1)",
+                        "index": 6,
+                        "text": "Stopped"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 123
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Connected Peers"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "color-text"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "2": {
+                        "color": "yellow",
+                        "index": 1
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "from": 0,
+                      "result": {
+                        "color": "red",
+                        "index": 0
+                      },
+                      "to": 1
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 3,
+                      "result": {
+                        "color": "green",
+                        "index": 2
+                      },
+                      "to": 10
+                    },
+                    "type": "range"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 146
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "pubKey"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 804
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Round"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "color-text"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 4
+                    },
+                    {
+                      "color": "orange",
+                      "value": 6
+                    },
+                    {
+                      "color": "red",
+                      "value": 8
+                    },
+                    {
+                      "color": "dark-red",
+                      "value": 15
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 100
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "IBFT Status"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "color-text"
+              },
+              {
+                "id": "custom.width",
+                "value": 148
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "gray",
+                        "index": 0,
+                        "text": "IDLE"
+                      },
+                      "1": {
+                        "color": "green",
+                        "index": 1,
+                        "text": "Running"
+                      },
+                      "2": {
+                        "color": "yellow",
+                        "index": 2,
+                        "text": "Initializing"
+                      },
+                      "3": {
+                        "color": "green",
+                        "index": 3,
+                        "text": "Initialized"
+                      },
+                      "4": {
+                        "color": "red",
+                        "index": 4,
+                        "text": "Error"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Public Key"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "",
+                    "url": "$explorer/validators/${__data.fields[\"Public Key\"]}#attestations"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Beaconcha"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "",
+                    "url": "https://prater.beaconcha.in/validator/${__data.fields[\"Public Key\"]}#attestations"
+                  }
+                ]
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "ssv": {
+                        "index": 0,
+                        "text": "Open"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "match": "null+nan",
+                      "result": {
+                        "index": 1,
+                        "text": "Open"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "auto"
+              },
+              {
+                "id": "custom.width",
+                "value": 90
+              },
+              {
+                "id": "custom.filterable"
+              },
+              {
+                "id": "custom.align",
+                "value": "center"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Current Sequence"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Highest Decided"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Current slot"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 125
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Dashboard"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "ssv": {
+                        "index": 0,
+                        "text": "Open"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "match": "null+nan",
+                      "result": {
+                        "index": 1,
+                        "text": "Open"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              },
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "",
+                    "url": "/d/${validator_dashboard_id}/ssv-validator?orgId=1&refresh=10s&var-instance=${instance}&var-pubkey=${__data.fields[\"Public Key\"]}"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 86
+              },
+              {
+                "id": "custom.filterable"
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "auto"
+              },
+              {
+                "id": "custom.align",
+                "value": "center"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Validator Status"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "gray",
+                        "index": 0,
+                        "text": "Inactive"
+                      },
+                      "1": {
+                        "color": "orange",
+                        "index": 1,
+                        "text": "No Index"
+                      },
+                      "2": {
+                        "color": "red",
+                        "index": 2,
+                        "text": "Error"
+                      },
+                      "3": {
+                        "color": "green",
+                        "index": 3,
+                        "text": "Ready"
+                      },
+                      "4": {
+                        "color": "grey",
+                        "index": 4,
+                        "text": "Not Activated"
+                      },
+                      "5": {
+                        "color": "gray",
+                        "index": 5,
+                        "text": "Exited"
+                      },
+                      "6": {
+                        "color": "red",
+                        "index": 6,
+                        "text": "Slashed"
+                      },
+                      "7": {
+                        "color": "red",
+                        "index": 7,
+                        "text": "Not Found"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.align",
+                "value": "left"
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-text"
+              },
+              {
+                "id": "custom.width",
+                "value": 162
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 23,
+        "x": 0,
+        "y": 1
+      },
+      "id": 22,
+      "options": {
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "ssv:validator:ibft_stage{instance=~\"$instance.*\"}",
+          "format": "table",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "ssv:validator:ibft_highest_decided{instance=~\"$instance.*\"}",
+          "format": "table",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "ssv:network:connected_peers{instance=~\"$instance.*\"}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "ssv:validator:ibft_current_sequence{instance=~\"$instance.*\"}",
+          "format": "table",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "ssv:validator:ibft_round{instance=~\"$instance.*\"}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "ssv:validator:running_ibfts_count{instance=~\"$instance.*\"}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "F"
+        },
+        {
+          "exemplar": true,
+          "expr": "ssv:validator:ibft_current_slot{instance=~\"$instance.*\"}",
+          "format": "table",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "G"
+        },
+        {
+          "exemplar": true,
+          "expr": "ssv:validator:status{instance=~\"$instance.*\"}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "H"
+        }
+      ],
+      "title": "Validators (Attestation)",
+      "transformations": [
+        {
+          "id": "seriesToColumns",
+          "options": {
+            "byField": "pubKey"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time 1": true,
+              "Time 2": true,
+              "Time 3": true,
+              "Time 4": true,
+              "Time 5": true,
+              "Time 6": true,
+              "Time 7": true,
+              "Time 8": true,
+              "__name__ 1": true,
+              "__name__ 2": true,
+              "__name__ 3": true,
+              "__name__ 4": true,
+              "__name__ 5": true,
+              "__name__ 6": true,
+              "__name__ 7": true,
+              "__name__ 8": true,
+              "instance 1": true,
+              "instance 2": true,
+              "instance 3": true,
+              "instance 4": true,
+              "instance 5": true,
+              "instance 6": true,
+              "instance 7": true,
+              "instance 8": true,
+              "job 1": false,
+              "job 2": false,
+              "job 3": true,
+              "job 4": true,
+              "job 5": true,
+              "job 6": true,
+              "job 7": true,
+              "job 8": true,
+              "lambda 1": true,
+              "lambda 2": true,
+              "lambda 3": true,
+              "lambda 4": true
+            },
+            "indexByName": {
+              "Time 1": 12,
+              "Time 2": 17,
+              "Time 3": 11,
+              "Time 4": 23,
+              "Time 5": 28,
+              "Time 6": 33,
+              "Time 7": 37,
+              "Time 8": 41,
+              "Value #A": 10,
+              "Value #B": 3,
+              "Value #C": 9,
+              "Value #D": 7,
+              "Value #E": 6,
+              "Value #F": 5,
+              "Value #G": 8,
+              "Value #H": 4,
+              "__name__ 1": 13,
+              "__name__ 2": 16,
+              "__name__ 3": 19,
+              "__name__ 4": 24,
+              "__name__ 5": 29,
+              "__name__ 6": 34,
+              "__name__ 7": 38,
+              "__name__ 8": 42,
+              "instance 1": 14,
+              "instance 2": 18,
+              "instance 3": 20,
+              "instance 4": 25,
+              "instance 5": 30,
+              "instance 6": 35,
+              "instance 7": 39,
+              "instance 8": 43,
+              "job 1": 1,
+              "job 2": 0,
+              "job 3": 21,
+              "job 4": 26,
+              "job 5": 31,
+              "job 6": 36,
+              "job 7": 40,
+              "job 8": 44,
+              "lambda 1": 15,
+              "lambda 2": 22,
+              "lambda 3": 27,
+              "lambda 4": 32,
+              "pubKey": 2
+            },
+            "renameByName": {
+              "Time 3": "",
+              "Value #A": "Highest Decided",
+              "Value #B": "Connected Peers",
+              "Value #C": "Current Sequence",
+              "Value #D": "Round",
+              "Value #E": "Stage",
+              "Value #F": "IBFT Status",
+              "Value #G": "Current slot",
+              "Value #H": "Validator Status",
+              "job 1": "Beaconcha",
+              "job 2": "Dashboard",
+              "pubKey": "Public Key"
+            }
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "main"
+                  }
+                },
+                "fieldName": "Public Key"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 50,
+      "panels": [],
+      "title": "Networking",
+      "type": "row"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 9,
+        "x": 0,
+        "y": 15
+      },
+      "id": 44,
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "max",
+            "last"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "ssv:network:all_connected_peers{instance=~\"$instance.*\"}",
+          "interval": "",
+          "legendFormat": "Connections",
+          "refId": "A"
+        }
+      ],
+      "title": "Total Connections Count",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 23
+      },
+      "id": 38,
+      "panels": [],
+      "title": "Node Health",
+      "type": "row"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 0,
+                  "text": "Unknown"
+                },
+                "1": {
+                  "index": 1,
+                  "text": "Syncing"
+                },
+                "2": {
+                  "index": 2,
+                  "text": "OK"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 1
+              },
+              {
+                "color": "green",
+                "value": 2
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SSV Operator"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "Unhealthy"
+                      },
+                      "1": {
+                        "color": "green",
+                        "index": 0,
+                        "text": "OK"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 9,
+        "x": 0,
+        "y": 24
+      },
+      "id": 42,
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "ssv:beacon:node_status{instance=~\"$instance.*\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Beacon",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "ssv:eth1:node_status{instance=~\"$instance.*\"}",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "ETH1",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "ssv:node_status{instance=~\"$instance.*\"}",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "SSV Operator",
+          "refId": "C"
+        },
+        {
+          "hide": false,
+          "refId": "D"
+        }
+      ],
+      "title": "Current Health Status",
+      "type": "gauge"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 9,
+        "y": 24
+      },
+      "id": 28,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "ssv:node_status{instance=~\"$instance.*\"}",
+          "format": "time_series",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{pod}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Operator Node Health",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "description": "Status of the connected ETH1 node",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 8,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "super-light-red",
+                  "index": 0,
+                  "text": "Unknown"
+                },
+                "1": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "Syncing"
+                },
+                "2": {
+                  "color": "green",
+                  "index": 2,
+                  "text": "OK"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 2,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 1
+              },
+              {
+                "color": "green",
+                "value": 2
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 13,
+        "y": 24
+      },
+      "id": 26,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "ssv:eth1:node_status{instance=~\"$instance.*\"}",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "ETH1 Node Health",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "description": "Status of the connected beacon node",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 8,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "Unknown"
+                },
+                "1": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "Syncing"
+                },
+                "2": {
+                  "color": "green",
+                  "index": 2,
+                  "text": "OK"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 2,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 1
+              },
+              {
+                "color": "green",
+                "value": 2
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 17,
+        "y": 24
+      },
+      "id": 24,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.0.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "ssv:beacon:node_status{instance=~\"$instance.*\"}",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Beacon Node Health",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 29
+      },
+      "id": 36,
+      "panels": [],
+      "title": "Process Health",
+      "type": "row"
+    },
+    {
+      "datasource": "${DS_PROMETHEUS}",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 7,
+        "x": 0,
+        "y": 30
+      },
+      "id": 30,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min",
+            "last"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "((kubelet_volume_stats_used_bytes{persistentvolumeclaim=\"$instance\"} / kubelet_volume_stats_capacity_bytes{persistentvolumeclaim=\"$instance\"}) * 100)",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "kubelet_volume_stats_used_bytes{persistentvolumeclaim=\"$instance\"}",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{persistentvolumeclaim}}",
+          "refId": "B"
+        }
+      ],
+      "title": "Disk Usage",
+      "transformations": [],
+      "type": "timeseries"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "decimals": 2,
+      "editable": true,
+      "error": false,
+      "fill": 0,
+      "fillGradient": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 6,
+        "w": 7,
+        "x": 7,
+        "y": 30
+      },
+      "hiddenSeries": false,
+      "id": 8,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "hideEmpty": false,
+        "max": true,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "sideWidth": 200,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": true,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum (container_memory_working_set_bytes{image!=\"\", pod=~\"$instance.*\"}) by (pod)",
+          "format": "time_series",
+          "hide": false,
+          "interval": "10s",
+          "intervalFactor": 1,
+          "legendFormat": "{{ pod }}",
+          "metric": "container_memory_usage:sort_desc",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Memory Usage",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 2,
+        "value_type": "cumulative"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:65",
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:66",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "decimals": 3,
+      "editable": true,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 0,
+        "y": 36
+      },
+      "height": "",
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": true,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum (rate (container_cpu_usage_seconds_total{image!=\"\", pod=~\"$instance.*\"}[1m])) by (pod)",
+          "format": "time_series",
+          "hide": false,
+          "interval": "10s",
+          "intervalFactor": 1,
+          "legendFormat": "{{ pod }}",
+          "metric": "container_cpu",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "CPU Usage",
+      "tooltip": {
+        "msResolution": true,
+        "shared": true,
+        "sort": 2,
+        "value_type": "cumulative"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:179",
+          "format": "none",
+          "label": "cores",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:180",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value #A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SSV Node"
+              }
+            ]
+          }
+        ]
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 10,
+        "x": 8,
+        "y": 36
+      },
+      "hiddenSeries": false,
+      "id": 32,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.0.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "go_goroutines{instance=~\"$instance.*\"}",
+          "format": "table",
+          "interval": "",
+          "legendFormat": "{{ pod }}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Goroutines",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 30,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "ssv-node-v2-1",
+          "value": "ssv-node-v2-1"
+        },
+        "description": null,
+        "error": null,
+        "hide": 1,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "instance",
+        "options": [
+          {
+            "selected": true,
+            "text": "ssv-node-v2-1",
+            "value": "ssv-node-v2-1"
+          },
+          {
+            "selected": false,
+            "text": "ssv-node-v2-2",
+            "value": "ssv-node-v2-2"
+          },
+          {
+            "selected": false,
+            "text": "ssv-node-v2-3",
+            "value": "ssv-node-v2-3"
+          },
+          {
+            "selected": false,
+            "text": "ssv-node-v2-4",
+            "value": "ssv-node-v2-4"
+          },
+          {
+            "selected": false,
+            "text": "ssv-exporter",
+            "value": "ssv-exporter"
+          }
+        ],
+        "query": "ssv-node-v2-1,ssv-node-v2-2,ssv-node-v2-3,ssv-node-v2-4,ssv-exporter",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "https://explorer.stage.ssv.network",
+          "value": "https://explorer.stage.ssv.network"
+        },
+        "description": "SSV explorer link",
+        "error": null,
+        "hide": 1,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "explorer",
+        "options": [
+          {
+            "selected": true,
+            "text": "https://explorer.stage.ssv.network",
+            "value": "https://explorer.stage.ssv.network"
+          },
+          {
+            "selected": false,
+            "text": "https://explorer.ssv.network",
+            "value": "https://explorer.ssv.network"
+          }
+        ],
+        "query": "https://explorer.stage.ssv.network,https://explorer.ssv.network",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "description": null,
+        "error": null,
+        "hide": 2,
+        "label": null,
+        "name": "validator_dashboard_id",
+        "query": "${VAR_VALIDATOR_DASHBOARD_ID}",
+        "skipUrlSync": false,
+        "type": "constant",
+        "current": {
+          "value": "${VAR_VALIDATOR_DASHBOARD_ID}",
+          "text": "${VAR_VALIDATOR_DASHBOARD_ID}",
+          "selected": false
+        },
+        "options": [
+          {
+            "value": "${VAR_VALIDATOR_DASHBOARD_ID}",
+            "text": "${VAR_VALIDATOR_DASHBOARD_ID}",
+            "selected": false
+          }
+        ]
+      }
+    ]
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "SSV Operator Node",
+  "uid": "FIbEQ37nk",
+  "version": 46
+}

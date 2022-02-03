@@ -145,7 +145,7 @@ password: admin
 ### Grafana setup
 
 In order to setup a grafana dashboard do the following:
-1. Setup Prometheus as mentioned in the beginning of this document and add as data source
+1. Add http://prometheus:9090 as data source
     * Job name assumed to be '`ssv`'
 2. Import dashboards to Grafana:
    * [SSV Operator Node dashboard](./grafana/dashboard_ssv_operator.json) 
