@@ -123,3 +123,54 @@ net.peerCount
 docker pull ubuntu:latest
 docker run -it --rm --network eth-net ubuntu:latest /bin/bash 
 ```
+
+## Install Monitoring on ssv operator
+Run script below to create prometheus and grafana containers
+```
+mkdir prometheus && wget -O ./prometheus/prometheus.yaml https://raw.githubusercontent.com/bloxapp/ssv/stage/monitoring/prometheus/prometheus.yaml
+docker run --user root -p 9390:9090 -dit --name=prometheus -v $(pwd)/prometheus/:/data/prometheus -v $(pwd)/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml 'prom/prometheus:v2.24.0' --config.file="/etc/prometheus/prometheus.yml" --storage.tsdb.path="/data/prometheus"
+mkdir grafana
+sudo chown -R 472:472 grafana
+docker run -p 3000:3000 -dti -v $(pwd)/grafana/:/var/lib/grafana --name=grafana 'grafana/grafana:8.0.0'
+docker network create --driver bridge ssv-net
+docker network connect --alias ssv-node-1 ssv-net ssv_node
+docker network connect --alias prometheus ssv-net prometheus
+docker network connect --alias grafana ssv-net grafana
+```
+
+Go to grafana web http://<SSV_OPERATOR_PUBLIC_IP>:3000
+username: amdin
+password: admin
+
+### Grafana setup
+
+In order to setup a grafana dashboard do the following:
+1. Setup Prometheus as mentioned in the beginning of this document and add as data source
+    * Job name assumed to be '`ssv`'
+2. Import dashboards to Grafana:
+   * [SSV Operator Node dashboard](./grafana/dashboard_ssv_operator.json) 
+   * [SSV Validator dashboard](./grafana/dashboard_ssv_validator.json)
+3. Align dashboard variables:
+    * `instance` - container name, used in 'instance' field for metrics coming from prometheus. \
+      In the given dashboard, instances names are: `ssv-node-v2-<i>`, make sure to change according to your setup
+    * `validator_dashboard_id` - exist only in operator dashboard, points to validator dashboard
+
+**Note:** In order to show `Process Health` panels, the following K8S metrics should be exposed:
+* `kubelet_volume_stats_used_bytes`
+* `container_cpu_usage_seconds_total`
+* `container_memory_working_set_bytes`
+
+
+### Health Check
+
+Health check route is available on `GET /health`. \
+In case the node is healthy it returns an HTTP Code `200` with empty response:
+```shell
+$ curl http://localhost:15000/health
+```
+
+If the node is not healthy, the corresponding errors will be returned with HTTP Code `500`:
+```shell
+$ curl http://localhost:15000/health
+{"errors": ["could not sync eth1 events"]}
+```
