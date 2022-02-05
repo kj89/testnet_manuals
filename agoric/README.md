@@ -77,6 +77,11 @@ Node info
 ag0 status 2>&1 | jq .NodeInfo
 ```
 
+Show node id
+```
+ag0 tendermint show-node-id
+```
+
 ### Wallet operations
 Send funds
 ```
@@ -167,3 +172,79 @@ _(Be sure that your ag-chain-cosmos is not running on the old machine. If it is,
 7. Make sure your validator is not jailed
 >To unjail use this guide - [How do I unjail my validator?](https://github.com/Agoric/agoric-sdk/wiki/Validator-Guide#how-do-i-unjail-my-validator)
 8. After you ensure your validator is producing blocks in explorer and is healthy you can shut down old validator server
+
+## Security
+
+### Use public keys for SSH authentication 
+```
+# /etc/ssh/sshd_config
+AuthenticationMethods publickey
+PasswordAuthentication no
+PermitRootLogin prohibit-password
+```
+
+```
+systemctl restart sshd.service
+```
+
+### Basic Firewall security
+
+Start by checking the status of ufw.
+```
+sudo ufw status
+```
+
+Sets the default to allow outgoing connections, deny all incoming except ssh and 26656. Limit SSH login attempts
+```
+sudo ufw default allow outgoing
+sudo ufw default deny incoming
+sudo ufw allow ssh/tcp
+sudo ufw limit ssh/tcp
+sudo ufw allow 26656
+sudo ufw enable
+```
+
+## Monitoring
+### Install cosmos-exporter to full node
+First of all, you need to download the latest release from the [releases page](https://github.com/solarlabsteam/cosmos-exporter/releases/)
+```
+wget cosmos-exporter_0.2.2_Linux_x86_64.tar.gz
+tar xvfz cosmos-exporter-*
+./cosmos-exporter
+sudo cp ./cosmos-exporter /usr/bin
+```
+
+Run as service
+```
+sudo tee <<EOF >/dev/null /etc/systemd/system/cosmos-exporter.service
+[Unit]
+Description=Cosmos Exporter
+After=network-online.target
+
+[Service]
+User=root
+TimeoutStartSec=0
+CPUWeight=95
+IOWeight=95
+ExecStart=cosmos-exporter
+Restart=always
+RestartSec=2
+LimitNOFILE=800000
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+Add service to autostart
+```
+sudo systemctl enable cosmos-exporter
+sudo systemctl start cosmos-exporter
+sudo systemctl status cosmos-exporter
+```
+
+See logs
+```
+sudo journalctl -u cosmos-exporter -f --output cat
+```
