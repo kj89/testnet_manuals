@@ -1,6 +1,6 @@
 ## Run SSV
 
-LOGIN as root
+login as root
 
 ### Run script bellow to prepare your server
 ```
@@ -23,16 +23,16 @@ cd ~ && git clone https://github.com/eth-educators/eth-docker.git ssv && cd ssv
 ```
 
 ### SSV stack configuration
-Network: Prater Testnet
-Deployment type: Blox SSV node
-Consensus client: Lighthouse (Rust)
-Execution client: Geth (Go)
-Go to infura and create new ETH and ETH2 project. In project settings you will find endpoints for Goerli(eth) and Prater(eth2)
-Fallback execution client: yes
+*`Networ`: Prater Testnet
+* Deployment type: Blox SSV node
+* Consensus client: Lighthouse (Rust)
+* Execution client: Geth (Go)
+* Go to infura and create new ETH and ETH2 project. In project settings you will find endpoints for Goerli(eth) and Prater(eth2)
+* Fallback execution client: yes
 	<infura_eth_goerli_endpoint>
-Lighthouse rapid sync: yes
+* Lighthouse rapid sync: yes
 	<infura_eth2_prater_endpoint>
-Grafana: yes
+* Grafana: yes
 
 ### Generate operator keys
 ```
