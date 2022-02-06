@@ -23,7 +23,7 @@ cd ~ && git clone https://github.com/eth-educators/eth-docker.git ssv && cd ssv
 ```
 
 ### SSV stack configuration
-* Network: Prater Testnet
+* Network: `Prater Testnet`
 * Deployment type: `Blox SSV node`
 * Consensus client: `Lighthouse (Rust)`
 * Execution client: `Geth (Go)`
