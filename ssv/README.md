@@ -24,7 +24,8 @@ cd ~ && git clone https://github.com/eth-educators/eth-docker.git ssv && cd ssv
 ```
 
 ### Choose execution and consensus clients and endpoints from grafana
-I prefer geth + lighthouse setup. Also you have to choose infura fallback endpoints
+Go through configuration process.
+Select geth + lighthouse setup. Also you have to add infura fallback endpoints
 
 ### Generate operator keys
 ```
@@ -76,28 +77,64 @@ $zip.Dispose()
 Start-Sleep -Seconds 5
 
 Start-Process -Wait -FilePath "$pwd\deposit.exe" -ArgumentList 'new-mnemonic --num_validators 1 --chain prater' -PassThru
+```
 
+## SSV operator stack commands
+### Update ssv stack
+```
+./ethd update
+./ethd restart
+```
+
+### Stop ssv stack
+```
+./ethd stop
+```
+
+### Start ssv stack
+```
+./ethd start
+```
+
+### Restart ssv stack
+```
+./ethd restart
+```
+
+### Completely remove all ssv stack (with volumes)
+```
+./ethd terminate
 ```
 
 ## Usefull commands
-list of containers
+show container logs
 ```
-docker ps
+docker logs -f <container_name>
+```
+
+list all docker containers
+```
+docker ps -a
 ```
 
 list of images
 ```
-docker images
+docker docker images
 ```
 
-delete stoped containers
+list of docker volumes
 ```
-docker container prune -f
+docker volume ls
 ```
 
-Show container logs
+remove docker container
 ```
-docker logs -f ssv-execution-1
+docker rm -f <container_name>
+```
+
+remove docker voliume
+```
+docker volume rm <volume_name>
 ```
 
 Open geth console
@@ -108,9 +145,7 @@ docker exec -it ssv-execution-1 geth attach http://127.0.0.1:8545
 ### Commands inside geth
 Show sync status and current completion percent
 ```
-eth.syncing
 eth.syncing.currentBlock * 100 / eth.syncing.highestBlock
-
 ```
 
 Peer count
@@ -124,50 +159,18 @@ docker pull ubuntu:latest
 docker run -it --rm --network eth-net ubuntu:latest /bin/bash 
 ```
 
-## Install Monitoring on ssv operator
-Run script below to create prometheus and grafana containers
-```
-mkdir prometheus && wget -O ./prometheus/prometheus.yaml https://raw.githubusercontent.com/bloxapp/ssv/stage/monitoring/prometheus/prometheus.yaml
-docker run --user root -p 9390:9090 -dit --name=prometheus -v $(pwd)/prometheus/:/data/prometheus -v $(pwd)/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml 'prom/prometheus:v2.24.0' --config.file="/etc/prometheus/prometheus.yml" --storage.tsdb.path="/data/prometheus"
-mkdir grafana
-sudo chown -R 472:472 grafana
-docker run -p 3000:3000 -dti -v $(pwd)/grafana/:/var/lib/grafana --name=grafana 'grafana/grafana:8.0.0'
-docker network create --driver bridge ssv-net
-docker network connect --alias ssv-node-1 ssv-net ssv_node
-docker network connect --alias prometheus ssv-net prometheus
-docker network connect --alias grafana ssv-net grafana
-```
-
+## SSV monitoring
+SSV stack includes prometheus and grafana as monitoring solution
 Go to grafana web http://<SSV_OPERATOR_PUBLIC_IP>:3000
-username: amdin
+username: admin
 password: admin
 
 ### Grafana setup
-
-In order to setup a grafana dashboard do the following:
-1. Add http://prometheus:9090 as Data Source
-2. Import dashboards to Grafana:
-   * [SSV Operator Node dashboard](./grafana/dashboard_ssv_operator.json)
-   * [SSV Validator dashboard](./grafana/dashboard_ssv_validator.json)
-3. Open `SSV Operator node` dashboard and adjust variables:
+1. Open `SSV Operator node` dashboard and adjust variables:
     * `instance` - ssv-node
 	* `explorer` - https://explorer.ssv.network
 	* `validator_dashboard_id`- you can find this value in the link of `SSV Validator` dashboard between ...d/ and /ssv-operator-node...
-	Save dashboard with `Save current variable values as dashboard default` checked
-4. Open `SSV Validator` dashboard and adjust valriables:
+	* Save dashboard with `Save current variable values as dashboard default` checked
+2. Open `SSV Validator` dashboard and adjust valriables:
 	* `instance` - ssv-node
-	Save dashboard with `Save current variable values as dashboard default` checked
-
-### Health Check
-
-Health check route is available on `GET /health`. \
-In case the node is healthy it returns an HTTP Code `200` with empty response:
-```shell
-$ curl http://localhost:15000/health
-```
-
-If the node is not healthy, the corresponding errors will be returned with HTTP Code `500`:
-```shell
-$ curl http://localhost:15000/health
-{"errors": ["could not sync eth1 events"]}
-```
+	* Save dashboard with `Save current variable values as dashboard default` checked
