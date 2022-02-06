@@ -1,4 +1,4 @@
-## Set up SSV operator node
+## Run SSV
 
 LOGIN as root
 
