@@ -205,13 +205,60 @@ sudo ufw enable
 ```
 
 ## Monitoring
-### Install cosmos-exporter to full node
+## Monitoring node
+Install docker
+```
+apt update
+apt upgrade -y
+sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo apt-get install   apt-transport-https   ca-certificates   curl   gnupg   lsb-release
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
+
+Install docker compose
+```
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+```
+
+Clone the node_tooling repo and decend into the monitoring folder:
+```
+git clone https://github.com/Xiphiar/node_tooling.git
+cd ./node_tooling/monitoring
+```
+
+In the prometheus folder, modify cosmos.yaml, replace NODE_IP with the IP of your node
+```
+nano ./prometheus/cosmos.yaml
+```
+
+Replace the default prometheus config with the modified cosmos.yaml
+```
+mv ./prometheus/prometheus.yml ./prometheus/prometheus.yml.orig
+cp ./prometheus/cosmos.yaml ./prometheus/prometheus.yml
+```
+
+Start the contrainers deploying the monitoring stack (Grafana + Prometheus + Node Exporter):
+```
+docker-compose --profile monitor up -d
+```
+
+### Setup cosmos-exporter
 First of all, you need to download the latest release from the [releases page](https://github.com/solarlabsteam/cosmos-exporter/releases/)
 ```
 wget https://github.com/solarlabsteam/cosmos-exporter/releases/download/v0.2.2/cosmos-exporter_0.2.2_Linux_x86_64.tar.gz
 tar xvfz cosmos-exporter*
 sudo cp ./cosmos-exporter /usr/bin
 rm cosmos-exporter* -rf
+```
+
+Create user for service
+```
+sudo useradd -rs /bin/false cosmos_exporter
 ```
 
 Run as service
@@ -222,7 +269,8 @@ Description=Cosmos Exporter
 After=network-online.target
 
 [Service]
-User=root
+User=cosmos_exporter
+Group=cosmos_exporter
 TimeoutStartSec=0
 CPUWeight=95
 IOWeight=95
@@ -244,7 +292,46 @@ sudo systemctl start cosmos-exporter
 sudo systemctl status cosmos-exporter
 ```
 
+Allow 9500 cosmos-exporter port
+```
+sudo ufw allow 9500
+```
+
 See logs
 ```
 sudo journalctl -u cosmos-exporter -f --output cat
+```
+
+### Setup node-exporter
+get latest release of node-exporter -> https://github.com/prometheus/node_exporter/releases
+```
+wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
+tar xvfz node_exporter-*.*-amd64.tar.gz
+sudo mv node_exporter-*.*-amd64/node_exporter /usr/local/bin/
+rm node_exporter-* -rf
+
+sudo useradd -rs /bin/false node_exporter
+
+sudo tee <<EOF >/dev/null /etc/systemd/system/node_exporter.service
+[Unit]
+Description=Node Exporter
+After=network.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl start node_exporter
+```
+
+allow 9300 node-exporter port
+```
+sudo ufw allow 9300
 ```
