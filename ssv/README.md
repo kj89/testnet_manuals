@@ -14,6 +14,12 @@ adduser <USERNAME>
 usermod -aG sudo <USERNAME>
 sudo usermod -aG docker <USERNAME>
 newgrp docker
+sudo su - <USERNAME>
+```
+
+### Login as user created above
+```
+sudo su - <USERNAME>
 ```
 
 ### Clone eth-docker repository to ssv folder and run config
@@ -23,6 +29,7 @@ cd ~ && git clone https://github.com/eth-educators/eth-docker.git ssv && cd ssv
 ```
 
 ### SSV stack configuration
+*Select eth clients you prefer to use*
 * Network: `Prater Testnet`
 * Deployment type: `Blox SSV node`
 * Consensus client: `Lighthouse (Rust)`
