@@ -105,26 +105,26 @@ Run as Administrator this command in Powershell
 $path = "$home\Desktop\ssv-validators"
 If(!(test-path $path))
 {
+	# Create directory
 	New-Item -ItemType Directory -Force -Path $path
-	# Download deposit app
+	# Use TLS1.2 as security protocol as older powershell use tls 1.0 by default
 	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+	# Download deposit app
 	Invoke-WebRequest -Uri "https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.2.0/eth2deposit-cli-256ea21-windows-amd64.zip" -OutFile "$path/temp.zip"
-
 	# Load ZIP methods
 	Add-Type -AssemblyName System.IO.Compression.FileSystem
-
 	# Open ZIP archive for reading
 	$zip = [System.IO.Compression.ZipFile]::OpenRead("$path/temp.zip")
-
+	# Extract file into current directory
 	$zip.Entries | ForEach-Object { 
 		$FileName = $_.Name
 		[System.IO.Compression.ZipFileExtensions]::ExtractToFile($_, "$path\$FileName", $true)
 		}
-
 	# Close ZIP file
 	$zip.Dispose()
 }
 cd $path
+# Run deposit.exe
 Start-Process -Wait -FilePath "deposit.exe" -ArgumentList 'new-mnemonic --num_validators 1 --chain prater' -PassThru
 ```
 
