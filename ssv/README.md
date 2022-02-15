@@ -103,10 +103,9 @@ password: admin
 Run as Administrator this command in Powershell
 ```
 $path = "$home\Desktop\ssv-validators"
-cd $path
 If(!(test-path $path))
 {
-    New-Item -ItemType Directory -Force -Path $path
+	New-Item -ItemType Directory -Force -Path $path
 	# Download deposit app
 	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 	Invoke-WebRequest -Uri "https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.2.0/eth2deposit-cli-256ea21-windows-amd64.zip" -OutFile "$path/temp.zip"
@@ -125,8 +124,8 @@ If(!(test-path $path))
 	# Close ZIP file
 	$zip.Dispose()
 }
-
-Start-Process -Wait -FilePath "$path\deposit.exe" -ArgumentList 'new-mnemonic --num_validators 1 --chain prater' -PassThru
+cd $path
+Start-Process -Wait -FilePath "deposit.exe" -ArgumentList 'new-mnemonic --num_validators 1 --chain prater' -PassThru
 ```
 
 ## Usefull commands
