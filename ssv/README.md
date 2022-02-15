@@ -126,6 +126,7 @@ If(!(test-path $path))
 cd $path
 # Run deposit.exe
 Start-Process -Wait -FilePath "deposit.exe" -ArgumentList 'new-mnemonic --num_validators 1 --chain prater' -PassThru
+
 ```
 
 ## Usefull commands
