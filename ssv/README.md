@@ -14,7 +14,6 @@ adduser <USERNAME>
 usermod -aG sudo <USERNAME>
 sudo usermod -aG docker <USERNAME>
 newgrp docker
-sudo su - <USERNAME>
 ```
 
 ### Login as user created above
