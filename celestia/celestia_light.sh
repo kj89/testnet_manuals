@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 . ~/.bashrc
 
+CELESTIA_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest.txt")
+echo 'export CELESTIA_VERSION='${$CELESTIA_VERSION} >> $HOME/.bash_profile
+source $HOME/.bash_profile
+
 # update packages
 export DEBIAN_FRONTEND=noninteractive
 apt-get update && 
@@ -30,7 +34,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout v0.1.1
+git checkout $CELESTIA_VERSION
 make install
 
 # You can use your own trusted server aka application (validator) node
@@ -43,7 +47,7 @@ TRUSTED_SERVER=$(curl -s "https://raw.githubusercontent.com/maxzonder/celestia/m
 TRUSTED_PEER=$(curl -s "https://raw.githubusercontent.com/maxzonder/celestia/main/trusted_peer.txt")
 
 # add protocol
-TRUSTED_SERVER="tcp://$TRUSTED_SERVER"
+TRUSTED_SERVER="http://$TRUSTED_SERVER"
 
 # current block hash
 TRUSTED_HASH=$(curl -s $TRUSTED_SERVER/status | jq -r .result.sync_info.latest_block_hash)
@@ -52,8 +56,7 @@ echo '==================================='
 echo 'Your trusted server:' $TRUSTED_SERVER
 echo 'Your trusted peer:' $TRUSTED_PEER
 echo 'Your trusted hash:' $TRUSTED_HASH
-echo 'App version:'
-celestia version
+echo 'Your app version:' $CELESTIA_VERSION
 echo '==================================='
 
 # save vars
