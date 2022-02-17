@@ -41,11 +41,20 @@ cp /usr/local/go/bin/go /usr/bin
 
 go version
 
+# install app
 cd $HOME
 git clone https://github.com/celestiaorg/celestia-app.git
 cd celestia-app/
+git checkout 63519ec
 make install
 
+# reset
+celestia-appd unsafe-reset-all
+
+# download addrbook
+wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.com/maxzonder/celestia/main/addrbook.json"
+
+# install node
 cd $HOME
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
