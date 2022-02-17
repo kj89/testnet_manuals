@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 . ~/.bashrc
 
-CELESTIA_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest.txt")
-echo 'export CELESTIA_VERSION='${$CELESTIA_VERSION} >> $HOME/.bash_profile
+CELESTIA_NODE_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_node.txt")
+echo 'export CELESTIA_NODE_VERSION='${$CELESTIA_NODE_VERSION} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 # update packages
@@ -34,7 +34,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout $CELESTIA_VERSION
+git checkout $CELESTIA_NODE_VERSION
 make install
 
 # You can use your own trusted server aka application (validator) node

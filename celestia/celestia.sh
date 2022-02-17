@@ -10,6 +10,15 @@ echo 'export CELESTIA_WALLET=wallet' >> $HOME/.bash_profile
 echo 'export CELESTIA_CHAIN=devnet-2' >> $HOME/.bash_profile
 . ~/.bash_profile
 
+CELESTIA_NODE_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_node.txt")
+echo 'export CELESTIA_NODE_VERSION='${$CELESTIA_NODE_VERSION} >> $HOME/.bash_profile
+source $HOME/.bash_profile
+
+CELESTIA_APP_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_app.txt")
+echo 'export CELESTIA_APP_VERSION='${$CELESTIA_APP_VERSION} >> $HOME/.bash_profile
+source $HOME/.bash_profile
+
+
 echo '==================================='
 echo 'Your node name: ' $CELESTIA_NODENAME
 echo 'Your walet name: ' $CELESTIA_WALLET
@@ -45,11 +54,8 @@ go version
 cd $HOME
 git clone https://github.com/celestiaorg/celestia-app.git
 cd celestia-app/
-git checkout 63519ec
+git checkout $CELESTIA_APP_VERSION
 make install
-
-# reset
-celestia-appd unsafe-reset-all
 
 # download addrbook
 wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.com/maxzonder/celestia/main/addrbook.json"
@@ -58,6 +64,7 @@ wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.
 cd $HOME
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
+git checkout $CELESTIA_NODE_VERSION
 make install
 
 cd $HOME
