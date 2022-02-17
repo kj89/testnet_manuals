@@ -52,6 +52,8 @@ echo '==================================='
 echo 'Your trusted server:' $TRUSTED_SERVER
 echo 'Your trusted peer:' $TRUSTED_PEER
 echo 'Your trusted hash:' $TRUSTED_HASH
+echo 'App version:'
+celestia version
 echo '==================================='
 
 # save vars

@@ -50,6 +50,8 @@ TRUSTED_HASH=$(curl -s $TRUSTED_SERVER/status | jq -r .result.sync_info.latest_b
 echo '==================================='
 echo 'Your trusted server:' $TRUSTED_SERVER
 echo 'Your trusted hash:' $TRUSTED_HASH
+echo 'App version:'
+celestia version
 echo '==================================='
 
 # save vars
@@ -81,6 +83,6 @@ EOF
 
 sudo systemctl enable celestia-full
 sudo systemctl daemon-reload
-sudo systemctl restart celestia-full && journalctl -u celestia-full -o cat -f
+sudo systemctl restart celestia-full
 
-#echo 'Node status:'$(sudo service celestia-full status | grep active)
+echo 'Node status:'$(sudo service celestia-full status | grep active)
