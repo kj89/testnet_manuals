@@ -30,6 +30,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
+git checkout v0.1.1
 make install
 
 # You can use your own trusted server aka application (validator) node
@@ -47,8 +48,8 @@ TRUSTED_SERVER="http://$TRUSTED_SERVER"
 TRUSTED_HASH=$(curl -s $TRUSTED_SERVER/status | jq -r .result.sync_info.latest_block_hash)
 
 echo '==================================='
-echo 'Your trusted server: ' $TRUSTED_SERVER
-echo 'Your trusted hash: ' $TRUSTED_HASH
+echo 'Your trusted server:' $TRUSTED_SERVER
+echo 'Your trusted hash:' $TRUSTED_HASH
 echo '==================================='
 
 # save vars
