@@ -60,10 +60,14 @@ celestia-appd init $CELESTIA_NODENAME --chain-id $CELESTIA_CHAIN
 # get network configs
 cp ~/networks/$CELESTIA_CHAIN/genesis.json  ~/.celestia-app/config/
 
-#update seeds
+# update seeds
 seeds='"74c0c793db07edd9b9ec17b076cea1a02dca511f@46.101.28.34:26656"'
 echo $seeds
 sed -i.bak -e "s/^seeds *=.*/seeds = $seeds/" $HOME/.celestia-app/config/config.toml
+
+# set client config
+celestia-appd config chain-id $CELESTIA_CHAIN
+celestia-appd config keyring-backend test
 
 # Run as service
 sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-appd.service

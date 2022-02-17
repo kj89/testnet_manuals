@@ -1,12 +1,18 @@
-### Create VPS on Hetzner
-For celestia you have to choose CPX21
-![image](https://user-images.githubusercontent.com/50621007/148914219-03784eed-cb72-4494-aa3b-5f140aadc347.png)
+## Celestia node setup
 
-LOGIN as root
-
-### Run script bellow to prepare your server
+### Run validator node
 ```
 wget -O celestia.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/celestia.sh && chmod +x celestia.sh && ./celestia.sh
+```
+
+### Run full node
+```
+wget -O celestia_full.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/celestia_full.sh && chmod +x celestia_full.sh && ./celestia_full.sh
+```
+
+### Run light node
+```
+wget -O celestia_light.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/celestia_light.sh && chmod +x celestia_light.sh && ./celestia_light.sh
 ```
 
 ### Run this command to load environment variables
@@ -73,12 +79,6 @@ service celestia-appd start
 Configuration file
 ```
 vim ~/.celestia-appd/config/config.toml
-```
-
-Check validator node status
-```
-curl -O https://gist.githubusercontent.com/michaelfig/2319d0573c0f6bc257de6a97e3d46b3e/raw/cf2b2b784c60359d8e49fb3fa198b5be13c816be/check-validator.js
-node check-validator.js
 ```
 
 ## Node info
