@@ -34,7 +34,7 @@ In the output of the above command make sure catching_up is false
 
 ### Restore your wallet in case if you created it before
 ```
-celestia-appd keys add $CELESTIA_NODENAME --recover --keyring-backend=test
+celestia-appd keys add $CELESTIA_NODENAME --recover
 ```
 
 ### Request faucet at Discord
@@ -42,22 +42,22 @@ celestia-appd keys add $CELESTIA_NODENAME --recover --keyring-backend=test
 
 
 ### Create validator
+_Amount of tokens is 1 to 1 000 000_
 ```
 celestia-appd tx staking create-validator \
  --amount=1000000celes \
  --pubkey=$(celestia-appd tendermint show-validator) \
  --moniker=$CELESTIA_NODENAME \
- --chain-id=devnet-2 \
+ --chain-id=$CELESTIA_CHAIN \
  --commission-rate=0.1 \
  --commission-max-rate=0.2 \
  --commission-max-change-rate=0.01 \
  --min-self-delegation=1000000 \
- --from=$CELESTIA_WALLET \
- --keyring-backend=test
+ --from=$CELESTIA_WALLET
 ```
 
 ### Celestia explorer
-http://celestia.observer:3080/validators
+http://celestia.observer
 
 ### Usefull commands
 ## Service management
@@ -97,17 +97,16 @@ Node info
 celestia-appd status 2>&1 | jq .NodeInfo
 ```
 
-## Create and Modify validator
-Create validator
-```
-chainName=devnet-2
-celestia-appd tx staking create-validator --amount=51000000000celes --broadcast-mode=block --pubkey=`celestia-appd tendermint show-validator` --moniker=kj-nodes.xyz --website="http://kj-nodes.xyz" --details="One of TOP 25 performing validators on Celestia testnet with highest uptime. Uptime is important to me. Server is constantly being monitored and maintained. You can contact me at discord: kristaps#8455 or telegram: @janispaegle" --commission-rate="0.07" --commission-max-rate="0.20" --commission-max-change-rate="0.01" --min-self-delegation="1" --from=celestia-wallet --chain-id=$chainName --gas-adjustment=1.4 --fees=5001celes
-```
-
+## Modify validator
 Modify validator
 ```
-chainName=devnet-2
-celestia-appd tx staking edit-validator --moniker="kj-nodes.xyz" --website="http://kj-nodes.xyz" --details="One of TOP 25 performing validators on celestia testnet with highest uptime. Uptime is important to me. Server is constantly being monitored and maintained. You can contact me at discord: kristaps#8455 or telegram: @janispaegle" --chain-id=$chainName --from=celestia-wallet
+celestia-appd tx staking edit-validator \
+ --moniker=$CELESTIA_NODENAME \
+--website="http://kjnodes.com" \
+--identity=1C5ACD2EEF363C3A \
+--details="Providing professional staking services with high performance and availability. Stake it till you make it! discord: kjnodes#8455 / telegram: @kjnodes" \
+--chain-id=$CELESTIA_CHAIN \
+--from=$CELESTIA_WALLET
 ```
 
 ## Wallet operations
@@ -146,7 +145,7 @@ celestia-appd unsafe-reset-all
 Delegate stake
 ```
 chainName=devnet-2
-celestia-appd tx staking delegate $(celestia-appd keys show celestia-wallet --bech val -a) 470000000celes --from=celestia-wallet --chain-id=$chainName --gas=auto --keyring-dir=$HOME/.celestia-appd --keyring-backend=test
+celestia-appd tx staking delegate $(celestia-appd keys show celestia-wallet --bech val -a) 470000000celes --from=celestia-wallet --chain-id=$chainName --gas=auto --keyring-dir=$HOME/.celestia-appd
 ```
 
 Redelegate stake from validator to another validator
@@ -170,13 +169,9 @@ sudo systemctl stop celestia-appd
 sudo systemctl disable celestia-appd
 ```
 
-_(Be sure that your ag-chain-cosmos is not running on the old machine. If it is, you will be slashed for double-signing.)_
+_(Be sure that your celestia-appd is not running on the old machine. If it is, you will be slashed for double-signing.)_
 
-4. Use guide for validator node setup - [Validator Guide for Incentivized Testnet](https://github.com/Agoric/agoric-sdk/wiki/Validator-Guide-for-Incentivized-Testnet)
->When you reach step [Syncing Your Node](https://github.com/Agoric/agoric-sdk/wiki/Validator-Guide-for-Incentivized-Testnet#syncing-your-node) you have to copy and replace configuration files located in `~/.celestia-appd/config/` with those we saved in step 1
-5. Finish setup by synchronizing your node with network
-6. After your node catch up you have to restore your key. For that you will need 24-word mnemonic you saved on key creation
->To recover your key follow this guide - [How do I recover a key?](https://github.com/Agoric/agoric-sdk/wiki/Validator-Guide-for-Devnet#how-do-i-recover-a-key)
-7. Make sure your validator is not jailed
->To unjail use this guide - [How do I unjail my validator?](https://github.com/Agoric/agoric-sdk/wiki/Validator-Guide#how-do-i-unjail-my-validator)
-8. After you ensure your validator is producing blocks in explorer and is healthy you can shut down old validator server
+4. Install new validator
+5. Copy and replace configuration files located in `~/.celestia-appd/config/` with those we saved in step 1
+6. Finish setup by synchronizing your node with network
+7. After you ensure your validator is producing blocks in explorer and is healthy you can shut down old validator server
