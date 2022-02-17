@@ -117,12 +117,12 @@ celestia-appd tx bank send <address1> <address2> 1000000celes
 
 Recover wallet
 ```
-celestia-appd keys add celestia-wallet --recover
+celestia-appd keys add $CELESTIA_WALLET --recover
 ```
 
 Get wallet balance
 ```
-celestia-appd query bank balances $(celestia-appd keys show celestia-wallet -a)
+celestia-appd query bank balances $(celestia-appd keys show $CELESTIA_WALLET -a)
 ```
 
 List of wallets
@@ -132,7 +132,7 @@ celestia-appd keys list
 
 Delete wallet
 ```
-celestia-appd keys delete celestia-wallet
+celestia-appd keys delete $CELESTIA_WALLET
 ```
 
 ## Configruation reset
@@ -144,20 +144,17 @@ celestia-appd unsafe-reset-all
 ## Staking, Delegation and Rewards
 Delegate stake
 ```
-chainName=devnet-2
-celestia-appd tx staking delegate $(celestia-appd keys show celestia-wallet --bech val -a) 470000000celes --from=celestia-wallet --chain-id=$chainName --gas=auto --keyring-dir=$HOME/.celestia-appd
+celestia-appd tx staking delegate $(celestia-appd keys show $CELESTIA_WALLET --bech val -a) 1000000celes --from=$CELESTIA_WALLET --chain-id=$CELESTIA_CHAIN --gas=auto --keyring-dir=$HOME/.celestia-appd
 ```
 
 Redelegate stake from validator to another validator
 ```
-chainName=devnet-2
-celestia-appd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 5000000celes --from=celestia-wallet --chain-id=$chainName --gas=auto --keyring-dir=$HOME/.celestia-appd
+celestia-appd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 1000000celes --from=$CELESTIA_WALLET --chain-id=$CELESTIA_CHAIN --gas=auto --keyring-dir=$HOME/.celestia-appd
 ```
 
 Withdraw rewards
 ```
-chainName=devnet-2
-celestia-appd tx distribution withdraw-all-rewards --from=celestia-wallet --chain-id=$chainName --gas=auto --keyring-dir=$HOME/.celestia-appd
+celestia-appd tx distribution withdraw-all-rewards --from=$CELESTIA_WALLET --chain-id=$CELESTIA_CHAIN --gas=auto --keyring-dir=$HOME/.celestia-appd
 ```
 
 ### Migrate celestia validator to another VPS
