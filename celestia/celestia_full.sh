@@ -41,7 +41,7 @@ make install
 TRUSTED_SERVER=$(curl -s "https://raw.githubusercontent.com/maxzonder/celestia/main/trusted_server.txt")
 
 # add protocol
-TRUSTED_SERVER="tcp://$TRUSTED_SERVER"
+TRUSTED_SERVER="http://$TRUSTED_SERVER"
 
 # current block hash
 TRUSTED_HASH=$(curl -s $TRUSTED_SERVER/status | jq -r .result.sync_info.latest_block_hash)
@@ -79,6 +79,6 @@ EOF
 
 sudo systemctl enable celestia-full
 sudo systemctl daemon-reload
-sudo systemctl restart celestia-full
+sudo systemctl restart celestia-full && journalctl -u celestia-full -o cat -f
 
-echo 'Node status:'$(sudo service celestia-full status | grep active)
+#echo 'Node status:'$(sudo service celestia-full status | grep active)
