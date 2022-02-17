@@ -58,6 +58,7 @@ echo 'export TRUSTED_HASH='${TRUSTED_HASH} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 # do init
+rm -rf $HOME/.celestia-full
 celestia full init --core.remote $TRUSTED_SERVER --headers.trusted-hash $TRUSTED_HASH
 
 # config p2p
