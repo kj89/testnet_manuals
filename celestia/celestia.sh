@@ -7,8 +7,14 @@ if [ ! $CELESTIA_NODENAME ]; then
 fi
 
 echo 'export CELESTIA_WALLET=wallet' >> $HOME/.bash_profile
+echo 'export CELESTIA_CHAIN=devnet-2' >> $HOME/.bash_profile
 
+echo '==================================='
 echo 'Your node name: ' $CELESTIA_NODENAME
+echo 'Your node name: ' $CELESTIA_WALLET
+echo 'Your node name: ' $CELESTIA_CHAIN
+echo '==================================='
+
 sleep 2
 export DEBIAN_FRONTEND=noninteractive
 apt-get update && 
@@ -48,10 +54,10 @@ cd $HOME
 git clone https://github.com/celestiaorg/networks.git
 
 # do init
-celestia-appd init $CELESTIA_NODENAME --chain-id devnet-2
+celestia-appd init $CELESTIA_NODENAME --chain-id $CELESTIA_CHAIN
 
 # get network configs
-cp ~/networks/devnet-2/genesis.json  ~/.celestia-app/config/
+cp ~/networks/$CELESTIA_CHAIN/genesis.json  ~/.celestia-app/config/
 
 #update seeds
 seeds='"74c0c793db07edd9b9ec17b076cea1a02dca511f@46.101.28.34:26656"'
