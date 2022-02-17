@@ -8,11 +8,12 @@ fi
 
 echo 'export CELESTIA_WALLET=wallet' >> $HOME/.bash_profile
 echo 'export CELESTIA_CHAIN=devnet-2' >> $HOME/.bash_profile
+. ~/.bash_profile
 
 echo '==================================='
 echo 'Your node name: ' $CELESTIA_NODENAME
-echo 'Your node name: ' $CELESTIA_WALLET
-echo 'Your node name: ' $CELESTIA_CHAIN
+echo 'Your walet name: ' $CELESTIA_WALLET
+echo 'Your chain name: ' $CELESTIA_CHAIN
 echo '==================================='
 
 sleep 2
