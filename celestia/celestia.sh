@@ -8,13 +8,9 @@ fi
 
 echo 'export CELESTIA_WALLET=wallet' >> $HOME/.bash_profile
 echo 'export CELESTIA_CHAIN=devnet-2' >> $HOME/.bash_profile
-. ~/.bash_profile
-
 CELESTIA_NODE_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_node.txt")
-echo 'export CELESTIA_NODE_VERSION='${$CELESTIA_NODE_VERSION} >> $HOME/.bash_profile
-source $HOME/.bash_profile
-
 CELESTIA_APP_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_app.txt")
+echo 'export CELESTIA_NODE_VERSION='${$CELESTIA_NODE_VERSION} >> $HOME/.bash_profile
 echo 'export CELESTIA_APP_VERSION='${$CELESTIA_APP_VERSION} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
@@ -23,9 +19,13 @@ echo '==================================='
 echo 'Your node name: ' $CELESTIA_NODENAME
 echo 'Your walet name: ' $CELESTIA_WALLET
 echo 'Your chain name: ' $CELESTIA_CHAIN
+echo 'Your node version: ' $CELESTIA_NODE_VERSION
+echo 'Your app version: ' $CELESTIA_APP_VERSION
 echo '==================================='
 
-sleep 2
+sleep 5
+# update packages
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
 export DEBIAN_FRONTEND=noninteractive
 apt-get update && 
     apt-get -o Dpkg::Options::="--force-confold" upgrade -q -y --force-yes &&
