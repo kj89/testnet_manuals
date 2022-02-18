@@ -8,7 +8,7 @@ if [ ! $CELESTIA_VALIDATOR_IP ]; then
 fi
 
 CELESTIA_NODE_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_node.txt")
-echo 'export CELESTIA_NODE_VERSION='${$CELESTIA_NODE_VERSION} >> $HOME/.bash_profile
+echo 'export CELESTIA_NODE_VERSION='$CELESTIA_NODE_VERSION >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 # update packages
