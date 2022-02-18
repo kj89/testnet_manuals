@@ -10,8 +10,8 @@ echo 'export CELESTIA_WALLET=wallet' >> $HOME/.bash_profile
 echo 'export CELESTIA_CHAIN=devnet-2' >> $HOME/.bash_profile
 CELESTIA_NODE_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_node.txt")
 CELESTIA_APP_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_app.txt")
-echo 'export CELESTIA_NODE_VERSION='${$CELESTIA_NODE_VERSION} >> $HOME/.bash_profile
-echo 'export CELESTIA_APP_VERSION='${$CELESTIA_APP_VERSION} >> $HOME/.bash_profile
+echo 'export CELESTIA_NODE_VERSION='$CELESTIA_NODE_VERSION >> $HOME/.bash_profile
+echo 'export CELESTIA_APP_VERSION='$CELESTIA_APP_VERSION >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 

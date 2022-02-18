@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
 . ~/.bashrc
 
+if [ ! $CELESTIA_VALIDATOR_IP ]; then
+	read -p "Enter validator ip: " CELESTIA_VALIDATOR_IP
+	echo 'export CELESTIA_VALIDATOR_IP='$CELESTIA_VALIDATOR_IP >> $HOME/.bash_profile
+	. ~/.bash_profile
+fi
+
 CELESTIA_NODE_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_node.txt")
 echo 'export CELESTIA_NODE_VERSION='${$CELESTIA_NODE_VERSION} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 # update packages
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
 export DEBIAN_FRONTEND=noninteractive
 apt-get update && 
     apt-get -o Dpkg::Options::="--force-confold" upgrade -q -y --force-yes &&
@@ -43,19 +50,19 @@ make install
 # TRUSTED_SERVER="localhost:26657"
 
 # or mzonder's server (for testing purposes)
-TRUSTED_SERVER=$(curl -s "https://raw.githubusercontent.com/maxzonder/celestia/main/trusted_server.txt")
+# TRUSTED_SERVER=$(curl -s "https://raw.githubusercontent.com/maxzonder/celestia/main/trusted_server.txt")
 
-# add protocol
-TRUSTED_SERVER="http://$TRUSTED_SERVER"
+# add protocol and port
+TRUSTED_SERVER="http://$CELESTIA_VALIDATOR_IP:26667"
 
 # current block hash
 TRUSTED_HASH=$(curl -s $TRUSTED_SERVER/status | jq -r .result.sync_info.latest_block_hash)
 
 echo '==================================='
 echo 'Your trusted server:' $TRUSTED_SERVER
+echo 'Your trusted peer:' $TRUSTED_PEER
 echo 'Your trusted hash:' $TRUSTED_HASH
-echo 'App version:'
-celestia version
+echo 'Your node version:' $CELESTIA_NODE_VERSION
 echo '==================================='
 
 # save vars
