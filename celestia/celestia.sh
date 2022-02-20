@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 . ~/.bashrc
-rm . ~/.bash_profile
 
 if [ $# -eq 0 ]
   then
