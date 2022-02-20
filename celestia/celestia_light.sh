@@ -48,9 +48,8 @@ make install
 # TRUSTED_SERVER="IP:PORT"
 # and trusted peer's multiaddress from your full node
 # TRUSTED_PEER="/ip4/IP/tcp/2121/p2p/12D3KooWDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+# journalctl -u celestia-full -o cat -n 10000 --no-pager | grep -m 1 "*  /ip4/"
 
-# mzonder's server and peer (for testing purposes)
-# TRUSTED_SERVER=$(curl -s "https://raw.githubusercontent.com/maxzonder/celestia/main/trusted_server.txt")
 TRUSTED_PEER=$(curl -s "https://raw.githubusercontent.com/maxzonder/celestia/main/trusted_peer.txt")
 
 # add protocol and port

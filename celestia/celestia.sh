@@ -57,9 +57,6 @@ cd celestia-app/
 git checkout $CELESTIA_APP_VERSION
 make install
 
-# download addrbook
-wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.com/maxzonder/celestia/main/addrbook.json"
-
 # install node
 cd $HOME
 git clone https://github.com/celestiaorg/celestia-node.git
@@ -67,6 +64,7 @@ cd celestia-node/
 git checkout $CELESTIA_NODE_VERSION
 make install
 
+# install celestia scripts
 cd $HOME
 git clone https://github.com/celestiaorg/networks.git
 
@@ -80,6 +78,24 @@ cp ~/networks/$CELESTIA_CHAIN/genesis.json  ~/.celestia-app/config/
 seeds='"74c0c793db07edd9b9ec17b076cea1a02dca511f@46.101.28.34:26656"'
 echo $seeds
 sed -i.bak -e "s/^seeds *=.*/seeds = $seeds/" $HOME/.celestia-app/config/config.toml
+
+# open rpc
+sed -i 's#"tcp://127.0.0.1:26657"#"tcp://0.0.0.0:26657"#g' $HOME/.celestia-app/config/config.toml
+
+# set proper defaults
+sed -i 's/timeout_commit = "5s"/timeout_commit = "15s"/g' $HOME/.celestia-app/config/config.toml
+sed -i 's/index_all_keys = false/index_all_keys = true/g' $HOME/.celestia-app/config/config.toml
+
+# config pruning
+pruning="custom"
+pruning_keep_recent="100"
+pruning_keep_every="5000"
+pruning_interval="10"
+
+sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.celestia-app/config/app.toml
 
 # reset
 celestia-appd unsafe-reset-all
@@ -112,4 +128,9 @@ sudo systemctl enable celestia-appd
 sudo systemctl daemon-reload
 sudo systemctl restart celestia-appd
 
+# make a copy of configuration file
+cp $HOME/.celestia-app/config/config.yaml $HOME/.celestia-app/config/config.yaml.bak
+
 echo 'Node status:'$(sudo service celestia-appd status | grep active)
+echo 'To check logs: journalctl -fu celestia-appd'
+echo 'To check validator sync status: curl -s localhost:26657/status | jq .result | jq .sync_info' 
