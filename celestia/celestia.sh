@@ -136,10 +136,10 @@ sudo systemctl daemon-reload
 sudo systemctl restart celestia-appd
 
 # make a copy of configuration file
-cp $HOME/.celestia-appd/config/config.yaml $HOME/.celestia-appd/config/config.yaml.bak
+cp $HOME/.celestia-appd/config/config.toml $HOME/.celestia-appd/config/config.toml.bak
 
 echo $1
-if [ $1 -eq "full" ]
+if [ $1 = "full" ]
   then
     echo "Setting up local full node"
 	sleep 5
