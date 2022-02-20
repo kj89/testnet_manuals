@@ -135,7 +135,7 @@ sudo systemctl daemon-reload
 sudo systemctl restart celestia-appd
 
 # make a copy of configuration file
-cp $HOME/.celestia-appd/config/config.toml $HOME/.celestia-appd/config/config.toml.bak
+cp $HOME/.celestia-app/config/config.toml $HOME/.celestia-app/config/config.toml.bak
 
 if [ $1 = "full" ]
   then
@@ -197,6 +197,6 @@ fi
 
 echo '==================================='
 echo 'Setup is finished!'
-echo 'To check logs: journalctl -fu celestia-appd -o cat'
+echo 'To check logs: journalctl -fu celestia-full -o cat'
 echo 'To check validator sync status: curl -s localhost:26657/status | jq .result | jq .sync_info' 
 echo '==================================='
