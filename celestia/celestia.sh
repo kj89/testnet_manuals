@@ -1,4 +1,13 @@
 #!/usr/bin/env bash
+if [ $# -eq 0 ]
+  then
+    CELESTIA_MODE="validator"
+else
+	CELESTIA_MODE="validator + $1"
+fi
+echo 'export CELESTIA_MODE='$CELESTIA_MODE >> $HOME/.bash_profile
+. ~/.bash_profile
+
 . ~/.bashrc
 if [ ! $CELESTIA_NODENAME ]; then
 	read -p "Enter node name: " CELESTIA_NODENAME
@@ -16,6 +25,7 @@ source $HOME/.bash_profile
 
 
 echo '==================================='
+echo 'Your celestia mode: ' $CELESTIA_MODE
 echo 'Your node name: ' $CELESTIA_NODENAME
 echo 'Your walet name: ' $CELESTIA_WALLET
 echo 'Your chain name: ' $CELESTIA_CHAIN
@@ -166,18 +176,18 @@ if [ $1 -eq "full" ]
 
 	# Run as service
 	sudo tee /etc/systemd/system/celestia-full.service > /dev/null <<EOF
-	[Unit]
-	Description=celestia-full node
-	After=network-online.target
-	[Service]
-	User=$USER
-	ExecStart=$(which celestia) full start
-	Restart=on-failure
-	RestartSec=10
-	LimitNOFILE=4096
-	[Install]
-	WantedBy=multi-user.target
-	EOF
+[Unit]
+Description=celestia-full node
+After=network-online.target
+[Service]
+User=$USER
+ExecStart=$(which celestia) full start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=4096
+[Install]
+WantedBy=multi-user.target
+EOF
 
 	sudo systemctl enable celestia-full
 	sudo systemctl daemon-reload
