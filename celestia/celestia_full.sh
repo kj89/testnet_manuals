@@ -60,7 +60,6 @@ TRUSTED_HASH=$(curl -s $TRUSTED_SERVER/status | jq -r .result.sync_info.latest_b
 
 echo '==================================='
 echo 'Your trusted server:' $TRUSTED_SERVER
-echo 'Your trusted peer:' $TRUSTED_PEER
 echo 'Your trusted hash:' $TRUSTED_HASH
 echo 'Your node version:' $CELESTIA_NODE_VERSION
 echo '==================================='

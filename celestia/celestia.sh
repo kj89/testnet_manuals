@@ -51,23 +51,18 @@ cp /usr/local/go/bin/go /usr/bin
 go version
 
 # install app
+rm -rf celestia-app
 cd $HOME
 git clone https://github.com/celestiaorg/celestia-app.git
-cd celestia-app/
+cd celestia-app
 git checkout $CELESTIA_APP_VERSION
-make install
-
-# install node
-cd $HOME
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-git checkout $CELESTIA_NODE_VERSION
 make install
 
 # install celestia scripts
 cd $HOME
 git clone https://github.com/celestiaorg/networks.git
 
+###### INITIALIZE AND CONFIGURE CELESTIA VALIDATOR #######
 # do init
 celestia-appd init $CELESTIA_NODENAME --chain-id $CELESTIA_CHAIN
 
@@ -80,7 +75,7 @@ echo $seeds
 sed -i.bak -e "s/^seeds *=.*/seeds = $seeds/" $HOME/.celestia-app/config/config.toml
 
 # open rpc
-sed -i 's#"tcp://127.0.0.1:26657"#"tcp://0.0.0.0:26657"#g' $HOME/.celestia-app/config/config.toml
+# sed -i 's#"tcp://127.0.0.1:26657"#"tcp://0.0.0.0:26657"#g' $HOME/.celestia-app/config/config.toml
 
 # set proper defaults
 sed -i 's/timeout_commit = "5s"/timeout_commit = "15s"/g' $HOME/.celestia-app/config/config.toml
@@ -131,6 +126,66 @@ sudo systemctl restart celestia-appd
 # make a copy of configuration file
 cp $HOME/.celestia-app/config/config.yaml $HOME/.celestia-app/config/config.yaml.bak
 
-echo 'Node status:'$(sudo service celestia-appd status | grep active)
-echo 'To check logs: journalctl -fu celestia-appd'
+if [ $1 -eq "full" ]
+  then
+    echo "Setting up local full node"
+	sleep 5
+	
+	# install node
+	cd $HOME
+	git clone https://github.com/celestiaorg/celestia-node.git
+	cd celestia-node/
+	git checkout $CELESTIA_NODE_VERSION
+	make install
+
+	###### INITIALIZE AND CONFIGURE CELESTIA FULL NODE #######
+
+	# use localhost
+	TRUSTED_SERVER="http://localhost:26667"
+
+	# current block hash
+	TRUSTED_HASH=$(curl -s $TRUSTED_SERVER/status | jq -r .result.sync_info.latest_block_hash)
+
+	echo '==================================='
+	echo 'Your trusted server:' $TRUSTED_SERVER
+	echo 'Your trusted hash:' $TRUSTED_HASH
+	echo 'Your node version:' $CELESTIA_NODE_VERSION
+	echo '==================================='
+
+	# save vars
+	echo 'export TRUSTED_SERVER='${TRUSTED_SERVER} >> $HOME/.bash_profile
+	echo 'export TRUSTED_HASH='${TRUSTED_HASH} >> $HOME/.bash_profile
+	source $HOME/.bash_profile
+
+	# do init
+	rm -rf $HOME/.celestia-full
+	celestia full init --core.remote $TRUSTED_SERVER --headers.trusted-hash $TRUSTED_HASH
+
+	# config p2p
+	sed -i.bak -e 's/PeerExchange = false/PeerExchange = true/g' $HOME/.celestia-full/config.toml
+
+	# Run as service
+	sudo tee /etc/systemd/system/celestia-full.service > /dev/null <<EOF
+	[Unit]
+	Description=celestia-full node
+	After=network-online.target
+	[Service]
+	User=$USER
+	ExecStart=$(which celestia) full start
+	Restart=on-failure
+	RestartSec=10
+	LimitNOFILE=4096
+	[Install]
+	WantedBy=multi-user.target
+	EOF
+
+	sudo systemctl enable celestia-full
+	sudo systemctl daemon-reload
+	sudo systemctl restart celestia-full
+fi
+
+echo '==================================='
+echo 'Setup is finished!'
+echo 'To check logs: journalctl -fu celestia-appd -o cat'
 echo 'To check validator sync status: curl -s localhost:26657/status | jq .result | jq .sync_info' 
+echo '==================================='
