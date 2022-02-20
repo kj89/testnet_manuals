@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 . ~/.bashrc
+rm . ~/.bash_profile
 
 if [ $# -eq 0 ]
   then
 	CELESTIA_MODE="validator"
 else
-	CELESTIA_MODE="validator + $1"
+	CELESTIA_MODE="validator,$1"
 fi
 echo 'export CELESTIA_MODE='$CELESTIA_MODE >> $HOME/.bash_profile
 . ~/.bash_profile
