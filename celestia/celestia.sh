@@ -137,7 +137,6 @@ sudo systemctl restart celestia-appd
 # make a copy of configuration file
 cp $HOME/.celestia-appd/config/config.toml $HOME/.celestia-appd/config/config.toml.bak
 
-echo $1
 if [ $1 = "full" ]
   then
     echo "Setting up local full node"
@@ -153,7 +152,7 @@ if [ $1 = "full" ]
 	###### INITIALIZE AND CONFIGURE CELESTIA FULL NODE #######
 
 	# use localhost
-	TRUSTED_SERVER="http://localhost:26667"
+	TRUSTED_SERVER="http://localhost:26657"
 
 	# current block hash
 	TRUSTED_HASH=$(curl -s $TRUSTED_SERVER/status | jq -r .result.sync_info.latest_block_hash)

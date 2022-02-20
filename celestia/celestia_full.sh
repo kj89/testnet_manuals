@@ -53,7 +53,7 @@ make install
 # TRUSTED_SERVER=$(curl -s "https://raw.githubusercontent.com/maxzonder/celestia/main/trusted_server.txt")
 
 # add protocol and port
-TRUSTED_SERVER="http://$CELESTIA_VALIDATOR_IP:26667"
+TRUSTED_SERVER="http://$CELESTIA_VALIDATOR_IP:26657"
 
 # current block hash
 TRUSTED_HASH=$(curl -s $TRUSTED_SERVER/status | jq -r .result.sync_info.latest_block_hash)
