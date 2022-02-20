@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
+. ~/.bashrc
+
 if [ $# -eq 0 ]
   then
-    CELESTIA_MODE="validator"
+	CELESTIA_MODE="validator"
 else
 	CELESTIA_MODE="validator + $1"
 fi
 echo 'export CELESTIA_MODE='$CELESTIA_MODE >> $HOME/.bash_profile
 . ~/.bash_profile
 
-. ~/.bashrc
 if [ ! $CELESTIA_NODENAME ]; then
 	read -p "Enter node name: " CELESTIA_NODENAME
 	echo 'export CELESTIA_NODENAME='$CELESTIA_NODENAME >> $HOME/.bash_profile
