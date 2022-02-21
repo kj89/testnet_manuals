@@ -2,7 +2,7 @@
 . ~/.bashrc
 
 if [ ! $CELESTIA_VALIDATOR_IP ]; then
-	read -p "Enter your validator IP or press Enter for [localhost]: " CELESTIA_VALIDATOR_IP
+	read -p "Enter your validator IP or press enter use default [localhost]: " CELESTIA_VALIDATOR_IP
 	CELESTIA_VALIDATOR_IP=${CELESTIA_VALIDATOR_IP:-localhost}
 	echo 'export CELESTIA_VALIDATOR_IP='$CELESTIA_VALIDATOR_IP >> $HOME/.bash_profile
 	. ~/.bash_profile
@@ -98,4 +98,7 @@ sudo systemctl enable celestia-full
 sudo systemctl daemon-reload
 sudo systemctl restart celestia-full
 
-echo 'Node status:'$(sudo service celestia-full status | grep active)
+echo '==================================='
+echo 'Setup is finished!'
+echo 'To check app logs: journalctl -fu celestia-full -o cat'
+echo '==================================='
