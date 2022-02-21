@@ -2,7 +2,8 @@
 . ~/.bashrc
 
 if [ ! $CELESTIA_VALIDATOR_IP ]; then
-	read -p "Enter validator ip: " CELESTIA_VALIDATOR_IP
+	read -p "Enter your validator IP or press Enter for [localhost]: " CELESTIA_VALIDATOR_IP
+	CELESTIA_VALIDATOR_IP=${CELESTIA_VALIDATOR_IP:-localhost}
 	echo 'export CELESTIA_VALIDATOR_IP='$CELESTIA_VALIDATOR_IP >> $HOME/.bash_profile
 	. ~/.bash_profile
 fi
@@ -11,31 +12,33 @@ CELESTIA_NODE_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_
 echo 'export CELESTIA_NODE_VERSION='$CELESTIA_NODE_VERSION >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
-# update packages
-echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
-export DEBIAN_FRONTEND=noninteractive
-apt-get update && 
-    apt-get -o Dpkg::Options::="--force-confold" upgrade -q -y --force-yes &&
-    apt-get -o Dpkg::Options::="--force-confold" dist-upgrade -q -y --force-yes
-sleep 3
-sudo apt-get install build-essential -y && sudo apt-get install jq -y
-sleep 1
+if [ "$CELESTIA_VALIDATOR_IP" != "localhost" ]; then
+	##### INSTALL DEPENDENCIES #####
+	# update packages
+	echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
+	export DEBIAN_FRONTEND=noninteractive
+	apt-get update && 
+		apt-get -o Dpkg::Options::="--force-confold" upgrade -q -y --force-yes &&
+		apt-get -o Dpkg::Options::="--force-confold" dist-upgrade -q -y --force-yes
+	sleep 3
+	sudo apt-get install build-essential -y && sudo apt-get install jq -y
+	sleep 1
+	
+	# install go
+	sudo rm -rf /usr/local/go
+	curl https://dl.google.com/go/go1.17.2.linux-amd64.tar.gz | sudo tar -C/usr/local -zxvf -
 
-sudo rm -rf /usr/local/go
-curl https://dl.google.com/go/go1.17.2.linux-amd64.tar.gz | sudo tar -C/usr/local -zxvf -
-
-cat <<'EOF' >> $HOME/.bash_profile
+	cat <<'EOF' >> $HOME/.bash_profile
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export GO111MODULE=on
 export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 EOF
 
-. $HOME/.bash_profile
+	. $HOME/.bash_profile
 
-cp /usr/local/go/bin/go /usr/bin
-
-go version
+	cp /usr/local/go/bin/go /usr/bin
+fi
 
 cd $HOME
 rm -rf celestia-node
