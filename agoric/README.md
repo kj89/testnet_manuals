@@ -10,13 +10,13 @@ Amounts of uBLD to BLD are 1 to 1 000 000
 Create validator
 ```
 chainName=`curl https://main.agoric.net/network-config | jq -r .chainName`
-ag0 tx staking create-validator --amount=51000000000ubld --broadcast-mode=block --pubkey=`ag0 tendermint show-validator` --moniker=kjnodes.com --website="http://kjnodes.com" --details="One of TOP 25 performing validators on Agoric testnet with highest uptime. Uptime is important to me. Server is constantly being monitored and maintained. You can contact me at discord: kjnodes#8455 or telegram: @kjnodes" --commission-rate="0.07" --commission-max-rate="0.20" --commission-max-change-rate="0.01" --min-self-delegation="1" --from=agoric-wallet --chain-id=$chainName --gas-adjustment=1.4 --fees=5001ubld
+ag0 tx staking create-validator --amount=51000000000ubld --broadcast-mode=block --pubkey=`ag0 tendermint show-validator` --moniker=kjnodes.com --website="http://kjnodes.com" --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" --commission-rate="0.07" --commission-max-rate="0.20" --commission-max-change-rate="0.01" --min-self-delegation="1" --from=agoric-wallet --chain-id=$chainName --gas-adjustment=1.4 --fees=5001ubld
 ```
 
 Modify validator
 ```
 chainName=`curl https://main.agoric.net/network-config | jq -r .chainName`
-ag0 tx staking edit-validator --moniker="kjnodes.com" --website="http://kjnodes.com" --details="One of TOP 25 performing validators on Agoric testnet with highest uptime. Server is constantly being monitored and maintained. You can contact me at discord: kjnodes#8455 or telegram: @kjnodes" --chain-id=$chainName --from=agoric-wallet
+ag0 tx staking edit-validator --moniker="kjnodes.com" --website="http://kjnodes.com" --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" --chain-id=$chainName --from=agoric-wallet
 ```
 
 ## Usefull commands

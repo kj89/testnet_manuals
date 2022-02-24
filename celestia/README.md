@@ -34,7 +34,7 @@ In the output of the above command make sure catching_up is false
 
 ### Restore your wallet in case if you created it before
 ```
-celestia-appd keys add $CELESTIA_NODENAME --recover
+celestia-appd keys add $CELESTIA_WALLET --recover
 ```
 
 ### Request faucet at Discord
@@ -104,7 +104,7 @@ celestia-appd tx staking edit-validator \
  --moniker=$CELESTIA_NODENAME \
 --website="http://kjnodes.com" \
 --identity=1C5ACD2EEF363C3A \
---details="Providing professional staking services with high performance and availability. Stake it till you make it! discord: kjnodes#8455 / telegram: @kjnodes" \
+--details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
 --chain-id=$CELESTIA_CHAIN \
 --from=$CELESTIA_WALLET
 ```
