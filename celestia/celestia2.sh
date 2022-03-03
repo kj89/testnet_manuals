@@ -172,10 +172,10 @@ fi
 }
 
 function createKey {
-cd $HOME/celestia-appd
+cd $HOME/celestia-app
 echo -e "\n\e[45mWait some time before creating key...\e[0m\n"
 sleep 20
-sudo tee <<EOF >/dev/null $HOME/celestia-appd/celestia_add_key.sh
+sudo tee <<EOF >/dev/null $HOME/celestia-app/celestia_add_key.sh
 #!/usr/bin/expect -f
 EOF
 echo "set timeout -1
@@ -186,12 +186,12 @@ send -- \"$CELESTIA_PASSWORD\r\"
 expect -exact \"\r
 Re-enter keyring passphrase:\"
 send -- \"$CELESTIA_PASSWORD\r\"
-expect eof" >> $HOME/celestia-appd/celestia_add_key.sh
-sudo chmod +x $HOME/celestia-appd/celestia_add_key.sh
-$HOME/celestia-appd/celestia_add_key.sh &>> $HOME/celestia-appd/$CELESTIA_WALLET.txt
+expect eof" >> $HOME/celestia-app/celestia_add_key.sh
+sudo chmod +x $HOME/celestia-app/celestia_add_key.sh
+$HOME/celestia-app/celestia_add_key.sh &>> $HOME/celestia-app/$CELESTIA_WALLET.txt
 echo -e "You can find your mnemonic by the following command:"
-echo -e "\e[32mcat $HOME/celestia-appd/$CELESTIA_WALLET.txt\e[39m"
-export CELESTIA_WALLET_ADDRESS=`cat $HOME/celestia-appd/$CELESTIA_WALLET.txt | grep address | awk '{split($0,addr," "); print addr[2]}' | sed 's/.$//'`
+echo -e "\e[32mcat $HOME/celestia-app/$CELESTIA_WALLET.txt\e[39m"
+export CELESTIA_WALLET_ADDRESS=`cat $HOME/celestia-app/$CELESTIA_WALLET.txt | grep address | awk '{split($0,addr," "); print addr[2]}' | sed 's/.$//'`
 echo 'export CELESTIA_WALLET_ADDRESS='${CELESTIA_WALLET_ADDRESS} >> $HOME/.bash_profile
 . $HOME/.bash_profile
 echo -e '\n\e[45mYour wallet address:' $CELESTIA_WALLET_ADDRESS '\e[0m\n'
