@@ -101,7 +101,7 @@ celestia-appd status 2>&1 | jq .NodeInfo
 Modify validator
 ```
 celestia-appd tx staking edit-validator \
---moniker=$CELESTIA_NODENAME \
+ --moniker=$CELESTIA_NODENAME \
 --website="http://kjnodes.com" \
 --identity=1C5ACD2EEF363C3A \
 --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
