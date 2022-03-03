@@ -32,8 +32,11 @@ function setupVars {
 	echo -e '\n\e[45mYour wallet password:' $CELESTIA_PASSWORD '\e[0m\n'
 	# devnet-2
 	echo 'export CELESTIA_CHAIN=devnet-2' >> $HOME/.bash_profile
+	CELESTIA_APP_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_app.txt")
+	echo 'export CELESTIA_APP_VERSION='$CELESTIA_APP_VERSION >> $HOME/.bash_profile
 	. $HOME/.bash_profile
 	echo -e '\n\e[45mYour chain id:' $CELESTIA_CHAIN '\e[0m\n'
+	echo -e '\n\e[45mYour app version:' $CELESTIA_APP_VERSION '\e[0m\n'
 	sleep 1
 }
 
@@ -68,6 +71,7 @@ function installSoftware {
 	cd $HOME
 	git clone https://github.com/celestiaorg/celestia-app.git
 	cd celestia-app
+	git checkout $CELESTIA_APP_VERSION
 	make install
 	
 	# install celestia networks
