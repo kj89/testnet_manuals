@@ -218,7 +218,7 @@ function disableCelestia {
 }
 
 PS3='Please enter your choice (input your option number and press enter): '
-options=("Install" "Disable" "Quit")
+options=("Install" "Status" "Disable" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -232,6 +232,11 @@ do
 			createKey
 			syncCheck
 			echo -e '\n\e[45mDone!\e[0m\n'
+			break
+            ;;
+		"Status")
+            echo -e '\n\e[31mYou choose status...\e[0m\n' && sleep 1
+			syncCheck
 			break
             ;;
 		"Disable")
