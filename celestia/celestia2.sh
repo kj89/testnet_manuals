@@ -32,8 +32,8 @@ function setupVars {
 	echo -e '\n\e[45mYour wallet password:' $CELESTIA_PASSWORD '\e[0m\n'
 	# devnet-2
 	echo 'export CELESTIA_CHAIN=devnet-2' >> $HOME/.bash_profile
-	echo -e '\n\e[45mYour chain id:' $CELESTIA_CHAIN '\e[0m\n'
 	. $HOME/.bash_profile
+	echo -e '\n\e[45mYour chain id:' $CELESTIA_CHAIN '\e[0m\n'
 	sleep 1
 }
 
