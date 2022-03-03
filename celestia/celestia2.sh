@@ -44,15 +44,9 @@ function setupSwap {
 
 function installDeps {
 	echo -e '\n\e[45mPreparing to install\e[0m\n' && sleep 1
-	# update packages
-	echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
-	export DEBIAN_FRONTEND=noninteractive
-	apt-get update && 
-		apt-get -o Dpkg::Options::="--force-confold" upgrade -q -y --force-yes &&
-		apt-get -o Dpkg::Options::="--force-confold" dist-upgrade -q -y --force-yes
-	sleep 3
-	sudo apt build-essential jq expect -y < "/dev/null"
-	sleep 1
+	cd $HOME
+	sudo apt update
+	sudo apt install make clang pkg-config libssl-dev build-essential git jq expect -y < "/dev/null"
 	# install go
 	sudo rm -rf /usr/local/go
 	curl https://dl.google.com/go/go1.17.2.linux-amd64.tar.gz | sudo tar -C/usr/local -zxvf -
