@@ -86,7 +86,10 @@ function installDeps {
 	sudo apt update
 	sudo apt install make clang pkg-config libssl-dev build-essential git jq expect -y < "/dev/null"
 	# install go
-	if [ -z "go version | grep 1.17.2" ]; then
+	if [ -f "/usr/bin/go" ]; then
+		echo 'go is already installed'
+		go version
+	else
 		curl https://dl.google.com/go/go1.17.2.linux-amd64.tar.gz | sudo tar -C/usr/local -zxvf -
 		cat <<'EOF' >> $HOME/.bash_profile
 export GOROOT=/usr/local/go
@@ -95,7 +98,7 @@ export GO111MODULE=on
 export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 EOF
 		. $HOME/.bash_profile
-		cp /usr/local/go/bin/go /usr/bin;
+		cp /usr/local/go/bin/go /usr/bin
 	fi
 }
 
@@ -190,7 +193,6 @@ Storage=persistent
 EOF
 sudo systemctl restart systemd-journald
 sudo systemctl daemon-reload
-echo -e '\n\e[45mRunning a service\e[0m\n' && sleep 1
 sudo systemctl enable celestia-appd
 sudo systemctl restart celestia-appd
 echo -e '\n\e[45mCheck node status\e[0m\n' && sleep 1
@@ -232,7 +234,6 @@ WantedBy=multi-user.target
 	sudo mv $HOME/celestia-bridge.service /etc/systemd/system
 	sudo systemctl restart systemd-journald
 	sudo systemctl daemon-reload
-	echo -e '\n\e[45mRunning a service\e[0m\n' && sleep 1
 	sudo systemctl enable celestia-bridge
 	sudo systemctl restart celestia-bridge
 	echo -e '\n\e[45mCheck node status\e[0m\n' && sleep 1
@@ -273,7 +274,6 @@ WantedBy=multi-user.target
 	sudo mv $HOME/celestia-light.service /etc/systemd/system
 	sudo systemctl restart systemd-journald
 	sudo systemctl daemon-reload
-	echo -e '\n\e[45mRunning a service\e[0m\n' && sleep 1
 	sudo systemctl enable celestia-light
 	sudo systemctl restart celestia-light
 	echo -e '\n\e[45mCheck node status\e[0m\n' && sleep 1
