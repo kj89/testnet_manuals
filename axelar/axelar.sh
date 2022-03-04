@@ -21,8 +21,8 @@ fi
 # update packages
 export DEBIAN_FRONTEND=noninteractive
 apt-get update && 
-    apt-get -o Dpkg::Options::="--force-confold" upgrade -q -y --force-yes &&
-    apt-get -o Dpkg::Options::="--force-confold" dist-upgrade -q -y --force-yes
+    apt-get -o Dpkg::Options::="--force-confold" upgrade -q -y --allow-change-held-packages &&
+    apt-get -o Dpkg::Options::="--force-confold" dist-upgrade -q -y --allow-change-held-packages
 sleep 3
 sudo apt-get install jq -y && sudo apt-get install snapd -y
 sleep 1

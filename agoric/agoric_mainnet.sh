@@ -23,8 +23,8 @@ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 export DEBIAN_FRONTEND=noninteractive
 apt-get update && 
-    apt-get -o Dpkg::Options::="--force-confold" upgrade -q -y --force-yes &&
-    apt-get -o Dpkg::Options::="--force-confold" dist-upgrade -q -y --force-yes
+    apt-get -o Dpkg::Options::="--force-confold" upgrade -q -y --allow-change-held-packages &&
+    apt-get -o Dpkg::Options::="--force-confold" dist-upgrade -q -y --allow-change-held-packages
 sudo apt install nodejs=14.* yarn build-essential jq git -y < "/dev/null"
 sleep 1
 

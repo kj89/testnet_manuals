@@ -15,8 +15,8 @@ source $HOME/.bash_profile
 echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
 export DEBIAN_FRONTEND=noninteractive
 apt-get update && 
-    apt-get -o Dpkg::Options::="--force-confold" upgrade -q -y --force-yes &&
-    apt-get -o Dpkg::Options::="--force-confold" dist-upgrade -q -y --force-yes
+    apt-get -o Dpkg::Options::="--force-confold" upgrade -q -y --allow-change-held-packages &&
+    apt-get -o Dpkg::Options::="--force-confold" dist-upgrade -q -y --allow-change-held-packages
 sleep 3
 sudo apt-get install build-essential -y && sudo apt-get install jq -y
 sleep 1
