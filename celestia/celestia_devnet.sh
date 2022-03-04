@@ -72,16 +72,17 @@ function installDeps {
 	sudo apt update
 	sudo apt install make clang pkg-config libssl-dev build-essential git jq expect -y < "/dev/null"
 	# install go
-	sudo rm -rf /usr/local/go
-	curl https://dl.google.com/go/go1.17.2.linux-amd64.tar.gz | sudo tar -C/usr/local -zxvf -
-	cat <<'EOF' >> $HOME/.bash_profile
+	if [ -z "go version | grep 1.17.2" ]; then
+		curl https://dl.google.com/go/go1.17.2.linux-amd64.tar.gz | sudo tar -C/usr/local -zxvf -
+		cat <<'EOF' >> $HOME/.bash_profile
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export GO111MODULE=on
 export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 EOF
-	. $HOME/.bash_profile
-	cp /usr/local/go/bin/go /usr/bin
+		. $HOME/.bash_profile
+		cp /usr/local/go/bin/go /usr/bin;
+	fi
 }
 
 
@@ -336,7 +337,7 @@ echo -e '\n\e[45mYour wallet address:' $CELESTIA_WALLET_ADDRESS '\e[0m\n'
 
 function syncCheck {
 . $HOME/.bash_profile
-while sleep 5; do
+while sleep 1; do
 sync_info=`curl -s localhost:26657/status | jq .result.sync_info`
 latest_block_height=`echo $sync_info | jq -r .latest_block_height`
 echo -en "\r\rCurrent block: $latest_block_height"

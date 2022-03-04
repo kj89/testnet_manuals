@@ -2,7 +2,7 @@
 
 ### Run validator node
 ```
-wget -O celestia2.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/celestia2.sh && chmod +x celestia2.sh && ./celestia2.sh
+wget -O celestia_devnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/celestia_devnet.sh && chmod +x celestia_devnet.sh && ./celestia_devnet.sh
 ```
 
 ### Run this command to load environment variables
