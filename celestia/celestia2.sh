@@ -352,17 +352,19 @@ done
 
 function deleteCelestia {
 	systemctl disable celestia-appd.service
-	systemctl disable celestia-appd.service
+	systemctl disable celestia-bridge.service
+	systemctl disable celestia-light.service
 	systemctl stop celestia-appd.service
 	systemctl stop celestia-bridge.service
+	systemctl stop celestia-light.service
 	rm /etc/systemd/system/celestia-appd.service
 	rm /etc/systemd/system/celestia-bridge.service
+	rm /etc/systemd/system/celestia-light.service
 	systemctl daemon-reload
 	systemctl reset-failed
 	rm .celestia* -rf
 	rm celestia* -rf
 	rm networks -rf
-	rm go -rf
 	rm .bash_profile
 }
 
