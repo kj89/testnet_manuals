@@ -273,7 +273,7 @@ function initNodeLight {
 
 	# do init
 	rm -rf $HOME/.celestia-light
-	celestia light  init --core.remote $TRUSTED_SERVER --headers.trusted-hash $TRUSTED_HASH
+	celestia light init --headers.trusted-peer $TRUSTED_PEER --headers.trusted-hash $TRUSTED_HASH
 
 	# install service
 	echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
