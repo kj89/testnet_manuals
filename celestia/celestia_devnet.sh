@@ -195,26 +195,17 @@ function initNodeBridge {
 # add protocol and port
 TRUSTED_SERVER="http://$CELESTIA_VALIDATOR_IP:26657"
 
-# current block hash
-TRUSTED_HASH=$(curl -s $TRUSTED_SERVER/status | jq -r .result.sync_info.latest_block_hash)
-
-echo '==================================='
-echo 'Your trusted server:' $TRUSTED_SERVER
-echo 'Your trusted hash:' $TRUSTED_HASH
-echo 'Your node version:' $CELESTIA_NODE_VERSION
-echo '==================================='
-
 # save vars
 echo 'export TRUSTED_SERVER='${TRUSTED_SERVER} >> $HOME/.bash_profile
-echo 'export TRUSTED_HASH='${TRUSTED_HASH} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 # do init
-rm -rf $HOME/.celestia-bridge
-celestia bridge  init --core.remote $TRUSTED_SERVER --headers.trusted-hash $TRUSTED_HASH
+celestia bridge init --core.remote $TRUSTED_SERVER
 
-# config p2p
+# configure p2p
 sed -i.bak -e 's/PeerExchange = false/PeerExchange = true/g' $HOME/.celestia-bridge/config.toml
+BootstrapPeers="[\"/dns4/andromeda.celestia-devops.dev/tcp/2121/p2p/12D3KooWKvPXtV1yaQ6e3BRNUHa5Phh8daBwBi3KkGaSSkUPys6D\", \"/dns4/libra.celestia-devops.dev/tcp/2121/p2p/12D3KooWK5aDotDcLsabBmWDazehQLMsDkRyARm1k7f1zGAXqbt4\", \"/dns4/norma.celestia-devops.dev/tcp/2121/p2p/12D3KooWHYczJDVNfYVkLcNHPTDKCeiVvRhg8Q9JU3bE3m9eEVyY\"]"
+sed -i -e "s|BootstrapPeers *=.*|BootstrapPeers = $BootstrapPeers|" $HOME/.celestia-bridge/config.toml
 
 # install service
 	echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
@@ -249,31 +240,13 @@ WantedBy=multi-user.target
 }
 
 function initNodeLight {
-	# add trusted peer
-	TRUSTED_PEER=$(curl -s "https://raw.githubusercontent.com/maxzonder/celestia/main/trusted_peer.txt")
-	
-	# add protocol and port
-	TRUSTED_SERVER="http://$CELESTIA_VALIDATOR_IP:26657"
-
-	# current block hash
-	TRUSTED_HASH=$(curl -s $TRUSTED_SERVER/status | jq -r .result.sync_info.latest_block_hash)
-
-	echo '==================================='
-	echo 'Your trusted server:' $TRUSTED_SERVER
-	echo 'Your trusted peer:' $TRUSTED_PEER
-	echo 'Your trusted hash:' $TRUSTED_HASH
-	echo 'Your node version:' $CELESTIA_NODE_VERSION
-	echo '==================================='
-
-	# save vars
-	echo 'export TRUSTED_SERVER='${TRUSTED_SERVER} >> $HOME/.bash_profile
-	echo 'export TRUSTED_HASH='${TRUSTED_HASH} >> $HOME/.bash_profile
-	echo 'export TRUSTED_PEER='${TRUSTED_PEER} >> $HOME/.bash_profile
-	source $HOME/.bash_profile
-
 	# do init
 	rm -rf $HOME/.celestia-light
-	celestia light init --headers.trusted-peer $TRUSTED_PEER --headers.trusted-hash $TRUSTED_HASH
+	celestia light init
+
+	# configure p2p
+	BootstrapPeers="[\"/dns4/andromeda.celestia-devops.dev/tcp/2121/p2p/12D3KooWKvPXtV1yaQ6e3BRNUHa5Phh8daBwBi3KkGaSSkUPys6D\", \"/dns4/libra.celestia-devops.dev/tcp/2121/p2p/12D3KooWK5aDotDcLsabBmWDazehQLMsDkRyARm1k7f1zGAXqbt4\", \"/dns4/norma.celestia-devops.dev/tcp/2121/p2p/12D3KooWHYczJDVNfYVkLcNHPTDKCeiVvRhg8Q9JU3bE3m9eEVyY\"]"
+	sed -i -e "s|BootstrapPeers *=.*|BootstrapPeers = $BootstrapPeers|" $HOME/.celestia-light/config.toml
 
 	# install service
 	echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
