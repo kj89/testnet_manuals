@@ -19,9 +19,11 @@ CELESTIA_APP_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_m
 CELESTIA_NODE_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_node.txt")
 echo 'export CELESTIA_CHAIN=devnet-2' >> $HOME/.bash_profile
 . $HOME/.bash_profile
-echo -e '\n\e[45mYour chain id:' $CELESTIA_CHAIN '\e[0m\n'
-echo -e '\n\e[45mYour app version:' $CELESTIA_APP_VERSION '\e[0m\n'
-echo -e '\n\e[45mYour node version:' $CELESTIA_NODE_VERSION '\e[0m\n'
+echo '==================================='
+echo 'Your chain id:' $CELESTIA_CHAIN
+echo 'Your app version:' $CELESTIA_APP_VERSION
+echo 'Your node version:' $CELESTIA_NODE_VERSION
+echo '==================================='
 sleep 5
 
 
