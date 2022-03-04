@@ -67,11 +67,11 @@ function setupVarsNodeBridge {
 		# check response from rpc
 		if [ $(curl -LI $TRUSTED_SERVER -o /dev/null -w '%{http_code}\n' -s) != '200' ]; then
 			echo 'Endpoint' $TRUSTED_SERVER 'is unreachable! Aborting setup!'
-			break
+			break;
 		else
 			# save vars
 			echo 'export TRUSTED_SERVER='${TRUSTED_SERVER} >> $HOME/.bash_profile
-			source $HOME/.bash_profile
+			source $HOME/.bash_profile;
 		fi
 		echo 'export CELESTIA_RPC_IP='$CELESTIA_RPC_IP >> $HOME/.bash_profile
 		. $HOME/.bash_profile
