@@ -24,7 +24,6 @@ echo 'Your chain id:' $CELESTIA_CHAIN
 echo 'Your app version:' $CELESTIA_APP_VERSION
 echo 'Your node version:' $CELESTIA_NODE_VERSION
 echo '==================================='
-sleep 5
 
 
 function setupSwap {
@@ -205,6 +204,7 @@ echo 'export TRUSTED_SERVER='${TRUSTED_SERVER} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 # do init
+rm -rf $HOME/.celestia-bridge
 celestia bridge init --core.remote $TRUSTED_SERVER
 
 # configure p2p
