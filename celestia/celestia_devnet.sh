@@ -60,10 +60,20 @@ function setupVarsValidator {
 
 
 function setupVarsNodeBridge {
-	if [ ! $CELESTIA_VALIDATOR_IP ]; then
-		read -p "Enter your validator IP or press enter use default [localhost]: " CELESTIA_VALIDATOR_IP
-		CELESTIA_VALIDATOR_IP=${CELESTIA_VALIDATOR_IP:-localhost}
-		echo 'export CELESTIA_VALIDATOR_IP='$CELESTIA_VALIDATOR_IP >> $HOME/.bash_profile
+	if [ ! $CELESTIA_RPC_IP ]; then
+		read -p 'Enter your RPC IP or press enter use default [localhost]: ' CELESTIA_RPC_IP
+		CELESTIA_RPC_IP=${CELESTIA_RPC_IP:-localhost}
+		TRUSTED_SERVER="http://$CELESTIA_RPC_IP:26657"
+		# check response from rpc
+		if [ $(curl -LI $TRUSTED_SERVER -o /dev/null -w '%{http_code}\n' -s) != '200' ]; then
+			echo 'Endpoint' $TRUSTED_SERVER 'is unreachable! Aborting setup!'
+			break
+		else
+			# save vars
+			echo 'export TRUSTED_SERVER='${TRUSTED_SERVER} >> $HOME/.bash_profile
+			source $HOME/.bash_profile
+		fi
+		echo 'export CELESTIA_RPC_IP='$CELESTIA_RPC_IP >> $HOME/.bash_profile
 		. $HOME/.bash_profile
 	fi
 	sleep 5
@@ -196,13 +206,6 @@ fi
 
 
 function initNodeBridge {
-# add protocol and port
-TRUSTED_SERVER="http://$CELESTIA_VALIDATOR_IP:26657"
-
-# save vars
-echo 'export TRUSTED_SERVER='${TRUSTED_SERVER} >> $HOME/.bash_profile
-source $HOME/.bash_profile
-
 # do init
 rm -rf $HOME/.celestia-bridge
 celestia bridge init --core.remote $TRUSTED_SERVER
@@ -315,7 +318,7 @@ echo -e '\n\e[45mYour wallet address:' $CELESTIA_WALLET_ADDRESS '\e[0m\n'
 
 function syncCheck {
 . $HOME/.bash_profile
-while sleep 1; do
+while sleep 10; do
 sync_info=`curl -s localhost:26657/status | jq .result.sync_info`
 latest_block_height=`echo $sync_info | jq -r .latest_block_height`
 echo -en "\r\rCurrent block: $latest_block_height"
