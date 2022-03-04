@@ -272,7 +272,7 @@ function initNodeLight {
 
 	# do init
 	rm -rf $HOME/.celestia-light
-	celestia bridge  init --core.remote $TRUSTED_SERVER --headers.trusted-hash $TRUSTED_HASH
+	celestia light  init --core.remote $TRUSTED_SERVER --headers.trusted-hash $TRUSTED_HASH
 
 	# install service
 	echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
@@ -281,7 +281,7 @@ Description=celestia-light node
 After=network-online.target
 [Service]
 User=$USER
-ExecStart=$(which celestia) bridge start
+ExecStart=$(which celestia) light start
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=4096
