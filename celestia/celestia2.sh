@@ -46,7 +46,7 @@ function setupVarsValidator {
 }
 
 
-function setupVarsBridge {
+function setupVarsNode {
 	CELESTIA_NODE_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_node.txt")
 	if [ ! $CELESTIA_VALIDATOR_IP ]; then
 		read -p "Enter your validator IP or press enter use default [localhost]: " CELESTIA_VALIDATOR_IP
@@ -87,7 +87,7 @@ EOF
 
 function installApp {
 	echo -e '\n\e[45mInstall app\e[0m\n' && sleep 1
-	
+
 	# install celestia app
 	rm -rf celestia-app
 	cd $HOME
@@ -95,53 +95,63 @@ function installApp {
 	cd celestia-app
 	git checkout $CELESTIA_APP_VERSION
 	make install
-	
-	# install celestia networks
-	cd $HOME
-	git clone https://github.com/celestiaorg/networks.git
-	
-	# init celestia app
-	celestia-appd init $CELESTIA_NODENAME --chain-id $CELESTIA_CHAIN
-	
-	# set network configs
-	cp $HOME/networks/$CELESTIA_CHAIN/genesis.json  $HOME/.celestia-app/config/
-	
-	# update seeds
-	seeds='"74c0c793db07edd9b9ec17b076cea1a02dca511f@46.101.28.34:26656"'
-	echo $seeds
-	sed -i.bak -e "s/^seeds *=.*/seeds = $seeds/" $HOME/.celestia-app/config/config.toml
-
-	# open rpc
-	sed -i 's#"tcp://127.0.0.1:26657"#"tcp://0.0.0.0:26657"#g' $HOME/.celestia-app/config/config.toml
-
-	# set proper defaults
-	sed -i 's/timeout_commit = "5s"/timeout_commit = "15s"/g' $HOME/.celestia-app/config/config.toml
-	sed -i 's/index_all_keys = false/index_all_keys = true/g' $HOME/.celestia-app/config/config.toml
-
-	# config pruning
-	pruning="custom"
-	pruning_keep_recent="100"
-	pruning_keep_every="5000"
-	pruning_interval="10"
-
-	sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.celestia-app/config/app.toml
-	sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.celestia-app/config/app.toml
-	sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.celestia-app/config/app.toml
-	sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.celestia-app/config/app.toml
-
-	# reset
-	celestia-appd unsafe-reset-all
-
-	# download address book
-	wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/addrbook.json"
-
-	# set client config
-	celestia-appd config chain-id $CELESTIA_CHAIN
-	celestia-appd config keyring-backend test
 }
 
 
-function installAppService {
+function installNode {
+	echo -e '\n\e[45mInstall node\e[0m\n' && sleep 1
+	
+	# install celestia node
+	cd $HOME
+	rm -rf celestia-node
+	git clone https://github.com/celestiaorg/celestia-node.git
+	cd celestia-node/
+	git checkout $CELESTIA_NODE_VERSION
+	make install
+}
+
+
+function initApp {
+# init celestia app
+celestia-appd init $CELESTIA_NODENAME --chain-id $CELESTIA_CHAIN
+
+# set network configs
+cp $HOME/networks/$CELESTIA_CHAIN/genesis.json  $HOME/.celestia-app/config/
+
+# update seeds
+seeds='"74c0c793db07edd9b9ec17b076cea1a02dca511f@46.101.28.34:26656"'
+echo $seeds
+sed -i.bak -e "s/^seeds *=.*/seeds = $seeds/" $HOME/.celestia-app/config/config.toml
+
+# open rpc
+sed -i 's#"tcp://127.0.0.1:26657"#"tcp://0.0.0.0:26657"#g' $HOME/.celestia-app/config/config.toml
+
+# set proper defaults
+sed -i 's/timeout_commit = "5s"/timeout_commit = "15s"/g' $HOME/.celestia-app/config/config.toml
+sed -i 's/index_all_keys = false/index_all_keys = true/g' $HOME/.celestia-app/config/config.toml
+
+# config pruning
+pruning="custom"
+pruning_keep_recent="100"
+pruning_keep_every="5000"
+pruning_interval="10"
+
+sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.celestia-app/config/app.toml
+
+# reset
+celestia-appd unsafe-reset-all
+
+# download address book
+wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/addrbook.json"
+
+# set client config
+celestia-appd config chain-id $CELESTIA_CHAIN
+celestia-appd config keyring-backend test
+
+# install service
 echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
 echo "[Unit]
 Description=celestia-appd Cosmos daemon
@@ -176,46 +186,34 @@ fi
 }
 
 
-function installNode {
-	echo -e '\n\e[45mInstall node\e[0m\n' && sleep 1
-	
-	# install celestia node
-	cd $HOME
-	rm -rf celestia-node
-	git clone https://github.com/celestiaorg/celestia-node.git
-	cd celestia-node/
-	git checkout $CELESTIA_NODE_VERSION
-	make install
+function initNodeBridge {
+# add protocol and port
+TRUSTED_SERVER="http://$CELESTIA_VALIDATOR_IP:26657"
 
-	# add protocol and port
-	TRUSTED_SERVER="http://$CELESTIA_VALIDATOR_IP:26657"
+# current block hash
+TRUSTED_HASH=$(curl -s $TRUSTED_SERVER/status | jq -r .result.sync_info.latest_block_hash)
 
-	# current block hash
-	TRUSTED_HASH=$(curl -s $TRUSTED_SERVER/status | jq -r .result.sync_info.latest_block_hash)
+echo '==================================='
+echo 'Your trusted server:' $TRUSTED_SERVER
+echo 'Your trusted hash:' $TRUSTED_HASH
+echo 'Your node version:' $CELESTIA_NODE_VERSION
+echo '==================================='
 
-	echo '==================================='
-	echo 'Your trusted server:' $TRUSTED_SERVER
-	echo 'Your trusted hash:' $TRUSTED_HASH
-	echo 'Your node version:' $CELESTIA_NODE_VERSION
-	echo '==================================='
+# save vars
+echo 'export TRUSTED_SERVER='${TRUSTED_SERVER} >> $HOME/.bash_profile
+echo 'export TRUSTED_HASH='${TRUSTED_HASH} >> $HOME/.bash_profile
+source $HOME/.bash_profile
 
-	# save vars
-	echo 'export TRUSTED_SERVER='${TRUSTED_SERVER} >> $HOME/.bash_profile
-	echo 'export TRUSTED_HASH='${TRUSTED_HASH} >> $HOME/.bash_profile
-	source $HOME/.bash_profile
+# do init
+rm -rf $HOME/.celestia-bridge
+celestia bridge  init --core.remote $TRUSTED_SERVER --headers.trusted-hash $TRUSTED_HASH
 
-	# do init
-	rm -rf $HOME/.celestia-bridge
-	celestia bridge  init --core.remote $TRUSTED_SERVER --headers.trusted-hash $TRUSTED_HASH
+# config p2p
+sed -i.bak -e 's/PeerExchange = false/PeerExchange = true/g' $HOME/.celestia-bridge/config.toml
 
-	# config p2p
-	sed -i.bak -e 's/PeerExchange = false/PeerExchange = true/g' $HOME/.celestia-bridge/config.toml
-}
-
-
-function installNodeService {
-echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
-echo "[Unit]
+# install service
+	echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
+	echo "[Unit]
 Description=celestia-bridge node
 After=network-online.target
 [Service]
@@ -227,26 +225,90 @@ LimitNOFILE=4096
 [Install]
 WantedBy=multi-user.target
 " > $HOME/celestia-bridge.service
-sudo mv $HOME/celestia-bridge.service /etc/systemd/system
-sudo systemctl restart systemd-journald
-sudo systemctl daemon-reload
-echo -e '\n\e[45mRunning a service\e[0m\n' && sleep 1
-sudo systemctl enable celestia-bridge
-sudo systemctl restart celestia-bridge
-echo -e '\n\e[45mCheck node status\e[0m\n' && sleep 1
-if [[ `service celestia-bridge status | grep active` =~ "running" ]]; then
-  echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
-  echo -e "You can check node status by the command \e[7mservice celestia-bridge status\e[0m"
-  echo -e "Press \e[7mQ\e[0m for exit from status menu"
-else
-  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
-fi
-. $HOME/.bash_profile
-echo 'To check app logs: journalctl -fu celestia-bridge -o cat'
+	sudo mv $HOME/celestia-bridge.service /etc/systemd/system
+	sudo systemctl restart systemd-journald
+	sudo systemctl daemon-reload
+	echo -e '\n\e[45mRunning a service\e[0m\n' && sleep 1
+	sudo systemctl enable celestia-bridge
+	sudo systemctl restart celestia-bridge
+	echo -e '\n\e[45mCheck node status\e[0m\n' && sleep 1
+	if [[ `service celestia-bridge status | grep active` =~ "running" ]]; then
+	  echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
+	  echo -e "You can check node status by the command \e[7mservice celestia-bridge status\e[0m"
+	  echo -e "Press \e[7mQ\e[0m for exit from status menu"
+	else
+	  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
+	fi
+	. $HOME/.bash_profile
+	echo 'To check app logs: journalctl -fu celestia-bridge -o cat'
+}
+
+function initNodeLight {
+	# add trusted peer
+	TRUSTED_PEER=$(curl -s "https://raw.githubusercontent.com/maxzonder/celestia/main/trusted_peer.txt")
+	
+	# add protocol and port
+	TRUSTED_SERVER="http://$CELESTIA_VALIDATOR_IP:26657"
+
+	# current block hash
+	TRUSTED_HASH=$(curl -s $TRUSTED_SERVER/status | jq -r .result.sync_info.latest_block_hash)
+
+	echo '==================================='
+	echo 'Your trusted server:' $TRUSTED_SERVER
+	echo 'Your trusted peer:' $TRUSTED_PEER
+	echo 'Your trusted hash:' $TRUSTED_HASH
+	echo 'Your node version:' $CELESTIA_NODE_VERSION
+	echo '==================================='
+
+	# save vars
+	echo 'export TRUSTED_SERVER='${TRUSTED_SERVER} >> $HOME/.bash_profile
+	echo 'export TRUSTED_HASH='${TRUSTED_HASH} >> $HOME/.bash_profile
+	echo 'export TRUSTED_PEER='${TRUSTED_PEER} >> $HOME/.bash_profile
+	source $HOME/.bash_profile
+
+	# do init
+	rm -rf $HOME/.celestia-light
+	celestia bridge  init --core.remote $TRUSTED_SERVER --headers.trusted-hash $TRUSTED_HASH
+
+	# install service
+	echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
+	echo "[Unit]
+Description=celestia-light node
+After=network-online.target
+[Service]
+User=$USER
+ExecStart=$(which celestia) bridge start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=4096
+[Install]
+WantedBy=multi-user.target
+" > $HOME/celestia-light.service
+	sudo mv $HOME/celestia-light.service /etc/systemd/system
+	sudo systemctl restart systemd-journald
+	sudo systemctl daemon-reload
+	echo -e '\n\e[45mRunning a service\e[0m\n' && sleep 1
+	sudo systemctl enable celestia-light
+	sudo systemctl restart celestia-light
+	echo -e '\n\e[45mCheck node status\e[0m\n' && sleep 1
+	if [[ `service celestia-light status | grep active` =~ "running" ]]; then
+	  echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
+	  echo -e "You can check node status by the command \e[7mservice celestia-light status\e[0m"
+	  echo -e "Press \e[7mQ\e[0m for exit from status menu"
+	else
+	  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
+	fi
+	. $HOME/.bash_profile
+	echo 'To check app logs: journalctl -fu celestia-light -o cat'
 }
 
 
 function createKey {
+# install celestia networks
+cd $HOME
+git clone https://github.com/celestiaorg/networks.git
+
+# create key
 cd $HOME/celestia-app
 echo -e "\n\e[45mWait some time before creating key...\e[0m\n"
 sleep 20
@@ -317,22 +379,27 @@ do
 			setupSwap
 			installDeps
 			installApp
-			installAppService
+			initApp
 			syncCheck
 			echo -e '\n\e[45mDone!\e[0m\n'
 			break
             ;;
 		"Install Bridge")
             echo -e '\n\e[31mYou choose install bridge...\e[0m\n' && sleep 1
-			setupVarsBridge
+			setupVarsNode
 			setupSwap
 			installDeps
 			installNode
-			installNodeService
+			initNodeBridge
 			break
             ;;
 		"Install Light")
             echo -e '\n\e[31mYou choose install light...\e[0m\n' && sleep 1
+			setupVarsNode
+			setupSwap
+			installDeps
+			installNode
+			initNodeLight
 			break
             ;;
 		"Sync Status")
