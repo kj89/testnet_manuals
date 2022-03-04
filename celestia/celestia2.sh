@@ -342,7 +342,7 @@ do
             ;;
 		"Delete")
             echo -e '\n\e[31mYou choose delete...\e[0m\n' && sleep 1
-			disableCelestia
+			deleteCelestia
 			echo -e '\n\e[45mCelestia was deleted!\e[0m\n' && sleep 1
 			break
             ;;
