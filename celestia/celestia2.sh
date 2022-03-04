@@ -115,6 +115,10 @@ function initApp {
 # init celestia app
 celestia-appd init $CELESTIA_NODENAME --chain-id $CELESTIA_CHAIN
 
+# install celestia networks
+cd $HOME
+git clone https://github.com/celestiaorg/networks.git
+
 # set network configs
 cp $HOME/networks/$CELESTIA_CHAIN/genesis.json  $HOME/.celestia-app/config/
 
@@ -304,11 +308,6 @@ WantedBy=multi-user.target
 
 
 function createKey {
-# install celestia networks
-cd $HOME
-git clone https://github.com/celestiaorg/networks.git
-
-# create key
 cd $HOME/celestia-app
 echo -e "\n\e[45mWait some time before creating key...\e[0m\n"
 sleep 20
