@@ -14,19 +14,30 @@ if [ -f "$bash_profile" ]; then
     . $HOME/.bash_profile
 fi
 
+# devnet configuration
+CELESTIA_APP_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_app.txt")
+CELESTIA_NODE_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_node.txt")
+echo 'export CELESTIA_CHAIN=devnet-2' >> $HOME/.bash_profile
+. $HOME/.bash_profile
+echo -e '\n\e[45mYour chain id:' $CELESTIA_CHAIN '\e[0m\n'
+echo -e '\n\e[45mYour app version:' $CELESTIA_APP_VERSION '\e[0m\n'
+echo -e '\n\e[45mYour node version:' $CELESTIA_NODE_VERSION '\e[0m\n'
+sleep 5
+
+
+function setupSwap {
+	echo -e '\n\e[45mSet up swapfile\e[0m\n'
+	curl -s https://raw.githubusercontent.com/kj89/testnet_manuals/main/configs/swap4.sh | bash
+}
+
+
 function setupVarsApp {
-	# devnet-2
-	echo 'export CELESTIA_CHAIN=devnet-2' >> $HOME/.bash_profile
-	CELESTIA_APP_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_app.txt")
-	echo 'export CELESTIA_APP_VERSION='$CELESTIA_APP_VERSION >> $HOME/.bash_profile
 	if [[ ! $CELESTIA_NODENAME ]]; then
 		read -p "Enter your node name: " CELESTIA_NODENAME
 		echo 'export CELESTIA_NODENAME='${CELESTIA_NODENAME} >> $HOME/.bash_profile
 	fi
 	. $HOME/.bash_profile
 	echo -e '\n\e[45mYour node name:' $CELESTIA_NODENAME '\e[0m\n'
-	echo -e '\n\e[45mYour chain id:' $CELESTIA_CHAIN '\e[0m\n'
-	echo -e '\n\e[45mYour app version:' $CELESTIA_APP_VERSION '\e[0m\n'
 	sleep 5
 }
 
@@ -40,29 +51,21 @@ function setupVarsValidator {
 		read -p "Enter wallet password: " CELESTIA_PASSWORD
 		echo 'export CELESTIA_PASSWORD='${CELESTIA_PASSWORD} >> $HOME/.bash_profile
 	fi
+	. $HOME/.bash_profile
 	echo -e '\n\e[45mYour wallet name:' $CELESTIA_WALLET '\e[0m\n'
 	echo -e '\n\e[45mYour wallet password:' $CELESTIA_PASSWORD '\e[0m\n'
 	sleep 5
 }
 
 
-function setupVarsNode {
-	CELESTIA_NODE_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_node.txt")
+function setupVarsNodeBridge {
 	if [ ! $CELESTIA_VALIDATOR_IP ]; then
 		read -p "Enter your validator IP or press enter use default [localhost]: " CELESTIA_VALIDATOR_IP
 		CELESTIA_VALIDATOR_IP=${CELESTIA_VALIDATOR_IP:-localhost}
 		echo 'export CELESTIA_VALIDATOR_IP='$CELESTIA_VALIDATOR_IP >> $HOME/.bash_profile
-		. ~/.bash_profile
+		. $HOME/.bash_profile
 	fi
-	echo 'export CELESTIA_NODE_VERSION='$CELESTIA_NODE_VERSION >> $HOME/.bash_profile
-	source $HOME/.bash_profile
 	sleep 5
-}
-
-
-function setupSwap {
-	echo -e '\n\e[45mSet up swapfile\e[0m\n'
-	curl -s https://raw.githubusercontent.com/kj89/testnet_manuals/main/configs/swap4.sh | bash
 }
 
 
@@ -361,7 +364,7 @@ do
             ;;
 		"Install Bridge")
             echo -e '\n\e[31mYou choose install bridge...\e[0m\n' && sleep 1
-			setupVarsNode
+			setupVarsNodeBridge
 			setupSwap
 			installDeps
 			installNode
@@ -370,7 +373,6 @@ do
             ;;
 		"Install Light")
             echo -e '\n\e[31mYou choose install light...\e[0m\n' && sleep 1
-			setupVarsNode
 			setupSwap
 			installDeps
 			installNode
