@@ -70,7 +70,7 @@ function setupVarsNodeBridge {
 	# check response from rpc
 	if [ $(curl -LI $TRUSTED_SERVER -o /dev/null -w '%{http_code}\n' -s) != '200' ]; then
 		echo 'Endpoint' $TRUSTED_SERVER 'is unreachable! Aborting setup!'
-		break;
+		exit 1;
 	else
 		# save vars
 		echo 'export TRUSTED_SERVER='${TRUSTED_SERVER} >> $HOME/.bash_profile
