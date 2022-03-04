@@ -318,7 +318,7 @@ echo -e '\n\e[45mYour wallet address:' $CELESTIA_WALLET_ADDRESS '\e[0m\n'
 
 function syncCheck {
 . $HOME/.bash_profile
-while sleep 10; do
+while sleep 3; do
 sync_info=`curl -s localhost:26657/status | jq .result.sync_info`
 latest_block_height=`echo $sync_info | jq -r .latest_block_height`
 echo -en "\r\rCurrent block: $latest_block_height"
