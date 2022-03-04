@@ -14,36 +14,57 @@ if [ -f "$bash_profile" ]; then
     . $HOME/.bash_profile
 fi
 
-function setupVars {
-	if [[ ! $CELESTIA_NODENAME ]]; then
-		read -p "Enter your node name: " CELESTIA_NODENAME
-		echo 'export CELESTIA_NODENAME='${CELESTIA_NODENAME} >> $HOME/.bash_profile
-	fi
-	echo -e '\n\e[45mYour node name:' $CELESTIA_NODENAME '\e[0m\n'
-	if [[ ! $CELESTIA_WALLET ]]; then
-		read -p "Enter wallet name: " CELESTIA_WALLET
-		echo 'export CELESTIA_WALLET='${CELESTIA_WALLET} >> $HOME/.bash_profile
-	fi
-	echo -e '\n\e[45mYour wallet name:' $CELESTIA_WALLET '\e[0m\n'
-	if [[ ! $CELESTIA_PASSWORD ]]; then
-		read -p "Enter wallet password: " CELESTIA_PASSWORD
-		echo 'export CELESTIA_PASSWORD='${CELESTIA_PASSWORD} >> $HOME/.bash_profile
-	fi
-	echo -e '\n\e[45mYour wallet password:' $CELESTIA_PASSWORD '\e[0m\n'
+function setupVarsApp {
 	# devnet-2
 	echo 'export CELESTIA_CHAIN=devnet-2' >> $HOME/.bash_profile
 	CELESTIA_APP_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_app.txt")
 	echo 'export CELESTIA_APP_VERSION='$CELESTIA_APP_VERSION >> $HOME/.bash_profile
+	if [[ ! $CELESTIA_NODENAME ]]; then
+		read -p "Enter your node name: " CELESTIA_NODENAME
+		echo 'export CELESTIA_NODENAME='${CELESTIA_NODENAME} >> $HOME/.bash_profile
+	fi
 	. $HOME/.bash_profile
+	echo -e '\n\e[45mYour node name:' $CELESTIA_NODENAME '\e[0m\n'
 	echo -e '\n\e[45mYour chain id:' $CELESTIA_CHAIN '\e[0m\n'
 	echo -e '\n\e[45mYour app version:' $CELESTIA_APP_VERSION '\e[0m\n'
-	sleep 1
+	sleep 5
 }
+
+
+function setupVarsValidator {
+	if [[ ! $CELESTIA_WALLET ]]; then
+		read -p "Enter wallet name: " CELESTIA_WALLET
+		echo 'export CELESTIA_WALLET='${CELESTIA_WALLET} >> $HOME/.bash_profile
+	fi
+	if [[ ! $CELESTIA_PASSWORD ]]; then
+		read -p "Enter wallet password: " CELESTIA_PASSWORD
+		echo 'export CELESTIA_PASSWORD='${CELESTIA_PASSWORD} >> $HOME/.bash_profile
+	fi
+	echo -e '\n\e[45mYour wallet name:' $CELESTIA_WALLET '\e[0m\n'
+	echo -e '\n\e[45mYour wallet password:' $CELESTIA_PASSWORD '\e[0m\n'
+	sleep 5
+}
+
+
+function setupVarsBridge {
+	CELESTIA_NODE_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_node.txt")
+	if [ ! $CELESTIA_VALIDATOR_IP ]; then
+		read -p "Enter your validator IP or press enter use default [localhost]: " CELESTIA_VALIDATOR_IP
+		CELESTIA_VALIDATOR_IP=${CELESTIA_VALIDATOR_IP:-localhost}
+		echo 'export CELESTIA_VALIDATOR_IP='$CELESTIA_VALIDATOR_IP >> $HOME/.bash_profile
+		. ~/.bash_profile
+	fi
+	echo 'export CELESTIA_NODE_VERSION='$CELESTIA_NODE_VERSION >> $HOME/.bash_profile
+	source $HOME/.bash_profile
+	sleep 5
+}
+
 
 function setupSwap {
 	echo -e '\n\e[45mSet up swapfile\e[0m\n'
 	curl -s https://raw.githubusercontent.com/kj89/testnet_manuals/main/configs/swap4.sh | bash
 }
+
 
 function installDeps {
 	echo -e '\n\e[45mPreparing to install\e[0m\n' && sleep 1
@@ -63,8 +84,9 @@ EOF
 	cp /usr/local/go/bin/go /usr/bin
 }
 
-function installSoftware {
-	echo -e '\n\e[45mInstall software\e[0m\n' && sleep 1
+
+function installApp {
+	echo -e '\n\e[45mInstall app\e[0m\n' && sleep 1
 	
 	# install celestia app
 	rm -rf celestia-app
@@ -116,28 +138,10 @@ function installSoftware {
 	# set client config
 	celestia-appd config chain-id $CELESTIA_CHAIN
 	celestia-appd config keyring-backend test
-		
 }
 
-# Run as service
-sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-appd.service
-[Unit]
-Description=celestia-appd Cosmos daemon
-After=network-online.target
 
-[Service]
-User=$USER
-ExecStart=$HOME/go/bin/celestia-appd start
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=4096
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-function installService {
-echo -e '\n\e[45mRunning\e[0m\n' && sleep 1
+function installAppService {
 echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
 echo "[Unit]
 Description=celestia-appd Cosmos daemon
@@ -171,6 +175,77 @@ fi
 . $HOME/.bash_profile
 }
 
+
+function installNode {
+	echo -e '\n\e[45mInstall node\e[0m\n' && sleep 1
+	
+	# install celestia node
+	cd $HOME
+	rm -rf celestia-node
+	git clone https://github.com/celestiaorg/celestia-node.git
+	cd celestia-node/
+	git checkout $CELESTIA_NODE_VERSION
+	make install
+
+	# add protocol and port
+	TRUSTED_SERVER="http://$CELESTIA_VALIDATOR_IP:26657"
+
+	# current block hash
+	TRUSTED_HASH=$(curl -s $TRUSTED_SERVER/status | jq -r .result.sync_info.latest_block_hash)
+
+	echo '==================================='
+	echo 'Your trusted server:' $TRUSTED_SERVER
+	echo 'Your trusted hash:' $TRUSTED_HASH
+	echo 'Your node version:' $CELESTIA_NODE_VERSION
+	echo '==================================='
+
+	# save vars
+	echo 'export TRUSTED_SERVER='${TRUSTED_SERVER} >> $HOME/.bash_profile
+	echo 'export TRUSTED_HASH='${TRUSTED_HASH} >> $HOME/.bash_profile
+	source $HOME/.bash_profile
+
+	# do init
+	rm -rf $HOME/.celestia-bridge
+	celestia bridge  init --core.remote $TRUSTED_SERVER --headers.trusted-hash $TRUSTED_HASH
+
+	# config p2p
+	sed -i.bak -e 's/PeerExchange = false/PeerExchange = true/g' $HOME/.celestia-bridge/config.toml
+}
+
+
+function installNodeService {
+echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
+echo "[Unit]
+Description=celestia-bridge node
+After=network-online.target
+[Service]
+User=$USER
+ExecStart=$(which celestia) bridge start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=4096
+[Install]
+WantedBy=multi-user.target
+" > $HOME/celestia-bridge.service
+sudo mv $HOME/celestia-bridge.service /etc/systemd/system
+sudo systemctl restart systemd-journald
+sudo systemctl daemon-reload
+echo -e '\n\e[45mRunning a service\e[0m\n' && sleep 1
+sudo systemctl enable celestia-bridge
+sudo systemctl restart celestia-bridge
+echo -e '\n\e[45mCheck node status\e[0m\n' && sleep 1
+if [[ `service celestia-bridge status | grep active` =~ "running" ]]; then
+  echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
+  echo -e "You can check node status by the command \e[7mservice celestia-bridge status\e[0m"
+  echo -e "Press \e[7mQ\e[0m for exit from status menu"
+else
+  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
+fi
+. $HOME/.bash_profile
+echo 'To check app logs: journalctl -fu celestia-bridge -o cat'
+}
+
+
 function createKey {
 cd $HOME/celestia-app
 echo -e "\n\e[45mWait some time before creating key...\e[0m\n"
@@ -197,6 +272,7 @@ echo 'export CELESTIA_WALLET_ADDRESS='${CELESTIA_WALLET_ADDRESS} >> $HOME/.bash_
 echo -e '\n\e[45mYour wallet address:' $CELESTIA_WALLET_ADDRESS '\e[0m\n'
 }
 
+
 function syncCheck {
 . $HOME/.bash_profile
 while sleep 5; do
@@ -212,37 +288,62 @@ fi
 done
 }
 
-function disableCelestia {
-	sudo systemctl disable celestia-appd
-	sudo systemctl stop celestia-appd
+
+function deleteCelestia {
+	systemctl disable celestia-appd.service
+	systemctl disable celestia-appd.service
+	systemctl stop celestia-appd.service
+	systemctl stop celestia-bridge.service
+	rm /etc/systemd/system/celestia-appd.service
+	rm /etc/systemd/system/celestia-bridge.service
+	systemctl daemon-reload
+	systemctl reset-failed
+	rm .celestia* -rf
+	rm celestia* -rf
+	rm networks -rf
+	rm go -rf
+	rm .bash_profile
 }
 
+
 PS3='Please enter your choice (input your option number and press enter): '
-options=("Install" "Status" "Disable" "Quit")
+options=("Install App" "Install Bridge" "Install Light" "Sync Status" "Delete" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Install")
-            echo -e '\n\e[45mYou choose install...\e[0m\n' && sleep 1
-			setupVars
+        "Install App")
+            echo -e '\n\e[45mYou choose install app...\e[0m\n' && sleep 1
+			setupVarsRPC
 			setupSwap
 			installDeps
-			installSoftware
-			installService
-			createKey
+			installApp
+			installAppService
 			syncCheck
 			echo -e '\n\e[45mDone!\e[0m\n'
 			break
             ;;
-		"Status")
-            echo -e '\n\e[31mYou choose status...\e[0m\n' && sleep 1
+		"Install Bridge")
+            echo -e '\n\e[31mYou choose install bridge...\e[0m\n' && sleep 1
+			setupVarsBridge
+			setupSwap
+			installDeps
+			installNode
+			installNodeService
+			break
+            ;;
+		"Install Light")
+            echo -e '\n\e[31mYou choose install light...\e[0m\n' && sleep 1
+			break
+            ;;
+		"Sync Status")
+            echo -e '\n\e[31mYou choose sync status...\e[0m\n' && sleep 1
 			syncCheck
 			break
             ;;
-		"Disable")
-            echo -e '\n\e[31mYou choose disable...\e[0m\n' && sleep 1
-			deleteStratos
-			echo -e '\n\e[45mStratos was disabled!\e[0m\n' && sleep 1
+		"Delete")
+            echo -e '\n\e[31mYou choose delete...\e[0m\n' && sleep 1
+			disableCelestia
+			echo -e '\n\e[45mCelestia was deleted!\e[0m\n' && sleep 1
 			break
             ;;
         "Quit")
