@@ -70,6 +70,7 @@ function setupVarsNodeBridge {
 	# check response from rpc
 	if [ $(curl -LI $TRUSTED_SERVER -o /dev/null -w '%{http_code}\n' -s) != '200' ]; then
 		echo 'Endpoint' $TRUSTED_SERVER 'is unreachable! Aborting setup!'
+		unset CELESTIA_RPC_IP
 		exit 1
 	else
 		# save vars
@@ -199,7 +200,6 @@ echo -e '\n\e[45mCheck node status\e[0m\n' && sleep 1
 if [[ `service celestia-appd status | grep active` =~ "running" ]]; then
   echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
   echo -e "You can check node status by the command \e[7mservice celestia-appd status\e[0m"
-  echo -e "Press \e[7mQ\e[0m for exit from status menu"
 else
   echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
 fi
@@ -240,7 +240,6 @@ WantedBy=multi-user.target
 	if [[ `service celestia-bridge status | grep active` =~ "running" ]]; then
 	  echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
 	  echo -e "You can check node status by the command \e[7mservice celestia-bridge status\e[0m"
-	  echo -e "Press \e[7mQ\e[0m for exit from status menu"
 	else
 	  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
 	fi
@@ -280,7 +279,6 @@ WantedBy=multi-user.target
 	if [[ `service celestia-light status | grep active` =~ "running" ]]; then
 	  echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
 	  echo -e "You can check node status by the command \e[7mservice celestia-light status\e[0m"
-	  echo -e "Press \e[7mQ\e[0m for exit from status menu"
 	else
 	  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
 	fi
