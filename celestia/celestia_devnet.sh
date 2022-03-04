@@ -348,6 +348,7 @@ function deleteCelestia {
 	rm celestia* -rf
 	rm networks -rf
 	rm .bash_profile
+	unset "${!CELESTIA@}"
 }
 
 
