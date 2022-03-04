@@ -313,7 +313,7 @@ do
     case $opt in
         "Install App")
             echo -e '\n\e[45mYou choose install app...\e[0m\n' && sleep 1
-			setupVarsRPC
+			setupVarsApp
 			setupSwap
 			installDeps
 			installApp
