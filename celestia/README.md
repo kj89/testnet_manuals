@@ -2,17 +2,7 @@
 
 ### Run validator node
 ```
-wget -O celestia.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/celestia.sh && chmod +x celestia.sh && ./celestia.sh
-```
-
-### Run full node
-```
-wget -O celestia_full.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/celestia_full.sh && chmod +x celestia_full.sh && ./celestia_full.sh
-```
-
-### Run light node
-```
-wget -O celestia_light.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/celestia_light.sh && chmod +x celestia_light.sh && ./celestia_light.sh
+wget -O celestia2.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/celestia2.sh && chmod +x celestia2.sh && ./celestia2.sh
 ```
 
 ### Run this command to load environment variables
