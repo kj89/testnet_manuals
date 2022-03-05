@@ -361,13 +361,12 @@ do
 			installApp
 			initApp
 			syncCheck
-			echo -e '\e[32mDone!\e[39m'
 			break
             ;;
 		"Install Bridge")
             echo -e '\n\e[31mYou choose install bridge...\e[39m' && sleep 1
 			if [ -d $HOME/.celestia-light ]; then
-				echo 'Please avoid installing both types of nodes (bridge, light) on the same instance! Aborting!'
+				echo -e '\n\e[31mPlease avoid installing both types of nodes (bridge, light) on the same instance! Aborting!\e[39m' && sleep 1
 				exit 1
 			fi
 			setupVarsNodeBridge
@@ -379,7 +378,7 @@ do
 		"Install Light")
             echo -e '\n\e[31mYou choose install light...\e[39m' && sleep 1
 			if [ -d $HOME/.celestia-bridge ]; then
-				echo 'Please avoid installing both types of nodes (bridge, light) on the same instance! Aborting!'
+				echo -e '\n\e[31mPlease avoid installing both types of nodes (bridge, light) on the same instance! Aborting!\e[39m' && sleep 1
 				exit 1
 			fi
 			installDeps
