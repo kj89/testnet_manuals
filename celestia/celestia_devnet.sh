@@ -27,7 +27,7 @@ echo '==================================='
 
 
 function setupSwap {
-	echo -e '\n\e[45mSet up swapfile\e[0m\n'
+	echo -e '\e[32mSet up swapfile\e[39m'
 	curl -s https://raw.githubusercontent.com/kj89/testnet_manuals/main/configs/swap4.sh | bash
 }
 
@@ -38,7 +38,7 @@ function setupVarsApp {
 		echo 'export CELESTIA_NODENAME='${CELESTIA_NODENAME} >> $HOME/.bash_profile
 	fi
 	. $HOME/.bash_profile
-	echo -e '\n\e[45mYour node name:' $CELESTIA_NODENAME '\e[0m\n'
+	echo -e '\e[32mYour node name:' $CELESTIA_NODENAME '\e[39m'
 	sleep 5
 }
 
@@ -53,8 +53,8 @@ function setupVarsValidator {
 		echo 'export CELESTIA_PASSWORD='${CELESTIA_PASSWORD} >> $HOME/.bash_profile
 	fi
 	. $HOME/.bash_profile
-	echo -e '\n\e[45mYour wallet name:' $CELESTIA_WALLET '\e[0m\n'
-	echo -e '\n\e[45mYour wallet password:' $CELESTIA_PASSWORD '\e[0m\n'
+	echo -e '\e[32mYour wallet name:' $CELESTIA_WALLET '\e[39m'
+	echo -e '\e[32mYour wallet password:' $CELESTIA_PASSWORD '\e[39m'
 	sleep 5
 }
 
@@ -82,7 +82,7 @@ function setupVarsNodeBridge {
 
 
 function installDeps {
-	echo -e '\n\e[45mPreparing to install\e[0m\n' && sleep 1
+	echo -e '\e[32mPreparing to install\e[39m' && sleep 1
 	cd $HOME
 	sudo apt update
 	sudo apt install make clang pkg-config libssl-dev build-essential git jq expect -y < "/dev/null"
@@ -105,7 +105,7 @@ EOF
 
 
 function installApp {
-	echo -e '\n\e[45mInstall app\e[0m\n' && sleep 1
+	echo -e '\e[32mInstall app\e[39m' && sleep 1
 
 	# install celestia app
 	rm -rf celestia-app
@@ -118,7 +118,7 @@ function installApp {
 
 
 function installNode {
-	echo -e '\n\e[45mInstall node\e[0m\n' && sleep 1
+	echo -e '\e[32mInstall node\e[39m' && sleep 1
 	
 	# install celestia node
 	cd $HOME
@@ -175,7 +175,7 @@ celestia-appd config chain-id $CELESTIA_CHAIN
 celestia-appd config keyring-backend test
 
 # install service
-echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
+echo -e '\e[32mCreating a service\e[39m' && sleep 1
 echo "[Unit]
 Description=celestia-appd Cosmos daemon
 After=network-online.target
@@ -196,7 +196,7 @@ sudo systemctl restart systemd-journald
 sudo systemctl daemon-reload
 sudo systemctl enable celestia-appd
 sudo systemctl restart celestia-appd
-echo -e '\n\e[45mCheck node status\e[0m\n' && sleep 1
+echo -e '\e[32mCheck node status\e[39m' && sleep 1
 if [[ `service celestia-appd status | grep active` =~ "running" ]]; then
   echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
   echo -e "You can check node status by the command \e[7mservice celestia-appd status\e[0m"
@@ -218,7 +218,7 @@ function initNodeBridge {
 	sed -i -e "s|BootstrapPeers *=.*|BootstrapPeers = $BootstrapPeers|" $HOME/.celestia-bridge/config.toml
 
 	# install service
-	echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
+	echo -e '\e[32mCreating a service\e[39m' && sleep 1
 	echo "[Unit]
 Description=celestia-bridge node
 After=network-online.target
@@ -236,7 +236,7 @@ WantedBy=multi-user.target
 	sudo systemctl daemon-reload
 	sudo systemctl enable celestia-bridge
 	sudo systemctl restart celestia-bridge
-	echo -e '\n\e[45mCheck node status\e[0m\n' && sleep 1
+	echo -e '\e[32mCheck node status\e[39m' && sleep 1
 	if [[ `service celestia-bridge status | grep active` =~ "running" ]]; then
 	  echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
 	  echo -e "You can check node status by the command \e[7mservice celestia-bridge status\e[0m"
@@ -257,7 +257,7 @@ function initNodeLight {
 	sed -i -e "s|BootstrapPeers *=.*|BootstrapPeers = $BootstrapPeers|" $HOME/.celestia-light/config.toml
 
 	# install service
-	echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
+	echo -e '\e[32mCreating a service\e[39m' && sleep 1
 	echo "[Unit]
 Description=celestia-light node
 After=network-online.target
@@ -275,7 +275,7 @@ WantedBy=multi-user.target
 	sudo systemctl daemon-reload
 	sudo systemctl enable celestia-light
 	sudo systemctl restart celestia-light
-	echo -e '\n\e[45mCheck node status\e[0m\n' && sleep 1
+	echo -e '\e[32mCheck node status\e[39m' && sleep 1
 	if [[ `service celestia-light status | grep active` =~ "running" ]]; then
 	  echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
 	  echo -e "You can check node status by the command \e[7mservice celestia-light status\e[0m"
@@ -289,7 +289,7 @@ WantedBy=multi-user.target
 
 function createKey {
 cd $HOME/celestia-app
-echo -e "\n\e[45mWait some time before creating key...\e[0m\n"
+echo -e "\e[32mWait some time before creating key...\e[39m"
 sleep 20
 sudo tee <<EOF >/dev/null $HOME/celestia-app/celestia_add_key.sh
 #!/usr/bin/expect -f
@@ -310,7 +310,7 @@ echo -e "\e[32mcat $HOME/celestia-app/$CELESTIA_WALLET.txt\e[39m"
 export CELESTIA_WALLET_ADDRESS=`cat $HOME/celestia-app/$CELESTIA_WALLET.txt | grep address | awk '{split($0,addr," "); print addr[2]}' | sed 's/.$//'`
 echo 'export CELESTIA_WALLET_ADDRESS='${CELESTIA_WALLET_ADDRESS} >> $HOME/.bash_profile
 . $HOME/.bash_profile
-echo -e '\n\e[45mYour wallet address:' $CELESTIA_WALLET_ADDRESS '\e[0m\n'
+echo -e '\e[32mYour wallet address:' $CELESTIA_WALLET_ADDRESS '\e[39m'
 }
 
 
@@ -356,18 +356,18 @@ select opt in "${options[@]}"
 do
     case $opt in
         "Install App")
-            echo -e '\n\e[45mYou choose install app...\e[0m\n' && sleep 1
+            echo -e '\e[32mYou choose install app...\e[39m' && sleep 1
 			setupVarsApp
 			setupSwap
 			installDeps
 			installApp
 			initApp
 			syncCheck
-			echo -e '\n\e[45mDone!\e[0m\n'
+			echo -e '\e[32mDone!\e[39m'
 			break
             ;;
 		"Install Bridge")
-            echo -e '\n\e[31mYou choose install bridge...\e[0m\n' && sleep 1
+            echo -e '\n\e[31mYou choose install bridge...\e[39m' && sleep 1
 			if [ -d $HOME/.celestia-light ]; then
 				echo 'Please avoid installing both types of nodes (bridge, light) on the same instance! Aborting!'
 				exit 1
@@ -380,7 +380,7 @@ do
 			break
             ;;
 		"Install Light")
-            echo -e '\n\e[31mYou choose install light...\e[0m\n' && sleep 1
+            echo -e '\n\e[31mYou choose install light...\e[39m' && sleep 1
 			if [ -d $HOME/.celestia-bridge ]; then
 				echo 'Please avoid installing both types of nodes (bridge, light) on the same instance! Aborting!'
 				exit 1
@@ -392,14 +392,14 @@ do
 			break
             ;;
 		"Sync Status")
-            echo -e '\n\e[31mYou choose sync status...\e[0m\n' && sleep 1
+            echo -e '\n\e[31mYou choose sync status...\e[39m' && sleep 1
 			syncCheck
 			break
             ;;
 		"Delete")
-            echo -e '\n\e[31mYou choose delete...\e[0m\n' && sleep 1
+            echo -e '\n\e[31mYou choose delete...\e[39m' && sleep 1
 			deleteCelestia
-			echo -e '\n\e[45mCelestia was deleted!\e[0m\n' && sleep 1
+			echo -e '\e[32mCelestia was deleted!\e[39m' && sleep 1
 			break
             ;;
         "Quit")
