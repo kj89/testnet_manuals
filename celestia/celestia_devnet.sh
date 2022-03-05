@@ -175,7 +175,7 @@ celestia-appd config chain-id $CELESTIA_CHAIN
 celestia-appd config keyring-backend test
 
 # install service
-echo -e '\e[32mCreating a service\e[39m' && sleep 1
+echo -e '\e[32m...CREATING SERVICE...\e[39m' && sleep 1
 echo "[Unit]
 Description=celestia-appd Cosmos daemon
 After=network-online.target
@@ -193,7 +193,7 @@ sudo mv $HOME/celestia-appd.service /etc/systemd/system
 sudo systemctl daemon-reload
 sudo systemctl enable celestia-appd
 sudo systemctl restart celestia-appd
-echo -e '\e[32mCheck node status\e[39m' && sleep 1
+echo -e '\e[32m...CHECKING NODE STATUS...\e[39m' && sleep 1
 if [[ `service celestia-appd status | grep active` =~ "running" ]]; then
   echo -e "Your Celestia node \e[32minstalled successfully\e[39m!"
 else
@@ -215,7 +215,7 @@ function initNodeBridge {
 	sed -i -e "s|BootstrapPeers *=.*|BootstrapPeers = $BootstrapPeers|" $HOME/.celestia-bridge/config.toml
 
 	# install service
-	echo -e '\e[32mCreating a service\e[39m' && sleep 1
+	echo -e '\e[32m...CREATING SERVICE...\e[39m' && sleep 1
 	echo "[Unit]
 Description=celestia-bridge node
 After=network-online.target
@@ -232,7 +232,7 @@ WantedBy=multi-user.target
 	sudo systemctl daemon-reload
 	sudo systemctl enable celestia-bridge
 	sudo systemctl restart celestia-bridge
-	echo -e '\e[32mCheck node status\e[39m' && sleep 1
+	echo -e '\e[32m...CHECKING NODE STATUS...\e[39m' && sleep 1
 	if [[ `service celestia-bridge status | grep active` =~ "running" ]]; then
 	  echo -e "Your Celestia node \e[32minstalled successfully\e[39m!"
 	else
@@ -253,7 +253,7 @@ function initNodeLight {
 	sed -i -e "s|BootstrapPeers *=.*|BootstrapPeers = $BootstrapPeers|" $HOME/.celestia-light/config.toml
 
 	# install service
-	echo -e '\e[32mCreating a service\e[39m' && sleep 1
+	echo -e '\e[32m...CREATING SERVICE...\e[39m' && sleep 1
 	echo "[Unit]
 Description=celestia-light node
 After=network-online.target
@@ -270,7 +270,7 @@ WantedBy=multi-user.target
 	sudo systemctl daemon-reload
 	sudo systemctl enable celestia-light
 	sudo systemctl restart celestia-light
-	echo -e '\e[32mCheck node status\e[39m' && sleep 1
+	echo -e '\e[32m...CHECKING NODE STATUS...\e[39m' && sleep 1
 	if [[ `service celestia-light status | grep active` =~ "running" ]]; then
 	  echo -e "Your Celestia node \e[32minstalled successfully\e[39m!"
 	else
