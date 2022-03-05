@@ -66,7 +66,7 @@ function setupVarsNodeBridge {
 	echo -e '\e[32mYour RPC endpoint:' $CELESTIA_RPC_IP '\e[39m'
 	# check response from rpc
 	if [ $(curl -LI $CELESTIA_RPC_IP -o /dev/null -w '%{http_code}\n' -s) != '200' ]; then
-		echo 'Endpoint' $CELESTIA_RPC_IP 'is unreachable! Aborting setup!'
+		echo -e '\n\e[31mEndpoint' $CELESTIA_RPC_IP 'is unreachable! Aborting setup!\e[39m'
 		unset CELESTIA_RPC_IP
 		exit 1
 	fi
