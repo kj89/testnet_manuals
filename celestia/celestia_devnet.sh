@@ -340,6 +340,7 @@ function deleteCelestia {
 	rm celestia* -rf
 	rm networks -rf
 	rm $HOME/.bash_profile
+	rm /usr/bin/go -rf
 }
 
 
