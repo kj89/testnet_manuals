@@ -379,6 +379,10 @@ do
 				echo -e '\n\e[31mPlease avoid installing both types of nodes (bridge, light) on the same instance! Aborting!\e[39m' && sleep 1
 				exit 1
 			fi
+			if [ ! -d $HOME/celestia-node ]; then
+				installDeps
+				installNode
+			fi
 			setupVarsNodeBridge
 			initNodeBridge
 			break
@@ -388,6 +392,10 @@ do
 			if [ -d $HOME/.celestia-bridge ]; then
 				echo -e '\n\e[31mPlease avoid installing both types of nodes (bridge, light) on the same instance! Aborting!\e[39m' && sleep 1
 				exit 1
+			fi
+			if [ ! -d $HOME/celestia-node ]; then
+				installDeps
+				installNode
 			fi
 			initNodeLight
 			break
