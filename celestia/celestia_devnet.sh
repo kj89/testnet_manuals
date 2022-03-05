@@ -355,9 +355,8 @@ select opt in "${options[@]}"
 do
     case $opt in
         "Install App")
-            echo -e '\e[32mYou choose install app...\e[39m' && sleep 1
+            echo -e '\n\e[31mYou choose install app...\e[39m' && sleep 1
 			setupVarsApp
-			setupSwap
 			installDeps
 			installApp
 			initApp
@@ -372,7 +371,6 @@ do
 				exit 1
 			fi
 			setupVarsNodeBridge
-			setupSwap
 			installDeps
 			installNode
 			initNodeBridge
@@ -384,7 +382,6 @@ do
 				echo 'Please avoid installing both types of nodes (bridge, light) on the same instance! Aborting!'
 				exit 1
 			fi
-			setupSwap
 			installDeps
 			installNode
 			initNodeLight
