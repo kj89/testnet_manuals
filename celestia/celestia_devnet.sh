@@ -121,6 +121,10 @@ function installNode {
 
 
 function initApp {
+if [ -d $HOME/.celestia-app ]; then
+	echo -e '\n\e[31mCelestia app is already initialized! Aborting!\e[39m' && sleep 1
+	exit 1
+fi
 # init celestia app
 celestia-appd init $CELESTIA_NODENAME --chain-id $CELESTIA_CHAIN
 
