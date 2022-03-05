@@ -82,7 +82,7 @@ function setupVarsNodeBridge {
 
 
 function installDeps {
-	echo -e '\e[32mPreparing to install\e[39m' && sleep 1
+	echo -e '\e[32m...INSTALLING DEPENDENCIES...\e[39m' && sleep 1
 	cd $HOME
 	sudo apt update
 	sudo apt install make clang pkg-config libssl-dev build-essential git jq expect -y < "/dev/null"
@@ -105,7 +105,7 @@ EOF
 
 
 function installApp {
-	echo -e '\e[32mInstall app\e[39m' && sleep 1
+	echo -e '\e[32m...INSTALLING APP...\e[39m' && sleep 1
 
 	# install celestia app
 	rm -rf celestia-app
@@ -118,7 +118,7 @@ function installApp {
 
 
 function installNode {
-	echo -e '\e[32mInstall node\e[39m' && sleep 1
+	echo -e '\e[32m....INSTALLING NODE...\e[39m' && sleep 1
 	
 	# install celestia node
 	cd $HOME
@@ -189,17 +189,13 @@ LimitNOFILE=4096
 WantedBy=multi-user.target
 " > $HOME/celestia-appd.service
 sudo mv $HOME/celestia-appd.service /etc/systemd/system
-sudo tee <<EOF >/dev/null /etc/systemd/journald.conf
-Storage=persistent
-EOF
-sudo systemctl restart systemd-journald
+
 sudo systemctl daemon-reload
 sudo systemctl enable celestia-appd
 sudo systemctl restart celestia-appd
 echo -e '\e[32mCheck node status\e[39m' && sleep 1
 if [[ `service celestia-appd status | grep active` =~ "running" ]]; then
-  echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
-  echo -e "You can check node status by the command \e[7mservice celestia-appd status\e[0m"
+  echo -e "Your Celestia node \e[32minstalled successfully\e[39m!"
 else
   echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
 fi
@@ -208,6 +204,7 @@ fi
 
 
 function initNodeBridge {
+	echo -e '\e[32m....INITIALIZING BRIDGE NODE...\e[39m' && sleep 1
 	# do init
 	rm -rf $HOME/.celestia-bridge
 	celestia bridge init --core.remote $TRUSTED_SERVER
@@ -232,14 +229,12 @@ LimitNOFILE=4096
 WantedBy=multi-user.target
 " > $HOME/celestia-bridge.service
 	sudo mv $HOME/celestia-bridge.service /etc/systemd/system
-	sudo systemctl restart systemd-journald
 	sudo systemctl daemon-reload
 	sudo systemctl enable celestia-bridge
 	sudo systemctl restart celestia-bridge
 	echo -e '\e[32mCheck node status\e[39m' && sleep 1
 	if [[ `service celestia-bridge status | grep active` =~ "running" ]]; then
-	  echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
-	  echo -e "You can check node status by the command \e[7mservice celestia-bridge status\e[0m"
+	  echo -e "Your Celestia node \e[32minstalled successfully\e[39m!"
 	else
 	  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
 	fi
@@ -248,6 +243,7 @@ WantedBy=multi-user.target
 }
 
 function initNodeLight {
+	echo -e '\e[32m....INITIALIZING LIGHT NODE...\e[39m' && sleep 1
 	# do init
 	rm -rf $HOME/.celestia-light
 	celestia light init
@@ -271,14 +267,12 @@ LimitNOFILE=4096
 WantedBy=multi-user.target
 " > $HOME/celestia-light.service
 	sudo mv $HOME/celestia-light.service /etc/systemd/system
-	sudo systemctl restart systemd-journald
 	sudo systemctl daemon-reload
 	sudo systemctl enable celestia-light
 	sudo systemctl restart celestia-light
 	echo -e '\e[32mCheck node status\e[39m' && sleep 1
 	if [[ `service celestia-light status | grep active` =~ "running" ]]; then
-	  echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
-	  echo -e "You can check node status by the command \e[7mservice celestia-light status\e[0m"
+	  echo -e "Your Celestia node \e[32minstalled successfully\e[39m!"
 	else
 	  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
 	fi
@@ -319,7 +313,7 @@ function syncCheck {
 while sleep 3; do
 sync_info=`curl -s localhost:26657/status | jq .result.sync_info`
 latest_block_height=`echo $sync_info | jq -r .latest_block_height`
-echo -en "\r\rCurrent block: $latest_block_height"
+echo -en "\r\rCurrent block: \e[32m$latest_block_height\e[39m"
 if test `echo "$sync_info" | jq -r .catching_up` == false; then
 echo -e "\nYour node was \e[32msynced\e[39m!"
 break
