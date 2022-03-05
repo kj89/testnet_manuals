@@ -17,19 +17,15 @@ fi
 # devnet configuration
 CELESTIA_APP_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_app.txt")
 CELESTIA_NODE_VERSION=$(curl -s "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/latest_node.txt")
+if [[ ! $CELESTIA_CHAIN ]]; then
 echo 'export CELESTIA_CHAIN=devnet-2' >> $HOME/.bash_profile
+fi
 . $HOME/.bash_profile
 echo '==================================='
 echo 'Your chain id:' $CELESTIA_CHAIN
 echo 'Your app version:' $CELESTIA_APP_VERSION
 echo 'Your node version:' $CELESTIA_NODE_VERSION
 echo '==================================='
-
-
-function setupSwap {
-	echo -e '\e[32mSet up swapfile\e[39m'
-	curl -s https://raw.githubusercontent.com/kj89/testnet_manuals/main/configs/swap4.sh | bash
-}
 
 
 function setupVarsApp {
@@ -66,16 +62,12 @@ function setupVarsNodeBridge {
 		echo 'export CELESTIA_RPC_IP='$CELESTIA_RPC_IP >> $HOME/.bash_profile
 		. $HOME/.bash_profile
 	fi
-	TRUSTED_SERVER="http://$CELESTIA_RPC_IP:26657"
+	CELESTIA_RPC_IP="http://$CELESTIA_RPC_IP:26657"
 	# check response from rpc
-	if [ $(curl -LI $TRUSTED_SERVER -o /dev/null -w '%{http_code}\n' -s) != '200' ]; then
-		echo 'Endpoint' $TRUSTED_SERVER 'is unreachable! Aborting setup!'
+	if [ $(curl -LI $CELESTIA_RPC_IP -o /dev/null -w '%{http_code}\n' -s) != '200' ]; then
+		echo 'Endpoint' $CELESTIA_RPC_IP 'is unreachable! Aborting setup!'
 		unset CELESTIA_RPC_IP
 		exit 1
-	else
-		# save vars
-		echo 'export TRUSTED_SERVER='${TRUSTED_SERVER} >> $HOME/.bash_profile
-		source $HOME/.bash_profile
 	fi
 	sleep 5
 }
@@ -106,7 +98,6 @@ EOF
 
 function installApp {
 	echo -e '\e[32m...INSTALLING APP...\e[39m' && sleep 1
-
 	# install celestia app
 	rm -rf celestia-app
 	cd $HOME
@@ -119,7 +110,6 @@ function installApp {
 
 function installNode {
 	echo -e '\e[32m....INSTALLING NODE...\e[39m' && sleep 1
-	
 	# install celestia node
 	cd $HOME
 	rm -rf celestia-node
@@ -207,7 +197,7 @@ function initNodeBridge {
 	echo -e '\e[32m....INITIALIZING BRIDGE NODE...\e[39m' && sleep 1
 	# do init
 	rm -rf $HOME/.celestia-bridge
-	celestia bridge init --core.remote $TRUSTED_SERVER
+	celestia bridge init --core.remote $CELESTIA_RPC_IP
 
 	# configure p2p
 	sed -i.bak -e 's/PeerExchange = false/PeerExchange = true/g' $HOME/.celestia-bridge/config.toml
