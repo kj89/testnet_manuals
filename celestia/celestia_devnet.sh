@@ -342,7 +342,7 @@ function deleteCelestia {
 
 
 PS3='Please enter your choice (input your option number and press enter): '
-options=("Install/Update App" "Install/Update Bridge" "Install/Update Light" "Sync Status" "Delete" "Quit")
+options=("Install/Update App" "Install/Update Node" "Initialize Bridge" "Initialize Light" "Sync Status" "Erase all" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -355,38 +355,44 @@ do
 			syncCheck
 			break
             ;;
-		"Install/Update Bridge")
+		"Install/Update Node")
             echo -e '\n\e[31mYou choose Install/Update bridge...\e[39m' && sleep 1
 			if [ -d $HOME/.celestia-light ]; then
 				echo -e '\n\e[31mPlease avoid installing both types of nodes (bridge, light) on the same instance! Aborting!\e[39m' && sleep 1
 				exit 1
 			fi
-			setupVarsNodeBridge
 			installDeps
 			installNode
+			break
+            ;;
+		"Initialize Bridge")
+            echo -e '\n\e[31mYou choose Initialize Bridge node...\e[39m' && sleep 1
+			if [ -d $HOME/.celestia-light ]; then
+				echo -e '\n\e[31mPlease avoid installing both types of nodes (bridge, light) on the same instance! Aborting!\e[39m' && sleep 1
+				exit 1
+			fi
+			setupVarsNodeBridge
 			initNodeBridge
 			break
             ;;
-		"Install/Update Light")
-            echo -e '\n\e[31mYou choose Install/Update light...\e[39m' && sleep 1
+		"Initialize Light")
+            echo -e '\n\e[31mYou choose Initialize Light node...\e[39m' && sleep 1
 			if [ -d $HOME/.celestia-bridge ]; then
 				echo -e '\n\e[31mPlease avoid installing both types of nodes (bridge, light) on the same instance! Aborting!\e[39m' && sleep 1
 				exit 1
 			fi
-			installDeps
-			installNode
 			initNodeLight
 			break
             ;;
 		"Sync Status")
-            echo -e '\n\e[31mYou choose sync status...\e[39m' && sleep 1
+            echo -e '\n\e[31mYou choose Sync Status...\e[39m' && sleep 1
 			syncCheck
 			break
             ;;
-		"Delete")
-            echo -e '\n\e[31mYou choose delete...\e[39m' && sleep 1
+		"Erase all")
+            echo -e '\n\e[31mYou choose Erase all...\e[39m' && sleep 1
 			deleteCelestia
-			echo -e '\e[32mCelestia was deleted!\e[39m' && sleep 1
+			echo -e '\e[32mCelestia was successfully erased!\e[39m' && sleep 1
 			break
             ;;
         "Quit")
