@@ -63,6 +63,7 @@ function setupVarsNodeBridge {
 		. $HOME/.bash_profile
 	fi
 	CELESTIA_RPC_IP="http://$CELESTIA_RPC_IP:26657"
+	echo -e '\e[32mYour RPC endpoint:' $CELESTIA_RPC_IP '\e[39m'
 	# check response from rpc
 	if [ $(curl -LI $CELESTIA_RPC_IP -o /dev/null -w '%{http_code}\n' -s) != '200' ]; then
 		echo 'Endpoint' $CELESTIA_RPC_IP 'is unreachable! Aborting setup!'
@@ -122,7 +123,7 @@ function installNode {
 
 function initApp {
 if [ -d $HOME/.celestia-app ]; then
-	echo -e '\n\e[31mCelestia app is already initialized!\e[39m' && sleep 1
+	echo -e '\n\e[31mCelestia app is already initialized! Skipping!\e[39m' && sleep 1
 	return 1
 fi
 # init celestia app
