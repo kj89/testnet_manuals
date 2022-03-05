@@ -208,22 +208,18 @@ fi
 
 
 function initNodeBridge {
-	if [ -d $HOME/.celestia-light ]; then
-		echo 'Please avoid installing both types of nodes (bridge, light) on the same instance! Aborting!'
-		exit 1
-	else
-		# do init
-		rm -rf $HOME/.celestia-bridge
-		celestia bridge init --core.remote $TRUSTED_SERVER
+	# do init
+	rm -rf $HOME/.celestia-bridge
+	celestia bridge init --core.remote $TRUSTED_SERVER
 
-		# configure p2p
-		sed -i.bak -e 's/PeerExchange = false/PeerExchange = true/g' $HOME/.celestia-bridge/config.toml
-		BootstrapPeers="[\"/dns4/andromeda.celestia-devops.dev/tcp/2121/p2p/12D3KooWKvPXtV1yaQ6e3BRNUHa5Phh8daBwBi3KkGaSSkUPys6D\", \"/dns4/libra.celestia-devops.dev/tcp/2121/p2p/12D3KooWK5aDotDcLsabBmWDazehQLMsDkRyARm1k7f1zGAXqbt4\", \"/dns4/norma.celestia-devops.dev/tcp/2121/p2p/12D3KooWHYczJDVNfYVkLcNHPTDKCeiVvRhg8Q9JU3bE3m9eEVyY\"]"
-		sed -i -e "s|BootstrapPeers *=.*|BootstrapPeers = $BootstrapPeers|" $HOME/.celestia-bridge/config.toml
+	# configure p2p
+	sed -i.bak -e 's/PeerExchange = false/PeerExchange = true/g' $HOME/.celestia-bridge/config.toml
+	BootstrapPeers="[\"/dns4/andromeda.celestia-devops.dev/tcp/2121/p2p/12D3KooWKvPXtV1yaQ6e3BRNUHa5Phh8daBwBi3KkGaSSkUPys6D\", \"/dns4/libra.celestia-devops.dev/tcp/2121/p2p/12D3KooWK5aDotDcLsabBmWDazehQLMsDkRyARm1k7f1zGAXqbt4\", \"/dns4/norma.celestia-devops.dev/tcp/2121/p2p/12D3KooWHYczJDVNfYVkLcNHPTDKCeiVvRhg8Q9JU3bE3m9eEVyY\"]"
+	sed -i -e "s|BootstrapPeers *=.*|BootstrapPeers = $BootstrapPeers|" $HOME/.celestia-bridge/config.toml
 
-		# install service
-		echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
-		echo "[Unit]
+	# install service
+	echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
+	echo "[Unit]
 Description=celestia-bridge node
 After=network-online.target
 [Service]
@@ -235,39 +231,34 @@ LimitNOFILE=4096
 [Install]
 WantedBy=multi-user.target
 " > $HOME/celestia-bridge.service
-		sudo mv $HOME/celestia-bridge.service /etc/systemd/system
-		sudo systemctl restart systemd-journald
-		sudo systemctl daemon-reload
-		sudo systemctl enable celestia-bridge
-		sudo systemctl restart celestia-bridge
-		echo -e '\n\e[45mCheck node status\e[0m\n' && sleep 1
-		if [[ `service celestia-bridge status | grep active` =~ "running" ]]; then
-		  echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
-		  echo -e "You can check node status by the command \e[7mservice celestia-bridge status\e[0m"
-		else
-		  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
-		fi
-		. $HOME/.bash_profile
-		echo 'To check app logs: journalctl -fu celestia-bridge -o cat'
+	sudo mv $HOME/celestia-bridge.service /etc/systemd/system
+	sudo systemctl restart systemd-journald
+	sudo systemctl daemon-reload
+	sudo systemctl enable celestia-bridge
+	sudo systemctl restart celestia-bridge
+	echo -e '\n\e[45mCheck node status\e[0m\n' && sleep 1
+	if [[ `service celestia-bridge status | grep active` =~ "running" ]]; then
+	  echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
+	  echo -e "You can check node status by the command \e[7mservice celestia-bridge status\e[0m"
+	else
+	  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
 	fi
+	. $HOME/.bash_profile
+	echo 'To check app logs: journalctl -fu celestia-bridge -o cat'
 }
 
 function initNodeLight {
-	if [ -d $HOME/.celestia-bridge ]; then
-		echo 'Please avoid installing both types of nodes (bridge, light) on the same instance! Aborting!'
-		exit 1
-	else
-		# do init
-		rm -rf $HOME/.celestia-light
-		celestia light init
+	# do init
+	rm -rf $HOME/.celestia-light
+	celestia light init
 
-		# configure p2p
-		BootstrapPeers="[\"/dns4/andromeda.celestia-devops.dev/tcp/2121/p2p/12D3KooWKvPXtV1yaQ6e3BRNUHa5Phh8daBwBi3KkGaSSkUPys6D\", \"/dns4/libra.celestia-devops.dev/tcp/2121/p2p/12D3KooWK5aDotDcLsabBmWDazehQLMsDkRyARm1k7f1zGAXqbt4\", \"/dns4/norma.celestia-devops.dev/tcp/2121/p2p/12D3KooWHYczJDVNfYVkLcNHPTDKCeiVvRhg8Q9JU3bE3m9eEVyY\"]"
-		sed -i -e "s|BootstrapPeers *=.*|BootstrapPeers = $BootstrapPeers|" $HOME/.celestia-light/config.toml
+	# configure p2p
+	BootstrapPeers="[\"/dns4/andromeda.celestia-devops.dev/tcp/2121/p2p/12D3KooWKvPXtV1yaQ6e3BRNUHa5Phh8daBwBi3KkGaSSkUPys6D\", \"/dns4/libra.celestia-devops.dev/tcp/2121/p2p/12D3KooWK5aDotDcLsabBmWDazehQLMsDkRyARm1k7f1zGAXqbt4\", \"/dns4/norma.celestia-devops.dev/tcp/2121/p2p/12D3KooWHYczJDVNfYVkLcNHPTDKCeiVvRhg8Q9JU3bE3m9eEVyY\"]"
+	sed -i -e "s|BootstrapPeers *=.*|BootstrapPeers = $BootstrapPeers|" $HOME/.celestia-light/config.toml
 
-		# install service
-		echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
-		echo "[Unit]
+	# install service
+	echo -e '\n\e[45mCreating a service\e[0m\n' && sleep 1
+	echo "[Unit]
 Description=celestia-light node
 After=network-online.target
 [Service]
@@ -279,21 +270,20 @@ LimitNOFILE=4096
 [Install]
 WantedBy=multi-user.target
 " > $HOME/celestia-light.service
-		sudo mv $HOME/celestia-light.service /etc/systemd/system
-		sudo systemctl restart systemd-journald
-		sudo systemctl daemon-reload
-		sudo systemctl enable celestia-light
-		sudo systemctl restart celestia-light
-		echo -e '\n\e[45mCheck node status\e[0m\n' && sleep 1
-		if [[ `service celestia-light status | grep active` =~ "running" ]]; then
-		  echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
-		  echo -e "You can check node status by the command \e[7mservice celestia-light status\e[0m"
-		else
-		  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
-		fi
-		. $HOME/.bash_profile
-		echo 'To check app logs: journalctl -fu celestia-light -o cat'
+	sudo mv $HOME/celestia-light.service /etc/systemd/system
+	sudo systemctl restart systemd-journald
+	sudo systemctl daemon-reload
+	sudo systemctl enable celestia-light
+	sudo systemctl restart celestia-light
+	echo -e '\n\e[45mCheck node status\e[0m\n' && sleep 1
+	if [[ `service celestia-light status | grep active` =~ "running" ]]; then
+	  echo -e "Your Celestia node \e[32minstalled and works\e[39m!"
+	  echo -e "You can check node status by the command \e[7mservice celestia-light status\e[0m"
+	else
+	  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
 	fi
+	. $HOME/.bash_profile
+	echo 'To check app logs: journalctl -fu celestia-light -o cat'
 }
 
 
@@ -378,6 +368,10 @@ do
             ;;
 		"Install Bridge")
             echo -e '\n\e[31mYou choose install bridge...\e[0m\n' && sleep 1
+			if [ -d $HOME/.celestia-light ]; then
+				echo 'Please avoid installing both types of nodes (bridge, light) on the same instance! Aborting!'
+				exit 1
+			fi
 			setupVarsNodeBridge
 			setupSwap
 			installDeps
@@ -387,6 +381,10 @@ do
             ;;
 		"Install Light")
             echo -e '\n\e[31mYou choose install light...\e[0m\n' && sleep 1
+			if [ -d $HOME/.celestia-bridge ]; then
+				echo 'Please avoid installing both types of nodes (bridge, light) on the same instance! Aborting!'
+				exit 1
+			fi
 			setupSwap
 			installDeps
 			installNode
