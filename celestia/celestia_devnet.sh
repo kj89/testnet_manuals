@@ -201,6 +201,10 @@ fi
 
 
 function initNodeBridge {
+	if [ -d $HOME/.celestia-bridge ]; then
+		echo -e '\n\e[31mCelestia bridge node is already initialized! Skipping!\e[39m' && sleep 1
+		return 1
+	fi
 	echo -e '\e[32m....INITIALIZING BRIDGE NODE...\e[39m' && sleep 1
 	# do init
 	rm -rf $HOME/.celestia-bridge
@@ -240,6 +244,10 @@ WantedBy=multi-user.target
 }
 
 function initNodeLight {
+	if [ -d $HOME/.celestia-light ]; then
+		echo -e '\n\e[31mCelestia light node is already initialized! Skipping!\e[39m' && sleep 1
+		return 1
+	fi
 	echo -e '\e[32m....INITIALIZING LIGHT NODE...\e[39m' && sleep 1
 	# do init
 	rm -rf $HOME/.celestia-light
