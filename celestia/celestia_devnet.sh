@@ -190,6 +190,8 @@ sudo systemctl restart celestia-appd
 echo -e '\e[32m...CHECKING NODE STATUS...\e[39m' && sleep 1
 if [[ `service celestia-appd status | grep active` =~ "running" ]]; then
   echo -e "Your Celestia node \e[32minstalled successfully\e[39m!"
+  echo -e 'To check app sync status: \e[32mcurl -s localhost:26657/status | jq .result | jq .sync_info\e[39m'
+  
 else
   echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
 fi
@@ -233,7 +235,7 @@ WantedBy=multi-user.target
 	  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
 	fi
 	. $HOME/.bash_profile
-	echo 'To check app logs: journalctl -fu celestia-bridge -o cat'
+	echo -e 'To check app logs: \e[32mjournalctl -fu celestia-bridge -o cat\e[39m'
 }
 
 function initNodeLight {
@@ -271,7 +273,7 @@ WantedBy=multi-user.target
 	  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
 	fi
 	. $HOME/.bash_profile
-	echo 'To check app logs: journalctl -fu celestia-light -o cat'
+	echo -e 'To check app logs: \e[32mjournalctl -fu celestia-light -o cat\e[39m'
 }
 
 
