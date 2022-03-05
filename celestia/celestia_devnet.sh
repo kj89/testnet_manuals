@@ -74,7 +74,7 @@ function setupVarsNodeBridge {
 
 
 function installDeps {
-	echo -e '\e[32m...INSTALLING DEPENDENCIES...\e[39m' && sleep 1
+	echo -e '\e[32m...INSTALLING/UPDATING DEPENDENCIES...\e[39m' && sleep 1
 	cd $HOME
 	sudo apt update
 	sudo apt install make clang pkg-config libssl-dev build-essential git jq expect -y < "/dev/null"
@@ -97,7 +97,7 @@ EOF
 
 
 function installApp {
-	echo -e '\e[32m...INSTALLING APP...\e[39m' && sleep 1
+	echo -e '\e[32m...INSTALLING/UPDATING APP...\e[39m' && sleep 1
 	# install celestia app
 	rm -rf celestia-app
 	cd $HOME
@@ -109,7 +109,7 @@ function installApp {
 
 
 function installNode {
-	echo -e '\e[32m....INSTALLING NODE...\e[39m' && sleep 1
+	echo -e '\e[32m....INSTALLING/UPDATING NODE...\e[39m' && sleep 1
 	# install celestia node
 	cd $HOME
 	rm -rf celestia-node
@@ -218,7 +218,7 @@ After=network-online.target
 [Service]
 User=$USER
 ExecStart=$(which celestia) bridge start
-Restart=on-failure
+Restart=on-failures
 RestartSec=10
 LimitNOFILE=4096
 [Install]
@@ -341,12 +341,12 @@ function deleteCelestia {
 
 
 PS3='Please enter your choice (input your option number and press enter): '
-options=("Install App" "Install Bridge" "Install Light" "Sync Status" "Delete" "Quit")
+options=("Install/Update App" "Install/Update Bridge" "Install/Update Light" "Sync Status" "Delete" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Install App")
-            echo -e '\n\e[31mYou choose install app...\e[39m' && sleep 1
+        "Install/Update App")
+            echo -e '\n\e[31mYou choose Install/Update app...\e[39m' && sleep 1
 			setupVarsApp
 			installDeps
 			installApp
@@ -354,8 +354,8 @@ do
 			syncCheck
 			break
             ;;
-		"Install Bridge")
-            echo -e '\n\e[31mYou choose install bridge...\e[39m' && sleep 1
+		"Install/Update Bridge")
+            echo -e '\n\e[31mYou choose Install/Update bridge...\e[39m' && sleep 1
 			if [ -d $HOME/.celestia-light ]; then
 				echo -e '\n\e[31mPlease avoid installing both types of nodes (bridge, light) on the same instance! Aborting!\e[39m' && sleep 1
 				exit 1
@@ -366,8 +366,8 @@ do
 			initNodeBridge
 			break
             ;;
-		"Install Light")
-            echo -e '\n\e[31mYou choose install light...\e[39m' && sleep 1
+		"Install/Update Light")
+            echo -e '\n\e[31mYou choose Install/Update light...\e[39m' && sleep 1
 			if [ -d $HOME/.celestia-bridge ]; then
 				echo -e '\n\e[31mPlease avoid installing both types of nodes (bridge, light) on the same instance! Aborting!\e[39m' && sleep 1
 				exit 1
