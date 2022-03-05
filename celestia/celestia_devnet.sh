@@ -22,9 +22,9 @@ echo 'export CELESTIA_CHAIN=devnet-2' >> $HOME/.bash_profile
 fi
 . $HOME/.bash_profile
 echo '==================================='
-echo 'Your chain id:' $CELESTIA_CHAIN
-echo 'Your app version:' $CELESTIA_APP_VERSION
-echo 'Your node version:' $CELESTIA_NODE_VERSION
+echo -e "Your chain id: \e[32m$CELESTIA_CHAIN\e[39m"
+echo -e "Your app version: \e[32m$CELESTIA_APP_VERSION\e[39m"
+echo -e "Your node version: \e[32m$CELESTIA_NODE_VERSION\e[39m"
 echo '==================================='
 
 
