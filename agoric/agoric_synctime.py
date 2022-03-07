@@ -30,7 +30,7 @@ else:
     print(f'Latest block: {latest_block}')
     print(f'Blocks left to sync : {blocks_left}')
 
-    print(f'Calculating blocks... Please wait {test_time} minutes to finish!')
+    print(f'Calculating blocks... Please wait {test_time} minutes for script to finish!')
 
     result = []
     for _ in range(test_time):
