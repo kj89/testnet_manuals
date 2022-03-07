@@ -29,95 +29,95 @@ echo '==================================='
 
 
 function setupVarsApp {
-	if [[ ! $CELESTIA_NODENAME ]]; then
-		read -p "Enter your node name: " CELESTIA_NODENAME
-		echo 'export CELESTIA_NODENAME='${CELESTIA_NODENAME} >> $HOME/.bash_profile
-	fi
-	. $HOME/.bash_profile
-	echo -e '\e[32mYour node name:' $CELESTIA_NODENAME '\e[39m'
-	sleep 5
+if [[ ! $CELESTIA_NODENAME ]]; then
+	read -p "Enter your node name: " CELESTIA_NODENAME
+	echo 'export CELESTIA_NODENAME='${CELESTIA_NODENAME} >> $HOME/.bash_profile
+fi
+. $HOME/.bash_profile
+echo -e '\e[32mYour node name:' $CELESTIA_NODENAME '\e[39m'
+sleep 5
 }
 
 
 function setupVarsValidator {
-	if [[ ! $CELESTIA_WALLET ]]; then
-		read -p "Enter wallet name: " CELESTIA_WALLET
-		echo 'export CELESTIA_WALLET='${CELESTIA_WALLET} >> $HOME/.bash_profile
-	fi
-	if [[ ! $CELESTIA_PASSWORD ]]; then
-		read -p "Enter wallet password: " CELESTIA_PASSWORD
-		echo 'export CELESTIA_PASSWORD='${CELESTIA_PASSWORD} >> $HOME/.bash_profile
-	fi
-	. $HOME/.bash_profile
-	echo -e '\e[32mYour wallet name:' $CELESTIA_WALLET '\e[39m'
-	echo -e '\e[32mYour wallet password:' $CELESTIA_PASSWORD '\e[39m'
-	sleep 5
+if [[ ! $CELESTIA_WALLET ]]; then
+	read -p "Enter wallet name: " CELESTIA_WALLET
+	echo 'export CELESTIA_WALLET='${CELESTIA_WALLET} >> $HOME/.bash_profile
+fi
+if [[ ! $CELESTIA_PASSWORD ]]; then
+	read -p "Enter wallet password: " CELESTIA_PASSWORD
+	echo 'export CELESTIA_PASSWORD='${CELESTIA_PASSWORD} >> $HOME/.bash_profile
+fi
+. $HOME/.bash_profile
+echo -e '\e[32mYour wallet name:' $CELESTIA_WALLET '\e[39m'
+echo -e '\e[32mYour wallet password:' $CELESTIA_PASSWORD '\e[39m'
+sleep 5
 }
 
 
 function setupVarsNodeBridge {
-	if [ ! $CELESTIA_RPC_IP ]; then
-		read -p 'Enter your RPC IP or press enter use default [localhost]: ' CELESTIA_RPC_IP
-		CELESTIA_RPC_IP=${CELESTIA_RPC_IP:-localhost}
-		echo 'export CELESTIA_RPC_IP='$CELESTIA_RPC_IP >> $HOME/.bash_profile
-		. $HOME/.bash_profile
-	fi
-	CELESTIA_RPC_IP="http://$CELESTIA_RPC_IP:26657"
-	echo -e '\e[32mYour RPC endpoint:' $CELESTIA_RPC_IP '\e[39m'
-	# check response from rpc
-	if [ $(curl -LI $CELESTIA_RPC_IP -o /dev/null -w '%{http_code}\n' -s) != '200' ]; then
-		echo -e '\n\e[31mEndpoint' $CELESTIA_RPC_IP 'is unreachable! Aborting setup!\e[39m'
-		unset CELESTIA_RPC_IP
-		exit 1
-	fi
-	sleep 5
+if [ ! $CELESTIA_RPC_IP ]; then
+	read -p 'Enter your RPC IP or press enter use default [localhost]: ' CELESTIA_RPC_IP
+	CELESTIA_RPC_IP=${CELESTIA_RPC_IP:-localhost}
+	echo 'export CELESTIA_RPC_IP='$CELESTIA_RPC_IP >> $HOME/.bash_profile
+	. $HOME/.bash_profile
+fi
+CELESTIA_RPC_IP="http://$CELESTIA_RPC_IP:26657"
+echo -e '\e[32mYour RPC endpoint:' $CELESTIA_RPC_IP '\e[39m'
+# check response from rpc
+if [ $(curl -LI $CELESTIA_RPC_IP -o /dev/null -w '%{http_code}\n' -s) != '200' ]; then
+	echo -e '\n\e[31mEndpoint' $CELESTIA_RPC_IP 'is unreachable! Aborting setup!\e[39m'
+	unset CELESTIA_RPC_IP
+	exit 1
+fi
+sleep 5
 }
 
 
 function installDeps {
-	echo -e '\e[32m...INSTALLING/UPDATING DEPENDENCIES...\e[39m' && sleep 1
-	cd $HOME
-	sudo apt update
-	sudo apt install make clang pkg-config libssl-dev build-essential git jq expect -y < "/dev/null"
-	# install go
-	if [ -f "/usr/bin/go" ]; then
-		echo 'go is already installed'
-		go version
-	else
-		curl https://dl.google.com/go/go1.17.2.linux-amd64.tar.gz | sudo tar -C/usr/local -zxvf -
-		cat <<'EOF' >> $HOME/.bash_profile
+echo -e '\e[32m...INSTALLING/UPDATING DEPENDENCIES...\e[39m' && sleep 1
+cd $HOME
+sudo apt update
+sudo apt install make clang pkg-config libssl-dev build-essential git jq expect -y < "/dev/null"
+# install go
+if [ -f "/usr/bin/go" ]; then
+	echo 'go is already installed'
+	go version
+else
+	curl https://dl.google.com/go/go1.17.2.linux-amd64.tar.gz | sudo tar -C/usr/local -zxvf -
+	cat <<'EOF' >> $HOME/.bash_profile
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export GO111MODULE=on
 export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 EOF
-		. $HOME/.bash_profile
-		cp /usr/local/go/bin/go /usr/bin
-	fi
+	. $HOME/.bash_profile
+	cp /usr/local/go/bin/go /usr/bin
+fi
 }
 
 
 function installApp {
-	echo -e '\e[32m...INSTALLING/UPDATING APP...\e[39m' && sleep 1
-	# install celestia app
-	rm -rf celestia-app
-	cd $HOME
-	git clone https://github.com/celestiaorg/celestia-app.git
-	cd celestia-app
-	git checkout $CELESTIA_APP_VERSION
-	make install
+echo -e '\e[32m...INSTALLING/UPDATING APP...\e[39m' && sleep 1
+# install celestia app
+rm -rf celestia-app
+cd $HOME
+git clone https://github.com/celestiaorg/celestia-app.git
+cd celestia-app
+git checkout $CELESTIA_APP_VERSION
+make install
 }
 
 
 function installNode {
-	echo -e '\e[32m....INSTALLING/UPDATING NODE...\e[39m' && sleep 1
-	# install celestia node
-	cd $HOME
-	rm -rf celestia-node
-	git clone https://github.com/celestiaorg/celestia-node.git
-	cd celestia-node/
-	git checkout $CELESTIA_NODE_VERSION
-	make install
+echo -e '\e[32m....INSTALLING/UPDATING NODE...\e[39m' && sleep 1
+# install celestia node
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout $CELESTIA_NODE_VERSION
+make install
 }
 
 
@@ -201,23 +201,23 @@ fi
 
 
 function initNodeBridge {
-	if [ -d $HOME/.celestia-bridge ]; then
-		echo -e '\n\e[31mCelestia bridge node is already initialized! Skipping!\e[39m' && sleep 1
-		return 1
-	fi
-	echo -e '\e[32m....INITIALIZING BRIDGE NODE...\e[39m' && sleep 1
-	# do init
-	rm -rf $HOME/.celestia-bridge
-	celestia bridge init --core.remote $CELESTIA_RPC_IP
+if [ -d $HOME/.celestia-bridge ]; then
+	echo -e '\n\e[31mCelestia bridge node is already initialized! Skipping!\e[39m' && sleep 1
+	return 1
+fi
+echo -e '\e[32m....INITIALIZING BRIDGE NODE...\e[39m' && sleep 1
+# do init
+rm -rf $HOME/.celestia-bridge
+celestia bridge init --core.remote $CELESTIA_RPC_IP
 
-	# configure p2p
-	sed -i.bak -e 's/PeerExchange = false/PeerExchange = true/g' $HOME/.celestia-bridge/config.toml
-	BootstrapPeers="[\"/dns4/andromeda.celestia-devops.dev/tcp/2121/p2p/12D3KooWKvPXtV1yaQ6e3BRNUHa5Phh8daBwBi3KkGaSSkUPys6D\", \"/dns4/libra.celestia-devops.dev/tcp/2121/p2p/12D3KooWK5aDotDcLsabBmWDazehQLMsDkRyARm1k7f1zGAXqbt4\", \"/dns4/norma.celestia-devops.dev/tcp/2121/p2p/12D3KooWHYczJDVNfYVkLcNHPTDKCeiVvRhg8Q9JU3bE3m9eEVyY\"]"
-	sed -i -e "s|BootstrapPeers *=.*|BootstrapPeers = $BootstrapPeers|" $HOME/.celestia-bridge/config.toml
+# configure p2p
+sed -i.bak -e 's/PeerExchange = false/PeerExchange = true/g' $HOME/.celestia-bridge/config.toml
+BootstrapPeers="[\"/dns4/andromeda.celestia-devops.dev/tcp/2121/p2p/12D3KooWKvPXtV1yaQ6e3BRNUHa5Phh8daBwBi3KkGaSSkUPys6D\", \"/dns4/libra.celestia-devops.dev/tcp/2121/p2p/12D3KooWK5aDotDcLsabBmWDazehQLMsDkRyARm1k7f1zGAXqbt4\", \"/dns4/norma.celestia-devops.dev/tcp/2121/p2p/12D3KooWHYczJDVNfYVkLcNHPTDKCeiVvRhg8Q9JU3bE3m9eEVyY\"]"
+sed -i -e "s|BootstrapPeers *=.*|BootstrapPeers = $BootstrapPeers|" $HOME/.celestia-bridge/config.toml
 
-	# install service
-	echo -e '\e[32m...CREATING SERVICE...\e[39m' && sleep 1
-	echo "[Unit]
+# install service
+echo -e '\e[32m...CREATING SERVICE...\e[39m' && sleep 1
+echo "[Unit]
 Description=celestia-bridge node
 After=network-online.target
 [Service]
@@ -229,37 +229,37 @@ LimitNOFILE=4096
 [Install]
 WantedBy=multi-user.target
 " > $HOME/celestia-bridge.service
-	sudo mv $HOME/celestia-bridge.service /etc/systemd/system
-	sudo systemctl daemon-reload
-	sudo systemctl enable celestia-bridge
-	sudo systemctl restart celestia-bridge
-	echo -e '\e[32m...CHECKING NODE STATUS...\e[39m' && sleep 1
-	if [[ `service celestia-bridge status | grep active` =~ "running" ]]; then
-	  echo -e "Your Celestia node \e[32minstalled successfully\e[39m!"
-	else
-	  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
-	fi
-	. $HOME/.bash_profile
-	echo -e 'To check app logs: \e[32mjournalctl -fu celestia-bridge -o cat\e[39m'
+sudo mv $HOME/celestia-bridge.service /etc/systemd/system
+sudo systemctl daemon-reload
+sudo systemctl enable celestia-bridge
+sudo systemctl restart celestia-bridge
+echo -e '\e[32m...CHECKING NODE STATUS...\e[39m' && sleep 1
+if [[ `service celestia-bridge status | grep active` =~ "running" ]]; then
+  echo -e "Your Celestia node \e[32minstalled successfully\e[39m!"
+else
+  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
+fi
+. $HOME/.bash_profile
+echo -e 'To check app logs: \e[32mjournalctl -fu celestia-bridge -o cat\e[39m'
 }
 
 function initNodeLight {
-	if [ -d $HOME/.celestia-light ]; then
-		echo -e '\n\e[31mCelestia light node is already initialized! Skipping!\e[39m' && sleep 1
-		return 1
-	fi
-	echo -e '\e[32m....INITIALIZING LIGHT NODE...\e[39m' && sleep 1
-	# do init
-	rm -rf $HOME/.celestia-light
-	celestia light init
+if [ -d $HOME/.celestia-light ]; then
+	echo -e '\n\e[31mCelestia light node is already initialized! Skipping!\e[39m' && sleep 1
+	return 1
+fi
+echo -e '\e[32m....INITIALIZING LIGHT NODE...\e[39m' && sleep 1
+# do init
+rm -rf $HOME/.celestia-light
+celestia light init
 
-	# configure p2p
-	BootstrapPeers="[\"/dns4/andromeda.celestia-devops.dev/tcp/2121/p2p/12D3KooWKvPXtV1yaQ6e3BRNUHa5Phh8daBwBi3KkGaSSkUPys6D\", \"/dns4/libra.celestia-devops.dev/tcp/2121/p2p/12D3KooWK5aDotDcLsabBmWDazehQLMsDkRyARm1k7f1zGAXqbt4\", \"/dns4/norma.celestia-devops.dev/tcp/2121/p2p/12D3KooWHYczJDVNfYVkLcNHPTDKCeiVvRhg8Q9JU3bE3m9eEVyY\"]"
-	sed -i -e "s|BootstrapPeers *=.*|BootstrapPeers = $BootstrapPeers|" $HOME/.celestia-light/config.toml
+# configure p2p
+BootstrapPeers="[\"/dns4/andromeda.celestia-devops.dev/tcp/2121/p2p/12D3KooWKvPXtV1yaQ6e3BRNUHa5Phh8daBwBi3KkGaSSkUPys6D\", \"/dns4/libra.celestia-devops.dev/tcp/2121/p2p/12D3KooWK5aDotDcLsabBmWDazehQLMsDkRyARm1k7f1zGAXqbt4\", \"/dns4/norma.celestia-devops.dev/tcp/2121/p2p/12D3KooWHYczJDVNfYVkLcNHPTDKCeiVvRhg8Q9JU3bE3m9eEVyY\"]"
+sed -i -e "s|BootstrapPeers *=.*|BootstrapPeers = $BootstrapPeers|" $HOME/.celestia-light/config.toml
 
-	# install service
-	echo -e '\e[32m...CREATING SERVICE...\e[39m' && sleep 1
-	echo "[Unit]
+# install service
+echo -e '\e[32m...CREATING SERVICE...\e[39m' && sleep 1
+echo "[Unit]
 Description=celestia-light node
 After=network-online.target
 [Service]
@@ -271,18 +271,18 @@ LimitNOFILE=4096
 [Install]
 WantedBy=multi-user.target
 " > $HOME/celestia-light.service
-	sudo mv $HOME/celestia-light.service /etc/systemd/system
-	sudo systemctl daemon-reload
-	sudo systemctl enable celestia-light
-	sudo systemctl restart celestia-light
-	echo -e '\e[32m...CHECKING NODE STATUS...\e[39m' && sleep 1
-	if [[ `service celestia-light status | grep active` =~ "running" ]]; then
-	  echo -e "Your Celestia node \e[32minstalled successfully\e[39m!"
-	else
-	  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
-	fi
-	. $HOME/.bash_profile
-	echo -e 'To check app logs: \e[32mjournalctl -fu celestia-light -o cat\e[39m'
+sudo mv $HOME/celestia-light.service /etc/systemd/system
+sudo systemctl daemon-reload
+sudo systemctl enable celestia-light
+sudo systemctl restart celestia-light
+echo -e '\e[32m...CHECKING NODE STATUS...\e[39m' && sleep 1
+if [[ `service celestia-light status | grep active` =~ "running" ]]; then
+  echo -e "Your Celestia node \e[32minstalled successfully\e[39m!"
+else
+  echo -e "Your Celestia node \e[31mwas not installed correctly\e[39m, please reinstall."
+fi
+. $HOME/.bash_profile
+echo -e 'To check app logs: \e[32mjournalctl -fu celestia-light -o cat\e[39m'
 }
 
 
@@ -330,22 +330,22 @@ done
 
 
 function deleteCelestia {
-	systemctl disable celestia-appd.service
-	systemctl disable celestia-bridge.service
-	systemctl disable celestia-light.service
-	systemctl stop celestia-appd.service
-	systemctl stop celestia-bridge.service
-	systemctl stop celestia-light.service
-	rm /etc/systemd/system/celestia-appd.service
-	rm /etc/systemd/system/celestia-bridge.service
-	rm /etc/systemd/system/celestia-light.service
-	systemctl daemon-reload
-	systemctl reset-failed
-	rm .celestia* -rf
-	rm celestia* -rf
-	rm networks -rf
-	rm $HOME/.bash_profile
-	rm /usr/bin/go -rf
+systemctl disable celestia-appd.service
+systemctl disable celestia-bridge.service
+systemctl disable celestia-light.service
+systemctl stop celestia-appd.service
+systemctl stop celestia-bridge.service
+systemctl stop celestia-light.service
+rm /etc/systemd/system/celestia-appd.service
+rm /etc/systemd/system/celestia-bridge.service
+rm /etc/systemd/system/celestia-light.service
+systemctl daemon-reload
+systemctl reset-failed
+rm .celestia* -rf
+rm celestia* -rf
+rm networks -rf
+rm $HOME/.bash_profile
+rm /usr/bin/go -rf
 }
 
 

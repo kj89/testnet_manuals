@@ -19,6 +19,12 @@ chainName=`curl https://main.agoric.net/network-config | jq -r .chainName`
 ag0 tx staking edit-validator --moniker="kjnodes.com" --website="http://kjnodes.com" --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" --chain-id=$chainName --from=agoric-wallet
 ```
 
+## Calculate synchronization time
+This script will help you to estimate approximate time to fully synchronize your node
+```
+wget -O agoric_synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/agoric_synctime.py && python3 ./agoric_synctime.py
+```
+
 ## Usefull commands
 ### Service management
 Check logs
