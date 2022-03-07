@@ -12,7 +12,7 @@ def average(lst):
 
 
 def get_block_height(url):
-    return int(requests.get(url=url).json()['result']['sync_info']['last_block_height'])
+    return int(requests.get(url=url).json()['result']['sync_info']['latest_block_height'])
     
 
 def get_sync_status(url):
