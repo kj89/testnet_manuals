@@ -20,7 +20,8 @@ ag0 tx staking edit-validator --moniker="kjnodes.com" --website="http://kjnodes.
 ```
 
 ## Calculate synchronization time
-This script will help you to estimate approximate time to fully synchronize your node
+This script will help you to estimate how much time  it will make to fully synchronize your node
+It measures average blocks per minute that are being synchronized for period of 10 minutes and then gives you results
 ```
 wget -O agoric_synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/agoric_synctime.py && python3 ./agoric_synctime.py
 ```
