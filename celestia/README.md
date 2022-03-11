@@ -1,14 +1,15 @@
 ## Celestia node setup
 
-### Run celestia devnet-2 (rpc, bridge, light)
-This script does not include validator creation as faucet for devnet is disabled and running validator is not necessary at this stage.
 ![image](https://user-images.githubusercontent.com/50621007/157865942-69a28d42-3161-4f38-843d-0cf8f8256aa0.png)
 
-As alternative you can setup Celestia nodes manually by following guides provided by community member mzonder
-https://mzonder.notion.site/CELESTIA-8b8e89820d114c8cb9b6a63b377302ee
+### Run celestia devnet-2 (rpc, bridge, light)
+This script does not include validator creation as faucet for devnet is disabled and running validator is not necessary at this stage
 ```
 wget -O celestia_devnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/celestia_devnet.sh && chmod +x celestia_devnet.sh && ./celestia_devnet.sh
 ```
+
+As alternative you can setup Celestia nodes manually by following guides provided by community member mzonder
+https://mzonder.notion.site/CELESTIA-8b8e89820d114c8cb9b6a63b377302ee
 
 Options:
 
@@ -21,6 +22,7 @@ Options:
 7) Quit - Quits menu
 
 ## Guides to install nodes
+To install celestia software you have to run script above and follow instructions below
 
 ### To install local RPC node with Bridge node (currently you will need about 50GB of empty space to fully synchronize chain data)
 ```
