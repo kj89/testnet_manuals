@@ -1,6 +1,6 @@
 # masa node setup
 
-## run script bellow to prepare your node
+## run script bellow to install your masa node
 ```
 wget -O masa.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/masa/masa.sh && chmod +x masa.sh && ./masa.sh
 ```
