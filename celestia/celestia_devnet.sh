@@ -251,6 +251,7 @@ if [ -d $HOME/.celestia-light ]; then
 	return 1
 fi
 echo -e '\e[32m....INITIALIZING LIGHT NODE...\e[39m' && sleep 1
+
 # do init
 rm -rf $HOME/.celestia-light
 celestia light init

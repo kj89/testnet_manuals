@@ -15,8 +15,8 @@ Options:
 
 1) Install/Update App - Installs/Updates Celestia App software (current version 63519ec). To start installation you have to provide your node name. After installation is complete you will see current block synchronization process.
 2) Install/Update Node - Installs/Updates Clestia Node software (current version v0.2.0). 
-3) Initialize Bridge - Installs/Reinstalls Celestia Bridge node. You will have to provide rpc node ip or use default localhost if celestia rpc is runnning locally
-4) Initialize Light - Installs/Reinstalls Celestia Light node. It is not recommended to run both types of nodes (bridge, ligt) on same VPS.
+3) Initialize Bridge - Initialize Celestia Bridge node. You will have to provide rpc node ip or use default localhost if celestia rpc is runnning locally
+4) Initialize Light - Initialize Celestia Light node. It is not recommended to run both types of nodes (bridge, ligt) on same VPS.
 5) Sync Status - Follow synchronization status of your local rpc node.
 6) Erase all - Removes all Celestia components
 7) Quit - Quits menu
