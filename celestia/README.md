@@ -32,6 +32,7 @@ wait until installation completes and check logs
 
 ### To install Bridge node with external RPC
 ```
+press 2
 press 3
 input external ip as your rpc node ip (external rpc should be reachable)
 wait until installation completes and check logs

@@ -63,6 +63,8 @@ if [ ! $CELESTIA_RPC_IP ]; then
 	. $HOME/.bash_profile
 fi
 CELESTIA_RPC_ENDPOINT="http://$CELESTIA_RPC_IP:26657"
+echo 'export CELESTIA_RPC_ENDPOINT='${CELESTIA_RPC_ENDPOINT} >> $HOME/.bash_profile
+. $HOME/.bash_profile
 echo -e '\e[32mYour RPC endpoint:' $CELESTIA_RPC_ENDPOINT '\e[39m'
 # check response from rpc
 if [ $(curl -LI $CELESTIA_RPC_ENDPOINT -o /dev/null -w '%{http_code}\n' -s) != '200' ]; then
@@ -208,7 +210,7 @@ fi
 echo -e '\e[32m....INITIALIZING BRIDGE NODE...\e[39m' && sleep 1
 # do init
 rm -rf $HOME/.celestia-bridge
-celestia bridge init --core.remote $CELESTIA_RPC_IP
+celestia bridge init --core.remote $CELESTIA_RPC_ENDPOINT
 
 # configure p2p
 sed -i.bak -e 's/PeerExchange = false/PeerExchange = true/g' $HOME/.celestia-bridge/config.toml
