@@ -62,11 +62,11 @@ if [ ! $CELESTIA_RPC_IP ]; then
 	echo 'export CELESTIA_RPC_IP='$CELESTIA_RPC_IP >> $HOME/.bash_profile
 	. $HOME/.bash_profile
 fi
-CELESTIA_RPC_IP="http://$CELESTIA_RPC_IP:26657"
-echo -e '\e[32mYour RPC endpoint:' $CELESTIA_RPC_IP '\e[39m'
+CELESTIA_RPC_ENDPOINT="http://$CELESTIA_RPC_IP:26657"
+echo -e '\e[32mYour RPC endpoint:' $CELESTIA_RPC_ENDPOINT '\e[39m'
 # check response from rpc
-if [ $(curl -LI $CELESTIA_RPC_IP -o /dev/null -w '%{http_code}\n' -s) != '200' ]; then
-	echo -e '\n\e[31mEndpoint' $CELESTIA_RPC_IP 'is unreachable! Aborting setup!\e[39m'
+if [ $(curl -LI $CELESTIA_RPC_ENDPOINT -o /dev/null -w '%{http_code}\n' -s) != '200' ]; then
+	echo -e '\n\e[31mEndpoint' $CELESTIA_RPC_ENDPOINT 'is unreachable! Aborting setup!\e[39m'
 	unset CELESTIA_RPC_IP
 	exit 1
 fi
