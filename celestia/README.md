@@ -72,3 +72,13 @@ press 6
 ```
 curl -s localhost:26657/status | jq .result | jq .sync_info
 ```
+
+### Check bridge node logs
+```
+journalctl -fu celestia-bridge -o cat
+```
+
+### Check light node logs
+```
+journalctl -fu celestia-light -o cat
+```
