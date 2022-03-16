@@ -1,13 +1,13 @@
-# masa node setup
+# aptos node setup
 
-## run script below to install your masa node
+## run script below to install your aptos node
 ```
-wget -O aptos_devnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/masa/aptos_devnet.sh && chmod +x aptos_devnet.sh && ./aptos_devnet.sh
+wget -O aptos_devnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_devnet.sh && chmod +x aptos_devnet.sh && ./aptos_devnet.sh
 ```
 
 ## check node status
 
-### check masa node logs
+### check aptos node logs
 ```
 docker logs -f aptos-fullnode-1 --tail 100
 ```
