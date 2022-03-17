@@ -6,10 +6,7 @@ if [ ! $ARCHWAY_NODENAME ]; then
 	read -p "Enter node name: " ARCHWAY_NODENAME
 	echo 'export ARCHWAY_NODENAME='$ARCHWAY_NODENAME >> $HOME/.bash_profile
 fi
-if [ ! $ARCHWAY_WALLET ]; then
-	read -p "Enter node name: " ARCHWAY_WALLET
-	echo 'export ARCHWAY_WALLET='$ARCHWAY_WALLET >> $HOME/.bash_profile
-fi
+echo "export ARCHWAY_WALLET=wallet" >> $HOME/.bash_profile
 echo "export ARCHWAY_CHAIN=augusta-1" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
