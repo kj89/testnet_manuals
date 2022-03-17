@@ -70,3 +70,8 @@ Bond more tokens (if you want increase your validator stake you should bond more
 ```
 archwayd tx staking delegate $VALOPER_ADDRESS 10000000uaugust --from $WALLET --chain-id $CHAIN_ID --fees 5000uaugust
 ```
+
+Restore wallet key
+```
+archwayd keys add $WALLET --recover
+```
