@@ -40,8 +40,8 @@ archwayd config chain-id $ARCHWAY_CHAIN
 archwayd config keyring-backend file
 
 # download addrbook and genesis
-wget -qO $HOME/.archway/config/genesis.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/addrbook.json"
-wget -qO $HOME/.archway/config/addrbook.json https://raw.githubusercontent.com/SecorD0/Archway/main/addrbook.json
+wget -qO $HOME/.archway/config/genesis.json "https://api.nodes.guru/archway_genesis.json"
+wget -qO $HOME/.archway/config/addrbook.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/addrbook.json
 
 # set peers and seeds
 seeds="2f234549828b18cf5e991cc884707eb65e503bb2@34.74.129.75:31076,c8890bcde31c2959a8aeda172189ec717fef0b2b@95.216.197.14:26656"
