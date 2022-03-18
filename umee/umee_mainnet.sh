@@ -134,18 +134,17 @@ function installSoftware {
 	mkdir -p $HOME/data
 	cd $HOME
 	rm -r $HOME/umee
-	git clone --depth 1 --branch v0.3.0 https://github.com/umee-network/umee.git
+	git clone --depth 1 --branch v1.0.3 https://github.com/umee-network/umee.git
 	cd umee && make install
 	umeed version
 	umeed init ${UMEE_NODENAME} --chain-id $UMEE_CHAIN
-	# wget -O $HOME/.umee/config/genesis.json "https://api.nodes.guru/umee-betanet-5-genesis.json"
-	wget -O $HOME/.umee/config/genesis.json "https://raw.githubusercontent.com/umee-network/testnets/main/networks/umee-betanet-v5/genesis.json"
+	wget -O $HOME/.umee/config/genesis.json "https://raw.githubusercontent.com/umee-network/umee/main/networks/umee-1/genesis.json"
 	sha256sum $HOME/.umee/config/genesis.json
 	umeed unsafe-reset-all
 	sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0.001uumee\"/" $HOME/.umee/config/app.toml
 	sed -i '/\[grpc\]/{:a;n;/enabled/s/false/true/;Ta};/\[api\]/{:a;n;/enable/s/false/true/;Ta;}' $HOME/.umee/config/app.toml
 	external_address=`curl ifconfig.me`
-	peers="8ca2c44d5ed4716f99c15e61099c6b085cd8b266@45.76.91.152:26656,1b18e2e71df92fb42272ceb52e6b4c85b3a25ada@185.92.222.137:26656"
+	peers="f1dc58164af33f2db6c5a5bd6b2646399b18bbb4@35.187.48.177:26656,6b785fc3a088de3a5e8d222a980936f2187b8c56@34.65.213.164:26656"
 	sed -i.bak -e "s/^external_address = \"\"/external_address = \"$external_address:26656\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.umee/config/config.toml
 }
 
@@ -155,13 +154,13 @@ function updateSoftware {
 	umeed unsafe-reset-all
 	cd $HOME
 	rm -r $HOME/umee
-	git clone --depth 1 --branch v0.3.0 https://github.com/umee-network/umee.git
+	git clone --depth 1 --branch v1.0.3 https://github.com/umee-network/umee.git
 	cd umee && make install
 	umeed version
 	rm $HOME/.umee/config/genesis.json
-	wget -O $HOME/.umee/config/genesis.json "https://raw.githubusercontent.com/umee-network/testnets/main/networks/umee-betanet-v5/genesis.json"
+	wget -O $HOME/.umee/config/genesis.json "https://raw.githubusercontent.com/umee-network/umee/main/networks/umee-1/genesis.json"
 	umeed unsafe-reset-all
-	peers="8ca2c44d5ed4716f99c15e61099c6b085cd8b266@45.76.91.152:26656,1b18e2e71df92fb42272ceb52e6b4c85b3a25ada@185.92.222.137:26656"
+	peers="f1dc58164af33f2db6c5a5bd6b2646399b18bbb4@35.187.48.177:26656,6b785fc3a088de3a5e8d222a980936f2187b8c56@34.65.213.164:26656"
 	sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.umee/config/config.toml
 	systemctl restart umeed
 }
