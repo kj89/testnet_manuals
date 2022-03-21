@@ -33,3 +33,8 @@ cat $HOME/aptos/identity/private-key.txt
 ```
 cat $HOME/aptos/identity/id.json
 ```
+
+### restart docker container
+```
+docker restart aptos-fullnode-1
+```
