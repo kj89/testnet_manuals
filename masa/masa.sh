@@ -29,7 +29,7 @@ rm -rf masa-node-v1.0
 git clone https://github.com/masa-finance/masa-node-v1.0
 
 cd masa-node-v1.0/src
-git checkout v1.02
+git checkout v1.03
 make all
 
 # copy binaries
