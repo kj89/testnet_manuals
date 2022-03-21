@@ -38,3 +38,10 @@ cat $HOME/aptos/identity/id.json
 ```
 docker restart aptos-fullnode-1
 ```
+
+### remove docker container
+```
+cd $HOME/aptos
+docker compose down
+rm -rf $HOME/aptos
+```
