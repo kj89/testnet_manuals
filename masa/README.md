@@ -13,6 +13,11 @@ you have to see blocks comming
 journalctl -u masad -f | grep "new block"
 ```
 
+### restart service
+```
+systemctl restart masad.service
+```
+
 ### check eth node status
 to check eth node synchronization status first of all you have to open geth
 ```
