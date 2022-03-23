@@ -83,6 +83,9 @@ sudo systemctl daemon-reload
 sudo systemctl enable masad
 sudo systemctl restart masad
 
+# wait before pulling configs
+sleep 10
+
 # get node configs
 MASA_NODEKEY=$(cat $HOME/masa-node-v1.0/data/geth/nodekey)
 MASA_ENODE=$(geth attach ipc:$HOME/masa-node-v1.0/data/geth.ipc --exec web3.admin.nodeInfo.enode | sed 's/^.//;s/.$//')
