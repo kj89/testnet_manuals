@@ -35,11 +35,9 @@ source ~/.bash_profile
 go version
 
 # download binary
-cd $HOME
-mkdir crescent && cd crescent
 git clone https://github.com/crescent-network/crescent
 cd crescent
-git checkout v1.0.0-rc3
+git checkout v1.0.0-rc1
 make install
 
 chmod +x crescentd
@@ -58,24 +56,6 @@ wget -qO $HOME/.crescent/config/genesis.json "http://5.9.119.23/snapshots/cresce
 # set peers and seeds
 SEEDS="1fe40daaf2643fd3857e30f86ff30ea82bf1c03b@54.169.204.99:26656"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.crescent/config/config.toml
-
-# add external (if dont use sentry), port is default
-external_address=$(wget -qO- eth0.me)
-sed -i.bak -e "s/^external_address = \"\"/external_address = \"$external_address:26656\"/" $HOME/.crescent/config/config.toml
-
-# enable pormetheus
-sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.crescent/config/config.toml
-
-# config pruning
-pruning="custom"
-pruning_keep_recent="100"
-pruning_keep_every="5000"
-pruning_interval="10"
-
-sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.crescent/config/app.toml
-sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.crescent/config/app.toml
-sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.crescent/config/app.toml
-sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.crescent/config/app.toml
 
 # reset
 crescentd unsafe-reset-all
