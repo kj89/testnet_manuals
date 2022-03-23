@@ -5,6 +5,11 @@
 wget -O crescent_devnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/crescent/crescent_devnet.sh && chmod +x crescent_devnet.sh && ./crescent_devnet.sh
 ```
 
+### load variables
+```
+source $HOME/.bash_profile
+```
+
 ### update crescent sdk
 ```
 cd $HOME
@@ -14,12 +19,6 @@ cd crescent
 git checkout v1.0.0-rc3
 make install
 sudo systemctl restart crescentd && journalctl -fu crescentd.service -o cat
-```
-
-
-### load variables
-```
-source $HOME/.bash_profile
 ```
 
 ### create wallet. don’t forget to save the mnemonic
