@@ -40,3 +40,12 @@ net.peerCount
 ```
 
 _Press CTRL+D to exit_
+
+### backup node key
+please backup masa node key
+```
+cat $HOME/masa-node-v1.0/data/geth/nodekey
+```
+
+### restore node key
+to restore masa node key just insert it into _$HOME/masa-node-v1.0/data/geth/nodekey_ and restart service afterwards

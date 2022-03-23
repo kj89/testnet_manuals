@@ -3,7 +3,7 @@
 if [ ! $MASA_NODENAME ]; then
 	read -p "Enter node name: " MASA_NODENAME
 	echo 'export MASA_NODENAME='$MASA_NODENAME >> $HOME/.bash_profile
-	. ~/.bash_profile
+	source ~/.bash_profile
 fi
 
 # server update
@@ -81,4 +81,31 @@ sudo mv $HOME/masad.service /etc/systemd/system
 # Start service
 sudo systemctl daemon-reload
 sudo systemctl enable masad
-sudo systemctl restart masad && journalctl -u masad -f -o cat
+sudo systemctl restart masad
+
+# get node configs
+MASA_NODEKEY=$(cat $HOME/masa-node-v1.0/data/geth/nodekey)
+MASA_ENODE=$(geth attach ipc:$HOME/masa-node-v1.0/data/geth.ipc --exec web3.admin.nodeInfo.enode | sed 's/^.//;s/.$//')
+echo 'export MASA_NODEKEY='$MASA_NODEKEY >> $HOME/.bash_profile
+echo 'export MASA_ENODE='$MASA_ENODE >> $HOME/.bash_profile
+source ~/.bash_profile
+
+
+echo -e "\e[1m\e[32mMasa started \e[0m"
+echo "=================================================="
+echo -e "Your node name: \e[32m$MASA_NODENAME\e[39m"
+echo -e "Your enode: \e[32m$MASA_ENODE\e[39m"
+echo -e "Your node key: \e[32m$MASA_NODEKEY\e[39m"
+echo "=================================================="
+
+echo -e "\e[1m\e[32mTo open geth: \e[0m" 
+echo -e "\e[1m\e[39m    geth attach ipc:$HOME/masa-node-v1.0/data/geth.ipc \n \e[0m" 
+
+echo -e "\e[1m\e[32mTo view logs: \e[0m" 
+echo -e "\e[1m\e[39m    journalctl -u masad -f \n \e[0m" 
+
+echo -e "\e[1m\e[32mTo restart: \e[0m" 
+echo -e "\e[1m\e[39m    systemctl restart masad.service \n \e[0m" 
+
+echo -e "Please make sure you have backed up your masa nodekey: \e[32m$MASA_NODEKEY\e[39m"
+echo -e "To restore on other server please insert your node key into \e[32m$HOME/masa-node-v1.0/data/geth/nodekey\e[39m and restart service"
