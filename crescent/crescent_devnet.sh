@@ -20,6 +20,9 @@ sleep 2
 # update
 sudo apt update && sudo apt upgrade -y
 
+# install packages
+sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu net-tools -y
+
 # install go 1.17.2
 ver="1.17.2"
 cd $HOME
