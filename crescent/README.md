@@ -38,7 +38,7 @@ source $HOME/.bash_profile
 ### create validator
 ```
 crescentd tx staking create-validator \
-  --amount 9000000uaugust \
+  --amount 9000000ucre \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.1" \
@@ -48,7 +48,7 @@ crescentd tx staking create-validator \
   --moniker $NODENAME \
   --chain-id $CHAIN_ID \
   --gas 300000 \
-  --fees 3uaugust
+  --fees 3ucre
 ```
 
 ## Usefull commands
@@ -79,7 +79,7 @@ docker restart crescent
 
 Bond more tokens (if you want increase your validator stake you should bond more to your valoper address):
 ```
-crescentd tx staking delegate $VALOPER_ADDRESS 10000000uaugust --from $WALLET --chain-id $CHAIN_ID --fees 5000uaugust
+crescentd tx staking delegate $VALOPER_ADDRESS 10000000ucre --from $WALLET --chain-id $CHAIN_ID --fees 5000ucre
 ```
 
 Restore wallet key
