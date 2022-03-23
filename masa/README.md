@@ -21,10 +21,20 @@ geth attach ipc:$HOME/masa-node-v1.0/data/geth.ipc
 
 after that you can use commands below inside geth (eth.syncing should = false and net.peerCount have to be > than 0)
 ```
+# node data directory with configs and keys
+admin.datadir
+# check if node is connected
+net.listening
 # show synchronization status
 eth.syncing
+# node status (difficulty should be equal to current block height)
+admin.nodeInfo
 # show synchronization percentage
 eth.syncing.currentBlock * 100 / eth.syncing.highestBlock
+# list of all connected peers (short list)
+admin.peers.forEach(function(value){console.log(value.network.remoteAddress+"\t"+value.name)})
+# list of all connected peers (long list)
+admin.peers
 # show connected peer count
 net.peerCount
 ```
