@@ -64,10 +64,10 @@ cd $HOME/aptos
 mkdir identity
 docker compose stop
 rm *
-wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/docker-compose.yaml
-wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/public_full_node.yaml
-wget https://devnet.aptoslabs.com/genesis.blob
-wget https://devnet.aptoslabs.com/waypoint.txt
+wget -O https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/docker-compose.yaml
+wget -O https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/public_full_node.yaml
+wget -O https://devnet.aptoslabs.com/genesis.blob
+wget -O https://devnet.aptoslabs.com/waypoint.txt
 
 echo "=================================================="
 
@@ -129,7 +129,7 @@ sed -i '/      discovery_method: "onchain"$/a\
 fi
 
 echo -e "\e[1m\e[32m4.2 Updating seeds \e[0m"  
-wget https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
+wget -O https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
 yq ea -i 'select(fileIndex==0).full_node_networks[0].seeds = select(fileIndex==1).seeds | select(fileIndex==0)' $HOME/aptos/public_full_node.yaml seeds.yaml
 
 echo -e "\e[1m\e[32m5. Starting Aptos FullNode ... \e[0m" && sleep 1
