@@ -13,13 +13,11 @@ wget -O aptos_docker.sh https://raw.githubusercontent.com/kj89/testnet_manuals/m
 ## update aptos
 ```
 systemctl stop aptos-fullnode
-rm -rf /opt/aptos/data
-rm -rf /root/aptos/genesis.blob
-rm -rf /root/aptos/waypoint.txt
+rm -rf /opt/aptos/data/*
 cd aptos
-wget https://devnet.aptoslabs.com/genesis.blob
-wget https://devnet.aptoslabs.com/waypoint.txt
-nano public_full_node.yaml
+wget -O genesis.blob https://devnet.aptoslabs.com/genesis.blob
+wget -O waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
+sed -i.bak -e "s/from_config: ".*"/from_config: "$(cat waypoint.txt)"/" public_full_node.yaml
 ```
 
 ## update seeds
@@ -57,7 +55,7 @@ docker restart aptos-fullnode-1
 
 ### backup keys
 ```
-cp $HOME/aptos/identity/* $HOME/aptos_backup/private-key.txt
+cp $HOME/aptos/identity/private-key.txt $HOME/aptos_backup/private-key.txt
 cp $HOME/aptos/identity/id.json $HOME/aptos_backup/peer-info.yaml
 ```
 
@@ -83,6 +81,16 @@ screen -S aptos
 Use script below for a quick installation:
 ```
 wget -O aptos.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos.sh && chmod +x aptos.sh && ./aptos.sh
+```
+
+## update aptos
+```
+systemctl stop aptosd
+rm -rf /opt/aptos/data/*
+wget -O /opt/aptos/data/genesis.blob https://devnet.aptoslabs.com/genesis.blob
+wget -O ~/.aptos/waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
+sed -i.bak -e "s/from_config: ".*"/from_config: "$(cat ~/.aptos/waypoint.txt)"/" $HOME/.aptos/config/public_full_node.yaml
+systemctl restart aptosd
 ```
 
 ## update seeds
