@@ -1,6 +1,13 @@
 # aptos node setup
 
 ## run script below to install your aptos node
+
+Installation can take more than 10 minutes, it is recommended to run in a screen session:
+```
+screen -S aptos
+```
+
+Use script below for a quick installation:
 ```
 wget -O aptos_devnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_devnet.sh && chmod +x aptos_devnet.sh && ./aptos_devnet.sh
 ```
