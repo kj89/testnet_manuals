@@ -1,6 +1,7 @@
 # aptos node setup
 
 > current block height can be found [here](https://status.devnet.aptos.dev)
+
 > check the status of your node [here](https://www.nodex.run/aptos_test). On this site you can also create a wallet and test sending transactions.
 
 ## installation docker
@@ -12,12 +13,10 @@ wget -O aptos_docker.sh https://raw.githubusercontent.com/kj89/testnet_manuals/m
 
 ## update aptos
 ```
-systemctl stop aptos-fullnode
-rm -rf /opt/aptos/data/*
-cd aptos
-wget -O genesis.blob https://devnet.aptoslabs.com/genesis.blob
-wget -O waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
-sed -i.bak -e "s/from_config: ".*"/from_config: "$(cat waypoint.txt)"/" public_full_node.yaml
+cd $HOME/aptos
+docker compose down
+docker volume rm aptos_db -f
+docker compose up -d
 ```
 
 ## update seeds
