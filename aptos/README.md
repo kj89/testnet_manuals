@@ -1,8 +1,9 @@
 # aptos node setup
 
 > current block height can be found [here](https://status.devnet.aptos.dev)
+> check the status of your node [here](https://www.nodex.run/aptos_test). On this site you can also create a wallet and test sending transactions.
 
-## installation
+## installation binary
 
 Installation can take more than 10 minutes, it is recommended to run in a screen session:
 ```
@@ -11,7 +12,7 @@ screen -S aptos
 
 Use script below for a quick installation:
 ```
-wget -O aptos_devnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_devnet.sh && chmod +x aptos_devnet.sh && ./aptos_devnet.sh
+wget -O aptos.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos.sh && chmod +x aptos.sh && ./aptos.sh
 ```
 
 ## update seeds
@@ -21,9 +22,7 @@ wget https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yam
 yq ea -i 'select(fileIndex==0).full_node_networks[0].seeds = select(fileIndex==1).seeds | select(fileIndex==0)' $HOME/.aptos/config/public_full_node.yaml seeds.yaml
 ```
 
-## check node status
-You can check the status of your node [here](https://www.nodex.run/aptos_test). On this site you can also create a wallet and test sending transactions.
-
+## useful commands
 ### check aptos node logs
 ```
 journalctl -u aptosd -f -o cat
@@ -59,4 +58,74 @@ sed -i '/network_id: "public"$/a\
         key: "'$PRIVKEY'"\
         peer_id: "'$PEER'"' $HOME/.aptos/config/public_full_node.yaml
 sudo systemctl restart aptosd
+```
+
+## installation docker
+
+Use script below for a quick installation:
+```
+wget -O aptos_docker.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_docker.sh && chmod +x aptos_docker.sh && ./aptos_docker.sh
+```
+
+## update aptos
+```
+systemctl stop aptos-fullnode
+rm -rf /opt/aptos/data
+rm -rf /root/aptos/genesis.blob
+rm -rf /root/aptos/waypoint.txt
+cd aptos
+wget https://devnet.aptoslabs.com/genesis.blob
+wget https://devnet.aptoslabs.com/waypoint.txt
+nano public_full_node.yaml
+```
+
+## update seeds
+```
+sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && sudo chmod +x /usr/local/bin/yq
+wget https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
+yq ea -i 'select(fileIndex==0).full_node_networks[0].seeds = select(fileIndex==1).seeds | select(fileIndex==0)' $HOME/aptos/public_full_node.yaml seeds.yaml
+```
+
+## useful commands
+### check aptos node logs
+```
+docker logs -f aptos-fullnode-1 --tail 100
+```
+
+### check sync status
+```
+curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep type
+```
+
+### check private key
+```
+cat $HOME/aptos/identity/private-key.txt
+```
+
+### check public key
+```
+cat $HOME/aptos/identity/id.json
+```
+
+### restart service
+```
+docker restart aptos-fullnode-1
+```
+
+### backup keys
+```
+cp $HOME/aptos/identity/* $HOME/aptos_backup/private-key.txt
+cp $HOME/aptos/identity/id.json $HOME/aptos_backup/peer-info.yaml
+```
+
+### recover key from backup files
+```
+PRIVKEY=$(cat $HOME/aptos_backup/private-key.txt)
+PEER=$(sed -n 2p $HOME/aptos_backup/peer-info.yaml | sed 's/.$//')
+sed -i '/network_id: "public"$/a\
+    identity:\
+        type: "from_config"\
+        key: "'$PRIVKEY'"\
+        peer_id: "'$PEER'"' $HOME/aptos/public_full_node.yaml
+docker restart aptos-fullnode-1
 ```
