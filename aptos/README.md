@@ -56,6 +56,7 @@ docker restart aptos-fullnode-1
 
 ### backup keys
 ```
+mkdir $HOME/aptos_backup
 cp $HOME/aptos/identity/private-key.txt $HOME/aptos_backup/private-key.txt
 cp $HOME/aptos/identity/id.json $HOME/aptos_backup/peer-info.yaml
 ```
@@ -125,6 +126,13 @@ cat $HOME/.aptos/config/peer-info.yaml
 ### restart service
 ```
 systemctl restart aptosd
+```
+
+### backup keys
+```
+mkdir $HOME/aptos_backup
+cp $HOME/aptos/identity/private-key.txt $HOME/aptos_backup/private-key.txt
+cp $HOME/aptos/identity/id.json $HOME/aptos_backup/peer-info.yaml
 ```
 
 ### recover key from backup files
