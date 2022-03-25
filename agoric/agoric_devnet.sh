@@ -36,13 +36,11 @@ EOF
 cp /usr/local/go/bin/go /usr/bin
 go version
 
-export GIT_BRANCH=agoricdev-8
-git clone https://github.com/Agoric/ag0
+git clone https://github.com/Agoric/ag0 -b agoricdev-8
 cd ag0
 make build
 . $HOME/.bash_profile
 cp $HOME/ag0/build/ag0 /usr/local/bin
-
 
 
 curl https://devnet.agoric.net/network-config > chain.json
