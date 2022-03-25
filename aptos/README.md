@@ -29,6 +29,11 @@ yq ea -i 'select(fileIndex==0).full_node_networks[0].seeds = select(fileIndex==1
 docker restart aptos-fullnode-1
 ```
 
+Get your node information:
+```
+wget -O aptos_identity.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_identity.sh && chmod +x aptos_identity.sh && ./aptos_identity.sh
+```
+
 ## useful commands
 ### check aptos node logs
 ```
