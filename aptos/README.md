@@ -1,6 +1,8 @@
 # aptos node setup
 
-## run script below to install your aptos node
+> current block height can be found [here](https://status.devnet.aptos.dev)
+
+## installation
 
 Installation can take more than 10 minutes, it is recommended to run in a screen session:
 ```
