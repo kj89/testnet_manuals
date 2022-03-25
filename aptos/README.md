@@ -16,7 +16,7 @@ yq ea -i 'select(fileIndex==0).full_node_networks[0].seeds = select(fileIndex==1
 
 ### check aptos node logs
 ```
-docker logs -f aptos-fullnode-1 --tail 100
+journalctl -u aptosd -f -o cat
 ```
 
 ### check sync status
@@ -26,17 +26,17 @@ curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep 
 
 ### check private key
 ```
-cat $HOME/aptos/identity/private-key.txt
+cat $HOME/.aptos/key/private-key.txt
 ```
 
 ### check public key
 ```
-cat $HOME/aptos/identity/id.json
+cat $HOME/.aptos/config/peer-info.yaml
 ```
 
 ### restart docker container
 ```
-docker restart aptos-fullnode-1
+systemctl restart aptosd
 ```
 
 ### remove docker container
