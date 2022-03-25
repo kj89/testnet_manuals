@@ -2,18 +2,18 @@
 . ~/.bashrc
 
 # set vars
-if [ ! $CRESCENT_NODENAME ]; then
-	read -p "Enter node name: " CRESCENT_NODENAME
-	echo 'export CRESCENT_NODENAME='$CRESCENT_NODENAME >> $HOME/.bash_profile
+if [ ! $NODENAME ]; then
+	read -p "Enter node name: " NODENAME
+	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
 fi
-echo "export CRESCENT_WALLET=wallet" >> $HOME/.bash_profile
-echo "export CRESCENT_CHAIN=mooncat-1-1" >> $HOME/.bash_profile
+echo "export WALLET=wallet" >> $HOME/.bash_profile
+echo "export CHAIN_ID=mooncat-1-1" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 echo '================================================='
-echo 'Your node name: ' $CRESCENT_NODENAME
-echo 'Your wallet name: ' $CRESCENT_WALLET
-echo 'Your chain name: ' $CRESCENT_CHAIN
+echo 'Your node name: ' $NODENAME
+echo 'Your wallet name: ' $WALLET
+echo 'Your chain name: ' $CHAIN_ID
 echo '================================================='
 sleep 2
 
@@ -44,10 +44,10 @@ chmod +x crescentd
 sudo mv crescentd /usr/local/bin/
 
 # init
-crescentd init ${CRESCENT_NODENAME} --chain-id $CRESCENT_CHAIN
+crescentd init ${NODENAME} --chain-id $CHAIN_ID
 
 # config
-crescentd config chain-id $CRESCENT_CHAIN
+crescentd config chain-id $CHAIN_ID
 crescentd config keyring-backend file
 
 # download addrbook and genesis
