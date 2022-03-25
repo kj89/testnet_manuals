@@ -13,6 +13,7 @@ yq ea -i 'select(fileIndex==0).full_node_networks[0].seeds = select(fileIndex==1
 ```
 
 ## check node status
+You can check the status of your node [here](https://www.nodex.run/aptos_test). On this site you can also create a wallet and test sending transactions.
 
 ### check aptos node logs
 ```
