@@ -15,6 +15,8 @@ wget -O aptos_docker.sh https://raw.githubusercontent.com/kj89/testnet_manuals/m
 ```
 cd $HOME/aptos
 docker compose down
+wget -O genesis.blob https://devnet.aptoslabs.com/genesis.blob
+wget -O waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
 docker volume rm aptos_db -f
 docker compose up -d
 ```
