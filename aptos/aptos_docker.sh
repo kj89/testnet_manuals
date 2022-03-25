@@ -64,72 +64,42 @@ cd $HOME/aptos
 mkdir identity
 docker compose stop
 rm *
-wget -O https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/docker-compose.yaml
-wget -O https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/public_full_node.yaml
-wget -O https://devnet.aptoslabs.com/genesis.blob
-wget -O https://devnet.aptoslabs.com/waypoint.txt
+wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/docker-compose.yaml
+wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/public_full_node.yaml
+wget https://devnet.aptoslabs.com/genesis.blob
+wget https://devnet.aptoslabs.com/waypoint.txt
 
 echo "=================================================="
 
-# Checking if aptos node identity exists
-create_identity(){
-    echo -e "\e[1m\e[32m4.1 Creating a unique node identity \e[0m"  
-    docker run --rm --name aptos_tools -d -i aptoslab/tools:devnet
-    docker exec -it aptos_tools aptos-operational-tool generate-key --encoding hex --key-type x25519 --key-file $HOME/private-key.txt
-    docker exec -it aptos_tools cat $HOME/private-key.txt > $HOME/aptos/identity/private-key.txt
-    PRIVATE_KEY=$(cat $HOME/aptos/identity/private-key.txt)
-    docker exec -it aptos_tools aptos-operational-tool extract-peer-from-file --encoding hex --key-file $HOME/private-key.txt --output-file $HOME/peer-info.yaml > $HOME/aptos/identity/id.json
-    PEER_ID=$(cat $HOME/aptos/identity/id.json | jq -r '.Result | keys[]')
-    PUBLIC_KEY=$(cat $HOME/aptos/identity/id.json | jq -r '.. | .keys?  | select(.)[]')
+echo -e "\e[1m\e[32m4.1 Creating a unique node identity \e[0m"  
+docker run --rm --name aptos_tools -d -i aptoslab/tools:devnet
+docker exec -it aptos_tools aptos-operational-tool generate-key --encoding hex --key-type x25519 --key-file $HOME/private-key.txt
+docker exec -it aptos_tools cat $HOME/private-key.txt > $HOME/aptos/identity/private-key.txt
+PRIVATE_KEY=$(cat $HOME/aptos/identity/private-key.txt)
+docker exec -it aptos_tools aptos-operational-tool extract-peer-from-file --encoding hex --key-file $HOME/private-key.txt --output-file $HOME/peer-info.yaml > $HOME/aptos/identity/id.json
+PEER_ID=$(cat $HOME/aptos/identity/id.json | jq -r '.Result | keys[]')
+PUBLIC_KEY=$(cat $HOME/aptos/identity/id.json | jq -r '.. | .keys?  | select(.)[]')
 
-    docker stop aptos_tools
-    if [ ! -z "$PRIVATE_KEY" ]
-    then
-        echo -e "\e[1m\e[92m Identity was successfully created \e[0m"
-        echo -e "\e[1m\e[92m Peer Id: \e[0m" $PEER_ID
-        echo -e "\e[1m\e[92m Public Key:  \e[0m" $PUBLIC_KEY
-        echo -e "\e[1m\e[92m Private Key:  \e[0m" $PRIVATE_KEY
-    else
-        rm $HOME/aptos/identity/id.json
-        rm $HOME/aptos/identity/private-key.txt
-        echo -e "\e[1m\e[91m Wasn't able to create the Identity. FullNode will be started without the identity, identity can be added manually \e[0m"
-    fi
-}
-
-if [[ -f $HOME/aptos/identity/id.json && -f $HOME/aptos/identity/private-key.txt ]]
-then
-
-    PEER_ID=$(cat $HOME/aptos/identity/id.json | jq -r '.Result | keys[]')
-    PUBLIC_KEY=$(cat $HOME/aptos/identity/id.json | jq -r '.. | .keys?  | select(.)[]')
-    PRIVATE_KEY=$(cat $HOME/aptos/identity/private-key.txt)
-    
-    if [ ! -z "$PRIVATE_KEY" ]
-    then
-        echo -e "\e[1m\e[92m Peer Id: \e[0m" $PEER_ID
-        echo -e "\e[1m\e[92m Public Key:  \e[0m" $PUBLIC_KEY
-        echo -e "\e[1m\e[92m Private Key:  \e[0m" $PRIVATE_KEY
-    else
-        rm $HOME/aptos/identity/id.json
-        rm $HOME/aptos/identity/private-key.txt
-        create_identity
-    fi
-    echo "=================================================="
-else
-    create_identity
-    echo "=================================================="
-fi
-
+docker stop aptos_tools
 if [ ! -z "$PRIVATE_KEY" ]
 then
-sed -i '/      discovery_method: "onchain"$/a\
+	echo -e "\e[1m\e[92m Identity was successfully created \e[0m"
+	echo -e "\e[1m\e[92m Peer Id: \e[0m" $PEER_ID
+	echo -e "\e[1m\e[92m Public Key:  \e[0m" $PUBLIC_KEY
+	echo -e "\e[1m\e[92m Private Key:  \e[0m" $PRIVATE_KEY
+    sed -i '/      discovery_method: "onchain"$/a\
       identity:\
           type: "from_config"\
           key: "'$PRIVATE_KEY'"\
           peer_id: "'$PEER_ID'"' public_full_node.yaml
+else
+	rm $HOME/aptos/identity/id.json
+	rm $HOME/aptos/identity/private-key.txt
+	echo -e "\e[1m\e[91m Wasn't able to create the Identity. FullNode will be started without the identity, identity can be added manually \e[0m"
 fi
 
 echo -e "\e[1m\e[32m4.2 Updating seeds \e[0m"  
-wget -O https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
+wget -O seeds.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
 yq ea -i 'select(fileIndex==0).full_node_networks[0].seeds = select(fileIndex==1).seeds | select(fileIndex==0)' $HOME/aptos/public_full_node.yaml seeds.yaml
 
 echo -e "\e[1m\e[32m5. Starting Aptos FullNode ... \e[0m" && sleep 1
@@ -158,4 +128,4 @@ echo -e "\e[1m\e[32mTo view logs: \e[0m"
 echo -e "\e[1m\e[39m    docker logs -f aptos-fullnode-1 --tail 5000 \n \e[0m" 
 
 echo -e "\e[1m\e[32mTo stop: \e[0m" 
-echo -e "\e[1m\e[39m    docker compose stop \n \e[0m" 
+echo -e "\e[1m\e[39m    docker compose down \n \e[0m" 
