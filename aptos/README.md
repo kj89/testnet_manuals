@@ -34,14 +34,19 @@ cat $HOME/.aptos/key/private-key.txt
 cat $HOME/.aptos/config/peer-info.yaml
 ```
 
-### restart docker container
+### restart service
 ```
 systemctl restart aptosd
 ```
 
-### remove docker container
+### recover key from backup files
 ```
-cd $HOME/aptos
-docker compose down
-rm -rf $HOME/aptos
+PRIVKEY=$(cat $HOME/aptos_backup/private-key.txt)
+PEER=$(sed -n 2p $HOME/aptos_backup/peer-info.yaml | sed 's/.$//')
+sed -i '/network_id: "public"$/a\
+    identity:\
+        type: "from_config"\
+        key: "'$PRIVKEY'"\
+        peer_id: "'$PEER'"' $HOME/.aptos/config/public_full_node.yaml
+sudo systemctl restart aptosd
 ```
