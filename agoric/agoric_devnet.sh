@@ -36,20 +36,23 @@ EOF
 cp /usr/local/go/bin/go /usr/bin
 go version
 
-git clone https://github.com/Agoric/ag0 -b agoricdev-8
-cd ag0
-make build
-. $HOME/.bash_profile
-cp $HOME/ag0/build/ag0 /usr/local/bin
+git clone https://github.com/Agoric/agoric-sdk -b agoricdev-8
+cd agoric-sdk
 
+# Install and build Agoric Javascript packages
+yarn install
+yarn build
+
+# Install and build Agoric Cosmos SDK support
+(cd packages/cosmic-swingset && make)
 
 curl https://devnet.agoric.net/network-config > chain.json
 chainName=`jq -r .chainName < chain.json`
 echo $chainName
 
-ag0 init --chain-id $chainName $AGORIC_NODENAME
+agd init --chain-id $chainName $AGORIC_NODENAME
 curl https://devnet.agoric.net/genesis.json > $HOME/.agoric/config/genesis.json 
-ag0 unsafe-reset-all
+agd unsafe-reset-all
 peers=$(jq '.peers | join(",")' < chain.json)
 seeds=$(jq '.seeds | join(",")' < chain.json)
 echo $peers
@@ -63,7 +66,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which ag0) start --log_level=info
+ExecStart=$(which agd) start --log_level=info
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
