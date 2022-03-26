@@ -44,8 +44,8 @@ crescentd tx staking create-validator \
   --amount 9000000ucre \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
-  --commission-max-rate "0.1" \
-  --commission-rate "0.01" \
+  --commission-max-rate "0.2" \
+  --commission-rate "0.07" \
   --min-self-delegation "1" \
   --pubkey  $(crescentd tendermint show-validator) \
   --moniker $NODENAME \
@@ -62,22 +62,22 @@ curl -s localhost:26657/status | jq .result | jq .sync_info
 
 To view logs
 ```
-docker logs -f crescent --tail 100
+journalctl -fu crescentd -o cat
 ```
 
 To stop
 ```
-docker stop crescent
+systemctl stop crescentd
 ```
 
 To start
 ```
-docker start crescent
+systemctl start crescentd
 ```
 
 To restart
 ```
-docker restart crescent
+systemctl restart crescentd
 ```
 
 Bond more tokens (if you want increase your validator stake you should bond more to your valoper address):

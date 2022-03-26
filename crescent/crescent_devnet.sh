@@ -17,9 +17,11 @@ echo 'Your chain name: ' $CHAIN_ID
 echo '================================================='
 sleep 2
 
+echo -e "\e[1m\e[32m1. Updating packages... \e[0m" && sleep 1
 # update
 sudo apt update && sudo apt upgrade -y
 
+echo -e "\e[1m\e[32m2. Installing dependencies... \e[0m" && sleep 1
 # install packages
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu net-tools -y
 
@@ -34,6 +36,7 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
 source ~/.bash_profile
 go version
 
+echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 git clone https://github.com/crescent-network/crescent
 cd crescent
@@ -43,6 +46,7 @@ make install
 chmod +x crescentd
 sudo mv crescentd /usr/local/bin/
 
+echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # init
 crescentd init ${NODENAME} --chain-id $CHAIN_ID
 
