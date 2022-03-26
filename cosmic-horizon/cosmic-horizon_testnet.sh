@@ -36,6 +36,10 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
 source ~/.bash_profile
 go version
 
+# install starport
+curl https://get.starport.network/starport | bash
+sudo mv starport /usr/local/bin/
+
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 git clone https://github.com/cosmic-horizon/coho.git
