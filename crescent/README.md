@@ -85,6 +85,21 @@ Bond more tokens (if you want increase your validator stake you should bond more
 crescentd tx staking delegate $VALOPER_ADDRESS 10000000ucre --from $WALLET --chain-id $CHAIN_ID --fees 5000ucre
 ```
 
+Withdraw rewards
+```
+crescentd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID
+```
+
+Get wallet balance
+```
+crescentd query bank balances $WALLET_ADDRESS
+```
+
+Change commision
+```
+crescentd tx staking edit-validator --commission-rate "0.02" --moniker=$NODENAME --chain-id=$CHAIN_ID --from=$WALLET
+```
+
 Restore wallet key
 ```
 crescentd keys add $WALLET --recover

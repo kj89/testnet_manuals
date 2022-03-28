@@ -21,7 +21,6 @@ echo "=================================================="
 echo -e "\e[1m\e[32m2. Installing required dependencies... \e[0m" && sleep 1
 sudo apt install jq -y
 sudo apt install git -y
-sudo apt install jq -y
 # manually installing yq
 sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64
 sudo chmod +x /usr/local/bin/yq
