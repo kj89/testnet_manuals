@@ -2,18 +2,18 @@
 . ~/.bashrc
 
 # set vars
-if [ ! $ARCHWAY_NODENAME ]; then
-	read -p "Enter node name: " ARCHWAY_NODENAME
-	echo 'export ARCHWAY_NODENAME='$ARCHWAY_NODENAME >> $HOME/.bash_profile
+if [ ! $NODENAME ]; then
+	read -p "Enter node name: " NODENAME
+	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
 fi
-echo "export ARCHWAY_WALLET=wallet" >> $HOME/.bash_profile
-echo "export ARCHWAY_CHAIN=augusta-1" >> $HOME/.bash_profile
+echo "export WALLET=wallet" >> $HOME/.bash_profile
+echo "export CHAIN_ID=augusta-1" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 echo '================================================='
-echo 'Your node name: ' $ARCHWAY_NODENAME
-echo 'Your wallet name: ' $ARCHWAY_WALLET
-echo 'Your chain name: ' $ARCHWAY_CHAIN
+echo 'Your node name: ' $NODENAME
+echo 'Your wallet name: ' $WALLET
+echo 'Your chain name: ' $CHAIN_ID
 echo '================================================='
 sleep 2
 
@@ -33,10 +33,10 @@ chmod +x archwayd
 sudo mv archwayd /usr/local/bin/
 
 # init
-archwayd init ${ARCHWAY_NODENAME} --chain-id $ARCHWAY_CHAIN
+archwayd init ${NODENAME} --chain-id $CHAIN_ID
 
 # config
-archwayd config chain-id $ARCHWAY_CHAIN
+archwayd config chain-id $CHAIN_ID
 archwayd config keyring-backend file
 
 # download addrbook and genesis
