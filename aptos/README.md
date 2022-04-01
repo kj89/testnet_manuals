@@ -139,17 +139,19 @@ systemctl restart aptosd
 ### backup keys
 ```
 mkdir $HOME/aptos_backup
-cp ~/.aptos/key/private-key.txt $HOME/aptos_backup/private-key.txt
-cp ~/.aptos/config/peer-info.yaml $HOME/aptos_backup/id.json
+cp $HOME/.aptos/key/private-key.txt $HOME/aptos_backup/private-key.txt
+cp $HOME/.aptos/config/peer-info.yaml $HOME/aptos_backup/id.json
 ```
 
 ### recover key from backup files
 ```
 systemctl stop aptosd
 rm -rf /opt/aptos/data/*
-PRIVATE_KEY=$(cat $HOME/aptos_backup/private-key.txt)
-PEER_ID=$(cat $HOME/aptos_backup/id.json | jq -r '.. | .keys?  | select(.)[]')
-yq e -i '.full_node_networks[0].identity.key="'$PRIVATE_KEY'"' $HOME/aptos/public_full_node.yaml \
-&& yq e -i '.full_node_networks[0].identity.peer_id="'$PEER_ID'"' $HOME/aptos/public_full_node.yaml
+cp $HOME/aptos_backup/private-key.txt $HOME/.aptos/key/private-key.txt
+cp $HOME/aptos_backup/id.json $HOME/.aptos/config/peer-info.yaml
+PRIVATE_KEY=$(cat $HOME/.aptos/key/private-key.txt)
+PEER_ID=$(cat $HOME/.aptos/config/peer-info.yaml | jq -r '.. | .keys?  | select(.)[]')
+yq e -i '.full_node_networks[0].identity.key="'$PRIVATE_KEY'"' $HOME/.aptos/config/public_full_node.yaml \
+&& yq e -i '.full_node_networks[0].identity.peer_id="'$PEER_ID'"' $HOME/.aptos/config/public_full_node.yaml
 systemctl start aptosd
 ```
