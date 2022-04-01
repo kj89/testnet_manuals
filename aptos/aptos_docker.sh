@@ -71,27 +71,30 @@ wget https://devnet.aptoslabs.com/waypoint.txt
 
 echo "=================================================="
 
-echo -e "\e[1m\e[32m4.1 Creating a unique node identity \e[0m"  
+echo -e "\e[1m\e[32m4.1 Creating a copy of your current keys ... \e[0m" && sleep 1
+
+# make a copy of your keys
+mkdir $HOME/aptos_backup
+cp $HOME/aptos/identity/* $HOME/aptos_backup
+
+echo -e "\e[1m\e[32m4.2 Generating a unique node identity \e[0m"
+rm $HOME/aptos/identity/* -rf
 docker run --rm --name aptos_tools -d -i aptoslab/tools:devnet
 docker exec -it aptos_tools aptos-operational-tool generate-key --encoding hex --key-type x25519 --key-file $HOME/private-key.txt
 docker exec -it aptos_tools cat $HOME/private-key.txt > $HOME/aptos/identity/private-key.txt
-PRIVATE_KEY=$(cat $HOME/aptos/identity/private-key.txt)
 docker exec -it aptos_tools aptos-operational-tool extract-peer-from-file --encoding hex --key-file $HOME/private-key.txt --output-file $HOME/peer-info.yaml > $HOME/aptos/identity/id.json
-PEER_ID=$(cat $HOME/aptos/identity/id.json | jq -r '.Result | keys[]')
-PUBLIC_KEY=$(cat $HOME/aptos/identity/id.json | jq -r '.. | .keys?  | select(.)[]')
-
+PRIVATE_KEY=$(cat $HOME/aptos/identity/private-key.txt)
+PEER_ID=$(cat $HOME/aptos/identity/id.json | jq -r '.. | .keys?  | select(.)[]')
 docker stop aptos_tools
+
 if [ ! -z "$PRIVATE_KEY" ]
 then
 	echo -e "\e[1m\e[92m Identity was successfully created \e[0m"
 	echo -e "\e[1m\e[92m Peer Id: \e[0m" $PEER_ID
-	echo -e "\e[1m\e[92m Public Key:  \e[0m" $PUBLIC_KEY
 	echo -e "\e[1m\e[92m Private Key:  \e[0m" $PRIVATE_KEY
-    sed -i '/      discovery_method: "onchain"$/a\
-      identity:\
-          type: "from_config"\
-          key: "'$PRIVATE_KEY'"\
-          peer_id: "'$PEER_ID'"' public_full_node.yaml
+	yq e -i '.full_node_networks[0].identity.type="from_config"' public_full_node.yaml \
+	&& yq e -i '.full_node_networks[0].identity.key="'$PRIVATE_KEY'"' public_full_node.yaml \
+	&& yq e -i '.full_node_networks[0].identity.peer_id="'$PEER_ID'"' public_full_node.yaml 
 else
 	rm $HOME/aptos/identity/id.json
 	rm $HOME/aptos/identity/private-key.txt
@@ -121,11 +124,20 @@ then
     echo -e "\e[1m\e[39m"    $HOME/aptos/identity/id.json" \n \e[0m"
 fi
 
-echo -e "\e[1m\e[32mTo check sync status: \e[0m" 
+echo -e "\e[1m\e[32mVerify initial synchronization: \e[0m" 
 echo -e "\e[1m\e[39m    curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep type \n \e[0m" 
+
+echo -e "\e[1m\e[32mVerify outbound network connections: \e[0m" 
+echo -e "\e[1m\e[39m    curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_connections \n \e[0m" 
+
+echo -e "\e[1m\e[32mGet your node identity information: \e[0m" 
+echo -e "\e[1m\e[39m    wget -O aptos_identity.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_identity.sh && chmod +x aptos_identity.sh && ./aptos_identity.sh \n \e[0m" 
 
 echo -e "\e[1m\e[32mTo view logs: \e[0m" 
 echo -e "\e[1m\e[39m    docker logs -f aptos-fullnode-1 --tail 5000 \n \e[0m" 
+
+echo -e "\e[1m\e[32mTo stop: \e[0m" 
+echo -e "\e[1m\e[39m    docker compose down \n \e[0m" 
 
 echo -e "\e[1m\e[32mTo stop: \e[0m" 
 echo -e "\e[1m\e[39m    docker compose down \n \e[0m" 
