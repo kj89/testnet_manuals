@@ -17,7 +17,11 @@ cd $HOME/aptos
 docker compose down
 wget -O genesis.blob https://devnet.aptoslabs.com/genesis.blob
 wget -O waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
+wget -O seeds.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
 docker volume rm aptos_db -f
+PEER_ID=$(cat identity/id.json | jq -r '.. | .keys?  | select(.)[]')
+yq e -i '.full_node_networks[0].identity.peer_id="'$PEER_ID'"' public_full_node.yaml
+yq ea -i 'select(fileIndex==0).full_node_networks[0].seeds = select(fileIndex==1).seeds | select(fileIndex==0)' public_full_node.yaml seeds.yaml
 docker compose up -d
 ```
 
