@@ -1,1 +1,76 @@
-{}
+seeds:
+  # @user : nazario.eth#0001, Aptos Admin
+  bb14af025d226288a3488b4433cf5cb54d6a710365a2d95ac6ffbd9b9198a86a:
+    addresses:
+    - "/dns4/pfn0.node.devnet.aptoslabs.com/tcp/6182/ln-noise-ik/bb14af025d226288a3488b4433cf5cb54d6a710365a2d95ac6ffbd9b9198a86a/ln-handshake/0"
+    role: "Upstream"
+  bb14af025d226288a3488b4433cf5cb54d6a710365a2d95ac6ffbd9b9198a86a:
+    addresses:
+    - "/ip4/100.20.221.187/tcp/6182/ln-noise-ik/bb14af025d226288a3488b4433cf5cb54d6a710365a2d95ac6ffbd9b9198a86a/ln-handshake/0"
+    role: "Upstream"
+  # @user : qyeah#0983
+  6ad00124671be58bf72f3de310b208e52da4e6d3ef960182adbf904e7a21631a:
+    addresses:
+    - "/ip4/164.70.101.95/tcp/6180/ln-noise-ik/6ad00124671be58bf72f3de310b208e52da4e6d3ef960182adbf904e7a21631a/ln-handshake/0"
+    role: "Upstream"
+  # @user : tsn09#4695
+  0cc4b9a8bf955d07a5e9c32698830c71164d08726c4f340c8a1f7babdde63a5a:
+    addresses:
+    - "/ip4/161.97.162.196/tcp/6180/ln-noise-ik/0cc4b9a8bf955d07a5e9c32698830c71164d08726c4f340c8a1f7babdde63a5a/ln-handshake/0"
+    role: "Upstream"
+  # @user : dench7#2989
+  113848fd5e61f37cb921860a1a705312349d150d27c73488ba2a26da0f1c711d:
+    addresses:
+    - "/dns4/pfn0.node.devnet.aptoslabs.com/tcp/6182/ln-noise-ik/113848fd5e61f37cb921860a1a705312349d150d27c73488ba2a26da0f1c711d/ln-handshake/0"
+    role: "Upstream"
+  113848fd5e61f37cb921860a1a705312349d150d27c73488ba2a26da0f1c711d:
+    addresses:
+    - "/ip4/144.126.146.218/tcp/6180/ln-noise-ik/113848fd5e61f37cb921860a1a705312349d150d27c73488ba2a26da0f1c711d/ln-handshake/0"
+    role: "Upstream"
+  # @user : DorianGray99#7077
+  1c499740e3cc7422513b53e326d715bc1ee7baf0769e8c7d0d6c219dfa4f0146:
+    addresses:
+    - "/ip4/168.119.66.182/tcp/6180/ln-noise-ik/1c499740e3cc7422513b53e326d715bc1ee7baf0769e8c7d0d6c219dfa4f0146/ln-handshake/0"
+    role: "Upstream"
+  # @user : mammam49#0674
+  b61a2f2ff79c64f644518ad2edd75069584e42f628bd8e85bc48dc5a3be13165:
+    addresses:
+    - "/ip4/78.141.213.118/tcp/6180/ln-noise-ik/b61a2f2ff79c64f644518ad2edd75069584e42f628bd8e85bc48dc5a3be13165/ln-handshake/0"
+    role: "Upstream"
+  # @user : ahtbatd#9382
+  cfcab2df1416abac68b893ae2608e1d334c97de9cfd66326ce6b2a19b745733e:
+    addresses:
+    - "/ip4/110.40.182.212/tcp/6180/ln-noise-ik/cfcab2df1416abac68b893ae2608e1d334c97de9cfd66326ce6b2a19b745733e/ln-handshake/0"
+    role: "Upstream"
+  2f04a89ad150eb78ecf9c8358214e4bd5a4c2f0dbf5148b0a84c0f11e761231f:
+    addresses:
+    - "/ip4/42.192.143.216/tcp/6180/ln-noise-ik/2f04a89ad150eb78ecf9c8358214e4bd5a4c2f0dbf5148b0a84c0f11e761231f/ln-handshake/0"
+    role: "Upstream"
+  68ccb17f07d1788c647244a44747423a81d0de8e671ffa16ba6a8b71229c883c:
+    addresses:
+    - "/ip4/110.40.154.249/tcp/6180/ln-noise-ik/68ccb17f07d1788c647244a44747423a81d0de8e671ffa16ba6a8b71229c883c/ln-handshake/0"
+    role: "Upstream"
+  7325e7508f466ba1673d39aac49b4c1058149bed05fd66e663c2d7c5f9e5263b:
+    addresses:
+    - "/ip4/1.14.125.22/tcp/6180/ln-noise-ik/7325e7508f466ba1673d39aac49b4c1058149bed05fd66e663c2d7c5f9e5263b/ln-handshake/0"
+    role: "Upstream"
+  # @user : xorgal#5500
+  6f97f44912c84154b19bc34a383d3efc7430180aca5c6b5989a8ea68a389a765:
+    addresses:
+    - "/ip4/38.242.228.130/tcp/6180/ln-noise-ik/6f97f44912c84154b19bc34a383d3efc7430180aca5c6b5989a8ea68a389a765/ln-handshake/0"
+    role: "Upstream"
+  # @user : fanyanjun#7822
+  96e38eb59195dd0f65d575624ce085047c90854f79ecfbc6a6b8fc937c874378:
+    addresses:
+    - "/ip4/43.128.114.2/tcp/6182/ln-noise-ik/96e38eb59195dd0f65d575624ce085047c90854f79ecfbc6a6b8fc937c874378/ln-handshake/0"
+    role: "Upstream"
+  # @user : wenever#9585
+  de1cd5a58ddaf50fbf4cd45ef66a6e55463167d09ce1abe0a9da01f1c41b105a:
+    addresses:
+    - "/dns4/183.178.180.53/tcp/6180/ln-noise-ik/de1cd5a58ddaf50fbf4cd45ef66a6e55463167d09ce1abe0a9da01f1c41b105a/ln-handshake/0"
+    role: "Upstream"
+  # @user : BIGBANG#3091
+  7e63749838899696be0dec6214e98e71fbd9aa46cd069f5c8f6c2d8ae474e668:
+    addresses:
+    - "/ip4/38.242.228.221/tcp/6180/ln-noise-ik/7e63749838899696be0dec6214e98e71fbd9aa46cd069f5c8f6c2d8ae474e668/ln-handshake/0"
+    role: "Upstream"
