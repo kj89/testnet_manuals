@@ -5,15 +5,6 @@ then
     PUBLIC_KEY=$(cat $HOME/aptos/identity/id.json | jq -r '.. | .keys?  | select(.)[]')
     PRIVATE_KEY=$(cat $HOME/aptos/identity/private-key.txt)
     echo -en "\n"
-    if [ ! -f $HOME/aptos/identity/peer-info.yaml ]
-    then
-        echo "---
-"$PEER_ID":
-  addresses: []
-  keys:
-    - "$PUBLIC_KEY"
-  role: Downstream" > $HOME/aptos/identity/peer-info.yaml
-    fi
     echo "=================================================="
     echo -e "\e[1m\e[32m1. peer-info.yaml file content \e[0m" 
     echo -en "\n"
@@ -22,7 +13,7 @@ then
     echo "=================================================="
     echo -e "\e[1m\e[32m2. Your upstream peer details. You can share your peer info with other users \e[0m" 
     echo -e ' 
-'$PEER_ID':
+'$PUBLIC_KEY':
     addresses: 
     - "/ip4/'$(ip route get 8.8.8.8 | sed -n "/src/{s/.*src *\([^ ]*\).*/\1/p;q}")'/tcp/6180/ln-noise-ik/'$PUBLIC_KEY'/ln-handshake/0" 
     role: "Upstream"'
