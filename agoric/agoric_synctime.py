@@ -3,7 +3,7 @@ from time import sleep
 from datetime import datetime, timedelta
 
 my_rpc = 'http://localhost:26657/status'
-# public_rpc = 'https://rpc-agoric.nodes.guru/status'
+public_rpc = 'https://rpc-agoric.nodes.guru/status'
 test_time = 10 # test for 10 minutes
 
 
@@ -24,8 +24,8 @@ if get_sync_status(my_rpc) == False:
     print('Your node is already synced!')
 else:
     current_block = get_block_height(my_rpc)
-#   latest_block = get_block_height(public_rpc)
-    latest_block = int(input("Enter latest block height: "))
+    latest_block = get_block_height(public_rpc)
+#   latest_block = int(input("Enter latest block height: "))
     blocks_left = latest_block - current_block
     
     print(f'Your current block: {current_block}')
