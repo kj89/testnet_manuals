@@ -14,7 +14,7 @@ seeds:
     - "/ip4/159.69.208.57/tcp/6180/ln-noise-ik/eda744627b8307937dacea4a5c50a55ce39b97bd9d9157ef0c28399e81318d13/ln-handshake/0"
     role: "Upstream"
   # @user: jdoe#5812
-  d894cded087f19b567648ffefa4277ab5dfa8623d0020eb7c74bb4f74e853079:
+  822a951c4ef252d7dfe49ef0e20768ac51bfaaae261ed9d9bceb1835719aa536:
     addresses:
-    - "/ip4/135.181.103.127/tcp/6180/ln-noise-ik/d894cded087f19b567648ffefa4277ab5dfa8623d0020eb7c74bb4f74e853079/ln-handshake/0"
+    - "/ip4/135.181.103.127/tcp/6180/ln-noise-ik/822a951c4ef252d7dfe49ef0e20768ac51bfaaae261ed9d9bceb1835719aa536/ln-handshake/0"
     role: "Upstream"
