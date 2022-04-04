@@ -4,6 +4,8 @@
 
 > check the status of your node [here](https://www.nodex.run/aptos_test). On this site you can also create a wallet and test sending transactions.
 
+> another node tester website with nice metric visualizer [here](http://node-tools.net/aptos/tester/)
+
 ## installation docker
 
 Use script below for a quick installation:
