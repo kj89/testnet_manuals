@@ -2,7 +2,7 @@
 
 ## run script below to install your umee node
 ```
-wget -O umee_mainnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/umee/umee_mainnet.sh && chmod +x umee_mainnet.sh && ./umee_mainnet.sh
+wget -O umee.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/umee/umee.sh && chmod +x umee.sh && ./umee.sh
 ```
 
 ### sync blocks using [stakeangle snapshot](https://stakeangle.com/state-sync/umee)
