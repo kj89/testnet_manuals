@@ -17,21 +17,21 @@ fi
 sleep 1 && curl -s https://api.nodes.guru/logo.sh | bash && sleep 1
 
 function setupVars {
-	if [ ! $UMEE_NODENAME ]; then
-		read -p "Enter node name: " UMEE_NODENAME
-		echo 'export UMEE_NODENAME='\"${UMEE_NODENAME}\" >> $HOME/.bash_profile
+	if [ ! $NODENAME ]; then
+		read -p "Enter node name: " NODENAME
+		echo 'export NODENAME='\"${NODENAME}\" >> $HOME/.bash_profile
 	fi
-	if [ ! $UMEE_WALLET ]; then
-		read -p "Enter wallet name: " UMEE_WALLET
-		echo 'export UMEE_WALLET='\"${UMEE_WALLET}\" >> $HOME/.bash_profile
+	if [ ! $WALLET ]; then
+		read -p "Enter wallet name: " WALLET
+		echo 'export WALLET='\"${WALLET}\" >> $HOME/.bash_profile
 	fi
-	echo -e '\n\e[42mYour wallet name:' $UMEE_WALLET '\e[0m\n'
-	if [ ! $UMEE_PASSWORD ]; then
-		read -p "Enter wallet password: " UMEE_PASSWORD
-		echo 'export UMEE_PASSWORD='\"${UMEE_PASSWORD}\" >> $HOME/.bash_profile
+	echo -e '\n\e[42mYour wallet name:' $WALLET '\e[0m\n'
+	if [ ! $WALLET_PASSWORD ]; then
+		read -p "Enter wallet password: " WALLET_PASSWORD
+		echo 'export WALLET_PASSWORD='\"${WALLET_PASSWORD}\" >> $HOME/.bash_profile
 	fi
-	echo -e '\n\e[42mYour wallet password:' $UMEE_PASSWORD '\e[0m\n'
-	echo 'export UMEE_CHAIN=umee-1' >> $HOME/.bash_profile
+	echo -e '\n\e[42mYour wallet password:' $WALLET_PASSWORD '\e[0m\n'
+	echo 'export CHAIN_ID=umee-1' >> $HOME/.bash_profile
 	echo 'source $HOME/.bashrc' >> $HOME/.bash_profile
 	. $HOME/.bash_profile
 	sleep 1
@@ -66,42 +66,42 @@ function createKey {
 echo -e '\n\e[42mGenerating Umee keys...\e[0m\n' && sleep 1
 echo -e "\n\e[45mWait some time before creating key...\e[0m\n"
 sleep 5
-(echo $UMEE_PASSWORD; echo $UMEE_PASSWORD) | $HOME/go/bin/umeed keys add $UMEE_WALLET --output json &>> $HOME/"$UMEE_CHAIN"_validator_key.json
+(echo $WALLET_PASSWORD; echo $WALLET_PASSWORD) | $HOME/go/bin/umeed keys add $WALLET --output json &>> $HOME/"$CHAIN_ID"_validator_key.json
 echo -e "You can find your mnemonic by the following command:"
-echo -e "\e[32mcat $HOME/\"$UMEE_CHAIN\"_validator_key.json\e[39m"
-export UMEE_WALLET_ADDRESS=`echo $UMEE_PASSWORD | $HOME/go/bin/umeed keys show $UMEE_WALLET -a`
-echo 'export UMEE_WALLET_ADDRESS='${UMEE_WALLET_ADDRESS} >> $HOME/.bash_profile
+echo -e "\e[32mcat $HOME/\"$CHAIN_ID\"_validator_key.json\e[39m"
+export WALLET_ADDRESS=`echo $WALLET_PASSWORD | $HOME/go/bin/umeed keys show $WALLET -a`
+echo 'export WALLET_ADDRESS='${WALLET_ADDRESS} >> $HOME/.bash_profile
 . $HOME/.bash_profile
-echo -e '\n\e[45mYour wallet address:' $UMEE_WALLET_ADDRESS '\e[0m\n'
+echo -e '\n\e[45mYour wallet address:' $WALLET_ADDRESS '\e[0m\n'
 }
 
 function requestFunds {
 echo -e "\n\e[45mRequesting funds...\e[0m\n"
-curl -X POST -d "{\"address\": \"$UMEE_WALLET_ADDRESS\"}" -H "Content-Type: application/json" https://faucet.umee.nodes.guru
+curl -X POST -d "{\"address\": \"$WALLET_ADDRESS\"}" -H "Content-Type: application/json" https://faucet.umee.nodes.guru
 echo -e "\n\e[45mVerify balance...\e[0m\n"
 sleep 10
-umeeAmountTmp=`$HOME/go/bin/umeed q bank balances $UMEE_WALLET_ADDRESS | grep amount | sed -E 's/.*"([^"]+)".*/\1/'`
+umeeAmountTmp=`$HOME/go/bin/umeed q bank balances $WALLET_ADDRESS | grep amount | sed -E 's/.*"([^"]+)".*/\1/'`
 if [ "$umeeAmountTmp" -gt 0 ]; then
 	echo -e "Your wallet balance was \e[32mfunded\e[39m!"
 else
 	echo -e "Your wallet balance \e[31mwas not funded\e[39m, please request again.\e[0m"
-	echo -e "Request command: \e[7mcurl -X POST -d '{\"address\":\"$UMEE_WALLET_ADDRESS\"}' -H 'Content-Type: application/json' https://faucet.umee.nodes.guru\e[0m"
-	echo -e "Check your wallet balance: \e[7m$(which umeed) q bank balances ${UMEE_WALLET_ADDRESS}\e[0m"
+	echo -e "Request command: \e[7mcurl -X POST -d '{\"address\":\"$WALLET_ADDRESS\"}' -H 'Content-Type: application/json' https://faucet.umee.nodes.guru\e[0m"
+	echo -e "Check your wallet balance: \e[7m$(which umeed) q bank balances ${WALLET_ADDRESS}\e[0m"
 fi
 }
 
 function createValidator {
 echo -e "\n\e[45mCreating validator...\e[0m\n"
-echo $UMEE_PASSWORD | $HOME/go/bin/umeed tx staking create-validator -y --amount=9500000uumee --pubkey=`$HOME/go/bin/umeed tendermint show-validator` --moniker=$UMEE_NODENAME --commission-rate=0.10 --commission-max-rate=0.20 --commission-max-change-rate=0.01 --min-self-delegation=1 --from=$UMEE_WALLET --chain-id=$UMEE_CHAIN --fees 1000uumee
+echo $WALLET_PASSWORD | $HOME/go/bin/umeed tx staking create-validator -y --amount=9500000uumee --pubkey=`$HOME/go/bin/umeed tendermint show-validator` --moniker=$NODENAME --commission-rate=0.10 --commission-max-rate=0.20 --commission-max-change-rate=0.01 --min-self-delegation=1 --from=$WALLET --chain-id=$CHAIN_ID --fees 1000uumee
 echo -e "\n\e[45mVerify your validator status...\e[0m\n"
 sleep 30
 umeeVPTmp=`curl -s localhost:26657/status | jq .result.validator_info.voting_power | sed -E 's/.*"([^"]+)".*/\1/'`
-UMEE_VALOPER=$(echo $UMEE_PASSWORD | $HOME/go/bin/umeed keys show $UMEE_WALLET --bech val -a)
+UMEE_VALOPER=$(echo $WALLET_PASSWORD | $HOME/go/bin/umeed keys show $WALLET --bech val -a)
 umeeValidatorString=$($HOME/go/bin/umeed query staking validators --limit 1000 -o json | jq -r '.validators[] | [.operator_address, .status] | @csv' | grep $UMEE_VALOPER | column -t -s",")
 umeeValidatorStatus=$(echo $umeeValidatorString | awk {'print $2'})
 if [ -z "${umeeValidatorString}" ]; then
 	echo -e "Your validator was \e[31mnot created\e[39m.\e[0m"
-	echo -e "Create validator command: \n\e[7m$HOME/go/bin/umeed tx staking create-validator -y --amount=9500000uumee --pubkey=`$HOME/go/bin/umeed tendermint show-validator` --moniker=$UMEE_NODENAME --commission-rate=0.10 --commission-max-rate=0.20 --commission-max-change-rate=0.01 --min-self-delegation=1 --from=$UMEE_WALLET --chain-id=$UMEE_CHAIN --fees 1000uumee\e[0m"
+	echo -e "Create validator command: \n\e[7m$HOME/go/bin/umeed tx staking create-validator -y --amount=9500000uumee --pubkey=`$HOME/go/bin/umeed tendermint show-validator` --moniker=$NODENAME --commission-rate=0.10 --commission-max-rate=0.20 --commission-max-change-rate=0.01 --min-self-delegation=1 --from=$WALLET --chain-id=$CHAIN_ID --fees 1000uumee\e[0m"
 else
 	if [ "$umeeValidatorStatus" = '"BOND_STATUS_BONDED"' ]; then
 		echo -e "You are \e[32mactive validator\e[39m now!"
@@ -137,7 +137,7 @@ function installSoftware {
 	git clone --depth 1 --branch v1.0.3 https://github.com/umee-network/umee.git
 	cd umee && make install
 	umeed version
-	umeed init ${UMEE_NODENAME} --chain-id $UMEE_CHAIN
+	umeed init ${NODENAME} --chain-id $CHAIN_ID
 	wget -O $HOME/.umee/config/genesis.json "https://raw.githubusercontent.com/umee-network/umee/main/networks/umee-1/genesis.json"
 	sha256sum $HOME/.umee/config/genesis.json
 	umeed unsafe-reset-all
