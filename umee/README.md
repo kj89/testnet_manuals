@@ -193,7 +193,7 @@ source $HOME/.bash_profile
 
 ### Install peggo
 ```
-PEGGO_VERSION=v0.3.0
+PEGGO_VERSION=v0.2.6
 wget https://github.com/umee-network/peggo/releases/download/$PEGGO_VERSION/peggo-$PEGGO_VERSION-linux-amd64.tar.gz
 tar xvf peggo-$PEGGO_VERSION-linux-amd64.tar.gz
 mv peggo-$PEGGO_VERSION-linux-amd64/peggo /usr/local/bin
