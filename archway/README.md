@@ -67,11 +67,6 @@ Withdraw rewards
 archwayd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID
 ```
 
-Get wallet balance
-```
-archwayd query bank balances $WALLET_ADDRESS
-```
-
 Change commision
 ```
 archwayd tx staking edit-validator --commission-rate "0.02" --moniker=$NODENAME --chain-id=$CHAIN_ID --from=$WALLET
