@@ -15,6 +15,15 @@ source $HOME/.bash_profile
 archwayd keys add $WALLET
 ```
 
+### save wallet info
+```
+WALLET_ADDRESS=$(archwayd keys show $WALLET -a)
+VALOPER_ADDRESS=$(archwayd keys show $WALLET --bech val -a)
+echo 'export WALLET_ADDRESS='${WALLET_ADDRESS} >> $HOME/.bash_profile
+echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
 ### create validator
 ```
 archwayd tx staking create-validator \
@@ -34,9 +43,31 @@ archwayd tx staking create-validator \
 ## Usefull commands
 To check sync status
 ```
-curl -s localhost:26657/status | jq .result | jq .sync_info
+curl -s localhost:26657/status | jq .result.sync_info
 ```
 
+### Service commands
+To view logs
+```
+journalctl -fu archwayd -o cat
+```
+
+To stop
+```
+systemctl stop archwayd
+```
+
+To start
+```
+systemctl start archwayd
+```
+
+To restart
+```
+systemctl restart archwayd
+```
+
+### Docker commands
 To view logs
 ```
 docker logs -f archway --tail 100
@@ -57,6 +88,7 @@ To restart
 docker restart archway
 ```
 
+### cosmos commands
 Bond more tokens (if you want increase your validator stake you should bond more to your valoper address):
 ```
 archwayd tx staking delegate $VALOPER_ADDRESS 10000000uaugust --from $WALLET --chain-id $CHAIN_ID --fees 5000uaugust
@@ -74,7 +106,7 @@ archwayd keys show $WALLET --bech val -a
 
 Get wallet balance
 ```
-archwayd query bank balances <WALLET_ADDRESS>
+archwayd query bank balances WALLET_ADDRESS
 ```
 
 Change commision
