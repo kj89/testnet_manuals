@@ -15,15 +15,6 @@ source $HOME/.bash_profile
 archwayd keys add $WALLET
 ```
 
-### save wallet info
-```
-WALLET_ADDRESS=$(archwayd keys show $WALLET -a)
-VALOPER_ADDRESS=$(archwayd keys show $WALLET --bech val -a)
-echo 'export WALLET_ADDRESS='${WALLET_ADDRESS} >> $HOME/.bash_profile
-echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
-source $HOME/.bash_profile
-```
-
 ### create validator
 ```
 archwayd tx staking create-validator \
