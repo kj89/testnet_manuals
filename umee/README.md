@@ -5,6 +5,37 @@
 wget -O umee_mainnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/umee/umee_mainnet.sh && chmod +x umee_mainnet.sh && ./umee_mainnet.sh
 ```
 
+### sync blocks using [stakeangle snapshot](https://stakeangle.com/state-sync/umee)
+Stop existing service and reset db
+```
+sudo systemctl stop umeed
+umeed unsafe-reset-all
+```
+
+Fill variables with data for State Sync
+```
+RPC="https://umee-rpc.stakeangle.com:443"
+RECENT_HEIGHT=$(curl -s $RPC/block | jq -r .result.block.header.height)
+TRUST_HEIGHT=$((RECENT_HEIGHT - 2000))
+TRUST_HASH=$(curl -s "$RPC/block?height=$TRUST_HEIGHT" | jq -r .result.block_id.hash)
+PEER="c12ac110e0249f0cef55599b335892444e4a21ac@142.132.198.227:26656"
+```
+
+Add variable values to config.toml
+```
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$RPC,$RPC\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$TRUST_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.umee/config/config.toml
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEER\"/" $HOME/.umee/config/config.toml
+```
+
+Start service and open journal
+```
+sudo systemctl restart umeed
+sudo journalctl -u umeed -f -o cat
+```
+
 ### load variables
 ```
 source $HOME/.bash_profile
