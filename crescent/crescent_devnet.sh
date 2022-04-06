@@ -40,7 +40,7 @@ echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 git clone https://github.com/crescent-network/crescent
 cd crescent
-git checkout v1.0.0-rc1
+git checkout v1.0.0-rc2
 make install
 
 chmod +x crescentd
@@ -55,7 +55,11 @@ crescentd config chain-id $CHAIN_ID
 crescentd config keyring-backend file
 
 # download addrbook and genesis
-wget -qO $HOME/.crescent/config/genesis.json "http://5.9.119.23/snapshots/crescent/genesis.json"
+git clone https://github.com/crescent-network/launch
+cd launch/testnet/
+rm ~/.crescent/config/genesis.json
+tar -zxvf genesis_collect-gentxs.json.tar.gz
+cp genesis_collect-gentxs.json ~/.crescent/config/genesis.json
 
 # set peers and seeds
 SEEDS="1fe40daaf2643fd3857e30f86ff30ea82bf1c03b@54.169.204.99:26656"
