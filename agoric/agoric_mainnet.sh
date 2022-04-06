@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# wget -q -O agoric_mainnet.sh https://api.nodes.guru/agoric_mainnet.sh && chmod +x agoric_mainnet.sh && sudo /bin/bash agoric_mainnet.sh
 . ~/.bashrc
 if [ ! $AGORIC_NODENAME ]; then
 	read -p "Enter node name: " AGORIC_NODENAME
@@ -7,16 +6,25 @@ if [ ! $AGORIC_NODENAME ]; then
 	. ~/.bash_profile
 fi
 
+echo "=================================================="
+echo -e "\033[0;35m"
+echo " :::    ::: ::::::::::: ::::    :::  ::::::::  :::::::::  :::::::::: ::::::::  ";
+echo " :+:   :+:      :+:     :+:+:   :+: :+:    :+: :+:    :+: :+:       :+:    :+: ";
+echo " +:+  +:+       +:+     :+:+:+  +:+ +:+    +:+ +:+    +:+ +:+       +:+        ";
+echo " +#++:++        +#+     +#+ +:+ +#+ +#+    +:+ +#+    +:+ +#++:++#  +#++:++#++ ";
+echo " +#+  +#+       +#+     +#+  +#+#+# +#+    +#+ +#+    +#+ +#+              +#+ ";
+echo " #+#   #+#  #+# #+#     #+#   #+#+# #+#    #+# #+#    #+# #+#       #+#    #+# ";
+echo " ###    ###  #####      ###    ####  ########  #########  ########## ########  ";
+echo -e "\e[0m"
+echo "=================================================="
+sleep 2
+
 echo 'Your node name: ' $AGORIC_NODENAME
 sleep 2
 sudo dpkg --configure -a
 sudo apt update
 sudo apt install curl -y < "/dev/null"
 sleep 1
-wget -O nodesgurulogo https://api.nodes.guru/logo.sh
-chmod +x nodesgurulogo
-./nodesgurulogo
-sleep 3
 
 curl https://deb.nodesource.com/setup_14.x | sudo bash
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
