@@ -32,7 +32,15 @@ yq ea -i 'select(fileIndex==0).full_node_networks[0].seeds = select(fileIndex==1
 docker restart aptos-fullnode-1
 ```
 
-Get your node information:
+### update peer id
+```
+sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && sudo chmod +x /usr/local/bin/yq
+PEER_ID=$(cat $HOME/aptos/identity/id.json | jq -r '.. | .keys?  | select(.)[]')
+yq e -i '.full_node_networks[0].identity.peer_id="'$PEER_ID'"' $HOME/aptos/public_full_node.yaml
+docker compose restart
+```
+
+### get your node information:
 ```
 wget -O aptos_identity.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_identity.sh && chmod +x aptos_identity.sh && ./aptos_identity.sh
 ```
