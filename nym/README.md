@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="300" height="auto" src="https://user-images.githubusercontent.com/50621007/162544751-fb3e2adb-d203-4866-99cf-13f06d562d05.png">
+</p>
+
 # NYM MIXNODE SETUP GUIDE (v0.12.1 - TESTNET SANDBOX)
 
 > *To check health of your mixnode you can use:*
@@ -35,6 +39,7 @@ wget -O nym_testnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/ma
 <p align="center">
   <img width="800" height="auto" src="https://user-images.githubusercontent.com/50621007/162527668-5112e417-a60b-4080-8128-bf3b7a53c986.png">
 </p>
+
 2. When installation is finished, run command below to load variables into system
 ```
 source $HOME/.bash_profile
