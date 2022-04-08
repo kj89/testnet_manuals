@@ -26,13 +26,13 @@ To start with Nym mixnode installation please create your Nym wallet first. If y
 5. You can find your Nym wallet address in balance field. It should begins with `nymt1...`
 
 ## INSTALLATION
-
-![image](https://user-images.githubusercontent.com/50621007/162527668-5112e417-a60b-4080-8128-bf3b7a53c986.png)
-
 1. Run one-liner below to install your nym mixnode and follow the on-screen instructions
 ```
 wget -O nym_testnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/nym/nym_testnet.sh && chmod +x nym_testnet.sh && ./nym_testnet.sh
 ```
+
+![image](https://user-images.githubusercontent.com/50621007/162527668-5112e417-a60b-4080-8128-bf3b7a53c986.png)
+
 2. When installation is finished, run command below to load variables into system
 ```
 source $HOME/.bash_profile
