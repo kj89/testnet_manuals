@@ -36,7 +36,7 @@ echo '==========================================================================
 sleep 2
 
 echo -e "\e[1m\e[32mPlease make sure settings above are filled correctly and press Enter to continue... \e[0m"
-read -p "Press Ctrl + C to exit"
+read -p "Press CTRL+C to exit"
 
 echo -e "\e[1m\e[32m1. Updating packages... \e[0m" && sleep 1
 # update
@@ -84,7 +84,7 @@ sudo systemctl enable nym-mixnode
 echo -e "\e[1m\e[32m5. Setting up firewall to allow tcp ports 1789, 1790, 8000, 22, 80, 443... \e[0m" && sleep 1
 # set up firewall
 sudo ufw allow 1789,1790,8000,22,80,443/tcp
-sudo ufw enable
+sudo ufw --force enable
 
 echo -e "\e[1m\e[32m6. Increasing Max open files limit... \e[0m" && sleep 1
 echo "DefaultLimitNOFILE=65535" >> /etc/systemd/system.conf
