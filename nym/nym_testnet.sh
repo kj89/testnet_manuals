@@ -54,7 +54,7 @@ wget -O nym-mixnode "https://github.com/nymtech/nym/releases/download/v$NYM_MIXN
 
 # give persmissions to execute and move binaries into bin
 chmod +x nym-mixnode
-sudo mv nym-mixnode /usr/local/bin/
+sudo mv nym-mixnode /usr/bin/
 
 echo -e "\e[1m\e[32m4. Initializing service... \e[0m" && sleep 1
 # init
