@@ -10,18 +10,19 @@ To start with Nym mixnode installation please create your Nym wallet first. If y
 ### Generate nym wallet
 1. Go to [https://nymtech.net](https://nymtech.net/download/) and download the latest available version of Nym Wallet
 2. Install wallet application on your computer. Allow Smartscreen to install application from unknown publisher
-
-![image](https://user-images.githubusercontent.com/50621007/162535623-5e02e13c-844e-4e60-917a-f30daf2da0f5.png)
-
 3. Open aplication and create new account
 
-![image](https://user-images.githubusercontent.com/50621007/162536087-f8eb9217-b668-491f-b1f6-853eb1e2312f.png)
+<p align="center">
+  <img width="500" height="auto" src="https://user-images.githubusercontent.com/50621007/162536087-f8eb9217-b668-491f-b1f6-853eb1e2312f.png">
+</p>
 
 > *Please make sure you have saved your `24 word mnemonic`, make sure to store it in a safe place for accessing your wallet in the future!*
 
-4. After you have entered the wallet application, make sure you have selected correct network from dropdown at the top of the screen. Choose `Testnet Sanbox` for current testnet
+4. After you have entered the wallet application, make sure you have selected correct network from dropdown at the top of the screen. Choose `Testnet Sandbox` for current testnet
 
-![image](https://user-images.githubusercontent.com/50621007/162532456-48f2f9c5-7150-4bf4-88e8-4813009bbc5e.png)
+<p align="center">
+  <img width="800" height="auto" src="https://user-images.githubusercontent.com/50621007/162532456-48f2f9c5-7150-4bf4-88e8-4813009bbc5e.png">
+</p>
 
 5. You can find your Nym wallet address in balance field. It should begins with `nymt1...`
 
@@ -31,8 +32,9 @@ To start with Nym mixnode installation please create your Nym wallet first. If y
 wget -O nym_testnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/nym/nym_testnet.sh && chmod +x nym_testnet.sh && ./nym_testnet.sh
 ```
 
-![image](https://user-images.githubusercontent.com/50621007/162527668-5112e417-a60b-4080-8128-bf3b7a53c986.png)
-
+<p align="center">
+  <img width="800" height="auto" src="https://user-images.githubusercontent.com/50621007/162527668-5112e417-a60b-4080-8128-bf3b7a53c986.png">
+</p>
 2. When installation is finished, run command below to load variables into system
 ```
 source $HOME/.bash_profile
@@ -43,14 +45,17 @@ Afterwards you can check you node details by running command
 nym-mixnode node-details --id $NODENAME
 ```
 
-![image](https://user-images.githubusercontent.com/50621007/162536842-008f5530-a6e0-4d1c-9fb2-aaa5af96291c.png)
-
+<p align="center">
+  <img width="800" height="auto" src="https://user-images.githubusercontent.com/50621007/162536842-008f5530-a6e0-4d1c-9fb2-aaa5af96291c.png">
+</p>
 
 ## BOND YOUR MIXNODE
 > *Your node will start mixing packets only when bonded*
 1. First of all you will have to top up your wallet with testnet tokens. To do so go to faucet page https://faucet.nymtech.net/ and input your wallet address
 
-![image](https://user-images.githubusercontent.com/50621007/162536356-c86a71d1-6e37-466c-8889-2fc81e6a6347.png)
+<p align="center">
+  <img width="800" height="auto" src="https://user-images.githubusercontent.com/50621007/162536356-c86a71d1-6e37-466c-8889-2fc81e6a6347.png">
+</p>
 
 2. After that, tokens should appear in your wallet
 
@@ -58,7 +63,9 @@ nym-mixnode node-details --id $NODENAME
 
 3. Navigate to Nym wallet and go to `Bond` section
 
-![image](https://user-images.githubusercontent.com/50621007/162537550-9738ac56-d322-4667-8654-d165052d1b5c.png)
+<p align="center">
+  <img width="700" height="auto" src="https://user-images.githubusercontent.com/50621007/162537550-9738ac56-d322-4667-8654-d165052d1b5c.png">
+</p>
 
 4. Fill out all fields with your mixnode details
 
@@ -66,7 +73,9 @@ nym-mixnode node-details --id $NODENAME
 
 5. Set up your `Profit percentage` and click `Bond`
 
-![image](https://user-images.githubusercontent.com/50621007/162538013-09d33f38-d966-4356-add2-34afee1a1b04.png)
+<p align="center">
+  <img width="700" height="auto" src="https://user-images.githubusercontent.com/50621007/162538013-09d33f38-d966-4356-add2-34afee1a1b04.png">
+</p>
 
 6. Thats it, now your mixnode is bonded!
 
