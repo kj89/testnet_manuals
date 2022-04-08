@@ -5,7 +5,7 @@
 > - [Sandbox Explorer](https://sandbox-explorer.nymtech.net/network-components/mixnodes)
 
 ## BEFORE YOU BEGIN
-To start with Nym mixnode installation please create your Nym wallet first. If you have already generated your wallet you can skip next step
+To start with Nym mixnode installation please create your Nym wallet first. If you have already generated your wallet you can skip next step and go straight to [INSTALATION](https://github.com/kj89/testnet_manuals/tree/main/nym#installation)
 
 ### Generate nym wallet
 1. Go to [https://nymtech.net](https://nymtech.net/download/) and download the latest available version of Nym Wallet
