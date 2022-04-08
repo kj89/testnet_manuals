@@ -1,4 +1,4 @@
-# nym mixnode node setup guide
+# nym mixnode node setup guide (v0.12.1 - Testnet Sanbox)
 
 ## before you begin
 To start with Nym mixnode installation please create your Nym wallet first. If you have already generated your wallet you can skip next step
