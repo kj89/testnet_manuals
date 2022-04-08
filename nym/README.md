@@ -5,7 +5,7 @@
 > - [Sandbox Explorer](https://sandbox-explorer.nymtech.net/network-components/mixnodes)
 
 ## BEFORE YOU BEGIN
-To start with Nym mixnode installation please create your Nym wallet first. If you have already generated your wallet you can skip next step and go straight to [INSTALLATION](https://github.com/kj89/testnet_manuals/tree/main/nym#installation)
+To start with Nym mixnode installation please create your Nym wallet first. If you have already generated your wallet you can skip next step
 
 ### Generate nym wallet
 1. Go to [https://nymtech.net](https://nymtech.net/download/) and download the latest available version of Nym Wallet
@@ -24,14 +24,6 @@ To start with Nym mixnode installation please create your Nym wallet first. If y
 ![image](https://user-images.githubusercontent.com/50621007/162532456-48f2f9c5-7150-4bf4-88e8-4813009bbc5e.png)
 
 5. You can find your Nym wallet address in balance field. It should begins with `nymt1...`
-
-6. Go to faucet page https://faucet.nymtech.net/ and input your wallet address to get testnet tokens
-
-![image](https://user-images.githubusercontent.com/50621007/162536356-c86a71d1-6e37-466c-8889-2fc81e6a6347.png)
-
-7. After that, tokens should appear in your wallet
-
-> *If you dont see tokens in your wallet just refresh it by navigating to another tab and back*
 
 ## INSTALLATION
 
@@ -54,31 +46,38 @@ nym-mixnode node-details --id $NODENAME
 ![image](https://user-images.githubusercontent.com/50621007/162536842-008f5530-a6e0-4d1c-9fb2-aaa5af96291c.png)
 
 
-## CONFIGURATION
-In next steps you have to bond your mixnode to start mixing packets
-1. Navigate to Nym wallet and go to `Bond` section
+## BOND YOUR MIXNODE
+> *Your node will start mixing packets only when bonded*
+1. First of all you will have to top up your wallet with testnet tokens. To do so go to faucet page https://faucet.nymtech.net/ and input your wallet address
+
+![image](https://user-images.githubusercontent.com/50621007/162536356-c86a71d1-6e37-466c-8889-2fc81e6a6347.png)
+
+2. After that, tokens should appear in your wallet
+
+> *If you dont see tokens in your wallet just refresh it by navigating to another tab and back*
+
+3. Navigate to Nym wallet and go to `Bond` section
 
 ![image](https://user-images.githubusercontent.com/50621007/162537550-9738ac56-d322-4667-8654-d165052d1b5c.png)
 
-2. Fill out all fields with your mixnode details
+4. Fill out all fields with your mixnode details
 
 > *make sure to leave some amount of coins for commission*
 
-3. Set up your `Profit percentage` and click `Bond`
+5. Set up your `Profit percentage` and click `Bond`
 
 ![image](https://user-images.githubusercontent.com/50621007/162538013-09d33f38-d966-4356-add2-34afee1a1b04.png)
 
-4. Thats it, now your mixnode is bonded!
+6. Thats it, now your mixnode is bonded!
 
 ## CHECK YOUR MIXNODE STATUS
-After all configuration is done, your mixnode should start mixing packets
+After bonding mixnode, it should start mixing packets
 
 ### To check mixed packets
 ```
 journalctl -u nym-mixnode -o cat | grep "Since startup mixed" | tail -1
 ```
 > *If you dont see any new packets mixed, just give it some **5-10** minutes and check again!*
-
 
 ## OTHER USEFUL COMMANDS
 See your mixnode logs (CTRL+C to exit)
