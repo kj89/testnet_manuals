@@ -71,7 +71,7 @@ nym-mixnode node-details --id $NODENAME
 
 > *make sure to leave some amount of coins for commission*
 
-5. Set up your `Profit percentage` and click `Bond`
+5. Set up your `Amount of pledge` (minimum 100 NYMT tokens) and reasonable `Profit percentage` and click `Bond`
 
 <p align="center">
   <img width="700" height="auto" src="https://user-images.githubusercontent.com/50621007/162538013-09d33f38-d966-4356-add2-34afee1a1b04.png">
