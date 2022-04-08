@@ -94,7 +94,4 @@ echo -e "\e[1m\e[32m7. Starting Nym mixnode... \e[0m" && sleep 1
 sudo systemctl start nym-mixnode
 
 echo -e '\e[1m\e[32m=============== SETUP FINISHED ===================\e[0m'
-echo -e 'To start mixing packet please \e[1m\e[32mbond your mixnode\e[0m first!'
-echo -e 'To check how many packets your node mixed: \e[1m\e[32mjournalctl -u nym-mixnode -o cat | grep "Since startup mixed" | tail -1 \e[0m'
-echo -e "You can check your mixnode using Nodes.Guru Nym Checker: \e[1m\e[32mhttps://nodes.guru/nym/mixnodecheck?q=$WALLET_ADDRESS\e[0m"
-echo -e "Or try put your nym wallet address $WALLET_ADDRESS into nym explorer: \e[1m\e[32mhttps://sandbox-explorer.nymtech.net/network-components/mixnodes\e[0m"
+echo -e 'To start mixing packet you have to \e[1m\e[32mbond your mixnode\e[0m first!'
