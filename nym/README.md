@@ -54,7 +54,7 @@ nym-mixnode node-details --id $NODENAME
 1. First of all you will have to top up your wallet with testnet tokens. To do so go to faucet page https://faucet.nymtech.net/ and input your wallet address
 
 <p align="center">
-  <img width="700" height="auto" src="https://user-images.githubusercontent.com/50621007/162544326-f8a9ee57-40c5-41a4-9200-c68e68211ba6.png">
+  <img width="700" height="auto" src="https://user-images.githubusercontent.com/50621007/162544608-b2fa43b4-0d8a-43cb-b1a2-3cd703fb2faa.png">
 </p>
 
 2. After that, tokens should appear in your wallet
