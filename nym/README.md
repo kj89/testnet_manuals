@@ -52,7 +52,7 @@ wget -O nym_testnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/ma
 source $HOME/.bash_profile
 ```
 
-3. Afterwards you can check you node details by running command
+3. Afterwards you can check your node details by running command
 ```
 nym-mixnode node-details --id $NODENAME
 ```
