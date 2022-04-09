@@ -44,6 +44,7 @@ echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 git clone https://github.com/cosmic-horizon/coho.git
 cd coho
+git checkout v0.1
 starport chain build
 
 chmod +x cohod
