@@ -1,4 +1,4 @@
-# aptos node setup
+# APTOS FULLNODE SETUP GUIDE
 
 > current block height can be found [here](https://status.devnet.aptos.dev)
 
@@ -6,14 +6,14 @@
 
 > another node tester website with nice metric visualizer [here](http://node-tools.net/aptos/tester/)
 
-## installation docker
+## INSTALLATION USING DOCKER
 
 Use script below for a quick installation:
 ```
 wget -O aptos_docker.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_docker.sh && chmod +x aptos_docker.sh && ./aptos_docker.sh
 ```
 
-## update aptos
+### update aptos
 ```
 cd $HOME/aptos
 docker compose down
@@ -24,7 +24,7 @@ docker compose pull
 docker compose up -d
 ```
 
-## update seeds
+### update seeds
 ```
 sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && sudo chmod +x /usr/local/bin/yq
 wget -O seeds.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
@@ -91,7 +91,7 @@ yq e -i '.full_node_networks[0].identity.key="'$PRIVATE_KEY'"' $HOME/aptos/publi
 docker compose up -d
 ```
 
-## installation binary
+## INSTALLATION USING BINARIES
 
 Installation can take more than 10 minutes, it is recommended to run in a screen session:
 ```
