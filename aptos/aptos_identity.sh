@@ -6,7 +6,7 @@ then
     PRIVATE_KEY=$(cat $HOME/aptos/identity/private-key.txt)
     echo -en "\n"
     echo "=================================================="
-    echo -e "\e[1m\e[32m2. Your upstream peer details. You can share your peer info with other users \e[0m" 
+    echo -e "\e[1m\e[32m1. Your upstream peer details. You can share your peer info with other users \e[0m" 
     echo -e ' 
 '$PUBLIC_KEY':
     addresses: 
@@ -14,7 +14,7 @@ then
     role: "Upstream"'
     echo -en "\n"
     echo "=================================================="
-    echo -e "\e[1m\e[32m3. Your identity details \e[0m" 
+    echo -e "\e[1m\e[32m2. Your identity details \e[0m" 
     echo -en "\n"
     echo -e "\e[1m\e[32mPeer Id: \e[0m" $PEER_ID
     echo -e "\e[1m\e[32mPrivate Key:  \e[0m" $PRIVATE_KEY
