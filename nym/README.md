@@ -8,6 +8,13 @@
 > - [Nodes.Guru Nym Checker](https://nodes.guru/nym/mixnodecheck)
 > - [Sandbox Explorer](https://sandbox-explorer.nymtech.net/network-components/mixnodes)
 
+## MIXNODE SYSTEM REQUIREMENTS
+For the moment mixnode does not require beastly server with multiple cores. Current system requirements are:
+ 
+- 2 vCPU
+- 1 GB RAM
+- Support of IPv4 and IPv6
+
 ## BEFORE YOU BEGIN
 To start with Nym mixnode installation please create your Nym wallet first. If you have already generated your wallet you can skip next step and go straight to [INSTALATION](https://github.com/kj89/testnet_manuals/tree/main/nym#installation)
 
