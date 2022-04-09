@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="300" height="auto" src="https://user-images.githubusercontent.com/50621007/162568594-c423847a-f1ff-42de-84d7-110bb0077b4d.png">
+</p>
+
 # APTOS FULLNODE SETUP GUIDE
 
 > current block height can be found [here](https://status.devnet.aptos.dev)
