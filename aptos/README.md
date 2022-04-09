@@ -13,31 +13,14 @@ Use script below for a quick installation:
 wget -O aptos_docker.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_docker.sh && chmod +x aptos_docker.sh && ./aptos_docker.sh
 ```
 
-### update aptos
+### update aptos version
 ```
-cd $HOME/aptos
-docker compose down
-docker volume rm aptos_db -f
-wget -O genesis.blob https://devnet.aptoslabs.com/genesis.blob
-wget -O waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
-docker compose pull
-docker compose up -d
+wget -O aptos_docker_update.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_docker_update.sh && chmod +x aptos_docker_update.sh && ./aptos_docker_update.sh
 ```
 
 ### update seeds
 ```
-sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && sudo chmod +x /usr/local/bin/yq
-wget -O seeds.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
-yq ea -i 'select(fileIndex==0).full_node_networks[0].seeds = select(fileIndex==1).seeds | select(fileIndex==0)' $HOME/aptos/public_full_node.yaml seeds.yaml
-docker restart aptos-fullnode-1
-```
-
-### update peer id
-```
-sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && sudo chmod +x /usr/local/bin/yq
-PEER_ID=$(cat $HOME/aptos/identity/id.json | jq -r '.. | .keys?  | select(.)[]')
-yq e -i '.full_node_networks[0].identity.peer_id="'$PEER_ID'"' $HOME/aptos/public_full_node.yaml
-docker compose restart
+wget -O aptos_docker_seeds.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_docker_seeds.sh && chmod +x aptos_docker_seeds.sh && ./aptos_docker_seeds.sh
 ```
 
 ### get your node information:
@@ -71,19 +54,15 @@ cat $HOME/aptos/identity/id.json
 docker restart aptos-fullnode-1
 ```
 
-### backup keys
-```
-mkdir $HOME/aptos_backup
-cp $HOME/aptos/identity/private-key.txt $HOME/aptos_backup/private-key.txt
-cp $HOME/aptos/identity/id.json $HOME/aptos_backup/id.json
-```
+### backup your identity files
+In order to back up your keys please save identity files located in `$HOME/aptos/identity` to safe location
 
-### recover key from backup files
+### recover your keys
+Place your saved identity keys back into `$HOME/aptos/identity` and run script below
 ```
 cd $HOME/aptos
 docker compose down
 docker volume rm aptos_db -f
-cp $HOME/aptos_backup/* $HOME/aptos/identity/
 PRIVATE_KEY=$(cat $HOME/aptos/identity/private-key.txt)
 PEER_ID=$(cat $HOME/aptos/identity/id.json | jq -r '.. | .keys?  | select(.)[]')
 yq e -i '.full_node_networks[0].identity.key="'$PRIVATE_KEY'"' $HOME/aptos/public_full_node.yaml \
@@ -103,22 +82,14 @@ Use script below for a quick installation:
 wget -O aptos.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos.sh && chmod +x aptos.sh && ./aptos.sh
 ```
 
-## update aptos
+### update aptos version
 ```
-systemctl stop aptosd
-rm -rf /opt/aptos/data/*
-wget -O /opt/aptos/data/genesis.blob https://devnet.aptoslabs.com/genesis.blob
-wget -O ~/.aptos/waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
-sed -i.bak -e "s/from_config: ".*"/from_config: "$(cat ~/.aptos/waypoint.txt)"/" $HOME/.aptos/config/public_full_node.yaml
-systemctl restart aptosd
+wget -O aptos_update.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_update.sh && chmod +x aptos_update.sh && ./aptos_update.sh
 ```
 
-## update seeds
+### update seeds
 ```
-sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && sudo chmod +x /usr/local/bin/yq
-wget -O seeds.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
-yq ea -i 'select(fileIndex==0).full_node_networks[0].seeds = select(fileIndex==1).seeds | select(fileIndex==0)' $HOME/.aptos/config/public_full_node.yaml seeds.yaml
-systemctl restart aptosd
+wget -O aptos_seeds.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_seeds.sh && chmod +x aptos_seeds.sh && ./aptos_seeds.sh
 ```
 
 ## useful commands

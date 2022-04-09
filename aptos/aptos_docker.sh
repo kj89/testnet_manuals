@@ -15,8 +15,6 @@ sleep 2
 echo -e "\e[1m\e[32m1. Updating dependencies... \e[0m" && sleep 1
 sudo apt-get update
 
-echo "=================================================="
-
 echo -e "\e[1m\e[32m2. Installing required dependencies... \e[0m" && sleep 1
 sudo apt-get install jq -y
 # manually installing yq
@@ -24,13 +22,9 @@ sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download
 sudo chmod +x /usr/local/bin/yq
 cd $HOME
 
-echo "=================================================="
-
 echo -e "\e[1m\e[32m3. Checking if Docker is installed... \e[0m" && sleep 1
-
 if ! command -v docker &> /dev/null
 then
-
     echo -e "\e[1m\e[32m3.1 Installing Docker... \e[0m" && sleep 1
     sudo apt-get install ca-certificates curl gnupg lsb-release wget -y
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -39,14 +33,10 @@ then
     sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 fi
 
-echo "=================================================="
-
 echo -e "\e[1m\e[32m4. Checking if Docker Compose is installed ... \e[0m" && sleep 1
-
 docker compose version
 if [ $? -ne 0 ]
 then
-
     echo -e "\e[1m\e[32m4.1 Installing Docker Compose v2.3.3 ... \e[0m" && sleep 1
     mkdir -p ~/.docker/cli-plugins/
     curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
@@ -54,10 +44,7 @@ then
     sudo chown $USER /var/run/docker.sock
 fi
 
-echo "=================================================="
-
-echo -e "\e[1m\e[32m4. Downloading Aptos FullNode config files ... \e[0m" && sleep 1
-
+echo -e "\e[1m\e[32m5. Downloading Aptos FullNode config files ... \e[0m" && sleep 1
 mkdir $HOME/aptos
 cd $HOME/aptos
 mkdir identity
@@ -68,43 +55,36 @@ wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose
 wget https://devnet.aptoslabs.com/genesis.blob
 wget https://devnet.aptoslabs.com/waypoint.txt
 
-echo "=================================================="
-
-echo -e "\e[1m\e[32m4.1 Creating a copy of your current keys ... \e[0m" && sleep 1
-
-# make a copy of your keys
-mkdir $HOME/aptos_backup
-cp $HOME/aptos/identity/* $HOME/aptos_backup
-
-echo -e "\e[1m\e[32m4.2 Generating a unique node identity \e[0m"
-rm $HOME/aptos/identity/* -rf
-docker run --rm --name aptos_tools -d -i aptoslab/tools:devnet
-docker exec -it aptos_tools aptos-operational-tool generate-key --encoding hex --key-type x25519 --key-file $HOME/private-key.txt
-docker exec -it aptos_tools cat $HOME/private-key.txt > $HOME/aptos/identity/private-key.txt
-docker exec -it aptos_tools aptos-operational-tool extract-peer-from-file --encoding hex --key-file $HOME/private-key.txt --output-file $HOME/peer-info.yaml > $HOME/aptos/identity/id.json
-PRIVATE_KEY=$(cat $HOME/aptos/identity/private-key.txt)
-PEER_ID=$(cat $HOME/aptos/identity/id.json | jq -r '.. | .keys?  | select(.)[]')
-docker stop aptos_tools
-
-if [ ! -z "$PRIVATE_KEY" ]
-then
-	echo -e "\e[1m\e[92m Identity was successfully created \e[0m"
-	echo -e "\e[1m\e[92m Peer Id: \e[0m" $PEER_ID
-	echo -e "\e[1m\e[92m Private Key:  \e[0m" $PRIVATE_KEY
-	yq e -i '.full_node_networks[0].identity.type="from_config"' public_full_node.yaml \
-	&& yq e -i '.full_node_networks[0].identity.key="'$PRIVATE_KEY'"' public_full_node.yaml \
-	&& yq e -i '.full_node_networks[0].identity.peer_id="'$PEER_ID'"' public_full_node.yaml 
+echo -e "\e[1m\e[32m6. Generating a unique node identity \e[0m"
+if [ -z "$(ls -A $HOME/aptos/identity)" ]; then
+	docker run --rm --name aptos_tools -d -i aptoslab/tools:devnet
+	docker exec -it aptos_tools aptos-operational-tool generate-key --encoding hex --key-type x25519 --key-file $HOME/private-key.txt
+	docker exec -it aptos_tools cat $HOME/private-key.txt > $HOME/aptos/identity/private-key.txt
+	docker exec -it aptos_tools aptos-operational-tool extract-peer-from-file --encoding hex --key-file $HOME/private-key.txt --output-file $HOME/peer-info.yaml > $HOME/aptos/identity/id.json
+	PRIVATE_KEY=$(cat $HOME/aptos/identity/private-key.txt)
+	PEER_ID=$(cat $HOME/aptos/identity/id.json | jq -r '.. | .keys?  | select(.)[]')
+	docker stop aptos_tools
 else
-	rm $HOME/aptos/identity/id.json
-	rm $HOME/aptos/identity/private-key.txt
-	echo -e "\e[1m\e[91m Wasn't able to create the Identity. FullNode will be started without the identity, identity can be added manually \e[0m"
+	echo -e "\e[1m\e[32mIdentity keys already extst! \e[0m"
+   	PRIVATE_KEY=$(cat $HOME/aptos/identity/private-key.txt)
+	PEER_ID=$(cat $HOME/aptos/identity/id.json | jq -r '.. | .keys?  | select(.)[]')
 fi
 
-echo -e "\e[1m\e[32m4.2 Updating seeds \e[0m"  
+echo "==============================================================="
+echo -e "\e[1m\e[92m Identity was successfully created \e[0m"
+echo -e "\e[1m\e[92m Peer Id: \e[0m" $PEER_ID
+echo -e "\e[1m\e[92m Private Key:  \e[0m" $PRIVATE_KEY
+echo "==============================================================="
+yq e -i '.full_node_networks[0].identity.type="from_config"' public_full_node.yaml \
+&& yq e -i '.full_node_networks[0].identity.key="'$PRIVATE_KEY'"' public_full_node.yaml \
+&& yq e -i '.full_node_networks[0].identity.peer_id="'$PEER_ID'"' public_full_node.yaml 
+
+
+echo -e "\e[1m\e[32m7. Updating seeds \e[0m"  
 wget -O seeds.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
 yq ea -i 'select(fileIndex==0).full_node_networks[0].seeds = select(fileIndex==1).seeds | select(fileIndex==0)' $HOME/aptos/public_full_node.yaml seeds.yaml
 
-echo -e "\e[1m\e[32m5. Starting Aptos FullNode ... \e[0m" && sleep 1
+echo -e "\e[1m\e[32m8. Starting Aptos FullNode ... \e[0m" && sleep 1
 
 docker compose up -d
 
