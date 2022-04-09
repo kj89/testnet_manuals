@@ -26,7 +26,7 @@ echo -e "\e[1m\e[32m3. Checking if Docker is installed... \e[0m" && sleep 1
 if ! command -v docker &> /dev/null
 then
     echo -e "\e[1m\e[32m3.1 Installing Docker... \e[0m" && sleep 1
-    sudo apt-get install ca-certificates curl gnupg lsb-release wget -y
+    sudo apt-get install ca-certificates curl gnupg lsb-release -y
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt-get update
@@ -49,11 +49,10 @@ mkdir $HOME/aptos
 cd $HOME/aptos
 mkdir identity
 docker compose stop
-rm *
-wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/docker-compose.yaml
-wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/public_full_node.yaml
-wget https://devnet.aptoslabs.com/genesis.blob
-wget https://devnet.aptoslabs.com/waypoint.txt
+wget -O docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/docker-compose.yaml
+wget -O public_full_node.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/public_full_node.yaml
+wget -O genesis.blob https://devnet.aptoslabs.com/genesis.blob
+wget -O waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
 
 echo -e "\e[1m\e[32m6. Generating a unique node identity \e[0m"
 if [ -z "$(ls -A $HOME/aptos/identity)" ]; then

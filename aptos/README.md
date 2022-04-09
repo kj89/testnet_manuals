@@ -28,8 +28,7 @@ wget -O aptos_docker_seeds.sh https://raw.githubusercontent.com/kj89/testnet_man
 ```
 
 ## USEFUL COMMANDS
-
-### Get your node identity and upstrem details
+### Get your node identity and upstream details
 ```
 wget -O aptos_identity.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_identity.sh && chmod +x aptos_identity.sh && ./aptos_identity.sh
 ```
