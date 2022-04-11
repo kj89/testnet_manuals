@@ -52,9 +52,9 @@ archwayd config chain-id $CHAIN_ID
 archwayd config keyring-backend file
 
 # download addrbook and genesis
-wget -qO $HOME/.archway/config/genesis.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/august/genesis.json"
-wget -qO $HOME/.archway/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/august/addrbook.json"
-wget -qO $HOME/peers.txt "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/august/peers.txt"
+wget -qO $HOME/.archway/config/genesis.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/augusta/genesis.json"
+wget -qO $HOME/.archway/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/augusta/addrbook.json"
+wget -qO $HOME/peers.txt "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/augusta/peers.txt"
 
 # set minimum gas price
 sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0august\"/" $HOME/.archway/config/app.toml

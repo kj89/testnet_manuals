@@ -60,9 +60,8 @@ wget -qO $HOME/peers.txt "https://raw.githubusercontent.com/kj89testnet_manuals/
 PEERS=$(cat $HOME/peers.txt)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.archway/config/config.toml
 sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.archway/config/config.toml
-curl -s "https://api.nodes.guru/archway_genesis.json" | jq '.result.genesis' > $HOME/.archway/config/genesis.json
-wget -O addrbook.json https://raw.githubusercontent.com/kj89testnet_manuals/main/archway/torii/addrbook.json
-mv addrbook.json $HOME/.archway/config/
+wget -qO $HOME/.archway/config/genesis.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/torii/genesis.json"
+wget -qO $HOME/.archway/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/torii/addrbook.json"
 
 echo -e "\e[1m\e[32m5. Starting Archway ... \e[0m" && sleep 1
 
