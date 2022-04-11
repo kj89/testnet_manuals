@@ -141,7 +141,7 @@ archwayd tx staking edit-validator \
 
 ##### 1. Add genesis account:
 ```
-archwayd add-genesis-account <key-name> 1000000000utorii --keyring-backend os
+archwayd add-genesis-account $WALLET 1000000000utorii
 ```
 
 ##### 2. Create Gentx

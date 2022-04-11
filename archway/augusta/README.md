@@ -134,3 +134,33 @@ archwayd tx staking edit-validator \
 --chain-id=$CHAIN_ID \
 --from=$WALLET
 ```
+
+### Instructions for Genesis Validators
+
+#### Create Gentx
+
+##### 1. Add genesis account:
+```
+archwayd add-genesis-account $WALLET 1000000000uaugust
+```
+
+##### 2. Create Gentx
+```
+archwayd gentx <key-name> 1000000000uaugust \
+--chain-id=$CHAIN_ID \
+--moniker=$NODENAME \
+--commission-max-change-rate=0.01 \
+--commission-max-rate=0.20 \
+--commission-rate=0.05 \
+--details="XXXXXXXX" \
+--security-contact="XXXXXXXX" \
+--website="XXXXXXXX"
+```
+
+#### Submit PR with Gentx and peer id
+1. Copy the contents of ${HOME}/.archwayd/config/gentx/gentx-XXXXXXXX.json.
+2. Fork https://github.com/archway-network/testnets
+3. Create a file gentx-{{VALIDATOR_NAME}}.json under the networks/testnets/augusta/gentx folder in the forked repo, paste the copied text into the file.
+4. Create a Pull Request to the main branch of the repository
+
+### Await further instruction!
