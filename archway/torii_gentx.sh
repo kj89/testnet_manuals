@@ -46,7 +46,7 @@ echo -e "${PASSWORD}\n${PASSWORD}\n"| archwayd keys add $WALLET
 wget -O $HOME/.archway/config/genesis.json "https://raw.githubusercontent.com/archway-network/testnets/main/torii-1/penultimate_genesis.json"
 WALLET_ADDRESS=$(echo ${PASSWORD} | archwayd keys show $WALLET -a)
 archwayd add-genesis-account $WALLET_ADDRESS 1001000utorii
-echo ${PASSWORD} | archwayd gentx $WALLET 10000000utorii \
+echo ${PASSWORD} | archwayd gentx $WALLET 1000000utorii \
 --commission-max-change-rate=0.01 \
 --commission-max-rate=0.20 \
 --commission-rate=0.05 \
