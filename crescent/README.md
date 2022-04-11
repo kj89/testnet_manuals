@@ -13,13 +13,24 @@ wget -O crescent_devnet.sh https://raw.githubusercontent.com/kj89/testnet_manual
 source $HOME/.bash_profile
 ```
 
-### update crescent sdk
+### update crescent sdk to v1.0.0-rc3
 ```
 cd $HOME
-rm crescent -f
+rm crescent -rf
 git clone https://github.com/crescent-network/crescent
 cd crescent 
 git checkout v1.0.0-rc3
+make install
+sudo systemctl restart crescentd && journalctl -fu crescentd.service -o cat
+```
+
+### update crescent sdk to v1.0.0-rc4
+```
+cd $HOME
+rm crescent -rf
+git clone https://github.com/crescent-network/crescent
+cd crescent 
+git checkout v1.0.0-rc4
 make install
 sudo systemctl restart crescentd && journalctl -fu crescentd.service -o cat
 ```
