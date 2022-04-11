@@ -146,7 +146,7 @@ archwayd add-genesis-account $WALLET 1000000000uaugust
 
 ##### 2. Create Gentx
 ```
-archwayd gentx <key-name> 1000000000uaugust \
+archwayd gentx $WALLET 1000000000uaugust \
 --chain-id=$CHAIN_ID \
 --moniker=$NODENAME \
 --commission-max-change-rate=0.01 \
