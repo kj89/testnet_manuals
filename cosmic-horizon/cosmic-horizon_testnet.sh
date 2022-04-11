@@ -56,7 +56,7 @@ cohod init $NODENAME --chain-id $CHAIN_ID
 
 # config
 cohod config chain-id $CHAIN_ID
-cohod config keyring-backend file
+cohod config keyring-backend os
 
 # download genesis
 wget -qO $HOME/.coho/config/genesis.json "https://raw.githubusercontent.com/cosmic-horizon/testnets/main/darkmatter-1/genesis.json"

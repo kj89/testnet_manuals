@@ -19,7 +19,7 @@ if [ ! $NODENAME ]; then
 	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
 fi
 echo "export WALLET=wallet" >> $HOME/.bash_profile
-echo "export CHAIN_ID=augusta-1" >> $HOME/.bash_profile
+echo "export CHAIN_ID=torii-1" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 echo '================================================='
@@ -52,12 +52,12 @@ archwayd config chain-id $CHAIN_ID
 archwayd config keyring-backend file
 
 # download addrbook and genesis
-wget -qO $HOME/.archway/config/genesis.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/genesis.json"
-wget -qO $HOME/.archway/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/addrbook.json"
-wget -qO $HOME/peers.txt "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/peers.txt"
+wget -qO $HOME/.archway/config/genesis.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/torii/genesis.json"
+wget -qO $HOME/.archway/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/torii/addrbook.json"
+wget -qO $HOME/peers.txt "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/torii/peers.txt"
 
 # set minimum gas price
-sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0august\"/" $HOME/.archway/config/app.toml
+# sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0august\"/" $HOME/.archway/config/app.toml
 
 # set peers and seeds
 SEEDS="2f234549828b18cf5e991cc884707eb65e503bb2@34.74.129.75:31076,c8890bcde31c2959a8aeda172189ec717fef0b2b@95.216.197.14:26656"
@@ -65,7 +65,6 @@ PEERS=$(cat $HOME/peers.txt)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.archway/config/config.toml
 wget -O addrbook.json https://api.nodes.guru/addrbook_archway.json
 mv addrbook.json $HOME/.archway/config/
-docker run --restart=always -d -it --network host --name archway -v $HOME/.archway:/root/.archway archwaynetwork/archwayd:augusta start --x-crisis-skip-assert-invariants
 # enable prometheus
 sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.archway/config/config.toml
 

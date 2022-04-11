@@ -2,12 +2,12 @@
 
 ### set up your node using binaries
 ```
-wget -O archway.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/archway.sh && chmod +x archway.sh && ./archway.sh
+wget -O archway.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/torii/archway.sh && chmod +x archway.sh && ./archway.sh
 ```
 
 ### set up your node using docker
 ```
-wget -O archway.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/archway.sh && chmod +x archway.sh && ./archway.sh
+wget -O archway_docker.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/torii/archway_docker.sh && chmod +x archway_docker.sh && ./archway_docker.sh
 ```
 
 ### load variables
@@ -23,7 +23,7 @@ archwayd keys add $WALLET
 ### create validator
 ```
 archwayd tx staking create-validator \
-  --amount 9000000uaugust \
+  --amount 9000000utorii \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.1" \
@@ -33,7 +33,7 @@ archwayd tx staking create-validator \
   --moniker $NODENAME \
   --chain-id $CHAIN_ID \
   --gas 300000 \
-  --fees 3uaugust
+  --fees 3utorii
 ```
 
 ### (OPTIONAL) save wallet info (works only with binaries setup!)
@@ -96,7 +96,7 @@ docker restart archway
 ### cosmos commands
 Bond more tokens (if you want increase your validator stake you should bond more to your valoper address):
 ```
-archwayd tx staking delegate $VALOPER_ADDRESS 10000000uaugust --from $WALLET --chain-id $CHAIN_ID --fees 5000uaugust
+archwayd tx staking delegate $VALOPER_ADDRESS 10000000utorii --from $WALLET --chain-id $CHAIN_ID --fees 5000utorii
 ```
 
 Withdraw rewards

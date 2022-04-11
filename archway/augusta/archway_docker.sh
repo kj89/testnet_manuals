@@ -56,12 +56,12 @@ docker run --rm -it -v $HOME/.archway:/root/.archway archwaynetwork/archwayd:aug
 docker run --rm -it -v $HOME/.archway:/root/.archway archwaynetwork/archwayd:augusta config chain-id $CHAIN_ID
 perl -i -pe 's/^minimum-gas-prices = .+?$/minimum-gas-prices = "0august"/' $HOME/.archway/config/app.toml
 SEEDS="2f234549828b18cf5e991cc884707eb65e503bb2@34.74.129.75:31076,c8890bcde31c2959a8aeda172189ec717fef0b2b@95.216.197.14:26656"
-wget -qO $HOME/peers.txt "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/peers.txt"
+wget -qO $HOME/peers.txt "https://raw.githubusercontent.com/kj89testnet_manuals/main/archway/august/peers.txt"
 PEERS=$(cat $HOME/peers.txt)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.archway/config/config.toml
 sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.archway/config/config.toml
 curl -s "https://api.nodes.guru/archway_genesis.json" | jq '.result.genesis' > $HOME/.archway/config/genesis.json
-wget -O addrbook.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/addrbook.json
+wget -O addrbook.json https://raw.githubusercontent.com/kj89testnet_manuals/main/archway/august/addrbook.json
 mv addrbook.json $HOME/.archway/config/
 
 echo -e "\e[1m\e[32m5. Starting Archway ... \e[0m" && sleep 1
