@@ -3,7 +3,12 @@
 ### crescent network configuration
 https://docs.crescent.network/other-information/network-configurations
 
-### run script below to prepare your node
+### run script below to prepare your node in mainnet
+```
+wget -O crescent.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/crescent/crescent.sh && chmod +x crescent.sh && ./crescent.sh
+```
+
+### run script below to prepare your node in devnet
 ```
 wget -O crescent_devnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/crescent/crescent_devnet.sh && chmod +x crescent_devnet.sh && ./crescent_devnet.sh
 ```
