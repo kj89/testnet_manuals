@@ -57,7 +57,7 @@ source $HOME/.bash_profile
 ### create validator
 ```
 crescentd tx staking create-validator \
-  --amount 9000000ucre \
+  --amount 1000000ucre \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \

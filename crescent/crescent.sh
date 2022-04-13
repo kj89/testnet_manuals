@@ -40,8 +40,6 @@ git clone https://github.com/crescent-network/crescent
 cd crescent
 git checkout v1.0.0
 make install
-chmod +x crescentd
-sudo mv crescentd /usr/local/bin/
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # init
@@ -53,7 +51,7 @@ crescentd config keyring-backend file
 
 # downloag mainnet genesis file
 git clone https://github.com/crescent-network/launch
-cd launch/mainnet/
+cd launch/mainnet/crescent-1/
 tar -zxvf genesis.json.tar.gz
 cp genesis.json ~/.crescent/config/genesis.json
 
