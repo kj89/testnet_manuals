@@ -54,7 +54,7 @@ echo -e "\e[1m\e[32m4. Downloading Archway config files ... \e[0m" && sleep 1
 docker rm -f archway
 docker run --rm -it -v $HOME/.archway:/root/.archway archwaynetwork/archwayd:torii init $NODENAME --chain-id $CHAIN_ID
 docker run --rm -it -v $HOME/.archway:/root/.archway archwaynetwork/archwayd:torii config chain-id $CHAIN_ID
-# perl -i -pe 's/^minimum-gas-prices = .+?$/minimum-gas-prices = "0torii"/' $HOME/.archway/config/app.toml
+perl -i -pe 's/^minimum-gas-prices = .+?$/minimum-gas-prices = "0torii"/' $HOME/.archway/config/app.toml
 SEEDS="2f234549828b18cf5e991cc884707eb65e503bb2@34.74.129.75:31076,c8890bcde31c2959a8aeda172189ec717fef0b2b@95.216.197.14:26656"
 wget -qO $HOME/peers.txt "https://raw.githubusercontent.com/kj89testnet_manuals/main/archway/torii/peers.txt"
 PEERS=$(cat $HOME/peers.txt)
