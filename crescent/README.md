@@ -8,34 +8,18 @@ https://docs.crescent.network/other-information/network-configurations
 wget -O crescent.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/crescent/crescent.sh && chmod +x crescent.sh && ./crescent.sh
 ```
 
-### run script below to prepare your node in devnet
-```
-wget -O crescent_devnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/crescent/crescent_devnet.sh && chmod +x crescent_devnet.sh && ./crescent_devnet.sh
-```
-
 ### load variables
 ```
 source $HOME/.bash_profile
 ```
 
-### update crescent sdk to v1.0.0-rc3
+### update crescent sdk to v1.1.0
 ```
 cd $HOME
 rm crescent -rf
 git clone https://github.com/crescent-network/crescent
 cd crescent 
-git checkout v1.0.0-rc3
-make install
-sudo systemctl restart crescentd && journalctl -fu crescentd.service -o cat
-```
-
-### update crescent sdk to v1.0.0-rc4
-```
-cd $HOME
-rm crescent -rf
-git clone https://github.com/crescent-network/crescent
-cd crescent 
-git checkout v1.0.0-rc4
+git checkout v1.1.0
 make install
 sudo systemctl restart crescentd && journalctl -fu crescentd.service -o cat
 ```
