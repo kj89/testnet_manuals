@@ -23,7 +23,7 @@ archwayd keys add $WALLET --recover
 ### create validator
 ```
 archwayd tx staking create-validator \
-  --amount 9000000utorii \
+  --amount 1000000utorii \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
@@ -31,9 +31,7 @@ archwayd tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(archwayd tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id $CHAIN_ID \
-  --gas 300000 \
-  --fees 3utorii
+  --chain-id $CHAIN_ID
 ```
 
 ### (OPTIONAL) save wallet info
@@ -101,7 +99,7 @@ archwayd keys show $WALLET --bech val -a
 
 Get wallet balance
 ```
-archwayd query bank balances WALLET_ADDRESS
+archwayd query bank balances $WALLET_ADDRESS
 ```
 
 Change commision
@@ -118,4 +116,14 @@ archwayd tx staking edit-validator \
 --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
 --chain-id=$CHAIN_ID \
 --from=$WALLET
+```
+
+Unjail validator
+```
+archwayd tx slashing unjail \
+  --broadcast-mode=block \
+  --from=$WALLET \
+  --chain-id=$CHAIN_ID \
+  --gas=auto \
+  --gas-adjustment=1.4
 ```
