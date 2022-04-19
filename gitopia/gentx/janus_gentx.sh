@@ -47,32 +47,32 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu gcc git jq chrony liblz4-tool -y
 
 # install binaries
-git clone https://github.com/archway-network/archway
-cd archway && git checkout main && make install
+git clone https://github.com/gitopia-network/gitopia
+cd gitopia && git checkout main && make install
 
 # init application
-archwayd init $NODENAME --chain-id $CHAIN_ID
+gitopiad init $NODENAME --chain-id $CHAIN_ID
 
 # generate wallet
-echo -e "${PASSWORD}\n${PASSWORD}\n"| archwayd keys add $WALLET
+echo -e "${PASSWORD}\n${PASSWORD}\n"| gitopiad keys add $WALLET
 
 # download genesis and generate gentx file
-wget -O $HOME/.archway/config/genesis.json "https://gitopia.com/gitopia1dlpc7ps63kj5v0kn5v8eq9sn2n8v8r5z9jmwff/testnets/tree/master/gitopia-janus-testnet/genesis.json"
-WALLET_ADDRESS=$(echo ${PASSWORD} | archwayd keys show $WALLET -a)
-archwayd add-genesis-account $WALLET_ADDRESS 1001000tlore
-echo ${PASSWORD} | archwayd gentx $WALLET 1000000tlore \
+wget -O $HOME/.gitopia/config/genesis.json "https://gitopia.com/gitopia1dlpc7ps63kj5v0kn5v8eq9sn2n8v8r5z9jmwff/testnets/tree/master/gitopia-janus-testnet/genesis.json"
+WALLET_ADDRESS=$(echo ${PASSWORD} | gitopiad keys show $WALLET -a)
+gitopiad add-genesis-account $WALLET_ADDRESS 1001000tlore
+echo ${PASSWORD} | gitopiad gentx $WALLET 1000000tlore \
 --commission-max-change-rate=0.01 \
 --commission-max-rate=0.20 \
 --commission-rate=0.05 \
---pubkey=$(archwayd tendermint show-validator) \
+--pubkey=$(gitopiad tendermint show-validator) \
 --chain-id=$CHAIN_ID \
 --moniker=$NODENAME \
 --details="" \
 --website=""
 sleep 2
 
-echo -e "Your gentx file location: \e[1m\e[32m$(readlink -f $HOME/.archway/config/gentx/*)\e[0m"
+echo -e "Your gentx file location: \e[1m\e[32m$(readlink -f $HOME/.gitopia/config/gentx/*)\e[0m"
 echo "============================================================================"
 echo -e "Things you have to backup:"
 echo -e "	Wallet \e[1m\e[32m24 word mnemonic\e[0m generated above"
-echo -e "	Contents of \e[1m\e[32m$HOME/.archway/config/\e[0m"
+echo -e "	Contents of \e[1m\e[32m$HOME/.gitopia/config/\e[0m"
