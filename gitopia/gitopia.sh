@@ -79,21 +79,6 @@ sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persi
 # enable prometheus
 sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.gitopia/config/config.toml
 
-# add external (if dont use sentry), port is default
-# external_address=$(wget -qO- eth0.me)
-# sed -i.bak -e "s/^external_address = \"\"/external_address = \"$external_address:26656\"/" $HOME/.gitopia/config/config.toml
-
-# config pruning
-pruning="custom"
-pruning_keep_recent="100"
-pruning_keep_every="5000"
-pruning_interval="10"
-
-sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.gitopia/config/app.toml
-sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.gitopia/config/app.toml
-sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.gitopia/config/app.toml
-sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.gitopia/config/app.toml
-
 # reset
 gitopiad unsafe-reset-all
 
