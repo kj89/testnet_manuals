@@ -87,6 +87,11 @@ Bond more tokens (if you want increase your validator stake you should bond more
 archwayd tx staking delegate $VALOPER_ADDRESS 10000000utorii --from $WALLET --chain-id $CHAIN_ID --fees 5000utorii
 ```
 
+Redelegate
+```
+archwayd tx staking redelegate $VALOPER_ADDRESS <dst-validator-operator-addr> 100000000utorii --from=$WALLET --chain-id=$CHAIN_ID
+```
+
 Withdraw rewards
 ```
 archwayd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID
