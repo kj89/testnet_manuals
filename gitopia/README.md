@@ -1,5 +1,8 @@
 ## gitopia node setup
 
+### explorer
+https://explorer.gitopia.com/
+
 ### set up your node using binaries
 ```
 wget -O gitopia.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/gitopia/gitopia.sh && chmod +x gitopia.sh && ./gitopia.sh

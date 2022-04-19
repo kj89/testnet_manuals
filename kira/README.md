@@ -198,6 +198,41 @@ sudo kira
 
 
 
+### STATE SYNC
+STATE SYNC как и обещал. Нода будет весить пару гигов, и подключится к сети за 10 минут +-
+Делаем на свой страх и риск)
+Заходим под kira
 
+1. curl -s http://194.163.141.23:26657/status — проверяем доступна ли моя нода ( Почему-то с подсети контабо с ip рядом не пингуется. Позже перенесу на хецнер если нужно бдует. Чуть что пингуем в чате)
+2. docker ps. Видим Container id, записываем его (у меня будет fb0bac5166bd)
+3. docker exec -it fb0bac5166bd /bin/bash
+4. nano $HOME/.sekaid/config/config.toml и в persistent_peers вписываем tcp://c77daa77a6ad825326a9676610347c0aa8cc63ca@194.163.141.23:26656 (sed почему то не работает)
+5. nano /self/home/container/validator/start.sh . В самом конце, перед echoInfo "INFO: Starting validator..." делаем как на скрине. Вставляем настройки прунинга и стейт синха
+echoInfo "INFO: State SYNC"
 
+pruning="custom"
+pruning_keep_recent="100"
+pruning_keep_every="1000"
+pruning_interval="10"
 
+sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.sekaid/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.sekaid/config/app.toml
+sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.sekaid/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.sekaid/config/app.toml
+
+SNAP_RPC1="http://194.163.141.23:26657" \
+&& SNAP_RPC2="http://194.163.141.23:26657"
+LATEST_HEIGHT=$(curl -s $SNAP_RPC2/block | jq -r .result.block.header.height) \
+&& BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000)) \
+&& TRUST_HASH=$(curl -s "$SNAP_RPC2/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+
+echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
+
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC1,$SNAP_RPC2\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.sekaid/config/config.toml
+
+sekaid unsafe-reset-all
+6. Выходим с докера exit. Делаем рестарт контейнера валика с КМ. Валидатор может в джейл, лучше maintenance mode использовать
+7. Смотрим свои логи синхронзации docker logs fb0bac5166bd --tail 100
