@@ -23,11 +23,11 @@ gitopiad keys add $WALLET --recover
 ### create validator
 ```
 gitopiad tx staking create-validator \
-  --amount 1000000utorii \
+  --amount 1000000utlore \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
-  --commission-rate "0.07" \
+  --commission-rate "0.1" \
   --min-self-delegation "1" \
   --pubkey  $(gitopiad tendermint show-validator) \
   --moniker $NODENAME \
@@ -41,17 +41,6 @@ VALOPER_ADDRESS=$(gitopiad keys show $WALLET --bech val -a)
 echo 'export WALLET_ADDRESS='${WALLET_ADDRESS} >> $HOME/.bash_profile
 echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
-```
-
-### Fund wallet
-Fund your account via the faucet
-```
-curl -X POST "https://faucet.torii-1.gitopia.tech/" \
--H "accept: application/json" \
--H "Content-Type: application/json" \
--d "{ \
-\"address\": \"$(gitopiad keys show -a $WALLET)\", \
-\"coins\": [ \"10000000utorii\" ]}"
 ```
 
 ## Usefull commands
@@ -84,12 +73,12 @@ systemctl restart gitopiad
 ### Cosmos commands
 Bond more tokens (if you want increase your validator stake you should bond more to your valoper address):
 ```
-gitopiad tx staking delegate $VALOPER_ADDRESS 10000000utorii --from $WALLET --chain-id $CHAIN_ID --fees 5000utorii
+gitopiad tx staking delegate $VALOPER_ADDRESS 10000000utlore --from $WALLET --chain-id $CHAIN_ID --fees 5000utlore
 ```
 
 Redelegate
 ```
-gaiad tx staking redelegate $VALOPER_ADDRESS <dst-validator-operator-addr> 100000000utorii --from=$WALLET --chain-id=$CHAIN_ID
+gaiad tx staking redelegate $VALOPER_ADDRESS <dst-validator-operator-addr> 100000000utlore --from=$WALLET --chain-id=$CHAIN_ID
 ```
 
 Withdraw rewards

@@ -46,9 +46,12 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
 source ~/.bash_profile
 go version
 
+# install gitopia helper
+curl https://get.gitopia.com | bash
+
 # download binary
 cd $HOME
-git clone https://gitopia1dlpc7ps63kj5v0kn5v8eq9sn2n8v8r5z9jmwff/gitopia
+git clone gitopia://gitopia1dlpc7ps63kj5v0kn5v8eq9sn2n8v8r5z9jmwff/gitopia
 cd gitopia
 git checkout main
 make install
@@ -61,14 +64,16 @@ gitopiad config keyring-backend file
 gitopiad init $NODENAME --chain-id $CHAIN_ID
 
 # download addrbook and genesis
-wget -qO $HOME/.gitopia/config/genesis.json "https://raw.githubusercontent.com/gitopia-network/testnets/main/torii-1/genesis.json"
+cd $HOME
+git clone gitopia://gitopia1dlpc7ps63kj5v0kn5v8eq9sn2n8v8r5z9jmwff/testnets
+cp $HOME/testnets/gitopia-janus-testnet/genesis.json $HOME/.gitopia/config/
 
 # set minimum gas price
-sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0utorii\"/" $HOME/.gitopia/config/app.toml
+sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0.001utlore\"/" $HOME/.gitopia/config/app.toml
 
 # set peers and seeds
-SEEDS=`curl -sL https://raw.githubusercontent.com/gitopia-network/testnets/main/torii-1/persistent_peers.txt | awk '{print $1}' | paste -s -d, -`
-PEERS="facf38daac7cbbdcbaf87f531225d6a621cea483@15.235.10.78:26656,07fd2c5b8838dfc80ff1e9c5577006b552fcb98c@206.221.181.234:46656,83b18e67dca836a838361496a7c87696a488fd05@65.108.99.224:26656,c5ca4cb89df8c194e6b404f54be0e27c1258377b@95.214.55.210:26756,ece6b901c278f91410b798edef805ba1d358c660@59.13.223.197:30273,b1cedcd284964d7657d597541ec9516fa3392cd1@185.234.69.139:26656,ce1e6c7a84ab3f8e2fd87d4aef0f95da774a5e98@159.69.11.174:26656,cb1534d2ad2fedb1168b4052f04ede5b12428068@51.250.111.252:26656,2b0c484615d9bafd6cc339c588e366dd9b000221@54.180.95.251:26656,2e422fe3956b7ea2a868dbe832e8cd9af5203ea6@65.108.75.32:26656,ca8dca9c9a475b145af9cbce135d013e060649dd@65.108.194.40:26686,5d221da2ebb37a6b37ee86581457061f17e0704e@165.232.143.157:26656,5ba7f9e0905a69003dca519da8dfed09dd12471a@157.230.121.70:26656,560b00b413aadfca41a982a4381cb1736ee9d902@54.36.109.62:26656"
+SEEDS=""
+PEERS=""
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.gitopia/config/config.toml
 
 # enable prometheus
