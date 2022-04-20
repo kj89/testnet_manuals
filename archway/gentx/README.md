@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="150" height="auto" src="https://user-images.githubusercontent.com/50621007/164164767-0a9590e5-b018-44de-8a3e-4ebdd905dfbc.png">
+</p>
+
 # Generate gentx for torii-1 incentivized testnet
 To generate gentx for torii-1 testnet you can run command below on fresh server. It will install all dependencies and generate gentx file for you atomatically.
 ```
