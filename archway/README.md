@@ -1,11 +1,11 @@
-## Archway node setup for Incentivized Testnet — Torii-1
+# Archway node setup for Incentivized Testnet — Torii-1
 All information about testnet incentives and challenges you can find [here](https://philabs.notion.site/philabs/Archway-Incentivized-Testnet-Torii-1-9e70a8f431c041618c6932e70d46ccdd)
 
-### Usefull tools I have created for Archway
+## Usefull tools I have created for Archway
 > To generate gentx for torii-1 testnet please navigate to [Generate gentx for torii-1 incentivized testnet](https://github.com/kj89/testnet_manuals/blob/main/archway/gentx/README.md)
 > To set up monitoring for your validator node navigate to [How to set up monitoring stack for your cosmos validator](https://github.com/kj89/cosmos_node_monitoring/blob/master/README.md)
 
-### Set up your Archway fullnode
+## Set up your Archway fullnode
 You can setup your Archway fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
 wget -O archway.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/archway.sh && chmod +x archway.sh && ./archway.sh
