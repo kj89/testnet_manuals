@@ -82,7 +82,7 @@ Currently there are two options of getting tokens in torii-1 testnet
 > Please note: to mitigate against spam accounts, the Stakely faucet will discard requests from users with Twitter accounts with very little activity or that are too new!
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 torii (1 torii is equal to 1000000 utorii)
+Before creating validator please make sure that you have at least 1 torii (1 torii is equal to 1000000 utorii) and your node is synchronized
 
 To check your wallet balance:
 ```
