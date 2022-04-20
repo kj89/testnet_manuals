@@ -51,17 +51,17 @@ archwayd keys list
 Add wallet address
 ```
 WALLET_ADDRESS=$(archwayd keys show $WALLET -a)
-echo 'export WALLET_ADDRESS='${WALLET_ADDRESS} >> $HOME/.bash_profile
 ```
 
 Add valoper address
 ```
 VALOPER_ADDRESS=$(archwayd keys show $WALLET --bech val -a)
-echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
 ```
 
 Load variables into system
 ```
+echo 'export WALLET_ADDRESS='${WALLET_ADDRESS} >> $HOME/.bash_profile
+echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
