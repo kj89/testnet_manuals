@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="300" height="auto" src="https://user-images.githubusercontent.com/50621007/164164767-0a9590e5-b018-44de-8a3e-4ebdd905dfbc.png">
+</p>
+
 # Archway node setup for Incentivized Testnet — Torii-1
 All information about testnet incentives and challenges you can find [here](https://philabs.notion.site/philabs/Archway-Incentivized-Testnet-Torii-1-9e70a8f431c041618c6932e70d46ccdd)
 
