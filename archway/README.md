@@ -8,7 +8,7 @@ All information about testnet incentives and challenges you can find [here](http
 ## Usefull tools I have created for Archway
 > To generate gentx for torii-1 testnet please navigate to [Generate gentx for torii-1 incentivized testnet](https://github.com/kj89/testnet_manuals/blob/main/archway/gentx/README.md)
 >
-> To set up monitoring for your validator node navigate to [How to set up monitoring stack for your cosmos validator](https://github.com/kj89/cosmos_node_monitoring/blob/master/README.md)
+> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for Archway validator](https://github.com/kj89/testnet_manuals/blob/main/archway/monitoring/README.md)
 
 ## Set up your Archway fullnode
 You can setup your Archway fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
@@ -123,7 +123,7 @@ sudo ufw enable
 ```
 
 ## Monitoring
-To monitor and get alerted about your validator health status you can use my guide on [How to set up monitoring stack for your cosmos validator](https://github.com/kj89/cosmos_node_monitoring/blob/master/README.md)
+To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for Archway validator](https://github.com/kj89/testnet_manuals/blob/main/archway/monitoring/README.md)
 
 ## Usefull commands
 ### Service management
