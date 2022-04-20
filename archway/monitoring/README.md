@@ -113,7 +113,7 @@ ports used:
 
 4.3 Change url to your chain data explorer and hit **"Save"**
 
-![image](https://user-images.githubusercontent.com/50621007/160623647-1f23a1dc-35b0-494f-8ba4-fb4d90f1b0c5.png)
+![image](https://user-images.githubusercontent.com/50621007/164176856-26177445-5c32-4f96-abd4-9312c979b575.png)
 
 4.4. Hit **"Save"** button on the left top corner to save changes to dashboard
 

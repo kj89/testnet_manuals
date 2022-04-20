@@ -5,6 +5,10 @@
 # Archway node setup for Incentivized Testnet — Torii-1
 All information about testnet incentives and challenges you can find [here](https://philabs.notion.site/philabs/Archway-Incentivized-Testnet-Torii-1-9e70a8f431c041618c6932e70d46ccdd)
 
+Official documentation:
+>- https://docs.archway.io/docs/validator/running-a-validator-node
+>- https://philabs.notion.site/Validator-Setup-Guide-10502472842e4ad8bf7fb7ec68afe07a
+
 ## Usefull tools I have created for Archway
 > To generate gentx for torii-1 testnet please navigate to [Generate gentx for torii-1 incentivized testnet](https://github.com/kj89/testnet_manuals/blob/main/archway/gentx/README.md)
 >
