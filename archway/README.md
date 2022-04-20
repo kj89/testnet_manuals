@@ -17,7 +17,7 @@ wget -O archway.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/a
 ```
 
 ### Post installation
-After installation is finished please load variables into system
+When installation is finished please load variables into system
 ```
 source $HOME/.bash_profile
 ```
@@ -101,7 +101,7 @@ archwayd tx staking create-validator \
 ```
 
 ## Security
-To protect you keys please make sure you at least follow basic security
+To protect you keys please make sure you follow basic security rules
 
 ### Set up ssh keys for authentication
 Good tutorial on how to set up ssh keys for authentication to your server can be found [here](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-20-04)
@@ -121,6 +121,9 @@ sudo ufw limit ssh/tcp
 sudo ufw allow 26656
 sudo ufw enable
 ```
+
+## Monitoring
+To monitor and get alerted about your validator health status you can use my guide on [How to set up monitoring stack for your cosmos validator](https://github.com/kj89/cosmos_node_monitoring/blob/master/README.md)
 
 ## Usefull commands
 ### Service management
