@@ -3,6 +3,7 @@ All information about testnet incentives and challenges you can find [here](http
 
 ## Usefull tools I have created for Archway
 > To generate gentx for torii-1 testnet please navigate to [Generate gentx for torii-1 incentivized testnet](https://github.com/kj89/testnet_manuals/blob/main/archway/gentx/README.md)
+>
 > To set up monitoring for your validator node navigate to [How to set up monitoring stack for your cosmos validator](https://github.com/kj89/cosmos_node_monitoring/blob/master/README.md)
 
 ## Set up your Archway fullnode
@@ -11,10 +12,15 @@ You can setup your Archway fullnode in few minutes by using automated script bel
 wget -O archway.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/archway.sh && chmod +x archway.sh && ./archway.sh
 ```
 
-### load variables
+### Post installation
 After installation is finished please load variables into system
 ```
 source $HOME/.bash_profile
+```
+
+Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
+```
+archwayd status 2>&1 | jq .SyncInfo
 ```
 
 ### Create wallet
@@ -68,8 +74,15 @@ Currently there are two options of getting tokens in torii-1 testnet
 > Please note: to mitigate against spam accounts, the Stakely faucet will discard requests from users with Twitter accounts with very little activity or that are too new!
 
 ### Create validator
+Before creating validator please make sure that you have at least 1 torii (1 torii is equal to 1000000 utorii)
+
+To check your wallet balance:
+```
+archwayd query bank balances $WALLET_ADDRESS
+```
+> If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
+
 To create your validator run command below
-> Before creating validator please make sure that you have at least 1 torii (1 torii is equal to 1000000 utorii)
 ```
 archwayd tx staking create-validator \
   --amount 1000000utorii \
