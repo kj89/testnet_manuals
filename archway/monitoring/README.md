@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="200" height="auto" src="https://user-images.githubusercontent.com/50621007/164164767-0a9590e5-b018-44de-8a3e-4ebdd905dfbc.png">
+</p>
+
 # Set up monitoring and alerting for Archway validator
 
 ## Prerequisites
