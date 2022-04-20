@@ -21,6 +21,10 @@ make sure following ports are open:
 - `9100` (node-exporter)
 - `9300` (cosmos-exporter)
 
+```
+sudo ufw allow 9100,9300/tcp
+```
+
 ## Deployment
 Monitoring stack needs to be deployed on seperate machine to be able to notify in case if validator goes down! 
 To run monitoring stack you dont need beastly server with multiple cores. It will be more than enough to run it on smallest available vps
