@@ -1,4 +1,5 @@
 # Generate gentx for torii-1 incentivized testnet
+To generate gentx for torii-1 testnet you can run command below on fresh server. It will install all dependencies and generate gentx file for you atomatically.
 ```
 wget -O torii_gentx.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/gentx/torii_gentx.sh && chmod +x torii_gentx.sh && ./torii_gentx.sh
 ```
