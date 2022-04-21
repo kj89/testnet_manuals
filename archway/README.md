@@ -68,18 +68,15 @@ source $HOME/.bash_profile
 ### Top up your wallet balance using faucet
 Currently there are two options of getting tokens in torii-1 testnet
 
-1. Get 3 torii every 6 hours using Discord faucet
-* connect to [Archway official Discord server](https://discord.gg/RVWwavhZ)
-* choose your roles in `#get-roles` channel
-* navigate to `#faucet` channel under `VALIDATORS` category
-* input faucet command with your wallet address. Here is an example, `!faucet archway1yh9xhsnnveys532df2nfsuwj44pj6kf4h2thd6`
-> If in response you get faucet failed than your wallet reached the limit and you will not able to request more tokens
-
-2. Get 50 torii using your twitter account
+1. Get 3 torii using your twitter account
 * navigate to https://stakely.io/en/faucet/archway-testnet
 * input your wallet address and click verify
 * then press tweet button and wait for faucet to process your tweet
 > Please note: to mitigate against spam accounts, the Stakely faucet will discard requests from users with Twitter accounts with very little activity or that are too new!
+
+2. Get 3 torii using your twitter account
+* navigate to https://faucet.torii-1.archway.tech/ui/
+* input your wallet address and click `Get Fund`
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 torii (1 torii is equal to 1000000 utorii) and your node is synchronized
