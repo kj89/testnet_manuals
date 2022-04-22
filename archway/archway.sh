@@ -55,7 +55,6 @@ make install
 
 # config
 archwayd config chain-id $CHAIN_ID
-archwayd config node https://rpc.torii-1.archway.tech:443
 archwayd config keyring-backend file
 
 # init
