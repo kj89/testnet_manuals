@@ -21,8 +21,12 @@ make sure following ports are open:
 - `9100` (node-exporter)
 - `9300` (cosmos-exporter)
 
+prometheus metrics should be `enabled` and port `26660` should be available on validator instance
+
+To enable prometheus you have to run command below and after that please restart service to apply changes
 ```
-sudo ufw allow 9100,9300/tcp
+# enable prometheus
+sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.archway/config/config.toml
 ```
 
 ## Deployment
