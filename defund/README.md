@@ -79,7 +79,7 @@ Currently there are two options of getting tokens in torii-1 testnet
 * input your wallet address and click `Get Fund`
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 torii (1 torii is equal to 1000000 utorii) and your node is synchronized
+Before creating validator please make sure that you have at least 1 torii (1 torii is equal to 1000000 ufetf) and your node is synchronized
 
 To check your wallet balance:
 ```
@@ -90,7 +90,7 @@ defundd query bank balances $WALLET_ADDRESS
 To create your validator run command below
 ```
 defundd tx staking create-validator \
-  --amount 1000000utorii \
+  --amount 1000000ufetf \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
@@ -192,18 +192,18 @@ defundd query bank balances $WALLET_ADDRESS
 
 Transfer funds
 ```
-defundd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000utorii
+defundd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000ufetf
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-defundd tx staking delegate $VALOPER_ADDRESS 10000000utorii --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+defundd tx staking delegate $VALOPER_ADDRESS 10000000ufetf --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-defundd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000utorii --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+defundd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ufetf --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards

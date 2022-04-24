@@ -67,7 +67,7 @@ defundd init $NODENAME --chain-id $CHAIN_ID
 wget -qO $HOME/.defund/config/genesis.json "https://raw.githubusercontent.com/defund-labs/defund/v0.0.2/testnet/private/genesis.json"
 
 # set minimum gas price
-sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0utorii\"/" $HOME/.defund/config/app.toml
+sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0ufetf\"/" $HOME/.defund/config/app.toml
 
 # set peers and seeds
 SEEDS = "8e1590558d8fede2f8c9405b7ef550ff455ce842@51.79.30.9:26656,bfffaf3b2c38292bd0aa2a3efe59f210f49b5793@51.91.208.71:26656,106c6974096ca8224f20a85396155979dbd2fb09@198.244.141.176:26656"
@@ -100,15 +100,21 @@ echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
 tee $HOME/defundd.service > /dev/null <<EOF
 [Unit]
-Description=defund
-After=network.target
+Description=Defund daemon
+After=network-online.target
 [Service]
-Type=simple
+Environment="DAEMON_NAME=defundd"
+Environment="DAEMON_HOME=${HOME}/.defundd"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_LOG_BUFFER_SIZE=512"
+Environment="UNSAFE_SKIP_BACKUP=true"
 User=$USER
-ExecStart=$(which defundd) start
-Restart=on-failure
-RestartSec=10
-LimitNOFILE=65535
+ExecStart=${HOME}/go/bin/defundd start
+Restart=always
+RestartSec=3
+LimitNOFILE=infinity
+LimitNPROC=infinity
 [Install]
 WantedBy=multi-user.target
 EOF
