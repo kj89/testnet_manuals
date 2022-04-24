@@ -93,7 +93,7 @@ sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.defund/config/app.toml
 
 # reset
-defundd unsafe-reset-all
+defundd tendermint unsafe-reset-all
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
