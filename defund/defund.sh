@@ -64,7 +64,7 @@ defundd init $NODENAME --chain-id $CHAIN_ID
 
 # download addrbook and genesis
 wget -qO $HOME/.defund/config/genesis.json "https://raw.githubusercontent.com/defund-labs/defund/163e2669b6870aa26b73d843312b22c9948b29c6/testnet/private/genesis.json"
-wget -qO $HOME/.defund/config/addrbook.json "https://snapshots.bitszn.com/snapshots/scripts/addrbook_defund.json"
+wget -qO $HOME/.defund/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/defund/addrbook.json"
 
 # set minimum gas price
 sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0ufetf\"/" $HOME/.defund/config/app.toml
