@@ -53,7 +53,6 @@ echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 cd $HOME
 git clone https://github.com/defund-labs/defund
 cd defund
-git checkout v0.0.2
 make install
 
 # config
@@ -64,7 +63,8 @@ defundd config keyring-backend file
 defundd init $NODENAME --chain-id $CHAIN_ID
 
 # download addrbook and genesis
-wget -qO $HOME/.defund/config/genesis.json "https://raw.githubusercontent.com/defund-labs/defund/v0.0.2/testnet/private/genesis.json"
+wget -qO $HOME/.defund/config/genesis.json "https://raw.githubusercontent.com/defund-labs/defund/163e2669b6870aa26b73d843312b22c9948b29c6/testnet/private/genesis.json"
+wget -qO $HOME/.defund/config/addrbook.json "https://snapshots.bitszn.com/snapshots/scripts/addrbook_defund.json"
 
 # set minimum gas price
 sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0ufetf\"/" $HOME/.defund/config/app.toml
@@ -100,21 +100,15 @@ echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
 tee $HOME/defundd.service > /dev/null <<EOF
 [Unit]
-Description=Defund daemon
-After=network-online.target
+Description=defundd
+After=network.target
 [Service]
-Environment="DAEMON_NAME=defundd"
-Environment="DAEMON_HOME=${HOME}/.defundd"
-Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
-Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
-Environment="DAEMON_LOG_BUFFER_SIZE=512"
-Environment="UNSAFE_SKIP_BACKUP=true"
+Type=simple
 User=$USER
-ExecStart=${HOME}/go/bin/defundd start
-Restart=always
-RestartSec=3
-LimitNOFILE=infinity
-LimitNPROC=infinity
+ExecStart=$(which defundd) start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
 [Install]
 WantedBy=multi-user.target
 EOF
