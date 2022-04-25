@@ -1,8 +1,8 @@
 <p align="center">
-  <img width="150" height="auto" src="https://user-images.githubusercontent.com/50621007/164164767-0a9590e5-b018-44de-8a3e-4ebdd905dfbc.png">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165055511-83e8a2d3-1700-4d26-af27-abcc825573a7.png">
 </p>
 
-# Set up monitoring and alerting for Archway validator
+# Set up monitoring and alerting for defund validator
 
 ## Prerequisites
 
@@ -14,8 +14,8 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `utorii` for Archway Torii testnet. You can find it in genesis file |
-| **bench_prefix** | Prefix for chain addresses, for example, `archway` for Archway Torii testnet. You can find it in public addresses like this **archway**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **bond_denom** | Denominated token name, for example, `ufetf` for defund fetf testnet. You can find it in genesis file |
+| **bench_prefix** | Prefix for chain addresses, for example, `defund` for defund fetf testnet. You can find it in public addresses like this **defund**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
 
 make sure following ports are open:
 - `9100` (node-exporter)
@@ -26,7 +26,7 @@ prometheus metrics should be `enabled` and port `26660` should be available on v
 To enable prometheus you have to run command below and after that please restart service to apply changes
 ```
 # enable prometheus
-sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.archway/config/config.toml
+sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.defund/config/config.toml
 ```
 
 ## Deployment
@@ -55,8 +55,8 @@ vim $HOME/cosmos_node_monitoring/config/.env
 | KEY | VALUE |
 |---------------|-------------|
 | VALIDATOR_IP | Public ip address of you validator |
-| VALOPER_ADDRESS | Operator address of your validator, for example, _"archwayvaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete"_ |
-| WALLET_ADDRESS | Your validator self-deligate wallet address, for example, _"archway1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc"_ |
+| VALOPER_ADDRESS | Operator address of your validator, for example, _"defundvaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete"_ |
+| WALLET_ADDRESS | Your validator self-deligate wallet address, for example, _"defund1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc"_ |
 | TELEGRAM_ADMIN | Your user id you can get from [@userinfobot](https://t.me/userinfobot). The bot will only reply to messages sent from the user. All other messages are dropped and logged on the bot's console |
 | TELEGRAM_TOKEN | Your telegram bot access token you can get from [@botfather](https://telegram.me/botfather). To generate new token just follow a few simple steps described [here](https://core.telegram.org/bots#6-botfather) |
 

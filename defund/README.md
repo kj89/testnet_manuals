@@ -1,17 +1,19 @@
 <p align="center">
-  <img width="150" height="auto" src="https://user-images.githubusercontent.com/50621007/164164767-0a9590e5-b018-44de-8a3e-4ebdd905dfbc.png">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165055511-83e8a2d3-1700-4d26-af27-abcc825573a7.png">
 </p>
 
-# defund node setup for Incentivized Testnet — Torii-1
-All information about testnet incentives and challenges you can find [here](https://philabs.notion.site/philabs/defund-Incentivized-Testnet-Torii-1-9e70a8f431c041618c6932e70d46ccdd)
+# defund node setup for Incentivized Testnet — defund-private-1
+All information about testnet incentives and challenges you can find [here](https://philabs.notion.site/philabs/defund-Incentivized-Testnet-defund-private-1-9e70a8f431c041618c6932e70d46ccdd)
 
 Official documentation:
->- https://docs.defund.io/docs/validator/running-a-validator-node
->- https://philabs.notion.site/Validator-Setup-Guide-10502472842e4ad8bf7fb7ec68afe07a
+>- [Validator setup instructions](https://github.com/defund-labs/defund/blob/main/testnet/private/validators.md)
+>- [DeFund Tokenomics](https://medium.com/defund-finance/detf-token-economics-release-schedule-78a8d32713a5)
+>- [FundDrop Breakdown](https://medium.com/defund-finance/airdrop-d-c2685d282858)
+
+Explorer:
+>-  https://defund.explorers.guru/
 
 ## Usefull tools I have created for defund
-> To generate gentx for torii-1 testnet please navigate to [Generate gentx for torii-1 incentivized testnet](https://github.com/kj89/testnet_manuals/blob/main/defund/gentx/README.md)
->
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for defund validator](https://github.com/kj89/testnet_manuals/blob/main/defund/monitoring/README.md)
 
 ## Set up your defund fullnode
@@ -66,20 +68,13 @@ source $HOME/.bash_profile
 ```
 
 ### Top up your wallet balance using faucet
-Currently there are two options of getting tokens in torii-1 testnet
-
-1. Get 3 torii using your twitter account
-* navigate to https://stakely.io/en/faucet/defund-testnet
-* input your wallet address and click verify
-* then press tweet button and wait for faucet to process your tweet
-> Please note: to mitigate against spam accounts, the Stakely faucet will discard requests from users with Twitter accounts with very little activity or that are too new!
-
-2. Get 3 torii using your twitter account
-* navigate to https://faucet.torii-1.defund.tech/ui/
-* input your wallet address and click `Get Fund`
+To get 20 free tokens in defund-private-1 testnet:
+* navigate to https://bitszn.com/faucets.html
+* switch to `COSMOS` tab and select `DeFund.Finance Testnet`
+* input your wallet address and click `Request`
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 torii (1 torii is equal to 1000000 ufetf) and your node is synchronized
+Before creating validator please make sure that you have at least 1 fetf (1 fetf is equal to 1000000 ufetf) and your node is synchronized
 
 To check your wallet balance:
 ```
