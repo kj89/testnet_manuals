@@ -50,7 +50,7 @@ echo "DefaultLimitNOFILE=65535" >> /etc/systemd/system.conf
 
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
-wget -O nym-mixnode "https://github.com/nymtech/nym/releases/download/v$NYM_MIXNODE_VERSION/nym-mixnode"
+wget -O nym-mixnode "https://github.com/nymtech/nym/releases/download/nym-binaries-$NYM_MIXNODE_VERSION/nym-mixnode"
 
 # give persmissions to execute and move binaries into bin
 chmod +x nym-mixnode
