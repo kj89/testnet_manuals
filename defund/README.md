@@ -2,8 +2,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165055511-83e8a2d3-1700-4d26-af27-abcc825573a7.png">
 </p>
 
-# defund node setup for Incentivized Testnet — defund-private-1
-All information about testnet incentives and challenges you can find [here](https://philabs.notion.site/philabs/defund-Incentivized-Testnet-defund-private-1-9e70a8f431c041618c6932e70d46ccdd)
+# defund node setup for Testnet — defund-private-1
 
 Official documentation:
 >- [Validator setup instructions](https://github.com/defund-labs/defund/blob/main/testnet/private/validators.md)
