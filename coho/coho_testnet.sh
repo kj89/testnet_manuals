@@ -68,7 +68,7 @@ cohod config keyring-backend file
 cohod init $NODENAME --chain-id $CHAIN_ID
 
 # download genesis
-wget -qO $HOME/.coho/config/genesis.json "https://raw.githubusercontent.com/cosmic-horizon/testnets/main/darkmatter-1/genesis.json"
+wget -qO $HOME/.coho/config/genesis.json "https://raw.githubusercontent.com/cosmic-horizon/testnets/main/darkenergy-1/genesis.json"
 
 # set minimum gas price
 sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0ucoho\"/" $HOME/.coho/config/app.toml

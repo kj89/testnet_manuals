@@ -66,7 +66,7 @@ cohod init $NODENAME --chain-id $CHAIN_ID
 
 ## Download genesis
 ```
-wget -qO $HOME/.coho/config/genesis.json "https://raw.githubusercontent.com/cosmic-horizon/testnets/main/darkmatter-1/genesis.json"
+wget -qO $HOME/.coho/config/genesis.json "https://raw.githubusercontent.com/cosmic-horizon/testnets/main/darkenergy-1/genesis.json"
 ```
 
 ## Set minimum gas price
