@@ -2,7 +2,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165403016-113be253-a376-454b-a069-fc6fe0a915e9.png">
 </p>
 
-# Celestia node setup for Testnet — devnet-2 (v0.1.0)
+# Celestia node setup for Testnet — devnet-2 (v0.4.0)
 
 Official documentation:
 >- [Validator setup instructions](https://docs.celestia.org/nodes/bridge-validator-node/)

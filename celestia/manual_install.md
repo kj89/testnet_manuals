@@ -1,4 +1,4 @@
-# Manual node  setup (v0.1.0)
+# Manual node  setup (v0.4.0)
 If you want to setup fullnode manually follow the steps below
 
 ## Setting up vars
@@ -43,7 +43,7 @@ go version
 cd $HOME
 git clone https://github.com/celestiaorg/celestia-app.git
 cd celestia-app
-git checkout tags/v0.1.0 -b v0.1.0
+git checkout v0.4.0
 make install
 ```
 
