@@ -77,7 +77,7 @@ sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0ucoho\"/" $H
 ## Set seeds and peers
 ```
 SEEDS="a06e58e39d4a471d00d2e5d58233089c64fa5bb8@149.28.70.87:26656"
-PEERS=""
+PEERS="8a2df4be7a7e455b87b1f2e572639a28d44b0562@65.108.103.236:19656"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.coho/config/config.toml
 ```
 
