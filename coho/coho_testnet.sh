@@ -125,4 +125,4 @@ sudo systemctl restart cohod
 
 echo '=============== SETUP FINISHED ==================='
 echo -e 'To check logs: \e[1m\e[32mjournalctl -u cohod -f -o cat \e[0m'
-echo -e 'To check sync status: \e[1m\e[32mcurl -s localhost:26657/status \e[0m'
+echo -e 'To check sync status: \e[1m\e[32mcurl -s localhost:26657/status | jq .result.sync_info \e[0m'
