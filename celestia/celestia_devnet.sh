@@ -71,7 +71,7 @@ celestia-appd init $NODENAME --chain-id $CHAIN_ID
 
 # download genesis and addr book
 cp $HOME/networks/devnet-2/genesis.json $HOME/.celestia-app/config
-wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.com/qubelabsio/celestia/main/addrbook.json"
+wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/addrbook.json"
 
 # set minimum gas price
 sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0celes\"/" $HOME/.celestia-app/config/app.toml
