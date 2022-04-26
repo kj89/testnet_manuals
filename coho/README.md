@@ -2,7 +2,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165246332-1bb9cb35-edc7-4531-ac84-8479784af471.png">
 </p>
 
-# Cosmic-Horizon node setup for Testnet — darkenergy-1
+# Cosmic-Horizon node setup for Testnet — darkenergy-1 (v0.1)
 
 Official documentation:
 >- [Validator setup instructions](https://github.com/cosmic-horizon/testnets/blob/main/darkenergy-1/README.md)

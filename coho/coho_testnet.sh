@@ -23,10 +23,10 @@ echo "export CHAIN_ID=darkenergy-1" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 echo '================================================='
-echo 'Your node name: ' $NODENAME
-echo 'Your wallet name: ' $WALLET
-echo 'Your chain name: ' $CHAIN_ID
-echo '================================================='
+echo -e "Your node name: \e[1m\e[32m$NODENAME\e[0m"
+echo -e "Your wallet name: \e[1m\e[32m$WALLET\e[0m"
+echo -e "Your chain name: \e[1m\e[32m$CHAIN_ID\e[0m"
+echo -e '================================================='
 sleep 2
 
 echo -e "\e[1m\e[32m1. Updating packages... \e[0m" && sleep 1
