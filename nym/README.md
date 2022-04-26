@@ -99,6 +99,11 @@ See your mixnode logs (CTRL+C to exit)
 journalctl -u nym-mixnode -f -o cat
 ```
 
+Add description
+```
+nym-mixnode describe --id $NODENAME
+```
+
 Restart your node
 ```
 systemctl restart nym-mixnode
