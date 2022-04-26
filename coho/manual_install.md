@@ -51,7 +51,6 @@ git clone https://github.com/cosmic-horizon/coho.git
 cd coho
 git checkout v0.1
 starport chain build
-chmod +x cohod && sudo mv cohod /usr/local/bin/
 ```
 
 ## Config app

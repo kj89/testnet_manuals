@@ -60,9 +60,6 @@ cd coho
 git checkout v0.1
 starport chain build
 
-chmod +x cohod
-sudo mv cohod /usr/local/bin/
-
 # config
 cohod config chain-id $CHAIN_ID
 cohod config keyring-backend file
