@@ -8,7 +8,7 @@ Official documentation:
 >- [Validator setup instructions](https://github.com/cosmic-horizon/testnets/blob/main/darkenergy-1/README.md)
 
 Explorer:
->-  TBA
+>-  [Nodes Guru Coho Explorer](https://coho.explorers.guru/)
 
 ## Usefull tools I have created for coho
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for coho validator](https://github.com/kj89/testnet_manuals/blob/main/coho/monitoring/README.md)
