@@ -74,7 +74,7 @@ wget -qO $HOME/.coho/config/genesis.json "https://raw.githubusercontent.com/cosm
 sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0ucoho\"/" $HOME/.coho/config/app.toml
 
 # set peers and seeds
-SEEDS="a06e58e39d4a471d00d2e5d58233089c64fa5bb8@149.28.70.87:26657"
+SEEDS="06e58e39d4a471d00d2e5d58233089c64fa5bb8@149.28.70.87:26656"
 PEERS=""
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.coho/config/config.toml
 
