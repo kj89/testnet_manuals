@@ -21,7 +21,7 @@ wget -O coho_testnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/m
 ```
 
 ### Option 2 (manual)
-You can use [manual guide](https://raw.githubusercontent.com/kj89/testnet_manuals/main/coho/manual_install.md) to set up node manually
+You can use [manual guide](https://github.com/kj89/testnet_manuals/blob/main/coho/manual_install.md) to set up node manually
 
 ### Post installation
 When installation is finished please load variables into system
