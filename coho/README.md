@@ -34,6 +34,11 @@ Next you have to make sure your validator is syncing blocks. You can use command
 cohod status 2>&1 | jq .SyncInfo
 ```
 
+To check logs
+```
+journalctl -u cohod -f -o cat
+```
+
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
