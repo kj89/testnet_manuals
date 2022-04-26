@@ -14,10 +14,14 @@ Explorer:
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for coho validator](https://github.com/kj89/testnet_manuals/blob/main/coho/monitoring/README.md)
 
 ## Set up your coho fullnode
+### Option 1 (automatic)
 You can setup your coho fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
 wget -O coho_testnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/coho/coho_testnet.sh && chmod +x coho_testnet.sh && ./coho_testnet.sh
 ```
+
+### Option 2 (manual)
+You can use [manual guide](https://raw.githubusercontent.com/kj89/testnet_manuals/main/coho/manual_install.md) to set up node manually
 
 ### Post installation
 When installation is finished please load variables into system
