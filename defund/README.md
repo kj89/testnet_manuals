@@ -16,10 +16,14 @@ Explorer:
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for defund validator](https://github.com/kj89/testnet_manuals/blob/main/defund/monitoring/README.md)
 
 ## Set up your defund fullnode
+### Option 1 (automatic)
 You can setup your defund fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
 wget -O defund.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/defund/defund.sh && chmod +x defund.sh && ./defund.sh
 ```
+
+### Option 2 (manual)
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/defund/manual_install.md) if you better prefer setting up node manually
 
 ### Post installation
 When installation is finished please load variables into system
