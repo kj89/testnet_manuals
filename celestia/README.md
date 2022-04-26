@@ -1,87 +1,233 @@
-## Celestia node setup
+<p align="center">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165403016-113be253-a376-454b-a069-fc6fe0a915e9.png">
+</p>
 
-![image](https://user-images.githubusercontent.com/50621007/157865942-69a28d42-3161-4f38-843d-0cf8f8256aa0.png)
+# Celestia node setup for Testnet — devnet-2 (v0.1.0)
 
-### Run celestia devnet-2 (rpc, bridge, light)
-This script does not include validator creation as faucet for devnet is disabled and running validator is not necessary at this stage
+Official documentation:
+>- [Validator setup instructions](https://docs.celestia.org/nodes/bridge-validator-node/)
+
+Explorer:
+>-  [Nodes Guru Celestia Explorer](https://celestia.explorers.guru/)
+
+## Usefull tools I have created for celestia
+> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for celestia validator](https://github.com/kj89/testnet_manuals/blob/main/celestia/monitoring/README.md)
+
+## Set up your celestia fullnode
+### Option 1 (automatic)
+You can setup your celestia fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
 wget -O celestia_devnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/celestia_devnet.sh && chmod +x celestia_devnet.sh && ./celestia_devnet.sh
 ```
 
-As alternative you can setup Celestia nodes manually by following guides provided by community member mzonder
-https://mzonder.notion.site/CELESTIA-8b8e89820d114c8cb9b6a63b377302ee
+### Option 2 (manual)
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/celestia/manual_install.md) if you better prefer setting up node manually
 
-Options:
-
-1) Install/Update App - Installs/Updates Celestia App software (current version 63519ec). To start installation you have to provide your node name. After installation is complete you will see current block synchronization process.
-2) Install/Update Node - Installs/Updates Clestia Node software (current version v0.2.0). 
-3) Initialize Bridge - Initialize Celestia Bridge node. You will have to provide rpc node ip or use default localhost if celestia rpc is runnning locally
-4) Initialize Light - Initialize Celestia Light node. It is not recommended to run both types of nodes (bridge, ligt) on same VPS.
-5) Sync Status - Follow synchronization status of your local rpc node.
-6) Erase all - Removes all Celestia components
-7) Quit - Quits menu
-
-## Guides to install nodes
-To install celestia software you have to run script above and follow instructions below
-
-### To install local RPC node with Bridge node (currently you will need about 50GB of empty space to fully synchronize chain data)
+### Post installation
+When installation is finished please load variables into system
 ```
-press 1
-input your rpc node name
-press 3
-choose localhost as your rpc node ip
-wait until installation completes and check logs
+source $HOME/.bash_profile
 ```
 
-### To install Bridge node with external RPC
+Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
-press 2
-press 3
-input external ip as your rpc node ip (external rpc should be reachable)
-wait until installation completes and check logs
+celestia-appd status 2>&1 | jq .SyncInfo
 ```
 
-### To install Light node
+To check logs
 ```
-press 4
-wait until installation completes and check logs
-```
-
-### Set up local RPC node
-```
-press 1
-input your rpc node name
-wait until installation completes and check synchronization status
+journalctl -u celestia-appd -f -o cat
 ```
 
-### Update celestia app software
+### Create wallet
+To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
-press 1
-```
-
-### Update celestia node software
-```
-press 2
+celestia-appd keys add $WALLET
 ```
 
-### Erase all celestia data
+(OPTIONAL) To recover your wallet using seed phrase
 ```
-press 6
+celestia-appd keys add $WALLET --recover
 ```
+
+To get current list of wallets
+```
+celestia-appd keys list
+```
+
+### Save wallet info
+Add wallet address
+```
+WALLET_ADDRESS=$(celestia-appd keys show $WALLET -a)
+```
+
+Add valoper address
+```
+VALOPER_ADDRESS=$(celestia-appd keys show $WALLET --bech val -a)
+```
+
+Load variables into system
+```
+echo 'export WALLET_ADDRESS='${WALLET_ADDRESS} >> $HOME/.bash_profile
+echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
+### Create validator
+Before creating validator please make sure that you have at least 1 celes (1 celes is equal to 1000000 celes) and your node is synchronized
+
+To check your wallet balance:
+```
+celestia-appd query bank balances $WALLET_ADDRESS
+```
+> If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
+
+To create your validator run command below
+```
+celestia-appd tx staking create-validator \
+  --amount 1000000celes \
+  --from $WALLET \
+  --commission-max-change-rate "0.01" \
+  --commission-max-rate "0.2" \
+  --commission-rate "0.07" \
+  --min-self-delegation "1" \
+  --pubkey  $(celestia-appd tendermint show-validator) \
+  --moniker $NODENAME \
+  --chain-id $CHAIN_ID
+```
+
+## Security
+To protect you keys please make sure you follow basic security rules
+
+### Set up ssh keys for authentication
+Good tutorial on how to set up ssh keys for authentication to your server can be found [here](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-20-04)
+
+### Basic Firewall security
+Start by checking the status of ufw.
+```
+sudo ufw status
+```
+
+Sets the default to allow outgoing connections, deny all incoming except ssh and 26656. Limit SSH login attempts
+```
+sudo ufw default allow outgoing
+sudo ufw default deny incoming
+sudo ufw allow ssh/tcp
+sudo ufw limit ssh/tcp
+sudo ufw allow 26656,26660/tcp
+sudo ufw enable
+```
+
+## Monitoring
+To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for celestia validator](https://github.com/kj89/testnet_manuals/blob/main/celestia/monitoring/README.md)
 
 ## Usefull commands
-
-### Check node synchronization status
+### Service management
+Check logs
 ```
-curl -s localhost:26657/status | jq .result | jq .sync_info
-```
-
-### Check bridge node logs
-```
-journalctl -fu celestia-bridge -o cat
+journalctl -fu celestia-appd -o cat
 ```
 
-### Check light node logs
+Start service
 ```
-journalctl -fu celestia-light -o cat
+systemctl start celestia-appd
+```
+
+Stop service
+```
+systemctl stop celestia-appd
+```
+
+Restart service
+```
+systemctl restart celestia-appd
+```
+
+### Node info
+Synchronization info
+```
+celestia-appd status 2>&1 | jq .SyncInfo
+```
+
+Validator info
+```
+celestia-appd status 2>&1 | jq .ValidatorInfo
+```
+
+Node info
+```
+celestia-appd status 2>&1 | jq .NodeInfo
+```
+
+Show node id
+```
+celestia-appd tendermint show-node-id
+```
+
+### Wallet operations
+List of wallets
+```
+celestia-appd keys list
+```
+
+Recover wallet
+```
+celestia-appd keys add $WALLET --recover
+```
+
+Delete wallet
+```
+celestia-appd keys delete $WALLET
+```
+
+Get wallet balance
+```
+celestia-appd query bank balances $WALLET_ADDRESS
+```
+
+Transfer funds
+```
+celestia-appd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000celes
+```
+
+### Staking, Delegation and Rewards
+Delegate stake
+```
+celestia-appd tx staking delegate $VALOPER_ADDRESS 10000000celes --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+```
+
+Redelegate stake from validator to another validator
+```
+celestia-appd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000celes --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+```
+
+Withdraw all rewards
+```
+celestia-appd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+```
+
+Withdraw rewards with commision
+```
+celestia-appd tx distribution withdraw-rewards $VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$CHAIN_ID
+```
+
+### Validator management
+Edit validator
+```
+celestia-appd tx staking edit-validator \
+--moniker=$NODENAME \
+--identity=1C5ACD2EEF363C3A \
+--website="http://kjnodes.com" \
+--details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
+--chain-id=$CHAIN_ID \
+--from=$WALLET
+```
+
+Unjail validator
+```
+celestia-appd tx slashing unjail \
+  --broadcast-mode=block \
+  --from=$WALLET \
+  --chain-id=$CHAIN_ID \
+  --gas=auto
 ```
