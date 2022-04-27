@@ -12,8 +12,9 @@ Official documentation:
 Explorer:
 >-  https://defund.explorers.guru/
 
-## Usefull tools I have created for defund
+## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for defund validator](https://github.com/kj89/testnet_manuals/blob/main/defund/monitoring/README.md)
+> To migrate your valitorator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/defund/migrate_validator.md)
 
 ## Set up your defund fullnode
 ### Option 1 (automatic)
