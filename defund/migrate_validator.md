@@ -5,6 +5,7 @@
 # Migrate your validator to another machine
 
 ### 1. Run a new full node on a new machine
+To setup full node you can follow my guide [Defund node setup for Testnet — defund-private-1](https://github.com/kj89/testnet_manuals/blob/main/celestia/manual_install.md)
 
 ### 2. Confirm that you have the recovery seed phrase information for the active key running on the old machine
 
