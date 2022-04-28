@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="150" height="auto" src="https://user-images.githubusercontent.com/50621007/164164767-0a9590e5-b018-44de-8a3e-4ebdd905dfbc.png">
+  <img width="100" height="auto" src="https://user-images.githubusercontent.com/50621007/164164767-0a9590e5-b018-44de-8a3e-4ebdd905dfbc.png">
 </p>
 
 # Archway node setup for Incentivized Testnet — Torii-1
@@ -9,16 +9,22 @@ Official documentation:
 >- https://docs.archway.io/docs/validator/running-a-validator-node
 >- https://philabs.notion.site/Validator-Setup-Guide-10502472842e4ad8bf7fb7ec68afe07a
 
-## Usefull tools I have created for Archway
+## Usefull tools and references
 > To generate gentx for torii-1 testnet please navigate to [Generate gentx for torii-1 incentivized testnet](https://github.com/kj89/testnet_manuals/blob/main/archway/gentx/README.md)
 >
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for Archway validator](https://github.com/kj89/testnet_manuals/blob/main/archway/monitoring/README.md)
+>
+> To migrate your valitorator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/archway/migrate_validator.md)
 
-## Set up your Archway fullnode
-You can setup your Archway fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
+## Set up your archway fullnode
+### Option 1 (automatic)
+You can setup your archway fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
 wget -O archway.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/archway.sh && chmod +x archway.sh && ./archway.sh
 ```
+
+### Option 2 (manual)
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/archway/manual_install.md) if you better prefer setting up node manually
 
 ### Post installation
 When installation is finished please load variables into system
