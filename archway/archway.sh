@@ -65,6 +65,7 @@ archwayd init $NODENAME --chain-id $CHAIN_ID
 
 # download addrbook and genesis
 wget -qO $HOME/.archway/config/genesis.json "https://raw.githubusercontent.com/archway-network/testnets/main/torii-1/genesis.json"
+wget -qO $HOME/.archway/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/addrbook.json"
 
 # set minimum gas price
 sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0utorii\"/" $HOME/.archway/config/app.toml
