@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165930080-4f541b46-1ae3-461c-acc9-de72d7ab93b7.png">
+</p>
+
 # Manual node  setup
 If you want to setup fullnode manually follow the steps below
 
