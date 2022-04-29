@@ -7,8 +7,9 @@ Official documentation:
 > [Run a full node](https://aptos.dev/tutorials/run-a-fullnode)
 
 Usefull tools:
-> [Aptos Network Dashboard](https://status.devnet.aptos.dev/)\
-> [Aptos Node Informer](http://node-tools.net/aptos/tester/)
+> To find latest block height use [Aptos Network Dashboard](https://status.devnet.aptos.dev/)\
+> To check your node health status try [Aptos Node Informer](http://node-tools.net/aptos/tester/)
+> To migrate your fullnode to another machine read [Migrate your fullnode to another machine](https://github.com/kj89/testnet_manuals/blob/main/aptos/migrate_fullnode.md)
 
 ## Set up your aptos fullnode
 ### Option 1 (automatic)
@@ -31,16 +32,8 @@ wget -qO update_configs.sh https://raw.githubusercontent.com/kj89/testnet_manual
 ```
 
 ## Get your node identity and upstream details
-To backup your keys you have to run command below and save keys somewhere safe
 ```
 wget -qO get_identity.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/get_identity.sh && chmod +x get_identity.sh && ./get_identity.sh
-```
-
-To restore you keys simply put them into system variables and after that run installation script
-```
-echo "export KEY=<YOUR_KEY>" >> $HOME/.bash_profile
-echo "export PEER_ID=<YOUR_PEER_ID>" >> $HOME/.bash_profile
-source ./.bash_profile
 ```
 
 ## Useful commands

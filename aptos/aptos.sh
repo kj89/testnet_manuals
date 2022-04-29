@@ -12,6 +12,8 @@ echo -e "\e[0m"
 echo "=================================================="
 sleep 2
 
+source $HOME/.bash_profile
+
 echo -e "\e[1m\e[32m1. Updating dependencies... \e[0m" && sleep 1
 sudo apt update && sudo apt upgrade -y
 
