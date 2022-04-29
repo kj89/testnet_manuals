@@ -1,3 +1,4 @@
+echo -e "\e[1m\e[32mGenerating identity keys... \e[0m" && sleep 1
 docker run --rm --name aptos_tools -d -i aptoslab/tools:devnet
 docker exec -it aptos_tools aptos-operational-tool generate-key --encoding hex --key-type x25519 --key-file $HOME/private-key.txt
 echo "export KEY=$(docker exec -it aptos_tools cat $HOME/private-key.txt)" >> $HOME/.bash_profile
