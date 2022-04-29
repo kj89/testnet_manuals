@@ -58,7 +58,8 @@ echo "export PEER_ID=<YOUR_PEER_ID>" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 yq e -i '.full_node_networks[0].identity.type="from_config"' public_full_node.yaml \
 && yq e -i '.full_node_networks[0].identity.key="'$KEY'"' public_full_node.yaml \
-&& yq e -i '.full_node_networks[0].identity.peer_id="'$PEER_ID'"' public_full_node.yaml 
+&& yq e -i '.full_node_networks[0].identity.peer_id="'$PEER_ID'"' public_full_node.yaml \
+&& yq e -i '.full_node_networks[0].listen_address = "/ip4/0.0.0.0/tcp/6180"' public_full_node.yaml
 ```
 
 ## Update seeds

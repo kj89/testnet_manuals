@@ -59,7 +59,8 @@ fi
 echo -e "\e[1m\e[32m7.1 Updating configuration \e[0m"  
 yq e -i '.full_node_networks[0].identity.type="from_config"' public_full_node.yaml \
 && yq e -i '.full_node_networks[0].identity.key="'$KEY'"' public_full_node.yaml \
-&& yq e -i '.full_node_networks[0].identity.peer_id="'$PEER_ID'"' public_full_node.yaml 
+&& yq e -i '.full_node_networks[0].identity.peer_id="'$PEER_ID'"' public_full_node.yaml \
+&& yq e -i '.full_node_networks[0].listen_address = "/ip4/0.0.0.0/tcp/6180"' public_full_node.yaml
 
 echo -e "\e[1m\e[32m7.2 Updating seeds \e[0m"  
 wget -O seeds.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
