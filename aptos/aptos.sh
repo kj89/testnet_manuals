@@ -89,7 +89,7 @@ echo -e "\e[1m\e[32mGet your node identity information: \e[0m"
 echo -e "\e[1m\e[39m    wget -qO get_identity.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/get_identity.sh && chmod +x get_identity.sh && ./get_identity.sh \n \e[0m" 
 
 echo -e "\e[1m\e[32mTo view logs: \e[0m" 
-echo -e "\e[1m\e[39m    docker logs -f aptos-fullnode-1 --tail 5000 \n \e[0m" 
+echo -e "\e[1m\e[39m    docker logs -f aptos-fullnode-1 --tail 50 \n \e[0m" 
 
 echo -e "\e[1m\e[32mTo stop: \e[0m" 
 echo -e "\e[1m\e[39m    docker compose down \n \e[0m" 

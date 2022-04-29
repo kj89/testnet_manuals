@@ -46,7 +46,7 @@ source ./.bash_profile
 ## Useful commands
 ### Check Aptos logs
 ```
-docker logs -f aptos-fullnode-1 --tail 100
+docker logs -f aptos-fullnode-1 --tail 50
 ```
 
 ### Check sync status
