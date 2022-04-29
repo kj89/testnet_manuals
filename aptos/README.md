@@ -8,7 +8,7 @@ Official documentation:
 
 Usefull tools:
 > To find latest block height use [Aptos Network Dashboard](https://status.devnet.aptos.dev/)\
-> To check your node health status try [Aptos Node Informer](http://node-tools.net/aptos/tester/)
+> To check your node health status try [Aptos Node Informer](http://node-tools.net/aptos/tester/)\
 > To migrate your fullnode to another machine read [Migrate your fullnode to another machine](https://github.com/kj89/testnet_manuals/blob/main/aptos/migrate_fullnode.md)
 
 ## Set up your aptos fullnode
