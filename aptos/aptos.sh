@@ -61,7 +61,7 @@ yq e -i '.full_node_networks[0].identity.type="from_config"' public_full_node.ya
 && yq e -i '.full_node_networks[0].identity.key="'$KEY'"' public_full_node.yaml \
 && yq e -i '.full_node_networks[0].identity.peer_id="'$PEER_ID'"' public_full_node.yaml \
 && yq e -i '.full_node_networks[0].listen_address = "/ip4/0.0.0.0/tcp/6180"' public_full_node.yaml \
-&& yq -i '.services.fullnode.ports += "6180:6180"' public_full_node.yaml
+&& yq -i '.services.fullnode.ports += "6180:6180"' docker-compose.yaml
 
 echo -e "\e[1m\e[32m7.2 Updating seeds \e[0m"  
 wget -O seeds.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
@@ -80,8 +80,7 @@ echo -e "\e[1m\e[92m Private Key:  \e[0m" $KEY
 echo "=================================================="
 
 echo -e "\e[1m\e[32mVerify initial synchronization: \e[0m" 
-echo -e "\e[1m\e[39m    curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep type \n \e[0m" 
-echo -e "\e[1m\e[39m    curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version
+echo -e "\e[1m\e[39m    curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep storage_synchronizer_operation \n \e[0m" 
 
 echo -e "\e[1m\e[32mVerify outbound network connections: \e[0m" 
 echo -e "\e[1m\e[39m    curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_connections \n \e[0m" 
