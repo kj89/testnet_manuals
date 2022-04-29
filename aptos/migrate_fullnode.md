@@ -16,5 +16,5 @@ echo "export KEY=<YOUR_KEY>" >> $HOME/.bash_profile
 echo "export PEER_ID=<YOUR_PEER_ID>" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
-3. Start your installation by following automatic or manual aptos fullnode installation that you can find [here](https://github.com/kj89/testnet_manuals/tree/main/aptos/README.MD)
+3. Start your installation by following automatic or manual aptos fullnode installation that you can find [here](https://github.com/kj89/testnet_manuals/blob/main/aptos/README.md)
 
