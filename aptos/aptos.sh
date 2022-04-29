@@ -13,14 +13,12 @@ echo "=================================================="
 sleep 2
 
 echo -e "\e[1m\e[32m1. Updating dependencies... \e[0m" && sleep 1
-sudo apt-get update
+sudo apt update && sudo apt upgrade -y
+source ./.bash_profile
 
 echo -e "\e[1m\e[32m2. Installing required dependencies... \e[0m" && sleep 1
 sudo apt-get install jq -y
-# manually installing yq
-sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64
-sudo chmod +x /usr/local/bin/yq
-cd $HOME
+sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && chmod +x /usr/local/bin/yq
 
 echo -e "\e[1m\e[32m3. Checking if Docker is installed... \e[0m" && sleep 1
 if ! command -v docker &> /dev/null
@@ -45,37 +43,32 @@ then
 fi
 
 echo -e "\e[1m\e[32m5. Downloading Aptos FullNode config files ... \e[0m" && sleep 1
-mkdir $HOME/aptos
-cd $HOME/aptos
-mkdir identity
-docker compose stop
+mkdir $HOME/aptos && cd $HOME/aptos
 wget -O docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/docker-compose.yaml
 wget -O public_full_node.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/public_full_node.yaml
 wget -O genesis.blob https://devnet.aptoslabs.com/genesis.blob
 wget -O waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
 
 echo -e "\e[1m\e[32m6. Generating a unique node identity \e[0m"
-if [ -z "$(ls -A $HOME/aptos/identity)" ]; then
+if [ -z "$KEY" ] && [ -z "$PEER_ID" ]; then
 	docker run --rm --name aptos_tools -d -i aptoslab/tools:devnet
 	docker exec -it aptos_tools aptos-operational-tool generate-key --encoding hex --key-type x25519 --key-file $HOME/private-key.txt
-	docker exec -it aptos_tools cat $HOME/private-key.txt > $HOME/aptos/identity/private-key.txt
-	docker exec -it aptos_tools aptos-operational-tool extract-peer-from-file --encoding hex --key-file $HOME/private-key.txt --output-file $HOME/peer-info.yaml > $HOME/aptos/identity/id.json
-	PRIVATE_KEY=$(cat $HOME/aptos/identity/private-key.txt)
-	PEER_ID=$(cat $HOME/aptos/identity/id.json | jq -r '.. | .keys?  | select(.)[]')
+	echo "export KEY=$(docker exec -it aptos_tools cat $HOME/private-key.txt)" >> $HOME/.bash_profile
+	PEER_ID=$(docker exec -it aptos_tools aptos-operational-tool extract-peer-from-file --encoding hex --key-file $HOME/private-key.txt --output-file $HOME/peer-info.yaml | jq -r '.. | .keys?  | select(.)[]')
+	echo "export PEER_ID=$PEER_ID" >> $HOME/.bash_profile
+	source $HOME/.bash_profile
 	docker stop aptos_tools
 else
 	echo -e "\e[1m\e[32mIdentity keys already extst! \e[0m"
-   	PRIVATE_KEY=$(cat $HOME/aptos/identity/private-key.txt)
-	PEER_ID=$(cat $HOME/aptos/identity/id.json | jq -r '.. | .keys?  | select(.)[]')
 fi
 
 echo "==============================================================="
 echo -e "\e[1m\e[92m Identity was successfully created \e[0m"
 echo -e "\e[1m\e[92m Peer Id: \e[0m" $PEER_ID
-echo -e "\e[1m\e[92m Private Key:  \e[0m" $PRIVATE_KEY
+echo -e "\e[1m\e[92m Private Key:  \e[0m" $KEY
 echo "==============================================================="
 yq e -i '.full_node_networks[0].identity.type="from_config"' public_full_node.yaml \
-&& yq e -i '.full_node_networks[0].identity.key="'$PRIVATE_KEY'"' public_full_node.yaml \
+&& yq e -i '.full_node_networks[0].identity.key="'$KEY'"' public_full_node.yaml \
 && yq e -i '.full_node_networks[0].identity.peer_id="'$PEER_ID'"' public_full_node.yaml 
 
 
@@ -92,15 +85,6 @@ echo "=================================================="
 echo -e "\e[1m\e[32mAptos FullNode Started \e[0m"
 
 echo "=================================================="
-
-if [ ! -z "$PRIVATE_KEY" ]
-then
-    echo -e "\e[1m\e[32mPrivate key file location: \e[0m" 
-    echo -e "\e[1m\e[39m"    $HOME/aptos/identity/private-key.txt" \n \e[0m"
-
-    echo -e "\e[1m\e[32mPeer info file location: \e[0m" 
-    echo -e "\e[1m\e[39m"    $HOME/aptos/identity/id.json" \n \e[0m"
-fi
 
 echo -e "\e[1m\e[32mVerify initial synchronization: \e[0m" 
 echo -e "\e[1m\e[39m    curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep type \n \e[0m" 

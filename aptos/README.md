@@ -1,38 +1,49 @@
 <p align="center">
-  <img width="300" height="auto" src="https://user-images.githubusercontent.com/50621007/162568594-c423847a-f1ff-42de-84d7-110bb0077b4d.png">
+  <img width="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165930080-4f541b46-1ae3-461c-acc9-de72d7ab93b7.png">
 </p>
 
-# APTOS FULLNODE SETUP GUIDE
+# Aptos fullnode setup for Testnet
+Official documentation:
+> [Run a full node](https://aptos.dev/tutorials/run-a-fullnode)
 
-> current block height can be found [here](https://status.devnet.aptos.dev)
+Usefull tools:
+> [Aptos Network Dashboard](https://status.devnet.aptos.dev/)\
+> [Aptos Node Informer](http://node-tools.net/aptos/tester/)
 
-> check the status of your node [here](https://www.nodex.run/aptos_test). On this site you can also create a wallet and test sending transactions.
-
-> another node tester website with nice metric visualizer [here](http://node-tools.net/aptos/tester/)
-
-## INSTALLATION USING DOCKER
-
+## Set up your aptos fullnode
+### Option 1 (automatic)
 Use script below for a quick installation
 ```
-wget -O aptos_docker.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_docker.sh && chmod +x aptos_docker.sh && ./aptos_docker.sh
+wget -O aptos.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos.sh && chmod +x aptos.sh && ./aptos.sh
 ```
 
-Update Aptos Fullnode version
+### Option 2 (manual)
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/aptos/manual_install.md) if you better prefer setting up node manually
+
+### Update Aptos Fullnode version
 ```
-wget -O aptos_docker_update.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_docker_update.sh && chmod +x aptos_docker_update.sh && ./aptos_docker_update.sh
+wget -O update.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/update.sh && chmod +x update.sh && ./update.sh
 ```
 
-(OPTIONAL) Update configs
+### (OPTIONAL) Update configs
 ```
-wget -O aptos_docker_configs.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_docker_configs.sh && chmod +x aptos_docker_configs.sh && ./aptos_docker_configs.sh
-```
-
-## USEFUL COMMANDS
-### Get your node identity and upstream details
-```
-wget -O aptos_identity.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_identity.sh && chmod +x aptos_identity.sh && ./aptos_identity.sh
+wget -O update_configs.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/update_configs.sh && chmod +x update_configs.sh && ./update_configs.sh
 ```
 
+## Get your node identity and upstream details
+To backup your keys you have to run command below and save keys somewhere safe
+```
+wget -O get_identity.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/get_identity.sh && chmod +x get_identity.sh && ./get_identity.sh
+```
+
+To restore you keys simply put them into system variables and after that run installation script
+```
+echo "export KEY=<YOUR_KEY>" >> $HOME/.bash_profile
+echo "export PEER_ID=<YOUR_PEER_ID>" >> $HOME/.bash_profile
+source ./.bash_profile
+```
+
+## Useful commands
 ### Check Aptos logs
 ```
 docker logs -f aptos-fullnode-1 --tail 100
@@ -43,27 +54,7 @@ docker logs -f aptos-fullnode-1 --tail 100
 curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep type
 ```
 
-### Check private key
-```
-cat $HOME/aptos/identity/private-key.txt
-```
-
-### Check public key
-```
-cat $HOME/aptos/identity/id.json
-```
-
 ### Restart service
 ```
 docker restart aptos-fullnode-1
-```
-
-## BACKUP AND RESTORE
-### Backup your identity files
-In order to back up your keys please save identity files located in `$HOME/aptos/identity` to safe location
-
-### Recover your identity keys
-Place your saved identity keys back into `$HOME/aptos/identity` and run script below
-```
-wget -O aptos_docker_restore.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_docker_restore.sh && chmod +x aptos_docker_restore.sh && ./aptos_docker_restore.sh
 ```
