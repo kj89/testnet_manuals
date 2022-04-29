@@ -51,7 +51,7 @@ wget -qO waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
 echo -e "\e[1m\e[32m6. Generating a unique node identity \e[0m"
 if [ -z "$KEY" ] && [ -z "$PEER_ID" ]; then
 	wget -O generate_keys.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/generate_keys.sh && chmod +x generate_keys.sh && ./generate_keys.sh
-	source ./.bash_profile
+	source $HOME/.bash_profile
 else
 	echo -e "\e[1m\e[32mIdentity keys already extst! \e[0m"
 fi
