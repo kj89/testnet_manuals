@@ -14,7 +14,6 @@ sleep 2
 
 echo -e "\e[1m\e[32m1. Updating dependencies... \e[0m" && sleep 1
 sudo apt update && sudo apt upgrade -y
-source ./.bash_profile
 
 echo -e "\e[1m\e[32m2. Installing required dependencies... \e[0m" && sleep 1
 sudo apt-get install jq -y
@@ -52,21 +51,17 @@ wget -qO waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
 echo -e "\e[1m\e[32m6. Generating a unique node identity \e[0m"
 if [ -z "$KEY" ] && [ -z "$PEER_ID" ]; then
 	wget -O generate_keys.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/generate_keys.sh && chmod +x generate_keys.sh && ./generate_keys.sh
+	source ./.bash_profile
 else
 	echo -e "\e[1m\e[32mIdentity keys already extst! \e[0m"
 fi
 
-echo "==============================================================="
-echo -e "\e[1m\e[92m Identity was successfully created \e[0m"
-echo -e "\e[1m\e[92m Peer Id: \e[0m" $PEER_ID
-echo -e "\e[1m\e[92m Private Key:  \e[0m" $KEY
-echo "==============================================================="
+echo -e "\e[1m\e[32m7.1 Updating configuration \e[0m"  
 yq e -i '.full_node_networks[0].identity.type="from_config"' public_full_node.yaml \
 && yq e -i '.full_node_networks[0].identity.key="'$KEY'"' public_full_node.yaml \
 && yq e -i '.full_node_networks[0].identity.peer_id="'$PEER_ID'"' public_full_node.yaml 
 
-
-echo -e "\e[1m\e[32m7. Updating seeds \e[0m"  
+echo -e "\e[1m\e[32m7.2 Updating seeds \e[0m"  
 wget -O seeds.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
 yq ea -i 'select(fileIndex==0).full_node_networks[0].seeds = select(fileIndex==1).seeds | select(fileIndex==0)' $HOME/aptos/public_full_node.yaml seeds.yaml
 
@@ -77,6 +72,8 @@ docker compose up -d
 echo "=================================================="
 
 echo -e "\e[1m\e[32mAptos FullNode Started \e[0m"
+echo -e "\e[1m\e[92m Peer Id: \e[0m" $PEER_ID
+echo -e "\e[1m\e[92m Private Key:  \e[0m" $KEY
 
 echo "=================================================="
 
