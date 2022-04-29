@@ -94,5 +94,8 @@ echo -e "\e[1m\e[39m    docker logs -f aptos-fullnode-1 --tail 5000 \n \e[0m"
 echo -e "\e[1m\e[32mTo stop: \e[0m" 
 echo -e "\e[1m\e[39m    docker compose down \n \e[0m" 
 
-echo -e "\e[1m\e[32mTo stop: \e[0m" 
-echo -e "\e[1m\e[39m    docker compose down \n \e[0m" 
+echo -e "\e[1m\e[32mTo start: \e[0m" 
+echo -e "\e[1m\e[39m    docker compose up -d \n \e[0m" 
+
+echo -e "\e[1m\e[32mTo restart: \e[0m" 
+echo -e "\e[1m\e[39m    docker compose restart \n \e[0m" 
