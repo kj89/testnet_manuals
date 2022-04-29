@@ -20,12 +20,12 @@ wget -qO aptos.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/ap
 ### Option 2 (manual)
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/aptos/manual_install.md) if you better prefer setting up node manually
 
-### Update Aptos Fullnode version
+## Update Aptos Fullnode version
 ```
 wget -qO update.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/update.sh && chmod +x update.sh && ./update.sh
 ```
 
-### (OPTIONAL) Update configs
+## (OPTIONAL) Update configs
 ```
 wget -qO update_configs.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/update_configs.sh && chmod +x update_configs.sh && ./update_configs.sh
 ```
