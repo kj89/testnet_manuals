@@ -8,7 +8,7 @@ sudo apt update && sudo apt upgrade -y
 
 ## 2. Install dependencies
 ```
-sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && chmod +x /usr/local/bin/yq
+sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && chmod +x /usr/local/bin/yq
 sudo apt-get install jq -y
 ```
 
@@ -43,7 +43,7 @@ At this step you have two options. You can generate new identity keys or recover
 
 ### Option 1 - Generate new identity keys (run commands 
 ```
-wget -O generate_keys.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/generate_keys.sh && chmod +x generate_keys.sh && ./generate_keys.sh
+wget -qO generate_keys.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/generate_keys.sh && chmod +x generate_keys.sh && ./generate_keys.sh
 ```
 
 ### Option 2 - Recover your keys
@@ -65,7 +65,7 @@ yq e -i '.full_node_networks[0].identity.type="from_config"' public_full_node.ya
 
 ## Update seeds
 ```
-wget -O seeds.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
+wget -qO seeds.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
 yq ea -i 'select(fileIndex==0).full_node_networks[0].seeds = select(fileIndex==1).seeds | select(fileIndex==0)' $HOME/aptos/public_full_node.yaml seeds.yaml
 ```
 

@@ -14,7 +14,7 @@ Usefull tools:
 ### Option 1 (automatic)
 Use script below for a quick installation
 ```
-wget -O aptos.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos.sh && chmod +x aptos.sh && ./aptos.sh
+wget -qO aptos.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos.sh && chmod +x aptos.sh && ./aptos.sh
 ```
 
 ### Option 2 (manual)
@@ -22,18 +22,18 @@ You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/
 
 ### Update Aptos Fullnode version
 ```
-wget -O update.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/update.sh && chmod +x update.sh && ./update.sh
+wget -qO update.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/update.sh && chmod +x update.sh && ./update.sh
 ```
 
 ### (OPTIONAL) Update configs
 ```
-wget -O update_configs.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/update_configs.sh && chmod +x update_configs.sh && ./update_configs.sh
+wget -qO update_configs.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/update_configs.sh && chmod +x update_configs.sh && ./update_configs.sh
 ```
 
 ## Get your node identity and upstream details
 To backup your keys you have to run command below and save keys somewhere safe
 ```
-wget -O get_identity.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/get_identity.sh && chmod +x get_identity.sh && ./get_identity.sh
+wget -qO get_identity.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/get_identity.sh && chmod +x get_identity.sh && ./get_identity.sh
 ```
 
 To restore you keys simply put them into system variables and after that run installation script

@@ -17,7 +17,7 @@ sudo apt update && sudo apt upgrade -y
 
 echo -e "\e[1m\e[32m2. Installing required dependencies... \e[0m" && sleep 1
 sudo apt-get install jq -y
-sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && chmod +x /usr/local/bin/yq
+sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && chmod +x /usr/local/bin/yq
 
 echo -e "\e[1m\e[32m3. Checking if Docker is installed... \e[0m" && sleep 1
 if ! command -v docker &> /dev/null
@@ -50,7 +50,7 @@ wget -qO waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
 
 echo -e "\e[1m\e[32m6. Generating a unique node identity \e[0m"
 if [ -z "$KEY" ] && [ -z "$PEER_ID" ]; then
-	wget -O generate_keys.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/generate_keys.sh && chmod +x generate_keys.sh && ./generate_keys.sh
+	wget -qO generate_keys.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/generate_keys.sh && chmod +x generate_keys.sh && ./generate_keys.sh
 	source $HOME/.bash_profile
 else
 	echo -e "\e[1m\e[32mIdentity keys already extst! \e[0m"
@@ -64,7 +64,7 @@ yq e -i '.full_node_networks[0].identity.type="from_config"' public_full_node.ya
 && yq -i '.services.fullnode.ports += "6180:6180"' docker-compose.yaml
 
 echo -e "\e[1m\e[32m7.2 Updating seeds \e[0m"  
-wget -O seeds.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
+wget -qO seeds.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
 yq ea -i 'select(fileIndex==0).full_node_networks[0].seeds = select(fileIndex==1).seeds | select(fileIndex==0)' $HOME/aptos/public_full_node.yaml seeds.yaml
 
 echo -e "\e[1m\e[32m8. Starting Aptos FullNode ... \e[0m" && sleep 1
@@ -86,7 +86,7 @@ echo -e "\e[1m\e[32mVerify outbound network connections: \e[0m"
 echo -e "\e[1m\e[39m    curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_connections \n \e[0m" 
 
 echo -e "\e[1m\e[32mGet your node identity information: \e[0m" 
-echo -e "\e[1m\e[39m    wget -O get_identity.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/get_identity.sh && chmod +x get_identity.sh && ./get_identity.sh \n \e[0m" 
+echo -e "\e[1m\e[39m    wget -qO get_identity.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/get_identity.sh && chmod +x get_identity.sh && ./get_identity.sh \n \e[0m" 
 
 echo -e "\e[1m\e[32mTo view logs: \e[0m" 
 echo -e "\e[1m\e[39m    docker logs -f aptos-fullnode-1 --tail 5000 \n \e[0m" 
