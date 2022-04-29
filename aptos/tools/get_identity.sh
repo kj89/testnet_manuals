@@ -1,5 +1,5 @@
 echo -e "\e[1m\e[32mExtracting node identity details \e[0m" 
-if [ -z "$KEY" ] && [ -z "$PEER_ID" ]; then
+if [ "$KEY" ] && [ "$PEER_ID" ]; then
     echo -en "\n"
     echo "=================================================="
     echo -e "\e[1m\e[32m1. Your upstream peer details. You can share your peer info with other users \e[0m" 
