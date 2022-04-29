@@ -39,7 +39,7 @@ wget -qO waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
 ```
 
 ## 6. Generate or recover your identity keys
-At this step you have two options. You can generate new identity keys or recover from existing ones. Choose option that fits your case
+At this step you have two options. You can generate new identity keys or recover from existing ones. Choose option that fits you more
 
 ### Option 1 - Generate new identity keys (run commands 
 ```
