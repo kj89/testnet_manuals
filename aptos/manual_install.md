@@ -8,8 +8,8 @@ sudo apt update && sudo apt upgrade -y
 
 ## 2. Install dependencies
 ```
-sudo apt-get install jq -y
 sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && chmod +x /usr/local/bin/yq
+sudo apt-get install jq -y
 ```
 
 ## 3. Install docker
@@ -32,10 +32,10 @@ sudo chown $USER /var/run/docker.sock
 ## 5. Download configs
 ```
 mkdir $HOME/aptos && cd $HOME/aptos
-wget -O docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/docker-compose.yaml
-wget -O public_full_node.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/public_full_node.yaml
-wget -O genesis.blob https://devnet.aptoslabs.com/genesis.blob
-wget -O waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
+wget -qO docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/docker-compose.yaml
+wget -qO public_full_node.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/public_full_node.yaml
+wget -qO genesis.blob https://devnet.aptoslabs.com/genesis.blob
+wget -qO waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
 ```
 
 ## 6. Generate or recover your identity keys

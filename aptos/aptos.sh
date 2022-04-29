@@ -44,10 +44,10 @@ fi
 
 echo -e "\e[1m\e[32m5. Downloading Aptos FullNode config files ... \e[0m" && sleep 1
 mkdir $HOME/aptos && cd $HOME/aptos
-wget -O docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/docker-compose.yaml
-wget -O public_full_node.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/public_full_node.yaml
-wget -O genesis.blob https://devnet.aptoslabs.com/genesis.blob
-wget -O waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
+wget -qO docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/docker-compose.yaml
+wget -qO public_full_node.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/public_full_node.yaml
+wget -qO genesis.blob https://devnet.aptoslabs.com/genesis.blob
+wget -qO waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
 
 echo -e "\e[1m\e[32m6. Generating a unique node identity \e[0m"
 if [ -z "$KEY" ] && [ -z "$PEER_ID" ]; then
