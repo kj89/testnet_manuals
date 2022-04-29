@@ -41,15 +41,9 @@ wget -O waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
 ## 6. Generate or recover your identity keys
 At this step you have two options. You can generate new identity keys or recover from existing ones. Choose option that fits your case
 
-### Option 1 - Generate new identity keys
+### Option 1 - Generate new identity keys (run commands 
 ```
-docker run --rm --name aptos_tools -d -i aptoslab/tools:devnet
-docker exec -it aptos_tools aptos-operational-tool generate-key --encoding hex --key-type x25519 --key-file $HOME/private-key.txt
-echo "export KEY=$(docker exec -it aptos_tools cat $HOME/private-key.txt)" >> $HOME/.bash_profile
-PEER_ID=$(docker exec -it aptos_tools aptos-operational-tool extract-peer-from-file --encoding hex --key-file $HOME/private-key.txt --output-file $HOME/peer-info.yaml | jq -r '.. | .keys?  | select(.)[]')
-echo "export PEER_ID=$PEER_ID" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-docker stop aptos_tools
+wget -O generate_keys.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/generate_keys.sh && chmod +x generate_keys.sh && ./generate_keys.sh
 ```
 
 ### Option 2 - Recover your keys
