@@ -1,4 +1,5 @@
 echo -e "\e[1m\e[32mExtracting node identity details \e[0m" 
+source $HOME/.bash_profile
 if [ "$KEY" ] && [ "$PEER_ID" ]; then
     echo -en "\n"
     echo "=================================================="
