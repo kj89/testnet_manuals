@@ -22,9 +22,9 @@ Update Aptos Fullnode version
 wget -O aptos_docker_update.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_docker_update.sh && chmod +x aptos_docker_update.sh && ./aptos_docker_update.sh
 ```
 
-(OPTIONAL) Update seeds
+(OPTIONAL) Update configs
 ```
-wget -O aptos_docker_seeds.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_docker_seeds.sh && chmod +x aptos_docker_seeds.sh && ./aptos_docker_seeds.sh
+wget -O aptos_docker_configs.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/aptos_docker_configs.sh && chmod +x aptos_docker_configs.sh && ./aptos_docker_configs.sh
 ```
 
 ## USEFUL COMMANDS
