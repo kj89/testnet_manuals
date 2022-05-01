@@ -10,6 +10,12 @@ Official documentation:
 Explorer:
 >-  [Nodes Guru Coho Explorer](https://coho.explorers.guru/)
 
+## Cosmic-Horizon fullnode system requirements
+Here are the minimal hardware configs required for running a validator/sentry node
+- 4 vCPU
+- 8 GB RAM
+- 200 GB Disk space
+
 ## Usefull tools I have created for coho
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for coho validator](https://github.com/kj89/testnet_manuals/blob/main/coho/monitoring/README.md)
 
