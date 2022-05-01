@@ -38,19 +38,12 @@ source ~/.bash_profile
 go version
 ```
 
-## Install starport
-```
-curl https://get.starport.network/starport | bash
-sudo mv starport /usr/local/bin/
-```
-
 ## Download and build binaries
 ```
 cd $HOME
-git clone https://github.com/Quicksilver/coho.git
-cd coho
-git checkout v0.1
-starport chain build
+git clone https://github.com/ingenuity-build/quicksilver.git --branch v0.1.1
+cd quicksilver
+make build
 ```
 
 ## Config app
@@ -76,7 +69,7 @@ sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0uqck\"/" $HO
 
 ## Set seeds and peers
 ```
-SEEDS="node02.quicktest-1.quicksilver.zone:26657,node03.quicktest-1.quicksilver.zone:26657,node04.quicktest-1.quicksilver.zone:26657"
+SEEDS="dd3460ec11f78b4a7c4336f22a356fe00805ab64@seed.quicktest-1.quicksilver.zone:26656"
 PEERS="node02.quicktest-1.quicksilver.zone:26657,node03.quicktest-1.quicksilver.zone:26657,node04.quicktest-1.quicksilver.zone:26657"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.quicksilverd/config/config.toml
 ```
