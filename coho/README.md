@@ -29,7 +29,7 @@ wget -O coho_testnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/m
 ### Option 2 (manual)
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/coho/manual_install.md) if you better prefer setting up node manually
 
-### Post installation
+## Post installation
 When installation is finished please load variables into system
 ```
 source $HOME/.bash_profile
@@ -45,7 +45,7 @@ To check logs
 journalctl -u cohod -f -o cat
 ```
 
-### Create wallet
+## Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
 cohod keys add $WALLET
@@ -61,7 +61,7 @@ To get current list of wallets
 cohod keys list
 ```
 
-### Save wallet info
+## Save wallet info
 Add wallet address
 ```
 WALLET_ADDRESS=$(cohod keys show $WALLET -a)
@@ -79,13 +79,13 @@ echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
-### Top up your wallet balance using faucet
+## Top up your wallet balance using faucet
 To get 20 free tokens in defund-private-1 testnet:
 * navigate to https://bitszn.com/faucets.html
 * switch to `COSMOS` tab and select `Cosmic Horizon Testnet`
 * input your wallet address and click `Request`
 
-### Create validator
+## Create validator
 Before creating validator please make sure that you have at least 1 coho (1 coho is equal to 1000000 ucoho) and your node is synchronized
 
 To check your wallet balance:
