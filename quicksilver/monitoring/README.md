@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165246332-1bb9cb35-edc7-4531-ac84-8479784af471.png">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/166148846-93575afe-e3ce-4ca5-a3f7-a21e8a8609cb.png">
 </p>
 
 # Set up monitoring and alerting for coho validator
