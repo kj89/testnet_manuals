@@ -73,6 +73,12 @@ echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
+### Top up your wallet balance using faucet
+To get 20 free tokens in defund-private-1 testnet:
+* navigate to https://bitszn.com/faucets.html
+* switch to `COSMOS` tab and select `Cosmic Horizon Testnet`
+* input your wallet address and click `Request`
+
 ### Create validator
 Before creating validator please make sure that you have at least 1 coho (1 coho is equal to 1000000 ucoho) and your node is synchronized
 
