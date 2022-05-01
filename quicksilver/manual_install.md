@@ -1,3 +1,7 @@
+<p align="center">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/166148846-93575afe-e3ce-4ca5-a3f7-a21e8a8609cb.png">
+</p>
+
 # Manual node setup
 If you want to setup fullnode manually follow the steps below
 
@@ -44,6 +48,7 @@ cd $HOME
 git clone https://github.com/ingenuity-build/quicksilver.git --branch v0.1.1
 cd quicksilver
 make build
+chmod +x ./build/quicksilverd && mv ./build/quicksilverd /usr/local/bin/quicksilverd &&
 ```
 
 ## Config app
