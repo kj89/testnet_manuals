@@ -73,6 +73,27 @@ echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
+### Fund your wallet
+In order to create validator first you need to fund your wallet with testnet tokens.
+To top up your wallet join Quicksilver discord server to access the faucets for QCK and ATOM. Make sure you are in the appropriate channel
+- **#qck-tap** for QCK tokens
+- **#atom-tap** for ATOM tokens
+
+To check the faucet address:
+```
+$<YOUR_WALLET_ADDRESS> rhapsody
+```
+
+To check your balance:
+```
+$balance <YOUR_WALLET_ADDRESS> rhapsody
+```
+
+To request a faucet grant:
+```
+$request <YOUR_WALLET_ADDRESS> rhapsody
+```
+
 ### Create validator
 Before creating validator please make sure that you have at least 1 qck (1 qck is equal to 1000000 uqck) and your node is synchronized
 
