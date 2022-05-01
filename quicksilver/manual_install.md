@@ -48,7 +48,7 @@ cd $HOME
 git clone https://github.com/ingenuity-build/quicksilver.git --branch v0.1.1
 cd quicksilver
 make build
-chmod +x ./build/quicksilverd && mv ./build/quicksilverd /usr/local/bin/quicksilverd &&
+chmod +x ./build/quicksilverd && mv ./build/quicksilverd /usr/local/bin/quicksilverd
 ```
 
 ## Config app
