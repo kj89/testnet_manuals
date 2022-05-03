@@ -92,7 +92,7 @@ sudo systemctl enable crescentd
 sudo systemctl restart crescentd
 
 echo '=============== SETUP FINISHED ==================='
-echo -e 'To check logs: \e[1m\e[32m crescentd -f -o cat\e[0m'
+echo -e 'To check logs: \e[1m\e[32mjournalctl -u crescentd -f -o cat\e[0m'
 echo -e 'To check sync status: \e[1m\e[32mcurl -s localhost:26657/status | jq .result.sync_info\e[0m'
 echo 'To generate gentx you need to have 1 CRE:'
 echo 'crescentd gentx $WALLET 1000000ucre --commission-max-change-rate 0.01 --commission-max-rate 0.2  --commission-rate 0.1 --min-self-delegation 1 --pubkey=$(crescentd tendermint show-validator) --chain-id $CHAIN_ID'

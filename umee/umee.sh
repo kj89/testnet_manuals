@@ -101,5 +101,5 @@ sudo systemctl enable umeed
 sudo systemctl restart umeed
 
 echo '=============== SETUP FINISHED ==================='
-echo -e 'To check logs: \e[1m\e[32m umeed -f -o cat\e[0m'
+echo -e 'To check logs: \e[1m\e[32mjournalctl -u umeed -f -o cat\e[0m'
 echo -e 'To check sync status: \e[1m\e[32mcurl -s localhost:26657/status | jq .result.sync_info\e[0m'
