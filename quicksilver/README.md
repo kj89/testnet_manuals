@@ -7,9 +7,6 @@
 Official documentation:
 >- [Validator setup instructions](https://github.com/ingenuity-build/testnets/README.md)
 
-Explorer:
->-  [Nodes Guru quicksilver Explorer](https://quicksilver.explorers.guru/)
-
 ## Usefull tools I have created for quicksilver
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for quicksilver validator](https://github.com/kj89/testnet_manuals/blob/main/quicksilver/monitoring/README.md)
 
@@ -23,7 +20,7 @@ wget -O quicksilver_testnet.sh https://raw.githubusercontent.com/kj89/testnet_ma
 ### Option 2 (manual)
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/quicksilver/manual_install.md) if you better prefer setting up node manually
 
-## Use state-sync
+## To synchronize your quicksilver node to latest block you have to use state-sync provided below
 ```
 INTERVAL=1500
 LATEST_HEIGHT=$(curl -s http://seed.quicktest-1.quicksilver.zone:26657/block | jq -r .result.block.header.height);
@@ -54,7 +51,6 @@ To check logs
 ```
 journalctl -u quicksilverd -f -o cat
 ```
-
 
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
@@ -132,6 +128,11 @@ quicksilverd tx staking create-validator \
   --pubkey  $(quicksilverd tendermint show-validator) \
   --moniker $NODENAME \
   --chain-id $CHAIN_ID
+```
+
+### Get list of validators
+```
+quicksilverd q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
 ```
 
 ## Security
