@@ -1,5 +1,21 @@
+<p align="center">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/166480394-78f4659d-f4d8-4194-80de-a4080b207978.png">
+</p>
+
 # Manual node  setup
 If you want to setup fullnode manually follow the steps below
+
+Official documentation:
+>- [Run a Scan Node](https://docs.forta.network/en/latest/scanner-quickstart/)
+
+Explorer:
+>-  https://explorer.forta.network/network
+
+## Hardware requirements:
+#### For running a Forta scan node we recommend the following:
+- CPU: 4 cores
+- Memory: 16GB RAM
+- SSD: 100GB drive space
 
 ## 0. Set environment variables
 ```
