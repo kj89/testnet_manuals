@@ -15,7 +15,7 @@ Save and import variables into system
 ```
 echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 echo "export WALLET=wallet" >> $HOME/.bash_profile
-echo "export CHAIN_ID=quicktest-1" >> $HOME/.bash_profile
+echo "export CHAIN_ID=quicktest-3" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -45,7 +45,7 @@ go version
 ## Download and build binaries
 ```
 cd $HOME
-git clone https://github.com/ingenuity-build/quicksilver.git --branch v0.1.1
+git clone https://github.com/ingenuity-build/quicksilver.git --branch v0.1.10
 cd quicksilver
 make build
 chmod +x ./build/quicksilverd && mv ./build/quicksilverd /usr/local/bin/quicksilverd
