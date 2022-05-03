@@ -6,10 +6,10 @@
 If you want to setup fullnode manually follow the steps below
 
 Official documentation:
->- [Run a Scan Node](https://docs.forta.network/en/latest/scanner-quickstart/)
+> [Run a Scan Node](https://docs.forta.network/en/latest/scanner-quickstart/)
 
 Explorer:
->-  https://explorer.forta.network/network
+> https://explorer.forta.network/network
 
 ## Hardware requirements:
 #### For running a Forta scan node we recommend the following:
