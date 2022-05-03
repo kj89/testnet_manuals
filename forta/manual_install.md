@@ -56,6 +56,7 @@ systemctl restart docker
 ```
 
 ## 4. Install forta
+### 4.1 Download and install forta binaries
 ```
 sudo curl https://dist.forta.network/pgp.public -o /usr/share/keyrings/forta-keyring.asc -s
 echo 'deb [signed-by=/usr/share/keyrings/forta-keyring.asc] https://dist.forta.network/repositories/apt stable main' | sudo tee -a /etc/apt/sources.list.d/forta.list
@@ -63,7 +64,7 @@ sudo apt-get update
 sudo apt-get install forta
 ```
 
-## 5. Configure systemd
+## 4.2 Configure systemd service
 ```
 sudo mkdir /lib/systemd/system/forta.service.d
 tee /lib/systemd/system/forta.service.d/env.conf > /dev/null <<EOF
@@ -73,32 +74,61 @@ Environment='FORTA_PASSPHRASE=$FORTA_PASSPHRASE'
 EOF
 ```
 
-## 6. Initial Setup
-Initialize Forta using the forta init command
+## 5. Initial forta scan node setup
+### 5.1 Initialize Forta using the forta init command
 ```
 forta init
 ```
 > This is the value that will be registered in the scan node registry smart contract. If you need to find out your address later again, you can run `forta account address`
 
-Update configuration file with rpc enpoints
+### 5.2 Send 0.1 Matic in Polygon network to your scan node address
+
+### 5.3 Update configuration file with rpc enpoints
 ```
 yq e -i '.scan.jsonRpc.url="'$FORTA_RPC_URL'"' ~/.forta/config.yml
 yq e -i '.trace.jsonRpc.url="'$FORTA_RPC_URL'"' ~/.forta/config.yml
 yq e -i '.jsonRpcProxy.jsonRpc.url="'$FORTA_PROXY_RPC_URL'"' ~/.forta/config.yml
 ```
 
-Register forta
+### 5.4 Register forta
 ```
 forta register --owner-address $OWNER_ADDRESS
 ```
 
-Start service
+### 5.5 Start service
 ```
 sudo systemctl enable forta
 sudo systemctl start forta
 ```
 
-Check status. Status should be updated 5-10 minutes after starting node
+### 5.6 Check status. Status should be updated 5-10 minutes after starting node
 ```
 forta status
 ```
+
+## Usefull commands
+Get forta scan node address
+```
+forta account address
+```
+
+Check scan node status
+```
+forta status
+```
+
+Check scan node logs
+```
+journalctl -u forta -f -o cat
+```
+
+stop forta
+```
+systemctl stop forta
+```
+
+start forta
+```
+systemctl start forta
+```
+
