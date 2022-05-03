@@ -3,6 +3,7 @@ If you want to setup fullnode manually follow the steps below
 
 ## 0. Set environment variables
 ```
+rm ~/.bash_profile
 echo "export FORTA_PASSPHRASE=<YOUR_PASSPHRASE>" >> ~/.bash_profile
 echo "export FORTA_OWNER_ADDRESS=<YOUR_FORTA_OWNER_ADDRESS>" >> ~/.bash_profile
 echo "export FORTA_RPC_URL=<YOUR_FORTA_RPC_URL>" >> ~/.bash_profile
