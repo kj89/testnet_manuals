@@ -61,7 +61,7 @@ PEERS="518dac6b9b5d6aea23698b888802ceff39efcbaf@103.125.219.212:26656,68787e8412
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.crescent/config/config.toml
 
 # set minimum gas price
-sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0ucre\"/" $HOME/.crescent/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ucre\"/" $HOME/.crescent/config/app.toml
 
 # reset
 crescentd unsafe-reset-all

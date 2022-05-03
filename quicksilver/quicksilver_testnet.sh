@@ -67,7 +67,7 @@ quicksilverd init $NODENAME --chain-id $CHAIN_ID
 wget -qO $HOME/.quicksilverd/config/genesis.json "https://raw.githubusercontent.com/ingenuity-build/testnets/main/rhapsody/genesis.json"
 
 # set minimum gas price
-sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0uqck\"/" $HOME/.quicksilverd/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uqck\"/" $HOME/.quicksilverd/config/app.toml
 
 # set peers and seeds
 SEEDS="dd3460ec11f78b4a7c4336f22a356fe00805ab64@seed.quicktest-1.quicksilver.zone:26656"

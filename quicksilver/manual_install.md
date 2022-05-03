@@ -69,7 +69,7 @@ wget -qO $HOME/.quicksilverd/config/genesis.json "https://raw.githubusercontent.
 
 ## Set minimum gas price
 ```
-sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0uqck\"/" $HOME/.quicksilverd/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uqck\"/" $HOME/.quicksilverd/config/app.toml
 ```
 
 ## Set seeds and peers

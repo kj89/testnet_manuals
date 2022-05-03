@@ -67,7 +67,7 @@ wget -qO $HOME/.defund/config/genesis.json "https://raw.githubusercontent.com/de
 wget -qO $HOME/.defund/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/defund/addrbook.json"
 
 # set minimum gas price
-sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0ufetf\"/" $HOME/.defund/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ufetf\"/" $HOME/.defund/config/app.toml
 
 # set peers and seeds
 SEEDS="8e1590558d8fede2f8c9405b7ef550ff455ce842@51.79.30.9:26656,bfffaf3b2c38292bd0aa2a3efe59f210f49b5793@51.91.208.71:26656,106c6974096ca8224f20a85396155979dbd2fb09@198.244.141.176:26656"

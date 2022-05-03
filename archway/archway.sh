@@ -68,7 +68,7 @@ wget -qO $HOME/.archway/config/genesis.json "https://raw.githubusercontent.com/a
 wget -qO $HOME/.archway/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/addrbook.json"
 
 # set minimum gas price
-sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0utorii\"/" $HOME/.archway/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0utorii\"/" $HOME/.archway/config/app.toml
 
 # set peers and seeds
 SEEDS=`curl -sL https://raw.githubusercontent.com/archway-network/testnets/main/torii-1/persistent_peers.txt | awk '{print $1}' | paste -s -d, -`

@@ -57,7 +57,7 @@ wget -qO $HOME/.archway/config/addrbook.json "https://raw.githubusercontent.com/
 wget -qO $HOME/peers.txt "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/augusta/peers.txt"
 
 # set minimum gas price
-sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0august\"/" $HOME/.archway/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0august\"/" $HOME/.archway/config/app.toml
 
 # set peers and seeds
 SEEDS="2f234549828b18cf5e991cc884707eb65e503bb2@34.74.129.75:31076,c8890bcde31c2959a8aeda172189ec717fef0b2b@95.216.197.14:26656"

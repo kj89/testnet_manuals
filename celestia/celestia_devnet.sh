@@ -74,7 +74,7 @@ cp $HOME/networks/devnet-2/genesis.json $HOME/.celestia-app/config
 wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/addrbook.json"
 
 # set minimum gas price
-sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0celes\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0celes\"/" $HOME/.celestia-app/config/app.toml
 
 # set peers and seeds
 SEEDS="74c0c793db07edd9b9ec17b076cea1a02dca511f@46.101.28.34:26656"

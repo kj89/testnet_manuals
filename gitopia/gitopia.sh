@@ -69,7 +69,7 @@ git clone gitopia://gitopia1dlpc7ps63kj5v0kn5v8eq9sn2n8v8r5z9jmwff/testnets
 cp $HOME/testnets/gitopia-janus-testnet/genesis.json $HOME/.gitopia/config/
 
 # set minimum gas price
-sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0.001utlore\"/" $HOME/.gitopia/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.001utlore\"/" $HOME/.gitopia/config/app.toml
 
 # set peers and seeds
 SEEDS=""

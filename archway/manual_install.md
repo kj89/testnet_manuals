@@ -66,7 +66,7 @@ wget -qO $HOME/.archway/config/addrbook.json "https://raw.githubusercontent.com/
 
 ## Set minimum gas price
 ```
-sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0utorii\"/" $HOME/.archway/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0utorii\"/" $HOME/.archway/config/app.toml
 ```
 
 ## Set seeds and peers

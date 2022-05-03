@@ -73,7 +73,7 @@ wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.
 
 ## Set minimum gas price
 ```
-sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0celes\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0celes\"/" $HOME/.celestia-app/config/app.toml
 ```
 
 ## Set seeds and peers

@@ -68,7 +68,7 @@ umeed config keyring-backend file
 wget -O $HOME/.umee/config/genesis.json "https://github.com/umee-network/mainnet/raw/main/genesis.json"
 
 # set minimum gas price
-sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0.001uumee\"/" $HOME/.umee/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.001uumee\"/" $HOME/.umee/config/app.toml
 
 # enable api and grpc
 sed -i '/\[grpc\]/{:a;n;/enabled/s/false/true/;Ta};/\[api\]/{:a;n;/enable/s/false/true/;Ta;}' $HOME/.umee/config/app.toml

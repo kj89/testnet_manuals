@@ -71,7 +71,7 @@ wget -qO $HOME/.coho/config/genesis.json "https://raw.githubusercontent.com/cosm
 
 ## Set minimum gas price
 ```
-sed -i.bak -e "s/^minimum-gas-prices = \"\"/minimum-gas-prices = \"0ucoho\"/" $HOME/.coho/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ucoho\"/" $HOME/.coho/config/app.toml
 ```
 
 ## Set seeds and peers
