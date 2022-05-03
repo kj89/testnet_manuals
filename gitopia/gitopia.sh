@@ -106,5 +106,5 @@ sudo systemctl enable gitopiad
 sudo systemctl restart gitopiad
 
 echo '=============== SETUP FINISHED ==================='
-echo 'To check logs: journalctl -u gitopiad -f -o cat'
-echo 'To check sync status: curl -s localhost:26657/status'
+echo -e 'To check logs: \e[1m\e[32m gitopiad -f -o cat\e[0m'
+echo -e 'To check sync status: \e[1m\e[32mcurl -s localhost:26657/status | jq .result.sync_info\e[0m'
