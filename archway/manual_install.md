@@ -73,12 +73,12 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0utorii\"/" $HOME/.
 ```
 SEEDS=`curl -sL https://raw.githubusercontent.com/archway-network/testnets/main/torii-1/persistent_peers.txt | awk '{print $1}' | paste -s -d, -`
 PEERS="2b0c484615d9bafd6cc339c588e366dd9b000221@54.180.95.251:26656,5d221da2ebb37a6b37ee86581457061f17e0704e@165.232.143.157:26656,5ba7f9e0905a69003dca519da8dfed09dd12471a@157.230.121.70:26656"
-sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.archway/config/config.toml
+sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.archway/config/config.toml
 ```
 
 ## Enable prometheus
 ```
-sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.archway/config/config.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.archway/config/config.toml
 ```
 
 # config pruning

@@ -76,14 +76,14 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ucoho\"/" $HOME/.c
 # set peers and seeds
 SEEDS="a06e58e39d4a471d00d2e5d58233089c64fa5bb8@149.28.70.87:26656"
 PEERS="8a2df4be7a7e455b87b1f2e572639a28d44b0562@65.108.103.236:19656"
-sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.coho/config/config.toml
+sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.coho/config/config.toml
 
 # enable prometheus
-sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.coho/config/config.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.coho/config/config.toml
 
 # add external (if dont use sentry), port is default
 # external_address=$(wget -qO- eth0.me)
-# sed -i.bak -e "s/^external_address = \"\"/external_address = \"$external_address:26656\"/" $HOME/.coho/config/config.toml
+# sed -i -e "s/^external_address = \"\"/external_address = \"$external_address:26656\"/" $HOME/.coho/config/config.toml
 
 # config pruning
 pruning="custom"

@@ -70,8 +70,8 @@ peers=$(jq '.peers | join(",")' < chain.json)
 seeds=$(jq '.seeds | join(",")' < chain.json)
 echo $peers
 echo $seeds
-sed -i.bak 's/^log_level/# log_level/' $HOME/.agoric/config/config.toml
-sed -i.bak -e "s/^seeds *=.*/seeds = $seeds/; s/^persistent_peers *=.*/persistent_peers = $peers/" $HOME/.agoric/config/config.toml
+sed -i 's/^log_level/# log_level/' $HOME/.agoric/config/config.toml
+sed -i -e "s/^seeds *=.*/seeds = $seeds/; s/^persistent_peers *=.*/persistent_peers = $peers/" $HOME/.agoric/config/config.toml
 sudo tee <<EOF >/dev/null /etc/systemd/system/agoricd.service
 [Unit]
 Description=Agoric Cosmos daemon

@@ -62,18 +62,18 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0august\"/" $HOME/.
 # set peers and seeds
 SEEDS="2f234549828b18cf5e991cc884707eb65e503bb2@34.74.129.75:31076,c8890bcde31c2959a8aeda172189ec717fef0b2b@95.216.197.14:26656"
 PEERS=$(cat $HOME/peers.txt)
-sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.archway/config/config.toml
+sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.archway/config/config.toml
 wget -O addrbook.json https://api.nodes.guru/addrbook_archway.json
 mv addrbook.json $HOME/.archway/config/
 # enable prometheus
-sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.archway/config/config.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.archway/config/config.toml
 
 # add external (if dont use sentry), port is default
 external_address=$(wget -qO- eth0.me)
-sed -i.bak -e "s/^external_address = \"\"/external_address = \"$external_address:26656\"/" $HOME/.archway/config/config.toml
+sed -i -e "s/^external_address = \"\"/external_address = \"$external_address:26656\"/" $HOME/.archway/config/config.toml
 
 # enable pormetheus
-sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.archway/config/config.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.archway/config/config.toml
 
 # config pruning
 pruning="custom"

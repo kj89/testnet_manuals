@@ -75,7 +75,7 @@ sed -i '/\[grpc\]/{:a;n;/enabled/s/false/true/;Ta};/\[api\]/{:a;n;/enable/s/fals
 
 # update peers and allow external connections
 peers="f1dc58164af33f2db6c5a5bd6b2646399b18bbb4@35.187.48.177:26656,6b785fc3a088de3a5e8d222a980936f2187b8c56@34.65.213.164:26656"
-sed -i.bak -e "s/^external_address = \"\"/external_address = \"0.0.0.0:26656\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.umee/config/config.toml
+sed -i -e "s/^external_address = \"\"/external_address = \"0.0.0.0:26656\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.umee/config/config.toml
 
 # reset
 umeed unsafe-reset-all

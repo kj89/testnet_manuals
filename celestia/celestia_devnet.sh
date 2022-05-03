@@ -79,10 +79,10 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0celes\"/" $HOME/.c
 # set peers and seeds
 SEEDS="74c0c793db07edd9b9ec17b076cea1a02dca511f@46.101.28.34:26656"
 PEERS="34d4bfec8998a8fac6393a14c5ae151cf6a5762f@194.163.191.41:26656"
-sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.celestia-app/config/config.toml
+sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.celestia-app/config/config.toml
 
 # enable prometheus
-sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.celestia-app/config/config.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.celestia-app/config/config.toml
 
 # config pruning
 pruning="custom"

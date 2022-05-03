@@ -74,10 +74,10 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.001utlore\"/" $HO
 # set peers and seeds
 SEEDS=""
 PEERS=""
-sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.gitopia/config/config.toml
+sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.gitopia/config/config.toml
 
 # enable prometheus
-sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.gitopia/config/config.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.gitopia/config/config.toml
 
 # reset
 gitopiad unsafe-reset-all

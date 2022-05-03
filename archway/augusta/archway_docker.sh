@@ -58,8 +58,8 @@ perl -i -pe 's/^minimum-gas-prices = .+?$/minimum-gas-prices = "0august"/' $HOME
 SEEDS="2f234549828b18cf5e991cc884707eb65e503bb2@34.74.129.75:31076,c8890bcde31c2959a8aeda172189ec717fef0b2b@95.216.197.14:26656"
 wget -qO $HOME/peers.txt "https://raw.githubusercontent.com/kj89testnet_manuals/main/archway/augusta/peers.txt"
 PEERS=$(cat $HOME/peers.txt)
-sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.archway/config/config.toml
-sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.archway/config/config.toml
+sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.archway/config/config.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.archway/config/config.toml
 wget -qO $HOME/.archway/config/genesis.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/augusta/genesis.json"
 wget -qO $HOME/.archway/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/archway/augusta/addrbook.json"
 

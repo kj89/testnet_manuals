@@ -64,9 +64,9 @@ function installSoftware {
 	mv config.toml config/
 	mv genesis.json config/
         mv addrbook.json config/
-	sed -i.bak "s/^moniker *=.*/moniker = \"$STRATOS_NODENAME\"/" config/config.toml
+	sed -i "s/^moniker *=.*/moniker = \"$STRATOS_NODENAME\"/" config/config.toml
         peers="d12cd591f7062aa11bf94e79578647e2cac26b86@18.178.110.255:26656,7d9d9366f99e559ebd3c406a1bf0754b0124b704@65.21.201.244:26706"
-	sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/stratos/config/config.toml
+	sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/stratos/config/config.toml
 }
 
 function installService {
