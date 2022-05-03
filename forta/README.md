@@ -113,7 +113,7 @@ yq e -i '.jsonRpcProxy.jsonRpc.url="'$FORTA_PROXY_RPC_URL'"' ~/.forta/config.yml
 
 ### 5.4 Register forta
 ```
-forta register --owner-address $OWNER_ADDRESS
+forta register --owner-address $FORTA_OWNER_ADDRESS
 ```
 
 ### 5.5 Start service
