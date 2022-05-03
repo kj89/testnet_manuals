@@ -90,7 +90,7 @@ sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.coho/config/confi
 ```
 pruning="custom"
 pruning_keep_recent="100"
-pruning_keep_every="5000"
+pruning_keep_every="0"
 pruning_interval="10"
 sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.coho/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.coho/config/app.toml

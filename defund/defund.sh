@@ -84,7 +84,7 @@ sed -i.bak -e "s/prometheus = false/prometheus = true/" $HOME/.defund/config/con
 # config pruning
 pruning="custom"
 pruning_keep_recent="100"
-pruning_keep_every="5000"
+pruning_keep_every="0"
 pruning_interval="10"
 
 sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.defund/config/app.toml
