@@ -17,6 +17,10 @@ Explorer:
 - Memory: 16GB RAM
 - SSD: 100GB drive space
 
+## Preparation
+### 1. Create new metamask wallet and fund it with 1 MATIC in Polygon network. This address will be used as forta owner
+### 2. Register at https://moralis.io/ to generate proxy rpc url
+
 ## 0. Set environment variables
 ```
 rm ~/.bash_profile
