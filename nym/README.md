@@ -93,6 +93,11 @@ journalctl -u nym-mixnode -o cat | grep "Since startup mixed" | tail -1
 ```
 > *If you dont see any new packets mixed, just give it some **5-10** minutes and check again!*
 
+## UPDATE YOUR MIXNODE
+```
+wget -O update.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/nym/update.sh && chmod +x update.sh && ./update.sh
+```
+
 ## OTHER USEFUL COMMANDS
 See your mixnode logs (CTRL+C to exit)
 ```
