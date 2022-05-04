@@ -73,7 +73,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.001udws\"/" $HOME
 
 # set peers and seeds
 SEEDS="74d8f92c37ffe4c6393b3718ca531da8f0bf0594@seed1.deweb.services:26656"
-PEERS="316d8e681019f25b078b36a26f349e48c916aace@161.97.104.113:26656,4172ea44cb18d7b8040c3c284d76340e9212fea7@95.214.53.225:26666,d2e9b0a8c0a07422c01e2477c8054ec7f2b509b6@128.199.49.193:26656"
+PEERS="316d8e681019f25b078b36a26f349e48c916aace@161.97.104.113:26656,4172ea44cb18d7b8040c3c284d76340e9212fea7@95.214.53.225:26666,d2e9b0a8c0a07422c01e2477c8054ec7f2b509b6@128.199.49.193:26656,cba40403295977211209fb3b3037501e6f00f339@167.235.243.214:26656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.deweb/config/config.toml
 
 # enable prometheus
