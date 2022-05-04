@@ -59,25 +59,25 @@ dewebd init $NODENAME --chain-id $CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -qO $HOME/.defund/config/genesis.json "https://raw.githubusercontent.com/defund-labs/defund/163e2669b6870aa26b73d843312b22c9948b29c6/testnet/private/genesis.json"
-wget -qO $HOME/.defund/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/defund/addrbook.json"
+wget -qO $HOME/.deweb/config/genesis.json "https://raw.githubusercontent.com/defund-labs/defund/163e2669b6870aa26b73d843312b22c9948b29c6/testnet/private/genesis.json"
+wget -qO $HOME/.deweb/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/defund/addrbook.json"
 ```
 
 ## Set minimum gas price
 ```
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0udws\"/" $HOME/.defund/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0udws\"/" $HOME/.deweb/config/app.toml
 ```
 
 ## Set seeds and peers
 ```
 SEEDS="8e1590558d8fede2f8c9405b7ef550ff455ce842@51.79.30.9:26656,bfffaf3b2c38292bd0aa2a3efe59f210f49b5793@51.91.208.71:26656,106c6974096ca8224f20a85396155979dbd2fb09@198.244.141.176:26656"
 PEERS="79a1ca999264d15653e359742ecc696ff783e057@49.12.246.112:22256,5b10a67cad723fd13060761f8955f371fb1810a2@80.64.208.121:26656,cd3a17a6920bba732f1b2a4b3a12a435ac0845ac@49.12.225.248:26656,0409ad6d8ceef8ab01f4df458dbd58dd9ac32295@121.37.242.170:26656,6c80295b4c221e19cab7dfab496e9c15891f55ba@65.108.151.86:26656,2ef9373a0e8b5487b6fbf100d90faa641242899d@154.12.244.137:26656,1bf56637dcb950453c370ef7726da74436d21a61@95.214.52.200:26656,b9acccdd67617e15c361ea0d6fd2e16c1b9c9efc@209.145.48.178:26656,111ba4e5ae97d5f294294ea6ca03c17506465ec5@208.68.39.221:26656,0409ad6d8ceef8ab01f4df458dbd58dd9ac32295@121.37.242.170:26656"
-sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.defund/config/config.toml
+sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.deweb/config/config.toml
 ```
 
 ## Enable prometheus
 ```
-sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.defund/config/config.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.deweb/config/config.toml
 ```
 
 # config pruning
@@ -86,10 +86,10 @@ pruning="custom"
 pruning_keep_recent="100"
 pruning_keep_every="0"
 pruning_interval="10"
-sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.defund/config/app.toml
-sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.defund/config/app.toml
-sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.defund/config/app.toml
-sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.defund/config/app.toml
+sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.deweb/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.deweb/config/app.toml
+sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.deweb/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.deweb/config/app.toml
 ```
 
 ## Reset chain data
