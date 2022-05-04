@@ -25,7 +25,7 @@ if [ ! $WALLET_ADDRESS ]; then
 fi
 
 # set latest nym mixnode version
-NYM_MIXNODE_VERSION="1.0.0-rc.2"
+NYM_MIXNODE_VERSION="1.0.1"
 source $HOME/.bash_profile
 
 echo '================================================================================'
@@ -63,7 +63,7 @@ nym-mixnode init --id $NODENAME --host $(curl ifconfig.me) --wallet-address $WAL
 # create systemd service
 tee /etc/systemd/system/nym-mixnode.service > /dev/null <<EOF
 [Unit]
-Description=Nym Mixnode (1.0.0-rc.2)
+Description=Nym Mixnode
 StartLimitInterval=350
 StartLimitBurst=10
 
