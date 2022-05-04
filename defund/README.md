@@ -133,6 +133,11 @@ It measures average blocks per minute that are being synchronized for period of 
 wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/defund/tools/synctime.py && python3 ./synctime.py
 ```
 
+## Get currently connected peer list with ids
+```
+curl -sS http://localhost:26657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
+```
+
 ## Usefull commands
 ### Service management
 Check logs
