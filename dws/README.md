@@ -2,30 +2,28 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165055511-83e8a2d3-1700-4d26-af27-abcc825573a7.png">
 </p>
 
-# defund node setup for Testnet — defund-private-1
+# DWS node setup for Testnet — deweb-testnet-1
 
 Official documentation:
->- [Validator setup instructions](https://github.com/defund-labs/defund/blob/main/testnet/private/validators.md)
->- [DeFund Tokenomics](https://medium.com/defund-finance/detf-token-economics-release-schedule-78a8d32713a5)
->- [FundDrop Breakdown](https://medium.com/defund-finance/airdrop-d-c2685d282858)
+>- [Validator setup instructions](https://docs.deweb.services/guides/validator-setup-guide)
 
 Explorer:
->-  https://defund.explorers.guru/
+>-  https://dws.explorers.guru/
 
 ## Usefull tools and references
-> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for defund validator](https://github.com/kj89/testnet_manuals/blob/main/defund/monitoring/README.md)
+> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for DWS validator](https://github.com/kj89/testnet_manuals/blob/main/dws/monitoring/README.md)
 >
-> To migrate your valitorator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/defund/migrate_validator.md)
+> To migrate your valitorator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/dws/migrate_validator.md)
 
-## Set up your defund fullnode
+## Set up your dws fullnode
 ### Option 1 (automatic)
-You can setup your defund fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
+You can setup your dws fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
-wget -O defund.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/defund/defund.sh && chmod +x defund.sh && ./defund.sh
+wget -O dws.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/dws/dws.sh && chmod +x dws.sh && ./dws.sh
 ```
 
 ### Option 2 (manual)
-You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/defund/manual_install.md) if you better prefer setting up node manually
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/dws/manual_install.md) if you better prefer setting up node manually
 
 ### Post installation
 When installation is finished please load variables into system
@@ -73,7 +71,7 @@ source $HOME/.bash_profile
 ```
 
 ### Top up your wallet balance using faucet
-To get 20 free tokens in defund-private-1 testnet:
+To get 20 free tokens in deweb-testnet-1 testnet:
 * navigate to https://bitszn.com/faucets.html
 * switch to `COSMOS` tab and select `DeFund.Finance Testnet`
 * input your wallet address and click `Request`
@@ -124,13 +122,13 @@ sudo ufw enable
 ```
 
 ## Monitoring
-To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for defund validator](https://github.com/kj89/testnet_manuals/blob/main/defund/monitoring/README.md)
+To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for dws validator](https://github.com/kj89/testnet_manuals/blob/main/dws/monitoring/README.md)
 
 ## Calculate synchronization time
 This script will help you to estimate how much time it will take to fully synchronize your node\
 It measures average blocks per minute that are being synchronized for period of 5 minutes and then gives you results
 ```
-wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/defund/tools/synctime.py && python3 ./synctime.py
+wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/dws/tools/synctime.py && python3 ./synctime.py
 ```
 
 ## Get currently connected peer list with ids

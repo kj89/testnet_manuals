@@ -11,7 +11,7 @@ Save and import variables into system
 ```
 echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 echo "export WALLET=wallet" >> $HOME/.bash_profile
-echo "export CHAIN_ID=defund-private-1" >> $HOME/.bash_profile
+echo "export CHAIN_ID=deweb-testnet-1" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
