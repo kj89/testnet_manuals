@@ -70,14 +70,18 @@ echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
-### Top up your wallet balance using faucet
-To get 20 free tokens in deweb-testnet-1 testnet:
-* navigate to https://bitszn.com/faucets.html
-* switch to `COSMOS` tab and select `DeFund.Finance Testnet`
-* input your wallet address and click `Request`
+### Fund your wallet
+In order to create validator first you need to fund your wallet with testnet tokens.
+To top up your wallet join DWS discord server and navigate to:
+- **#faucet** for DWS tokens
+
+To request a faucet grant:
+```
+$request <YOUR_WALLET_ADDRESS> menkar
+```
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 fetf (1 fetf is equal to 1000000 udws) and your node is synchronized
+Before creating validator please make sure that you have at least 1 dws (1 dws is equal to 1000000 udws) and your node is synchronized
 
 To check your wallet balance:
 ```
