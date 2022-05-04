@@ -126,6 +126,13 @@ sudo ufw enable
 ## Monitoring
 To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for defund validator](https://github.com/kj89/testnet_manuals/blob/main/defund/monitoring/README.md)
 
+## Calculate synchronization time
+This script will help you to estimate how much time it will take to fully synchronize your node\
+It measures average blocks per minute that are being synchronized for period of 5 minutes and then gives you results
+```
+wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/defund/tools/synctime.py && python3 ./synctime.py
+```
+
 ## Usefull commands
 ### Service management
 Check logs
