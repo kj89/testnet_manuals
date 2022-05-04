@@ -58,11 +58,11 @@ sudo systemctl stop dewebd
 ```
 
 ### 7. Move the validator's private key from the old machine to the new machine
-#### Private key is located in: `~/.dewebd/config/priv_validator_key.json`
+#### Private key is located in: `~/.deweb/config/priv_validator_key.json`
 
 > _After being copied, the key `priv_validator_key.json` should then be removed from the old node's config directory to prevent double-signing if the node were to start back up_
 ```
-mv ~/.dewebd/config/priv_validator_key.json ~/.dewebd/bak_priv_validator_key.json
+mv ~/.deweb/config/priv_validator_key.json ~/.deweb/bak_priv_validator_key.json
 ```
 
 ### 8. Start service on a new validator node
