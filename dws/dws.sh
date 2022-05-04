@@ -51,9 +51,11 @@ go version
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 cd $HOME
-wget https://github.com/deweb-services/deweb/releases/download/v0.2/dewebd
-chmod +x dewebd
-sudo mv dewebd /usr/local/bin/
+git clone https://github.com/deweb-services/deweb.git
+cd deweb
+git checkout v0.2
+make build
+sudo cp build/dewebd /usr/local/bin/dewebd
 
 # config
 dewebd config chain-id $CHAIN_ID

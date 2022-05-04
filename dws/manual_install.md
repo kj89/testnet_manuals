@@ -41,9 +41,11 @@ go version
 ## Download and build binaries
 ```
 cd $HOME
-git clone https://github.com/defund-labs/defund
-cd defund
-make install
+git clone https://github.com/deweb-services/deweb.git
+cd deweb
+git checkout v0.2
+make build
+sudo cp build/dewebd /usr/local/bin/dewebd
 ```
 
 ## Config app
