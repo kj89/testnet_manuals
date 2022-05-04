@@ -82,7 +82,7 @@ echo -e "\e[1m\e[92m Private Key:  \e[0m" $KEY
 echo "=================================================="
 
 echo -e "\e[1m\e[32mVerify initial synchronization: \e[0m" 
-echo -e "\e[1m\e[39m    curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep storage_synchronizer_operation \n \e[0m" 
+echo -e "\e[1m\e[39m    curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep type \n \e[0m" 
 
 echo -e "\e[1m\e[32mGet your node identity information: \e[0m" 
 echo -e "\e[1m\e[39m    wget -qO get_identity.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/get_identity.sh && chmod +x get_identity.sh && ./get_identity.sh \n \e[0m" 
