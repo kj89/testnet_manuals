@@ -2,7 +2,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/166676803-ee125d04-dfe2-4c92-8f0c-8af357aad691.png">
 </p>
 
-# Set up monitoring and alerting for defund validator
+# Set up monitoring and alerting for deweb validator
 
 ## Prerequisites
 
@@ -14,8 +14,8 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `udws` for defund dws testnet. You can find it in genesis file |
-| **bench_prefix** | Prefix for chain addresses, for example, `defund` for defund dws testnet. You can find it in public addresses like this **defund**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **bond_denom** | Denominated token name, for example, `udws` for deweb dws testnet. You can find it in genesis file |
+| **bench_prefix** | Prefix for chain addresses, for example, `deweb` for dws testnet. You can find it in public addresses like this **deweb**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
 
 make sure following ports are open:
 - `9100` (node-exporter)
@@ -55,8 +55,8 @@ vim $HOME/cosmos_node_monitoring/config/.env
 | KEY | VALUE |
 |---------------|-------------|
 | VALIDATOR_IP | Public ip address of you validator |
-| VALOPER_ADDRESS | Operator address of your validator, for example, _"defundvaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete"_ |
-| WALLET_ADDRESS | Your validator self-deligate wallet address, for example, _"defund1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc"_ |
+| VALOPER_ADDRESS | Operator address of your validator, for example, _"dewebvaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete"_ |
+| WALLET_ADDRESS | Your validator self-deligate wallet address, for example, _"deweb1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc"_ |
 | TELEGRAM_ADMIN | Your user id you can get from [@userinfobot](https://t.me/userinfobot). The bot will only reply to messages sent from the user. All other messages are dropped and logged on the bot's console |
 | TELEGRAM_TOKEN | Your telegram bot access token you can get from [@botfather](https://telegram.me/botfather). To generate new token just follow a few simple steps described [here](https://core.telegram.org/bots#6-botfather) |
 
