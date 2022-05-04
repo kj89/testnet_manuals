@@ -66,6 +66,7 @@ dewebd init $NODENAME --chain-id $CHAIN_ID
 ## Download genesis and addrbook
 ```
 wget -qO $HOME/.deweb/config/genesis.json "https://raw.githubusercontent.com/deweb-services/deweb/main/genesis.json"
+wget -qO $HOME/.defund/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/dws/addrbook.json"
 ```
 
 ## Set minimum gas price
