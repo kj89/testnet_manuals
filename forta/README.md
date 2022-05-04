@@ -138,6 +138,11 @@ Check scan node status
 forta status
 ```
 
+Check asociated bots
+```
+docker ps | grep docker-entrypoint | wc -l
+```
+
 Check scan node logs
 ```
 journalctl -u forta -f -o cat
@@ -164,3 +169,4 @@ During 75% or more node's running time each week:
 - 100% reward: SLA ≥ 0.9
 - 80% reward: SLA ≥ 0.75
 - No reward: SLA < 0.75
+
