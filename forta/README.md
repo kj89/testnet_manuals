@@ -153,3 +153,14 @@ start forta
 systemctl start forta
 ```
 
+# Testnet rewards
+Check your SLA
+```
+curl https://api.forta.network/stats/sla/scanner/<FORTA_SCANNER_ADDRESS>?startTime=2022-04-24T00:00:00Z | jq .statistics.avg
+```
+
+SLA Score will determine if and how much of the reward each scan node gets.
+During 75% or more node's running time each week:
+- 100% reward: SLA ≥ 0.9
+- 80% reward: SLA ≥ 0.75
+- No reward: SLA < 0.75
