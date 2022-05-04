@@ -100,7 +100,10 @@ dewebd tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(dewebd tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id $CHAIN_ID
+  --chain-id $CHAIN_ID \
+  --gas auto \
+  --gas-adjustment 1.5 \
+  --gas-prices 0.001udws
 ```
 
 ## Security

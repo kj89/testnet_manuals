@@ -71,7 +71,7 @@ wget -qO $HOME/.deweb/config/addrbook.json "https://raw.githubusercontent.com/kj
 
 ## Set minimum gas price
 ```
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0udws\"/" $HOME/.deweb/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.001udws\"/" $HOME/.deweb/config/app.toml
 ```
 
 ## Set seeds and peers
