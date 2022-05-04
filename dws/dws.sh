@@ -79,7 +79,6 @@ sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persisten
 # enable prometheus
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.deweb/config/config.toml
 
-
 # config pruning
 pruning="custom"
 pruning_keep_recent="100"
