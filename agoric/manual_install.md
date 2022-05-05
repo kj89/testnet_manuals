@@ -16,14 +16,6 @@ Here you have to put name of your moniker (validator) that will be visible in ex
 NODENAME=<MY_MONIKER_NAME_GOES_HERE>
 ```
 
-Save and import variables into system
-```
-echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
-echo "export WALLET=wallet" >> $HOME/.bash_profile
-echo "export CHAIN_ID=$(jq -r .chainName < $HOME/chain.json)" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-```
-
 ## Update packages
 ```
 sudo apt update && sudo apt upgrade -y
@@ -32,6 +24,14 @@ sudo apt update && sudo apt upgrade -y
 ## Install dependencies
 ```
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu gcc git jq chrony liblz4-tool -y
+```
+
+## Save and import variables into system
+```
+echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
+echo "export WALLET=wallet" >> $HOME/.bash_profile
+echo "export CHAIN_ID=$(jq -r .chainName < $HOME/chain.json)" >> $HOME/.bash_profile
+source $HOME/.bash_profile
 ```
 
 ## Install node.js
