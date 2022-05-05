@@ -52,7 +52,7 @@ sudo systemctl disable dewebd
 ```
 > _The validator should start missing blocks at this point_
 
-### 6. Stop and disable service on new machine
+### 6. Stop service on new machine
 ```
 sudo systemctl stop dewebd
 ```
