@@ -19,7 +19,6 @@ sudo mv target/release/nym-mixnode /usr/local/bin/
 version=$(nym-mixnode --version | grep "version" | awk '{print $4}' | sed 's/.$//')
 echo "Current mixnode version:" $version
 echo "Initialize your mixmode"
-#nym-mixnode init --id $node_id --host $(curl ifconfig.me) --wallet-address $wallet
 echo "Upgrading your mixnode config"
 nym-mixnode upgrade --id $node_id
 echo "DefaultLimitNOFILE=65535" >> /etc/systemd/system.conf
@@ -27,4 +26,3 @@ sudo systemctl daemon-reload
 sudo systemctl enable nym-mixnode
 sudo systemctl restart nym-mixnode
 echo "Upgrade complete!"
-#echo "Current mixnode version:" $version

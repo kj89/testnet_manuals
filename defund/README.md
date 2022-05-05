@@ -207,6 +207,11 @@ Transfer funds
 defundd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000ufetf
 ```
 
+### Voting
+```
+defundd tx gov vote 1 yes --from $WALLET --chain-id=$CHAIN_ID
+```
+
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
