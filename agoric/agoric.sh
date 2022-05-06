@@ -41,8 +41,8 @@ sudo apt install nodejs=14.* yarn build-essential jq -y
 sleep 1
 
 # install go
-sudo rm -rf /usr/local/go
-curl https://go.dev/dl/go1.18.linux-amd64.tar.gz | sudo tar -C/usr/local -zxvf -
+wget -O go1.17.1.linux-amd64.tar.gz https://golang.org/dl/go1.17.linux-amd64.tar.gz
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.17.1.linux-amd64.tar.gz && rm go1.17.1.linux-amd64.tar.gz
 tee $HOME/.bash_profile > /dev/null <<EOF
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
