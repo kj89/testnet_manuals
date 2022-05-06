@@ -79,7 +79,7 @@ agd init $NODENAME --chain-id $CHAIN_ID
 
 ## Download genesis file
 ```
-wget -qO $HOME/.agoric/config/genesis.json "curl https://devnet.agoric.net/genesis.json > $HOME/.agoric/config/genesis.json"
+wget -qO $HOME/.agoric/config/genesis.json "https://devnet.agoric.net/genesis.json"
 ```
 
 ## Set seeds and peers
