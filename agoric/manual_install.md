@@ -84,8 +84,8 @@ wget -qO $HOME/.agoric/config/genesis.json "curl https://devnet.agoric.net/genes
 
 ## Set seeds and peers
 ```
-peers=$(jq '.peers | join(",")' < chain.json)
-seeds=$(jq '.seeds | join(",")' < chain.json)
+peers=$(jq '.peers | join(",")' < $HOME/chain.json)
+seeds=$(jq '.seeds | join(",")' < $HOME/chain.json)
 sed -i.bak -e "s/^seeds *=.*/seeds = $seeds/; s/^persistent_peers *=.*/persistent_peers = $peers/" $HOME/.agoric/config/config.toml
 ```
 

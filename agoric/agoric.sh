@@ -78,8 +78,8 @@ agd init $NODENAME --chain-id $CHAIN_ID
 wget -qO $HOME/.agoric/config/genesis.json "curl https://devnet.agoric.net/genesis.json > $HOME/.agoric/config/genesis.json"
 
 # set peers and seeds
-peers=$(jq '.peers | join(",")' < chain.json)
-seeds=$(jq '.seeds | join(",")' < chain.json)
+peers=$(jq '.peers | join(",")' < $HOME/chain.json)
+seeds=$(jq '.seeds | join(",")' < $HOME/chain.json)
 sed -i.bak -e "s/^seeds *=.*/seeds = $seeds/; s/^persistent_peers *=.*/persistent_peers = $peers/" $HOME/.agoric/config/config.toml
 
 # Fix `Error: failed to parse log level`
