@@ -2,7 +2,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/167032367-fee4380e-7678-43e0-9206-36d72b32b8ae.png">
 </p>
 
-# agoric node setup for devnet — agoricdev-10
+# agoric node setup for devnet — agoricdev-11
 
 Official documentation:
 > [Validator Guide for Devnet](https://github.com/Agoric/agoric-sdk/wiki/Validator-Guide-for-Devnet)
@@ -71,7 +71,7 @@ source $HOME/.bash_profile
 ```
 
 ### Top up your wallet balance using faucet
-To get free tokens in agoricdev-10 testnet:
+To get free tokens in agoricdev-11 testnet:
 * navigate to [Agoric official discord](https://agoric.com/discord)
 * open `#faucet` channel under `DEVELOPMENT` category 
 * input command: `!faucet client <WALLET_ADDRESS>`

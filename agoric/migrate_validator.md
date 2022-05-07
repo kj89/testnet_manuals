@@ -5,7 +5,7 @@
 # Migrate your validator to another machine
 
 ### 1. Run a new full node on a new machine
-To setup full node you can follow my guide [agoric node setup for Testnet — agoricdev-10](https://github.com/kj89/testnet_manuals/blob/main/agoric/README.md)
+To setup full node you can follow my guide [agoric node setup for Testnet — agoricdev-11](https://github.com/kj89/testnet_manuals/blob/main/agoric/README.md)
 
 ### 2. Confirm that you have the recovery seed phrase information for the active key running on the old machine
 
@@ -74,7 +74,7 @@ sudo systemctl start agd
 ### 9. Make sure your validator is not jailed
 #### To unjail your validator
 ```
-agd tx slashing unjail --chain-id agoricdev-10 --from mykey --gas=auto -y
+agd tx slashing unjail --chain-id agoricdev-11 --from mykey --gas=auto -y
 ```
 
 ### 10. After you ensure your validator is producing blocks and is healthy you can shut down old validator server
