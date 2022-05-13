@@ -7,9 +7,7 @@ Official documents:
 > [Run a Validator Node](https://aptos.dev/tutorials/validator-node/intro)
 
 Usefull tools:
-> To find latest block height use [Aptos Network Dashboard](https://status.devnet.aptos.dev/)\
 > To check your node health status try [Aptos Node Informer](http://node-tools.net/aptos/tester/)\
-> To migrate your fullnode to another machine read [Migrate your fullnode to another machine](https://github.com/kj89/testnet_manuals/blob/main/aptos/testnet/migrate_fullnode.md)
 
 ## Hardware requirements:
 #### For running an aptos node on incentivized testnet we recommend the following:
@@ -22,6 +20,7 @@ Usefull tools:
 Use script below for a quick installation
 ```
 wget -qO aptos.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/testnet/aptos.sh && chmod +x aptos.sh && ./aptos.sh
+source $HOME/.bash_profile
 ```
 
 ### Option 2 (manual)
@@ -30,7 +29,7 @@ You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/
 ## Register your node for Aptos Incentivized Testnet
 1. Head to [community.aptoslabs.com](https://community.aptoslabs.com) and *Sign Up* using one of provided methods
 2. Approve your email
-3. Fill up node verification form with your keys.
+3. Fill up node verification form with your keys
 ```
 cat ~/$WORKSPACE/private-keys.yaml
 ```

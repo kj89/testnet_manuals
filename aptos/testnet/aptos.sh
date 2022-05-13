@@ -110,3 +110,6 @@ echo -e "\e[1m\e[39m    docker logs -f testnet-validator-1 --tail 50 \n \e[0m"
 
 echo -e "\e[1m\e[32mTo restart: \e[0m" 
 echo -e "\e[1m\e[39m    docker compose restart \n \e[0m" 
+
+echo -e "\e[1m\e[32mTo view keys: \e[0m" 
+echo -e "\e[1m\e[39m    cat ~/$WORKSPACE/private-keys.yaml \n \e[0m" 
