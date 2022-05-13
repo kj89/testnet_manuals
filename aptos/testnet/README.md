@@ -27,6 +27,20 @@ wget -qO aptos.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/ap
 ### Option 2 (manual)
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/aptos/testnet/manual_install.md) if you better prefer setting up node manually
 
+## Register your node for Aptos Incentivized Testnet
+1. Head to [community.aptoslabs.com](https://community.aptoslabs.com) and *Sign Up* using one of provided methods
+2. Approve your email
+3. Fill up node verification form with your keys.
+```
+cat ~/$WORKSPACE/private-keys.yaml
+```
+
+You can find example below:
+
+![2022-05-14_02h26_49](https://user-images.githubusercontent.com/50621007/168401158-72557d7e-fb9b-4b49-a44b-a9161c2624e5.png)
+
+4. Complete KYC process
+
 ## Useful commands
 ### Check validator node logs
 ```
