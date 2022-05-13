@@ -101,8 +101,11 @@ echo "=================================================="
 echo -e "\e[1m\e[32mVerify initial synchronization: \e[0m" 
 echo -e "\e[1m\e[39m    curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep type \n \e[0m" 
 
-echo -e "\e[1m\e[32mTo view logs: \e[0m" 
+echo -e "\e[1m\e[32mTo view fullnode logs: \e[0m" 
 echo -e "\e[1m\e[39m    docker logs -f testnet-fullnode-1 --tail 50 \n \e[0m" 
+
+echo -e "\e[1m\e[32mTo view validator node logs: \e[0m" 
+echo -e "\e[1m\e[39m    docker logs -f testnet-validator-1 --tail 50 \n \e[0m" 
 
 echo -e "\e[1m\e[32mTo restart: \e[0m" 
 echo -e "\e[1m\e[39m    docker compose restart \n \e[0m" 

@@ -28,7 +28,12 @@ wget -qO aptos.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/ap
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/aptos/testnet/manual_install.md) if you better prefer setting up node manually
 
 ## Useful commands
-### Check Aptos logs
+### Check validator node logs
+```
+docker logs -f testnet-validator-1 --tail 50
+```
+
+### Check fullnode logs
 ```
 docker logs -f testnet-fullnode-1 --tail 50
 ```
