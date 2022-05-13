@@ -12,13 +12,10 @@ Usefull tools:
 > To migrate your fullnode to another machine read [Migrate your fullnode to another machine](https://github.com/kj89/testnet_manuals/blob/main/aptos/testnet/migrate_fullnode.md)
 
 ## Hardware requirements:
-#### For running a production grade Fullnode we recommend the following:
+#### For running an aptos node on incentivized testnet we recommend the following:
 - CPU: 4 cores (Intel Xeon Skylake or newer)
 - Memory: 8GiB RAM
-
-#### If running the Fullnode for development or testing purpose:
-- CPU: 2 cores
-- Memory: 4GiB RAM
+- Storage: 300GB (You have the option to start with a smaller size and adjust based upon demands)
 
 ## Set up your aptos fullnode
 ### Option 1 (automatic)
