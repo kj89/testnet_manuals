@@ -44,6 +44,7 @@ sudo chown $USER /var/run/docker.sock
 wget -qO aptos-cli.zip https://github.com/aptos-labs/aptos-core/releases/download/aptos-cli-v0.1.1/aptos-cli-0.1.1-Ubuntu-x86_64.zip
 unzip aptos-cli.zip -d /usr/local/bin
 chmod +x /usr/local/bin/aptos
+rm aptos-cli.zip
 ```
 
 ## 6. Install Validator node
