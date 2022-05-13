@@ -48,7 +48,7 @@ chmod +x /usr/local/bin/aptos
 
 ## 6. Install Validator node
 
-### 6.1 Create directory
+### Create directory
 ```
 mkdir ~/$WORKSPACE && cd ~/$WORKSPACE
 ```
