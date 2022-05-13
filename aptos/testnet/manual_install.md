@@ -61,9 +61,12 @@ wget -qO fullnode.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/m
 ```
 
 ### Generate keys
+This will create three files: `private-keys.yaml`, `validator-identity.yaml`, `validator-full-node-identity.yaml` for you.
 ```
 aptos genesis generate-keys --output-dir ~/$WORKSPACE
 ```
+**IMPORTANT**: *Backup your key files somewhere safe. These key files are important for you to establish ownership of your node, 
+and you will use this information to claim your rewards later if eligible. Never share those keys with anyone else.*
 
 ### Configure validator
 ```
