@@ -6,9 +6,6 @@
 Official documents:
 > [Run a Validator Node](https://aptos.dev/tutorials/validator-node/intro)
 
-Usefull tools:
-> To check your node health status try [Aptos Node Informer](http://node-tools.net/aptos/tester/)\
-
 ## Hardware requirements:
 #### For running an aptos node on incentivized testnet we recommend the following:
 - CPU: 4 cores (Intel Xeon Skylake or newer)
@@ -25,6 +22,17 @@ source $HOME/.bash_profile
 
 ### Option 2 (manual)
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/aptos/testnet/manual_install.md) if you better prefer setting up node manually
+
+## Check your node health
+1. Open SSH tunnel
+```
+ssh -NL 8080:localhost:8080 <hostname or ip>
+```
+2. Navigate to https://explorer.devnet.aptos.dev/
+3. Switch network to `LOCAL`
+4. You should see data like in example below:
+
+![image](https://user-images.githubusercontent.com/50621007/168404332-57e28bbe-fe68-4daf-951c-156fae104054.png)
 
 ## Register your node for Aptos Incentivized Testnet
 1. Head to [community.aptoslabs.com](https://community.aptoslabs.com) and *Sign Up* using one of provided methods
