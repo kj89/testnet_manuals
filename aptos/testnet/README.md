@@ -28,8 +28,7 @@ You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/
 2. Enter your node public IP address
 3. You should see data like in example below:
 
-
-![image](https://user-images.githubusercontent.com/50621007/168445043-99a1d382-40c8-42a4-9658-bed62c013b95.png)
+![image](https://user-images.githubusercontent.com/50621007/168446824-2be781b5-1288-48cb-a9e9-0e2ea922be5c.png)
 
 ## Register your node for Aptos Incentivized Testnet
 1. Head to [community.aptoslabs.com](https://community.aptoslabs.com) and *Sign Up* using one of provided methods
