@@ -24,15 +24,12 @@ source $HOME/.bash_profile
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/aptos/testnet/manual_install.md) if you better prefer setting up node manually
 
 ## Check your node health
-1. Open SSH tunnel
-```
-ssh -NL 8080:localhost:8080 <hostname or ip>
-```
-2. Navigate to https://explorer.devnet.aptos.dev/
-3. Switch network to `LOCAL`
-4. You should see data like in example below:
+1. Navigate to https://aptos-node.info/
+2. Enter your node public IP address
+3. You should see data like in example below:
 
-![image](https://user-images.githubusercontent.com/50621007/168404332-57e28bbe-fe68-4daf-951c-156fae104054.png)
+
+![image](https://user-images.githubusercontent.com/50621007/168445043-99a1d382-40c8-42a4-9658-bed62c013b95.png)
 
 ## Register your node for Aptos Incentivized Testnet
 1. Head to [community.aptoslabs.com](https://community.aptoslabs.com) and *Sign Up* using one of provided methods
