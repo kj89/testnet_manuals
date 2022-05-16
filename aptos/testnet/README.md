@@ -17,11 +17,16 @@ Official documents:
 Use script below for a quick installation
 ```
 wget -qO aptos.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/testnet/aptos.sh && chmod +x aptos.sh && ./aptos.sh
-source $HOME/.bash_profile
 ```
 
 ### Option 2 (manual)
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/aptos/testnet/manual_install.md) if you better prefer setting up node manually
+
+## Post installation
+When installation is finished please load variables into system
+```
+source $HOME/.bash_profile
+```
 
 ## Check your node health
 1. Navigate to https://aptos-node.info/
