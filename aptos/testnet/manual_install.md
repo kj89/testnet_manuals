@@ -5,13 +5,6 @@
 # Manual node  setup
 If you want to setup validator node manually follow the steps below
 
-## 0. Set up vars
-```
-echo "export WORKSPACE=testnet" >> $HOME/.bash_profile
-echo "export PUBLIC_IP=$(curl -s ifconfig.me)" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-```
-
 ## 0. Setting up vars
 Put your node name here
 ```
@@ -21,6 +14,9 @@ NODENAME=<YOUR_NODENAME>
 Save and import variables into system
 ```
 echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
+echo "export WORKSPACE=testnet" >> $HOME/.bash_profile
+echo "export PUBLIC_IP=$(curl -s ifconfig.me)" >> $HOME/.bash_profile
+source $HOME/.bash_profile
 ```
 
 ## 1. Update packages
