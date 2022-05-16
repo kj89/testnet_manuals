@@ -82,7 +82,7 @@ ROOT_KEY="0x"$(cat ~/$WORKSPACE/keys/root.pub)
 # add layout file
 tee layout.yaml > /dev/null <<EOF
 ---
-root_key: \"$ROOT_KEY\"
+root_key: "$ROOT_KEY"
 users:
   - $NODENAME
 chain_id: 23
