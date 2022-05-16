@@ -13,6 +13,10 @@ echo "=================================================="
 sleep 2
 
 # set vars
+if [ ! $NODENAME ]; then
+	read -p "Enter node name: " NODENAME
+	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
+fi
 echo "export WORKSPACE=testnet" >> $HOME/.bash_profile
 echo "export PUBLIC_IP=$(curl -s ifconfig.me)" >> $HOME/.bash_profile
 source $HOME/.bash_profile
@@ -66,20 +70,21 @@ aptos genesis generate-keys --output-dir ~/$WORKSPACE
 # configure validator
 aptos genesis set-validator-configuration \
   --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE \
-  --username aptosbot \
+  --username $NODENAME \
   --validator-host $PUBLIC_IP:6180 \
   --full-node-host $PUBLIC_IP:6182
   
 # generate root key
 mkdir keys
-aptos key generate --output-file keys/root
+aptos key generate --assume-yes --output-file ~/$WORKSPACE/keys/root
+ROOT_KEY="0x"$(cat ~/$WORKSPACE/keys/root.pub)
 
 # add layout file
 tee layout.yaml > /dev/null <<EOF
 ---
-root_key: "0x5243ca72b0766d9e9cbf2debf6153443b01a1e0e6d086c7ea206eaf6f8043956"
+root_key: \"$ROOT_KEY\"
 users:
-  - aptosbot
+  - $NODENAME
 chain_id: 23
 EOF
 
@@ -96,7 +101,7 @@ docker compose up -d
 
 echo "=================================================="
 echo -e "\e[1m\e[32mAptos Validator Node Started \e[0m"
-echo -e "Please backup key files \e[1m\e[32mprivate-keys.yaml, validator-identity.yaml, validator-full-node-identity.yaml \e[0mlocated in: \e[1m\e[32m~/$WORKSPACE\e[0m"
+echo -e "Please backup key files \e[1m\e[32m$NODENAME.yaml, validator-identity.yaml, validator-full-node-identity.yaml \e[0mlocated in: \e[1m\e[32m~/$WORKSPACE\e[0m"
 echo "=================================================="
 
 echo -e "\e[1m\e[32mVerify initial synchronization: \e[0m" 
@@ -112,4 +117,4 @@ echo -e "\e[1m\e[32mTo restart: \e[0m"
 echo -e "\e[1m\e[39m    docker compose restart \n \e[0m" 
 
 echo -e "\e[1m\e[32mTo view keys: \e[0m" 
-echo -e "\e[1m\e[39m    cat ~/$WORKSPACE/private-keys.yaml \n \e[0m" 
+echo -e "\e[1m\e[39m    cat ~/$WORKSPACE/$NODENAME.yaml \n \e[0m" 

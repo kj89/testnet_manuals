@@ -12,6 +12,17 @@ echo "export PUBLIC_IP=$(curl -s ifconfig.me)" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
+## 0. Setting up vars
+Put your node name here
+```
+NODENAME=<YOUR_NODENAME>
+```
+
+Save and import variables into system
+```
+echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
+```
+
 ## 1. Update packages
 ```
 sudo apt update && sudo apt upgrade -y
@@ -62,7 +73,7 @@ wget -qO fullnode.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/m
 ```
 
 ### Generate keys
-This will create three files: `private-keys.yaml`, `validator-identity.yaml`, `validator-full-node-identity.yaml` for you.
+This will create three files: `$NODENAME.yaml`, `validator-identity.yaml`, `validator-full-node-identity.yaml` for you.
 ```
 aptos genesis generate-keys --output-dir ~/$WORKSPACE
 ```
@@ -73,7 +84,7 @@ and you will use this information to claim your rewards later if eligible. Never
 ```
 aptos genesis set-validator-configuration \
   --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE \
-  --username aptosbot \
+  --username $NODENAME \
   --validator-host $PUBLIC_IP:6180 \
   --full-node-host $PUBLIC_IP:6182
 ```
@@ -81,16 +92,17 @@ aptos genesis set-validator-configuration \
 ### Generate root key
 ```
 mkdir keys
-aptos key generate --output-file keys/root
+aptos key generate --assume-yes --output-file keys/root
+ROOT_KEY="0x"$(cat ~/$WORKSPACE/keys/root.pub)
 ```
 
 ### Create layout file
 ```
 tee layout.yaml > /dev/null <<EOF
 ---
-root_key: "0x5243ca72b0766d9e9cbf2debf6153443b01a1e0e6d086c7ea206eaf6f8043956"
+root_key: \"$ROOT_KEY\"
 users:
-  - aptosbot
+  - $NODENAME
 chain_id: 23
 EOF
 ```

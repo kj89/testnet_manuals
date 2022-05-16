@@ -2,7 +2,7 @@
   <img width="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165930080-4f541b46-1ae3-461c-acc9-de72d7ab93b7.png">
 </p>
 
-# Aptos validator node setup for Incentivized Testnet (Updated 14.05.2022)
+# Aptos validator node setup for Incentivized Testnet (Updated 16.05.2022)
 Official documents:
 > [Run a Validator Node](https://aptos.dev/tutorials/validator-node/intro)
 
@@ -35,7 +35,7 @@ You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/
 2. Approve your email
 3. Fill up node verification form with your keys
 ```
-cat ~/$WORKSPACE/private-keys.yaml
+cat ~/$WORKSPACE/$NODENAME.yaml
 ```
 
 You can find example below:
