@@ -62,7 +62,7 @@ mkdir ~/$WORKSPACE && cd ~/$WORKSPACE
 # download configs
 wget -qO docker-compose.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/testnet/docker-compose.yaml
 wget -qO fullnode.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/testnet/fullnode.yaml
-wget -qO validator.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/validator.yaml
+wget -qO validator.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/testnet/validator.yaml
 
 # generate keys
 aptos genesis generate-keys --output-dir ~/$WORKSPACE
