@@ -8,10 +8,10 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 </p>
 
 > If you did use this guide to install your Aptos node please make sure you have both docker container `testnet-fullnode-1` and `testnet-validator-1` up and running.
-```
-docker ps --format '{{.Names}}'
-```
-> If you have only `testnet-validator-1` container running please cleanup your node or completely rebuild it from scratch using scripts provided below and re-submit [VALIDATOR VERIFICATION FORM](https://community.aptoslabs.com)
+> ```
+> docker ps --format '{{.Names}}'
+> ```
+> If you have only `testnet-validator-1` container running please [cleanup your node](https://github.com/kj89/testnet_manuals/tree/main/aptos/testnet#clean-up-preveous-installation) or completely rebuild VPS from scratch and re-submit [VALIDATOR VERIFICATION FORM](https://community.aptoslabs.com)
 
 # Aptos validator node setup for Incentivized Testnet (Updated 18.05.2022)
 Official documents:
