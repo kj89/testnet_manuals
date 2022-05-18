@@ -7,7 +7,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
   <img width="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165930080-4f541b46-1ae3-461c-acc9-de72d7ab93b7.png">
 </p>
 
-# Aptos validator node setup for Incentivized Testnet (Updated 16.05.2022)
+# Aptos validator node setup for Incentivized Testnet (Updated 18.05.2022)
 Official documents:
 > [Run a Validator Node](https://aptos.dev/tutorials/validator-node/intro)
 
@@ -17,7 +17,7 @@ Official documents:
 - Memory: 8GiB RAM
 - Storage: 300GB (You have the option to start with a smaller size and adjust based upon demands)
 
-## Set up your aptos fullnode
+## Set up your aptos fullnode + validator
 ### Option 1 (automatic)
 Use script below for a quick installation
 ```
@@ -53,6 +53,14 @@ You can find example below:
 ![2022-05-14_02h26_49](https://user-images.githubusercontent.com/50621007/168401158-72557d7e-fb9b-4b49-a44b-a9161c2624e5.png)
 
 4. Complete KYC process
+
+## Clean up preveous installation
+(**WARNING!**) Before this step make sure you have backed up your Aptos keys as this step will completely remove your Aptos working directory
+```
+cd ~/$WORKSPACE && docker compose down; cd
+rm ~/$WORKSPACE -rf
+unset NODENAME
+```
 
 ## Useful commands
 ### Check validator node logs
