@@ -56,7 +56,7 @@ echo "export CHAIN_ID=$(jq -r .chainName < $HOME/chain.json)" >> $HOME/.bash_pro
 
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
-cd $HOME
+cd /usr/src/
 git clone https://github.com/Agoric/agoric-sdk -b $CHAIN_ID
 cd agoric-sdk
 

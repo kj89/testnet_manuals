@@ -63,12 +63,16 @@ go version
 
 ## Download and build binaries
 ```
-cd $HOME
+cd /usr/src/
 git clone https://github.com/Agoric/agoric-sdk -b $CHAIN_ID
 cd agoric-sdk
 yarn install
 yarn build
 (cd packages/cosmic-swingset && make)
+
+
+git clone https://github.com/Agoric/agoric-sdk -b agoricdev-11
+cd agoric-sdk
 ```
 
 ## Config app
