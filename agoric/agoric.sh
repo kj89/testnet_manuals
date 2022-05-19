@@ -75,7 +75,7 @@ agd config keyring-backend file
 agd init $NODENAME --chain-id $CHAIN_ID
 
 # download genesis
-wget -qO $HOME/.agoric/config/genesis.json "https://devnet.agoric.net/genesis.json"
+curl https://devnet.rpc.agoric.net/genesis | jq .result.genesis > $HOME/.agoric/config/genesis.json 
 
 # set peers and seeds
 peers=$(jq '.peers | join(",")' < $HOME/chain.json)
