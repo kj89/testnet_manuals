@@ -4,10 +4,10 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 </p>
 
 <p align="center">
-  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165246332-1bb9cb35-edc7-4531-ac84-8479784af471.png">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/169664551-39020c2e-fa95-483b-916b-c52ce4cb907c.png">
 </p>
 
-# Set up monitoring and alerting for coho validator
+# Set up monitoring and alerting for sei validator
 
 ## Prerequisites
 
@@ -19,8 +19,8 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `ucoho` for coho testnet. You can find it in genesis file |
-| **bench_prefix** | Prefix for chain addresses, for example, `coho` for coho testnet. You can find it in public addresses like this **coho**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **bond_denom** | Denominated token name, for example, `usei` for sei testnet. You can find it in genesis file |
+| **bench_prefix** | Prefix for chain addresses, for example, `sei` for sei testnet. You can find it in public addresses like this **sei**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
 
 make sure following ports are open:
 - `9100` (node-exporter)
@@ -31,7 +31,7 @@ prometheus metrics should be `enabled` and port `26660` should be available on v
 To enable prometheus you have to run command below and after that please restart service to apply changes
 ```
 # enable prometheus
-sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.coho/config/config.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.sei-chain/config/config.toml
 ```
 
 ## Deployment
@@ -60,8 +60,8 @@ vim $HOME/cosmos_node_monitoring/config/.env
 | KEY | VALUE |
 |---------------|-------------|
 | VALIDATOR_IP | Public ip address of you validator |
-| VALOPER_ADDRESS | Operator address of your validator, for example, _"cohovaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete"_ |
-| WALLET_ADDRESS | Your validator self-deligate wallet address, for example, _"coho1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc"_ |
+| VALOPER_ADDRESS | Operator address of your validator, for example, _"seivaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete"_ |
+| WALLET_ADDRESS | Your validator self-deligate wallet address, for example, _"sei1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc"_ |
 | TELEGRAM_ADMIN | Your user id you can get from [@userinfobot](https://t.me/userinfobot). The bot will only reply to messages sent from the user. All other messages are dropped and logged on the bot's console |
 | TELEGRAM_TOKEN | Your telegram bot access token you can get from [@botfather](https://telegram.me/botfather). To generate new token just follow a few simple steps described [here](https://core.telegram.org/bots#6-botfather) |
 

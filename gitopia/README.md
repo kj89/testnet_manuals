@@ -3,6 +3,9 @@
 ### explorer
 https://explorer.gitopia.com/
 
+### official guide
+https://docs.gitopia.com/validator-setup/index.html
+
 ### set up your node using binaries
 ```
 wget -O gitopia.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/gitopia/gitopia.sh && chmod +x gitopia.sh && ./gitopia.sh
