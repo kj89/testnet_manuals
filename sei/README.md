@@ -19,7 +19,7 @@ Official documentation:
 Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
  - 4x CPUs; the faster clock speed the better
  - 32GB RAM
- - 1TB Disk
+ - 1TB of storage (SSD or NVME)
  - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
 ## Set up your sei fullnode
