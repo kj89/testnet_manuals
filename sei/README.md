@@ -12,6 +12,9 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 Official documentation:
 > [Validator setup instructions](https://docs.seinetwork.io/nodes-and-validators/joining-testnets)
 
+Chain explorer:
+> [Explorer from Nodes.Guru](https://sei.explorers.guru/)
+
 ## Usefull tools I have created for sei
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for sei validator](https://github.com/kj89/testnet_manuals/blob/main/sei/monitoring/README.md)
 
