@@ -18,8 +18,7 @@ Chain explorer:
 ## Usefull tools I have created for sei
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for sei validator](https://github.com/kj89/testnet_manuals/blob/main/sei/monitoring/README.md)
 
-## Hardware Requirements
-Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
+## Hardware Requirements (from official docs)
  - 4x CPUs; the faster clock speed the better
  - 32GB RAM
  - 1TB of storage (SSD or NVME)
