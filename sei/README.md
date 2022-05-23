@@ -98,7 +98,7 @@ In order to create validator first you need to fund your wallet with testnet tok
 
 A faucet server is running on the genesis node (3.22.112.181) of Sei testnet. To request tokens for your address, simply fire a HTTP request against the faucet server
 ```
-curl -X POST -d '{"address": "<WALLET_ADDRESS>", "coins": ["1000000usei"]}' http://3.22.112.181:8000
+curl -X POST -d '{"address": "'"$WALLET_ADDRESS"'", "coins": ["1000000usei"]}' http://3.22.112.181:8000
 ```
 
 ### Create validator
