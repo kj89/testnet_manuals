@@ -82,7 +82,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0usei\"/" $HOME/.se
 ## Set seeds and peers
 ```
 SEEDS=""
-PEERS=""
+PEERS="27aab76f983cd7c6558f1dfc50b919daaef14555@3.22.112.181:26656,39c4bcaded0d1d886f2788ae955f1939406f3e7d@65.108.198.54:26696,2f2804434afda302c86eb89eca27503e49a8a260@65.21.131.215:26696,6f71bcbe347069fc4df9b607f6b843226e8deb71@95.217.221.201:26656,2f047e234cb8b99fe8b9fee0059a5bc45042bc97@95.216.84.188:26656,3cd0ccddaba6c662fb5f4836456f448f13653587@212.125.21.178:45656,9db58dba3b6354177fb428caccf5167c616ad4a1@167.235.28.18:26656,38b4d78c7d6582fb170f6c19330a7e37e6964212@194.163.189.114:46656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.sei-chain/config/config.toml
 ```
 
