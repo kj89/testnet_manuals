@@ -59,9 +59,6 @@ vim $HOME/cosmos_node_monitoring/config/.env
 
 | KEY | VALUE |
 |---------------|-------------|
-| VALIDATOR_IP | Public ip address of you validator |
-| VALOPER_ADDRESS | Operator address of your validator, for example, _"agoricvaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete"_ |
-| WALLET_ADDRESS | Your validator self-deligate wallet address, for example, _"agoric1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc"_ |
 | TELEGRAM_ADMIN | Your user id you can get from [@userinfobot](https://t.me/userinfobot). The bot will only reply to messages sent from the user. All other messages are dropped and logged on the bot's console |
 | TELEGRAM_TOKEN | Your telegram bot access token you can get from [@botfather](https://telegram.me/botfather). To generate new token just follow a few simple steps described [here](https://core.telegram.org/bots#6-botfather) |
 
@@ -71,12 +68,15 @@ echo "export $(xargs < $HOME/cosmos_node_monitoring/config/.env)" > $HOME/.bash_
 source $HOME/.bash_profile
 ```
 
-### Update _prometheus_ configuration file
+### Add validator into _prometheus_ configuration file
+To add validator use command with specified `VALIDATOR_IP`, `WALLET_ADDRESS`, `VALOPER_ADDRESS` and `PROJECT_NAME`
 ```
-sed -i "s/VALIDATOR_IP/$VALIDATOR_IP/g" $HOME/cosmos_node_monitoring/prometheus/prometheus.yml
-sed -i "s/VALOPER_ADDRESS/$VALOPER_ADDRESS/g" $HOME/cosmos_node_monitoring/prometheus/prometheus.yml
-sed -i "s/WALLET_ADDRESS/$WALLET_ADDRESS/g" $HOME/cosmos_node_monitoring/prometheus/prometheus.yml
+$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP WALLET_ADDRESS VALOPER_ADDRESS PROJECT_NAME
 ```
+
+> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 agoricvaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete agoric1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc agoric```
+
+To add more validators just run command above with validator values
 
 ### Run docker compose
 Deploy the monitoring stack
