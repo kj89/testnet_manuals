@@ -207,6 +207,7 @@ celestia-appd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000utia
 Delegate stake
 ```
 celestia-appd tx staking delegate $VALOPER_ADDRESS 10000000utia --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+celestia-appd tx staking delegate $VALOPER_ADDRESS 1000000utia --from=$WALLET --chain-id=$CHAIN_ID
 ```
 
 Redelegate stake from validator to another validator
