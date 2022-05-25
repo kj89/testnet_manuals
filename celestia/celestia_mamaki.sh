@@ -120,7 +120,7 @@ case $yn in
 	quickSync
 	    break;;
 	[nN] ) echo -e '\n\e[31mSkipping Quick Sync...\e[39m' && sleep 1
-		exit;;
+		break;;
 	* ) echo invalid response;;
 esac
 done
