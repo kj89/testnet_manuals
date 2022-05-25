@@ -103,7 +103,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 
 ## Reset chain data
 ```
-celestia-appd unsafe-reset-all --home $HOME/.celestia-app
+celestia-appd tendermint unsafe-reset-all
 ```
 
 ## (OPTIONAL) Use Quick Sync by restoring data from snapshot
