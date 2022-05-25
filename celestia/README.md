@@ -80,8 +80,7 @@ source $HOME/.bash_profile
 
 ### Fund your wallet
 In order to create validator first you need to fund your wallet with testnet tokens.
-To top up your wallet join [DWS discord server](https://discord.gg/QAsD8j4Z) and navigate to:
-- **#faucet** channel under **NODE OPERATORS** category
+To top up your wallet join [DWS discord server](https://discord.gg/QAsD8j4Z) and navigate to **#faucet** channel under **NODE OPERATORS** category
 
 To request a faucet grant:
 ```
