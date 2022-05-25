@@ -7,7 +7,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165403016-113be253-a376-454b-a069-fc6fe0a915e9.png">
 </p>
 
-# Celestia node setup for Testnet — devnet-2 (v0.4.0)
+# Celestia node setup for Testnet — mamaki (v0.5.1)
 
 Official documentation:
 >- [Validator setup instructions](https://docs.celestia.org/nodes/bridge-validator-node/)
@@ -22,7 +22,7 @@ Explorer:
 ### Option 1 (automatic)
 You can setup your celestia fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
-wget -O celestia_devnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/celestia_devnet.sh && chmod +x celestia_devnet.sh && ./celestia_devnet.sh
+wget -O celestia_mamaki.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/celestia_mamaki.sh && chmod +x celestia_mamaki.sh && ./celestia_mamaki.sh
 ```
 
 ### Option 2 (manual)
@@ -79,7 +79,7 @@ source $HOME/.bash_profile
 ```
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 celes (1 celes is equal to 1000000 celes) and your node is synchronized
+Before creating validator please make sure that you have at least 1 tia (1 tia is equal to 1000000 utia) and your node is synchronized
 
 To check your wallet balance:
 ```
@@ -192,18 +192,18 @@ celestia-appd query bank balances $WALLET_ADDRESS
 
 Transfer funds
 ```
-celestia-appd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000celes
+celestia-appd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000utia
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-celestia-appd tx staking delegate $VALOPER_ADDRESS 10000000celes --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+celestia-appd tx staking delegate $VALOPER_ADDRESS 10000000utia --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-celestia-appd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000celes --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+celestia-appd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000utia --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
