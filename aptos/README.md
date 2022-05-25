@@ -7,7 +7,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
   <img width="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165930080-4f541b46-1ae3-461c-acc9-de72d7ab93b7.png">
 </p>
 
-# Aptos fullnode setup for Testnet
+# Aptos fullnode setup for Devnet
 Official documents:
 > [Run a full node](https://aptos.dev/tutorials/run-a-fullnode)
 
