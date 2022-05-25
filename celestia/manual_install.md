@@ -80,7 +80,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0utia\"/" $HOME/.ce
 ## Set seeds, peers and boot nodes
 ```
 BOOTSTRAP_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mamaki/bootstrap-peers.txt | tr -d '\n')
-PEERS="f7b68a491bae4b10dbab09bb3a875781a01274a5@65.108.199.79:20356,853a9fbb633aed7b6a8c759ba99d1a7674b706a3@38.242.216.151:26656,42b331adaa9ece4c455b92f0d26e3382e46d43f0@161.97.180.20:36656,180378bab87c9cecea544eb406fcd8fcd2cbc21b@168.119.122.78:26656"
+PEERS="d0b19e4d133441fd41b4d74ac8de2138313ad49e@195.201.41.137:26656,f7b68a491bae4b10dbab09bb3a875781a01274a5@65.108.199.79:20356,853a9fbb633aed7b6a8c759ba99d1a7674b706a3@38.242.216.151:26656,42b331adaa9ece4c455b92f0d26e3382e46d43f0@161.97.180.20:36656,180378bab87c9cecea544eb406fcd8fcd2cbc21b@168.119.122.78:26656"
 sed -i.bak -e "s/^bootstrap-peers *=.*/bootstrap-peers = \"$BOOTSTRAP_PEERS\"/" $HOME/.celestia-app/config/config.toml
 sed -i.bak -e "s/^persistent-peers *=.*/persistent-peers = \"$PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
