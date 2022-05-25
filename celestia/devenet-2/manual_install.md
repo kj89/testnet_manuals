@@ -1,4 +1,4 @@
-# Manual node setup (v0.5.1)
+# Manual node  setup (v0.4.0)
 If you want to setup fullnode manually follow the steps below
 
 ## Setting up vars
@@ -11,7 +11,7 @@ Save and import variables into system
 ```
 echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 echo "export WALLET=wallet" >> $HOME/.bash_profile
-echo "export CHAIN_ID=mamaki" >> $HOME/.bash_profile
+echo "export CHAIN_ID=devnet-2" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -43,7 +43,7 @@ go version
 cd $HOME
 git clone https://github.com/celestiaorg/celestia-app.git
 cd celestia-app
-git checkout v0.5.1
+git checkout v0.4.0
 make install
 ```
 
@@ -65,20 +65,21 @@ celestia-appd config keyring-backend file
 celestia-appd init $NODENAME --chain-id $CHAIN_ID
 ```
 
-## Update genesis
+## Download genesis and addrbook
 ```
-cp $HOME/networks/$CHAIN_ID/genesis.json $HOME/.celestia-app/config
+cp $HOME/networks/devnet-2/genesis.json $HOME/.celestia-app/config
+wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/addrbook.json"
 ```
 
 ## Set minimum gas price
 ```
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0utia\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0celes\"/" $HOME/.celestia-app/config/app.toml
 ```
 
 ## Set seeds and peers
 ```
-SEEDS=$HOME/networks/$CHAIN_ID/seeds.txt
-PEERS=$HOME/networks/$CHAIN_ID/peers.txt
+SEEDS="74c0c793db07edd9b9ec17b076cea1a02dca511f@46.101.28.34:26656"
+PEERS="34d4bfec8998a8fac6393a14c5ae151cf6a5762f@194.163.191.41:26656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
 

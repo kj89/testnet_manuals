@@ -1,32 +1,43 @@
-# Manual node setup (v0.5.1)
-If you want to setup fullnode manually follow the steps below
+#!/bin/bash
+echo "=================================================="
+echo -e "\033[0;35m"
+echo " :::    ::: ::::::::::: ::::    :::  ::::::::  :::::::::  :::::::::: ::::::::  ";
+echo " :+:   :+:      :+:     :+:+:   :+: :+:    :+: :+:    :+: :+:       :+:    :+: ";
+echo " +:+  +:+       +:+     :+:+:+  +:+ +:+    +:+ +:+    +:+ +:+       +:+        ";
+echo " +#++:++        +#+     +#+ +:+ +#+ +#+    +:+ +#+    +:+ +#++:++#  +#++:++#++ ";
+echo " +#+  +#+       +#+     +#+  +#+#+# +#+    +#+ +#+    +#+ +#+              +#+ ";
+echo " #+#   #+#  #+# #+#     #+#   #+#+# #+#    #+# #+#    #+# #+#       #+#    #+# ";
+echo " ###    ###  #####      ###    ####  ########  #########  ########## ########  ";
+echo -e "\e[0m"
+echo "=================================================="
 
-## Setting up vars
-Here you have to put name of your moniker (validator) that will be visible in explorer
-```
-NODENAME=<MY_MONIKER_NAME_GOES_HERE>
-```
+sleep 2
 
-Save and import variables into system
-```
-echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
+# set vars
+if [ ! $NODENAME ]; then
+	read -p "Enter node name: " NODENAME
+	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
+fi
 echo "export WALLET=wallet" >> $HOME/.bash_profile
 echo "export CHAIN_ID=mamaki" >> $HOME/.bash_profile
 source $HOME/.bash_profile
-```
 
-## Update packages
-```
+echo '================================================='
+echo -e "Your node name: \e[1m\e[32m$NODENAME\e[0m"
+echo -e "Your wallet name: \e[1m\e[32m$WALLET\e[0m"
+echo -e "Your chain name: \e[1m\e[32m$CHAIN_ID\e[0m"
+echo -e '================================================='
+sleep 2
+
+echo -e "\e[1m\e[32m1. Updating packages... \e[0m" && sleep 1
+# update
 sudo apt update && sudo apt upgrade -y
-```
 
-## Install dependencies
-```
+echo -e "\e[1m\e[32m2. Installing dependencies... \e[0m" && sleep 1
+# packages
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
-```
 
-## Install go
-```
+# install go
 ver="1.17.2"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
@@ -36,85 +47,80 @@ rm "go$ver.linux-amd64.tar.gz"
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
 source ~/.bash_profile
 go version
-```
 
-## Download and build binaries
-```
+echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
+# download binary
 cd $HOME
+rm -rf celestia-app
 git clone https://github.com/celestiaorg/celestia-app.git
-cd celestia-app
+cd celestia-app/
 git checkout v0.5.1
 make install
-```
 
-## setup p2p networks
-```
+# setup p2p networks
 cd $HOME
 rm -rf networks
 git clone https://github.com/celestiaorg/networks.git
-```
 
-## Config app
-```
+# config
 celestia-appd config chain-id $CHAIN_ID
 celestia-appd config keyring-backend file
-```
 
-## Init app
-```
+# init
 celestia-appd init $NODENAME --chain-id $CHAIN_ID
-```
 
-## Update genesis
-```
+# update genesis
 cp $HOME/networks/$CHAIN_ID/genesis.json $HOME/.celestia-app/config
-```
 
-## Set minimum gas price
-```
+# set minimum gas price
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0utia\"/" $HOME/.celestia-app/config/app.toml
-```
 
-## Set seeds and peers
-```
+# set peers and seeds
 SEEDS=$HOME/networks/$CHAIN_ID/seeds.txt
 PEERS=$HOME/networks/$CHAIN_ID/peers.txt
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.celestia-app/config/config.toml
-```
 
-## Enable prometheus
-```
+# enable prometheus
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.celestia-app/config/config.toml
-```
 
 # config pruning
-```
 pruning="custom"
 pruning_keep_recent="100"
 pruning_keep_every="0"
 pruning_interval="10"
+
 sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.celestia-app/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.celestia-app/config/app.toml
 sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.celestia-app/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.celestia-app/config/app.toml
-```
 
-## Reset chain data
-```
+# reset
 celestia-appd unsafe-reset-all
-```
 
-## (OPTIONAL) Use Quick Sync by restoring data from snapshot
-```
+# set quicksync
+function quickSync {
 cd $HOME
 rm -rf ~/.celestia-app/data; \
 mkdir -p ~/.celestia-app/data; 
 SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | egrep -o ">devnet-2.*tar" | tr -d ">"); wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - -C ~/.celestia-app/data/
-```
+}
 
-## Create service
-```
-tee /etc/systemd/system/celestia-appd.service > /dev/null <<EOF
+# let uset choose sync mode
+while true; do
+read -p "Do you want use Quick Sync for rapid data synchronization? (y/n) " yn
+case $yn in 
+	[yY] ) echo -e '\n\e[31mDownloading data using Quick Sync...\e[39m' && sleep 1
+	quickSync
+	    break;;
+	[nN] ) echo -e '\n\e[31mSkipping Quick Sync...\e[39m' && sleep 1
+		exit;;
+	* ) echo invalid response;;
+esac
+done
+
+echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
+# create service
+tee $HOME/celestia-appd.service > /dev/null <<EOF
 [Unit]
 Description=celestia-appd
 After=network.target
@@ -128,11 +134,14 @@ LimitNOFILE=65535
 [Install]
 WantedBy=multi-user.target
 EOF
-```
 
-## Register and start service
-```
+sudo mv $HOME/celestia-appd.service /etc/systemd/system/
+
+# start service
 sudo systemctl daemon-reload
 sudo systemctl enable celestia-appd
 sudo systemctl restart celestia-appd
-```
+
+echo '=============== SETUP FINISHED ==================='
+echo -e 'To check logs: \e[1m\e[32mjournalctl -u celestia-appd -f -o cat \e[0m'
+echo -e 'To check sync status: \e[1m\e[32mcurl -s localhost:26657/status | jq .result.sync_info \e[0m'
