@@ -43,10 +43,8 @@ go version
 cd $HOME
 rm -rf celestia-app
 git clone https://github.com/celestiaorg/celestia-app.git
-cd celestia-app/
-APP_VERSION=$(curl -s \
-  https://api.github.com/repos/celestiaorg/celestia-app/releases/latest \
-  | jq -r ".tag_name")
+cd celestia-app
+APP_VERSION=$(curl -s https://api.github.com/repos/celestiaorg/celestia-app/releases/latest | jq -r ".tag_name")
 git checkout tags/$APP_VERSION -b $APP_VERSION
 make install
 ```
@@ -113,10 +111,8 @@ celestia-appd unsafe-reset-all --home $HOME/.celestia-app
 cd $HOME
 rm -rf ~/.celestia-app/data
 mkdir -p ~/.celestia-app/data
-SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
-    egrep -o ">mamaki.*tar" | tr -d ">")
-wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
-    -C ~/.celestia-app/data/
+SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | egrep -o ">mamaki.*tar" | tr -d ">")
+wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - -C ~/.celestia-app/data/
 ```
 
 ## Create service
