@@ -19,8 +19,8 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `celes` for celestia devnet. You can find it in genesis file |
-| **bench_prefix** | Prefix for chain addresses, for example, `celes` for celestia devnet. You can find it in public addresses like this **celes**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **bond_denom** | Denominated token name, for example, `utia` for celestia mamaki testnet. You can find it in genesis file |
+| **bench_prefix** | Prefix for chain addresses, for example, `celestia` for celestia mamaki testnet. You can find it in public addresses like this **celestia**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
 
 make sure following ports are open:
 - `9100` (node-exporter)
@@ -74,7 +74,7 @@ To add validator use command with specified `VALIDATOR_IP`, `WALLET_ADDRESS`, `V
 $HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP WALLET_ADDRESS VALOPER_ADDRESS PROJECT_NAME
 ```
 
-> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 celesvaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete celes1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc celestia```
+> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 celestiavaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete celestia1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc celestia```
 
 To add more validators just run command above with validator values
 
