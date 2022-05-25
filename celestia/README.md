@@ -229,7 +229,6 @@ celestia-appd tx distribution withdraw-rewards $VALOPER_ADDRESS --from=$WALLET -
 Edit validator
 ```
 celestia-appd tx staking edit-validator \
---moniker=$NODENAME \
 --identity=1C5ACD2EEF363C3A \
 --website="http://kjnodes.com" \
 --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
