@@ -1,5 +1,5 @@
-# Manual node setup (v0.5.1)
-If you want to setup fullnode manually follow the steps below
+# Install Validator node
+To setup validator node follow the steps below
 
 ## Setting up vars
 Here you have to put name of your moniker (validator) that will be visible in explorer
@@ -150,4 +150,46 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable celestia-appd
 sudo systemctl restart celestia-appd
+```
+
+# Install Bridge node
+To setup bridge node follow the steps below
+
+## Install Celestia Node
+```
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node
+make install
+```
+
+## Initialize bridge node
+```
+celestia bridge init --core.remote tcp://localhost:26657 --core.grpc tcp://localhost:9090
+```
+
+## Create bridge service
+```
+tee /etc/systemd/system/celestia-bridge.service > /dev/null <<EOF
+[Unit]
+Description=celestia-bridge Cosmos daemon
+After=network.target
+[Service]
+Type=simple
+User=$USER
+ExecStart=$HOME/go/bin/celestia bridge start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+## Register and start bridge service
+```
+sudo systemctl daemon-reload
+sudo systemctl enable celestia-bridge
+sudo systemctl restart celestia-bridge
 ```

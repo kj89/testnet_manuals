@@ -7,20 +7,33 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165403016-113be253-a376-454b-a069-fc6fe0a915e9.png">
 </p>
 
-# Celestia node setup for Testnet — mamaki
+# Celestia validator node setup for Testnet — mamaki
 
 Official documentation:
->- [Validator setup instructions](https://docs.celestia.org/nodes/bridge-validator-node/)
+- [Setting Up A Celestia Validator Node](https://docs.celestia.org/nodes/validator-node)
+- [Setting Up A Celestia Bridge Node](https://docs.celestia.org/nodes/bridge-node)
+- [Setting Up A Celestia Full Node](https://docs.celestia.org/nodes/full-node)
+- [Setting Up A Celestia Light Node](https://docs.celestia.org/nodes/light-node)
 
 Explorer:
->-  [Nodes Guru Celestia Explorer](https://celestia.explorers.guru/)
+- [Nodes Guru Celestia Explorer](https://celestia.explorers.guru/)
+
+Manual guides:
+- [Run Validator and Bridge Node on same machine](https://github.com/kj89/testnet_manuals/blob/main/celestia/manual_install.md)
+- [Run Bridge Node seperately](https://github.com/kj89/testnet_manuals/blob/main/celestia/manual_bridge.md)
+
+## Hardware requirements
+- Memory: 8 GB RAM
+- CPU: Quad-Core
+- Disk: 250 GB SSD Storage
+- Bandwidth: 1 Gbps for Download/100 Mbps for Upload
 
 ## Usefull tools I have created for celestia
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for celestia validator](https://github.com/kj89/testnet_manuals/blob/main/celestia/monitoring/README.md)
 
-## Set up your celestia fullnode
+## Set up your Celestia validator and bridge node on same machine
 ### Option 1 (automatic)
-You can setup your celestia fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
+You can setup your Celestia validator and bridge node in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
 wget -O celestia_mamaki.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/celestia_mamaki.sh && chmod +x celestia_mamaki.sh && ./celestia_mamaki.sh
 ```
@@ -39,9 +52,14 @@ Next you have to make sure your validator is syncing blocks. You can use command
 celestia-appd status 2>&1 | jq .SyncInfo
 ```
 
-To check logs
+To check validator logs
 ```
 journalctl -u celestia-appd -f -o cat
+```
+
+To check bridge logs
+```
+journalctl -u celestia-bridge -f -o cat
 ```
 
 ### If node is not syncing try to update peers

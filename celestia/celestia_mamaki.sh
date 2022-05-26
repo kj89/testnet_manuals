@@ -49,7 +49,7 @@ source ~/.bash_profile
 go version
 
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
-# download binary
+# download and build binary
 cd $HOME
 rm -rf celestia-app
 git clone https://github.com/celestiaorg/celestia-app.git
@@ -149,6 +149,40 @@ sudo systemctl daemon-reload
 sudo systemctl enable celestia-appd
 sudo systemctl restart celestia-appd
 
+echo -e "\e[1m\e[32m5. Downloading and building binaries for bridge node... \e[0m" && sleep 1
+# download and build binary
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node
+make install
+
+# init bridge node to localhost
+celestia bridge init --core.remote tcp://localhost:26657 --core.grpc tcp://localhost:9090
+
+echo -e "\e[1m\e[32m4. Starting bridge service... \e[0m" && sleep 1
+# create service
+tee /etc/systemd/system/celestia-bridge.service > /dev/null <<EOF
+[Unit]
+Description=celestia-bridge Cosmos daemon
+After=network.target
+[Service]
+Type=simple
+User=$USER
+ExecStart=$HOME/go/bin/celestia bridge start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# start service
+sudo systemctl daemon-reload
+sudo systemctl enable celestia-bridge
+sudo systemctl restart celestia-bridge
+
 echo '=============== SETUP FINISHED ==================='
-echo -e 'To check logs: \e[1m\e[32mjournalctl -u celestia-appd -f -o cat \e[0m'
+echo -e 'To check validator logs: \e[1m\e[32mjournalctl -u celestia-appd -f -o cat \e[0m'
+echo -e 'To check bridge logs: \e[1m\e[32mjournalctl -u celestia-bridge -f -o cat \e[0m'
 echo -e 'To check sync status: \e[1m\e[32mcurl -s localhost:26657/status | jq .result.sync_info \e[0m'
