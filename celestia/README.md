@@ -10,13 +10,10 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 # Celestia validator node setup for Testnet — mamaki
 
 Official documentation:
-- [Setting Up A Celestia Validator Node](https://docs.celestia.org/nodes/validator-node)
-- [Setting Up A Celestia Bridge Node](https://docs.celestia.org/nodes/bridge-node)
-- [Setting Up A Celestia Full Node](https://docs.celestia.org/nodes/full-node)
-- [Setting Up A Celestia Light Node](https://docs.celestia.org/nodes/light-node)
+- https://docs.celestia.org/nodes/overview
 
 Explorer:
-- [Nodes Guru Celestia Explorer](https://celestia.explorers.guru/)
+- https://celestia.explorers.guru
 
 Manual guides:
 - [Run Validator and Bridge Node on same machine](https://github.com/kj89/testnet_manuals/blob/main/celestia/manual_install.md)
