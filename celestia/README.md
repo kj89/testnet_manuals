@@ -147,7 +147,7 @@ sudo ufw default allow outgoing
 sudo ufw default deny incoming
 sudo ufw allow ssh/tcp
 sudo ufw limit ssh/tcp
-sudo ufw allow 26656,26660/tcp
+sudo ufw allow 26656,26660,9090/tcp
 sudo ufw enable
 ```
 
