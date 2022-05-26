@@ -10,6 +10,12 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 # Install Bridge node
 To setup bridge node follow the steps below
 
+## Hardware requirements
+- Memory: 8 GB RAM
+- CPU: Quad-Core
+- Disk: 250 GB SSD Storage
+- Bandwidth: 1 Gbps for Download/100 Mbps for Upload
+
 ## Update packages
 ```
 sudo apt update && sudo apt upgrade -y

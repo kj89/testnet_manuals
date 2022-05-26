@@ -10,6 +10,12 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 # Install Light node
 To setup light node follow the steps below
 
+## Hardware requirements
+- Memory: 2 GB RAM
+- CPU: Single Core
+- Disk: 5 GB SSD Storage
+- Bandwidth: 56 Kbps for Download/56 Kbps for Upload
+
 ## Update packages
 ```
 sudo apt update && sudo apt upgrade -y
