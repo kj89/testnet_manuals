@@ -11,6 +11,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 To setup Full node follow the steps below
 
 ## Hardware requirements
+The following hardware minimum requirements are recommended for running the full node:
 - Memory: 8 GB RAM
 - CPU: Quad-Core
 - Disk: 250 GB SSD Storage

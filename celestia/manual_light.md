@@ -11,6 +11,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 To setup light node follow the steps below
 
 ## Hardware requirements
+The following hardware minimum requirements are recommended for running the light node:
 - Memory: 2 GB RAM
 - CPU: Single Core
 - Disk: 5 GB SSD Storage
