@@ -4,7 +4,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 </p>
 
 <p align="center">
-  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165403016-113be253-a376-454b-a069-fc6fe0a915e9.png">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/170463282-576375f8-fa1e-4fce-8350-6312b415b50d.png">
 </p>
 
 # Celestia validator node setup for Testnet — mamaki
