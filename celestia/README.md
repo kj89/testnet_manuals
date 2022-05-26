@@ -64,6 +64,8 @@ journalctl -u celestia-bridge -f -o cat
 ### If node is not syncing try to update peers
 Community member Polkachu is providing list of [Live Peers](https://polkachu.com/testnets/celestia/peers)
 
+Also you can try to ask for peers in [Celestia Discord](https://discord.gg/QAsD8j4Z)
+
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
