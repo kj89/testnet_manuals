@@ -21,6 +21,7 @@ Explorer:
 Manual guides:
 - [Run Validator and Bridge Node on same machine](https://github.com/kj89/testnet_manuals/blob/main/celestia/manual_install.md)
 - [Run Bridge Node seperately](https://github.com/kj89/testnet_manuals/blob/main/celestia/manual_bridge.md)
+- [Run Light Node seperately](https://github.com/kj89/testnet_manuals/blob/main/celestia/manual_light.md)
 
 ## Hardware requirements
 - Memory: 8 GB RAM
