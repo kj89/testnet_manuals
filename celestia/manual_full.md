@@ -71,3 +71,8 @@ sudo systemctl daemon-reload
 sudo systemctl enable celestia-full
 sudo systemctl restart celestia-full
 ```
+
+## Check Full node logs
+```
+journalctl -u celestia-full -f -o cat
+```

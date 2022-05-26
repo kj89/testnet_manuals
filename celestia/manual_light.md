@@ -71,3 +71,8 @@ sudo systemctl daemon-reload
 sudo systemctl enable celestia-light
 sudo systemctl restart celestia-light
 ```
+
+## Check light node logs
+```
+journalctl -u celestia-light -f -o cat
+```
