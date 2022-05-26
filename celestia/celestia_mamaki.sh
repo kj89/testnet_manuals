@@ -160,7 +160,7 @@ make install
 # init bridge node to localhost
 celestia bridge init --core.remote tcp://localhost:26657 --core.grpc tcp://localhost:9090
 
-echo -e "\e[1m\e[32m4. Starting bridge service... \e[0m" && sleep 1
+echo -e "\e[1m\e[32m6. Starting bridge service... \e[0m" && sleep 1
 # create service
 tee /etc/systemd/system/celestia-bridge.service > /dev/null <<EOF
 [Unit]
