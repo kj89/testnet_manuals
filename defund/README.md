@@ -45,7 +45,7 @@ defundd status 2>&1 | jq .SyncInfo
 
 ## If your node is experiencing slow synchronization please try commands below:
 ```
-sed -i.bak -e "s/indexer *=.*/indexer = \"null\"/g" $HOME/.defund/config/config.toml  
+sed -i.bak -e "s/indexer *=.*/indexer = \"null\"/g" $HOME/.defund/config/config.toml
 sed -i "s/index-events=.*/index-events=[\"tx.hash\",\"tx.height\",\"block.height\"]/g" $HOME/.defund/config/app.toml
 systemctl restart defundd
 ```
