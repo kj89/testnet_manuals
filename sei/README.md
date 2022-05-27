@@ -96,10 +96,17 @@ source $HOME/.bash_profile
 ### Fund your wallet
 In order to create validator first you need to fund your wallet with testnet tokens.
 
+#### Option 1
 A faucet server is running on the genesis node (3.22.112.181) of Sei testnet. To request tokens for your address, simply fire a HTTP request against the faucet server
 ```
 curl -X POST -d '{"address": "'"$WALLET_ADDRESS"'", "coins": ["1000000usei"]}' http://3.22.112.181:8000
 ```
+
+#### Option 2
+To get 10000 free testnet tokens:
+* navigate to https://bitszn.com/faucets.html
+* switch to `COSMOS` tab and select `Sei Network Testnet`
+* input your wallet address and click `Request`
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 sei (1 sei is equal to 1000000 usei) and your node is synchronized
