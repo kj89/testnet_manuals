@@ -265,3 +265,17 @@ celestia-appd tx slashing unjail \
   --chain-id=$CHAIN_ID \
   --gas=auto
 ```
+
+### Delete celestia validator and bridge node
+To completely remove celesia node from server use command below (please make sure you have saved your validator key located in `~/.celestia-app/config/priv_validator_key.json`)
+```
+sudo systemctl stop celestia-appd
+sudo systemctl disable celestia-appd
+rm /etc/systemd/system/celestia-appd.service
+sudo systemctl stop celestia-bridge
+sudo systemctl disable celestia-bridge
+rm /etc/systemd/system/celestia-bridge.service
+sudo systemctl daemon-reload
+cd $HOME
+rm -rf .celestia-app .celestia-bridge celestia-app networks
+```
