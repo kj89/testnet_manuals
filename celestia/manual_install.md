@@ -68,7 +68,7 @@ git clone https://github.com/celestiaorg/networks.git
 ## Config app
 ```
 celestia-appd config chain-id $CHAIN_ID
-celestia-appd config keyring-backend file
+celestia-appd config keyring-backend test
 ```
 
 ## Init app
