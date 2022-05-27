@@ -98,7 +98,13 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 
 # set timeouts
 sed -i.bak -e "s/^timeout-commit *=.*/timeout-commit = \"25s\"/" $HOME/.celestia-app/config/config.toml
+sed -i.bak -e "s/^timeout-propose *=.*/timeout-propose = \"3s\"/" $HOME/.celestia-app/config/config.toml
 sed -i.bak -e "s/^skip-timeout-commit *=.*/skip-timeout-commit = false/" $HOME/.celestia-app/config/config.toml
+
+# increse peer connections
+sed -i.bak -e "s/^max-connections *=.*/max-connections = 250/" $HOME/.celestia-app/config/config.toml
+sed -i.bak -e "s/^max-num-inbound-peers *=.*/max-num-inbound-peers = 180/" $HOME/.celestia-app/config/config.toml
+sed -i.bak -e "s/^max-num-outbound-peers *=.*/max-num-outbound-peers = 70/" $HOME/.celestia-app/config/config.toml
 
 # set validator mode
 sed -i.bak -e "s/^mode *=.*/mode = \"validator\"/" $HOME/.celestia-app/config/config.toml
