@@ -105,7 +105,7 @@ sed -i.bak -e "s/^persistent-peers *=.*/persistent-peers = \"$PEERS\"/" $HOME/.c
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.celestia-app/config/config.toml
 ```
 
-# Config pruning
+## Config pruning
 ```
 pruning="custom"
 pruning_keep_recent="100"
