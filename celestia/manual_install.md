@@ -86,7 +86,7 @@ cp $HOME/networks/$CHAIN_ID/genesis.json $HOME/.celestia-app/config
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0utia\"/" $HOME/.celestia-app/config/app.toml
 ```
 
-## enable legacy p2p layer
+## Enable legacy p2p layer
 ```
 sed -i.bak -e "s/^use-legacy *=.*/use-legacy = \"true\"/" $HOME/.celestia-app/config/config.toml
 ```
