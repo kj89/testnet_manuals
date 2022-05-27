@@ -58,7 +58,7 @@ git checkout tags/$APP_VERSION -b $APP_VERSION
 make install
 ```
 
-## setup p2p networks
+## Download network tools
 ```
 cd $HOME
 rm -rf networks
