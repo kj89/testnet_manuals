@@ -43,6 +43,14 @@ Next you have to make sure your validator is syncing blocks. You can use command
 defundd status 2>&1 | jq .SyncInfo
 ```
 
+## If your node is experiencing slow synchronization please try commands below:
+```
+sed -i.bak -e "s/indexer *=.*/indexer = \"null\"/g" $HOME/.defund/config/config.toml  
+sed -i "s/index-events=.*/index-events=[\"tx.hash\",\"tx.height\",\"block.height\"]/g" $HOME/.defund/config/app.toml
+systemctl restart defundd
+```
+![image](https://user-images.githubusercontent.com/50621007/170612347-40eb0075-c239-4c35-a7ec-716606bd4df9.png)
+
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
