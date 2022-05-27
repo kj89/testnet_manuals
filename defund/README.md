@@ -51,6 +51,20 @@ systemctl restart defundd
 ```
 ![image](https://user-images.githubusercontent.com/50621007/170612347-40eb0075-c239-4c35-a7ec-716606bd4df9.png)
 
+## Sync from snapshot
+**Simo | Active Nodes#3233** are providing with light weighted snapshots. Try to search Discord for latest snapshot from this guy.
+```
+systemctl stop defundd
+cd ~/.defund/
+cp data/priv_validator_state.json .
+rm -rf data
+wget http://repository.activenodes.io/snapshots/defund-private-1_2022-05-25.tar.gz
+tar xzvf defund*.tar.gz
+rm defund*.tar.gz
+mv priv_validator_state.json data/
+systemctl start defundd
+```
+
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
