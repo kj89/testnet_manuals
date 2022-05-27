@@ -125,11 +125,11 @@ wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - -C ~/.celes
 # let uset choose sync mode
 while true; do
 read -p "Do you want use Quick Sync for rapid data synchronization? (y/n) " yn
-case $yn in 
-	[yY] ) echo -e '\n\e[31mDownloading data using Quick Sync...\e[39m' && sleep 1
+case $yn in
+	[yY] ) echo -e '\e[1m\e[32mDownloading data using Quick Sync...\e[0m' && sleep 1
 	quickSync
 	    break;;
-	[nN] ) echo -e '\n\e[31mSkipping Quick Sync...\e[39m' && sleep 1
+	[nN] ) echo -e '\e[1m\e[32mSkipping Quick Sync...\e[0m' && sleep 1
 		break;;
 	* ) echo invalid response;;
 esac
