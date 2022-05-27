@@ -136,11 +136,6 @@ sed -i.bak -e "s/^max-num-outbound-peers *=.*/max-num-outbound-peers = 70/" $HOM
 sed -i.bak -e "s/^mode *=.*/mode = \"validator\"/" $HOME/.celestia-app/config/config.toml
 ```
 
-## Reset chain data
-```
-celestia-appd tendermint unsafe-reset-all
-```
-
 ## (OPTIONAL) Use Quick Sync by restoring data from snapshot
 ```
 cd $HOME
