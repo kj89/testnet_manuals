@@ -61,10 +61,11 @@ To check bridge logs
 journalctl -u celestia-bridge -f -o cat
 ```
 
-### If node is not syncing try to update peers
-Community member Polkachu is providing list of [Live Peers](https://polkachu.com/testnets/celestia/peers)
-
-Also you can try to ask for peers in [Celestia Discord](https://discord.gg/QAsD8j4Z)
+### If your node often mis blocks try enabling legacy p2p layer
+```
+sed -i.bak -e "s/^use-legacy *=.*/use-legacy = \"true\"/" $HOME/.celestia-app/config/config.toml
+systemctl restart celestia-appd
+```
 
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
@@ -260,10 +261,8 @@ celestia-appd tx staking edit-validator \
 Unjail validator
 ```
 celestia-appd tx slashing unjail \
-  --broadcast-mode=block \
   --from=$WALLET \
-  --chain-id=$CHAIN_ID \
-  --gas=auto
+  --chain-id=$CHAIN_ID
 ```
 
 ### Delete celestia validator and bridge node
