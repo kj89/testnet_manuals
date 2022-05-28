@@ -238,17 +238,17 @@ seid tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000usei
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-seid tx staking delegate $VALOPER_ADDRESS 10000000usei --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+seid tx staking delegate $VALOPER_ADDRESS 10000000usei --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --gas-adjustment 1.4
 ```
 
 Redelegate stake from validator to another validator
 ```
-seid tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000usei --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+seid tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000usei --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --gas-adjustment 1.4
 ```
 
 Withdraw all rewards
 ```
-seid tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+seid tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --gas-adjustment 1.4
 ```
 
 Withdraw rewards with commision
@@ -274,5 +274,5 @@ seid tx slashing unjail \
   --broadcast-mode=block \
   --from=$WALLET \
   --chain-id=$CHAIN_ID \
-  --gas=auto
+  --gas=auto --gas-adjustment 1.4
 ```
