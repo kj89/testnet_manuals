@@ -228,17 +228,17 @@ quicksilverd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000uqck
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-quicksilverd tx staking delegate $VALOPER_ADDRESS 10000000uqck --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+quicksilverd tx staking delegate $VALOPER_ADDRESS 10000000uqck --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --gas-adjustment 1.4
 ```
 
 Redelegate stake from validator to another validator
 ```
-quicksilverd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000uqck --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+quicksilverd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000uqck --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --gas-adjustment 1.4
 ```
 
 Withdraw all rewards
 ```
-quicksilverd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+quicksilverd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --gas-adjustment 1.4
 ```
 
 Withdraw rewards with commision
@@ -264,5 +264,5 @@ quicksilverd tx slashing unjail \
   --broadcast-mode=block \
   --from=$WALLET \
   --chain-id=$CHAIN_ID \
-  --gas=auto
+  --gas=auto --gas-adjustment 1.4
 ```
