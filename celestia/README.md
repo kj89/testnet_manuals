@@ -109,6 +109,7 @@ To request a faucet grant:
 ```
 $request <YOUR_WALLET_ADDRESS>
 ```
+
 ### Create validator
 Before creating validator please make sure that you have at least 1 tia (1 tia is equal to 1000000 utia) and your node is synchronized
 
