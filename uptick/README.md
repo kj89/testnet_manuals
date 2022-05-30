@@ -30,7 +30,7 @@ wget -O uptick.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/up
 ### Option 2 (manual)
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/uptick/manual_install.md) if you better prefer setting up node manually
 
-### Post installation
+## Post installation
 
 When installation is finished please load variables into system
 ```
