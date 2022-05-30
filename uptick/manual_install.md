@@ -93,7 +93,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 
 ## State sync
 ```
-SNAP_RPC1="http://peer0.testnet.uptick.network:26657" \
+SNAP_RPC1="http://peer1.testnet.uptick.network:26657" \
 && SNAP_RPC2="http://peer1.testnet.uptick.network:26657"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC2/block | jq -r .result.block.header.height) \
 && BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)) \
