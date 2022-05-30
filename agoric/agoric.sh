@@ -119,5 +119,5 @@ sudo systemctl enable agd
 sudo systemctl restart agd
 
 echo '=============== SETUP FINISHED ==================='
-echo -e 'To check logs: \e[1m\e[32mjournalctl -ujournalctl -u agd -f -o cat\e[0m'
+echo -e 'To check logs: \e[1m\e[32mjournalctl -u agd -f -o cat\e[0m'
 echo -e 'To check sync status: \e[1m\e[32mcurl -s localhost:26657/status | jq .result.sync_info\e[0m'
