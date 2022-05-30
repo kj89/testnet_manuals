@@ -41,9 +41,8 @@ go version
 ## Download and build binaries
 ```
 cd $HOME
-git clone https://github.com/UptickNetwork/uptick.git
-cd uptick
-git checkout v0.1.0
+git clone https://github.com/UptickNetwork/uptick.git && cd uptick
+git checkout v0.2.0
 make install
 ```
 
@@ -95,7 +94,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 
 ## Reset chain data
 ```
-uptickd unsafe-reset-all
+uptickd tendermint unsafe-reset-all
 ```
 
 ## Create service
