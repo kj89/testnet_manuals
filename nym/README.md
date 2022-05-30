@@ -4,7 +4,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 </p>
 
 <p align="center">
-  <img width="300" height="auto" src="https://user-images.githubusercontent.com/50621007/162544751-fb3e2adb-d203-4866-99cf-13f06d562d05.png">
+  <img width="100" height="auto" src="https://user-images.githubusercontent.com/50621007/162544751-fb3e2adb-d203-4866-99cf-13f06d562d05.png">
 </p>
 
 # NYM MIXNODE SETUP GUIDE (v1.0.0-rc.2 - MAINNET)
