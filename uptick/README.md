@@ -32,19 +32,6 @@ You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/
 
 ### Post installation
 
-(OTPIONAL) State sync
-```
-SNAP_RPC1="http://peer0.testnet.uptick.network:26657" \
-&& SNAP_RPC2="http://peer1.testnet.uptick.network:26657"
-LATEST_HEIGHT=$(curl -s $SNAP_RPC2/block | jq -r .result.block.header.height) \
-&& BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)) \
-&& TRUST_HASH=$(curl -s "$SNAP_RPC2/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC1,$SNAP_RPC2\"| ; \
-s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.uptickd/config/config.toml
-```
-
 When installation is finished please load variables into system
 ```
 source $HOME/.bash_profile
@@ -64,6 +51,21 @@ cd uptick
 git checkout v0.2.0
 make install
 sudo systemctl restart uptickd
+```
+
+(OPTIONAL) If you are already upgraded to version v0.2.0 you can try using `State Sync`
+```
+SNAP_RPC1="http://peer0.testnet.uptick.network:26657" \
+&& SNAP_RPC2="http://peer1.testnet.uptick.network:26657"
+LATEST_HEIGHT=$(curl -s $SNAP_RPC2/block | jq -r .result.block.header.height) \
+&& BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)) \
+&& TRUST_HASH=$(curl -s "$SNAP_RPC2/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC1,$SNAP_RPC2\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.uptickd/config/config.toml
+uptickd tendermint unsafe-reset-all
+sudo systemctl restart uptickd && journalctl -fu uptickd -o cat
 ```
 
 ### Create wallet
