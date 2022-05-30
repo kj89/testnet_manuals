@@ -10,7 +10,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 # uptick node setup for Testnet — uptick_7776-1
 
 Official documentation:
->- [Validator setup instructions](https://docs.uptick.network/quickstart/installation.html)
+>- [Validator setup instructions](https://docs.uptick.network/testnet/)
 
 Explorer:
 >-  https://explorer.testnet.uptick.network/uptick-network-testnet
@@ -31,6 +31,20 @@ wget -O uptick.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/up
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/uptick/manual_install.md) if you better prefer setting up node manually
 
 ### Post installation
+
+(OTPIONAL) State sync
+```
+SNAP_RPC1="http://peer0.testnet.uptick.network:26657" \
+&& SNAP_RPC2="http://peer1.testnet.uptick.network:26657"
+LATEST_HEIGHT=$(curl -s $SNAP_RPC2/block | jq -r .result.block.header.height) \
+&& BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)) \
+&& TRUST_HASH=$(curl -s "$SNAP_RPC2/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC1,$SNAP_RPC2\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.uptickd/config/config.toml
+```
+
 When installation is finished please load variables into system
 ```
 source $HOME/.bash_profile
@@ -39,6 +53,17 @@ source $HOME/.bash_profile
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
 uptickd status 2>&1 | jq .SyncInfo
+```
+
+When you have reached block `` you need to do app upgrade to v0.2.0
+```
+cd $HOME
+rm uptick -rf
+git clone https://github.com/UptickNetwork/uptick.git
+cd uptick
+git checkout v0.2.0
+make install
+sudo systemctl restart uptickd
 ```
 
 ### Create wallet

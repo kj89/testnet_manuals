@@ -43,6 +43,7 @@ go version
 cd $HOME
 git clone https://github.com/UptickNetwork/uptick.git
 cd uptick
+git checkout v0.1.0
 make install
 ```
 
@@ -60,6 +61,7 @@ uptickd init $NODENAME --chain-id $CHAIN_ID
 ## Download genesis and addrbook
 ```
 wget -qO $HOME/.uptickd/config/genesis.json "https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7776-1/genesis.json"
+wget -qO $HOME/.uptickd/config/addrbook.json "https://raw.githubusercontent.com/sowell-owen/addrbooks/main/uptick/addrbook.json"
 ```
 
 ## Set minimum gas price
@@ -91,22 +93,9 @@ sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.uptickd/config/app.toml
 ```
 
-## State sync
-```
-SNAP_RPC1="http://peer1.testnet.uptick.network:26657" \
-&& SNAP_RPC2="http://peer1.testnet.uptick.network:26657"
-LATEST_HEIGHT=$(curl -s $SNAP_RPC2/block | jq -r .result.block.header.height) \
-&& BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)) \
-&& TRUST_HASH=$(curl -s "$SNAP_RPC2/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC1,$SNAP_RPC2\"| ; \
-s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.uptickd/config/config.toml
-```
-
 ## Reset chain data
 ```
-uptickd tendermint unsafe-reset-all
+uptickd unsafe-reset-all
 ```
 
 ## Create service
