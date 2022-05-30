@@ -126,9 +126,10 @@ sed -i.bak -e "s/^skip-timeout-commit *=.*/skip-timeout-commit = false/" $HOME/.
 
 ## Increse peer connections
 ```
-sed -i.bak -e "s/^max-connections *=.*/max-connections = 250/" $HOME/.celestia-app/config/config.toml
-sed -i.bak -e "s/^max-num-inbound-peers *=.*/max-num-inbound-peers = 180/" $HOME/.celestia-app/config/config.toml
-sed -i.bak -e "s/^max-num-outbound-peers *=.*/max-num-outbound-peers = 70/" $HOME/.celestia-app/config/config.toml
+sed -i.bak -e "s/^max-connections *=.*/max-connections = 150/" $HOME/.celestia-app/config/config.toml
+sed -i.bak -e "s/^max-num-inbound-peers *=.*/max-num-inbound-peers = 100/" $HOME/.celestia-app/config/config.toml
+sed -i.bak -e "s/^max-num-outbound-peers *=.*/max-num-outbound-peers = 50/" $HOME/.celestia-app/config/config.toml
+sed -i.bak -e "s/^max-incoming-connection-attempts *=.*/max-incoming-connection-attempts = 20/" $HOME/.celestia-app/config/config.toml
 ```
 
 ## Set validator mode
