@@ -42,32 +42,6 @@ Next you have to make sure your validator is syncing blocks. You can use command
 uptickd status 2>&1 | jq .SyncInfo
 ```
 
-When you have reached block `` you need to do app upgrade to v0.2.0
-```
-cd $HOME
-rm uptick -rf
-git clone https://github.com/UptickNetwork/uptick.git
-cd uptick
-git checkout v0.2.0
-make install
-sudo systemctl restart uptickd
-```
-
-(OPTIONAL) If you are already upgraded to version v0.2.0 you can try using `State Sync`
-```
-SNAP_RPC1="http://peer0.testnet.uptick.network:26657" \
-&& SNAP_RPC2="http://peer1.testnet.uptick.network:26657"
-LATEST_HEIGHT=$(curl -s $SNAP_RPC2/block | jq -r .result.block.header.height) \
-&& BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)) \
-&& TRUST_HASH=$(curl -s "$SNAP_RPC2/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC1,$SNAP_RPC2\"| ; \
-s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.uptickd/config/config.toml
-uptickd tendermint unsafe-reset-all
-sudo systemctl restart uptickd && journalctl -fu uptickd -o cat
-```
-
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
