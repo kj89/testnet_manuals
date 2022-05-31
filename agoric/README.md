@@ -24,11 +24,11 @@ Explorer:
 ### Option 1 (automatic)
 You can setup your agoric fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
-wget -O agoric.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/agoric.sh && chmod +x agoric.sh && ./agoric.sh
+wget -O agoric_devnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/agoric_devnet.sh && chmod +x agoric_devnet.sh && ./agoric_devnet.sh
 ```
 
 ### Option 2 (manual)
-You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/agoric/manual_install.md) if you better prefer setting up node manually
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/agoric/manual_devnet_install.md) if you better prefer setting up node manually
 
 ### Post installation
 When installation is finished please load variables into system
