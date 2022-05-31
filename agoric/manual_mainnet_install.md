@@ -105,6 +105,16 @@ sed -i.bak 's/^log_level/# log_level/' $HOME/.agoric/config/config.toml
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.agoric/config/config.toml
 ```
 
+## Set minimum gas price
+```
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ubld\"/" $HOME/.agoric/config/app.toml
+```
+
+## Expose rpc
+```
+sed -i 's#"tcp://127.0.0.1:26657"#"tcp://0.0.0.0:26657"#g' $HOME/.celestia-app/config/config.toml
+```
+
 # (OPTIONAL) config pruning
 ```
 pruning="custom"
@@ -135,7 +145,7 @@ After=network-online.target
 User=$USER
 # OPTIONAL: turn on Cosmos nondeterminism debugging information
 #ExecStart=$(which ag0) start --log_level=info --trace-store=.agoric/data/kvstore.trace
-ExecStart=$(which ag0) start --log_level=warn
+ExecStart=$(which ag0) start --log_level=info
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
