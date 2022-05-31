@@ -23,11 +23,11 @@ To create polkadot wallet:
 ### Option 1 (automatic)
 You can setup your Subspace node in few minutes by using automated script below
 ```
-wget -O celestia_mamaki.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/celestia/celestia_mamaki.sh && chmod +x celestia_mamaki.sh && ./celestia_mamaki.sh
+wget -O subspace_testnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/subspace/subspace_testnet.sh && chmod +x subspace_testnet.sh && ./subspace_testnet.sh
 ```
 
 ### Option 2 (manual)
-You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/celestia/manual_install.md) if you better prefer setting up node manually
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/subspace/manual_install.md) if you better prefer setting up node manually
 
 ## Post installation
 When installation is finished please load variables into system
