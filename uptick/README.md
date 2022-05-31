@@ -86,7 +86,7 @@ $request <YOUR_WALLET_ADDRESS>
 ```
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 uptick (1 uptick is equal to 1000000 auptick) and your node is synchronized
+Before creating validator please make sure that you have at least 1 uptick (1 uptick is equal to 1000000000000000000 auptick) and your node is synchronized
 
 To check your wallet balance:
 ```
@@ -97,7 +97,7 @@ uptickd query bank balances $WALLET_ADDRESS
 To create your validator run command below
 ```
 uptickd tx staking create-validator \
-  --amount 1000000auptick \
+  --amount 5000000000000000000auptick \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
