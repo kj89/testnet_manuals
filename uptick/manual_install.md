@@ -54,10 +54,10 @@ uptickd config keyring-backend file
 
 ## Init app
 ```
-uptickd init $NODENAME
+uptickd init $NODENAME --chain-id $CHAIN_ID
 ```
 
-## Download genesis and addrbook
+## Download genesis
 ```
 wget -qO $HOME/.uptickd/config/genesis.json "https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7776-1/genesis.json"
 ```
@@ -74,12 +74,18 @@ PEERS=$(curl -sL https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.uptickd/config/config.toml
 ```
 
+## Disable indexing
+```
+indexer="null" && \
+sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.uptickd/config/config.toml
+```
+
 ## Enable prometheus
 ```
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.uptickd/config/config.toml
 ```
 
-# config pruning
+## Config pruning
 ```
 pruning="custom"
 pruning_keep_recent="100"
@@ -89,6 +95,19 @@ sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.uptickd/config/app.to
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.uptickd/config/app.toml
 sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.uptickd/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.uptickd/config/app.toml
+```
+
+## Sync using State Sync
+```
+SNAP_RPC1="http://peer0.testnet.uptick.network:26657" \
+&& SNAP_RPC2="http://peer1.testnet.uptick.network:26657"
+LATEST_HEIGHT=$(curl -s $SNAP_RPC2/block | jq -r .result.block.header.height) \
+&& BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)) \
+&& TRUST_HASH=$(curl -s "$SNAP_RPC2/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC1,$SNAP_RPC2\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.uptickd/config/config.toml
 ```
 
 ## Reset chain data

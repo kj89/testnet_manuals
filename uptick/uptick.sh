@@ -35,10 +35,10 @@ sudo apt update && sudo apt upgrade -y
 
 echo -e "\e[1m\e[32m2. Installing dependencies... \e[0m" && sleep 1
 # packages
-sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu gcc git jq chrony liblz4-tool -y
+sudo apt install curl build-essential git wget jq make gcc tmux -y
 
 # install go
-ver="1.18.2"
+ver="1.18.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -51,9 +51,8 @@ go version
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 cd $HOME
-git clone https://github.com/UptickNetwork/uptick.git
-cd uptick
-git checkout v0.1.0
+git clone https://github.com/UptickNetwork/uptick.git && cd uptick
+git checkout v0.2.0
 make install
 
 # config
@@ -63,9 +62,8 @@ uptickd config keyring-backend file
 # init
 uptickd init $NODENAME --chain-id $CHAIN_ID
 
-# download addrbook and genesis
+# download genesis
 wget -qO $HOME/.uptickd/config/genesis.json "https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7776-1/genesis.json"
-wget -qO $HOME/.uptickd/config/addrbook.json "https://raw.githubusercontent.com/sowell-owen/addrbooks/main/uptick/addrbook.json"
 
 # set minimum gas price
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0auptick\"/" $HOME/.uptickd/config/app.toml
@@ -75,6 +73,10 @@ SEEDS=$(curl -sL https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/
 PEERS=$(curl -sL https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7776-1/peers.txt | tr '\n' ',')
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.uptickd/config/config.toml
 
+# disable indexing
+indexer="null" && \
+sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.uptickd/config/config.toml
+
 # enable prometheus
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.uptickd/config/config.toml
 
@@ -82,7 +84,7 @@ sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.uptickd/config/config
 pruning="custom"
 pruning_keep_recent="100"
 pruning_keep_every="0"
-pruning_interval="10"
+pruning_interval="50"
 
 sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.uptickd/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.uptickd/config/app.toml
@@ -90,26 +92,25 @@ sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.uptickd/config/app.toml
 
 # reset
-uptickd unsafe-reset-all
+uptickd tendermint unsafe-reset-all
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
-tee $HOME/uptickd.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/uptickd.service > /dev/null <<EOF
 [Unit]
-Description=uptickd
-After=network.target
+Description=uptick
+After=network-online.target
+
 [Service]
-Type=simple
 User=$USER
 ExecStart=$(which uptickd) start
 Restart=on-failure
-RestartSec=10
+RestartSec=3
 LimitNOFILE=65535
+
 [Install]
 WantedBy=multi-user.target
 EOF
-
-sudo mv $HOME/uptickd.service /etc/systemd/system/
 
 # start service
 sudo systemctl daemon-reload
