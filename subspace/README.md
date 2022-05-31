@@ -12,8 +12,12 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 Official documentation:
 - Official manual: https://github.com/subspace/subspace/blob/main/docs/farming.md
 
-Polkadot Wallet setup:
-- https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Feu.gemini-1a.subspace.network%2Fws#/accounts
+## Create Polkadot.js wallet
+To create polkadot wallet:
+1. Download and install [Browser Extension](https://polkadot.js.org/extension/)
+2. Navigate to [Subspace Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Feu.gemini-1a.subspace.network%2Fws#/accounts) and press `Add account` button
+3. Save `mnemonic` and create wallet
+4. This will generate wallet address that you will have to use later. Example of wallet address: `st7QseTESMmUYcT5aftRJZ3jg357MsaAa93CFQL5UKsyGEk53`
 
 ## Set up your Subspace node
 ### Option 1 (automatic)
@@ -25,242 +29,52 @@ wget -O celestia_mamaki.sh https://raw.githubusercontent.com/kj89/testnet_manual
 ### Option 2 (manual)
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/celestia/manual_install.md) if you better prefer setting up node manually
 
-### Post installation
+## Post installation
 When installation is finished please load variables into system
 ```
 source $HOME/.bash_profile
 ```
 
-Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
-```
-celestia-appd status 2>&1 | jq .SyncInfo
-```
-
-To check validator logs
-```
-journalctl -u celestia-appd -f -o cat
-```
-
-To check bridge logs
-```
-journalctl -u celestia-bridge -f -o cat
-```
-
-### If your node often mis blocks try enabling legacy p2p layer
-```
-sed -i.bak -e "s/^use-legacy *=.*/use-legacy = \"true\"/" $HOME/.celestia-app/config/config.toml
-systemctl restart celestia-appd
-```
-
-### Create wallet
-To create new wallet you can use command below. Don’t forget to save the mnemonic
-```
-celestia-appd keys add $WALLET
-```
-
-(OPTIONAL) To recover your wallet using seed phrase
-```
-celestia-appd keys add $WALLET --recover
-```
-
-To get current list of wallets
-```
-celestia-appd keys list
-```
-
-### Save wallet info
-Add wallet address
-```
-WALLET_ADDRESS=$(celestia-appd keys show $WALLET -a)
-```
-
-Add valoper address
-```
-VALOPER_ADDRESS=$(celestia-appd keys show $WALLET --bech val -a)
-```
-
-Load variables into system
-```
-echo 'export WALLET_ADDRESS='${WALLET_ADDRESS} >> $HOME/.bash_profile
-echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
-source $HOME/.bash_profile
-```
-
-### Fund your wallet
-In order to create validator first you need to fund your wallet with testnet tokens.
-To top up your wallet join [Celestia discord server](https://discord.gg/QAsD8j4Z) and navigate to **#faucet** channel under **NODE OPERATORS** category
-
-To request a faucet grant:
-```
-$request <YOUR_WALLET_ADDRESS>
-```
-
-### Create validator
-Before creating validator please make sure that you have at least 1 tia (1 tia is equal to 1000000 utia) and your node is synchronized
-
-To check your wallet balance:
-```
-celestia-appd query bank balances $WALLET_ADDRESS
-```
-> If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
-
-To create your validator run command below
-```
-celestia-appd tx staking create-validator \
-  --amount 10000000utia \
-  --from $WALLET \
-  --commission-max-change-rate "0.01" \
-  --commission-max-rate "0.2" \
-  --commission-rate "0.07" \
-  --min-self-delegation "1" \
-  --pubkey  $(celestia-appd tendermint show-validator) \
-  --moniker $NODENAME \
-  --chain-id $CHAIN_ID
-```
-
-## Security
-To protect you keys please make sure you follow basic security rules
-
-### Set up ssh keys for authentication
-Good tutorial on how to set up ssh keys for authentication to your server can be found [here](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-20-04)
-
-### Basic Firewall security
-Start by checking the status of ufw.
-```
-sudo ufw status
-```
-
-Sets the default to allow outgoing connections, deny all incoming except ssh and 26656. Limit SSH login attempts
-```
-sudo ufw default allow outgoing
-sudo ufw default deny incoming
-sudo ufw allow ssh/tcp
-sudo ufw limit ssh/tcp
-sudo ufw allow 26656,26657,26660,9090/tcp
-sudo ufw enable
-```
-
-## Monitoring
-To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for celestia validator](https://github.com/kj89/testnet_manuals/blob/main/celestia/monitoring/README.md)
-
 ## Usefull commands
-### Service management
-Check logs
+Check node status
 ```
-journalctl -fu celestia-appd -o cat
-```
-
-Start service
-```
-systemctl start celestia-appd
+service subspaced status
 ```
 
-Stop service
+Check farmer status
 ```
-systemctl stop celestia-appd
-```
-
-Restart service
-```
-systemctl restart celestia-appd
+service subspaced-farmer status
 ```
 
-### Node info
-Synchronization info
+Check node logs
 ```
-celestia-appd status 2>&1 | jq .SyncInfo
-```
-
-Validator info
-```
-celestia-appd status 2>&1 | jq .ValidatorInfo
+journalctl -u subspaced -f -o cat
 ```
 
-Node info
+Check farmer logs
 ```
-celestia-appd status 2>&1 | jq .NodeInfo
-```
-
-Show node id
-```
-celestia-appd tendermint show-node-id
+journalctl -u subspaced-farmer -f -o cat
 ```
 
-### Wallet operations
-List of wallets
+You should see something similar in the logs:
 ```
-celestia-appd keys list
-```
-
-Recover wallet
-```
-celestia-appd keys add $WALLET --recover
-```
-
-Delete wallet
-```
-celestia-appd keys delete $WALLET
-```
-
-Get wallet balance
-```
-celestia-appd query bank balances $WALLET_ADDRESS
-```
-
-Transfer funds
-```
-celestia-appd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000utia
-```
-
-### Staking, Delegation and Rewards
-Delegate stake
-```
-celestia-appd tx staking delegate $VALOPER_ADDRESS 10000000utia --from=$WALLET --chain-id=$CHAIN_ID
-```
-
-Redelegate stake from validator to another validator
-```
-celestia-appd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000utia --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
-```
-
-Withdraw all rewards
-```
-celestia-appd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
-```
-
-Withdraw rewards with commision
-```
-celestia-appd tx distribution withdraw-rewards $VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$CHAIN_ID
-```
-
-### Validator management
-Edit validator
-```
-celestia-appd tx staking edit-validator \
---identity=1C5ACD2EEF363C3A \
---website="http://kjnodes.com" \
---details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
---chain-id=$CHAIN_ID \
---from=$WALLET
-```
-
-Unjail validator
-```
-celestia-appd tx slashing unjail \
-  --from=$WALLET \
-  --chain-id=$CHAIN_ID
-```
-
-### Delete celestia validator and bridge node
-To completely remove celesia node from server use command below (please make sure you have saved your validator key located in `~/.celestia-app/config/priv_validator_key.json`)
-```
-sudo systemctl stop celestia-appd
-sudo systemctl disable celestia-appd
-rm /etc/systemd/system/celestia-appd.service
-sudo systemctl stop celestia-bridge
-sudo systemctl disable celestia-bridge
-rm /etc/systemd/system/celestia-bridge.service
-sudo systemctl daemon-reload
-cd $HOME
-rm -rf .celestia-app .celestia-bridge celestia-app networks
+2022-02-03 10:52:23 Subspace
+2022-02-03 10:52:23 ✌️  version 0.1.0-35cf6f5-x86_64-ubuntu
+2022-02-03 10:52:23 ❤️  by Subspace Labs <https://subspace.network>, 2021-2022
+2022-02-03 10:52:23 📋 Chain specification: Subspace Gemini 1
+2022-02-03 10:52:23 🏷  Node name: YOUR_FANCY_NAME
+2022-02-03 10:52:23 👤 Role: AUTHORITY
+2022-02-03 10:52:23 💾 Database: RocksDb at /home/X/.local/share/subspace-node-x86_64-ubuntu-20.04-snapshot-2022-jan-05/chains/subspace_test/db/full
+2022-02-03 10:52:23 ⛓  Native runtime: subspace-100 (subspace-1.tx1.au1)
+2022-02-03 10:52:23 🔨 Initializing Genesis block/state (state: 0x22a5…17ea, header-hash: 0x6ada…0d38)
+2022-02-03 10:52:24 ⏱  Loaded block-time = 1s from block 0x6ada0792ea62bf3501abc87d92e1ce0e78ddefba66f02973de54144d12ed0d38
+2022-02-03 10:52:24 Starting archiving from genesis
+2022-02-03 10:52:24 Archiving already produced blocks 0..=0
+2022-02-03 10:52:24 🏷  Local node identity is: 12D3KooWBgKtea7MVvraeNyxdPF935pToq1x9VjR1rDeNH1qecXu
+2022-02-03 10:52:24 🧑‍🌾 Starting Subspace Authorship worker
+2022-02-03 10:52:24 📦 Highest known block at #0
+2022-02-03 10:52:24 〽️ Prometheus exporter started at 127.0.0.1:9615
+2022-02-03 10:52:24 Listening for new connections on 0.0.0.0:9944.
+2022-02-03 10:52:26 🔍 Discovered new external address for our node: /ip4/176.233.17.199/tcp/30333/p2p/12D3KooWBgKtea7MVvraeNyxdPF935pToq1x9VjR1rDeNH1qecXu
+2022-02-03 10:52:29 ⚙️  Syncing, target=#215883 (2 peers), best: #55 (0xafc7…bccf), finalized #0 (0x6ada…0d38), ⬇ 850.1kiB/s ⬆ 1.5kiB/s
 ```
