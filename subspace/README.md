@@ -78,3 +78,11 @@ You should see something similar in the logs:
 2022-02-03 10:52:26 🔍 Discovered new external address for our node: /ip4/176.233.17.199/tcp/30333/p2p/12D3KooWBgKtea7MVvraeNyxdPF935pToq1x9VjR1rDeNH1qecXu
 2022-02-03 10:52:29 ⚙️  Syncing, target=#215883 (2 peers), best: #55 (0xafc7…bccf), finalized #0 (0x6ada…0d38), ⬇ 850.1kiB/s ⬆ 1.5kiB/s
 ```
+
+To delete node
+```
+sudo systemctl stop subspaced subspaced-farmer
+sudo systemctl disable subspaced subspaced-farmer
+rm -rf /etc/systemd/system/subspaced*
+rm -rf /usr/local/bin/subspace*
+```
