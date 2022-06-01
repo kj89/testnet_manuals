@@ -4,7 +4,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 </p>
 
 <p align="center">
-  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/171283906-5ed9f51f-90bf-4e81-81c7-dc54ea6ea820.jpg">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/171398816-7e0432f4-4d39-42ad-a72e-cd8dd008028f.png">
 </p>
 
 # Install Subspace node
