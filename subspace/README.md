@@ -12,6 +12,15 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 Official documentation:
 - Official manual: https://github.com/subspace/subspace/blob/main/docs/farming.md
 
+## Recommended hardware requirements
+- CPU: 4 CPU
+- Memory: 8 GB RAM
+- Disk: 200 GB SSD Storage
+
+## Required ports
+Currently, TCP port 30333 needs to be exposed for node to work properly.
+If you have a server with no firewall, there is nothing to be done, but otherwise make sure to open TCP port 30333 for incoming connections.
+
 ## Create Polkadot.js wallet
 To create polkadot wallet:
 1. Download and install [Browser Extension](https://polkadot.js.org/extension/)
@@ -28,6 +37,10 @@ wget -O subspace_testnet.sh https://raw.githubusercontent.com/kj89/testnet_manua
 
 ### Option 2 (manual)
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/subspace/manual_install.md) if you better prefer setting up node manually
+
+## Check you node in the telemetry
+When you have finished setting up your node and farmer:
+1. Navigate to [Subspace Gemini 1 Telemetry](https://telemetry.subspace.network/#list/0x8e975582755f7fd4c125e64a51bafadca9dfaf18b0183ac19bc589d36d44aeed)
 
 ## Usefull commands
 Check node status
