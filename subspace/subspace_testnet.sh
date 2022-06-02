@@ -94,8 +94,9 @@ sudo systemctl restart systemd-journald
 sudo systemctl daemon-reload
 sudo systemctl enable subspaced subspaced-farmer
 sudo systemctl restart subspaced
-sleep 10
+sleep 30
 sudo systemctl restart subspaced-farmer
+sleep 5
 
 echo "==================================================="
 echo -e '\n\e[42mCheck node status\e[0m\n' && sleep 1
