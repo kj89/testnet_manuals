@@ -18,8 +18,8 @@ Official documentation:
 - Disk: 200 GB SSD Storage
 
 ## Required ports
-Currently, TCP port 30333 needs to be exposed for node to work properly.
-If you have a server with no firewall, there is nothing to be done, but otherwise make sure to open TCP port 30333 for incoming connections.
+Currently, TCP port `30333` needs to be exposed for node to work properly.
+If you have a server with no firewall, there is nothing to be done, but otherwise make sure to open TCP port `30333` for incoming connections.
 
 ## Create Polkadot.js wallet
 To create polkadot wallet:
@@ -40,7 +40,11 @@ You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/
 
 ## Check you node in the telemetry
 When you have finished setting up your node and farmer:
-1. Navigate to [Subspace Gemini 1 Telemetry](https://telemetry.subspace.network/#list/0x8e975582755f7fd4c125e64a51bafadca9dfaf18b0183ac19bc589d36d44aeed)
+1. Navigate to [Subspace Gemini 1 Telemetry](https://telemetry.subspace.network/#list/0x9ee86eefc3cc61c71a7751bba7f25e442da2512f408e6286153b3ccc055dccf0)
+2. And start typing your node name that you privided before
+3. You should see yourself in the list like in the immage below
+
+![image](https://user-images.githubusercontent.com/50621007/171700021-8997d43b-408f-4275-982f-60896b0df8fb.png)
 
 ## Usefull commands
 Check node status
