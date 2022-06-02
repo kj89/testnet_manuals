@@ -42,7 +42,7 @@ You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/
 When you have finished setting up your node and farmer:
 1. Navigate to [Subspace Gemini 1 Telemetry](https://telemetry.subspace.network/#list/0x9ee86eefc3cc61c71a7751bba7f25e442da2512f408e6286153b3ccc055dccf0)
 2. And start typing your node name that you privided before
-3. You should see yourself in the list like in the immage below
+3. You should see yourself in the list like in the image below
 
 ![image](https://user-images.githubusercontent.com/50621007/171700021-8997d43b-408f-4275-982f-60896b0df8fb.png)
 
