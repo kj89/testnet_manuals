@@ -15,7 +15,7 @@ Official documentation:
 ## Create Polkadot.js wallet
 To create polkadot wallet:
 1. Download and install [Browser Extension](https://polkadot.js.org/extension/)
-2. Navigate to [Subspace Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Feu.gemini-1a.subspace.network%2Fws#/accounts) and press `Add account` button
+2. Navigate to [Subspace Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Feu.gemini-1b.subspace.network%2Fws#/accounts) and press `Add account` button
 3. Save `mnemonic` and create wallet
 4. This will generate wallet address that you will have to use later. Example of wallet address: `st7QseTESMmUYcT5aftRJZ3jg357MsaAa93CFQL5UKsyGEk53`
 
