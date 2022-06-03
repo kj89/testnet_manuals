@@ -220,17 +220,17 @@ dewebd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000udws
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-dewebd tx staking delegate $VALOPER_ADDRESS 10000000udws --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+dewebd tx staking delegate $VALOPER_ADDRESS 10000000udws --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --fees 200udws
 ```
 
 Redelegate stake from validator to another validator
 ```
-dewebd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000udws --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+dewebd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000udws --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --fees 200udws
 ```
 
 Withdraw all rewards
 ```
-dewebd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+dewebd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --fees 200udws
 ```
 
 Withdraw rewards with commision
@@ -256,5 +256,6 @@ dewebd tx slashing unjail \
   --broadcast-mode=block \
   --from=$WALLET \
   --chain-id=$CHAIN_ID \
-  --gas=auto
+  --gas=auto \
+  --fees 200udws
 ```
