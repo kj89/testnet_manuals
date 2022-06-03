@@ -24,7 +24,7 @@ wget -O masa.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/masa
 ### Option 2 (manual)
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/masa/manual_install.md) if you better prefer setting up node manually
 
-## Post installation
+## Usefull commands
 
 ### Check masa node logs
 You have to see blocks comming
