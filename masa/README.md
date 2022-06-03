@@ -9,6 +9,9 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 
 # Masa node setup
 
+Official documentation:
+- https://github.com/masa-finance/masa-node-v1.0
+
 ## Minimal hardware requirements
 - CPU: 1 core
 - Memory: 2 GB RAM
