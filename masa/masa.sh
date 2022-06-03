@@ -1,4 +1,17 @@
-#!/usr/bin/env bash
+#!/bin/bash
+echo "=================================================="
+echo -e "\033[0;35m"
+echo " :::    ::: ::::::::::: ::::    :::  ::::::::  :::::::::  :::::::::: ::::::::  ";
+echo " :+:   :+:      :+:     :+:+:   :+: :+:    :+: :+:    :+: :+:       :+:    :+: ";
+echo " +:+  +:+       +:+     :+:+:+  +:+ +:+    +:+ +:+    +:+ +:+       +:+        ";
+echo " +#++:++        +#+     +#+ +:+ +#+ +#+    +:+ +#+    +:+ +#++:++#  +#++:++#++ ";
+echo " +#+  +#+       +#+     +#+  +#+#+# +#+    +#+ +#+    +#+ +#+              +#+ ";
+echo " #+#   #+#  #+# #+#     #+#   #+#+# #+#    #+# #+#    #+# #+#       #+#    #+# ";
+echo " ###    ###  #####      ###    ####  ########  #########  ########## ########  ";
+echo -e "\e[0m"
+echo "=================================================="
+sleep 2
+
 . ~/.bashrc
 if [ ! $MASA_NODENAME ]; then
 	read -p "Enter node name: " MASA_NODENAME
@@ -12,8 +25,8 @@ sudo apt update && sudo apt upgrade -y
 # install packages
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu net-tools -y
 
-# install go 1.17.2
-ver="1.17.2"
+# install go
+ver="1.18.2"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -24,17 +37,11 @@ source ~/.bash_profile
 go version
 
 # build binary
-cd $HOME
-rm -rf masa-node-v1.0
+cd $HOME && rm -rf masa-node-v1.0
 git clone https://github.com/masa-finance/masa-node-v1.0
-
 cd masa-node-v1.0/src
-git checkout v1.03
 make all
-
-# copy binaries
-cd $HOME/masa-node-v1.0/src/build/bin
-sudo cp * /usr/local/bin
+cp $HOME/masa-node-v1.0/src/build/bin/* /usr/local/bin
 
 # init
 cd $HOME/masa-node-v1.0
@@ -46,7 +53,7 @@ wget https://raw.githubusercontent.com/kj89/testnet_manuals/main/masa/bootnodes.
 MASA_BOOTNODES=$(sed ':a; N; $!ba; s/\n/,/g' bootnodes.txt)
 
 # create masad service
-tee $HOME/masad.service > /dev/null <<EOF
+tee /etc/systemd/system/masad.service > /dev/null <<EOF
 [Unit]
 Description=MASA
 After=network.target
@@ -56,18 +63,22 @@ User=$USER
 ExecStart=$(which geth) \
   --identity ${MASA_NODENAME} \
   --datadir $HOME/masa-node-v1.0/data \
-  --port 30300 \
-  --syncmode full \
-  --verbosity 3 \
+  --bootnodes ${MASA_BOOTNODES} \
   --emitcheckpoints \
   --istanbul.blockperiod 10 \
   --mine \
   --miner.threads 1 \
+  --syncmode full \
+  --verbosity 5 \
   --networkid 190260 \
-  --http --http.corsdomain "*" --http.vhosts "*" --http.addr 127.0.0.1 --http.port 8545 \
+  --rpc \
+  --rpccorsdomain "*" \
+  --rpcvhosts "*" \
+  --rpcaddr 127.0.0.1 \
+  --rpcport 8545 \
   --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
-  --maxpeers 50 \
-  --bootnodes ${MASA_BOOTNODES}
+  --port 30300 \
+  --maxpeers 50
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=4096
@@ -75,8 +86,6 @@ Environment="PRIVATE_CONFIG=ignore"
 [Install]
 WantedBy=multi-user.target
 EOF
-
-sudo mv $HOME/masad.service /etc/systemd/system
 
 # Start service
 sudo systemctl daemon-reload
@@ -92,7 +101,6 @@ MASA_ENODE=$(geth attach ipc:$HOME/masa-node-v1.0/data/geth.ipc --exec web3.admi
 echo 'export MASA_NODEKEY='$MASA_NODEKEY >> $HOME/.bash_profile
 echo 'export MASA_ENODE='$MASA_ENODE >> $HOME/.bash_profile
 source ~/.bash_profile
-
 
 echo -e "\e[1m\e[32mMasa started \e[0m"
 echo "=================================================="

@@ -1,30 +1,49 @@
-# masa node setup
+<p style="font-size:14px" align="right">
+Join our telegram <a href="https://t.me/kjnotes" target="_blank"><img src="https://user-images.githubusercontent.com/50621007/168689534-796f181e-3e4c-43a5-8183-9888fc92cfa7.png" width="30"/></a>
+Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https://user-images.githubusercontent.com/50621007/168689709-7e537ca6-b6b8-4adc-9bd0-186ea4ea4aed.png" width="30"/></a>
+</p>
 
-## run script below to install your masa node
+<p align="center">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/171797060-240af6e2-f423-4bd2-8a72-c4a638eaf15c.png">
+</p>
+
+# Masa node setup
+
+## Minimal hardware requirements
+- CPU: 1 core
+- Memory: 2 GB RAM
+- Disk: 20 GB
+
+## Set up your Masa node
+### Option 1 (automatic)
+You can setup your Masanode in few minutes by using automated script below. It will prompt you to input your node name!
 ```
 wget -O masa.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/masa/masa.sh && chmod +x masa.sh && ./masa.sh
 ```
 
-## check node status
+### Option 2 (manual)
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/masa/manual_install.md) if you better prefer setting up node manually
 
-### check masa node logs
-you have to see blocks comming
+## Post installation
+
+### Check masa node logs
+You have to see blocks comming
 ```
 journalctl -u masad -f | grep "new block"
 ```
 
-### restart service
+### Restart service
 ```
 systemctl restart masad.service
 ```
 
-### check eth node status
-to check eth node synchronization status first of all you have to open geth
+### Check eth node status
+To check eth node synchronization status first of all you have to open geth
 ```
 geth attach ipc:$HOME/masa-node-v1.0/data/geth.ipc
 ```
 
-after that you can use commands below inside geth (eth.syncing should = false and net.peerCount have to be > than 0)
+After that you can use commands below inside geth (eth.syncing should = false and net.peerCount have to be > than 0)
 ```
 # node data directory with configs and keys
 admin.datadir
@@ -46,11 +65,11 @@ net.peerCount
 
 _Press CTRL+D to exit_
 
-### backup node key
-please backup masa node key
+### Backup node key
+Please backup masa node key
 ```
 cat $HOME/masa-node-v1.0/data/geth/nodekey
 ```
 
-### restore node key
-to restore masa node key just insert it into _$HOME/masa-node-v1.0/data/geth/nodekey_ and restart service afterwards
+### Restore node key
+To restore masa node key just insert it into _$HOME/masa-node-v1.0/data/geth/nodekey_ and restart service afterwards
