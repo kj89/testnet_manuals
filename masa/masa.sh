@@ -98,9 +98,6 @@ sleep 10
 # get node configs
 MASA_NODEKEY=$(cat $HOME/masa-node-v1.0/data/geth/nodekey)
 MASA_ENODE=$(geth attach ipc:$HOME/masa-node-v1.0/data/geth.ipc --exec web3.admin.nodeInfo.enode | sed 's/^.//;s/.$//')
-echo 'export MASA_NODEKEY='$MASA_NODEKEY >> $HOME/.bash_profile
-echo 'export MASA_ENODE='$MASA_ENODE >> $HOME/.bash_profile
-source ~/.bash_profile
 
 echo -e "\e[1m\e[32mMasa started \e[0m"
 echo "=================================================="

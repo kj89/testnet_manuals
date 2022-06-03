@@ -36,6 +36,7 @@ journalctl -u masad -f | grep "new block"
 ```
 
 ### Get masa node key
+!Please make sure you backup your `node key` somewhere safe. Its the only way to restore your node!
 ```
 cat $HOME/masa-node-v1.0/data/geth/nodekey
 ```
@@ -78,11 +79,10 @@ net.peerCount
 
 _Press CTRL+D to exit_
 
-### Backup node key
-Please backup masa node key
-```
-cat $HOME/masa-node-v1.0/data/geth/nodekey
-```
-
 ### Restore node key
-To restore masa node key just insert it into _$HOME/masa-node-v1.0/data/geth/nodekey_ and restart service afterwards
+To restore masa node key just insert it into _$HOME/masa-node-v1.0/data/geth/nodekey_ and restart service afterwards\
+Replace `<YOUR_NODE_KEY>` with your node key and run command below
+```
+echo <YOUR_NODE_KEY> > $HOME/masa-node-v1.0/data/geth/nodekey
+systemctl restart masad.service
+```
