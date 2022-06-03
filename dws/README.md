@@ -220,17 +220,17 @@ dewebd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000udws
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-dewebd tx staking delegate $VALOPER_ADDRESS 10000000udws --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --fees 200udws
+dewebd tx staking delegate $VALOPER_ADDRESS 10000000udws --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --fees=200udws
 ```
 
 Redelegate stake from validator to another validator
 ```
-dewebd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000udws --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --fees 200udws
+dewebd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000udws --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --fees=200udws
 ```
 
 Withdraw all rewards
 ```
-dewebd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --fees 200udws
+dewebd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --fees=200udws
 ```
 
 Withdraw rewards with commision
@@ -242,12 +242,13 @@ dewebd tx distribution withdraw-rewards $VALOPER_ADDRESS --from=$WALLET --commis
 Edit validator
 ```
 dewebd tx staking edit-validator \
---moniker=$NODENAME \
---identity=1C5ACD2EEF363C3A \
---website="http://kjnodes.com" \
---details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
---chain-id=$CHAIN_ID \
---from=$WALLET
+  --moniker=$NODENAME \
+  --identity=1C5ACD2EEF363C3A \
+  --website="http://kjnodes.com" \
+  --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
+  --chain-id=$CHAIN_ID \
+  --from=$WALLET \
+  --fees=200udws
 ```
 
 Unjail validator
@@ -257,5 +258,5 @@ dewebd tx slashing unjail \
   --from=$WALLET \
   --chain-id=$CHAIN_ID \
   --gas=auto \
-  --fees 200udws
+  --fees=200udws
 ```
