@@ -35,6 +35,16 @@ You have to see blocks comming
 journalctl -u masad -f | grep "new block"
 ```
 
+### Get masa node key
+```
+cat $HOME/masa-node-v1.0/data/geth/nodekey
+```
+
+### Get masa enode id
+```
+geth attach ipc:$HOME/masa-node-v1.0/data/geth.ipc --exec web3.admin.nodeInfo.enode | sed 's/^.//;s/.$//'
+```
+
 ### Restart service
 ```
 systemctl restart masad.service
