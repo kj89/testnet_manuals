@@ -33,15 +33,29 @@ To create polkadot wallet:
 3. Save `mnemonic` and create wallet
 4. This will generate wallet address that you will have to use later. Example of wallet address: `st7QseTESMmUYcT5aftRJZ3jg357MsaAa93CFQL5UKsyGEk53`
 
-## Set up your Subspace node
+## Set up your Subspace full node
+Full node doesn't store the history and state of the whole blockchain, only last 1024 blocks
 ### Option 1 (automatic)
-You can setup your Subspace node in few minutes by using automated script below
+You can setup your Subspace full node in few minutes by using automated script below
 ```
-wget -O subspace_testnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/subspace/subspace_testnet.sh && chmod +x subspace_testnet.sh && ./subspace_testnet.sh
+wget -O subspace_fullnode.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/subspace/subspace_fullnode.sh && chmod +x subspace_fullnode.sh && ./subspace_fullnode.sh
 ```
 
 ### Option 2 (manual)
-You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/subspace/manual_install.md) if you better prefer setting up node manually
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/subspace/manual_install_fullnode.md) if you better prefer setting up node manually
+
+## Set up your Subspace archival node
+Archival node store the full history and state of the blockchain. It is useful if you run an RPC node and want to support querying older blockchain history.
+### Option 1 (automatic)
+You can setup your Subspace archival node in few minutes by using automated script below
+```
+wget -O subspace_archival.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/subspace/subspace_archival.sh && chmod +x subspace_archival.sh && ./subspace_archival.sh
+```
+
+### Option 2 (manual)
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/subspace/manual_install_archival.md) if you better prefer setting up node manually
+
+> NOTE: you cannot convert your existing node to an archival node, so you need to start a new one (100G+ of space suggested). You will still participate in the farming process as an archival node.
 
 ## Check you node in the telemetry
 When you have finished setting up your node and farmer:
