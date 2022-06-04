@@ -71,6 +71,11 @@ systemctl restart subspaced-farmer
 ```
 
 ## Usefull commands
+Check node and farmer version
+```
+subspace-farmer --version && subspace-node --version
+```
+
 Check node status
 ```
 service subspaced status
