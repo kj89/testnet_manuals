@@ -47,7 +47,7 @@ When you have finished setting up your node and farmer:
 ![image](https://user-images.githubusercontent.com/50621007/171700021-8997d43b-408f-4275-982f-60896b0df8fb.png)
 
 ## Update the node
-To upgrade your node to new binary version please run the ecommand below:
+To upgrade your node to new binaries, please run the coommand below:
 ```
 cd $HOME && rm -rf subspace-*
 APP_VERSION=$(curl -s https://api.github.com/repos/subspace/subspace/releases/latest | jq -r ".tag_name")
