@@ -12,6 +12,11 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 Official documentation:
 - Official manual: https://github.com/subspace/subspace/blob/main/docs/farming.md
 
+## Minimum Specifications
+- CPU: 2 CPU
+- Memory: 4 GB RAM
+- Disk: 50 GB SSD Storage
+
 ## Recommended hardware requirements
 - CPU: 4 CPU
 - Memory: 8 GB RAM
