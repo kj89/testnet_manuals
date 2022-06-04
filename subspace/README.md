@@ -46,6 +46,26 @@ When you have finished setting up your node and farmer:
 
 ![image](https://user-images.githubusercontent.com/50621007/171700021-8997d43b-408f-4275-982f-60896b0df8fb.png)
 
+## To Update node
+```
+cd $HOME && rm -rf subspace-*
+APP_VERSION=$(curl -s https://api.github.com/repos/subspace/subspace/releases/latest | jq -r ".tag_name")
+wget -O subspace-node https://github.com/subspace/subspace/releases/download/${APP_VERSION}/subspace-node-ubuntu-x86_64-${APP_VERSION}
+wget -O subspace-farmer https://github.com/subspace/subspace/releases/download/${APP_VERSION}/subspace-farmer-ubuntu-x86_64-${APP_VERSION}
+chmod +x subspace-*
+mv subspace-* /usr/local/bin/
+systemctl restart subspaced
+sleep 30
+systemctl restart subspaced-farmer
+```
+
+## To reset the node
+If you were running a node previously, and want to switch to a new snapshot, please perform these steps and then follow the guideline again:
+```
+subspace-farmer wipe
+subspace-node purge-chain --chain gemini-1
+```
+
 ## Usefull commands
 Check node status
 ```
