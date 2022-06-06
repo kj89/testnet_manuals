@@ -99,16 +99,16 @@ sudo systemctl restart subspaced-farmer
 sleep 5
 
 echo "==================================================="
-echo -e '\n\e[42mCheck node status\e[0m\n' && sleep 1
+echo -e '\e[32mCheck node status\e[39m' && sleep 1
 if [[ `service subspaced status | grep active` =~ "running" ]]; then
   echo -e "Your Subspace node \e[32minstalled and running\e[39m!"
-  echo -e "Check your node status: \e[32mmservice subspaced status\e[39m"
+  echo -e "Check your node status: \e[32mservice subspaced status\e[39m"
 else
   echo -e "Your Subspace node \e[31mwas not installed correctly\e[39m, please reinstall."
 fi
 sleep 2
 echo "==================================================="
-echo -e '\n\e[42mCheck farmer status\e[0m\n' && sleep 1
+echo -e '\e[32mCheck farmer status\e[39m' && sleep 1
 if [[ `service subspaced-farmer status | grep active` =~ "running" ]]; then
   echo -e "Your Subspace farmer \e[32minstalled and running\e[39m!"
   echo -e "Check your farmer status \e[32mservice subspaced-farmer status\e[39m"
