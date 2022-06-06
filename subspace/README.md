@@ -44,19 +44,6 @@ wget -O subspace_fullnode.sh https://raw.githubusercontent.com/kj89/testnet_manu
 ### Option 2 (manual)
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/subspace/manual_install_fullnode.md) if you better prefer setting up node manually
 
-## Set up your Subspace archival node
-Archival node store the full history and state of the blockchain. It is useful if you run an RPC node and want to support querying older blockchain history.
-### Option 1 (automatic)
-You can setup your Subspace archival node in few minutes by using automated script below
-```
-wget -O subspace_archival.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/subspace/subspace_archival.sh && chmod +x subspace_archival.sh && ./subspace_archival.sh
-```
-
-### Option 2 (manual)
-You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/subspace/manual_install_archival.md) if you better prefer setting up node manually
-
-> NOTE: you cannot convert your existing node to an archival node, so you need to start a new one (100G+ of space suggested). You will still participate in the farming process as an archival node.
-
 ## Check you node in the telemetry
 When you have finished setting up your node and farmer:
 1. Navigate to [Subspace Gemini 1 Telemetry](https://telemetry.subspace.network/#list/0x9ee86eefc3cc61c71a7751bba7f25e442da2512f408e6286153b3ccc055dccf0)
