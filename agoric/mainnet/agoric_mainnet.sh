@@ -86,7 +86,7 @@ sed -i.bak 's/^log_level/# log_level/' $HOME/.agoric/config/config.toml
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.agoric/config/config.toml
 
 # expose rpc
-sed -i 's#"tcp://127.0.0.1:26657"#"tcp://0.0.0.0:26657"#g' $HOME/.celestia-app/config/config.toml
+sed -i 's#"tcp://127.0.0.1:26657"#"tcp://0.0.0.0:26657"#g' $HOME/.agoric/config/config.toml
 
 # set minimum gas price
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ubld\"/" $HOME/.agoric/config/app.toml
