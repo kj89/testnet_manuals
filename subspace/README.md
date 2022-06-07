@@ -11,6 +11,8 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 
 Official documentation:
 - Official manual: https://github.com/subspace/subspace/blob/main/docs/farming.md
+- Telemetry: https://telemetry.subspace.network/#list/0x9ee86eefc3cc61c71a7751bba7f25e442da2512f408e6286153b3ccc055dccf0
+- Block explorer: https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fna.gemini-1b.subspace.network%2Fws#/explorer
 
 ## Minimum Specifications
 - CPU: 2 CPU
