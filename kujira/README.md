@@ -20,6 +20,21 @@ Explorer:
 >
 > To migrate your valitorator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/kujira/migrate_validator.md)
 
+## Hardware Requirements
+Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
+
+### Minimum Hardware Requirements
+ - 3x CPUs; the faster clock speed the better
+ - 4GB RAM
+ - 80GB Disk
+ - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
+
+### Optimal Hardware Requirements 
+ - 4x CPUs; the faster clock speed the better
+ - 8GB RAM
+ - 200GB of storage (SSD or NVME)
+ - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
+
 ## Set up your kujira fullnode
 ### Option 1 (automatic)
 You can setup your kujira fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
