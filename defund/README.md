@@ -52,7 +52,7 @@ systemctl restart defundd
 ![image](https://user-images.githubusercontent.com/50621007/170612347-40eb0075-c239-4c35-a7ec-716606bd4df9.png)
 
 ## Sync your node
-### Option 1 (using snapshot)
+### Using snapshot
 **Simo | Active Nodes#3233** are providing with light weighted snapshots. Try to search Discord for latest snapshot from this guy.
 ```
 systemctl stop defundd
@@ -64,20 +64,6 @@ tar xzvf defund*.tar.gz
 rm defund*.tar.gz
 mv priv_validator_state.json data/
 systemctl start defundd
-```
-
-### Option 2 (using state sync)
-```
-sudo systemctl stop defundd && defundd tendermint unsafe-reset-all
-SNAP_RPC="http://rpc2.bonded.zone:20657"
-LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height) \
-&& BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)) \
-&& TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
-s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.defund/config/config.toml
-sudo systemctl restart defundd
 ```
 
 ### Create wallet
