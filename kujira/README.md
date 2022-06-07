@@ -77,12 +77,9 @@ source $HOME/.bash_profile
 ```
 
 ### Fund your wallet
-In order to create validator first you need to fund your wallet with testnet tokens.
-To top up your wallet join [kujira discord server](https://discord.gg/eStaNHZbm4) and navigate to **#faucet** channel
-
-To request a faucet grant:
+In order to create validator first you need to fund your wallet with testnet tokens
 ```
-$request <YOUR_WALLET_ADDRESS>
+curl -X POST https://faucet.kujira.app/$WALLET_ADDRESS
 ```
 
 ### Create validator
