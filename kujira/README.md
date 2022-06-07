@@ -83,7 +83,7 @@ curl -X POST https://faucet.kujira.app/$WALLET_ADDRESS
 ```
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 kujira (1 kujira is equal to 1000000000000000000 ukuji) and your node is synchronized
+Before creating validator please make sure that you have at least 1 kujira (1 kujira is equal to 1000000 ukuji) and your node is synchronized
 
 To check your wallet balance:
 ```
@@ -94,7 +94,7 @@ kujirad query bank balances $WALLET_ADDRESS
 To create your validator run command below
 ```
 kujirad tx staking create-validator \
-  --amount 5000000000000000000ukuji \
+  --amount 100000000ukuji \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
