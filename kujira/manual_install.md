@@ -41,7 +41,7 @@ go version
 ## Download and build binaries
 ```
 cd $HOME
-git clone https://github.com/kujiraNetwork/kujira.git && cd kujira-core
+git clone https://github.com/Team-Kujira/core && cd kujira-core
 make install
 ```
 
