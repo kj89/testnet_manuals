@@ -71,7 +71,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0grain\"/" $HOME/.p
 
 # set peers and seeds
 SEEDS=""
-PEERS=""
+PEERS="f64dd167410a242c993648faa6406edf74a7f4b7@157.245.76.119:26656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.paloma/config/config.toml
 
 # disable indexing
