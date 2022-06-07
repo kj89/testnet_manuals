@@ -51,7 +51,7 @@ go version
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 cd $HOME
-git clone https://github.com/Team-Kujira/core && cd kujira-core
+git clone https://github.com/Team-Kujira/core kujira-core && cd kujira-core
 make install
 
 # config
