@@ -70,7 +70,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ukuji\"/" $HOME/.k
 
 # set peers and seeds
 SEEDS=""
-PEERS=""
+PEERS="861f4624276d80aa538ad446ce608910ca24940d@148.251.177.45:11656,f9346e4680529c222f374dfb62eb53769a10d656@116.203.210.205:26656,d932ab29136c77579d31f3f8ec364e33e1e0e272@188.34.178.187:36656,7bf8bb44be721b486b13dafe47ef092f914452cb@188.34.178.184:36656,32987bd6d2c8e98aef650e08e8e270e07578f888@195.201.164.223:26656,bee48b090b97ef1a8adca4adecf897e5d29c6909@3.39.245.44:26656,dfa8f5ece785837e040f6c3e1d50e8407b7db9b9@62.171.174.247:26656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.kujira/config/config.toml
 
 # disable indexing
