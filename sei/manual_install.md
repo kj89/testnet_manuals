@@ -36,7 +36,7 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bs
 
 ## Install go
 ```
-ver="1.17.2"
+ver="1.18.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -52,7 +52,7 @@ go version
 cd $HOME
 git clone https://github.com/sei-protocol/sei-chain.git
 cd sei-chain
-git checkout 1.0.0beta
+git checkout 1.0.2beta
 go build -o build/seid ./cmd/sei-chaind
 chmod +x ./build/seid && sudo mv ./build/seid /usr/local/bin/seid
 ```
