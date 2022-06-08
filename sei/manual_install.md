@@ -20,7 +20,7 @@ Save and import variables into system
 ```
 echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 echo "export WALLET=wallet" >> $HOME/.bash_profile
-echo "export CHAIN_ID=sei-testnet-1" >> $HOME/.bash_profile
+echo "export CHAIN_ID=sei-testnet-2" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -70,8 +70,8 @@ seid init $NODENAME --chain-id $CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -qO $HOME/.sei-chain/config/genesis.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-1/genesis.json"
-wget -qO $HOME/.sei-chain/config/addrbook.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-1/addrbook.json"
+wget -qO $HOME/.sei-chain/config/genesis.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-2/genesis.json"
+wget -qO $HOME/.sei-chain/config/addrbook.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-2/addrbook.json"
 ```
 
 ## Set minimum gas price
