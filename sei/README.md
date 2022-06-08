@@ -94,8 +94,12 @@ source $HOME/.bash_profile
 ```
 
 ### Fund your wallet
-In order to create validator first you need to fund your wallet with testnet tokens.
-If you are interested in receiving test coins for validation purposes, please fill out [this form](https://forms.gle/ZjoxDNg6ovAQRer38)
+To top up your wallet join [Sei discord server](https://discord.gg/CSczWRVT) and navigate to **#testnet-faucet** channel
+
+To request a faucet grant:
+```
+!faucet <YOUR_WALLET_ADDRESS>
+```
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 sei (1 sei is equal to 1000000 usei) and your node is synchronized
