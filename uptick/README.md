@@ -82,7 +82,7 @@ To top up your wallet join [Uptick discord server](https://discord.gg/eStaNHZbm4
 
 To request a faucet grant:
 ```
-$request <YOUR_WALLET_ADDRESS>
+$faucet <YOUR_WALLET_ADDRESS>
 ```
 
 ### Create validator
