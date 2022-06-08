@@ -31,7 +31,7 @@ prometheus metrics should be `enabled` and port `26660` should be available on v
 To enable prometheus you have to run command below and after that please restart service to apply changes
 ```
 # enable prometheus
-sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.sei-chain/config/config.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.sei/config/config.toml
 ```
 
 ## Deployment

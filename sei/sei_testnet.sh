@@ -25,7 +25,7 @@ source $HOME/.bash_profile
 # Set peers!
 PEERS="67cd4f00052f81d4abbcc8013e300b302a3ffe6e@95.216.189.214:26656,5082637d2face9dd32c4ad7eff34d38df4244c9a@65.21.123.69:26641,4aaa57eb2ed8f839253193a893389338c081929b@80.82.215.233:26656,38b4d78c7d6582fb170f6c19330a7e37e6964212@194.163.189.114:46656,27aab76f983cd7c6558f1dfc50b919daaef14555@3.22.112.181:26656,585727dac5df8f8662a8ff42052a9584a1f7ee95@165.22.25.77:26656,dc882e58c0c51763a12423dfcac5815ef092bc29@65.108.202.114:26656"
 
-sed -i.bak -e "s/^persistent_peers =./persistent_peers = "$PEERS"/" $HOME/.sei-chain/config/config.toml
+sed -i.bak -e "s/^persistent_peers =./persistent_peers = "$PEERS"/" $HOME/.sei/config/config.toml
 
 echo '================================================='
 echo -e "Your node name: \e[1m\e[32m$NODENAME\e[0m"
@@ -59,7 +59,7 @@ cd $HOME
 git clone https://github.com/sei-protocol/sei-chain.git
 cd sei-chain
 git checkout 1.0.2beta
-go build -o build/seid ./cmd/sei-chaind
+go build -o build/seid ./cmd/seid
 chmod +x ./build/seid && sudo mv ./build/seid /usr/local/bin/seid
 
 # config
@@ -70,19 +70,19 @@ seid config keyring-backend file
 seid init $NODENAME --chain-id $CHAIN_ID
 
 # download genesis and addrbook
-wget -qO $HOME/.sei-chain/config/genesis.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-2/genesis.json"
-wget -qO $HOME/.sei-chain/config/addrbook.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-2/addrbook.json"
+wget -qO $HOME/.sei/config/genesis.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-2/genesis.json"
+wget -qO $HOME/.sei/config/addrbook.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-2/addrbook.json"
 
 # set minimum gas price
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0usei\"/" $HOME/.sei-chain/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0usei\"/" $HOME/.sei/config/app.toml
 
 # set peers and seeds
 SEEDS=""
 PEERS="585727dac5df8f8662a8ff42052a9584a1f7ee95@165.22.25.77:26656,2f047e234cb8b99fe8b9fee0059a5bc45042bc97@95.216.84.188:26656,bab4849cf3918c37b04cd3714984d1765616a4b2@49.12.76.255:36656,ab955dc7f70d8613ab4b554868d4658fd70b797b@217.79.180.194:26656,39c4bcaded0d1d886f2788ae955f1939406f3e7d@65.108.198.54:26696,9db58dba3b6354177fb428caccf5167c616ad4a1@167.235.28.18:26656,2f2804434afda302c86eb89eca27503e49a8a260@65.21.131.215:26696,38b4d78c7d6582fb170f6c19330a7e37e6964212@194.163.189.114:46656,7c5ee0d66a15013f0a771055378c5316331f17ba@95.216.101.84:25646,6f71bcbe347069fc4df9b607f6b843226e8deb71@95.217.221.201:26656"
-sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.sei-chain/config/config.toml
+sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.sei/config/config.toml
 
 # enable prometheus
-sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.sei-chain/config/config.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.sei/config/config.toml
 
 # config pruning
 pruning="custom"
@@ -90,10 +90,10 @@ pruning_keep_recent="100"
 pruning_keep_every="0"
 pruning_interval="10"
 
-sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.sei-chain/config/app.toml
-sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.sei-chain/config/app.toml
-sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.sei-chain/config/app.toml
-sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.sei-chain/config/app.toml
+sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.sei/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.sei/config/app.toml
+sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.sei/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.sei/config/app.toml
 
 # reset
 seid unsafe-reset-all
