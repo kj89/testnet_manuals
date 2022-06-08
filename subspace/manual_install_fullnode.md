@@ -75,22 +75,22 @@ EOF
 
 ## Create subspaced-farmer service
 ```
-tee $HOME/subspaced-farmer.service > /dev/null <<EOF
+sudo tee <<EOF >/dev/null /etc/systemd/system/subspaced-farmer.service
 [Unit]
-Description=Subspaced Farm
+Description=Subspace Farmer
 After=network.target
-
 [Service]
-User=$USER
 Type=simple
-ExecStart=$(which subspace-farmer) farm --reward-address $WALLET_ADDRESS --plot-size $PLOT_SIZE
+User=$USER
+ExecStart=$(which subspace-farmer) farm \\
+--reward-address=$WALLET_ADDRESS \\
+--plot-size=$PLOT_SIZE
 Restart=on-failure
-LimitNOFILE=65535
-
+RestartSec=10
+LimitNOFILE=10000
 [Install]
 WantedBy=multi-user.target
 EOF
-mv $HOME/subspaced-farmer.service /etc/systemd/system/
 ```
 
 ## Run subspace services
