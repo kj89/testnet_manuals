@@ -247,3 +247,14 @@ archwayd tx slashing unjail \
   --chain-id=$CHAIN_ID \
   --gas=auto
 ```
+
+### Delete node
+This commands will completely remove node from server. Use at your own risk!
+```
+systemctl stop archwayd
+systemctl disable archwayd
+rm /etc/systemd/system/archway* -rf
+rm $(which archwayd) -rf
+rm $HOME/.archway* -rf
+rm $HOME/archway -rf
+```

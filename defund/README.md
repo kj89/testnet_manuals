@@ -281,3 +281,14 @@ defundd tx slashing unjail \
   --chain-id=$CHAIN_ID \
   --gas=auto
 ```
+
+### Delete node
+This commands will completely remove node from server. Use at your own risk!
+```
+systemctl stop defundd
+systemctl disable defundd
+rm /etc/systemd/system/defund* -rf
+rm $(which defundd) -rf
+rm $HOME/.defund* -rf
+rm $HOME/defund -rf
+```

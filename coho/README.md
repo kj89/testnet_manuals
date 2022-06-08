@@ -248,3 +248,14 @@ cohod tx slashing unjail \
   --chain-id=$CHAIN_ID \
   --gas=auto
 ```
+
+### Delete node
+This commands will completely remove node from server. Use at your own risk!
+```
+systemctl stop cohod
+systemctl disable cohod
+rm /etc/systemd/system/coho* -rf
+rm $(which cohod) -rf
+rm $HOME/.coho* -rf
+rm $HOME/coho -rf
+```

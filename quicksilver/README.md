@@ -266,3 +266,14 @@ quicksilverd tx slashing unjail \
   --chain-id=$CHAIN_ID \
   --gas=auto --gas-adjustment 1.4
 ```
+
+### Delete node
+This commands will completely remove node from server. Use at your own risk!
+```
+systemctl stop quicksilverd
+systemctl disable quicksilverd
+rm /etc/systemd/system/quicksilver* -rf
+rm $(which quicksilverd) -rf
+rm $HOME/.quicksilver* -rf
+rm $HOME/quicksilver -rf
+```

@@ -260,3 +260,14 @@ dewebd tx slashing unjail \
   --gas=auto \
   --fees=200udws
 ```
+
+### Delete node
+This commands will completely remove node from server. Use at your own risk!
+```
+systemctl stop dewebd
+systemctl disable dewebd
+rm /etc/systemd/system/deweb* -rf
+rm $(which dewebd) -rf
+rm $HOME/.deweb* -rf
+rm $HOME/deweb -rf
+```

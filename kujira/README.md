@@ -272,3 +272,14 @@ kujirad tx slashing unjail \
   --chain-id=$CHAIN_ID \
   --gas=auto
 ```
+
+### Delete node
+This commands will completely remove node from server. Use at your own risk!
+```
+systemctl stop kujirad
+systemctl disable kujirad
+rm /etc/systemd/system/kujira* -rf
+rm $(which kujirad) -rf
+rm $HOME/.kujira* -rf
+rm $HOME/kujira-core -rf
+```

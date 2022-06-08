@@ -254,3 +254,14 @@ ag0 tx slashing unjail \
   --chain-id=$CHAIN_ID \
   --gas=auto
 ```
+
+### Delete node
+This commands will completely remove node from server. Use at your own risk!
+```
+systemctl stop ag0
+systemctl disable ag0
+rm /etc/systemd/system/ag0.service -rf
+rm $(which ag0) -rf
+rm $HOME/.agoric* -rf
+rm $HOME/ag0 -rf
+```

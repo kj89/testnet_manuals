@@ -282,7 +282,7 @@ This commands will completely remove node from server. Use at your own risk!
 ```
 systemctl stop seid
 systemctl disable seid
-rm /etc/systemd/system/seid.service -rf
+rm /etc/systemd/system/sei* -rf
 rm $(which seid) -rf
 rm $HOME/.sei -rf
 rm $HOME/sei-chain -rf

@@ -272,3 +272,14 @@ palomad tx slashing unjail \
   --chain-id=$CHAIN_ID \
   --gas=auto
 ```
+
+### Delete node
+This commands will completely remove node from server. Use at your own risk!
+```
+systemctl stop palomad
+systemctl disable palomad
+rm /etc/systemd/system/paloma* -rf
+rm $(which palomad) -rf
+rm $HOME/.paloma* -rf
+rm $HOME/paloma -rf
+```

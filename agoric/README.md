@@ -256,3 +256,14 @@ agd tx slashing unjail \
   --chain-id=$CHAIN_ID \
   --gas=auto
 ```
+
+### Delete node
+This commands will completely remove node from server. Use at your own risk!
+```
+systemctl stop agd
+systemctl disable agd
+rm /etc/systemd/system/agd.service -rf
+rm $(which agd) -rf
+rm $HOME/.agoric* -rf
+rm $HOME/agoric-sdk -rf
+```

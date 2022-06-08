@@ -127,3 +127,14 @@ gitopiad tx slashing unjail \
   --gas=auto \
   --gas-adjustment=1.4
 ```
+
+### Delete node
+This commands will completely remove node from server. Use at your own risk!
+```
+systemctl stop gitopiad
+systemctl disable gitopiad
+rm /etc/systemd/system/gitopia* -rf
+rm $(which gitopiad) -rf
+rm $HOME/.gitopia* -rf
+rm $HOME/gitopia -rf
+```
