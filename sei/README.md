@@ -276,3 +276,14 @@ seid tx slashing unjail \
   --chain-id=$CHAIN_ID \
   --gas=auto --gas-adjustment 1.4
 ```
+
+### Delete node
+This commands will completely remove node from server. Use at your own risk!
+```
+systemctl stop seid
+systemctl disable seid
+rm /etc/systemd/system/seid.service -rf
+rm $(which seid) -rf
+rm $HOME/.sei -rf
+rm $HOME/sei-chain -rf
+```
