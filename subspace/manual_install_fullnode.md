@@ -98,9 +98,11 @@ EOF
 sudo systemctl restart systemd-journald
 sudo systemctl daemon-reload
 sudo systemctl enable subspaced subspaced-farmer
-sudo systemctl restart subspaced
+subspace-farmer wipe
+subspace-node purge-chain --chain gemini-1 -y
+systemctl restart subspaced
 sleep 30
-sudo systemctl restart subspaced-farmer
+systemctl restart subspaced-farmer
 ```
 
 ## Check node status
