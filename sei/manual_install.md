@@ -105,7 +105,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 
 ## Reset chain data
 ```
-seid unsafe-reset-all
+seid tendermint unsafe-reset-all
 ```
 
 ## Create service
