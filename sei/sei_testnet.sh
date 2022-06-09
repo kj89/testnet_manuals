@@ -84,6 +84,7 @@ sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persisten
 
 # enable prometheus
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.sei/config/config.toml
+sed -i -e "s/prometheus-retention-time = 0/prometheus-retention-time = 5/" $HOME/.sei/config/config.toml
 
 # config pruning
 pruning="custom"
