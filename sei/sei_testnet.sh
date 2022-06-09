@@ -56,11 +56,12 @@ go version
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 cd $HOME
+rm sei-chain -rf
 git clone https://github.com/sei-protocol/sei-chain.git
 cd sei-chain
 git checkout 1.0.2beta
-go build -o build/seid ./cmd/seid
-chmod +x ./build/seid && sudo mv ./build/seid /usr/local/bin/seid
+make install 
+mv ~/go/bin/seid /usr/local/bin/seid
 
 # config
 seid config chain-id $CHAIN_ID
