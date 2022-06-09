@@ -20,7 +20,7 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 | KEY |VALUE |
 |---------------|-------------|
 | **bond_denom** | Denominated token name, for example, `usei` for sei testnet. You can find it in genesis file |
-| **bench_prefix** | Prefix for chain addresses, for example, `cosmos` for sei testnet. You can find it in public addresses like this **cosmos**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **bench_prefix** | Prefix for chain addresses, for example, `sei` for sei testnet. You can find it in public addresses like this **sei**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
 
 make sure following ports are open:
 - `9100` (node-exporter)
@@ -74,7 +74,7 @@ To add validator use command with specified `VALIDATOR_IP`, `WALLET_ADDRESS`, `V
 $HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP VALOPER_ADDRESS WALLET_ADDRESS PROJECT_NAME
 ```
 
-> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 cosmosvaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete cosmos1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc sei```
+> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 seivaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete sei1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc sei```
 
 To add more validators just run command above with validator values
 
