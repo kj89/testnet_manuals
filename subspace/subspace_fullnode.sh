@@ -48,7 +48,8 @@ sudo apt install curl jq -y
 # update executables
 cd $HOME
 rm -rf subspace-*
-APP_VERSION=$(curl -s https://api.github.com/repos/subspace/subspace/releases/latest | jq -r ".tag_name" | sed "s/runtime-/""/g")
+#APP_VERSION=$(curl -s https://api.github.com/repos/subspace/subspace/releases/latest | jq -r ".tag_name" | sed "s/runtime-/""/g")
+APP_VERSION=gemini-1b-2022-june-05
 wget -O subspace-node https://github.com/subspace/subspace/releases/download/${APP_VERSION}/subspace-node-ubuntu-x86_64-${APP_VERSION}
 wget -O subspace-farmer https://github.com/subspace/subspace/releases/download/${APP_VERSION}/subspace-farmer-ubuntu-x86_64-${APP_VERSION}
 chmod +x subspace-*
@@ -98,8 +99,11 @@ EOF
 sudo systemctl restart systemd-journald
 sudo systemctl daemon-reload
 sudo systemctl enable subspaced subspaced-farmer
+subspace-farmer wipe
+subspace-node purge-chain --chain gemini-1 -y
+sleep 5
 systemctl restart subspaced
-sleep 30
+sleep 20
 systemctl restart subspaced-farmer
 sleep 5
 
