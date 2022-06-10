@@ -115,3 +115,4 @@ else
   echo -e "Your Subspace farmer \e[31mwas not installed correctly\e[39m, please reinstall."
 fi
 echo -e "Check your farmer logs \e[32mjournalctl -fu subspaced-farmer -o cat\e[39m"
+echo -e "If you are having issues please try to restart farmer service: \e[32msystemctl restart subspaced-farmer\e[39m"
