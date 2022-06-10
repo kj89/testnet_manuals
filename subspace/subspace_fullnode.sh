@@ -13,17 +13,17 @@ echo "=================================================="
 sleep 2
 
 # set vars
-echo -e "\e[1m\e[32mReplace `NODENAME` below with the name of your node\e[0m"
+echo -e "\e[1m\e[32mReplace <NODENAME> below with the name of your node\e[0m"
 if [ ! $NODENAME ]; then
 	read -p "Enter node name: " NODENAME
 	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
 fi
-echo -e "\e[1m\e[32mReplace `WALLET_ADDRESS` below with your account address from Polkadot.js wallet\e[0m"
+echo -e "\e[1m\e[32mReplace <WALLET_ADDRESS> below with your account address from Polkadot.js wallet\e[0m"
 if [ ! $WALLET_ADDRESS ]; then
 	read -p "Enter wallet address: " WALLET_ADDRESS
 	echo 'export WALLET_ADDRESS='$WALLET_ADDRESS >> $HOME/.bash_profile
 fi
-echo -e "\e[1m\e[32mReplace `PLOT_SIZE` with plot size in gigabytes or terabytes, for instance 100G or 2T (but leave at least 10G of disk space for node)\e[0m"
+echo -e "\e[1m\e[32mReplace <PLOT_SIZE> with plot size in gigabytes or terabytes, for instance 100G or 2T (but leave at least 10G of disk space for node)\e[0m"
 if [ ! $PLOT_SIZE ]; then
 	read -p "Enter plot size: " PLOT_SIZE
 	echo 'export PLOT_SIZE='$PLOT_SIZE >> $HOME/.bash_profile
@@ -98,11 +98,10 @@ EOF
 sudo systemctl restart systemd-journald
 sudo systemctl daemon-reload
 sudo systemctl enable subspaced subspaced-farmer
-subspace-farmer wipe
-subspace-node purge-chain --chain gemini-1 -y
 systemctl restart subspaced
 sleep 30
 systemctl restart subspaced-farmer
+sleep 5
 
 echo "==================================================="
 echo -e '\e[32mCheck node status\e[39m' && sleep 1
