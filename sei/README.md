@@ -43,6 +43,18 @@ wget -O sei_testnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/ma
 ### Option 2 (manual)
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/sei/manual_install.md) if you better prefer setting up node manually
 
+### Chain upgrade from 1.0.2beta to 1.0.3beta
+Once the chain reaches the upgrade height, you will encounter the following panic error message:\
+`ERR UPGRADE "upgrade-1.0.3beta" NEEDED at height: 153759`
+```
+cd $HOME && rm $HOME/sei-chain -rf
+git clone https://github.com/sei-protocol/sei-chain.git && cd $HOME/sei-chain
+git checkout 1.0.3beta
+make install
+mv ~/go/bin/seid /usr/local/bin/seid
+systemctl restart seid && journalctl -fu seid -o cat
+```
+
 ### Post installation
 When installation is finished please load variables into system
 ```
