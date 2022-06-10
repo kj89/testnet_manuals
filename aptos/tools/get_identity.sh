@@ -7,7 +7,7 @@ if [ "$KEY" ] && [ "$PEER_ID" ]; then
     echo -e ' 
 '$PEER_ID':
     addresses: 
-    - "/ip4/'$(ip route get 8.8.8.8 | sed -n "/src/{s/.*src *\([^ ]*\).*/\1/p;q}")'/tcp/6180/ln-noise-ik/'$PEER_ID'/ln-handshake/0" 
+    - "/ip4/'$(ip route get 8.8.8.8 | sed -n "/src/{s/.*src *\([^ ]*\).*/\1/p;q}")'/tcp/6180/noise-ik/'$PEER_ID'/ln-handshake/0" 
     role: "Upstream"'
     echo -en "\n"
     echo "=================================================="

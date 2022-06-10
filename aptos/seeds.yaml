@@ -2,19 +2,19 @@ seeds:
   # @user : nazario.eth#0001, Aptos Admin
   bb14af025d226288a3488b4433cf5cb54d6a710365a2d95ac6ffbd9b9198a86a:
     addresses:
-    - "/dns4/pfn0.node.devnet.aptoslabs.com/tcp/6182/ln-noise-ik/bb14af025d226288a3488b4433cf5cb54d6a710365a2d95ac6ffbd9b9198a86a/ln-handshake/0"
+    - "/dns4/pfn0.node.devnet.aptoslabs.com/tcp/6182/noise-ik/bb14af025d226288a3488b4433cf5cb54d6a710365a2d95ac6ffbd9b9198a86a/ln-handshake/0"
     role: "Upstream"
   bb14af025d226288a3488b4433cf5cb54d6a710365a2d95ac6ffbd9b9198a86a:
     addresses:
-    - "/ip4/100.20.221.187/tcp/6182/ln-noise-ik/bb14af025d226288a3488b4433cf5cb54d6a710365a2d95ac6ffbd9b9198a86a/ln-handshake/0"
+    - "/ip4/100.20.221.187/tcp/6182/noise-ik/bb14af025d226288a3488b4433cf5cb54d6a710365a2d95ac6ffbd9b9198a86a/ln-handshake/0"
     role: "Upstream"
   # @user: kjnodes#8455
   eda744627b8307937dacea4a5c50a55ce39b97bd9d9157ef0c28399e81318d13:
     addresses:
-    - "/ip4/159.69.208.57/tcp/6180/ln-noise-ik/eda744627b8307937dacea4a5c50a55ce39b97bd9d9157ef0c28399e81318d13/ln-handshake/0"
+    - "/ip4/159.69.208.57/tcp/6180/noise-ik/eda744627b8307937dacea4a5c50a55ce39b97bd9d9157ef0c28399e81318d13/ln-handshake/0"
     role: "Upstream"
   # @user: jdoe#5812
   822a951c4ef252d7dfe49ef0e20768ac51bfaaae261ed9d9bceb1835719aa536:
     addresses:
-    - "/ip4/135.181.103.127/tcp/6180/ln-noise-ik/822a951c4ef252d7dfe49ef0e20768ac51bfaaae261ed9d9bceb1835719aa536/ln-handshake/0"
+    - "/ip4/135.181.103.127/tcp/6180/noise-ik/822a951c4ef252d7dfe49ef0e20768ac51bfaaae261ed9d9bceb1835719aa536/ln-handshake/0"
     role: "Upstream"
