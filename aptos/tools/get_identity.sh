@@ -1,4 +1,6 @@
 echo -e "\e[1m\e[32mExtracting node identity details \e[0m" 
+KEY=$(cat aptos/public_full_node.yaml | yq .full_node_networks[0].identity.key)
+PEER_ID=$(cat aptos/public_full_node.yaml | yq .full_node_networks[0].identity.peer_id)
 source $HOME/.bash_profile
 if [ "$KEY" ] && [ "$PEER_ID" ]; then
     echo -en "\n"
