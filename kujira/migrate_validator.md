@@ -10,7 +10,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 # Migrate your validator to another machine
 
 ### 1. Run a new full node on a new machine
-To setup full node you can follow my guide [kujira node setup for Testnet — harpoon-3](https://github.com/kj89/testnet_manuals/blob/main/kujira/README.md)
+To setup full node you can follow my guide [kujira node setup for Testnet — harpoon-4](https://github.com/kj89/testnet_manuals/blob/main/kujira/harpoon-4/README.md)
 
 ### 2. Confirm that you have the recovery seed phrase information for the active key running on the old machine
 
@@ -79,7 +79,7 @@ sudo systemctl start kujirad
 ### 9. Make sure your validator is not jailed
 #### To unjail your validator
 ```
-kujirad tx slashing unjail --chain-id harpoon-3 --from mykey --gas=auto -y
+kujirad tx slashing unjail --chain-id harpoon-4 --from mykey --gas=auto -y
 ```
 
 ### 10. After you ensure your validator is producing blocks and is healthy you can shut down old validator server

@@ -7,7 +7,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/172356220-b8326ceb-9950-4226-b66e-da69099aaf6e.png">
 </p>
 
-# kujira node setup for Testnet — harpoon-4
+# kujira node setup for Testnet — harpoon-3
 
 Official documentation:
 >- [Validator setup instructions](https://docs.kujira.app/run-a-node)
@@ -16,9 +16,9 @@ Explorer:
 >-  https://kujira.explorers.guru/
 
 ## Usefull tools and references
-> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for kujira validator](https://github.com/kj89/testnet_manuals/blob/main/kujira/harpoon-4/monitoring/README.md)
+> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for kujira validator](https://github.com/kj89/testnet_manuals/blob/main/kujira/harpoon-3/monitoring/README.md)
 >
-> To migrate your valitorator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/kujira/harpoon-4/migrate_validator.md)
+> To migrate your valitorator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/kujira/harpoon-3/migrate_validator.md)
 
 ## Hardware Requirements
 Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
@@ -39,11 +39,11 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
 ### Option 1 (automatic)
 You can setup your kujira fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
-wget -O kujira.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/kujira/harpoon-4/kujira.sh && chmod +x kujira.sh && ./kujira.sh
+wget -O kujira.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/kujira/harpoon-3/kujira.sh && chmod +x kujira.sh && ./kujira.sh
 ```
 
 ### Option 2 (manual)
-You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/kujira/harpoon-4/manual_install.md) if you better prefer setting up node manually
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/kujira/harpoon-3/manual_install.md) if you better prefer setting up node manually
 
 ## Post installation
 
@@ -92,7 +92,10 @@ source $HOME/.bash_profile
 ```
 
 ### Fund your wallet
-N/A
+In order to create validator first you need to fund your wallet with testnet tokens
+```
+curl -X POST https://faucet.kujira.app/$WALLET_ADDRESS
+```
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 kujira (1 kujira is equal to 1000000 ukuji) and your node is synchronized
@@ -140,13 +143,13 @@ sudo ufw enable
 ```
 
 ## Monitoring
-To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for kujira validator](https://github.com/kj89/testnet_manuals/blob/main/kujira/harpoon-4/monitoring/README.md)
+To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for kujira validator](https://github.com/kj89/testnet_manuals/blob/main/kujira/harpoon-3/monitoring/README.md)
 
 ## Calculate synchronization time
 This script will help you to estimate how much time it will take to fully synchronize your node\
 It measures average blocks per minute that are being synchronized for period of 5 minutes and then gives you results
 ```
-wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/kujira/harpoon-4/tools/synctime.py && python3 ./synctime.py
+wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/kujira/harpoon-3/tools/synctime.py && python3 ./synctime.py
 ```
 
 ## Get currently connected peer list with ids
