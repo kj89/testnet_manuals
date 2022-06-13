@@ -112,7 +112,7 @@ kujirad query bank balances $WALLET_ADDRESS
 To create your validator run command below
 ```
 kujirad tx staking create-validator \
-  --amount 100000000ukuji \
+  --amount 1999000ukuji \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
