@@ -10,7 +10,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 # Migrate your validator to another machine
 
 ### 1. Run a new full node on a new machine
-To setup full node you can follow my guide [kujira node setup for Testnet — harpoon-4](https://github.com/kj89/testnet_manuals/blob/main/kujira/harpoon-4/README.md)
+To setup full node you can follow my guide [kujira node setup for Testnet — harpoon-4](https://github.com/kj89/testnet_manuals/blob/main/kujira/README.md)
 
 ### 2. Confirm that you have the recovery seed phrase information for the active key running on the old machine
 
