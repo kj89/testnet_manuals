@@ -10,7 +10,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 # mises node setup for Testnet — mainnet
 
 Official documentation:
-> [Validator setup instructions](https://github.com/ingenuity-build/testnets)
+> [Validator setup instructions](https://github.com/mises-id/mises-tm)
 
 ## Usefull tools I have created for mises
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for mises validator](https://github.com/kj89/testnet_manuals/blob/main/mises/monitoring/README.md)
