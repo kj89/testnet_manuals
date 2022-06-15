@@ -56,12 +56,6 @@ git checkout main
 make install
 ```
 
-## Config app
-```
-misestmd config chain-id $CHAIN_ID
-misestmd config keyring-backend test
-```
-
 ## Init app
 ```
 misestmd init $NODENAME --chain-id $CHAIN_ID

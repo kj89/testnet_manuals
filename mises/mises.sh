@@ -57,8 +57,8 @@ make build
 chmod +x ./build/misestmd && mv ./build/misestmd /usr/local/bin/misestmd
 
 # config
-misestmd config chain-id $CHAIN_ID
-misestmd config keyring-backend test
+#misestmd config chain-id $CHAIN_ID
+#misestmd config keyring-backend test
 
 # init
 misestmd init $NODENAME --chain-id $CHAIN_ID
