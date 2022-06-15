@@ -111,7 +111,7 @@ After=network.target
 [Service]
 Type=simple
 User=$USER
-ExecStart=$(which misestmd) start
+ExecStart=$(which misestmd) start --mises-use-mongodb mongodb://127.0.0.1:27017
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
