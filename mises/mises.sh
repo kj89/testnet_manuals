@@ -51,10 +51,10 @@ go version
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 cd $HOME
-git clone https://github.com/ingenuity-build/quicksilver.git --branch v0.2.0
-cd quicksilver
-make build
-chmod +x ./build/misestmd && mv ./build/misestmd /usr/local/bin/misestmd
+git clone https://github.com/mises-id/mises-tm/
+cd mises-tm
+git checkout main
+make install
 
 # config
 #misestmd config chain-id $CHAIN_ID
