@@ -88,8 +88,7 @@ sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_rec
 sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.misestm/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.misestm/config/app.toml
 
-# set state sync
-function stateSync {
+# enable state sync
 SNAP_RPC1="https://e1.mises.site:443" \
 && SNAP_RPC2="https://e2.mises.site:443"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC2/block | jq -r .result.block.header.height) \
@@ -99,20 +98,6 @@ sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC1,$SNAP_RPC2\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.misestm/config/config.toml
-}
-
-# let uset choose sync mode
-while true; do
-read -p "Do you want use State Sync for rapid data synchronization? (y/n) " yn
-case $yn in
-	[yY] ) echo -e '\e[1m\e[32mEnabling State Sync...\e[0m' && sleep 1
-	stateSync
-	    break;;
-	[nN] ) echo -e '\e[1m\e[32mSkipping State Sync...\e[0m' && sleep 1
-		break;;
-	* ) echo invalid response;;
-esac
-done
 
 # reset
 misestmd unsafe-reset-all
