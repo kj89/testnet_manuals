@@ -58,7 +58,7 @@ chmod +x ./build/quicksilverd && mv ./build/quicksilverd /usr/local/bin/quicksil
 
 # config
 quicksilverd config chain-id $CHAIN_ID
-quicksilverd config keyring-backend file
+quicksilverd config keyring-backend test
 
 # init
 quicksilverd init $NODENAME --chain-id $CHAIN_ID
