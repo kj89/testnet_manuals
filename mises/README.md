@@ -258,5 +258,5 @@ systemctl disable misestmd
 rm /etc/systemd/system/mises* -rf
 rm $(which misestmd) -rf
 rm $HOME/.mises* -rf
-rm $HOME/mises -rf
+rm $HOME/mises-tm -rf
 ```
