@@ -7,7 +7,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
   <img height="100" height="auto" src="https://www.mises.site/static/images/index/logo@2x.png">
 </p>
 
-# Set up monitoring and alerting for quicksilver validator
+# Set up monitoring and alerting for mises validator
 
 ## Prerequisites
 
@@ -19,8 +19,8 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `umis` for quicksilver testnet. You can find it in genesis file |
-| **bench_prefix** | Prefix for chain addresses, for example, `quick` for quicksilver testnet. You can find it in public addresses like this **quick**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **bond_denom** | Denominated token name, for example, `umis` for mises mainnet. You can find it in genesis file |
+| **bench_prefix** | Prefix for chain addresses, for example, `mises` for mises mainnet. You can find it in public addresses like this **mises**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
 
 make sure following ports are open:
 - `9100` (node-exporter)
@@ -74,7 +74,7 @@ To add validator use command with specified `VALIDATOR_IP`, `VALOPER_ADDRESS`, `
 $HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP VALOPER_ADDRESS WALLET_ADDRESS PROJECT_NAME
 ```
 
-> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 quickvaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete quick1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc quicksilver```
+> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 misesvaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete mises1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc mises```
 
 To add more validators just run command above with validator values
 
