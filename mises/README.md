@@ -11,6 +11,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 
 Official documentation:
 > [Validator setup instructions](https://github.com/mises-id/mises-tm)
+> [Discord](https://discord.gg/fkneTvDE) | [Telegram](https://t.me/Misesofficial)
 
 ## Usefull tools I have created for mises
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for mises validator](https://github.com/kj89/testnet_manuals/blob/main/mises/monitoring/README.md)
