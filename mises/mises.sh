@@ -64,14 +64,14 @@ chmod +x ./build/misestmd && mv ./build/misestmd /usr/local/bin/misestmd
 misestmd init $NODENAME --chain-id $CHAIN_ID
 
 # download genesis
-wget -qO $HOME/.misestm/config/genesis.json "https://raw.githubusercontent.com/ingenuity-build/testnets/main/rhapsody/genesis.json"
+curl https://e1.mises.site:443/genesis | jq .result.genesis > ~/.misestm/config/genesis.json
 
 # set minimum gas price
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0umis\"/" $HOME/.misestm/config/app.toml
 
 # set peers and seeds
-SEEDS="dd3460ec11f78b4a7c4336f22a356fe00805ab64@seed.mainnet.quicksilver.zone:26656"
-PEERS=""
+SEEDS=""
+PEERS="40a8318fa18fa9d900f4b0d967df7b1020689fa0@e1.mises.site:26656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.misestm/config/config.toml
 
 # enable prometheus
