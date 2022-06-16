@@ -89,7 +89,7 @@ sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.quicksilverd/config/app.toml
 
 # reset
-quicksilverd unsafe-reset-all
+quicksilverd tendermint unsafe-reset-all
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
