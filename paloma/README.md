@@ -13,7 +13,7 @@ Official documentation:
 >- [Validator setup instructions](https://github.com/palomachain/paloma)
 
 Explorer:
->-  N/A
+>-  https://paloma.explorers.guru/
 
 ## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for paloma validator](https://github.com/kj89/testnet_manuals/blob/main/paloma/monitoring/README.md)
