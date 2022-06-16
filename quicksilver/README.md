@@ -115,7 +115,7 @@ quicksilverd query bank balances $WALLET_ADDRESS
 To create your validator run command below
 ```
 quicksilverd tx staking create-validator \
-  --amount 1000000uqck \
+  --amount 5000000uqck \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
