@@ -54,7 +54,7 @@ source $HOME/.bash_profile
 
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
-palomad status 2>&1 | jq .SyncInfo
+curl -s localhost:${PALOMA_PORT}657/status | jq .result.sync_info
 ```
 
 ### Create wallet
@@ -119,16 +119,6 @@ palomad tx staking create-validator \
   --chain-id $PALOMA_CHAIN_ID
 ```
 
-## Manage ports
-To install multiple cosmos validators on the same machine, you will have to define custom ports for each application, so it does not conflict with each other\
-Please select `<RANGE>` between `10` and `99`
-```
-custom_port=<RANGE>
-sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${custom_port}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${custom_port}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${custom_port}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${custom_port}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${custom_port}660\"%" $HOME/.paloma/config/config.toml
-sed -i.bak -e "s%^address = \"0.0.0.0:1317\"%address = \"0.0.0.0:${custom_port}317\"%; s%^address = \"0.0.0.0:8080\"%address = \"0.0.0.0:${custom_port}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${custom_port}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${custom_port}091\"%" $HOME/.paloma/config/app.toml
-systemctl restart palomad
-```
-
 ## Security
 To protect you keys please make sure you follow basic security rules
 
@@ -147,7 +137,7 @@ sudo ufw default allow outgoing
 sudo ufw default deny incoming
 sudo ufw allow ssh/tcp
 sudo ufw limit ssh/tcp
-sudo ufw allow 26656,26660/tcp
+sudo ufw allow ${PALOMA_PORT}656,${PALOMA_PORT}660/tcp
 sudo ufw enable
 ```
 
@@ -163,7 +153,7 @@ wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/
 
 ## Get currently connected peer list with ids
 ```
-curl -sS http://localhost:26657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
+curl -sS http://localhost:${PALOMA_PORT}657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
 
 ## Usefull commands
