@@ -69,9 +69,9 @@ source $HOME/.bash_profile
 ```
 
 ### Add validator into _prometheus_ configuration file
-To add validator use command with specified `VALIDATOR_IP`, `VALOPER_ADDRESS`, `WALLET_ADDRESS` and `PROJECT_NAME`
+To add validator use command with specified `VALIDATOR_IP`, `PALOMA_VALOPER_ADDRESS`, `PALOMA_WALLET_ADDRESS` and `PROJECT_NAME`
 ```
-$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP VALOPER_ADDRESS WALLET_ADDRESS PROJECT_NAME
+$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP PALOMA_VALOPER_ADDRESS PALOMA_WALLET_ADDRESS PROJECT_NAME
 ```
 
 > example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 palomavaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete paloma1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc paloma```

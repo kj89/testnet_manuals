@@ -76,24 +76,24 @@ palomad keys list
 ### Save wallet info
 Add wallet address
 ```
-WALLET_ADDRESS=$(palomad keys show $WALLET -a)
+PALOMA_WALLET_ADDRESS=$(palomad keys show $WALLET -a)
 ```
 
 Add valoper address
 ```
-VALOPER_ADDRESS=$(palomad keys show $WALLET --bech val -a)
+PALOMA_VALOPER_ADDRESS=$(palomad keys show $WALLET --bech val -a)
 ```
 
 Load variables into system
 ```
-echo 'export WALLET_ADDRESS='${WALLET_ADDRESS} >> $HOME/.bash_profile
-echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
+echo 'export PALOMA_WALLET_ADDRESS='${PALOMA_WALLET_ADDRESS} >> $HOME/.bash_profile
+echo 'export PALOMA_VALOPER_ADDRESS='${PALOMA_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
 ### Fund your wallet
 ```
-JSON=$(jq -n --arg addr "$WALLET_ADDRESS" '{"denom":"ugrain","address":$addr}') && curl -X POST --header "Content-Type: application/json" --data "$JSON" http://faucet.palomaswap.com:8080/claim
+JSON=$(jq -n --arg addr "$PALOMA_WALLET_ADDRESS" '{"denom":"ugrain","address":$addr}') && curl -X POST --header "Content-Type: application/json" --data "$JSON" http://faucet.palomaswap.com:8080/claim
 ```
 
 ### Create validator
@@ -101,7 +101,7 @@ Before creating validator please make sure that you have at least 1 paloma (1 pa
 
 To check your wallet balance:
 ```
-palomad query bank balances $WALLET_ADDRESS
+palomad query bank balances $PALOMA_WALLET_ADDRESS
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
@@ -116,7 +116,17 @@ palomad tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(palomad tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id $CHAIN_ID
+  --chain-id $PALOMA_CHAIN_ID
+```
+
+## Manage ports
+To install multiple cosmos validators on the same machine, you will have to define custom ports for each application, so it does not conflict with each other\
+Please select `<RANGE>` between `10` and `99`
+```
+custom_port=<RANGE>
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${custom_port}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${custom_port}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${custom_port}60\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${custom_port}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${custom_port}660\"%" $HOME/.paloma/config/config.toml
+sed -i.bak -e "s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${custom_port}90\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${custom_port}91\"%" $HOME/.paloma/config/app.toml
+systemctl restart palomad
 ```
 
 ## Security
@@ -217,38 +227,38 @@ palomad keys delete $WALLET
 
 Get wallet balance
 ```
-palomad query bank balances $WALLET_ADDRESS
+palomad query bank balances $PALOMA_WALLET_ADDRESS
 ```
 
 Transfer funds
 ```
-palomad tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000grain
+palomad tx bank send $PALOMA_WALLET_ADDRESS <TO_PALOMA_WALLET_ADDRESS> 10000000grain
 ```
 
 ### Voting
 ```
-palomad tx gov vote 1 yes --from $WALLET --chain-id=$CHAIN_ID
+palomad tx gov vote 1 yes --from $WALLET --chain-id=$PALOMA_CHAIN_ID
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-palomad tx staking delegate $VALOPER_ADDRESS 10000000grain --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+palomad tx staking delegate $PALOMA_VALOPER_ADDRESS 10000000grain --from=$WALLET --chain-id=$PALOMA_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-palomad tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000grain --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+palomad tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000grain --from=$WALLET --chain-id=$PALOMA_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
 ```
-palomad tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+palomad tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$PALOMA_CHAIN_ID --gas=auto
 ```
 
 Withdraw rewards with commision
 ```
-palomad tx distribution withdraw-rewards $VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$CHAIN_ID
+palomad tx distribution withdraw-rewards $PALOMA_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$PALOMA_CHAIN_ID
 ```
 
 ### Validator management
@@ -259,7 +269,7 @@ palomad tx staking edit-validator \
 --identity=1C5ACD2EEF363C3A \
 --website="http://kjnodes.com" \
 --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
---chain-id=$CHAIN_ID \
+--chain-id=$PALOMA_CHAIN_ID \
 --from=$WALLET
 ```
 
@@ -268,7 +278,7 @@ Unjail validator
 palomad tx slashing unjail \
   --broadcast-mode=block \
   --from=$WALLET \
-  --chain-id=$CHAIN_ID \
+  --chain-id=$PALOMA_CHAIN_ID \
   --gas=auto
 ```
 

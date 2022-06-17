@@ -19,13 +19,13 @@ if [ ! $NODENAME ]; then
 	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
 fi
 echo "export WALLET=wallet" >> $HOME/.bash_profile
-echo "export CHAIN_ID=paloma" >> $HOME/.bash_profile
+echo "export PALOMA_CHAIN_ID=paloma" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 echo '================================================='
 echo 'Your node name: ' $NODENAME
 echo 'Your wallet name: ' $WALLET
-echo 'Your chain name: ' $CHAIN_ID
+echo 'Your chain name: ' $PALOMA_CHAIN_ID
 echo '================================================='
 sleep 2
 
@@ -56,11 +56,11 @@ sudo chmod +x /usr/local/bin/palomad
 sudo wget -P /usr/lib https://github.com/CosmWasm/wasmvm/raw/main/api/libwasmvm.x86_64.so
 
 # config
-palomad config chain-id $CHAIN_ID
+palomad config chain-id $PALOMA_CHAIN_ID
 palomad config keyring-backend test
 
 # init
-palomad init $NODENAME --chain-id $CHAIN_ID
+palomad init $NODENAME --chain-id $PALOMA_CHAIN_ID
 
 # download genesis and addrbook
 wget -qO ~/.paloma/config/genesis.json https://raw.githubusercontent.com/palomachain/testnet/master/passerina/genesis.json

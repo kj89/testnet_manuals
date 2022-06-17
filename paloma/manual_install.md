@@ -20,7 +20,7 @@ Save and import variables into system
 ```
 echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 echo "export WALLET=wallet" >> $HOME/.bash_profile
-echo "export CHAIN_ID=paloma" >> $HOME/.bash_profile
+echo "export PALOMA_CHAIN_ID=paloma" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -57,13 +57,13 @@ sudo wget -P /usr/lib https://github.com/CosmWasm/wasmvm/raw/main/api/libwasmvm.
 
 ## Config app
 ```
-palomad config chain-id $CHAIN_ID
+palomad config chain-id $PALOMA_CHAIN_ID
 palomad config keyring-backend test
 ```
 
 ## Init app
 ```
-palomad init $NODENAME --chain-id $CHAIN_ID
+palomad init $NODENAME --chain-id $PALOMA_CHAIN_ID
 ```
 
 ## Download genesis and addrbook
