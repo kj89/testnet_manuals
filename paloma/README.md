@@ -108,7 +108,7 @@ palomad query bank balances $PALOMA_WALLET_ADDRESS --node $PALOMA_RPC
 To create your validator run command below
 ```
 palomad tx staking create-validator \
-  --amount 100000000grain \
+  --amount 100000grain \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
