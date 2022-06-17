@@ -71,7 +71,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0grain\"/" $HOME/.p
 
 # set peers and seeds
 SEEDS=""
-PEERS="0f4411c257bfe7bf191c2c3fd32b385a363487cf@testnet.palomaswap.com:26656"
+PEERS="e683b0b68aa21fa0abd57a94ab3c8f2d2c42a503@5.161.140.1:26656,0f4411c257bfe7bf191c2c3fd32b385a363487cf@167.71.247.34:26656,6888a040dc01bdc5ace1a178363354a08001dcd6@89.40.5.165:36416,0abd03b16627669a9fb353cee778728e28f0c946@137.184.14.108:36416,2b277dc8535f86b464f8125a374b144eca3d1651@176.126.87.119:36416,fe5c117fa5ea03495ed3bbbdbb4db442261bf577@164.92.79.159:36416"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.paloma/config/config.toml
 
 # disable indexing

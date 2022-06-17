@@ -29,9 +29,9 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
  - 80GB Disk
  - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
-### Optimal Hardware Requirements 
+### Recommended Hardware Requirements 
  - 4x CPUs; the faster clock speed the better
- - 8GB RAM
+ - 16GB RAM
  - 200GB of storage (SSD or NVME)
  - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
@@ -124,8 +124,8 @@ To install multiple cosmos validators on the same machine, you will have to defi
 Please select `<RANGE>` between `10` and `99`
 ```
 custom_port=<RANGE>
-sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${custom_port}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${custom_port}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${custom_port}60\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${custom_port}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${custom_port}660\"%" $HOME/.paloma/config/config.toml
-sed -i.bak -e "s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${custom_port}90\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${custom_port}91\"%" $HOME/.paloma/config/app.toml
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${custom_port}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${custom_port}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${custom_port}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${custom_port}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${custom_port}660\"%" $HOME/.paloma/config/config.toml
+sed -i.bak -e "s%^address = \"0.0.0.0:1317\"%address = \"0.0.0.0:${custom_port}317\"%; s%^address = \"0.0.0.0:8080\"%address = \"0.0.0.0:${custom_port}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${custom_port}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${custom_port}091\"%" $HOME/.paloma/config/app.toml
 systemctl restart palomad
 ```
 
