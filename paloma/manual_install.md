@@ -18,10 +18,12 @@ NODENAME=<MY_MONIKER_NAME_GOES_HERE>
 
 Save and import variables into system
 ```
+PALOMA_PORT=10
 echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 echo "export WALLET=wallet" >> $HOME/.bash_profile
 echo "export PALOMA_CHAIN_ID=paloma" >> $HOME/.bash_profile
-echo "export PALOMA_PORT=10" >> $HOME/.bash_profile
+echo "export PALOMA_PORT=${PALOMA_PORT}" >> $HOME/.bash_profile
+echo "export PALOMA_RPC=tcp://localhost:${PALOMA_PORT}657" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 

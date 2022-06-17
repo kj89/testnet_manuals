@@ -54,7 +54,7 @@ source $HOME/.bash_profile
 
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
-curl -s localhost:${PALOMA_PORT}657/status | jq .result.sync_info
+palomad status --node $PALOMA_RPC 2>&1 | jq .SyncInfo
 ```
 
 ### Create wallet
@@ -101,7 +101,7 @@ Before creating validator please make sure that you have at least 1 paloma (1 pa
 
 To check your wallet balance:
 ```
-palomad query bank balances $PALOMA_WALLET_ADDRESS
+palomad query bank balances $PALOMA_WALLET_ADDRESS --node tcp://localhost:${PALOMA_PORT}657
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
@@ -116,7 +116,8 @@ palomad tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(palomad tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id $PALOMA_CHAIN_ID
+  --chain-id $PALOMA_CHAIN_ID \
+  --node $PALOMA_RPC
 ```
 
 ## Security
@@ -181,17 +182,17 @@ systemctl restart palomad
 ### Node info
 Synchronization info
 ```
-palomad status 2>&1 | jq .SyncInfo
+palomad status --node $PALOMA_RPC 2>&1 | jq .SyncInfo
 ```
 
 Validator info
 ```
-palomad status 2>&1 | jq .ValidatorInfo
+palomad status --node $PALOMA_RPC 2>&1 | jq .ValidatorInfo
 ```
 
 Node info
 ```
-palomad status 2>&1 | jq .NodeInfo
+palomad status --node $PALOMA_RPC 2>&1 | jq .NodeInfo
 ```
 
 Show node id
@@ -217,50 +218,51 @@ palomad keys delete $WALLET
 
 Get wallet balance
 ```
-palomad query bank balances $PALOMA_WALLET_ADDRESS
+palomad query bank balances $PALOMA_WALLET_ADDRESS --node $PALOMA_RPC
 ```
 
 Transfer funds
 ```
-palomad tx bank send $PALOMA_WALLET_ADDRESS <TO_PALOMA_WALLET_ADDRESS> 10000000grain
+palomad tx bank send $PALOMA_WALLET_ADDRESS <TO_PALOMA_WALLET_ADDRESS> 10000000grain --node $PALOMA_RPC
 ```
 
 ### Voting
 ```
-palomad tx gov vote 1 yes --from $WALLET --chain-id=$PALOMA_CHAIN_ID
+palomad tx gov vote 1 yes --from $WALLET --chain-id=$PALOMA_CHAIN_ID --node $PALOMA_RPC
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-palomad tx staking delegate $PALOMA_VALOPER_ADDRESS 10000000grain --from=$WALLET --chain-id=$PALOMA_CHAIN_ID --gas=auto
+palomad tx staking delegate $PALOMA_VALOPER_ADDRESS 10000000grain --from=$WALLET --chain-id=$PALOMA_CHAIN_ID --gas=auto --node $PALOMA_RPC
 ```
 
 Redelegate stake from validator to another validator
 ```
-palomad tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000grain --from=$WALLET --chain-id=$PALOMA_CHAIN_ID --gas=auto
+palomad tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000grain --from=$WALLET --chain-id=$PALOMA_CHAIN_ID --gas=auto --node $PALOMA_RPC
 ```
 
 Withdraw all rewards
 ```
-palomad tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$PALOMA_CHAIN_ID --gas=auto
+palomad tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$PALOMA_CHAIN_ID --gas=auto --node $PALOMA_RPC
 ```
 
 Withdraw rewards with commision
 ```
-palomad tx distribution withdraw-rewards $PALOMA_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$PALOMA_CHAIN_ID
+palomad tx distribution withdraw-rewards $PALOMA_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$PALOMA_CHAIN_ID --node $PALOMA_RPC
 ```
 
 ### Validator management
 Edit validator
 ```
 palomad tx staking edit-validator \
---moniker=$NODENAME \
---identity=1C5ACD2EEF363C3A \
---website="http://kjnodes.com" \
---details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
---chain-id=$PALOMA_CHAIN_ID \
---from=$WALLET
+  --moniker=$NODENAME \
+  --identity=1C5ACD2EEF363C3A \
+  --website="http://kjnodes.com" \
+  --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
+  --chain-id=$PALOMA_CHAIN_ID \
+  --from=$WALLET \
+  --node $PALOMA_RPC
 ```
 
 Unjail validator
@@ -269,7 +271,8 @@ palomad tx slashing unjail \
   --broadcast-mode=block \
   --from=$WALLET \
   --chain-id=$PALOMA_CHAIN_ID \
-  --gas=auto
+  --gas=auto \
+  --node $PALOMA_RPC
 ```
 
 ### Delete node
