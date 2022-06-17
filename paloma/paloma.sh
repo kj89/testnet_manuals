@@ -26,10 +26,10 @@ echo "export PALOMA_RPC=tcp://localhost:${PALOMA_PORT}657" >> $HOME/.bash_profil
 source $HOME/.bash_profile
 
 echo '================================================='
-echo 'Your node name: ' $NODENAME
-echo 'Your wallet name: ' $WALLET
-echo 'Your chain name: ' $PALOMA_CHAIN_ID
-echo 'Your port: ' $PALOMA_PORT
+echo -e "Your node name: \e[1m\e[32m$NODENAME\e[0m"
+echo -e "Your wallet name: \e[1m\e[32m$WALLET\e[0m"
+echo -e "Your chain name: \e[1m\e[32m$PALOMA_CHAIN_ID\e[0m"
+echo -e "Your port: \e[1m\e[32m$PALOMA_PORT\e[0m"
 echo '================================================='
 sleep 2
 
