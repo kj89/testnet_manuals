@@ -101,7 +101,7 @@ Before creating validator please make sure that you have at least 1 paloma (1 pa
 
 To check your wallet balance:
 ```
-palomad query bank balances $PALOMA_WALLET_ADDRESS --node tcp://localhost:${PALOMA_PORT}657
+palomad query bank balances $PALOMA_WALLET_ADDRESS --node $PALOMA_RPC
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
