@@ -78,8 +78,11 @@ quicksilverd gentx $WALLET 100000000uqck \
 --pubkey=$(quicksilverd tendermint show-validator) \
 --chain-id $CHAIN_ID \
 --moniker $NODENAME
+sleep 2
+gentx=$(readlink -f $HOME/.quicksilverd/config/gentx/*)
 
-echo -e "Your gentx file location: \e[1m\e[32m$(readlink -f $HOME/.quicksilverd/config/gentx/*)\e[0m"
+echo -e "Your gentx file location: \e[1m\e[32m$gentx\e[0m"
+echo -e "Paste this content into the form:\n\e[1m\e[32m$(cat $gentx)\e[0m"
 echo "============================================================================"
 echo -e "Things you have to backup:"
 echo -e "	Wallet \e[1m\e[32m24 word mnemonic\e[0m generated above"
