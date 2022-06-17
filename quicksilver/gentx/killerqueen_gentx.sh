@@ -82,8 +82,7 @@ sleep 2
 gentx=$(readlink -f $HOME/.quicksilverd/config/gentx/*)
 
 echo -e "Your gentx file location: \e[1m\e[32m$gentx\e[0m"
-echo -e "Paste this content into the form:\n\e[1m\e[32m$(cat $gentx)\e[0m"
-echo "============================================================================"
+echo -e "Paste this content into the form:\n\n\e[1m\e[32m$(cat $gentx)\n\e[0m"
 echo -e "Things you have to backup:"
 echo -e "	Wallet \e[1m\e[32m24 word mnemonic\e[0m generated above"
 echo -e "	Contents of \e[1m\e[32m$HOME/.quicksilverd/config/\e[0m"
