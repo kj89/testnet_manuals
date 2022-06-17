@@ -152,6 +152,11 @@ It measures average blocks per minute that are being synchronized for period of 
 wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/paloma/tools/synctime.py && python3 ./synctime.py
 ```
 
+### Get list of validators
+```
+palomad q staking validators --node $PALOMA_RPC -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
+```
+
 ## Get currently connected peer list with ids
 ```
 curl -sS http://localhost:${PALOMA_PORT}657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
