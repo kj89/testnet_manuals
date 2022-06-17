@@ -114,23 +114,7 @@ ports used:
 
 ![image](https://user-images.githubusercontent.com/50621007/160623287-0340acf8-2d30-47e7-8a3a-56295bea8a15.png)
 
-4. Change your chain explorer url
-
-4.1. Edit **"Top validators missing blocks panel"**
-
-![image](https://user-images.githubusercontent.com/50621007/160623476-50d8bf62-03cd-4de6-92de-53bc2df830cc.png)
-
-4.2. Go to **"Overrides"** and edit **"Data links"**
-
-![image](https://user-images.githubusercontent.com/50621007/160623555-ae7e9d54-9a0b-4ec9-9b1d-278fafe06682.png)
-
-4.3 Change url to your chain data explorer and hit **"Save"**
-
-![image](https://user-images.githubusercontent.com/50621007/164176856-26177445-5c32-4f96-abd4-9312c979b575.png)
-
-4.4. Hit **"Save"** button on the left top corner to save changes to dashboard
-
-5. Congratulations you have successfully configured Cosmos Validator Dashboard
+4. Congratulations you have successfully configured Cosmos Validator Dashboard
 
 
 ### Configrure Telegram alerting
