@@ -93,7 +93,7 @@ source $HOME/.bash_profile
 
 ### Fund your wallet
 ```
-JSON=$(jq -n --arg addr "$PALOMA_WALLET_ADDRESS" '{"denom":"ugrain","address":$addr}') && curl -X POST --header "Content-Type: application/json" --data "$JSON" http://faucet.palomaswap.com:8080/claim
+JSON=$(jq -n --arg addr "$PALOMA_WALLET_ADDRESS" '{"denom":"ugrain","address":$addr}') && curl -X POST --header "Content-Type: application/json" --data "$JSON" https://backend.faucet.palomaswap.com/claim
 ```
 
 ### Create validator
