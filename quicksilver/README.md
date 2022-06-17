@@ -13,6 +13,8 @@ Official documentation:
 > [Validator setup instructions](https://github.com/ingenuity-build/testnets)
 
 ## Usefull tools I have created for quicksilver
+> To generate gentx for killerqueen-1 testnet please navigate to [Generate gentx for killerqueen-1 testnet](https://github.com/kj89/testnet_manuals/blob/main/quicksilver/gentx/README.md)
+>
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for quicksilver validator](https://github.com/kj89/testnet_manuals/blob/main/quicksilver/monitoring/README.md)
 >
 > To migrate your valitorator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/quicksilver/migrate_validator.md)
