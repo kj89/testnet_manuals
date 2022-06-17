@@ -92,7 +92,9 @@ source $HOME/.bash_profile
 ```
 
 ### Fund your wallet
-Try to join [official telegram channel](https://t.me/palomachain) and try to ask for some grains to start validator
+```
+JSON=$(jq -n --arg addr "$WALLET_ADDRESS" '{"denom":"ugrain","address":$addr}') && curl -X POST --header "Content-Type: application/json" --data "$JSON" http://faucet.palomaswap.com:8080/claim
+```
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 paloma (1 paloma is equal to 1000000 grain) and your node is synchronized
