@@ -19,4 +19,3 @@ Things you have to backup:
 
 # Fill out the form
 To secure your spot in testnet, please fill out [the form](https://forms.gle/VMfagKN3sDrKYpE38) before Monday, June 20
-
