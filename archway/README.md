@@ -19,7 +19,7 @@ Official documentation:
 >
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for Archway validator](https://github.com/kj89/testnet_manuals/blob/main/archway/monitoring/README.md)
 >
-> To migrate your valitorator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/archway/migrate_validator.md)
+> To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/archway/migrate_validator.md)
 
 ## Set up your archway fullnode
 ### Option 1 (automatic)

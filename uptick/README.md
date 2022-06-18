@@ -18,7 +18,7 @@ Explorer:
 ## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for uptick validator](https://github.com/kj89/testnet_manuals/blob/main/uptick/monitoring/README.md)
 >
-> To migrate your valitorator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/uptick/migrate_validator.md)
+> To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/uptick/migrate_validator.md)
 
 ## Set up your uptick fullnode
 ### Option 1 (automatic)
