@@ -171,17 +171,17 @@ journalctl -fu palomad -o cat
 
 Start service
 ```
-systemctl start palomad
+sudo systemctl start palomad
 ```
 
 Stop service
 ```
-systemctl stop palomad
+sudo systemctl stop palomad
 ```
 
 Restart service
 ```
-systemctl restart palomad
+sudo systemctl restart palomad
 ```
 
 ### Node info
@@ -283,10 +283,10 @@ palomad tx slashing unjail \
 ### Delete node
 This commands will completely remove node from server. Use at your own risk!
 ```
-systemctl stop palomad
-systemctl disable palomad
-rm /etc/systemd/system/paloma* -rf
-rm $(which palomad) -rf
-rm $HOME/.paloma* -rf
-rm $HOME/paloma -rf
+sudo systemctl stop palomad
+sudo systemctl disable palomad
+sudo rm /etc/systemd/system/paloma* -rf
+sudo rm $(which palomad) -rf
+sudo rm $HOME/.paloma* -rf
+sudo rm $HOME/paloma -rf
 ```
