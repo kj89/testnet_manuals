@@ -74,18 +74,10 @@ palomad keys list
 ```
 
 ### Save wallet info
-Add wallet address
+Add wallet and valoper address and load variables into the system
 ```
 PALOMA_WALLET_ADDRESS=$(palomad keys show $WALLET -a)
-```
-
-Add valoper address
-```
 PALOMA_VALOPER_ADDRESS=$(palomad keys show $WALLET --bech val -a)
-```
-
-Load variables into system
-```
 echo 'export PALOMA_WALLET_ADDRESS='${PALOMA_WALLET_ADDRESS} >> $HOME/.bash_profile
 echo 'export PALOMA_VALOPER_ADDRESS='${PALOMA_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
