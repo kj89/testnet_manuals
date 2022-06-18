@@ -19,7 +19,9 @@ if [ ! $NODENAME ]; then
 	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
 fi
 QUICKSILVER_PORT=11
-echo "export WALLET=wallet" >> $HOME/.bash_profile
+if [ ! $WALLET ]; then
+	echo "export WALLET=wallet" >> $HOME/.bash_profile
+fi
 echo "export QUICKSILVER_CHAIN_ID=rhapsody-5" >> $HOME/.bash_profile
 echo "export QUICKSILVER_PORT=${QUICKSILVER_PORT}" >> $HOME/.bash_profile
 echo "export QUICKSILVER_RPC=tcp://localhost:${QUICKSILVER_PORT}657" >> $HOME/.bash_profile

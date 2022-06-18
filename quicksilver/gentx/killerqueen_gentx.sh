@@ -18,7 +18,9 @@ if [ ! $NODENAME ]; then
 	read -p "Enter node name: " NODENAME
 	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
 fi
-echo "export WALLET=wallet" >> $HOME/.bash_profile
+if [ ! $WALLET ]; then
+	echo "export WALLET=wallet" >> $HOME/.bash_profile
+fi
 echo "export CHAIN_ID=killerqueen-1" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
@@ -54,7 +56,7 @@ cd $HOME
 git clone https://github.com/ingenuity-build/quicksilver.git --branch v0.3.0
 cd quicksilver
 make build
-chmod +x ./build/quicksilverd && mv ./build/quicksilverd /usr/local/bin/quicksilverd
+sudo chmod +x ./build/quicksilverd && sudo mv ./build/quicksilverd /usr/local/bin/quicksilverd
 
 # config
 quicksilverd config chain-id $CHAIN_ID
