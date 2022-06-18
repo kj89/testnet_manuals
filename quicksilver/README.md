@@ -295,8 +295,8 @@ This commands will completely remove node from server. Use at your own risk!
 ```
 sudo systemctl stop quicksilverd
 sudo systemctl disable quicksilverd
-sudo rm /etc/systemd/system/paloma* -rf
+sudo rm /etc/systemd/system/quicksilver* -rf
 sudo rm $(which quicksilverd) -rf
-sudo rm $HOME/.quicksilverd* -rf
-sudo rm $HOME/paloma -rf
+sudo rm $HOME/.quicksilver* -rf
+sudo rm $HOME/quicksilver -rf
 ```

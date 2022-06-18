@@ -7,7 +7,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/166148846-93575afe-e3ce-4ca5-a3f7-a21e8a8609cb.png">
 </p>
 
-# Set up monitoring and alerting for paloma validator
+# Set up monitoring and alerting for quicksilver validator
 
 ## Prerequisites
 
@@ -19,8 +19,8 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `uqck` for paloma paloma testnet. You can find it in genesis file |
-| **bench_prefix** | Prefix for chain addresses, for example, `paloma` for paloma paloma testnet. You can find it in public addresses like this **paloma**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **bond_denom** | Denominated token name, for example, `uqck` for quicksilver testnet. You can find it in genesis file |
+| **bench_prefix** | Prefix for chain addresses, for example, `quick` for quicksilver testnet. You can find it in public addresses like this **quick**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
 
 make sure following ports are open:
 - `9100` (node-exporter)
@@ -74,7 +74,7 @@ To add validator use command with specified `VALIDATOR_IP`, `QUICKSILVER_VALOPER
 $HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP QUICKSILVER_VALOPER_ADDRESS QUICKSILVER_WALLET_ADDRESS PROJECT_NAME
 ```
 
-> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 palomavaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete paloma1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc paloma```
+> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 quickvaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete quick1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc quicksilver```
 
 To add more validators just run command above with validator values
 
