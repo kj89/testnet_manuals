@@ -111,7 +111,7 @@ echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
 sudo tee /etc/systemd/system/seid.service > /dev/null <<EOF
 [Unit]
-Description=paloma
+Description=sei
 After=network-online.target
 
 [Service]

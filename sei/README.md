@@ -35,9 +35,9 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
  - 200GB of storage (SSD or NVME)
  - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
-## Set up your paloma fullnode
+## Set up your sei fullnode
 ### Option 1 (automatic)
-You can setup your paloma fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
+You can setup your sei fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
 wget -O sei.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/sei.sh && chmod +x sei.sh && ./sei.sh
 ```
@@ -150,7 +150,7 @@ sudo ufw enable
 ```
 
 ## Monitoring
-To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for paloma validator](https://github.com/kj89/testnet_manuals/blob/main/sei/monitoring/README.md)
+To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for sei validator](https://github.com/kj89/testnet_manuals/blob/main/sei/monitoring/README.md)
 
 ## Calculate synchronization time
 This script will help you to estimate how much time it will take to fully synchronize your node\
