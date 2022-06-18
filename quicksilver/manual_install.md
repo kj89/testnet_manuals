@@ -53,7 +53,7 @@ cd $HOME
 git clone https://github.com/ingenuity-build/quicksilver.git --branch v0.3.0
 cd quicksilver
 make build
-chmod +x ./build/quicksilverd && mv ./build/quicksilverd /usr/local/bin/quicksilverd
+sudo chmod +x ./build/quicksilverd && sudo mv ./build/quicksilverd /usr/local/bin/quicksilverd
 ```
 
 ## Config app
@@ -108,7 +108,7 @@ quicksilverd tendermint unsafe-reset-all
 
 ## Create service
 ```
-tee /etc/systemd/system/quicksilverd.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/quicksilverd.service > /dev/null <<EOF
 [Unit]
 Description=quicksilverd
 After=network.target
