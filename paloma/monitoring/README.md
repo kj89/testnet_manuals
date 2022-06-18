@@ -49,12 +49,12 @@ wget -O install_monitoring.sh https://raw.githubusercontent.com/kj89/cosmos_node
 
 ### Copy _.env.example_ into _.env_
 ```
-cp $HOME/cosmos_node_monitoring/config/.env.example $HOME/cosmos_node_monitoring/config/.env
+sudo cp $HOME/cosmos_node_monitoring/config/.env.example $HOME/cosmos_node_monitoring/config/.env
 ```
 
 ### Update values in _.env_ file
 ```
-vim $HOME/cosmos_node_monitoring/config/.env
+sudo vim $HOME/cosmos_node_monitoring/config/.env
 ```
 
 | KEY | VALUE |
@@ -82,7 +82,7 @@ To add more validators just run command above with validator values
 Deploy the monitoring stack
 ```
 cd $HOME/cosmos_node_monitoring
-docker compose up -d
+sudo docker compose up -d
 ```
 
 ports used:
@@ -131,7 +131,7 @@ ports used:
 ### Test alerts
 1. For simple test you can stop `node-exporter` service for 5 minutes. It should trigger alert
 ```
-systemctl stop node_exporter
+sudo systemctl stop node_exporter
 ```
 2. You will see message from bot firing
 
@@ -139,7 +139,7 @@ systemctl stop node_exporter
 
 3. Now you can start `node-exporter` service back
 ```
-systemctl start node_exporter
+sudo systemctl start node_exporter
 ```
 4. You will get confirmation from bot that issue is resolved
 
@@ -166,8 +166,8 @@ Grafana dashboard is devided into 4 sections:
 ## Cleanup all container data
 ```
 cd $HOME/cosmos_node_monitoring
-docker compose down
-docker volume prune -f
+sudo docker compose down
+sudo docker volume prune -f
 ```
 
 ## Reference list

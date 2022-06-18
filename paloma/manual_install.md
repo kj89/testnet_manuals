@@ -39,7 +39,7 @@ sudo apt install curl build-essential git wget jq make gcc tmux -y
 
 ## Install go
 ```
-ver="1.18.1"
+ver="1.18.2"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -75,11 +75,6 @@ wget -qO ~/.paloma/config/genesis.json https://raw.githubusercontent.com/palomac
 wget -qO ~/.paloma/config/addrbook.json https://raw.githubusercontent.com/palomachain/testnet/master/passerina/addrbook.json
 ```
 
-## Set minimum gas price
-```
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0grain\"/" $HOME/.paloma/config/app.toml
-```
-
 ## Set seeds and peers
 ```
 SEEDS=""
@@ -99,11 +94,6 @@ indexer="null"
 sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.paloma/config/config.toml
 ```
 
-## Enable prometheus
-```
-sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.paloma/config/config.toml
-```
-
 ## Config pruning
 ```
 pruning="custom"
@@ -114,6 +104,16 @@ sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.paloma/config/app.tom
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.paloma/config/app.toml
 sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.paloma/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.paloma/config/app.toml
+```
+
+## Set minimum gas price
+```
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0grain\"/" $HOME/.paloma/config/app.toml
+```
+
+## Enable prometheus
+```
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.paloma/config/config.toml
 ```
 
 ## Reset chain data

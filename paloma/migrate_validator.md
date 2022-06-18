@@ -67,7 +67,7 @@ sudo systemctl stop palomad
 
 > _After being copied, the key `priv_validator_key.json` should then be removed from the old node's config directory to prevent double-signing if the node were to start back up_
 ```
-mv ~/.palomad/config/priv_validator_key.json ~/.palomad/bak_priv_validator_key.json
+sudo mv ~/.palomad/config/priv_validator_key.json ~/.palomad/bak_priv_validator_key.json
 ```
 
 ### 8. Start service on a new validator node
