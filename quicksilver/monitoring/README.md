@@ -7,7 +7,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/166148846-93575afe-e3ce-4ca5-a3f7-a21e8a8609cb.png">
 </p>
 
-# Set up monitoring and alerting for quicksilver validator
+# Set up monitoring and alerting for paloma validator
 
 ## Prerequisites
 
@@ -19,8 +19,8 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `uqck` for quicksilver testnet. You can find it in genesis file |
-| **bench_prefix** | Prefix for chain addresses, for example, `quick` for quicksilver testnet. You can find it in public addresses like this **quick**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **bond_denom** | Denominated token name, for example, `uqck` for paloma paloma testnet. You can find it in genesis file |
+| **bench_prefix** | Prefix for chain addresses, for example, `paloma` for paloma paloma testnet. You can find it in public addresses like this **paloma**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
 
 make sure following ports are open:
 - `9100` (node-exporter)
@@ -49,12 +49,12 @@ wget -O install_monitoring.sh https://raw.githubusercontent.com/kj89/cosmos_node
 
 ### Copy _.env.example_ into _.env_
 ```
-cp $HOME/cosmos_node_monitoring/config/.env.example $HOME/cosmos_node_monitoring/config/.env
+sudo cp $HOME/cosmos_node_monitoring/config/.env.example $HOME/cosmos_node_monitoring/config/.env
 ```
 
 ### Update values in _.env_ file
 ```
-vim $HOME/cosmos_node_monitoring/config/.env
+sudo vim $HOME/cosmos_node_monitoring/config/.env
 ```
 
 | KEY | VALUE |
@@ -69,12 +69,12 @@ source $HOME/.bash_profile
 ```
 
 ### Add validator into _prometheus_ configuration file
-To add validator use command with specified `VALIDATOR_IP`, `VALOPER_ADDRESS`, `WALLET_ADDRESS` and `PROJECT_NAME`
+To add validator use command with specified `VALIDATOR_IP`, `QUICKSILVER_VALOPER_ADDRESS`, `QUICKSILVER_WALLET_ADDRESS` and `PROJECT_NAME`
 ```
-$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP VALOPER_ADDRESS WALLET_ADDRESS PROJECT_NAME
+$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP QUICKSILVER_VALOPER_ADDRESS QUICKSILVER_WALLET_ADDRESS PROJECT_NAME
 ```
 
-> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 quickvaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete quick1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc quicksilver```
+> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 palomavaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete paloma1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc paloma```
 
 To add more validators just run command above with validator values
 
@@ -82,7 +82,7 @@ To add more validators just run command above with validator values
 Deploy the monitoring stack
 ```
 cd $HOME/cosmos_node_monitoring
-docker compose up -d
+sudo docker compose up -d
 ```
 
 ports used:
@@ -131,7 +131,7 @@ ports used:
 ### Test alerts
 1. For simple test you can stop `node-exporter` service for 5 minutes. It should trigger alert
 ```
-systemctl stop node_exporter
+sudo systemctl stop node_exporter
 ```
 2. You will see message from bot firing
 
@@ -139,7 +139,7 @@ systemctl stop node_exporter
 
 3. Now you can start `node-exporter` service back
 ```
-systemctl start node_exporter
+sudo systemctl start node_exporter
 ```
 4. You will get confirmation from bot that issue is resolved
 
@@ -166,8 +166,8 @@ Grafana dashboard is devided into 4 sections:
 ## Cleanup all container data
 ```
 cd $HOME/cosmos_node_monitoring
-docker compose down
-docker volume prune -f
+sudo docker compose down
+sudo docker volume prune -f
 ```
 
 ## Reference list

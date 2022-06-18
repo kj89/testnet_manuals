@@ -18,9 +18,12 @@ NODENAME=<MY_MONIKER_NAME_GOES_HERE>
 
 Save and import variables into system
 ```
+QUICKSILVER_PORT=11
 echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 echo "export WALLET=wallet" >> $HOME/.bash_profile
-echo "export CHAIN_ID=rhapsody-5" >> $HOME/.bash_profile
+echo "export QUICKSILVER_CHAIN_ID=rhapsody-5" >> $HOME/.bash_profile
+echo "export QUICKSILVER_PORT=${QUICKSILVER_PORT}" >> $HOME/.bash_profile
+echo "export QUICKSILVER_RPC=tcp://localhost:${QUICKSILVER_PORT}657" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -31,7 +34,7 @@ sudo apt update && sudo apt upgrade -y
 
 ## Install dependencies
 ```
-sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu gcc git jq chrony liblz4-tool -y
+sudo apt install curl build-essential git wget jq make gcc tmux -y
 ```
 
 ## Install go
@@ -58,23 +61,18 @@ sudo chmod +x ./build/quicksilverd && sudo mv ./build/quicksilverd /usr/local/bi
 
 ## Config app
 ```
-quicksilverd config chain-id $CHAIN_ID
+quicksilverd config chain-id $QUICKSILVER_CHAIN_ID
 quicksilverd config keyring-backend test
 ```
 
 ## Init app
 ```
-quicksilverd init $NODENAME --chain-id $CHAIN_ID
+quicksilverd init $NODENAME --chain-id $QUICKSILVER_CHAIN_ID
 ```
 
-## Download genesis
+## Download genesis and addrbook
 ```
 wget -qO $HOME/.quicksilverd/config/genesis.json "https://raw.githubusercontent.com/ingenuity-build/testnets/main/rhapsody/genesis.json"
-```
-
-## Set minimum gas price
-```
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uqck\"/" $HOME/.quicksilverd/config/app.toml
 ```
 
 ## Set seeds and peers
@@ -84,9 +82,16 @@ PEERS="c5cbd164de9c20a13e54e949b63bcae4052a948c@138.201.139.175:20956,9428068507
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.quicksilverd/config/config.toml
 ```
 
-## Enable prometheus
+## Set custom ports
 ```
-sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.quicksilverd/config/config.toml
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${QUICKSILVER_PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${QUICKSILVER_PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${QUICKSILVER_PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${QUICKSILVER_PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${QUICKSILVER_PORT}660\"%" $HOME/.quicksilverd/config/config.toml
+sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${QUICKSILVER_PORT}317\"%; s%^address = \":8080\"%address = \":${QUICKSILVER_PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${QUICKSILVER_PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${QUICKSILVER_PORT}091\"%" $HOME/.quicksilverd/config/app.toml
+```
+
+## Disable indexing
+```
+indexer="null"
+sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.quicksilverd/config/config.toml
 ```
 
 ## Config pruning
@@ -94,11 +99,21 @@ sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.quicksilverd/config/c
 pruning="custom"
 pruning_keep_recent="100"
 pruning_keep_every="0"
-pruning_interval="10"
+pruning_interval="50"
 sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.quicksilverd/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.quicksilverd/config/app.toml
 sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.quicksilverd/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.quicksilverd/config/app.toml
+```
+
+## Set minimum gas price
+```
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uqck\"/" $HOME/.quicksilverd/config/app.toml
+```
+
+## Enable prometheus
+```
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.quicksilverd/config/config.toml
 ```
 
 ## Reset chain data
@@ -110,15 +125,16 @@ quicksilverd tendermint unsafe-reset-all
 ```
 sudo tee /etc/systemd/system/quicksilverd.service > /dev/null <<EOF
 [Unit]
-Description=quicksilverd
-After=network.target
+Description=paloma
+After=network-online.target
+
 [Service]
-Type=simple
 User=$USER
 ExecStart=$(which quicksilverd) start
 Restart=on-failure
-RestartSec=10
+RestartSec=3
 LimitNOFILE=65535
+
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -128,5 +144,5 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable quicksilverd
-sudo systemctl restart quicksilverd
+sudo systemctl restart quicksilverd && sudo journalctl -u quicksilverd -f -o cat
 ```
