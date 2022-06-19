@@ -7,7 +7,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/166676803-ee125d04-dfe2-4c92-8f0c-8af357aad691.png">
 </p>
 
-# Manual node  setup
+# Manual node setup
 If you want to setup fullnode manually follow the steps below
 
 ## Setting up vars
@@ -18,9 +18,14 @@ NODENAME=<MY_MONIKER_NAME_GOES_HERE>
 
 Save and import variables into system
 ```
+DEWEB_PORT=14
 echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
-echo "export WALLET=wallet" >> $HOME/.bash_profile
-echo "export CHAIN_ID=deweb-testnet-1" >> $HOME/.bash_profile
+if [ ! $WALLET ]; then
+	echo "export WALLET=wallet" >> $HOME/.bash_profile
+fi
+echo "export DEWEB_CHAIN_ID=deweb-testnet-1" >> $HOME/.bash_profile
+echo "export DEWEB_PORT=${DEWEB_PORT}" >> $HOME/.bash_profile
+echo "export DEWEB_RPC=tcp://localhost:${DEWEB_PORT}657" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -31,12 +36,12 @@ sudo apt update && sudo apt upgrade -y
 
 ## Install dependencies
 ```
-sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu gcc git jq chrony liblz4-tool -y
+sudo apt install curl build-essential git wget jq make gcc tmux -y
 ```
 
 ## Install go
 ```
-ver="1.17.2"
+ver="1.18.2"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -59,24 +64,19 @@ sudo cp build/dewebd /usr/local/bin/dewebd
 
 ## Config app
 ```
-dewebd config chain-id $CHAIN_ID
-dewebd config keyring-backend file
+dewebd config chain-id $DEWEB_CHAIN_ID
+dewebd config keyring-backend test
 ```
 
 ## Init app
 ```
-dewebd init $NODENAME --chain-id $CHAIN_ID
+dewebd init $NODENAME --chain-id $DEWEB_CHAIN_ID
 ```
 
 ## Download genesis and addrbook
 ```
 wget -qO $HOME/.deweb/config/genesis.json "https://raw.githubusercontent.com/deweb-services/deweb/main/genesis.json"
 wget -qO $HOME/.deweb/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/dws/addrbook.json"
-```
-
-## Set minimum gas price
-```
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.001udws\"/" $HOME/.deweb/config/app.toml
 ```
 
 ## Set seeds and peers
@@ -86,41 +86,59 @@ PEERS="316d8e681019f25b078b36a26f349e48c916aace@161.97.104.113:26656,4172ea44cb1
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.deweb/config/config.toml
 ```
 
-## Enable prometheus
+## Set custom ports
 ```
-sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.deweb/config/config.toml
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${DEWEB_PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${DEWEB_PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${DEWEB_PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${DEWEB_PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${DEWEB_PORT}660\"%" $HOME/.deweb/config/config.toml
+sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${DEWEB_PORT}317\"%; s%^address = \":8080\"%address = \":${DEWEB_PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${DEWEB_PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${DEWEB_PORT}091\"%" $HOME/.deweb/config/app.toml
 ```
 
-# config pruning
+## Disable indexing
+```
+indexer="null"
+sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.deweb/config/config.toml
+```
+
+## Config pruning
 ```
 pruning="custom"
 pruning_keep_recent="100"
 pruning_keep_every="0"
-pruning_interval="10"
+pruning_interval="50"
 sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.deweb/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.deweb/config/app.toml
 sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.deweb/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.deweb/config/app.toml
 ```
 
+## Set minimum gas price
+```
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.001udws\"/" $HOME/.deweb/config/app.toml
+```
+
+## Enable prometheus
+```
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.deweb/config/config.toml
+```
+
 ## Reset chain data
 ```
-dewebd unsafe-reset-all
+dewebd tendermint unsafe-reset-all
 ```
 
 ## Create service
 ```
-tee /etc/systemd/system/dewebd.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/dewebd.service > /dev/null <<EOF
 [Unit]
-Description=dewebd
-After=network.target
+Description=paloma
+After=network-online.target
+
 [Service]
-Type=simple
 User=$USER
 ExecStart=$(which dewebd) start
 Restart=on-failure
-RestartSec=10
+RestartSec=3
 LimitNOFILE=65535
+
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -130,5 +148,5 @@ EOF
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable dewebd
-sudo systemctl restart dewebd
+sudo systemctl restart dewebd && sudo journalctl -u dewebd -f -o cat
 ```

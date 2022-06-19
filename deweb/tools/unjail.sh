@@ -4,12 +4,12 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 DELAY=300 #Delay time in seconds
 for (( ;; )); do
-        JAIL=$(dewebd q staking validator $( echo "${PASSWORD}" | dewebd keys show ${WALLET} --bech val -a) | grep jailed:);
+        JAIL=$(dewebd q staking validator $(dewebd keys show ${WALLET} --bech val -a) | grep jailed:);
         if [[ ${JAIL} == *"false"* ]]; then
             echo -e "${GREEN}${JAIL} \n"
         else
             echo -e "${GREEN}${JAIL} \n"
-            echo -e $( echo "${PASSWORD}" | dewebd tx slashing unjail --chain-id ${CHAIN_ID} --from ${WALLET} --gas=auto --fees=1000$udws -y) \n;
+            echo -e $(dewebd tx slashing unjail --chain-id ${DEWEB_CHAIN_ID} --from ${WALLET} --gas=auto --fees=1000$udws -y) \n;
             sleep 1
         fi
         for (( timer=${DELAY}; timer>0; timer-- ))

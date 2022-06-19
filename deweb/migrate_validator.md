@@ -10,7 +10,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 # Migrate your validator to another machine
 
 ### 1. Run a new full node on a new machine
-To setup full node you can follow my guide [Defund node setup for Testnet — deweb-testnet-1](https://github.com/kj89/testnet_manuals/blob/main/defund/README.md)
+To setup full node you can follow my guide [paloma node setup for Testnet — paloma](https://github.com/kj89/testnet_manuals/blob/main/deweb/README.md)
 
 ### 2. Confirm that you have the recovery seed phrase information for the active key running on the old machine
 
@@ -63,11 +63,11 @@ sudo systemctl stop dewebd
 ```
 
 ### 7. Move the validator's private key from the old machine to the new machine
-#### Private key is located in: `~/.deweb/config/priv_validator_key.json`
+#### Private key is located in: `~/.dewebd/config/priv_validator_key.json`
 
 > _After being copied, the key `priv_validator_key.json` should then be removed from the old node's config directory to prevent double-signing if the node were to start back up_
 ```
-mv ~/.deweb/config/priv_validator_key.json ~/.deweb/bak_priv_validator_key.json
+sudo mv ~/.dewebd/config/priv_validator_key.json ~/.dewebd/bak_priv_validator_key.json
 ```
 
 ### 8. Start service on a new validator node
@@ -79,7 +79,7 @@ sudo systemctl start dewebd
 ### 9. Make sure your validator is not jailed
 #### To unjail your validator
 ```
-dewebd tx slashing unjail --chain-id deweb-testnet-1 --from mykey --gas=auto -y
+dewebd tx slashing unjail --chain-id paloma --from mykey --gas=auto -y
 ```
 
 ### 10. After you ensure your validator is producing blocks and is healthy you can shut down old validator server
