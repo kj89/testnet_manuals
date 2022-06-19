@@ -85,23 +85,12 @@ source $HOME/.bash_profile
 
 ### Fund your wallet
 In order to create validator first you need to fund your wallet with testnet tokens.
-To top up your wallet join deweb discord server to access the faucets for dws and ATOM. Make sure you are in the appropriate channel
-- **#dws-tap** for dws tokens
-- **#atom-tap** for ATOM tokens
-
-To check the faucet address:
-```
-$<YOUR_WALLET_ADDRESS> rhapsody
-```
-
-To check your balance:
-```
-$balance <YOUR_WALLET_ADDRESS> rhapsody
-```
+To top up your wallet join DWS discord server and navigate to:
+- **#faucet** for DWS tokens
 
 To request a faucet grant:
 ```
-$request <YOUR_WALLET_ADDRESS> rhapsody
+$request <YOUR_WALLET_ADDRESS> menkar
 ```
 
 ### Create validator
