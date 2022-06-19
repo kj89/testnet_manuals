@@ -29,7 +29,7 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
  - 80GB Disk
  - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
-### Optimal Hardware Requirements 
+### Recommended Hardware Requirements 
  - 4x CPUs; the faster clock speed the better
  - 8GB RAM
  - 200GB of storage (SSD or NVME)
@@ -54,7 +54,7 @@ source $HOME/.bash_profile
 
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
-kujirad status 2>&1 | jq .SyncInfo
+kujirad status --node $KUJIRA_RPC 2>&1 | jq .SyncInfo
 ```
 
 ### Create wallet
@@ -74,20 +74,12 @@ kujirad keys list
 ```
 
 ### Save wallet info
-Add wallet address
+Add wallet and valoper address and load variables into the system
 ```
-WALLET_ADDRESS=$(kujirad keys show $WALLET -a)
-```
-
-Add valoper address
-```
-VALOPER_ADDRESS=$(kujirad keys show $WALLET --bech val -a)
-```
-
-Load variables into system
-```
-echo 'export WALLET_ADDRESS='${WALLET_ADDRESS} >> $HOME/.bash_profile
-echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
+KUJIRA_WALLET_ADDRESS=$(kujirad keys show $WALLET -a)
+KUJIRA_VALOPER_ADDRESS=$(kujirad keys show $WALLET --bech val -a)
+echo 'export KUJIRA_WALLET_ADDRESS='${KUJIRA_WALLET_ADDRESS} >> $HOME/.bash_profile
+echo 'export KUJIRA_VALOPER_ADDRESS='${KUJIRA_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -101,18 +93,18 @@ To request a faucet grant:
 ```
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 kujira (1 kujira is equal to 1000000 ukuji) and your node is synchronized
+Before creating validator please make sure that you have at least 1 kuji (1 kuji is equal to 1000000 ukuji) and your node is synchronized
 
 To check your wallet balance:
 ```
-kujirad query bank balances $WALLET_ADDRESS
+kujirad query bank balances $KUJIRA_WALLET_ADDRESS --node $KUJIRA_RPC
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
 To create your validator run command below
 ```
 kujirad tx staking create-validator \
-  --amount 1999000ukuji \
+  --amount 100000ukuji \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
@@ -120,8 +112,8 @@ kujirad tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(kujirad tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id $CHAIN_ID \
-  --fees 250ukuji
+  --chain-id $KUJIRA_CHAIN_ID \
+  --node $KUJIRA_RPC
 ```
 
 ## Security
@@ -142,7 +134,7 @@ sudo ufw default allow outgoing
 sudo ufw default deny incoming
 sudo ufw allow ssh/tcp
 sudo ufw limit ssh/tcp
-sudo ufw allow 26656,26660/tcp
+sudo ufw allow ${KUJIRA_PORT}656,${KUJIRA_PORT}660/tcp
 sudo ufw enable
 ```
 
@@ -156,9 +148,14 @@ It measures average blocks per minute that are being synchronized for period of 
 wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/kujira/tools/synctime.py && python3 ./synctime.py
 ```
 
+### Get list of validators
+```
+kujirad q staking validators --node $KUJIRA_RPC -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
+```
+
 ## Get currently connected peer list with ids
 ```
-curl -sS http://localhost:26657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
+curl -sS http://localhost:${KUJIRA_PORT}657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
 
 ## Usefull commands
@@ -170,33 +167,33 @@ journalctl -fu kujirad -o cat
 
 Start service
 ```
-systemctl start kujirad
+sudo systemctl start kujirad
 ```
 
 Stop service
 ```
-systemctl stop kujirad
+sudo systemctl stop kujirad
 ```
 
 Restart service
 ```
-systemctl restart kujirad
+sudo systemctl restart kujirad
 ```
 
 ### Node info
 Synchronization info
 ```
-kujirad status 2>&1 | jq .SyncInfo
+kujirad status --node $KUJIRA_RPC 2>&1 | jq .SyncInfo
 ```
 
 Validator info
 ```
-kujirad status 2>&1 | jq .ValidatorInfo
+kujirad status --node $KUJIRA_RPC 2>&1 | jq .ValidatorInfo
 ```
 
 Node info
 ```
-kujirad status 2>&1 | jq .NodeInfo
+kujirad status --node $KUJIRA_RPC 2>&1 | jq .NodeInfo
 ```
 
 Show node id
@@ -222,51 +219,51 @@ kujirad keys delete $WALLET
 
 Get wallet balance
 ```
-kujirad query bank balances $WALLET_ADDRESS
+kujirad query bank balances $KUJIRA_WALLET_ADDRESS --node $KUJIRA_RPC
 ```
 
 Transfer funds
 ```
-kujirad tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000ukuji --fees 250ukuji
+kujirad tx bank send $KUJIRA_WALLET_ADDRESS <TO_KUJIRA_WALLET_ADDRESS> 10000000ukuji --node $KUJIRA_RPC
 ```
 
 ### Voting
 ```
-kujirad tx gov vote 1 yes --from $WALLET --chain-id=$CHAIN_ID --fees 250ukuji
+kujirad tx gov vote 1 yes --from $WALLET --chain-id=$KUJIRA_CHAIN_ID --node $KUJIRA_RPC
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-kujirad tx staking delegate $VALOPER_ADDRESS 10000000ukuji --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --fees 250ukuji
+kujirad tx staking delegate $KUJIRA_VALOPER_ADDRESS 10000000ukuji --from=$WALLET --chain-id=$KUJIRA_CHAIN_ID --gas=auto --node $KUJIRA_RPC
 ```
 
 Redelegate stake from validator to another validator
 ```
-kujirad tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ukuji --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --fees 250ukuji
+kujirad tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ukuji --from=$WALLET --chain-id=$KUJIRA_CHAIN_ID --gas=auto --node $KUJIRA_RPC
 ```
 
 Withdraw all rewards
 ```
-kujirad tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --fees 250ukuji
+kujirad tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$KUJIRA_CHAIN_ID --gas=auto --node $KUJIRA_RPC
 ```
 
 Withdraw rewards with commision
 ```
-kujirad tx distribution withdraw-rewards $VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$CHAIN_ID --fees 250ukuji
+kujirad tx distribution withdraw-rewards $KUJIRA_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$KUJIRA_CHAIN_ID --node $KUJIRA_RPC
 ```
 
 ### Validator management
 Edit validator
 ```
 kujirad tx staking edit-validator \
---moniker=$NODENAME \
---identity=1C5ACD2EEF363C3A \
---website="http://kjnodes.com" \
---details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
---chain-id=$CHAIN_ID \
---from=$WALLET \
---fees 250ukuji
+  --moniker=$NODENAME \
+  --identity=1C5ACD2EEF363C3A \
+  --website="http://kjnodes.com" \
+  --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
+  --chain-id=$KUJIRA_CHAIN_ID \
+  --from=$WALLET \
+  --node $KUJIRA_RPC
 ```
 
 Unjail validator
@@ -274,18 +271,18 @@ Unjail validator
 kujirad tx slashing unjail \
   --broadcast-mode=block \
   --from=$WALLET \
-  --chain-id=$CHAIN_ID \
+  --chain-id=$KUJIRA_CHAIN_ID \
   --gas=auto \
-  --fees 250ukuji
+  --node $KUJIRA_RPC
 ```
 
 ### Delete node
 This commands will completely remove node from server. Use at your own risk!
 ```
-systemctl stop kujirad
-systemctl disable kujirad
-rm /etc/systemd/system/kujira* -rf
-rm $(which kujirad) -rf
-rm $HOME/.kujira* -rf
-rm $HOME/kujira-core -rf
+sudo systemctl stop kujirad
+sudo systemctl disable kujirad
+sudo rm /etc/systemd/system/kujira* -rf
+sudo rm $(which kujirad) -rf
+sudo rm $HOME/.kujira* -rf
+sudo rm $HOME/kujira -rf
 ```
