@@ -77,7 +77,7 @@ http://<YOUR_NODE_IP>:9000/
 ```
 
 ## Node update
-```shell
+```
 sudo systemctl stop suid
 rm -rf /var/sui/db /var/sui/genesis.blob
 cd $HOME/sui
