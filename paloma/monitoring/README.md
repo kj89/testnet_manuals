@@ -23,7 +23,7 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `grain` for paloma testnet. You can find it in genesis file |
+| **bond_denom** | Denominated token name, for example, `ugrain` for paloma testnet. You can find it in genesis file |
 | **bench_prefix** | Prefix for chain addresses, for example, `paloma` for paloma testnet. You can find it in public addresses like this **paloma**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
 
 make sure following ports are open:

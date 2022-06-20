@@ -70,7 +70,7 @@ source $HOME/.bash_profile
 
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
-seid status --node $SEI_RPC 2>&1 | jq .SyncInfo
+seid status 2>&1 | jq .SyncInfo
 ```
 
 ### Create wallet
@@ -112,7 +112,7 @@ Before creating validator please make sure that you have at least 1 sei (1 sei i
 
 To check your wallet balance:
 ```
-seid query bank balances $SEI_WALLET_ADDRESS --node $SEI_RPC
+seid query bank balances $SEI_WALLET_ADDRESS
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
@@ -128,7 +128,7 @@ seid tx staking create-validator \
   --pubkey  $(seid tendermint show-validator) \
   --moniker $NODENAME \
   --chain-id $SEI_CHAIN_ID \
-  --node $SEI_RPC
+ 
 ```
 
 ## Security
@@ -165,7 +165,7 @@ wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/
 
 ### Get list of validators
 ```
-seid q staking validators --node $SEI_RPC -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
+seid q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
 ```
 
 ## Get currently connected peer list with ids
@@ -198,17 +198,17 @@ sudo systemctl restart seid
 ### Node info
 Synchronization info
 ```
-seid status --node $SEI_RPC 2>&1 | jq .SyncInfo
+seid status 2>&1 | jq .SyncInfo
 ```
 
 Validator info
 ```
-seid status --node $SEI_RPC 2>&1 | jq .ValidatorInfo
+seid status 2>&1 | jq .ValidatorInfo
 ```
 
 Node info
 ```
-seid status --node $SEI_RPC 2>&1 | jq .NodeInfo
+seid status 2>&1 | jq .NodeInfo
 ```
 
 Show node id
@@ -234,38 +234,38 @@ seid keys delete $WALLET
 
 Get wallet balance
 ```
-seid query bank balances $SEI_WALLET_ADDRESS --node $SEI_RPC
+seid query bank balances $SEI_WALLET_ADDRESS
 ```
 
 Transfer funds
 ```
-seid tx bank send $SEI_WALLET_ADDRESS <TO_SEI_WALLET_ADDRESS> 10000000usei --node $SEI_RPC
+seid tx bank send $SEI_WALLET_ADDRESS <TO_SEI_WALLET_ADDRESS> 10000000usei
 ```
 
 ### Voting
 ```
-seid tx gov vote 1 yes --from $WALLET --chain-id=$SEI_CHAIN_ID --node $SEI_RPC
+seid tx gov vote 1 yes --from $WALLET --chain-id=$SEI_CHAIN_ID
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-seid tx staking delegate $SEI_VALOPER_ADDRESS 10000000usei --from=$WALLET --chain-id=$SEI_CHAIN_ID --gas=auto --node $SEI_RPC
+seid tx staking delegate $SEI_VALOPER_ADDRESS 10000000usei --from=$WALLET --chain-id=$SEI_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-seid tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000usei --from=$WALLET --chain-id=$SEI_CHAIN_ID --gas=auto --node $SEI_RPC
+seid tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000usei --from=$WALLET --chain-id=$SEI_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
 ```
-seid tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$SEI_CHAIN_ID --gas=auto --node $SEI_RPC
+seid tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$SEI_CHAIN_ID --gas=auto
 ```
 
 Withdraw rewards with commision
 ```
-seid tx distribution withdraw-rewards $SEI_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$SEI_CHAIN_ID --node $SEI_RPC
+seid tx distribution withdraw-rewards $SEI_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$SEI_CHAIN_ID
 ```
 
 ### Validator management
@@ -278,7 +278,7 @@ seid tx staking edit-validator \
   --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
   --chain-id=$SEI_CHAIN_ID \
   --from=$WALLET \
-  --node $SEI_RPC
+ 
 ```
 
 Unjail validator
@@ -288,7 +288,7 @@ seid tx slashing unjail \
   --from=$WALLET \
   --chain-id=$SEI_CHAIN_ID \
   --gas=auto \
-  --node $SEI_RPC
+ 
 ```
 
 ### Delete node

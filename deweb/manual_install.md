@@ -29,7 +29,6 @@ if [ ! $WALLET ]; then
 fi
 echo "export DEWEB_CHAIN_ID=deweb-testnet-1" >> $HOME/.bash_profile
 echo "export DEWEB_PORT=${DEWEB_PORT}" >> $HOME/.bash_profile
-echo "export DEWEB_RPC=tcp://localhost:${DEWEB_PORT}657" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -70,6 +69,7 @@ sudo cp build/dewebd /usr/local/bin/dewebd
 ```
 dewebd config chain-id $DEWEB_CHAIN_ID
 dewebd config keyring-backend test
+dewebd config node tcp://localhost:${DEWEB_PORT}657
 ```
 
 ## Init app

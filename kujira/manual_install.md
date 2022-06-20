@@ -29,7 +29,6 @@ if [ ! $WALLET ]; then
 fi
 echo "export KUJIRA_CHAIN_ID=harpoon-4" >> $HOME/.bash_profile
 echo "export KUJIRA_PORT=${KUJIRA_PORT}" >> $HOME/.bash_profile
-echo "export KUJIRA_RPC=tcp://localhost:${KUJIRA_PORT}657" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -68,6 +67,7 @@ make install
 ```
 kujirad config chain-id $KUJIRA_CHAIN_ID
 kujirad config keyring-backend test
+kujirad config node tcp://localhost:${KUJIRA_PORT}657
 ```
 
 ## Init app

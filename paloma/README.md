@@ -58,7 +58,7 @@ source $HOME/.bash_profile
 
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
-palomad status --node $PALOMA_RPC 2>&1 | jq .SyncInfo
+palomad status 2>&1 | jq .SyncInfo
 ```
 
 ### Create wallet
@@ -89,22 +89,22 @@ source $HOME/.bash_profile
 
 ### Fund your wallet
 ```
-JSON=$(jq -n --arg addr "$PALOMA_WALLET_ADDRESS" '{"denom":"ugrain","address":$addr}') && curl -X POST --header "Content-Type: application/json" --data "$JSON" https://backend.faucet.palomaswap.com/claim
+JSON=$(jq -n --arg addr "$PALOMA_WALLET_ADDRESS" '{"denom":"uugrain","address":$addr}') && curl -X POST --header "Content-Type: application/json" --data "$JSON" https://backend.faucet.palomaswap.com/claim
 ```
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 paloma (1 paloma is equal to 1000000 grain) and your node is synchronized
+Before creating validator please make sure that you have at least 1 paloma (1 paloma is equal to 1000000 ugrain) and your node is synchronized
 
 To check your wallet balance:
 ```
-palomad query bank balances $PALOMA_WALLET_ADDRESS --node $PALOMA_RPC
+palomad query bank balances $PALOMA_WALLET_ADDRESS
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
 To create your validator run command below
 ```
 palomad tx staking create-validator \
-  --amount 100000grain \
+  --amount 100000ugrain \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
@@ -113,7 +113,7 @@ palomad tx staking create-validator \
   --pubkey  $(palomad tendermint show-validator) \
   --moniker $NODENAME \
   --chain-id $PALOMA_CHAIN_ID \
-  --node $PALOMA_RPC
+ 
 ```
 
 ## Security
@@ -150,7 +150,7 @@ wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/
 
 ### Get list of validators
 ```
-palomad q staking validators --node $PALOMA_RPC -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
+palomad q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
 ```
 
 ## Get currently connected peer list with ids
@@ -183,17 +183,17 @@ sudo systemctl restart palomad
 ### Node info
 Synchronization info
 ```
-palomad status --node $PALOMA_RPC 2>&1 | jq .SyncInfo
+palomad status 2>&1 | jq .SyncInfo
 ```
 
 Validator info
 ```
-palomad status --node $PALOMA_RPC 2>&1 | jq .ValidatorInfo
+palomad status 2>&1 | jq .ValidatorInfo
 ```
 
 Node info
 ```
-palomad status --node $PALOMA_RPC 2>&1 | jq .NodeInfo
+palomad status 2>&1 | jq .NodeInfo
 ```
 
 Show node id
@@ -219,38 +219,38 @@ palomad keys delete $WALLET
 
 Get wallet balance
 ```
-palomad query bank balances $PALOMA_WALLET_ADDRESS --node $PALOMA_RPC
+palomad query bank balances $PALOMA_WALLET_ADDRESS
 ```
 
 Transfer funds
 ```
-palomad tx bank send $PALOMA_WALLET_ADDRESS <TO_PALOMA_WALLET_ADDRESS> 10000000grain --node $PALOMA_RPC
+palomad tx bank send $PALOMA_WALLET_ADDRESS <TO_PALOMA_WALLET_ADDRESS> 10000000ugrain
 ```
 
 ### Voting
 ```
-palomad tx gov vote 1 yes --from $WALLET --chain-id=$PALOMA_CHAIN_ID --node $PALOMA_RPC
+palomad tx gov vote 1 yes --from $WALLET --chain-id=$PALOMA_CHAIN_ID
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-palomad tx staking delegate $PALOMA_VALOPER_ADDRESS 10000000grain --from=$WALLET --chain-id=$PALOMA_CHAIN_ID --gas=auto --node $PALOMA_RPC
+palomad tx staking delegate $PALOMA_VALOPER_ADDRESS 10000000ugrain --from=$WALLET --chain-id=$PALOMA_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-palomad tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000grain --from=$WALLET --chain-id=$PALOMA_CHAIN_ID --gas=auto --node $PALOMA_RPC
+palomad tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ugrain --from=$WALLET --chain-id=$PALOMA_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
 ```
-palomad tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$PALOMA_CHAIN_ID --gas=auto --node $PALOMA_RPC
+palomad tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$PALOMA_CHAIN_ID --gas=auto
 ```
 
 Withdraw rewards with commision
 ```
-palomad tx distribution withdraw-rewards $PALOMA_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$PALOMA_CHAIN_ID --node $PALOMA_RPC
+palomad tx distribution withdraw-rewards $PALOMA_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$PALOMA_CHAIN_ID
 ```
 
 ### Validator management
@@ -263,7 +263,7 @@ palomad tx staking edit-validator \
   --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
   --chain-id=$PALOMA_CHAIN_ID \
   --from=$WALLET \
-  --node $PALOMA_RPC
+ 
 ```
 
 Unjail validator
@@ -273,7 +273,7 @@ palomad tx slashing unjail \
   --from=$WALLET \
   --chain-id=$PALOMA_CHAIN_ID \
   --gas=auto \
-  --node $PALOMA_RPC
+ 
 ```
 
 ### Delete node

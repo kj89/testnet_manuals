@@ -45,7 +45,7 @@ seid keys import mykey mykey.backup
 
 #### To check synchronization status
 ```
-seid status --node $SEI_RPC 2>&1 | jq .SyncInfo
+seid status 2>&1 | jq .SyncInfo
 ```
 > _`catching_up` should be equal to `false`_
 
@@ -83,7 +83,7 @@ sudo systemctl start seid
 ### 9. Make sure your validator is not jailed
 #### To unjail your validator
 ```
-seid tx slashing unjail --chain-id $SEI_CHAIN_ID --from mykey --gas=auto --node $SEI_RPC -y
+seid tx slashing unjail --chain-id $SEI_CHAIN_ID --from mykey --gas=auto -y
 ```
 
 ### 10. After you ensure your validator is producing blocks and is healthy you can shut down old validator server

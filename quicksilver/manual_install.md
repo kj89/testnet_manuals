@@ -29,7 +29,6 @@ if [ ! $WALLET ]; then
 fi
 echo "export QUICKSILVER_CHAIN_ID=rhapsody-5" >> $HOME/.bash_profile
 echo "export QUICKSILVER_PORT=${QUICKSILVER_PORT}" >> $HOME/.bash_profile
-echo "export QUICKSILVER_RPC=tcp://localhost:${QUICKSILVER_PORT}657" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -69,6 +68,7 @@ sudo chmod +x ./build/quicksilverd && sudo mv ./build/quicksilverd /usr/local/bi
 ```
 quicksilverd config chain-id $QUICKSILVER_CHAIN_ID
 quicksilverd config keyring-backend test
+quicksilverd config node tcp://localhost:${QUICKSILVER_PORT}657
 ```
 
 ## Init app

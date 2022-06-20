@@ -58,7 +58,7 @@ source $HOME/.bash_profile
 
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
-kujirad status --node $KUJIRA_RPC 2>&1 | jq .SyncInfo
+kujirad status 2>&1 | jq .SyncInfo
 ```
 
 ### Create wallet
@@ -101,7 +101,7 @@ Before creating validator please make sure that you have at least 1 kuji (1 kuji
 
 To check your wallet balance:
 ```
-kujirad query bank balances $KUJIRA_WALLET_ADDRESS --node $KUJIRA_RPC
+kujirad query bank balances $KUJIRA_WALLET_ADDRESS
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
@@ -117,7 +117,7 @@ kujirad tx staking create-validator \
   --pubkey  $(kujirad tendermint show-validator) \
   --moniker $NODENAME \
   --chain-id $KUJIRA_CHAIN_ID \
-  --node $KUJIRA_RPC
+ 
 ```
 
 ## Security
@@ -154,7 +154,7 @@ wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/
 
 ### Get list of validators
 ```
-kujirad q staking validators --node $KUJIRA_RPC -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
+kujirad q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
 ```
 
 ## Get currently connected peer list with ids
@@ -187,17 +187,17 @@ sudo systemctl restart kujirad
 ### Node info
 Synchronization info
 ```
-kujirad status --node $KUJIRA_RPC 2>&1 | jq .SyncInfo
+kujirad status 2>&1 | jq .SyncInfo
 ```
 
 Validator info
 ```
-kujirad status --node $KUJIRA_RPC 2>&1 | jq .ValidatorInfo
+kujirad status 2>&1 | jq .ValidatorInfo
 ```
 
 Node info
 ```
-kujirad status --node $KUJIRA_RPC 2>&1 | jq .NodeInfo
+kujirad status 2>&1 | jq .NodeInfo
 ```
 
 Show node id
@@ -223,38 +223,38 @@ kujirad keys delete $WALLET
 
 Get wallet balance
 ```
-kujirad query bank balances $KUJIRA_WALLET_ADDRESS --node $KUJIRA_RPC
+kujirad query bank balances $KUJIRA_WALLET_ADDRESS
 ```
 
 Transfer funds
 ```
-kujirad tx bank send $KUJIRA_WALLET_ADDRESS <TO_KUJIRA_WALLET_ADDRESS> 10000000ukuji --node $KUJIRA_RPC
+kujirad tx bank send $KUJIRA_WALLET_ADDRESS <TO_KUJIRA_WALLET_ADDRESS> 10000000ukuji
 ```
 
 ### Voting
 ```
-kujirad tx gov vote 1 yes --from $WALLET --chain-id=$KUJIRA_CHAIN_ID --node $KUJIRA_RPC
+kujirad tx gov vote 1 yes --from $WALLET --chain-id=$KUJIRA_CHAIN_ID
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-kujirad tx staking delegate $KUJIRA_VALOPER_ADDRESS 10000000ukuji --from=$WALLET --chain-id=$KUJIRA_CHAIN_ID --gas=auto --node $KUJIRA_RPC
+kujirad tx staking delegate $KUJIRA_VALOPER_ADDRESS 10000000ukuji --from=$WALLET --chain-id=$KUJIRA_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-kujirad tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ukuji --from=$WALLET --chain-id=$KUJIRA_CHAIN_ID --gas=auto --node $KUJIRA_RPC
+kujirad tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ukuji --from=$WALLET --chain-id=$KUJIRA_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
 ```
-kujirad tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$KUJIRA_CHAIN_ID --gas=auto --node $KUJIRA_RPC
+kujirad tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$KUJIRA_CHAIN_ID --gas=auto
 ```
 
 Withdraw rewards with commision
 ```
-kujirad tx distribution withdraw-rewards $KUJIRA_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$KUJIRA_CHAIN_ID --node $KUJIRA_RPC
+kujirad tx distribution withdraw-rewards $KUJIRA_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$KUJIRA_CHAIN_ID
 ```
 
 ### Validator management
@@ -267,7 +267,7 @@ kujirad tx staking edit-validator \
   --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
   --chain-id=$KUJIRA_CHAIN_ID \
   --from=$WALLET \
-  --node $KUJIRA_RPC
+ 
 ```
 
 Unjail validator
@@ -277,7 +277,7 @@ kujirad tx slashing unjail \
   --from=$WALLET \
   --chain-id=$KUJIRA_CHAIN_ID \
   --gas=auto \
-  --node $KUJIRA_RPC
+ 
 ```
 
 ### Delete node

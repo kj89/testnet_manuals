@@ -60,7 +60,7 @@ source $HOME/.bash_profile
 
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
-quicksilverd status --node $QUICKSILVER_RPC 2>&1 | jq .SyncInfo
+quicksilverd status 2>&1 | jq .SyncInfo
 ```
 
 ### Create wallet
@@ -115,7 +115,7 @@ Before creating validator please make sure that you have at least 1 qck (1 qck i
 
 To check your wallet balance:
 ```
-quicksilverd query bank balances $QUICKSILVER_WALLET_ADDRESS --node $QUICKSILVER_RPC
+quicksilverd query bank balances $QUICKSILVER_WALLET_ADDRESS
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
@@ -131,7 +131,7 @@ quicksilverd tx staking create-validator \
   --pubkey  $(quicksilverd tendermint show-validator) \
   --moniker $NODENAME \
   --chain-id $QUICKSILVER_CHAIN_ID \
-  --node $QUICKSILVER_RPC
+ 
 ```
 
 ## Security
@@ -168,7 +168,7 @@ wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/
 
 ### Get list of validators
 ```
-quicksilverd q staking validators --node $QUICKSILVER_RPC -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
+quicksilverd q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
 ```
 
 ## Get currently connected peer list with ids
@@ -201,17 +201,17 @@ sudo systemctl restart quicksilverd
 ### Node info
 Synchronization info
 ```
-quicksilverd status --node $QUICKSILVER_RPC 2>&1 | jq .SyncInfo
+quicksilverd status 2>&1 | jq .SyncInfo
 ```
 
 Validator info
 ```
-quicksilverd status --node $QUICKSILVER_RPC 2>&1 | jq .ValidatorInfo
+quicksilverd status 2>&1 | jq .ValidatorInfo
 ```
 
 Node info
 ```
-quicksilverd status --node $QUICKSILVER_RPC 2>&1 | jq .NodeInfo
+quicksilverd status 2>&1 | jq .NodeInfo
 ```
 
 Show node id
@@ -237,38 +237,38 @@ quicksilverd keys delete $WALLET
 
 Get wallet balance
 ```
-quicksilverd query bank balances $QUICKSILVER_WALLET_ADDRESS --node $QUICKSILVER_RPC
+quicksilverd query bank balances $QUICKSILVER_WALLET_ADDRESS
 ```
 
 Transfer funds
 ```
-quicksilverd tx bank send $QUICKSILVER_WALLET_ADDRESS <TO_QUICKSILVER_WALLET_ADDRESS> 10000000uqck --node $QUICKSILVER_RPC
+quicksilverd tx bank send $QUICKSILVER_WALLET_ADDRESS <TO_QUICKSILVER_WALLET_ADDRESS> 10000000uqck
 ```
 
 ### Voting
 ```
-quicksilverd tx gov vote 1 yes --from $WALLET --chain-id=$QUICKSILVER_CHAIN_ID --node $QUICKSILVER_RPC
+quicksilverd tx gov vote 1 yes --from $WALLET --chain-id=$QUICKSILVER_CHAIN_ID
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-quicksilverd tx staking delegate $QUICKSILVER_VALOPER_ADDRESS 10000000uqck --from=$WALLET --chain-id=$QUICKSILVER_CHAIN_ID --gas=auto --node $QUICKSILVER_RPC
+quicksilverd tx staking delegate $QUICKSILVER_VALOPER_ADDRESS 10000000uqck --from=$WALLET --chain-id=$QUICKSILVER_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-quicksilverd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000uqck --from=$WALLET --chain-id=$QUICKSILVER_CHAIN_ID --gas=auto --node $QUICKSILVER_RPC
+quicksilverd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000uqck --from=$WALLET --chain-id=$QUICKSILVER_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
 ```
-quicksilverd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$QUICKSILVER_CHAIN_ID --gas=auto --node $QUICKSILVER_RPC
+quicksilverd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$QUICKSILVER_CHAIN_ID --gas=auto
 ```
 
 Withdraw rewards with commision
 ```
-quicksilverd tx distribution withdraw-rewards $QUICKSILVER_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$QUICKSILVER_CHAIN_ID --node $QUICKSILVER_RPC
+quicksilverd tx distribution withdraw-rewards $QUICKSILVER_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$QUICKSILVER_CHAIN_ID
 ```
 
 ### Validator management
@@ -281,7 +281,7 @@ quicksilverd tx staking edit-validator \
   --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
   --chain-id=$QUICKSILVER_CHAIN_ID \
   --from=$WALLET \
-  --node $QUICKSILVER_RPC
+ 
 ```
 
 Unjail validator
@@ -291,7 +291,7 @@ quicksilverd tx slashing unjail \
   --from=$WALLET \
   --chain-id=$QUICKSILVER_CHAIN_ID \
   --gas=auto \
-  --node $QUICKSILVER_RPC
+ 
 ```
 
 ### Delete node

@@ -24,7 +24,6 @@ if [ ! $WALLET ]; then
 fi
 echo "export SEI_CHAIN_ID=sei-testnet-2" >> $HOME/.bash_profile
 echo "export SEI_PORT=${SEI_PORT}" >> $HOME/.bash_profile
-echo "export SEI_RPC=tcp://localhost:${SEI_PORT}657" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 echo '================================================='
@@ -67,6 +66,7 @@ sudo mv ~/go/bin/seid /usr/local/bin/seid
 # config
 seid config chain-id $SEI_CHAIN_ID
 seid config keyring-backend test
+seid config node tcp://localhost:${SEI_PORT}657
 
 # init
 seid init $NODENAME --chain-id $SEI_CHAIN_ID

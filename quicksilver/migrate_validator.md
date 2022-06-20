@@ -45,7 +45,7 @@ quicksilverd keys import mykey mykey.backup
 
 #### To check synchronization status
 ```
-quicksilverd status --node $QUICKSILVER_RPC 2>&1 | jq .SyncInfo
+quicksilverd status 2>&1 | jq .SyncInfo
 ```
 > _`catching_up` should be equal to `false`_
 
@@ -83,7 +83,7 @@ sudo systemctl start quicksilverd
 ### 9. Make sure your validator is not jailed
 #### To unjail your validator
 ```
-quicksilverd tx slashing unjail --chain-id $QUICKSILVER_CHAIN_ID --from mykey --gas=auto --node $QUICKSILVER_RPC -y 
+quicksilverd tx slashing unjail --chain-id $QUICKSILVER_CHAIN_ID --from mykey --gas=auto -y 
 ```
 
 ### 10. After you ensure your validator is producing blocks and is healthy you can shut down old validator server

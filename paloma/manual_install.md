@@ -29,7 +29,6 @@ if [ ! $WALLET ]; then
 fi
 echo "export PALOMA_CHAIN_ID=paloma" >> $HOME/.bash_profile
 echo "export PALOMA_PORT=${PALOMA_PORT}" >> $HOME/.bash_profile
-echo "export PALOMA_RPC=tcp://localhost:${PALOMA_PORT}657" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -68,6 +67,7 @@ sudo wget -P /usr/lib https://github.com/CosmWasm/wasmvm/raw/main/api/libwasmvm.
 ```
 palomad config chain-id $PALOMA_CHAIN_ID
 palomad config keyring-backend test
+palomad config node tcp://localhost:${PALOMA_PORT}657
 ```
 
 ## Init app
@@ -114,7 +114,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 
 ## Set minimum gas price
 ```
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0grain\"/" $HOME/.paloma/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ugrain\"/" $HOME/.paloma/config/app.toml
 ```
 
 ## Enable prometheus

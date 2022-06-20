@@ -58,7 +58,7 @@ source $HOME/.bash_profile
 
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
-dewebd status --node $DEWEB_RPC 2>&1 | jq .SyncInfo
+dewebd status 2>&1 | jq .SyncInfo
 ```
 
 ### Create wallet
@@ -102,7 +102,7 @@ Before creating validator please make sure that you have at least 1 dws (1 dws i
 
 To check your wallet balance:
 ```
-dewebd query bank balances $DEWEB_WALLET_ADDRESS --node $DEWEB_RPC
+dewebd query bank balances $DEWEB_WALLET_ADDRESS
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
@@ -118,7 +118,7 @@ dewebd tx staking create-validator \
   --pubkey  $(dewebd tendermint show-validator) \
   --moniker $NODENAME \
   --chain-id $DEWEB_CHAIN_ID \
-  --node $DEWEB_RPC
+ 
 ```
 
 ## Security
@@ -155,7 +155,7 @@ wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/
 
 ### Get list of validators
 ```
-dewebd q staking validators --node $DEWEB_RPC -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
+dewebd q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
 ```
 
 ## Get currently connected peer list with ids
@@ -188,17 +188,17 @@ sudo systemctl restart dewebd
 ### Node info
 Synchronization info
 ```
-dewebd status --node $DEWEB_RPC 2>&1 | jq .SyncInfo
+dewebd status 2>&1 | jq .SyncInfo
 ```
 
 Validator info
 ```
-dewebd status --node $DEWEB_RPC 2>&1 | jq .ValidatorInfo
+dewebd status 2>&1 | jq .ValidatorInfo
 ```
 
 Node info
 ```
-dewebd status --node $DEWEB_RPC 2>&1 | jq .NodeInfo
+dewebd status 2>&1 | jq .NodeInfo
 ```
 
 Show node id
@@ -224,38 +224,38 @@ dewebd keys delete $WALLET
 
 Get wallet balance
 ```
-dewebd query bank balances $DEWEB_WALLET_ADDRESS --node $DEWEB_RPC
+dewebd query bank balances $DEWEB_WALLET_ADDRESS
 ```
 
 Transfer funds
 ```
-dewebd tx bank send $DEWEB_WALLET_ADDRESS <TO_DEWEB_WALLET_ADDRESS> 10000000udws --node $DEWEB_RPC
+dewebd tx bank send $DEWEB_WALLET_ADDRESS <TO_DEWEB_WALLET_ADDRESS> 10000000udws
 ```
 
 ### Voting
 ```
-dewebd tx gov vote 1 yes --from $WALLET --chain-id=$DEWEB_CHAIN_ID --node $DEWEB_RPC
+dewebd tx gov vote 1 yes --from $WALLET --chain-id=$DEWEB_CHAIN_ID
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-dewebd tx staking delegate $DEWEB_VALOPER_ADDRESS 10000000udws --from=$WALLET --chain-id=$DEWEB_CHAIN_ID --gas=auto --node $DEWEB_RPC
+dewebd tx staking delegate $DEWEB_VALOPER_ADDRESS 10000000udws --from=$WALLET --chain-id=$DEWEB_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-dewebd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000udws --from=$WALLET --chain-id=$DEWEB_CHAIN_ID --gas=auto --node $DEWEB_RPC
+dewebd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000udws --from=$WALLET --chain-id=$DEWEB_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
 ```
-dewebd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$DEWEB_CHAIN_ID --gas=auto --node $DEWEB_RPC
+dewebd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$DEWEB_CHAIN_ID --gas=auto
 ```
 
 Withdraw rewards with commision
 ```
-dewebd tx distribution withdraw-rewards $DEWEB_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$DEWEB_CHAIN_ID --node $DEWEB_RPC
+dewebd tx distribution withdraw-rewards $DEWEB_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$DEWEB_CHAIN_ID
 ```
 
 ### Validator management
@@ -268,7 +268,7 @@ dewebd tx staking edit-validator \
   --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
   --chain-id=$DEWEB_CHAIN_ID \
   --from=$WALLET \
-  --node $DEWEB_RPC
+ 
 ```
 
 Unjail validator
@@ -278,7 +278,7 @@ dewebd tx slashing unjail \
   --from=$WALLET \
   --chain-id=$DEWEB_CHAIN_ID \
   --gas=auto \
-  --node $DEWEB_RPC
+ 
 ```
 
 ### Delete node
