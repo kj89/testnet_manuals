@@ -51,7 +51,7 @@ curl -s -X POST http://127.0.0.1:9000 -H 'Content-Type: application/json' -d '{ 
 ```
 
 You should see something similar in the output:
-```
+```json
 {
   "title": "Sui JSON-RPC",
   "description": "Sui JSON-RPC API for interaction with the Sui network gateway.",
@@ -77,7 +77,7 @@ http://<YOUR_NODE_IP>:9000/
 ```
 
 ## Node update
-```
+```shell
 sudo systemctl stop suid
 rm -rf /var/sui/db /var/sui/genesis.blob
 cd $HOME/sui
