@@ -41,7 +41,7 @@ dewebd keys import mykey mykey.backup
 
 #### To check synchronization status
 ```
-curl -s localhost:26657/status | jq .result.sync_info
+dewebd status --node $DEWEB_RPC 2>&1 | jq .SyncInfo
 ```
 > _`catching_up` should be equal to `false`_
 
@@ -79,7 +79,7 @@ sudo systemctl start dewebd
 ### 9. Make sure your validator is not jailed
 #### To unjail your validator
 ```
-dewebd tx slashing unjail --chain-id $DEWEB_CHAIN_ID --from mykey --gas=auto -y
+dewebd tx slashing unjail --chain-id $DEWEB_CHAIN_ID --from mykey --gas=auto --node $DEWEB_RPC -y
 ```
 
 ### 10. After you ensure your validator is producing blocks and is healthy you can shut down old validator server

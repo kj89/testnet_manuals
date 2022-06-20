@@ -41,7 +41,7 @@ kujirad keys import mykey mykey.backup
 
 #### To check synchronization status
 ```
-curl -s localhost:26657/status | jq .result.sync_info
+kujirad status --node $KUJIRA_RPC 2>&1 | jq .SyncInfo
 ```
 > _`catching_up` should be equal to `false`_
 
@@ -79,7 +79,7 @@ sudo systemctl start kujirad
 ### 9. Make sure your validator is not jailed
 #### To unjail your validator
 ```
-kujirad tx slashing unjail --chain-id $KUJIRA_CHAIN_ID --from mykey --gas=auto -y
+kujirad tx slashing unjail --chain-id $KUJIRA_CHAIN_ID --from mykey --gas=auto --node $KUJIRA_RPC -y
 ```
 
 ### 10. After you ensure your validator is producing blocks and is healthy you can shut down old validator server

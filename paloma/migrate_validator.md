@@ -41,7 +41,7 @@ palomad keys import mykey mykey.backup
 
 #### To check synchronization status
 ```
-curl -s localhost:26657/status | jq .result.sync_info
+palomad status --node $PALOMA_RPC 2>&1 | jq .SyncInfo
 ```
 > _`catching_up` should be equal to `false`_
 
@@ -79,7 +79,7 @@ sudo systemctl start palomad
 ### 9. Make sure your validator is not jailed
 #### To unjail your validator
 ```
-palomad tx slashing unjail --chain-id $PALOMA_CHAIN_ID --from mykey --gas=auto -y
+palomad tx slashing unjail --chain-id $PALOMA_CHAIN_ID --from mykey --gas=auto --node $PALOMA_RPC -y
 ```
 
 ### 10. After you ensure your validator is producing blocks and is healthy you can shut down old validator server
