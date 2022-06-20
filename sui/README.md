@@ -7,7 +7,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/174559198-c1f612e5-bba2-4817-95a8-8a3c3659a2aa.png">
 </p>
 
-# Sui node setup for Gemini Incentivized Testnet
+# Sui node setup fro devnet
 
 Official documentation:
 - Official manual: https://github.com/MystenLabs/sui/blob/main/doc/src/build/fullnode.md
@@ -53,7 +53,7 @@ You should see something similar in the output:
 
 ## Post installation
 After setting up your Sui node you have to register it in the [Sui Discord](https://discord.gg/b5vWu33f):
-1) navigate to #📋node-ip-application channel
+1) navigate to `#📋node-ip-application` channel
 2) post your node endpoint url
 ```
 http://<YOUR_NODE_IP>:9000/
