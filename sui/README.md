@@ -12,10 +12,16 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 Official documentation:
 - Official manual: https://github.com/MystenLabs/sui/blob/main/doc/src/build/fullnode.md
 
+## Minimum hardware requirements
+- CPU: 2 CPU
+- Memory: 4 GB RAM
+- Disk: 50 GB SSD Storage
+
 ## Recommended hardware requirements
 - CPU: 2 CPU
 - Memory: 8 GB RAM
 - Disk: 50 GB SSD Storage
+
 > Storage requirements will vary based on various factors (age of the chain, transaction rate, etc) although we don't anticipate running a fullnode on devnet will require more than 50 GBs today given it is reset upon each release roughly every two weeks.
 
 ## (OPTIONAL) Installation takes more than 10 minutes, so we recommend to run in a screen session
