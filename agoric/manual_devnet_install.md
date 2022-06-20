@@ -22,7 +22,7 @@ curl https://devnet.agoric.net/network-config > $HOME/chain.json
 ## Setting up vars
 Here you have to put name of your moniker (validator) that will be visible in explorer
 ```
-NODENAME=<MY_MONIKER_NAME_GOES_HERE>
+NODENAME=<YOUR_MONIKER_NAME_GOES_HERE>
 ```
 
 ## Update packages

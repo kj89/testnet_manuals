@@ -17,7 +17,7 @@ To setup validator node follow the steps below
 ## Setting up vars
 Here you have to put name of your moniker (validator) that will be visible in explorer
 ```
-NODENAME=<MY_MONIKER_NAME_GOES_HERE>
+NODENAME=<YOUR_MONIKER_NAME_GOES_HERE>
 ```
 
 Save and import variables into system
