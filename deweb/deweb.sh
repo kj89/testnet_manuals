@@ -104,7 +104,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0udws\"/" $HOME/.de
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.deweb/config/config.toml
 
 # reset
-dewebd tendermint unsafe-reset-all
+dewebd unsafe-reset-all
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service

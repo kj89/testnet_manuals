@@ -126,7 +126,7 @@ sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.deweb/config/config.t
 
 ## Reset chain data
 ```
-dewebd tendermint unsafe-reset-all
+dewebd unsafe-reset-all
 ```
 
 ## Create service
