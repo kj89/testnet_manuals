@@ -68,7 +68,7 @@ http://<YOUR_NODE_IP>:9000/
 Attach to existing screen session
 ```
 screen -Rd sui
-``
+```
 
 Check sui node status
 ```
