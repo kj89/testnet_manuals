@@ -75,6 +75,6 @@ To delete node
 sudo systemctl stop suid
 sudo systemctl disable suid
 sudo rm -rf ~/sui /var/sui/
-sudo rm /etc/systemd/suid.service
+sudo rm /etc/systemd/system/suid.service
 ```
 
