@@ -11,6 +11,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
 
 Official documentation:
 - Official manual: https://github.com/MystenLabs/sui/blob/main/doc/src/build/fullnode.md
+- Experiment with Sui DevNet: https://docs.sui.io/explore/devnet
 
 ## Minimum hardware requirements
 - CPU: 2 CPU
