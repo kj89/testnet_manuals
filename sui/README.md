@@ -7,7 +7,7 @@ Visit our website <a href="https://kjnodes.com/" target="_blank"><img src="https
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/174559198-c1f612e5-bba2-4817-95a8-8a3c3659a2aa.png">
 </p>
 
-# Sui node setup fro devnet
+# Sui node setup for devnet
 
 Official documentation:
 - Official manual: https://github.com/MystenLabs/sui/blob/main/doc/src/build/fullnode.md
