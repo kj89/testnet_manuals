@@ -18,6 +18,11 @@ Official documentation:
 - Disk: 50 GB SSD Storage
 > Storage requirements will vary based on various factors (age of the chain, transaction rate, etc) although we don't anticipate running a fullnode on devnet will require more than 50 GBs today given it is reset upon each release roughly every two weeks.
 
+## (OPTIONAL) Installation takes more than 10 minutes, so we recommend to run in a screen session:
+```
+screen -S sui
+```
+
 ## Set up your Sui full node
 ### Option 1 (automatic)
 You can setup your Sui full node in minutes by using automated script below
@@ -60,6 +65,11 @@ http://<YOUR_NODE_IP>:9000/
 ```
 
 ## Usefull commands
+Attach to existing screen session
+```
+screen -Rd sui
+``
+
 Check sui node status
 ```
 service suid status
