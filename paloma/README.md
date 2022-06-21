@@ -104,7 +104,7 @@ palomad query bank balances $PALOMA_WALLET_ADDRESS
 To create your validator run command below
 ```
 palomad tx staking create-validator \
-  --amount 100000ugrain \
+  --amount 1000000ugrain \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
@@ -112,8 +112,7 @@ palomad tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(palomad tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id $PALOMA_CHAIN_ID \
- 
+  --chain-id $PALOMA_CHAIN_ID
 ```
 
 ## Security
@@ -262,8 +261,7 @@ palomad tx staking edit-validator \
   --website="http://kjnodes.com" \
   --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
   --chain-id=$PALOMA_CHAIN_ID \
-  --from=$WALLET \
- 
+  --from=$WALLET
 ```
 
 Unjail validator
@@ -272,8 +270,7 @@ palomad tx slashing unjail \
   --broadcast-mode=block \
   --from=$WALLET \
   --chain-id=$PALOMA_CHAIN_ID \
-  --gas=auto \
- 
+  --gas=auto
 ```
 
 ### Delete node
