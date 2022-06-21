@@ -102,7 +102,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ugrain\"/" $HOME/.
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.paloma/config/config.toml
 
 # reset
-palomad tendermint unsafe-reset-all
+palomad tendermint unsafe-reset-all --home $HOME/.paloma
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service

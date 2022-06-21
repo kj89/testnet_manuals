@@ -124,7 +124,7 @@ sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.paloma/config/config.
 
 ## Reset chain data
 ```
-palomad tendermint unsafe-reset-all
+palomad tendermint unsafe-reset-all --home $HOME/.paloma
 ```
 
 ## Create service
