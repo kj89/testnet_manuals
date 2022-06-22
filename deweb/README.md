@@ -125,7 +125,7 @@ dewebd query bank balances $DEWEB_WALLET_ADDRESS
 To create your validator run command below
 ```
 dewebd tx staking create-validator \
-  --amount 100000udws \
+  --amount 1000000udws \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
