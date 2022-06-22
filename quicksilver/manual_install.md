@@ -131,7 +131,7 @@ quicksilverd tendermint unsafe-reset-all --home $HOME/.quicksilverd
 ```
 sudo tee /etc/systemd/system/quicksilverd.service > /dev/null <<EOF
 [Unit]
-Description=paloma
+Description=quicksilver
 After=network-online.target
 
 [Service]
