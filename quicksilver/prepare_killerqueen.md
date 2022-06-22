@@ -18,7 +18,7 @@
 First of all please lookup for your submitted gentx data in [genesis file](https://raw.githubusercontent.com/ingenuity-build/testnets/main/killerqueen/genesis.json)
 ![image](https://user-images.githubusercontent.com/50621007/175129276-9705a6fc-c6ec-4c1e-8944-d1fd0b84732d.png)
 
-If you have found your validator address in genesis, congratulations, you have been selected as genesis validator for `killerqueen-1` testnet and you will receive `100 QCK` tokecns at the chain start.
+If you have found your validator address in genesis, congratulations, you have been selected as genesis validator for `killerqueen-1` testnet and you will receive `100 QCK` tokens at the chain start.
 
 Folks who did not submit a gentx, will be able to call the faucet once. This will give them a decent amount of tokens and will be able to get in the set easily if any genesis validators fail to start.
 
@@ -44,6 +44,7 @@ journalctl -u quicksilverd -o cat
 ```
 7) You should see output `This node is a validator addr=XXXXXXXXX module=consensus pubKey=XXXXXXXXX`
 8) Also output should show that node is waiting for genesis time `Genesis time is in the future. Sleeping until then... genTime=2022-06-23T09:00:00Z`
+
 ![image](https://user-images.githubusercontent.com/50621007/175128488-f7981ef5-98fb-4b0d-bfc0-8135a05a847b.png)
 
 If you see this output your node is ready and should start signing blocks when genesis time will ocure.
