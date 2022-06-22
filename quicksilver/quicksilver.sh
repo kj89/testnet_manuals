@@ -56,6 +56,7 @@ go version
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 cd $HOME
+rm quicksilver -rf
 git clone https://github.com/ingenuity-build/quicksilver.git --branch v0.4.0
 cd quicksilver
 make build

@@ -58,6 +58,7 @@ go version
 ## Download and build binaries
 ```
 cd $HOME
+rm quicksilver -rf
 git clone https://github.com/ingenuity-build/quicksilver.git --branch v0.4.0
 cd quicksilver
 make build
