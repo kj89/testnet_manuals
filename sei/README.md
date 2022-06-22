@@ -119,7 +119,7 @@ seid query bank balances $SEI_WALLET_ADDRESS
 To create your validator run command below
 ```
 seid tx staking create-validator \
-  --amount 100000usei \
+  --amount 1000000usei \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
