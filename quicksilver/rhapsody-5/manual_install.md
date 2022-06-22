@@ -124,7 +124,7 @@ sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.quicksilverd/config/c
 
 ## Reset chain data
 ```
-quicksilverd tendermint unsafe-reset-all
+quicksilverd tendermint unsafe-reset-all --home $HOME/.quicksilverd
 ```
 
 ## Create service

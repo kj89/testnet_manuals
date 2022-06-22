@@ -102,7 +102,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uqck\"/" $HOME/.qu
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.quicksilverd/config/config.toml
 
 # reset
-quicksilverd tendermint unsafe-reset-all
+quicksilverd tendermint unsafe-reset-all --home $HOME/.quicksilverd
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
