@@ -127,8 +127,7 @@ seid tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(seid tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id $SEI_CHAIN_ID \
- 
+  --chain-id $SEI_CHAIN_ID
 ```
 
 ## Security
@@ -277,8 +276,7 @@ seid tx staking edit-validator \
   --website="http://kjnodes.com" \
   --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
   --chain-id=$SEI_CHAIN_ID \
-  --from=$WALLET \
- 
+  --from=$WALLET
 ```
 
 Unjail validator
@@ -287,8 +285,7 @@ seid tx slashing unjail \
   --broadcast-mode=block \
   --from=$WALLET \
   --chain-id=$SEI_CHAIN_ID \
-  --gas=auto \
- 
+  --gas=auto
 ```
 
 ### Delete node

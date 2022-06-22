@@ -116,8 +116,7 @@ kujirad tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(kujirad tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id $KUJIRA_CHAIN_ID \
- 
+  --chain-id $KUJIRA_CHAIN_ID
 ```
 
 ## Security
@@ -266,8 +265,7 @@ kujirad tx staking edit-validator \
   --website="http://kjnodes.com" \
   --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
   --chain-id=$KUJIRA_CHAIN_ID \
-  --from=$WALLET \
- 
+  --from=$WALLET
 ```
 
 Unjail validator
@@ -276,8 +274,7 @@ kujirad tx slashing unjail \
   --broadcast-mode=block \
   --from=$WALLET \
   --chain-id=$KUJIRA_CHAIN_ID \
-  --gas=auto \
- 
+  --gas=auto
 ```
 
 ### Delete node
