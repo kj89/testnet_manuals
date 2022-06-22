@@ -27,7 +27,7 @@ echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export QUICKSILVER_CHAIN_ID=rhapsody-5" >> $HOME/.bash_profile
+echo "export QUICKSILVER_CHAIN_ID=killerqueen-1" >> $HOME/.bash_profile
 echo "export QUICKSILVER_PORT=${QUICKSILVER_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -58,7 +58,7 @@ go version
 ## Download and build binaries
 ```
 cd $HOME
-git clone https://github.com/ingenuity-build/quicksilver.git --branch v0.3.0
+git clone https://github.com/ingenuity-build/quicksilver.git --branch v0.4.0
 cd quicksilver
 make build
 sudo chmod +x ./build/quicksilverd && sudo mv ./build/quicksilverd /usr/local/bin/quicksilverd
@@ -78,13 +78,13 @@ quicksilverd init $NODENAME --chain-id $QUICKSILVER_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -qO $HOME/.quicksilverd/config/genesis.json "https://raw.githubusercontent.com/ingenuity-build/testnets/main/rhapsody/genesis.json"
+wget -qO $HOME/.quicksilverd/config/genesis.json "https://raw.githubusercontent.com/ingenuity-build/testnets/main/killerqueen/genesis.json"
 ```
 
 ## Set seeds and peers
 ```
-SEEDS="dd3460ec11f78b4a7c4336f22a356fe00805ab64@seed.rhapsody-5.quicksilver.zone:26656"
-PEERS="34f41f51e38880a0b33f57cac516e4d57a96f08c@162.55.220.93:26656,9428068507466b542cbf378d59b77746c1d19a34@157.90.35.151:26657,13b082e74dd7bc69227eccb8f58b6602c116b8d6@161.35.238.227:36366,eaeb462547cf76c3588e458120097b51db732b14@194.163.155.84:26656,00bba3aad11c7d1bc8a4f1ac9a05b48edb7cf04c@144.76.67.53:2390,0e5f74c20ec3e90facdb4e4a5d20c21e01998345@65.108.204.119:26656,43bca26cb1b2e7474a8ffa560f210494023d5de4@135.181.140.225:26657,3866a02aaf84f08430f67a7e90b1a61a5f9cef00@207.154.227.78:36366,1999a4a804a1946ab10def5c71eec02415bda479@161.97.82.203:26256,4742e1b942acf17c31794cce80d199886d172c4f@135.181.133.37:31656"
+SEEDS="dd3460ec11f78b4a7c4336f22a356fe00805ab64@seed.killerqueen-1.quicksilver.zone:26656"
+PEERS=""
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.quicksilverd/config/config.toml
 ```
 

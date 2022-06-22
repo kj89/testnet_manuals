@@ -11,7 +11,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/166148846-93575afe-e3ce-4ca5-a3f7-a21e8a8609cb.png">
 </p>
 
-# Quicksilver node setup for Testnet — killerqueen-1
+# Quicksilver node setup for Testnet — rhapsody-5
 
 Official documentation:
 >- [Validator setup instructions](https://github.com/ingenuity-build/testnets)
@@ -20,11 +20,11 @@ Explorer:
 >-  https://quicksilver.explorers.guru/
 
 ## Usefull tools and references
-> To generate gentx for killerqueen-1 testnet please navigate to [Generate gentx for killerqueen-1 testnet](https://github.com/kj89/testnet_manuals/blob/main/quicksilver/gentx/README.md)
+> To generate gentx for killerqueen-1 testnet please navigate to [Generate gentx for killerqueen-1 testnet](https://github.com/kj89/testnet_manuals/blob/main/quicksilver/rhapsody-5/gentx/README.md)
 >
-> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for quicksilver validator](https://github.com/kj89/testnet_manuals/blob/main/quicksilver/monitoring/README.md)
+> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for quicksilver validator](https://github.com/kj89/testnet_manuals/blob/main/quicksilver/rhapsody-5/monitoring/README.md)
 >
-> To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/quicksilver/migrate_validator.md)
+> To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/quicksilver/rhapsody-5/migrate_validator.md)
 
 ## Hardware Requirements
 Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
@@ -49,7 +49,7 @@ wget -O quicksilver.sh https://raw.githubusercontent.com/kj89/testnet_manuals/ma
 ```
 
 ### Option 2 (manual)
-You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/quicksilver/manual_install.md) if you better prefer setting up node manually
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/quicksilver/rhapsody-5/manual_install.md) if you better prefer setting up node manually
 
 ## Post installation
 
@@ -156,7 +156,7 @@ sudo ufw enable
 ```
 
 ## Monitoring
-To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for quicksilver validator](https://github.com/kj89/testnet_manuals/blob/main/quicksilver/monitoring/README.md)
+To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for quicksilver validator](https://github.com/kj89/testnet_manuals/blob/main/quicksilver/rhapsody-5/monitoring/README.md)
 
 ## Calculate synchronization time
 This script will help you to estimate how much time it will take to fully synchronize your node\
