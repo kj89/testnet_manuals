@@ -39,7 +39,7 @@ sudo apt update && sudo apt upgrade -y
 
 ## Install dependencies
 ```
-sudo apt install curl jq -y
+sudo apt install curl jq ocl-icd-opencl-dev libopencl-clang-dev libgomp1 -y
 ```
 
 ## Update executables

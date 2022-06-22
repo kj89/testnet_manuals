@@ -78,6 +78,12 @@ sleep 30
 systemctl restart subspaced-farmer
 ```
 
+## Fix error while loading shared libraries
+If you see error: `error while loading shared libraries: libOpenCL.so.1: cannot open shared object file: No such file or directory`
+```
+sudo apt update && sudo apt install ocl-icd-opencl-dev libopencl-clang-dev libgomp1 -y
+```
+
 ## Reset the node
 If you were running a node previously, and want to switch to a new snapshot, please perform these steps and then follow the guideline again:
 ```

@@ -43,7 +43,7 @@ sudo apt update && sudo apt upgrade -y
 
 echo -e "\e[1m\e[32m2. Installing dependencies... \e[0m" && sleep 1
 # update dependencies
-sudo apt install curl jq -y
+sudo apt install curl jq ocl-icd-opencl-dev libopencl-clang-dev libgomp1 -y
 
 # update executables
 cd $HOME
