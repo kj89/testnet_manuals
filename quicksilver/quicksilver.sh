@@ -114,7 +114,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which quicksilverd) start
+ExecStart=$(which quicksilverd) --home $HOME/.quicksilverd start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
