@@ -124,7 +124,7 @@ sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.kujira/config/config.
 
 ## Reset chain data
 ```
-kujirad tendermint unsafe-reset-all
+kujirad tendermint unsafe-reset-all --home $HOME/.kujira
 ```
 
 ## Create service
@@ -136,7 +136,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which kujirad) start
+ExecStart=$(which kujirad) start --home $HOME/.kujira
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535

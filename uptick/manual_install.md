@@ -112,7 +112,7 @@ s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.uptickd/c
 
 ## Reset chain data
 ```
-uptickd tendermint unsafe-reset-all
+uptickd tendermint unsafe-reset-all --home $HOME/.uptickd
 ```
 
 ## Create service
@@ -124,7 +124,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which uptickd) start
+ExecStart=$(which uptickd) start --home $HOME/.uptickd
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535

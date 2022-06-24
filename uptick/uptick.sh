@@ -103,7 +103,7 @@ s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.uptickd/config/config.toml
 
 # reset
-uptickd tendermint unsafe-reset-all
+uptickd tendermint unsafe-reset-all --home $HOME/.uptickd
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
@@ -114,7 +114,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which uptickd) start
+ExecStart=$(which uptickd) start --home $HOME/.uptickd
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535

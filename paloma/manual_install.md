@@ -136,7 +136,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which palomad) start
+ExecStart=$(which palomad) start --home $HOME/.paloma
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535

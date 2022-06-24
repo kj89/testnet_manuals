@@ -127,19 +127,19 @@ sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.sei/config/config.tom
 
 ## Reset chain data
 ```
-seid tendermint unsafe-reset-all
+seid tendermint unsafe-reset-all --home $HOME/.sei
 ```
 
 ## Create service
 ```
 sudo tee /etc/systemd/system/seid.service > /dev/null <<EOF
 [Unit]
-Description=paloma
+Description=sei
 After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which seid) start
+ExecStart=$(which seid) start --home $HOME/.sei
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535

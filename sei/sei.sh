@@ -105,7 +105,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0usei\"/" $HOME/.se
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.sei/config/config.toml
 
 # reset
-seid tendermint unsafe-reset-all
+seid tendermint unsafe-reset-all --home $HOME/.sei
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
@@ -116,7 +116,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which seid) start
+ExecStart=$(which seid) start --home $HOME/.sei
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535

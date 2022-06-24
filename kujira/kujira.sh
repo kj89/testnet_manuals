@@ -102,7 +102,7 @@ sed -i -e "s/^timeout_commit *=.*/timeout_commit = \"1500ms\"/" $HOME/.kujira/co
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.kujira/config/config.toml
 
 # reset
-kujirad tendermint unsafe-reset-all
+kujirad tendermint unsafe-reset-all --home $HOME/.kujira
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
@@ -113,7 +113,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which kujirad) start
+ExecStart=$(which kujirad) start --home $HOME/.kujira
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
