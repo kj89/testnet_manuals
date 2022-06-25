@@ -76,7 +76,7 @@ sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persisten
 
 ## Set minimum gas price
 ```
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0udws\"/" $HOME/.deweb/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uatom\"/" $HOME/.ica/config/app.toml
 ```
 
 ## Reset chain data
@@ -213,6 +213,21 @@ hermes tx raw ft-transfer \
   -d uatom \
   -k testkey \
   -r <YOUR_QUICKSILVER_ADDRESS> \
+  -t 60 \
+  -o 100
+```
+quicksilvr -> cosmos
+```
+hermes tx raw ft-transfer \
+  kqcosmos-1 \
+  killerqueen-1 \
+  transfer \
+  channel-0 \
+  10000 \
+  -d "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2" \
+  -k testkey \
+  -r <YOUR_COSMOS_ADDRESS> \
+  -n 1 \
   -t 60 \
   -o 100
 ```
