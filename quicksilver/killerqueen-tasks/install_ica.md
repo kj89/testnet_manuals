@@ -217,7 +217,7 @@ hermes tx raw ft-transfer \
   -o 100
 ```
 
-You should receive output:
+You should see similar output:
 ```
 2022-06-25T21:49:46.584669Z  INFO ThreadId(01) using default configuration from '/root/.hermes/config.toml'
 2022-06-25T21:49:46.675960Z  INFO ThreadId(04) wait_for_block_commits: waiting for commit of tx hashes(s) D2BE48A8FD301D790B60876C0806547BC91FA3CF5C3D115B1BA320A1B81F93BB id=kqcosmos-1
@@ -237,4 +237,17 @@ icad query bank balances <COSMOS_WALLET_ADDRESS>
 quicksilver balance
 ```
 quicksilverd query bank balances <QUICKSILVER_WALLET_ADDRESS>
+```
+
+You should see similar output:
+```
+quicksilverd query bank balances $QUICKSILVER_WALLET_ADDRESS
+balances:
+- amount: "10000"
+  denom: ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2
+- amount: "198"
+  denom: uqck
+pagination:
+  next_key: null
+  total: "0"
 ```
