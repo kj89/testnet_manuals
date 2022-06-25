@@ -81,20 +81,14 @@ After setting up your Sui node you have to register it in the [Sui Discord](http
 http://<YOUR_NODE_IP>:9000/
 ```
 
-## Node update
+## Update Sui Fullnode version
 ```
-sudo systemctl stop suid
-rm -rf /var/sui/db /var/sui/genesis.blob
-cd $HOME/sui
-git fetch upstream
-git checkout -B devnet --track upstream/devnet
-wget -O /var/sui/genesis.blob https://github.com/MystenLabs/sui-genesis/raw/main/devnet/genesis.blob
-sudo cp crates/sui-config/data/fullnode-template.yaml /var/sui/fullnode.yaml
-sudo yq e -i '.db-path="/var/sui/db"' /var/sui/fullnode.yaml \
-&& yq e -i '.genesis.genesis-file-location="/var/sui/genesis.blob"' /var/sui/fullnode.yaml \
-&& yq e -i '.metrics-address="0.0.0.0:9184"' /var/sui/fullnode.yaml \
-&& yq e -i '.json-rpc-address="0.0.0.0:9000"' /var/sui/fullnode.yaml
-sudo systemctl start suid
+wget -qO update.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/sui/tools/update.sh && chmod +x update.sh && ./update.sh
+```
+
+## (OPTIONAL) Update configs
+```
+wget -qO update_configs.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/sui/tools/update_configs.sh && chmod +x update_configs.sh && ./update_configs.sh
 ```
 
 ## Usefull commands
