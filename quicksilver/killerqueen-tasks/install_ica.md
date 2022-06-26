@@ -79,12 +79,6 @@ sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persisten
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uatom\"/" $HOME/.ica/config/app.toml
 ```
 
-## Disable indexing
-```
-indexer="null"
-sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.ica/config/config.toml
-```
-
 ## Config pruning
 ```
 pruning="custom"
