@@ -16,6 +16,7 @@
 Official documentation:
 - Official manual: https://github.com/MystenLabs/sui/blob/main/doc/src/build/fullnode.md
 - Experiment with Sui DevNet: https://docs.sui.io/explore/devnet
+- Check you node health: https://node.sui.zvalid.com/
 
 ## Minimum hardware requirements
 - CPU: 2 CPU
@@ -80,6 +81,13 @@ After setting up your Sui node you have to register it in the [Sui Discord](http
 ```
 http://<YOUR_NODE_IP>:9000/
 ```
+
+## Check your node health status
+Enter your node IP into https://node.sui.zvalid.com/
+
+Healthy node should look like this:
+
+![image](https://user-images.githubusercontent.com/50621007/175829451-a36d32ff-f30f-4030-8875-7ffa4e999a24.png)
 
 ## Update Sui Fullnode version
 ```
