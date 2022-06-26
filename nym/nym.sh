@@ -61,7 +61,7 @@ echo -e "\e[1m\e[32m4. Initializing service... \e[0m" && sleep 1
 nym-mixnode init --id $NODENAME --host $(curl ifconfig.me) --wallet-address $WALLET_ADDRESS
 
 # create systemd service
-tee /etc/systemd/system/nym-mixnode.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/nym-mixnode.service > /dev/null <<EOF
 [Unit]
 Description=Nym Mixnode
 StartLimitInterval=350
