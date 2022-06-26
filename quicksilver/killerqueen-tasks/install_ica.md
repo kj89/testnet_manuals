@@ -183,7 +183,7 @@ grpc_addr = 'http://1.2.3.4:11090'
 websocket_addr = 'ws://1.2.3.4:11657/websocket'
 ```
 
-## (ON QUICKSILVER NODE) Expose Quicksilver RPC server in .ica/config/config.toml at line 91
+## (ON QUICKSILVER NODE) Expose Quicksilver RPC server in .quicksilverd/config/config.toml at line 91
 Change `127.0.0.1` to `0.0.0.0` and restart service. Example below:
 ```
 # TCP or UNIX socket address for the RPC server to listen on
