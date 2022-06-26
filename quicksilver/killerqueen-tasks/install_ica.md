@@ -70,13 +70,31 @@ wget -qO $HOME/.ica/config/genesis.json "https://raw.githubusercontent.com/ingen
 ## Set seeds and peers
 ```
 SEEDS="66b0c16486bcc7591f2c3f0e5164d376d06ee0d0@65.108.203.151:26656"
-PEERS=""
+PEERS="6ec00c0f14a905af1d04d09479bde92f1b14cf5e@62.141.45.22:26656,ee6562ed627fcc3f60ec13d5dc9265f0eaa801f3@95.217.222.229:26656,070ff3d748b1d2f23b3a00e0b92ce3e20c595cf4@178.128.221.82:26656,d3d17d76264ad6d20aecd8833d8686c13ff79e68@5.161.93.45:26656,950af7930be6c1b6242f719334040c43491ae842@194.163.169.166:26656,3df77e9140b74b84e9d19040956acfe364fbb41a@157.90.179.182:28656,adad6a9c45920682a8d4768c806f17e08c17f595@185.88.172.16:9096,9684550fab4cfac32b2fc2ce0933160ac87b42d5@95.217.109.218:26656,ef4bb5017c182bd8c7bb0bc0372b4ff5c4617b09@77.37.176.99:26686,7929bf49bdddb815b48820f2f560da03e861a412@20.68.193.38:26656,32eede4a257687a19cfd6505eb3c971215c078a4@65.108.242.147:26656,4f4ee05dabb57702ca6f3c9b587bac9947ca20a7@212.42.113.199:26756,55c9942a5725cb2b5d0fd6187437b59d6e3fabfc@135.181.140.225:36657"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.ica/config/config.toml
 ```
 
 ## Set minimum gas price
 ```
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uatom\"/" $HOME/.ica/config/app.toml
+```
+
+## Disable indexing
+```
+indexer="null"
+sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.ica/config/config.toml
+```
+
+## Config pruning
+```
+pruning="custom"
+pruning_keep_recent="100"
+pruning_keep_every="0"
+pruning_interval="50"
+sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.ica/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.ica/config/app.toml
+sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.ica/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.ica/config/app.toml
 ```
 
 ## Reset chain data
@@ -165,7 +183,7 @@ grpc_addr = 'http://1.2.3.4:11090'
 websocket_addr = 'ws://1.2.3.4:11657/websocket'
 ```
 
-## (ON QUICKSILVER NODE) Expose Quicksilver RPC server in .quicksilverd/config/config.toml at line 91
+## (ON QUICKSILVER NODE) Expose Quicksilver RPC server in .ica/config/config.toml at line 91
 Change `127.0.0.1` to `0.0.0.0` and restart service. Example below:
 ```
 # TCP or UNIX socket address for the RPC server to listen on
@@ -251,12 +269,12 @@ icad query bank balances <COSMOS_WALLET_ADDRESS>
 
 quicksilver balance
 ```
-quicksilverd query bank balances <QUICKSILVER_WALLET_ADDRESS>
+ica query bank balances <QUICKSILVER_WALLET_ADDRESS>
 ```
 
 You should see similar output:
 ```
-quicksilverd query bank balances $QUICKSILVER_WALLET_ADDRESS
+ica query bank balances $QUICKSILVER_WALLET_ADDRESS
 balances:
 - amount: "10000"
   denom: ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2
