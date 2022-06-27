@@ -51,7 +51,7 @@ source ~/.bash_profile
 
 ## Download and install binaries
 ```
-https://github.com/Team-Kujira/core.git
+wget https://github.com/Team-Kujira/core.git
 cd core
 make install
 ```
