@@ -91,9 +91,9 @@ kujirad gentx $WALLET 99000000ukuji \
 --commission-max-change-rate=0.01 \
 --commission-max-rate=0.20 \
 --commission-rate=0.05 \
---details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
---security-contact="admin@kjnodes.com" \
---website="https://kjnodes.com"
+--details="<your_validator_description>" \
+--security-contact="<your_email>" \
+--website="<your_website>"
 ```
 
 ## Things you have to backup
