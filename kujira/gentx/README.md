@@ -57,7 +57,7 @@ make install
 
 ## Config app
 ```
-kujirad config chain-id $QUICKSILVER_CHAIN_ID
+kujirad config chain-id $CHAIN_ID
 kujirad config keyring-backend test
 ```
 
