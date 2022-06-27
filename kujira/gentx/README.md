@@ -62,7 +62,9 @@ kujirad config keyring-backend test
 ```
 
 ## Init node
+```
 kujirad init $NODENAME --chain-id $CHAIN_ID
+```
 
 ## Recover or create new wallet for mainnet
 Option 1 - generate new wallet
