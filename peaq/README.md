@@ -199,15 +199,15 @@ Copy the first 42 characters from the converted result, or 40 characters with ex
 
 3. Send AGNG from your ETH wallet to this recent copied ETH address
 
-![image](https://user-images.githubusercontent.com/50621007/176246164-d6283c56-525d-4c17-84c3-27b5b5293337.png)
+<img src="https://user-images.githubusercontent.com/50621007/176246164-d6283c56-525d-4c17-84c3-27b5b5293337.png" alt="drawing" width="300"/>
 
 4. Approve and sign the transaction. Pay the calculated gas for this transaction.
 
-![image](https://user-images.githubusercontent.com/50621007/176246252-9d5d21f0-c526-4a6d-aabb-c40ddbdc9ac5.png)
+<img src="https://user-images.githubusercontent.com/50621007/176246252-9d5d21f0-c526-4a6d-aabb-c40ddbdc9ac5.png" alt="drawing" width="300"/>
 
 Your transaction is on its way. After a few seconds you should have it completed.
 
-![image](https://user-images.githubusercontent.com/50621007/176246300-44404b3f-f518-4699-bbc3-edf91b5a3adc.png)
+<img src="https://user-images.githubusercontent.com/50621007/176246300-44404b3f-f518-4699-bbc3-edf91b5a3adc.png" alt="drawing" width="300"/>
 
 5. Go to the [Polkadot js Extrinsicts page](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.agung.peaq.network#/extrinsics)
 
