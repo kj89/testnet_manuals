@@ -123,7 +123,7 @@ sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.uptickd/config/config
 
 ## Reset chain data
 ```
-uptickd unsafe-reset-all
+uptickd tendermint unsafe-reset-all --home $HOME/.uptickd
 ```
 
 ## Create service

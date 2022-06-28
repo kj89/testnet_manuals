@@ -102,7 +102,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0auptick\"/" $HOME/
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.uptickd/config/config.toml
 
 # reset
-uptickd unsafe-reset-all
+uptickd tendermint unsafe-reset-all --home $HOME/.uptickd
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
