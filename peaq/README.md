@@ -74,6 +74,15 @@ peaq-node purge-chain --chain agung -y
 systemctl restart peaqd
 ```
 
+## Fund your wallet
+To top up your wallet join [peaq discord server](https://discord.gg/6tTJH7QT) and navigate to:
+- **#agung-faucet** for AGNG tokens
+
+To request a faucet grant:
+```
+!send <YOUR_WALLET_ADDRESS>
+```
+
 ## Usefull commands
 Check node and farmer version
 ```
