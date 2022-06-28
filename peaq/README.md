@@ -12,7 +12,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/176226900-aae9149d-a186-4fd5-a9aa-fc3ce8b082b3.png">
 </p>
 
-# Peaq node setup for Gemini Incentivized Testnet
+# Peaq node setup for Agung Testnet
 
 Official documentation:
 - Official manual: https://docs.peaq.network/node-operators/run-an-agung-node-peaq-testnet
