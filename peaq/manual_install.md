@@ -12,6 +12,18 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/176226900-aae9149d-a186-4fd5-a9aa-fc3ce8b082b3.png">
 </p>
 
+## Setting up vars
+>Replace `YOUR_NODENAME` below with the name of your node
+```
+NODENAME=<YOUR_NODENAME>
+```
+
+Save and import variables into system
+```
+echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
 # Install peaq node
 To setup peaq node follow the steps below
 
@@ -53,7 +65,8 @@ ExecStart=$(which peaq-node) \\
 --rpc-port 9933 \\
 --rpc-cors all \\
 --pruning archive \\
---name ro_full_node_0
+--name ro_full_node_0 \\
+--name $NODENAME
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535

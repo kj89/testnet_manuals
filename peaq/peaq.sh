@@ -12,6 +12,19 @@ echo -e "\e[0m"
 echo "=================================================="
 sleep 2
 
+# set vars
+echo -e "\e[1m\e[32mReplace <NODENAME> below with the name of your node\e[0m"
+if [ ! $NODENAME ]; then
+	read -p "Enter node name: " NODENAME
+	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
+fi
+source ~/.bash_profile
+
+echo '================================================='
+echo -e "Your node name: \e[1m\e[32m$NODENAME\e[0m"
+echo -e '================================================='
+sleep 3
+
 echo -e "\e[1m\e[32m1. Updating packages... \e[0m" && sleep 1
 # update packages
 sudo apt update && sudo apt upgrade -y
@@ -47,7 +60,8 @@ ExecStart=$(which peaq-node) \\
 --rpc-port 9933 \\
 --rpc-cors all \\
 --pruning archive \\
---name ro_full_node_0
+--name ro_full_node_0 \\
+--name $NODENAME
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
