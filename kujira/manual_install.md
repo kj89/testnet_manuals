@@ -131,7 +131,7 @@ kujirad tendermint unsafe-reset-all --home $HOME/.kujira
 ```
 sudo tee /etc/systemd/system/kujirad.service > /dev/null <<EOF
 [Unit]
-Description=paloma
+Description=kujira
 After=network-online.target
 
 [Service]

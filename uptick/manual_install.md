@@ -130,7 +130,7 @@ uptickd tendermint unsafe-reset-all --home $HOME/.uptickd
 ```
 sudo tee /etc/systemd/system/uptickd.service > /dev/null <<EOF
 [Unit]
-Description=paloma
+Description=uptick
 After=network-online.target
 
 [Service]

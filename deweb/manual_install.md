@@ -133,7 +133,7 @@ dewebd unsafe-reset-all
 ```
 sudo tee /etc/systemd/system/dewebd.service > /dev/null <<EOF
 [Unit]
-Description=paloma
+Description=deweb
 After=network-online.target
 
 [Service]
