@@ -12,7 +12,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/176226900-aae9149d-a186-4fd5-a9aa-fc3ce8b082b3.png">
 </p>
 
-# How to transfer tokens between Ethereum and substrate wallets
+# How to transfer tokens between Ethereum and Substrate wallets
 
 ## Creating an Agung Wallet
 1. Download and install [Browser Extension](https://polkadot.js.org/extension/)
