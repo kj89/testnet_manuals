@@ -16,8 +16,8 @@
 
 Official documentation:
 - Official manual: https://docs.peaq.network/node-operators/run-an-agung-node-peaq-testnet
-- Telemetry: N/A
 - Block explorer: https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.agung.peaq.network#/explorer
+- EVM Explorer: https://scout.agung.peaq.network/
 
 Additional tasks:
 - [Transfer tokens between Ethereum and substrate wallets](https://github.com/kj89/testnet_manuals/blob/main/peaq/token_transfer.md)
@@ -66,25 +66,25 @@ sudo tar zxvf peaq-node.tar.gz
 sudo rm peaq-node.tar.gz
 sudo chmod +x peaq-node
 sudo mv peaq-node /usr/local/bin/
-systemctl restart peaqd
+sudo systemctl restart peaqd
 ```
 
 ## Reset the node
 If you were running a node previously, and want to switch to a new snapshot, please perform these steps and then follow the guideline again:
 ```
-peaq-node purge-chain --chain agung -y
-systemctl restart peaqd
+peaq-node purge-chain --chain agung --base-path /chain-data -y
+sudo systemctl restart peaqd
 ```
 
 ## Usefull commands
-Check node and farmer version
+Check node version
 ```
 peaq-node --version
 ```
 
 Check node status
 ```
-service peaqd status
+sudo service peaqd status
 ```
 
 Check node logs
@@ -120,7 +120,7 @@ To delete node
 ```
 sudo systemctl stop peaqd
 sudo systemctl disable peaqd
-rm -rf ~/.local/share/peaq*
-rm -rf /etc/systemd/system/peaqd*
-rm -rf /usr/local/bin/peaq*
+sudo rm -rf /etc/systemd/system/peaqd*
+sudo rm -rf /usr/local/bin/peaq*
+sudo rm -rf /chain-data
 ```
