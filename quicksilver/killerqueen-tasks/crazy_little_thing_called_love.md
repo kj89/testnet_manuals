@@ -130,7 +130,7 @@ icad query bank balances <COSMOS_WALLET_ADDRESS>
 
 quicksilver balance
 ```
-ica query bank balances <QUICKSILVER_WALLET_ADDRESS>
+quicksilverd query bank balances <QUICKSILVER_WALLET_ADDRESS>
 ```
 
 You should see similar output:
