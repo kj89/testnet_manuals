@@ -113,7 +113,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which uptickd) start
+ExecStart=$(which uptickd) start --home $HOME/.uptickd
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
