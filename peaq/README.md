@@ -11,7 +11,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/176226900-aae9149d-a186-4fd5-a9aa-fc3ce8b082b3.png">
 </p>
 
-# peaq node setup for Gemini Incentivized Testnet
+# Peaq node setup for Gemini Incentivized Testnet
 
 Official documentation:
 - Official manual: https://docs.peaq.network/node-operators/run-an-agung-node-peaq-testnet
@@ -35,12 +35,12 @@ For RPC and WebSockets the following should be opened: `9933/TCP, 9944/TCP`
 ## Create Polkadot.js wallet
 To create polkadot wallet:
 1. Download and install [Browser Extension](https://polkadot.js.org/extension/)
-2. Navigate to [peaq Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.agung.peaq.network#/accounts) and press `Add account` button
+2. Navigate to [Peaq Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.agung.peaq.network#/accounts) and press `Add account` button
 3. Save `mnemonic` and create wallet
 4. This will generate wallet address that you will have to use later. Example of wallet address: `5HTBxt66esFrqyFDraQvxWuiHfPbS5t6FLLTPEN37sZu6T5A`
 
 ### Option 1 (automatic)
-You can setup your peaq full node in few minutes by using automated script below
+You can setup your Peaq full node in few minutes by using automated script below
 ```
 wget -O peaq.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/peaq/peaq.sh && chmod +x peaq.sh && ./peaq.sh
 ```
@@ -91,25 +91,26 @@ journalctl -u peaqd -f -o cat
 
 You should see something similar in the logs:
 ```
-2022-02-03 10:52:23 peaq
-2022-02-03 10:52:23 ✌️  version 0.1.0-35cf6f5-x86_64-ubuntu
-2022-02-03 10:52:23 ❤️  by peaq Labs <https://peaq.network>, 2021-2022
-2022-02-03 10:52:23 📋 Chain specification: peaq Gemini 1
-2022-02-03 10:52:23 🏷  Node name: YOUR_FANCY_NAME
-2022-02-03 10:52:23 👤 Role: AUTHORITY
-2022-02-03 10:52:23 💾 Database: RocksDb at /home/X/.local/share/peaq-node-x86_64-ubuntu-20.04-snapshot-2022-jan-05/chains/peaq_test/db/full
-2022-02-03 10:52:23 ⛓  Native runtime: peaq-100 (peaq-1.tx1.au1)
-2022-02-03 10:52:23 🔨 Initializing Genesis block/state (state: 0x22a5…17ea, header-hash: 0x6ada…0d38)
-2022-02-03 10:52:24 ⏱  Loaded block-time = 1s from block 0x6ada0792ea62bf3501abc87d92e1ce0e78ddefba66f02973de54144d12ed0d38
-2022-02-03 10:52:24 Starting archiving from genesis
-2022-02-03 10:52:24 Archiving already produced blocks 0..=0
-2022-02-03 10:52:24 🏷  Local node identity is: 12D3KooWBgKtea7MVvraeNyxdPF935pToq1x9VjR1rDeNH1qecXu
-2022-02-03 10:52:24 🧑‍🌾 Starting peaq Authorship worker
-2022-02-03 10:52:24 📦 Highest known block at #0
-2022-02-03 10:52:24 〽️ Prometheus exporter started at 127.0.0.1:9615
-2022-02-03 10:52:24 Listening for new connections on 0.0.0.0:9944.
-2022-02-03 10:52:26 🔍 Discovered new external address for our node: /ip4/176.233.17.199/tcp/30333/p2p/12D3KooWBgKtea7MVvraeNyxdPF935pToq1x9VjR1rDeNH1qecXu
-2022-02-03 10:52:29 ⚙️  Syncing, target=#215883 (2 peers), best: #55 (0xafc7…bccf), finalized #0 (0x6ada…0d38), ⬇ 850.1kiB/s ⬆ 1.5kiB/s
+Jun 28 16:40:32 paeq-01 systemd[1]: Started Peaq Node.
+Jun 28 16:40:32 paeq-01 peaq-node[27357]: 2022-06-28 16:40:32 PEAQ Node
+Jun 28 16:40:32 paeq-01 peaq-node[27357]: 2022-06-28 16:40:32 ✌️  version 3.0.0-polkadot-v0.9.16-6f72704-x86_64-linux-gnu
+Jun 28 16:40:32 paeq-01 peaq-node[27357]: 2022-06-28 16:40:32 ❤️  by peaq network <https://github.com/peaqnetwork>, 2021-2022
+Jun 28 16:40:32 paeq-01 peaq-node[27357]: 2022-06-28 16:40:32 📋 Chain specification: agung-network
+Jun 28 16:40:32 paeq-01 peaq-node[27357]: 2022-06-28 16:40:32 🏷  Node name: ro_full_node_0
+Jun 28 16:40:32 paeq-01 peaq-node[27357]: 2022-06-28 16:40:32 👤 Role: FULL
+Jun 28 16:40:32 paeq-01 peaq-node[27357]: 2022-06-28 16:40:32 💾 Database: RocksDb at ./chain-data/chains/agung-substrate-testnet/db/full
+Jun 28 16:40:32 paeq-01 peaq-node[27357]: 2022-06-28 16:40:32 ⛓  Native runtime: peaq-node-3 (peaq-node-1.tx1.au1)
+Jun 28 16:40:36 paeq-01 peaq-node[27357]: 2022-06-28 16:40:36 🔨 Initializing Genesis block/state (state: 0x72d3…181f, header-hash: 0xf496…909f)
+Jun 28 16:40:36 paeq-01 peaq-node[27357]: 2022-06-28 16:40:36 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
+Jun 28 16:40:40 paeq-01 peaq-node[27357]: 2022-06-28 16:40:40 Using default protocol ID "sup" because none is configured in the chain specs
+Jun 28 16:40:40 paeq-01 peaq-node[27357]: 2022-06-28 16:40:40 🏷  Local node identity is: 12D3KooWD4hyKVKe3v99KJadKVVUEXKEw1HNp5d6EXpzyVFDwQtq
+Jun 28 16:40:40 paeq-01 peaq-node[27357]: 2022-06-28 16:40:40 📦 Highest known block at #0
+Jun 28 16:40:40 paeq-01 peaq-node[27357]: 2022-06-28 16:40:40 〽️ Prometheus exporter started at 127.0.0.1:9615
+Jun 28 16:40:40 paeq-01 peaq-node[27357]: 2022-06-28 16:40:40 Listening for new connections on 127.0.0.1:9944.
+Jun 28 16:40:40 paeq-01 peaq-node[27357]: 2022-06-28 16:40:40 🔍 Discovered new external address for our node: /ip4/138.201.118.10/tcp/1033/ws/p2p/12D3KooWD4hyKVKe3v99KJadKVVUEXKEw1HNp5d6EXpzyVFDwQtq
+Jun 28 16:40:45 paeq-01 peaq-node[27357]: 2022-06-28 16:40:45 ⚙️  Syncing, target=#1180121 (13 peers), best: #3585 (0x40f3…2548), finalized #3584 (0x292b…1fee), ⬇ 386.2kiB/s ⬆ 40.1kiB/s
+Jun 28 16:40:50 paeq-01 peaq-node[27357]: 2022-06-28 16:40:50 ⚙️  Syncing 677.6 bps, target=#1180122 (13 peers), best: #6973 (0x6d89…9f39), finalized #6656 (0xaff8…65d9), ⬇ 192.5kiB/s ⬆ 7.8kiB/s
+Jun 28 16:40:55 paeq-01 peaq-node[27357]: 2022-06-28 16:40:55 ⚙️  Syncing 494.6 bps, target=#1180123 (13 peers), best: #9446 (0xe7e2…c2d9), finalized #9216 (0x1951…dc01), ⬇ 188.7kiB/s ⬆ 5.8kiB/s
 ```
 
 To delete node

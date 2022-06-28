@@ -66,5 +66,5 @@ if [[ `service peaqd status | grep active` =~ "running" ]]; then
 else
   echo -e "Your peaq node \e[31mwas not installed correctly\e[39m, please reinstall."
 fi
-echo -e "Check your node logs: \e[journalctl -fu peaqd -o cat\e[39m"
+echo -e "Check your node logs: \e[32mjournalctl -fu peaqd -o cat\e[39m"
 sleep 2
