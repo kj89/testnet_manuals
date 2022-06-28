@@ -74,7 +74,7 @@ s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC1,$SNAP_RPC2\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.uptickd/config/config.toml
 uptickd tendermint unsafe-reset-all --home $HOME/.uptickd
-sudo systemctl restart uptickd
+sudo systemctl restart uptickd && journalctl -fu uptickd -o cat
 ```
 
 ### Create wallet
