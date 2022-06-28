@@ -20,7 +20,7 @@ Official documentation:
 - Block explorer: https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.agung.peaq.network#/explorer
 
 Additional tasks:
-- Transfer tokens between Ethereum and substrate wallets: https://github.com/kj89/testnet_manuals/blob/main/peaq/token_transfer.md
+- [Transfer tokens between Ethereum and substrate wallets](https://github.com/kj89/testnet_manuals/blob/main/peaq/token_transfer.md)
 
 ## Minimum Specifications
 - CPU: 2 CPU
