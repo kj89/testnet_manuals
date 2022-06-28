@@ -52,7 +52,6 @@ curl -s -X POST http://localhost:9933 -H "Content-Type: application/json" --data
 ```
 
 ## Check connected peer count
-If output is `false` your node is synchronized
 ```
 curl -s -X POST http://localhost:9933 -H "Content-Type: application/json" --data '{"id":1, "jsonrpc":"2.0", "method": "system_health", "params":[]}' | jq .result.peers
 ```
