@@ -26,6 +26,7 @@ sudo rm -rf peaq-node
 APP_VERSION=$(curl -s https://api.github.com/repos/peaqnetwork/peaq-network-node/releases/latest | jq -r ".tag_name")
 wget -O peaq-node.tar.gz https://github.com/peaqnetwork/peaq-network-node/releases/download/${APP_VERSION}/peaq-node-${APP_VERSION}.tar.gz
 sudo tar zxvf peaq-node.tar.gz
+sudo rm peaq-node.tar.gz
 sudo chmod +x peaq-node
 sudo mv peaq-node /usr/local/bin/
 

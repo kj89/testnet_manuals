@@ -51,6 +51,12 @@ If output is `false` your node is synchronized
 curl -s -X POST http://localhost:9933 -H "Content-Type: application/json" --data '{"id":1, "jsonrpc":"2.0", "method": "system_health", "params":[]}' | jq .result.isSyncing
 ```
 
+## Check connected peer count
+If output is `false` your node is synchronized
+```
+curl -s -X POST http://localhost:9933 -H "Content-Type: application/json" --data '{"id":1, "jsonrpc":"2.0", "method": "system_health", "params":[]}' | jq .result.peers
+```
+
 ## Update the node
 To upgrade your node to new binaries, please run the coommand below:
 ```
@@ -58,6 +64,7 @@ cd $HOME && sudo rm -rf peaq-node
 APP_VERSION=$(curl -s https://api.github.com/repos/peaqnetwork/peaq-network-node/releases/latest | jq -r ".tag_name")
 wget -O peaq-node.tar.gz https://github.com/peaqnetwork/peaq-network-node/releases/download/${APP_VERSION}/peaq-node-${APP_VERSION}.tar.gz
 sudo tar zxvf peaq-node.tar.gz
+sudo rm peaq-node.tar.gz
 sudo chmod +x peaq-node
 sudo mv peaq-node /usr/local/bin/
 systemctl restart peaqd
