@@ -60,7 +60,6 @@ ExecStart=$(which peaq-node) \\
 --rpc-port 9933 \\
 --rpc-cors all \\
 --pruning archive \\
---name ro_full_node_0 \\
 --name $NODENAME
 Restart=on-failure
 RestartSec=10
