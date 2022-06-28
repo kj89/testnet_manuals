@@ -73,6 +73,14 @@ mv ~/go/bin/seid /usr/local/bin/seid
 systemctl restart seid && journalctl -fu seid -o cat
 ```
 
+## Optimize validator config
+![image](https://user-images.githubusercontent.com/50621007/176101397-cbc216a4-1c11-4d1e-9e1d-33a84280d508.png)
+```
+wget -qO optimize-configs.sh https://raw.githubusercontent.com/sei-protocol/testnet/main/sei-testnet-2/optimize-configs.sh
+sudo chmod +x optimize-configs.sh && ./optimize-configs.sh
+sudo systemctl restart seid
+```
+
 ## Post installation
 
 When installation is finished please load variables into system
