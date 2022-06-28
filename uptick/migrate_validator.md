@@ -14,7 +14,7 @@
 # Migrate your validator to another machine
 
 ### 1. Run a new full node on a new machine
-To setup full node you can follow my guide [uptick node setup for Testnet — uptick_7776-1](https://github.com/kj89/testnet_manuals/blob/main/uptick/README.md)
+To setup full node you can follow my guide [uptick node setup for Testnet](https://github.com/kj89/testnet_manuals/blob/main/uptick/README.md)
 
 ### 2. Confirm that you have the recovery seed phrase information for the active key running on the old machine
 
@@ -45,7 +45,7 @@ uptickd keys import mykey mykey.backup
 
 #### To check synchronization status
 ```
-curl -s localhost:26657/status | jq .result.sync_info
+uptickd status 2>&1 | jq .SyncInfo
 ```
 > _`catching_up` should be equal to `false`_
 
@@ -67,11 +67,11 @@ sudo systemctl stop uptickd
 ```
 
 ### 7. Move the validator's private key from the old machine to the new machine
-#### Private key is located in: `~/.uptickdd/config/priv_validator_key.json`
+#### Private key is located in: `~/.uptickd/config/priv_validator_key.json`
 
 > _After being copied, the key `priv_validator_key.json` should then be removed from the old node's config directory to prevent double-signing if the node were to start back up_
 ```
-mv ~/.uptickdd/config/priv_validator_key.json ~/.uptickdd/bak_priv_validator_key.json
+sudo mv ~/.uptickd/config/priv_validator_key.json ~/.uptickd/bak_priv_validator_key.json
 ```
 
 ### 8. Start service on a new validator node
@@ -83,7 +83,7 @@ sudo systemctl start uptickd
 ### 9. Make sure your validator is not jailed
 #### To unjail your validator
 ```
-uptickd tx slashing unjail --chain-id uptick_7776-1 --from mykey --gas=auto -y
+uptickd tx slashing unjail --chain-id $UPTICK_CHAIN_ID --from mykey --gas=auto -y
 ```
 
 ### 10. After you ensure your validator is producing blocks and is healthy you can shut down old validator server

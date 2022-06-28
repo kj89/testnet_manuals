@@ -4,12 +4,12 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 DELAY=300 #Delay time in seconds
 for (( ;; )); do
-        JAIL=$(uptickd q staking validator $( echo "${PASSWORD}" | uptickd keys show ${WALLET} --bech val -a) | grep jailed:);
+        JAIL=$(uptickd q staking validator $(uptickd keys show ${WALLET} --bech val -a) | grep jailed:);
         if [[ ${JAIL} == *"false"* ]]; then
             echo -e "${GREEN}${JAIL} \n"
         else
             echo -e "${GREEN}${JAIL} \n"
-            echo -e $( echo "${PASSWORD}" | uptickd tx slashing unjail --chain-id ${CHAIN_ID} --from ${WALLET} --gas=auto --fees=1000$auptick -y) \n;
+            echo -e $(uptickd tx slashing unjail --chain-id ${UPTICK_CHAIN_ID} --from ${WALLET} --gas=auto --fees=1000$auptick -y) \n;
             sleep 1
         fi
         for (( timer=${DELAY}; timer>0; timer-- ))
