@@ -43,6 +43,12 @@ sudo rm peaq-node.tar.gz
 sudo chmod +x peaq-node
 sudo mv peaq-node /usr/local/bin/
 
+# create chain data directory
+```
+sudo mkdir /chain-data
+sudo chmod 0777 /chain-data
+```
+
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create peaq-node service 
 sudo tee <<EOF >/dev/null /etc/systemd/system/peaqd.service
@@ -53,7 +59,7 @@ After=network.target
 Type=simple
 User=$USER
 ExecStart=$(which peaq-node) \\
---base-path ./chain-data \\
+--base-path /chain-data \\
 --chain agung \\
 --port 1033 \\
 --ws-port 9944 \\
