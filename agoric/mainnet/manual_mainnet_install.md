@@ -139,7 +139,7 @@ ag0 unsafe-reset-all
 
 ## Create service
 ```
-tee /etc/systemd/system/ag0.service > /dev/null <<EOF
+tee /etc/systemd/system/agoricd.service > /dev/null <<EOF
 [Unit]
 Description=Agoric Cosmos daemon
 After=network-online.target

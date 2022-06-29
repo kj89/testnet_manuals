@@ -105,7 +105,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ubld\"/" $HOME/.ag
 ag0 unsafe-reset-all
 
 # create service
-tee /etc/systemd/system/ag0.service > /dev/null <<EOF
+tee /etc/systemd/system/agoricd.service > /dev/null <<EOF
 [Unit]
 Description=Agoric Cosmos daemon
 After=network-online.target

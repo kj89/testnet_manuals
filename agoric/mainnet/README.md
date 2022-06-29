@@ -44,6 +44,21 @@ Next you have to make sure your validator is syncing blocks. You can use command
 ag0 status 2>&1 | jq .SyncInfo
 ```
 
+### (OPTIONAL) Restore using snapshot provided by polkachu
+```
+json=$(curl -qs --request GET --get "https://polkachu.com/api/v1/chains/agoric/snapshot" --header "Content-Type: application/json" --header "Accept: application/json")
+snapshot_url=$(echo $json | jq -r .snapshot.url)
+snapshot_name=$(echo $json | jq -r .snapshot.name)
+snapshot_block=$(echo $json | jq -r .snapshot.block_height)
+echo -e "\e[1m\e[32mDownloading $snapshot_name (block height: $snapshot_block) from $snapshot_url...\e[0m"
+wget -O $snapshot_name $snapshot_url
+sudo systemctl stop agoricd
+ag0 unsafe-reset-all
+lz4 -c -d $snapshot_name  | tar -x -C $HOME/.agoric
+rm -v $snapshot_name
+sudo systemctl start agoricd
+```
+
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
@@ -77,12 +92,6 @@ echo 'export WALLET_ADDRESS='${WALLET_ADDRESS} >> $HOME/.bash_profile
 echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
-
-### Top up your wallet balance using faucet
-To get free tokens in agoricdev-11 testnet:
-* navigate to [Agoric official discord](https://agoric.com/discord)
-* open `#faucet` channel under `DEVELOPMENT` category 
-* input command: `!faucet client <WALLET_ADDRESS>`
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 bld (1 bld is equal to 1000000 ubld) and your node is synchronized
