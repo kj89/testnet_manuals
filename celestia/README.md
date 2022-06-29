@@ -257,9 +257,9 @@ celestia-appd tx distribution withdraw-rewards $VALOPER_ADDRESS --from=$WALLET -
 Edit validator
 ```
 celestia-appd tx staking edit-validator \
---identity=1C5ACD2EEF363C3A \
---website="http://kjnodes.com" \
---details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
+--identity=<your_keybase_id> \
+--website="<your_website>" \
+--details="<your_validator_description>" \
 --chain-id=$CHAIN_ID \
 --from=$WALLET
 ```
