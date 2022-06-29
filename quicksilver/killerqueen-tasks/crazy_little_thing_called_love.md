@@ -44,11 +44,13 @@ grpc_addr = 'http://1.2.3.4:11090'
 websocket_addr = 'ws://1.2.3.4:11657/websocket'
 ```
 
-## (ON QUICKSILVER NODE) Expose Quicksilver RPC server in .quicksilverd/config/config.toml at line 91
-Change `127.0.0.1` to `0.0.0.0` and restart service. Example below:
+## (ON QUICKSILVER NODE) Run this commands for change laddr adress `127.0.0.1` to `0.0.0.0` and restart service:
+*You need to do this on the server with `killerqueen-1` installed.*
 ```
-# TCP or UNIX socket address for the RPC server to listen on
-laddr = "tcp://0.0.0.0:11657"
+PORTR=$(grep -A 3 "\[rpc\]" ~/.quicksilverd/config/config.toml | egrep -o ":[0-9]+")
+sed -i.bak -e "s%^laddr = \"tcp://127.0.0.1$PORTR\"%laddr = \"tcp://0.0.0.0$PORTR\"%" $HOME/.quicksilverd/config/config.toml
+
+systemctl restart quicksilverd
 ```
 
 ## Restore keys
