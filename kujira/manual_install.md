@@ -28,7 +28,7 @@ echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export KUJIRA_CHAIN_ID=harpoon-4" >> $HOME/.bash_profile
+echo "export KUJIRA_CHAIN_ID=kaiyo-1" >> $HOME/.bash_profile
 echo "export KUJIRA_PORT=${KUJIRA_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -40,7 +40,7 @@ sudo apt update && sudo apt upgrade -y
 
 ## Install dependencies
 ```
-sudo apt install curl build-essential git wget jq make gcc tmux -y
+sudo apt install curl build-essential git wget jq make gcc tmux chrony -y
 ```
 
 ## Install go
@@ -59,15 +59,15 @@ go version
 ## Download and build binaries
 ```
 cd $HOME
-git clone https://github.com/Team-Kujira/core kujira-core && cd kujira-core
-git checkout v0.4.0
+git clone https://github.com/Team-Kujira/core.git
+cd core
 make install
 ```
 
 ## Config app
 ```
 kujirad config chain-id $KUJIRA_CHAIN_ID
-kujirad config keyring-backend test
+kujirad config keyring-backend file
 kujirad config node tcp://localhost:${KUJIRA_PORT}657
 ```
 
@@ -78,13 +78,13 @@ kujirad init $NODENAME --chain-id $KUJIRA_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -qO $HOME/.kujira/config/genesis.json "https://raw.githubusercontent.com/Team-Kujira/networks/master/testnet/harpoon-4.json"
+wget -qO $HOME/.kujira/config/genesis.json "https://raw.githubusercontent.com/Team-Kujira/networks/master/mainnet/kaiyo-1.json"
 ```
 
 ## Set seeds and peers
 ```
 SEEDS=""
-PEERS="4bba4fc2d07b6f8b5aa0de8668e9d10cf22f1fe8@65.108.229.56:26656,f9ee35cf9aec3010f26b02e5b3354efaf1c02d53@116.203.135.192:26656,ccd2861990a98dc6b3787451485b2213dd3805fa@185.144.99.234:26656,20f0409359fa455d7ca11b81039782a260899579@195.201.164.223:26656,1a80d041e13cb211391785cfdec25fc8ce6fb4c4@157.90.183.167:26656,06ebd0b308950d5b5a0e0d81096befe5ba07e0b3@193.31.118.143:25656,5552e4eb91dd7fe15af0dbfcbc8dad002e46d69e@188.40.140.51:40001,f5b3223131fa0b9e8ac08d4f04fd34c25b88a099@95.216.208.101:36656,c009938f56e54754a70bd6fd46b277c5c4854e56@65.108.11.180:26656,b3f4cfa9e0745f983d000994cdb171574a5cfa39@38.146.3.185:26656,"
+PEERS=""
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.kujira/config/config.toml
 ```
 
@@ -92,12 +92,6 @@ sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persisten
 ```
 sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${KUJIRA_PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${KUJIRA_PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${KUJIRA_PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${KUJIRA_PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${KUJIRA_PORT}660\"%" $HOME/.kujira/config/config.toml
 sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${KUJIRA_PORT}317\"%; s%^address = \":8080\"%address = \":${KUJIRA_PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${KUJIRA_PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${KUJIRA_PORT}091\"%" $HOME/.kujira/config/app.toml
-```
-
-## Disable indexing
-```
-indexer="null"
-sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.kujira/config/config.toml
 ```
 
 ## Config pruning

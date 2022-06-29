@@ -12,7 +12,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/172356220-b8326ceb-9950-4226-b66e-da69099aaf6e.png">
 </p>
 
-# kujira node setup for Testnet — harpoon-4
+# kujira node setup for Testnet — kaiyo-1
 
 Official documentation:
 >- [Validator setup instructions](https://docs.kujira.app/run-a-node)
@@ -62,20 +62,19 @@ Next you have to make sure your validator is syncing blocks. You can use command
 kujirad status 2>&1 | jq .SyncInfo
 ```
 
+### (OPTIONAL) Disable and cleanup indexing
+```
+indexer="null"
+sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.kujira/config/config.toml
+sudo systemctl restart kujirad
+sleep 3
+sudo rm -rf $HOME/.kujira/data/tx_index.db
+```
+
 ### (OPTIONAL) State Sync
 You can state sync your node in minutes by running commands below. Special thanks to `polkachu | polkachu.com#1249`
 ```
-SNAP_RPC="https://kujira-testnet-rpc.polkachu.com:443"
-LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
-BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
-TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
-s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
-s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" $HOME/.kujira/config/config.toml
-kujirad tendermint unsafe-reset-all --home $HOME/.kujira
-sudo systemctl restart kujirad && journalctl -fu kujirad -o cat
+N/A
 ```
 
 ### Create wallet
@@ -95,22 +94,18 @@ kujirad keys list
 ```
 
 ### Save wallet info
-Add wallet and valoper address and load variables into the system
+Add wallet and valoper address into variables 
 ```
 KUJIRA_WALLET_ADDRESS=$(kujirad keys show $WALLET -a)
+```
+```
 KUJIRA_VALOPER_ADDRESS=$(kujirad keys show $WALLET --bech val -a)
+```
+Load variables into the system
+```
 echo 'export KUJIRA_WALLET_ADDRESS='${KUJIRA_WALLET_ADDRESS} >> $HOME/.bash_profile
 echo 'export KUJIRA_VALOPER_ADDRESS='${KUJIRA_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
-```
-
-### Fund your wallet
-In order to create validator first you need to fund your wallet with testnet tokens.
-To top up your wallet join [Kujira discord server](https://discord.gg/JFmgazu2) and navigate to **#faucet-requests** channel
-
-To request a faucet grant:
-```
-!faucet <YOUR_WALLET_ADDRESS>
 ```
 
 ### Create validator
