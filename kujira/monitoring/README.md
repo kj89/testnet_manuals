@@ -24,8 +24,8 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `ukuji` for kujira testnet. You can find it in genesis file |
-| **bench_prefix** | Prefix for chain addresses, for example, `kujira` for kujira testnet. You can find it in public addresses like this **kujira**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **bond_denom** | Denominated token name, for example, `ukuji` for kujira mainnet. You can find it in genesis file |
+| **bench_prefix** | Prefix for chain addresses, for example, `kujira` for kujira mainnet. You can find it in public addresses like this **kujira**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
 
 make sure following ports are open:
 - `9100` (node-exporter)
