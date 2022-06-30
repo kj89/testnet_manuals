@@ -68,7 +68,7 @@ sudo systemctl restart tidechaind
 ## Usefull commands
 Check node version
 ```
-tidechain-node --version
+tidechain --version
 ```
 
 Check node status
