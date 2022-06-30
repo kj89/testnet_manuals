@@ -15,9 +15,8 @@
 # Tidechain node setup for lagoon Testnet
 
 Official documentation:
-- Official manual: https://docs.tidechain.network/node-operators/run-an-lagoon-node-tidechain-testnet
-- Block explorer: https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.lagoon.tidechain.network#/explorer
-- EVM Explorer: https://scout.lagoon.tidechain.network/
+- Official manual: https://github.com/tidelabs/tidechain/blob/dev/docs/run-validator.md
+- Telemetry: https://telemetry.tidefi.io/#list/Tidechain
 
 ## Recommended hardware requirements VDS
 - CPU: 8 CPU
