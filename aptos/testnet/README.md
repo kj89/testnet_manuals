@@ -18,7 +18,7 @@
 > ```
 > If you have only `testnet-validator-1` container running please [cleanup your node](https://github.com/kj89/testnet_manuals/tree/main/aptos/testnet#clean-up-preveous-installation) or completely rebuild VPS from scratch and re-submit [VALIDATOR VERIFICATION FORM](https://community.aptoslabs.com)
 
-# Aptos validator node setup for Incentivized Testnet (Updated 18.05.2022)
+# Aptos validator node setup for Incentivized Testnet (Updated 30.06.2022)
 Official documents:
 > [Run a Validator Node](https://aptos.dev/tutorials/validator-node/intro)
 
