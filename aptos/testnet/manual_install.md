@@ -58,7 +58,7 @@ mkdir ~/$WORKSPACE && cd ~/$WORKSPACE
 ```
 wget -qO docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/docker-compose.yaml
 wget -qO validator.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/validator.yaml
-wget -qO fullnode.yaml https://github.com/aptos-labs/aptos-core/blob/main/docker/compose/aptos-node/fullnode.yaml
+wget -qO fullnode.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/fullnode.yaml
 ```
 
 
