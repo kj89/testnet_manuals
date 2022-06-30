@@ -10,3 +10,5 @@ make build
 sudo chmod +x ./build/quicksilverd && sudo mv ./build/quicksilverd /usr/local/bin/quicksilverd
 sudo systemctl restart quicksilverd
 ```
+
+!!! DO NOT UPGRADE BEFORE CHAIN RECHES THE BLOCK `98000`!!!
