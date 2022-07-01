@@ -84,3 +84,6 @@ rm ~/$WORKSPACE -rf
 docker volume rm aptos-validator
 unset NODENAME
 ```
+
+## (OPTIONAL) You can install fullnode on a seperate machine but its optional
+Guide can be found [here](https://github.com/kj89/testnet_manuals/blob/main/aptos/testnet/fullnode_manual_install.md)
