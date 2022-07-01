@@ -4,7 +4,7 @@ RED_COLOR='\033[0;31m'
 NO_COLOR='\033[0m'
 BLOCK=98000
 VERSION=v0.4.1
-echo -e "$GREEN_COLOR YOUR NODE WILL UPDATE TO $VERSION VERSION ON BLOCK NUMBER $BLOCK $NO_COLOR\n"
+echo -e "$GREEN_COLOR YOUR NODE WILL BE UPDATED TO VERSION: $VERSION ON BLOCK NUMBER: $BLOCK $NO_COLOR\n"
 for((;;)); do
 height=$(quicksilverd status |& jq -r ."SyncInfo"."latest_block_height")
 if ((height>=$BLOCK)); then
@@ -23,7 +23,7 @@ for (( timer=60; timer>0; timer-- ))
         done
 height=$(quicksilverd status |& jq -r ."SyncInfo"."latest_block_height")
 if ((height>$BLOCK)); then
-echo -e "$GREEN_COLOR YOUR NODE SUCCESFULLY UPDATE TO $VERSION VERSION $NO_COLOR\n"
+echo -e "$GREEN_COLOR YOUR NODE WAS SUCCESFULLY UPDATED TO VERSION: $VERSION $NO_COLOR\n"
 fi
 quicksilverd version --long | head
 break
