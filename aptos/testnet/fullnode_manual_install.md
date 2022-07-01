@@ -85,3 +85,19 @@ Restart docker compose
 cd ~/$WORKSPACE
 docker compose restart
 ```
+
+## Useful commands
+### Check fullnode node logs
+```
+docker logs -f testnet-fullnode-1 --tail 50
+```
+
+### Check sync status
+```
+curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep type
+```
+
+### Restart docker container
+```
+docker restart testnet-fullnode-1 
+```

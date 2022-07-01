@@ -80,7 +80,7 @@ docker logs -f testnet-validator-1 --tail 50
 curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep type
 ```
 
-### Restart docker containers
+### Restart docker container
 ```
-docker compose restart
+docker restart validator-fullnode-1
 ```
