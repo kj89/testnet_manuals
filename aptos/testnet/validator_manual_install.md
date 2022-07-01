@@ -86,7 +86,7 @@ aptos genesis generate-keys --output-dir ~/$WORKSPACE
 and you will use this information to claim your rewards later if eligible. Never share those keys with anyone else.*
 
 ### Configure validator
-> *The --full-node-host flag is optional*
+> *The --full-node-host flag is optional* Only use it if you plan or already have installed fullnode on a seperate server
 ```
 aptos genesis set-validator-configuration \
   --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE \
