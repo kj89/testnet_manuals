@@ -82,5 +82,6 @@ aptos genesis set-validator-configuration \
 
 Restart docker compose
 ```
+cd ~/$WORKSPACE
 docker compose restart
 ```

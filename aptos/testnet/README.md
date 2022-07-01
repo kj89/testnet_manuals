@@ -65,6 +65,7 @@ You can find example below:
 ```
 cd ~/$WORKSPACE && docker compose down; cd
 rm ~/$WORKSPACE -rf
+docker volume rm aptos-validator
 unset NODENAME
 ```
 
