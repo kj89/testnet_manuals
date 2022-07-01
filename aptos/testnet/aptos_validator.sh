@@ -60,9 +60,8 @@ echo -e "\e[1m\e[32m5. Installing Validator Node ... \e[0m" && sleep 1
 mkdir ~/$WORKSPACE && cd ~/$WORKSPACE
 
 # download configs
-wget -qO docker-compose.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/testnet/docker-compose.yaml
-wget -qO fullnode.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/testnet/fullnode.yaml
-wget -qO validator.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/testnet/validator.yaml
+wget -qO docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/docker-compose.yaml
+wget -qO validator.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/validator.yaml
 
 # generate keys
 aptos genesis generate-keys --output-dir ~/$WORKSPACE
@@ -71,21 +70,28 @@ aptos genesis generate-keys --output-dir ~/$WORKSPACE
 aptos genesis set-validator-configuration \
   --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE \
   --username $NODENAME \
-  --validator-host $PUBLIC_IP:6180 \
-  --full-node-host $PUBLIC_IP:6182
+  --validator-host $PUBLIC_IP:6180
   
 # generate root key
 mkdir keys
-aptos key generate --assume-yes --output-file ~/$WORKSPACE/keys/root
+aptos key generate --assume-yes --output-file keys/root
 ROOT_KEY="0x"$(cat ~/$WORKSPACE/keys/root.pub)
 
 # add layout file
-tee layout.yaml > /dev/null <<EOF
+sudo tee layout.yaml > /dev/null <<EOF
 ---
 root_key: "$ROOT_KEY"
 users:
   - $NODENAME
-chain_id: 23
+chain_id: 40
+min_stake: 0
+max_stake: 100000
+min_lockup_duration_secs: 0
+max_lockup_duration_secs: 2592000
+epoch_duration_secs: 86400
+initial_lockup_timestamp: 1656615600
+min_price_per_gas_unit: 1
+allow_new_validators: true
 EOF
 
 # download aptos framework
@@ -106,9 +112,6 @@ echo "=================================================="
 
 echo -e "\e[1m\e[32mVerify initial synchronization: \e[0m" 
 echo -e "\e[1m\e[39m    curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep type \n \e[0m" 
-
-echo -e "\e[1m\e[32mTo view fullnode logs: \e[0m" 
-echo -e "\e[1m\e[39m    docker logs -f testnet-fullnode-1 --tail 50 \n \e[0m" 
 
 echo -e "\e[1m\e[32mTo view validator node logs: \e[0m" 
 echo -e "\e[1m\e[39m    docker logs -f testnet-validator-1 --tail 50 \n \e[0m" 

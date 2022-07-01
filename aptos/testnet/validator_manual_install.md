@@ -58,7 +58,7 @@ sudo chown $USER /var/run/docker.sock
 
 ## 5. Download Aptos CLI
 ```
-wget -qO aptos-cli.zip https://github.com/aptos-labs/aptos-core/releases/download/aptos-cli-v0.1.3/aptos-cli-0.1.2-Ubuntu-x86_64.zip
+wget -qO aptos-cli.zip https://github.com/aptos-labs/aptos-core/releases/download/aptos-cli-0.2.0/aptos-cli-0.2.0-Ubuntu-x86_64.zip
 unzip -o aptos-cli.zip -d /usr/local/bin
 chmod +x /usr/local/bin/aptos
 rm aptos-cli.zip
@@ -86,6 +86,7 @@ aptos genesis generate-keys --output-dir ~/$WORKSPACE
 and you will use this information to claim your rewards later if eligible. Never share those keys with anyone else.*
 
 ### Configure validator
+> *The --full-node-host flag is optional*
 ```
 aptos genesis set-validator-configuration \
   --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE \
@@ -102,13 +103,13 @@ ROOT_KEY="0x"$(cat ~/$WORKSPACE/keys/root.pub)
 
 ### Create layout file
 ```
-tee layout.yaml > /dev/null <<EOF
+sudo tee layout.yaml > /dev/null <<EOF
 ---
 root_key: "$ROOT_KEY"
 users:
   - $NODENAME
 chain_id: 40
-min_stake: 1000
+min_stake: 0
 max_stake: 100000
 min_lockup_duration_secs: 0
 max_lockup_duration_secs: 2592000
