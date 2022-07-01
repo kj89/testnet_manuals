@@ -12,9 +12,10 @@
   <img width="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165930080-4f541b46-1ae3-461c-acc9-de72d7ab93b7.png">
 </p>
 
-# Aptos validator node setup for Incentivized Testnet (Updated 30.06.2022)
+# Aptos validator node setup for AIT2 (Updated 30.06.2022)
 Official documents:
 > [Run a Validator Node](https://aptos.dev/tutorials/validator-node/intro)
+> [Node Tester by Andrew | zValid](https://node.aptos.zvalid.com/)
 
 ## Hardware requirements:
 #### For running an aptos node on incentivized testnet we recommend the following:
