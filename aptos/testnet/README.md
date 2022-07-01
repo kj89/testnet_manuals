@@ -39,11 +39,11 @@ source $HOME/.bash_profile
 ```
 
 ## Check your node health
-1. Navigate to https://aptos-node.info/
-2. Enter your node public IP address
+1. Navigate to https://node.aptos.zvalid.com/
+2. Enter your node public IP address adn change API port to `80`
 3. You should see data like in example below:
 
-![image](https://user-images.githubusercontent.com/50621007/168446824-2be781b5-1288-48cb-a9e9-0e2ea922be5c.png)
+![2022-07-01_10h28_06](https://user-images.githubusercontent.com/50621007/176846072-241e9802-80b6-41ad-b269-ac653c488832.png)
 
 ## Register your node for Aptos Incentivized Testnet
 1. Head to [community.aptoslabs.com](https://community.aptoslabs.com) and *Sign Up* using one of provided methods
