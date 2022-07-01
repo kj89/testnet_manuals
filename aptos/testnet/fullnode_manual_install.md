@@ -29,7 +29,7 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 ```
 
-## 3. Install docker-compose
+## 3. Install docker compose
 ```
 mkdir -p ~/.docker/cli-plugins/
 curl -SL https://github.com/docker/compose/releases/download/v2.6.1/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
@@ -64,9 +64,9 @@ Press `Ctrl + X` then press `Y` and `Enter` to save changes to file
 
 ### Copy the validator-full-node-identity.yaml, genesis.blob and waypoint.txt files generated above into the same working directory on Fullnode machine
 
-### Run docker-compose
+### Run docker compose
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 ## 5. Connect to your validator node and update your validator config
