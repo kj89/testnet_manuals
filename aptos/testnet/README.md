@@ -56,18 +56,9 @@ cat ~/$WORKSPACE/$NODENAME.yaml
 
 You can find example below:
 
-![2022-05-14_02h26_49](https://user-images.githubusercontent.com/50621007/168401158-72557d7e-fb9b-4b49-a44b-a9161c2624e5.png)
+![image](https://user-images.githubusercontent.com/50621007/176886734-46e938fc-9b44-498b-92ec-d99c605f365d.png)
 
 4. Complete KYC process
-
-## Clean up preveous installation
-(**WARNING!**) Before this step make sure you have backed up your Aptos keys as this step will completely remove your Aptos working directory
-```
-cd ~/$WORKSPACE && docker compose down; cd
-rm ~/$WORKSPACE -rf
-docker volume rm aptos-validator
-unset NODENAME
-```
 
 ## Useful commands
 ### Check validator node logs
@@ -83,4 +74,13 @@ curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep 
 ### Restart docker container
 ```
 docker restart validator-fullnode-1
+```
+
+## Clean up preveous installation
+(**WARNING!**) Before this step make sure you have backed up your Aptos keys as this step will completely remove your Aptos working directory
+```
+cd ~/$WORKSPACE && docker compose down; cd
+rm ~/$WORKSPACE -rf
+docker volume rm aptos-validator
+unset NODENAME
 ```
