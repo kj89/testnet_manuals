@@ -14,7 +14,7 @@
 
 # Aptos validator node setup for AIT2 (Updated 30.06.2022)
 Official documents:
-> [Run a Validator Node](https://aptos.dev/tutorials/validator-node/intro)
+> [Run a Validator Node](https://aptos.dev/tutorials/validator-node/intro)\
 > [Node Tester by Andrew | zValid](https://node.aptos.zvalid.com/)
 
 ## Hardware requirements:

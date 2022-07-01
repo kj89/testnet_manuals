@@ -20,12 +20,7 @@ If you want to setup fullnode node manually follow the steps below on a seperate
 sudo apt update && sudo apt upgrade -y
 ```
 
-## 2. Install dependencies
-```
-sudo apt-get install jq unzip -y
-```
-
-## 3. Install docker
+## 2. Install docker
 ```
 sudo apt-get install ca-certificates curl gnupg lsb-release -y
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -34,7 +29,7 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 ```
 
-## 4. Install docker-compose
+## 3. Install docker-compose
 ```
 mkdir -p ~/.docker/cli-plugins/
 curl -SL https://github.com/docker/compose/releases/download/v2.6.1/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
@@ -42,7 +37,7 @@ chmod +x ~/.docker/cli-plugins/docker-compose
 sudo chown $USER /var/run/docker.sock
 ```
 
-## 5. Install fullnode node
+## 4. Install fullnode node
 
 ### Create directory
 ```
@@ -69,16 +64,16 @@ Press `Ctrl + X` then press `Y` and `Enter` to save changes to file
 
 ### Copy the validator-full-node-identity.yaml, genesis.blob and waypoint.txt files generated above into the same working directory on Fullnode machine
 
-### Connect to your validator node and update your validator config
+### Run docker-compose
+```
+docker-compose up -d
+```
+
+## 5. Connect to your validator node and update your validator config
 ```
 aptos genesis set-validator-configuration \
     --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE \
     --username aptosbot \
     --validator-host $PUBLIC_IP:6180 \
     --full-node-host <YOUR_FULLNODE_IP>:6182
-```
-
-### Run docker-compose
-```
-docker-compose up -d
 ```
