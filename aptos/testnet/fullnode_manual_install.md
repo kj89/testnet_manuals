@@ -71,9 +71,10 @@ docker compose up -d
 
 ## 5. Connect to your validator node and update your validator config
 ```
+source ~/.bash_profile
 aptos genesis set-validator-configuration \
     --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE \
-    --username aptosbot \
+    --username $NODENAME \
     --validator-host $PUBLIC_IP:6180 \
     --full-node-host <YOUR_FULLNODE_IP>:6182
 ```
