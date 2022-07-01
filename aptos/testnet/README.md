@@ -43,7 +43,7 @@ source $HOME/.bash_profile
 2. Enter your node public IP address adn change API port to `80`
 3. You should see data like in example below:
 
-![2022-07-01_10h28_06](https://user-images.githubusercontent.com/50621007/176846072-241e9802-80b6-41ad-b269-ac653c488832.png)
+![image](https://user-images.githubusercontent.com/50621007/176846383-7ebe2df6-17ec-41c6-bd34-d7c796761a36.png)
 
 ## Register your node for Aptos Incentivized Testnet
 1. Head to [community.aptoslabs.com](https://community.aptoslabs.com) and *Sign Up* using one of provided methods
