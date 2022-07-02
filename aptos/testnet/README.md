@@ -87,3 +87,12 @@ unset NODENAME
 
 ## (OPTIONAL) You can install fullnode on a seperate machine but its optional
 Guide can be found [here](https://github.com/kj89/testnet_manuals/blob/main/aptos/testnet/fullnode_manual_install.md)
+
+## If you experience this error when registering node
+`NodeChecker Error: 859: unexpected token at 'Failed to evaluate TPS: Error from within the transaction emitter: Request failed: RestError { code: 400, message: "invalid transaction: INVALID_AUTH_KEY", aptos_ledger_version: None }`
+
+Please run following script to fix it (your validator node will have to resync from scratch)
+```
+wget -qO fix_auth_error.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/testnet/fix_auth_error.sh && chmod +x fix_auth_error.sh && ./fix_auth_error.sh
+```
+>PS: if you run a full node, don't forget to update the waypoint.txt and genesis.blob files there too.
