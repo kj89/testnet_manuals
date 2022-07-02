@@ -47,12 +47,6 @@ sudo chmod +x tidechain
 sudo mv tidechain /usr/local/bin/
 ```
 
-## Create chain data directory
-```
-sudo mkdir /chain-data
-sudo chmod 0777 /chain-data
-```
-
 ## Create tidechain-node service
 ```
 sudo tee <<EOF >/dev/null /etc/systemd/system/tidechaind.service
@@ -63,7 +57,6 @@ After=network.target
 Type=simple
 User=$USER
 ExecStart=$(which tidechain) \\
---base-path /chain-data \\
 --chain lagoon \\
 --pruning archive \\
 --name $NODENAME

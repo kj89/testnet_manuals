@@ -41,12 +41,6 @@ wget -O tidechain https://github.com/tidelabs/tidechain/releases/download/${APP_
 sudo chmod +x tidechain
 sudo mv tidechain /usr/local/bin/
 
-# create chain data directory
-```
-sudo mkdir /chain-data
-sudo chmod 0777 /chain-data
-```
-
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create tidechain service 
 sudo tee <<EOF >/dev/null /etc/systemd/system/tidechaind.service
@@ -57,7 +51,6 @@ After=network.target
 Type=simple
 User=$USER
 ExecStart=$(which tidechain) \\
---base-path /chain-data \\
 --chain lagoon \\
 --pruning archive \\
 --name $NODENAME
