@@ -101,5 +101,6 @@ wget -qO fix_auth_error.sh https://raw.githubusercontent.com/kj89/testnet_manual
 ```
 ~/$WORKSPACE
 wget -qO docker-compose.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/testnet/docker-compose.yaml
-docker compose restart
+docker compose down
+docker compose up -d
 ```
