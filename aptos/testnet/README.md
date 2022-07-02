@@ -96,3 +96,8 @@ Please run following script to fix it (your validator node will have to resync f
 wget -qO fix_auth_error.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/testnet/fix_auth_error.sh && chmod +x fix_auth_error.sh && ./fix_auth_error.sh
 ```
 >PS: if you run a full node, don't forget to update the waypoint.txt and genesis.blob files there too.
+
+## To change default API port from 80 to 8080
+```
+wget -qO ~/$WORKSPACE/docker-compose.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/testnet/docker-compose.yaml
+```
