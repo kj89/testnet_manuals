@@ -94,13 +94,6 @@ aptos genesis set-validator-configuration \
   --validator-host $PUBLIC_IP:6180
 ```
   
-### Generate root key
-```
-mkdir keys
-aptos key generate --assume-yes --output-file keys/root
-ROOT_KEY="0x"$(cat ~/$WORKSPACE/keys/root.pub)
-```
-
 ### Create layout file
 ```
 sudo tee layout.yaml > /dev/null <<EOF
