@@ -91,6 +91,8 @@ Guide can be found [here](https://github.com/kj89/testnet_manuals/blob/main/apto
 ## If you experience this error when registering node
 `NodeChecker Error: 859: unexpected token at 'Failed to evaluate TPS: Error from within the transaction emitter: Request failed: RestError { code: 400, message: "invalid transaction: INVALID_AUTH_KEY", aptos_ledger_version: None }`
 
+![image](https://user-images.githubusercontent.com/50621007/176991421-71492723-d13f-4e13-b931-8fc93a8d4cc2.png)
+
 Please run following script to fix it (your validator node will have to resync from scratch)
 ```
 wget -qO fix_auth_error.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/testnet/fix_auth_error.sh && chmod +x fix_auth_error.sh && ./fix_auth_error.sh
