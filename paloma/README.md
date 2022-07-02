@@ -89,9 +89,7 @@ source $HOME/.bash_profile
 ```
 
 ### Fund your wallet
-```
-JSON=$(jq -n --arg addr "$PALOMA_WALLET_ADDRESS" '{"denom":"ugrain","address":$addr}') && curl -X POST --header "Content-Type: application/json" --data "$JSON" https://backend.faucet.palomaswap.com/claim
-```
+To fund your wallet navigate to https://faucet.palomaswap.com/ and input your paloma wallet address
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 paloma (1 paloma is equal to 1000000 ugrain) and your node is synchronized
