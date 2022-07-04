@@ -64,7 +64,7 @@ systemctl stop defundd
 cd ~/.defund/
 cp data/priv_validator_state.json .
 rm -rf data
-wget http://repository.activenodes.io/snapshots/defund-private-1_2022-06-27.tar.gz
+wget http://repository.activenodes.io/snapshots/defund-private-1_2022-07-04.tar.gz
 tar xzvf defund*.tar.gz
 rm defund*.tar.gz
 mv priv_validator_state.json data/
