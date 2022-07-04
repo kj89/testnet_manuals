@@ -56,9 +56,11 @@ go version
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 cd $HOME
-git clone https://github.com/Team-stride/core.git
-cd core
-make install
+git clone https://github.com/Stride-Labs/stride.git
+cd stride
+git checkout afabdb8e17b4a2dac6906b61b80b37c60638a7f0
+make build
+sudo cp $HOME/stride/build/strided /usr/local/bin
 
 # config
 strided config chain-id $STRIDE_CHAIN_ID

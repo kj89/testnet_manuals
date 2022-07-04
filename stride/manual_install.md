@@ -63,7 +63,7 @@ git clone https://github.com/Stride-Labs/stride.git
 cd stride
 git checkout afabdb8e17b4a2dac6906b61b80b37c60638a7f0
 make build
-cp $HOME/stride/build/strided /usr/local/bin
+sudo cp $HOME/stride/build/strided /usr/local/bin
 ```
 
 ## Config app
