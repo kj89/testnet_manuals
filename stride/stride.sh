@@ -64,7 +64,7 @@ sudo cp $HOME/stride/build/strided /usr/local/bin
 
 # config
 strided config chain-id $STRIDE_CHAIN_ID
-strided config keyring-backend file
+strided config keyring-backend test
 strided config node tcp://localhost:${STRIDE_PORT}657
 
 # init
