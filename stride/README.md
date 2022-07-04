@@ -15,10 +15,10 @@
 # stride node setup for mainnet — STRIDE
 
 Official documentation:
->- [Validator setup instructions](https://docs.stride.app/run-a-node)
+>- [Validator setup instructions](https://github.com/Stride-Labs/testnet)
 
 Explorer:
->-  https://stride.explorers.guru/
+>-  https://poolparty.stride.zone/
 
 ## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for stride validator](https://github.com/kj89/testnet_manuals/blob/main/stride/monitoring/README.md)
