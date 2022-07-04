@@ -9,7 +9,7 @@ for (( ;; )); do
             echo -e "${GREEN}${JAIL} \n"
         else
             echo -e "${GREEN}${JAIL} \n"
-            echo -e $(strided tx slashing unjail --chain-id ${STRIDE_CHAIN_ID} --from ${WALLET} --gas=auto --fees=1000$ukuji -y) \n;
+            echo -e $(strided tx slashing unjail --chain-id ${STRIDE_CHAIN_ID} --from ${WALLET} --gas=auto --fees=1000$ustrd -y) \n;
             sleep 1
         fi
         for (( timer=${DELAY}; timer>0; timer-- ))

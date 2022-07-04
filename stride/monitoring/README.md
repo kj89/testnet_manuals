@@ -24,7 +24,7 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `ukuji` for stride mainnet. You can find it in genesis file |
+| **bond_denom** | Denominated token name, for example, `ustrd` for stride mainnet. You can find it in genesis file |
 | **bench_prefix** | Prefix for chain addresses, for example, `stride` for stride mainnet. You can find it in public addresses like this **stride**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
 
 make sure following ports are open:

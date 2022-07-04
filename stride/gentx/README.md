@@ -80,12 +80,12 @@ strided keys add $WALLET --recover
 ## Add genesis account
 ```
 WALLET_ADDRESS=$(strided keys show $WALLET -a)
-strided add-genesis-account $WALLET_ADDRESS 100000000ukuji
+strided add-genesis-account $WALLET_ADDRESS 100000000ustrd
 ```
 
 ## Generate gentx
 ```
-strided gentx $WALLET 99000000ukuji \
+strided gentx $WALLET 99000000ustrd \
 --chain-id $CHAIN_ID \
 --moniker=$NODENAME \
 --commission-max-change-rate=0.01 \

@@ -134,7 +134,7 @@ $balance:<YOUR_WALLET_ADDRESS>
 ```
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 kuji (1 kuji is equal to 1000000 ukuji) and your node is synchronized
+Before creating validator please make sure that you have at least 1 kuji (1 kuji is equal to 1000000 ustrd) and your node is synchronized
 
 To check your wallet balance:
 ```
@@ -145,7 +145,7 @@ strided query bank balances $STRIDE_WALLET_ADDRESS
 To create your validator run command below
 ```
 strided tx staking create-validator \
-  --amount 100000ukuji \
+  --amount 10000000ustrd \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
@@ -264,7 +264,7 @@ strided query bank balances $STRIDE_WALLET_ADDRESS
 
 Transfer funds
 ```
-strided tx bank send $STRIDE_WALLET_ADDRESS <TO_STRIDE_WALLET_ADDRESS> 10000000ukuji
+strided tx bank send $STRIDE_WALLET_ADDRESS <TO_STRIDE_WALLET_ADDRESS> 10000000ustrd
 ```
 
 ### Voting
@@ -275,12 +275,12 @@ strided tx gov vote 1 yes --from $WALLET --chain-id=$STRIDE_CHAIN_ID
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-strided tx staking delegate $STRIDE_VALOPER_ADDRESS 10000000ukuji --from=$WALLET --chain-id=$STRIDE_CHAIN_ID --gas=auto
+strided tx staking delegate $STRIDE_VALOPER_ADDRESS 10000000ustrd --from=$WALLET --chain-id=$STRIDE_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-strided tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ukuji --from=$WALLET --chain-id=$STRIDE_CHAIN_ID --gas=auto
+strided tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ustrd --from=$WALLET --chain-id=$STRIDE_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
