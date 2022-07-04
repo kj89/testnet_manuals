@@ -87,6 +87,18 @@ mv ~/go/bin/seid /usr/local/bin/seid
 systemctl restart seid && journalctl -fu seid -o cat
 ```
 
+## Chain upgrade from 1.0.5beta to 1.0.6beta
+Once the chain reaches the upgrade height, you will encounter the following panic error message:\
+`ERR UPGRADE "upgrade-1.0.6beta" NEEDED at height: 1217302`
+```
+cd $HOME && rm $HOME/sei-chain -rf
+git clone https://github.com/sei-protocol/sei-chain.git && cd $HOME/sei-chain
+git checkout 1.0.6beta
+make install
+mv ~/go/bin/seid /usr/local/bin/seid
+systemctl restart seid && journalctl -fu seid -o cat
+```
+
 ## Optimize validator config
 ![image](https://user-images.githubusercontent.com/50621007/176101397-cbc216a4-1c11-4d1e-9e1d-33a84280d508.png)
 ```
