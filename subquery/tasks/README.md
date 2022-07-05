@@ -47,4 +47,4 @@
 | A purchase offer is created by consumer                                        | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/A_purchase_offer_is_created_by_consumer.md)
 | Cancel offer before it expires                                                 | 30 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Cancel_offer_before_it_expires.md)
 | Consumer purchase a plan from an indexer                                       | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Consumer_purchase_a_plan_from_an_indexer.md)
-| Withdraw SQT locked in the offer after it expires                              | 30 points  | []()
+| Withdraw SQT locked in the offer after it expires                              | 30 points  | TODO
