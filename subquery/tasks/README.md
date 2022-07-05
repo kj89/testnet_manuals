@@ -18,8 +18,8 @@
 ## INDEXER TASKS
 | MISSION                                                                        | POINTS     | GUIDE  
 |--------------------------------------------------------------------------------|------------|-------------------------------------------------------------------------------------------------------
-| Either increase of decrease commission rate                                    | 10 points  | Done!
-| Update controller account to new one                                           | 30 points  | Done!
+| Either increase of decrease commission rate                                    | 10 points  | Completed
+| Update controller account to new one                                           | 30 points  | Completed
 | Fully index a project from projects list                                       | 10 points  | []() 
 | Get your first delegator                                                       | 20 points  | []() 
 | Create a default plan                                                          | 50 points  | []()
