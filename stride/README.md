@@ -160,7 +160,7 @@ strided tx staking create-validator \
 ### Add liquid stake 
 Liquid stake your ATOM on Stride for stATOM. Here's an example of how to liquid stake
 ```
-strided tx stakeibc liquid-stake 1000 uatom --from $WALLET --chain-id $CHAIN_ID
+strided tx stakeibc liquid-stake 1000 uatom --from $WALLET --chain-id $STRIDE_CHAIN_ID
 ```
 > Note: if you liquid stake 1000 uatom, you might only get 990 (could be more or less) stATOM in return! This is due to the way our exchange rate works. Your 990 stATOM are still worth 1000 uatom (or more, as you accrue staking rewards!)
 
