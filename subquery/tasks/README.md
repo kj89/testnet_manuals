@@ -30,7 +30,7 @@
 | Index all projects from projects list                                          | 200 points | TODO
 | Indexer claims a reward from reward distributor to an indexer's wallet         | 20 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_claims_a_reward_from_reward_distributor.md)
 | Indexer withdraws unstaked amount from staking contract to an indexer's wallet | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_withdraws_unstaked_amount_from_staking_contract.md)
-| Unregister your indexer                                                        | 30 points  | []()
+| Unregister your indexer                                                        | 30 points  | TODO
 
 ## DELEGATPR TASKS
 | MISSION                                                                        | POINTS     | GUIDE  
@@ -38,7 +38,7 @@
 | Delegator undelegate from an indexer                                           | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Delegator_undelegatefrom_an_indexer.md)
 | Delegator add delegation to an indexer                                         | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Delegator_add_delegation_to_an_indexer.md)
 | Delegator claims a reward from reward distributor to delegator's wallet        | 20 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Delegator_claims_a_reward_from_reward_distributor.md)
-| Delegator withdraws undelegated amount from an indexer                         | 50 points  | []()
+| Delegator withdraws undelegated amount from an indexer                         | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Delegator_withdraws_undelegated_amount_from_an_indexer.md)
 
 ## CONSUMER TASKS
 | MISSION                                                                        | POINTS     | GUIDE  
