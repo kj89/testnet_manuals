@@ -13,14 +13,14 @@
 </p>
 
 # SubQuery Frontier Testnet Tasks
-- All task list and collected points can be found [here](https://frontier.subquery.network/missions/my-missions)
+- All task list and collected points can be found at [Missions Dashboard](https://frontier.subquery.network/missions/my-missions)
 
 ## INDEXER TASKS
 | MISSION                                                                        | POINTS     | GUIDE  
 |--------------------------------------------------------------------------------|------------|-------------------------------------------------------------------------------------------------------
 | Either increase of decrease commission rate                                    | 10 points  | Completed
 | Update controller account to new one                                           | 30 points  | Completed
-| Fully index a project from projects list                                       | 10 points  | []() 
+| Fully index a project from projects list                                       | 10 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Fully_index_a_project_from_projects_list.md) 
 | Get your first delegator                                                       | 20 points  | []() 
 | Create a default plan                                                          | 50 points  | []()
 | Create a deployment-specific plan                                              | 50 points  | []()
