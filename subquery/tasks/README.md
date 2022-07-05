@@ -23,7 +23,7 @@
 | Fully index a project from projects list                                       | 10 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Fully_index_a_project_from_projects_list.md) 
 | Get your first delegator                                                       | 20 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Get_your_first_delegator.md) 
 | Create a default plan                                                          | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Create_a_default_plan.md)
-| Create a deployment-specific plan                                              | 50 points  | []()
+| Create a deployment-specific plan                                              | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Create_a_deployment-specific_plan.md)
 | Get a service agreement from consumer                                          | 50 points  | []()
 | Indexer gets undelegated from delegator                                        | 20 points  | []()
 | Indexer to accept an offer in the offer market                                 | 50 points  | []()
