@@ -43,7 +43,7 @@
 ## CONSUMER TASKS
 | MISSION                                                                        | POINTS     | GUIDE  
 |--------------------------------------------------------------------------------|------------|-------------------------------------------------------------------------------------------------------
-| Get service agreement from an indexer                                          | 50 points  | []()
+| Get service agreement from an indexer                                          | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Get_a_service_agreement_from_consumer.md)
 | A purchase offer is created by consumer                                        | 50 points  | []()
 | Cancel offer before it expires                                                 | 30 points  | []()
 | Consumer purchase a plan from an indexer                                       | 50 points  | []()
