@@ -134,7 +134,7 @@ $balance:<YOUR_WALLET_ADDRESS>
 ```
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 kuji (1 kuji is equal to 1000000 ustrd) and your node is synchronized
+Before creating validator please make sure that you have at least 1 strd (1 strd is equal to 1000000 ustrd) and your node is synchronized
 
 To check your wallet balance:
 ```
@@ -155,6 +155,34 @@ strided tx staking create-validator \
   --moniker $NODENAME \
   --chain-id $STRIDE_CHAIN_ID
 ```
+
+## Operations with liquid stake
+### Add liquid stake 
+Liquid stake your ATOM on Stride for stATOM. Here's an example of how to liquid stake
+```
+strided tx stakeibc liquid-stake 1000 uatom --from $WALLET --chain-id $CHAIN_ID
+```
+> Note: if you liquid stake 1000 uatom, you might only get 990 (could be more or less) stATOM in return! This is due to the way our exchange rate works. Your 990 stATOM are still worth 1000 uatom (or more, as you accrue staking rewards!)
+
+### Redeem stake
+After accruing some staking rewards, you can unstake your tokens. Currently, the unbonding period on our Gaia (Cosmos Hub) testnet is around 30 minutes.
+```
+strided tx stakeibc redeem-stake 999 GAIA <cosmos_address_you_want_to_redeem_to> --chain-id $STRIDE_CHAIN_ID --from $WALLET
+```
+
+### Check if tokens are claimable
+If you'd like to see whether your tokens are ready to be claimed, look for your `UserRedemptionRecord` keyed by `<your_stride_account>`. 
+```
+strided q records list-user-redemption-record --output json | jq --arg WALLET_ADDRESS "$STRIDE_WALLET_ADDRESS" '.UserRedemptionRecord | map(select(.sender == $WALLET_ADDRESS))'
+```
+If your record has the attribute `isClaimable=true`, they're ready to be claimed!
+
+### Claim tokens
+After your tokens have unbonded, they can be claimed by triggering the claim process. 
+```
+strided tx stakeibc claim-undelegated-tokens GAIA 5 --chain-id $STRIDE_CHAIN_ID --from $WALLET
+```
+> Note: this function triggers claims in a FIFO queue, meaning if your claim is 20th in line, you'll have process other claims before seeing your tokens appear in your account.
 
 ## Security
 To protect you keys please make sure you follow basic security rules
