@@ -29,7 +29,7 @@
 | Indexer to accept an offer in the offer market                                 | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_to_accept_an_offer_in_the_offer_market.md)
 | Index all projects from projects list                                          | 200 points | TODO
 | Indexer claims a reward from reward distributor to an indexer's wallet         | 20 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_claims_a_reward_from_reward_distributor.md)
-| Indexer withdraws unstaked amount from staking contract to an indexer's wallet | 50 points  | []()
+| Indexer withdraws unstaked amount from staking contract to an indexer's wallet | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_withdraws_unstaked_amount_from_staking_contract.md)
 | Unregister your indexer                                                        | 30 points  | []()
 
 ## DELEGATPR TASKS
