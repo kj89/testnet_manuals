@@ -15,6 +15,16 @@
 # Get service agreement from an indexer (50 points)
 This task can be completed in parallel with the task [Accept an offer from the marketplace](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_to_accept_an_offer_in_the_offer_market.md)
 
+>You have to purchase your own `Offer` using other account or ask someone to do so by providing your `Indexer Address`
+
+1. Go to the [Offer Marketplace](https://frontier.subquery.network/plans/offers) and use search to find your `Offer` from the list
+
+![image](https://user-images.githubusercontent.com/50621007/177424847-1f0bde35-fdb1-4f3a-a929-e50125e7fe82.png)
+
+2. Click `Accept` and sign the transaction
+
+![image](https://user-images.githubusercontent.com/50621007/177424878-c530c442-d477-49eb-9196-ae6f0abf9260.png)
+
 # Task Finished!
 
 ![image](https://user-images.githubusercontent.com/50621007/177410026-f15d1fd1-42f2-40b6-b5a6-16d84c152675.png)

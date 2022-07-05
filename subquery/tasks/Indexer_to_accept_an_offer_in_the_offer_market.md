@@ -14,11 +14,11 @@
 
 # Indexer to accept an offer in the offer market (50 points)
 
-1. Got to the [Offer Marketplace](https://frontier.subquery.network/plans/offers) and select the `Offer` from the list:
+1. Go to the [Offer Marketplace](https://frontier.subquery.network/plans/offers) and select the `Offer` from the list:
 
 ![image](https://user-images.githubusercontent.com/50621007/177395136-69b0ae7e-84c5-4320-b09e-828bb19e6f56.png)
 
-Click `Accept` and sign the transaction
+2. Click `Accept` and sign the transaction
 
 ![image](https://user-images.githubusercontent.com/50621007/177395227-d73f9242-3918-462d-ab43-6b88df738c38.png)
 
