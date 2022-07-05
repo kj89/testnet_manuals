@@ -35,7 +35,7 @@
 - Indexing Network Endpoint: `wss://polkadot.api.onfinality.io/public-ws`
 - Network Dictionary Endpoint: `https://api.subquery.network/sq/subquery/polkadot-dictionary`
 
-![image](https://user-images.githubusercontent.com/50621007/177356028-c053042d-a7b7-4767-b681-037bbb5b4afc.png)
+![image](https://user-images.githubusercontent.com/50621007/177360036-e13b13b9-d226-4a98-b261-4d44222de27a.png)
 
 5. Navigate back to `Projects` tab and wait until full indexing of the project is completed
 
