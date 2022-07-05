@@ -15,7 +15,7 @@
 # A purchase offer is created by consumer (50 points)
 1. Open `Manage My Offers` section in [Plan & Offer](https://frontier.subquery.network/plans/my-offers/open) then click `Create an Offer`
 
-![image](https://user-images.githubusercontent.com/50621007/177403219-295ade51-6a9d-4ae6-b5de-ce211581d771.png)
+![image](https://user-images.githubusercontent.com/50621007/177412441-86e9ffd6-8b0a-4f73-9493-62065be8dcb8.png)
 
 2. Confirm Approval
 
