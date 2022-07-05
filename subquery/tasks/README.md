@@ -27,8 +27,8 @@
 | Get a service agreement from consumer                                          | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Get_a_service_agreement_from_consumer.md)
 | Indexer gets undelegated from delegator                                        | 20 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_gets_undelegated_from_delegator.md)
 | Indexer to accept an offer in the offer market                                 | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_to_accept_an_offer_in_the_offer_market.md)
-| Index all projects from projects list                                          | 200 points | []()
-| Indexer claims a reward from reward distributor to an indexer's wallet         | 20 points  | []()
+| Index all projects from projects list                                          | 200 points | TODO
+| Indexer claims a reward from reward distributor to an indexer's wallet         | 20 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_claims_a_reward_from_reward_distributor.md)
 | Indexer withdraws unstaked amount from staking contract to an indexer's wallet | 50 points  | []()
 | Unregister your indexer                                                        | 30 points  | []()
 
@@ -36,7 +36,7 @@
 | MISSION                                                                        | POINTS     | GUIDE  
 |--------------------------------------------------------------------------------|------------|-------------------------------------------------------------------------------------------------------
 | Delegator undelegate from an indexer                                           | 50 points  | []()
-| Delegator add delegation to an indexer                                         | 50 points  | []()
+| Delegator add delegation to an indexer                                         | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Delegator_add_delegation_to_an_indexer.md)
 | Delegator claims a reward from reward distributor to delegator's wallet        | 20 points  | []()
 | Delegator withdraws undelegated amount from an indexer                         | 50 points  | []()
 
