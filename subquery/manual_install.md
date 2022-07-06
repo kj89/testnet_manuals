@@ -65,4 +65,4 @@ docker-compose up -d
 ## 7. Get your SubQuery Dashboard url
 ```
 echo -e "\e[32mhttp://$(wget -qO- eth0.me):8000\e[39m"
-``
+```
