@@ -16,35 +16,35 @@
 - All task list and collected points can be found at [Missions Dashboard](https://frontier.subquery.network/missions/my-missions)
 
 ## INDEXER TASKS
-| MISSION                                                                        | POINTS     | GUIDE  
-|--------------------------------------------------------------------------------|------------|-------------------------------------------------------------------------------------------------------
-| Either increase of decrease commission rate                                    | 10 points  | Completed
-| Update controller account to new one                                           | 30 points  | Completed
-| Fully index a project from projects list                                       | 10 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Fully_index_a_project_from_projects_list.md) 
-| Get your first delegator                                                       | 20 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Get_your_first_delegator.md) 
-| Create a default plan                                                          | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Create_a_default_plan.md)
-| Create a deployment-specific plan                                              | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Create_a_deployment-specific_plan.md)
-| Get a service agreement from consumer                                          | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Get_a_service_agreement_from_consumer.md)
-| Indexer gets undelegated from delegator                                        | 20 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_gets_undelegated_from_delegator.md)
-| Indexer to accept an offer in the offer market                                 | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_to_accept_an_offer_in_the_offer_market.md)
-| Index all projects from projects list                                          | 200 points | TODO
-| Indexer claims a reward from reward distributor to an indexer's wallet         | 20 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_claims_a_reward_from_reward_distributor.md)
-| Indexer withdraws unstaked amount from staking contract to an indexer's wallet | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_withdraws_unstaked_amount_from_staking_contract.md)
-| Unregister your indexer                                                        | 30 points  | TODO
+| MISSION                                                                        | POINTS     | GUIDE                                                                                                                                        |
+|--------------------------------------------------------------------------------|------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| Either increase of decrease commission rate                                    | 10 points  | Completed                                                                                                                                    |
+| Update controller account to new one                                           | 30 points  | Completed                                                                                                                                    |
+| Fully index a project from projects list                                       | 10 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Fully_index_a_project_from_projects_list.md)                 |
+| Get your first delegator                                                       | 20 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Get_your_first_delegator.md)                                 |
+| Create a default plan                                                          | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Create_a_default_plan.md)                                    |
+| Create a deployment-specific plan                                              | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Create_a_deployment-specific_plan.md)                        |
+| Get a service agreement from consumer                                          | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Get_a_service_agreement_from_consumer.md)                    |
+| Indexer gets undelegated from delegator                                        | 20 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_gets_undelegated_from_delegator.md)                  |
+| Indexer to accept an offer in the offer market                                 | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_to_accept_an_offer_in_the_offer_market.md)           |
+| Index all projects from projects list                                          | 200 points | TODO                                                                                                                                         |
+| Indexer claims a reward from reward distributor to an indexer's wallet         | 20 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_claims_a_reward_from_reward_distributor.md)          |
+| Indexer withdraws unstaked amount from staking contract to an indexer's wallet | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_withdraws_unstaked_amount_from_staking_contract.md)  |
+| Unregister your indexer                                                        | 30 points  | TODO                                                                                                                                         |
 
 ## DELEGATPR TASKS
 | MISSION                                                                        | POINTS     | GUIDE  
-|--------------------------------------------------------------------------------|------------|-------------------------------------------------------------------------------------------------------
-| Delegator undelegate from an indexer                                           | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Delegator_undelegatefrom_an_indexer.md)
-| Delegator add delegation to an indexer                                         | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Delegator_add_delegation_to_an_indexer.md)
-| Delegator claims a reward from reward distributor to delegator's wallet        | 20 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Delegator_claims_a_reward_from_reward_distributor.md)
-| Delegator withdraws undelegated amount from an indexer                         | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Delegator_withdraws_undelegated_amount_from_an_indexer.md)
+|--------------------------------------------------------------------------------|------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| Delegator undelegate from an indexer                                           | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Delegator_undelegatefrom_an_indexer.md)                      |
+| Delegator add delegation to an indexer                                         | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Delegator_add_delegation_to_an_indexer.md)                   |
+| Delegator claims a reward from reward distributor to delegator's wallet        | 20 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Delegator_claims_a_reward_from_reward_distributor.md)        |
+| Delegator withdraws undelegated amount from an indexer                         | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Delegator_withdraws_undelegated_amount_from_an_indexer.md)   |
 
 ## CONSUMER TASKS
 | MISSION                                                                        | POINTS     | GUIDE  
-|--------------------------------------------------------------------------------|------------|-------------------------------------------------------------------------------------------------------
-| Get service agreement from an indexer                                          | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Get_a_service_agreement_from_consumer.md)
-| A purchase offer is created by consumer                                        | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/A_purchase_offer_is_created_by_consumer.md)
-| Cancel offer before it expires                                                 | 30 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Cancel_offer_before_it_expires.md)
-| Consumer purchase a plan from an indexer                                       | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Consumer_purchase_a_plan_from_an_indexer.md)
-| Withdraw SQT locked in the offer after it expires                              | 30 points  | TODO
+|--------------------------------------------------------------------------------|------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| Get service agreement from an indexer                                          | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Get_a_service_agreement_from_consumer.md)                    |
+| A purchase offer is created by consumer                                        | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/A_purchase_offer_is_created_by_consumer.md)                  |
+| Cancel offer before it expires                                                 | 30 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Cancel_offer_before_it_expires.md)                           |
+| Consumer purchase a plan from an indexer                                       | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Consumer_purchase_a_plan_from_an_indexer.md)                 |
+| Withdraw SQT locked in the offer after it expires                              | 30 points  | TODO                                                                                                                                         |
