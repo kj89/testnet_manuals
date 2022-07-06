@@ -26,10 +26,9 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 
 # 4. Install docker compose
-mkdir -p ~/.docker/cli-plugins/
-curl -SL https://github.com/docker/compose/releases/download/v2.6.1/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
-chmod +x ~/.docker/cli-plugins/docker-compose
-sudo chown $USER /var/run/docker.sock
+docker_compose_version=$(wget -qO- https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name")
+sudo wget -O /usr/bin/docker-compose "https://github.com/docker/compose/releases/download/${docker_compose_version}/docker-compose-`uname -s`-`uname -m`"
+sudo chmod +x /usr/bin/docker-compose
 
 # 5. Set up firewall
 sudo apt install ufw -y
@@ -45,7 +44,7 @@ sudo ufw allow 3000:3100/tcp
 # 6. Install SubQuery
 cd $HOME
 mkdir subquery-indexer && cd subquery-indexer
-wget -qO docker-compose.yaml https://raw.githubusercontent.com/subquery/indexer-services/main/docker-compose.yml
+wget -qO docker-compose.yml https://raw.githubusercontent.com/subquery/indexer-services/main/docker-compose.yml
 docker compose up -d
 
 # Node setup finished!
