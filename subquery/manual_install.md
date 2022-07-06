@@ -59,7 +59,7 @@ sudo ufw allow 3000:3100/tcp
 cd $HOME
 mkdir subquery-indexer && cd subquery-indexer
 wget -qO docker-compose.yml https://raw.githubusercontent.com/subquery/indexer-services/main/docker-compose.yml
-docker compose up -d
+docker-compose up -d
 ```
 
 ## 7. Get your SubQuery Dashboard url
