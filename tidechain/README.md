@@ -73,7 +73,7 @@ tidechain --version
 
 Check node status
 ```
-sudo service tidechaind status
+sudo systemctl status tidechaind
 ```
 
 Check node logs
