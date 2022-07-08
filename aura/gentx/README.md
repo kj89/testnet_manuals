@@ -104,7 +104,8 @@ aurad gentx $WALLET 3600000000ueaura \
 ## Submit PR with Gentx
 1. Copy the contents of `$HOME/.aura/config/gentx/gentx-XXXXXXXX.json`
 2. Fork https://github.com/aura-nw/testnets
-3. Create a file `gentx-{VALIDATOR_NAME}.json` under the `testnets/tree/main/euphoria-1/gentx` folder in the forked repo, paste the copied text into the file.
-4. Create a Pull Request to the main branch of the repository
+3. Create a file `gentx-{VALIDATOR_NAME}.json` under the `testnets/euphoria-1/gentx` folder in the forked repo, paste the copied text into the file.
+4. Upload your logo file into `{VALOPER_ADDRESS}.png` under the `testnets/euphoria-1/logo` folder.
+5. Create a Pull Request to the main branch of the repository
 
 ### Await further instructions!
