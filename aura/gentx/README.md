@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <img height="100" height="auto" src="https://icodrops.com/wp-content/uploads/2022/06/8RZ21pct_400x400.jpg">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/177979901-4ac785e2-08c3-4d61-83df-b451a2ed9e68.png">
 </p>
 
 # Generate Aura Euphoria Testnet Gentx
@@ -99,10 +99,10 @@ aurad gentx $WALLET 3600000000ueaura \
 
 ## Things you have to backup
 - `12 word mnemonic` of your generated wallet
-- contents of `$HOME/.aurad/config/*`
+- contents of `$HOME/.aura/config/*`
 
 ## Submit PR with Gentx
-1. Copy the contents of $`HOME`/.aurad/config/gentx/gentx-XXXXXXXX.json.
+1. Copy the contents of $`HOME`/.aura/config/gentx/gentx-XXXXXXXX.json.
 2. Fork https://github.com/aura-nw/testnets
 3. Create a file gentx-{VALIDATOR_NAME}.json under the `testnets/tree/main/euphoria-1/gentx` folder in the forked repo, paste the copied text into the file.
 4. Create a Pull Request to the main branch of the repository
