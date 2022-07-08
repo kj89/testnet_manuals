@@ -11,7 +11,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/169664551-39020c2e-fa95-483b-916b-c52ce4cb907c.png">
 </p>
 
-# Generate sei Mainnet Gentx
+# Generate Sei Incentivized Testnet Gentx
 
 ## Setting up vars
 Here you have to put name of your moniker (validator) that will be visible in explorer
@@ -68,7 +68,7 @@ seid config keyring-backend test
 seid init $NODENAME --chain-id $CHAIN_ID
 ```
 
-## Recover or create new wallet for mainnet
+## Recover or create new wallet for Incentivized Testnet
 Option 1 - generate new wallet
 ```
 seid keys add $WALLET
