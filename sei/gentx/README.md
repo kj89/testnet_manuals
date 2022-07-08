@@ -106,7 +106,7 @@ seid gentx $WALLET 10000000usei \
 ## Submit PR with Gentx
 1. Copy the contents of `$HOME/.sei/config/gentx/gentx-XXXXXXXX.json`
 2. Fork https://github.com/sei-protocol/testnet
-3. Create a file gentx-{{VALIDATOR_NAME}}.json under the `testnet/sei-incentivized-testnet/gentx` folder in the forked repo, paste the copied text into the file.
+3. Create a file `gentx-{VALIDATOR_NAME}.json` under the `testnet/sei-incentivized-testnet/gentx` folder in the forked repo, paste the copied text into the file.
 4. Create a Pull Request to the main branch of the repository
 
 ### Await further instructions!
