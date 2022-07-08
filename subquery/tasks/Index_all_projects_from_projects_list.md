@@ -37,7 +37,6 @@ cd $HOME/subquery-indexer && docker rm -f coordinator_service && docker compose 
 ```
 
 ## Juno Project
-Parameters:
 - DeploymentID: `QmPZrgnpCrhU3bBXvNQG8qX3VBQTyNVj7agx1hiav14imM`
 - Network Endpoint: `https://rpc.juno-1.api.onfinality.io`
 - Dictionary Endpoint: `https://api.subquery.network/sq/subquery/cosmos-juno-dictionary`
@@ -48,5 +47,7 @@ Parameters:
 - Dictionary Endpoint: `https://api.subquery.network/sq/subquery/avalanche-dictionary`
 
 # Task Finished!
+
+![image](https://user-images.githubusercontent.com/50621007/177988217-d5c2e51d-6035-47a8-a7d4-632e55560ba6.png)
 
 Check progress of your tasks and points earned at [Missions Dashboard](https://frontier.subquery.network/missions/my-missions)

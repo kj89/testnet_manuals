@@ -30,7 +30,6 @@
 | Indexer claims a reward from reward distributor to an indexer's wallet         | 20 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_claims_a_reward_from_reward_distributor.md)          |
 | Indexer withdraws unstaked amount from staking contract to an indexer's wallet | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Indexer_withdraws_unstaked_amount_from_staking_contract.md)  |
 | Index all projects from projects list                                          | 200 points | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Index_all_projects_from_projects_list.md)                    |
-| Unregister your indexer                                                        | 30 points  | TODO                                                                                                                                         |
 
 ## DELEGATPR TASKS
 | MISSION                                                                        | POINTS     | GUIDE  
@@ -47,4 +46,4 @@
 | A purchase offer is created by consumer                                        | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/A_purchase_offer_is_created_by_consumer.md)                  |
 | Cancel offer before it expires                                                 | 30 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Cancel_offer_before_it_expires.md)                           |
 | Consumer purchase a plan from an indexer                                       | 50 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Consumer_purchase_a_plan_from_an_indexer.md)                 |
-| Withdraw SQT locked in the offer after it expires                              | 30 points  | TODO                                                                                                                                         |
+| Withdraw SQT locked in the offer after it expires                              | 30 points  | [Instructions](https://github.com/kj89/testnet_manuals/blob/main/subquery/tasks/Withdraw_SQT_locked_in_the_offer_after_it_expires.md)        |
