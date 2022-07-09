@@ -60,6 +60,7 @@ go version
 ```
 cd $HOME
 git clone https://github.com/sei-protocol/sei-chain.git && cd sei-chain
+git checkout 1.0.6beta
 make install 
 ```
 
@@ -77,8 +78,8 @@ seid init $NODENAME --chain-id $SEI_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -qO $HOME/.sei/config/genesis.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-devnet-1/genesis.json"
-wget -qO $HOME/.sei/config/addrbook.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-devnet-1/addrbook.json"
+wget -qO $HOME/.sei/config/genesis.json "https://raw.githubusercontent.com/sei-protocol/testnet/main/sei-devnet-1/genesis.json"
+wget -qO $HOME/.sei/config/addrbook.json "https://raw.githubusercontent.com/sei-protocol/testnet/main/sei-devnet-1/addrbook.json"
 ```
 
 ## Set seeds and peers
