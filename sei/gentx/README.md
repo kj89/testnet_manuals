@@ -70,6 +70,7 @@ seid init $NODENAME --chain-id $CHAIN_ID
 
 ## Recover or create new wallet for Incentivized testnet
 > ! If you are generating new wallet please don't forget to write down your 12-word mnemonic !
+
 Option 1 - generate new wallet
 ```
 seid keys add $WALLET
