@@ -11,7 +11,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/169664551-39020c2e-fa95-483b-916b-c52ce4cb907c.png">
 </p>
 
-# Generate Gentx for Sei Incentivized Testnet
+# Generate Gentx for Sei Incentivized devnet
 
 ## Setting up vars
 Here you have to put name of your moniker (validator) that will be visible in explorer
@@ -68,7 +68,7 @@ seid config keyring-backend test
 seid init $NODENAME --chain-id $CHAIN_ID
 ```
 
-## Recover or create new wallet for Incentivized Testnet
+## Recover or create new wallet for Incentivized devnet
 Option 1 - generate new wallet
 ```
 seid keys add $WALLET
@@ -105,8 +105,8 @@ seid gentx $WALLET 10000000usei \
 
 ## Submit PR with Gentx
 1. Copy the contents of `$HOME/.sei/config/gentx/gentx-XXXXXXXX.json`
-2. Fork https://github.com/sei-protocol/testnet
-3. Create a file `gentx-{VALIDATOR_NAME}.json` under the `testnet/sei-incentivized-testnet/gentx` folder in the forked repo, paste the copied text into the file.
+2. Fork https://github.com/sei-protocol/devnet
+3. Create a file `gentx-{VALIDATOR_NAME}.json` under the `devnet/sei-incentivized-devnet/gentx` folder in the forked repo, paste the copied text into the file.
 4. Create a Pull Request to the main branch of the repository
 
 ### Await further instructions!

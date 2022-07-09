@@ -12,18 +12,18 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/169664551-39020c2e-fa95-483b-916b-c52ce4cb907c.png">
 </p>
 
-# sei node setup for Testnet — sei-testnet-2
+# sei node setup for Devnet — sei-devnet-1
 
 Official documentation:
->- [Validator setup instructions](https://docs.seinetwork.io/nodes-and-validators/joining-testnets)
+>- [Validator setup instructions](https://docs.seinetwork.io/nodes-and-validators/joining-devnets)
 
 Chain explorer:
 >- [Explorer from Nodes.Guru](https://sei.explorers.guru/)
 
 ## Usefull tools and references
-> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for sei validator](https://github.com/kj89/testnet_manuals/blob/main/sei/monitoring/README.md)
+> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for sei validator](https://github.com/kj89/devnet_manuals/blob/main/sei/monitoring/README.md)
 >
-> To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/sei/migrate_validator.md)
+> To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/devnet_manuals/blob/main/sei/migrate_validator.md)
 
 ## Hardware Requirements
 Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
@@ -32,70 +32,23 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
  - 3x CPUs; the faster clock speed the better
  - 4GB RAM
  - 80GB Disk
- - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
+ - Permanent Internet connection (traffic will be minimal during devnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
 ### Recommended Hardware Requirements 
  - 4x CPUs; the faster clock speed the better
  - 8GB RAM
  - 200GB of storage (SSD or NVME)
- - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
+ - Permanent Internet connection (traffic will be minimal during devnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
 ## Set up your sei fullnode
 ### Option 1 (automatic)
 You can setup your sei fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
-wget -O sei.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/sei.sh && chmod +x sei.sh && ./sei.sh
+wget -O sei.sh https://raw.githubusercontent.com/kj89/devnet_manuals/main/sei/sei.sh && chmod +x sei.sh && ./sei.sh
 ```
 
 ### Option 2 (manual)
-You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/sei/manual_install.md) if you better prefer setting up node manually
-
-
-## Chain upgrade from 1.0.2beta to 1.0.3beta
-Once the chain reaches the upgrade height, you will encounter the following panic error message:\
-`ERR UPGRADE "upgrade-1.0.3beta" NEEDED at height: 153759`
-```
-cd $HOME && rm $HOME/sei-chain -rf
-git clone https://github.com/sei-protocol/sei-chain.git && cd $HOME/sei-chain
-git checkout 1.0.3beta
-make install
-mv ~/go/bin/seid /usr/local/bin/seid
-systemctl restart seid && journalctl -fu seid -o cat
-```
-
-## Chain upgrade from 1.0.3beta to 1.0.4beta
-Once the chain reaches the upgrade height, you will encounter the following panic error message:\
-`ERR UPGRADE "upgrade-1.0.4beta" NEEDED at height: 681000`
-```
-cd $HOME && rm $HOME/sei-chain -rf
-git clone https://github.com/sei-protocol/sei-chain.git && cd $HOME/sei-chain
-git checkout 1.0.4beta
-make install
-mv ~/go/bin/seid /usr/local/bin/seid
-systemctl restart seid && journalctl -fu seid -o cat
-```
-
-## Chain upgrade from 1.0.4beta to 1.0.5beta
-Once the chain reaches the upgrade height, you will encounter the following panic error message:\
-`ERR UPGRADE "upgrade-1.0.5beta" NEEDED at height: 1059047`
-```
-cd $HOME && rm $HOME/sei-chain -rf
-git clone https://github.com/sei-protocol/sei-chain.git && cd $HOME/sei-chain
-git checkout 1.0.5beta
-make install
-mv ~/go/bin/seid /usr/local/bin/seid
-systemctl restart seid && journalctl -fu seid -o cat
-```
-
-## Chain upgrade from 1.0.5beta to 1.0.6beta
-Follow instructions mentioned [here](https://github.com/kj89/testnet_manuals/blob/main/sei/sei_upgrade_106beta.md)
-
-## Post installation
-
-When installation is finished please load variables into system
-```
-source $HOME/.bash_profile
-```
+You can follow [manual guide](https://github.com/kj89/devnet_manuals/blob/main/sei/manual_install.md) if you better prefer setting up node manually
 
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
@@ -129,7 +82,7 @@ source $HOME/.bash_profile
 ```
 
 ### Fund your wallet
-To top up your wallet join [Sei discord server](https://discord.gg/CSczWRVT) and navigate to **#testnet-faucet** channel
+To top up your wallet join [Sei discord server](https://discord.gg/CSczWRVT) and navigate to **#devnet-faucet** channel
 
 To request a faucet grant:
 ```
@@ -182,13 +135,13 @@ sudo ufw enable
 ```
 
 ## Monitoring
-To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for sei validator](https://github.com/kj89/testnet_manuals/blob/main/sei/monitoring/README.md)
+To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for sei validator](https://github.com/kj89/devnet_manuals/blob/main/sei/monitoring/README.md)
 
 ## Calculate synchronization time
 This script will help you to estimate how much time it will take to fully synchronize your node\
 It measures average blocks per minute that are being synchronized for period of 5 minutes and then gives you results
 ```
-wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/tools/synctime.py && python3 ./synctime.py
+wget -O synctime.py https://raw.githubusercontent.com/kj89/devnet_manuals/main/sei/tools/synctime.py && python3 ./synctime.py
 ```
 
 ### Get list of validators
