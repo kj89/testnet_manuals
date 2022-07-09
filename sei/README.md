@@ -21,9 +21,9 @@ Chain explorer:
 >- [Explorer from Nodes.Guru](https://sei.explorers.guru/)
 
 ## Usefull tools and references
-> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for sei validator](https://github.com/kj89/devnet_manuals/blob/main/sei/monitoring/README.md)
+> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for sei validator](https://github.com/kj89/testnet_manuals/blob/main/sei/monitoring/README.md)
 >
-> To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/devnet_manuals/blob/main/sei/migrate_validator.md)
+> To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/sei/migrate_validator.md)
 
 ## Hardware Requirements
 Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
@@ -44,11 +44,11 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
 ### Option 1 (automatic)
 You can setup your sei fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
-wget -O sei.sh https://raw.githubusercontent.com/kj89/devnet_manuals/main/sei/sei.sh && chmod +x sei.sh && ./sei.sh
+wget -O sei.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/sei.sh && chmod +x sei.sh && ./sei.sh
 ```
 
 ### Option 2 (manual)
-You can follow [manual guide](https://github.com/kj89/devnet_manuals/blob/main/sei/manual_install.md) if you better prefer setting up node manually
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/sei/manual_install.md) if you better prefer setting up node manually
 
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
@@ -135,13 +135,13 @@ sudo ufw enable
 ```
 
 ## Monitoring
-To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for sei validator](https://github.com/kj89/devnet_manuals/blob/main/sei/monitoring/README.md)
+To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for sei validator](https://github.com/kj89/testnet_manuals/blob/main/sei/monitoring/README.md)
 
 ## Calculate synchronization time
 This script will help you to estimate how much time it will take to fully synchronize your node\
 It measures average blocks per minute that are being synchronized for period of 5 minutes and then gives you results
 ```
-wget -O synctime.py https://raw.githubusercontent.com/kj89/devnet_manuals/main/sei/tools/synctime.py && python3 ./synctime.py
+wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/tools/synctime.py && python3 ./synctime.py
 ```
 
 ### Get list of validators
