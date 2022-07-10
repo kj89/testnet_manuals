@@ -42,16 +42,34 @@ echo -e "\e[1m\e[32m2. Installing dependencies... \e[0m" && sleep 1
 # packages
 sudo apt install curl build-essential git wget jq make gcc tmux -y
 
-# install go
+# install go function
+installgof () 
+  {
+	  cd $HOME
+	  ver=$1
+	  wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+	  sudo rm -rf /usr/local/go
+	  sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+	  rm "go$ver.linux-amd64.tar.gz"
+	  sed -i.org '/GOROOT\|GOPATH\|GO111MODULE/d' "$HOME/.bash_profile"
+	  echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
+	  echo 'export GOROOT=/usr/local/go' >> "$HOME"/.bash_profile
+	  echo 'export GOPATH=$HOME/go' >> "$HOME"/.bash_profile
+	  echo 'export GO111MODULE=on' >> "$HOME"/.bash_profile
+	  source ~/.bash_profile
+	}
+
+#go version variable, if need new version change variable
 ver="1.18.2"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
-source ~/.bash_profile
-go version
+checkgover=$(go version)
+if [ "${checkgover:13:4}" == "${ver:0:4}" ]; then 
+	#no need install
+	echo "No need to install go-lang, versions are compatible."
+	echo "requested version "$ver", installed version "${checkgover:13:6}""
+else
+  #installation required
+  installgof "$ver"
+fi
 
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
