@@ -14,13 +14,37 @@ echo "=================================================="
 sleep 2
 
 # set vars
-if [ ! $NODENAME ]; then
-	read -p "Enter node name: " NODENAME
-	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
+# set vars
+if [ $NODENAME ]; then 
+	echo -e "Node name \e[1m\e[32mseting before\e[0m, NODE NAME..:\e[1m\e[32m$NODENAME\e[0m"
+  echo -e "Press ANY KEY to use the \e[1m\e[32same node name\e[0m."
+  echo -e "Press [Y/y] to change $NODENAME."
+   read -rsn1 answer
+    if [ "$answer" != "${answer#[Yy]}" ] ;then
+      read -p "Enter node name: " NODENAME
+      echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
+    else
+      echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
+    fi
+  else
+  read -p "Enter node name: " NODENAME
+  echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
 fi
-SEI_PORT=12
-if [ ! $WALLET ]; then
-	echo "export WALLET=wallet" >> $HOME/.bash_profile
+if [ ! $SEI_PORT ]; then SEI_PORT=12; fi
+if [ $WALLET ]; then 
+	echo -e "Wallet name \e[1m\e[32mseting before\e[0m, WALLET NAME..:\e[1m\e[32m$WALLET\e[0m"
+  echo -e "Press ANY KEY to use the \e[1m\e[32same wallet name\e[0m."
+  echo -e "Press [Y/y] to change $WALLET."
+   read -rsn1 answer
+    if [ "$answer" != "${answer#[Yy]}" ] ;then
+      read -p "Enter wallet name: " WALLET
+      echo 'export WALLET='$WALLET >> $HOME/.bash_profile
+    else
+      echo 'export WALLET='$WALLET >> $HOME/.bash_profile
+    fi
+  else
+  read -p "Enter wallet name: " WALLET
+  echo 'export WALLET='$WALLET >> $HOME/.bash_profile
 fi
 echo "export SEI_CHAIN_ID=sei-devnet-1" >> $HOME/.bash_profile
 echo "export SEI_PORT=${SEI_PORT}" >> $HOME/.bash_profile
