@@ -59,7 +59,7 @@ go version
 ## Download and build binaries
 ```
 cd $HOME
-git clone https://github.com/Team-Kujira/core.git
+git clone https://github.com/Team-Kujira/core.git --branch v0.4.1
 cd core
 make install
 ```
