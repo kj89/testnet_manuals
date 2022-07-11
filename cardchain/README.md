@@ -59,14 +59,14 @@ source $HOME/.bash_profile
 
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
-Cardchaind status 2>&1 | jq .SyncInfo
+Cardchain status 2>&1 | jq .SyncInfo
 ```
 
 ### (OPTIONAL) Disable and cleanup indexing
 ```
 indexer="null"
 sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.Cardchain/config/config.toml
-sudo systemctl restart Cardchaind
+sudo systemctl restart Cardchain
 sleep 3
 sudo rm -rf $HOME/.Cardchain/data/tx_index.db
 ```
@@ -80,26 +80,26 @@ N/A
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
-Cardchaind keys add $WALLET
+Cardchain keys add $WALLET
 ```
 
 (OPTIONAL) To recover your wallet using seed phrase
 ```
-Cardchaind keys add $WALLET --recover
+Cardchain keys add $WALLET --recover
 ```
 
 To get current list of wallets
 ```
-Cardchaind keys list
+Cardchain keys list
 ```
 
 ### Save wallet info
 Add wallet and valoper address into variables 
 ```
-CARDCHAIN_WALLET_ADDRESS=$(Cardchaind keys show $WALLET -a)
+CARDCHAIN_WALLET_ADDRESS=$(Cardchain keys show $WALLET -a)
 ```
 ```
-CARDCHAIN_VALOPER_ADDRESS=$(Cardchaind keys show $WALLET --bech val -a)
+CARDCHAIN_VALOPER_ADDRESS=$(Cardchain keys show $WALLET --bech val -a)
 ```
 Load variables into the system
 ```
@@ -118,20 +118,20 @@ Before creating validator please make sure that you have at least 1 kuji (1 kuji
 
 To check your wallet balance:
 ```
-Cardchaind query bank balances $CARDCHAIN_WALLET_ADDRESS
+Cardchain query bank balances $CARDCHAIN_WALLET_ADDRESS
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
 To create your validator run command below
 ```
-Cardchaind tx staking create-validator \
+Cardchain tx staking create-validator \
   --amount 100000ubpf \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
   --commission-rate "0.07" \
   --min-self-delegation "1" \
-  --pubkey  $(Cardchaind tendermint show-validator) \
+  --pubkey  $(Cardchain tendermint show-validator) \
   --moniker $NODENAME \
   --chain-id $CARDCHAIN_CHAIN_ID
 ```
@@ -170,7 +170,7 @@ wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/
 
 ### Get list of validators
 ```
-Cardchaind q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
+Cardchain q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
 ```
 
 ## Get currently connected peer list with ids
@@ -182,101 +182,101 @@ curl -sS http://localhost:${CARDCHAIN_PORT}657/net_info | jq -r '.result.peers[]
 ### Service management
 Check logs
 ```
-journalctl -fu Cardchaind -o cat
+journalctl -fu Cardchain -o cat
 ```
 
 Start service
 ```
-sudo systemctl start Cardchaind
+sudo systemctl start Cardchain
 ```
 
 Stop service
 ```
-sudo systemctl stop Cardchaind
+sudo systemctl stop Cardchain
 ```
 
 Restart service
 ```
-sudo systemctl restart Cardchaind
+sudo systemctl restart Cardchain
 ```
 
 ### Node info
 Synchronization info
 ```
-Cardchaind status 2>&1 | jq .SyncInfo
+Cardchain status 2>&1 | jq .SyncInfo
 ```
 
 Validator info
 ```
-Cardchaind status 2>&1 | jq .ValidatorInfo
+Cardchain status 2>&1 | jq .ValidatorInfo
 ```
 
 Node info
 ```
-Cardchaind status 2>&1 | jq .NodeInfo
+Cardchain status 2>&1 | jq .NodeInfo
 ```
 
 Show node id
 ```
-Cardchaind tendermint show-node-id
+Cardchain tendermint show-node-id
 ```
 
 ### Wallet operations
 List of wallets
 ```
-Cardchaind keys list
+Cardchain keys list
 ```
 
 Recover wallet
 ```
-Cardchaind keys add $WALLET --recover
+Cardchain keys add $WALLET --recover
 ```
 
 Delete wallet
 ```
-Cardchaind keys delete $WALLET
+Cardchain keys delete $WALLET
 ```
 
 Get wallet balance
 ```
-Cardchaind query bank balances $CARDCHAIN_WALLET_ADDRESS
+Cardchain query bank balances $CARDCHAIN_WALLET_ADDRESS
 ```
 
 Transfer funds
 ```
-Cardchaind tx bank send $CARDCHAIN_WALLET_ADDRESS <TO_CARDCHAIN_WALLET_ADDRESS> 10000000ubpf
+Cardchain tx bank send $CARDCHAIN_WALLET_ADDRESS <TO_CARDCHAIN_WALLET_ADDRESS> 10000000ubpf
 ```
 
 ### Voting
 ```
-Cardchaind tx gov vote 1 yes --from $WALLET --chain-id=$CARDCHAIN_CHAIN_ID
+Cardchain tx gov vote 1 yes --from $WALLET --chain-id=$CARDCHAIN_CHAIN_ID
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-Cardchaind tx staking delegate $CARDCHAIN_VALOPER_ADDRESS 10000000ubpf --from=$WALLET --chain-id=$CARDCHAIN_CHAIN_ID --gas=auto
+Cardchain tx staking delegate $CARDCHAIN_VALOPER_ADDRESS 10000000ubpf --from=$WALLET --chain-id=$CARDCHAIN_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-Cardchaind tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ubpf --from=$WALLET --chain-id=$CARDCHAIN_CHAIN_ID --gas=auto
+Cardchain tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ubpf --from=$WALLET --chain-id=$CARDCHAIN_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
 ```
-Cardchaind tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CARDCHAIN_CHAIN_ID --gas=auto
+Cardchain tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CARDCHAIN_CHAIN_ID --gas=auto
 ```
 
 Withdraw rewards with commision
 ```
-Cardchaind tx distribution withdraw-rewards $CARDCHAIN_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$CARDCHAIN_CHAIN_ID
+Cardchain tx distribution withdraw-rewards $CARDCHAIN_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$CARDCHAIN_CHAIN_ID
 ```
 
 ### Validator management
 Edit validator
 ```
-Cardchaind tx staking edit-validator \
+Cardchain tx staking edit-validator \
   --moniker=$NODENAME \
   --identity=<your_keybase_id> \
   --website="<your_website>" \
@@ -287,7 +287,7 @@ Cardchaind tx staking edit-validator \
 
 Unjail validator
 ```
-Cardchaind tx slashing unjail \
+Cardchain tx slashing unjail \
   --broadcast-mode=block \
   --from=$WALLET \
   --chain-id=$CARDCHAIN_CHAIN_ID \
@@ -297,10 +297,10 @@ Cardchaind tx slashing unjail \
 ### Delete node
 This commands will completely remove node from server. Use at your own risk!
 ```
-sudo systemctl stop Cardchaind
-sudo systemctl disable Cardchaind
+sudo systemctl stop Cardchain
+sudo systemctl disable Cardchain
 sudo rm /etc/systemd/system/Cardchain* -rf
-sudo rm $(which Cardchaind) -rf
+sudo rm $(which Cardchain) -rf
 sudo rm $HOME/.Cardchain* -rf
 sudo rm $HOME/Cardchain -rf
 ```

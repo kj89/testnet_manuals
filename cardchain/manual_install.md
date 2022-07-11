@@ -63,14 +63,14 @@ curl https://get.ignite.com/DecentralCardGame/Cardchain@latest! | sudo bash
 
 ## Config app
 ```
-Cardchaind config chain-id $CARDCHAIN_CHAIN_ID
-Cardchaind config keyring-backend file
-Cardchaind config node tcp://localhost:${CARDCHAIN_PORT}657
+Cardchain config chain-id $CARDCHAIN_CHAIN_ID
+Cardchain config keyring-backend file
+Cardchain config node tcp://localhost:${CARDCHAIN_PORT}657
 ```
 
 ## Init app
 ```
-Cardchaind init $NODENAME --chain-id $CARDCHAIN_CHAIN_ID
+Cardchain init $NODENAME --chain-id $CARDCHAIN_CHAIN_ID
 ```
 
 ## Download genesis and addrbook
@@ -115,19 +115,19 @@ sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.Cardchain/config/conf
 
 ## Reset chain data
 ```
-Cardchaind unsafe-reset-all --home $HOME/.Cardchain
+Cardchain unsafe-reset-all --home $HOME/.Cardchain
 ```
 
 ## Create service
 ```
-sudo tee /etc/systemd/system/Cardchaind.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/Cardchain.service > /dev/null <<EOF
 [Unit]
 Description=Cardchain
 After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which Cardchaind) start --home $HOME/.Cardchain
+ExecStart=$(which Cardchain) start --home $HOME/.Cardchain
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
@@ -140,6 +140,6 @@ EOF
 ## Register and start service
 ```
 sudo systemctl daemon-reload
-sudo systemctl enable Cardchaind
-sudo systemctl restart Cardchaind && sudo journalctl -u Cardchaind -f -o cat
+sudo systemctl enable Cardchain
+sudo systemctl restart Cardchain && sudo journalctl -u Cardchain -f -o cat
 ```

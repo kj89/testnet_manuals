@@ -58,35 +58,35 @@ make install
 
 ## Config app
 ```
-Cardchaind config chain-id $CHAIN_ID
-Cardchaind config keyring-backend test
+Cardchain config chain-id $CHAIN_ID
+Cardchain config keyring-backend test
 ```
 
 ## Init node
 ```
-Cardchaind init $NODENAME --chain-id $CHAIN_ID
+Cardchain init $NODENAME --chain-id $CHAIN_ID
 ```
 
 ## Recover or create new wallet for Euphoria Testnet
 Option 1 - generate new wallet
 ```
-Cardchaind keys add $WALLET
+Cardchain keys add $WALLET
 ```
 
 Option 2 - recover existing wallet
 ```
-Cardchaind keys add $WALLET --recover
+Cardchain keys add $WALLET --recover
 ```
 
 ## Add genesis account
 ```
-WALLET_ADDRESS=$(Cardchaind keys show $WALLET -a)
-Cardchaind add-genesis-account $WALLET_ADDRESS 3600000000ubpf
+WALLET_ADDRESS=$(Cardchain keys show $WALLET -a)
+Cardchain add-genesis-account $WALLET_ADDRESS 3600000000ubpf
 ```
 
 ## Generate gentx
 ```
-Cardchaind gentx $WALLET 3600000000ubpf \
+Cardchain gentx $WALLET 3600000000ubpf \
 --chain-id $CHAIN_ID \
 --moniker=$NODENAME \
 --commission-max-change-rate=0.01 \

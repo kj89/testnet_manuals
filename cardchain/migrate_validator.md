@@ -21,32 +21,32 @@ To setup full node you can follow my guide [Cardchain node setup for testnet](ht
 
 #### To backup your key
 ```
-Cardchaind keys export mykey
+Cardchain keys export mykey
 ```
 > _This prints the private key that you can then paste into the file `mykey.backup`_
 
 #### To get list of keys
 ```
-Cardchaind keys list
+Cardchain keys list
 ```
 
 ### 3. Recover the active key of the old machine on the new machine
 
 #### This can be done with the mnemonics
 ```
-Cardchaind keys add mykey --recover
+Cardchain keys add mykey --recover
 ```
 
 #### Or with the backup file `mykey.backup` from the previous step
 ```
-Cardchaind keys import mykey mykey.backup
+Cardchain keys import mykey mykey.backup
 ```
 
 ### 4. Wait for the new full node on the new machine to finish catching-up
 
 #### To check synchronization status
 ```
-Cardchaind status 2>&1 | jq .SyncInfo
+Cardchain status 2>&1 | jq .SyncInfo
 ```
 > _`catching_up` should be equal to `false`_
 
@@ -57,34 +57,34 @@ Cardchaind status 2>&1 | jq .SyncInfo
 
 #### Stop and disable service on old machine
 ```
-sudo systemctl stop Cardchaind
-sudo systemctl disable Cardchaind
+sudo systemctl stop Cardchain
+sudo systemctl disable Cardchain
 ```
 > _The validator should start missing blocks at this point_
 
 ### 6. Stop service on new machine
 ```
-sudo systemctl stop Cardchaind
+sudo systemctl stop Cardchain
 ```
 
 ### 7. Move the validator's private key from the old machine to the new machine
-#### Private key is located in: `~/.Cardchaind/config/priv_validator_key.json`
+#### Private key is located in: `~/.Cardchain/config/priv_validator_key.json`
 
 > _After being copied, the key `priv_validator_key.json` should then be removed from the old node's config directory to prevent double-signing if the node were to start back up_
 ```
-sudo mv ~/.Cardchaind/config/priv_validator_key.json ~/.Cardchaind/bak_priv_validator_key.json
+sudo mv ~/.Cardchain/config/priv_validator_key.json ~/.Cardchain/bak_priv_validator_key.json
 ```
 
 ### 8. Start service on a new validator node
 ```
-sudo systemctl start Cardchaind
+sudo systemctl start Cardchain
 ```
 > _The new node should start signing blocks once caught-up_
 
 ### 9. Make sure your validator is not jailed
 #### To unjail your validator
 ```
-Cardchaind tx slashing unjail --chain-id $CARDCHAIN_CHAIN_ID --from mykey --gas=auto -y
+Cardchain tx slashing unjail --chain-id $CARDCHAIN_CHAIN_ID --from mykey --gas=auto -y
 ```
 
 ### 10. After you ensure your validator is producing blocks and is healthy you can shut down old validator server
