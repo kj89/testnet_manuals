@@ -15,6 +15,11 @@
 # Pigeon relayer manual setup
 A Golang cross-chain message relayer system for Paloma validators to deliver messages to any blockchain.
 
+## Register and create Alchemy app
+To get `ETH_RPC_URL` register at https://www.alchemy.com/ and create new Ethereum Mainnet app
+
+![image](https://user-images.githubusercontent.com/50621007/178287931-d190db26-6b8f-4e05-863d-293a97f3a546.png)
+
 ## Setting up vars
 ```
 ETH_RPC_URL=<YOUR_ETH_MAINNET_RPC_URL>
