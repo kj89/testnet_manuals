@@ -44,7 +44,7 @@ mkdir ~/.pigeon
 
 ## Set up your EVM keys
 ### (OPTION 1) Generate new keys
-Dont forget to write down your password!
+Use the same password you have defined earlier in `ETH_PASSWORD`
 ```
 pigeon evm keys generate-new $HOME/.pigeon/keys/evm/eth-main
 ```
