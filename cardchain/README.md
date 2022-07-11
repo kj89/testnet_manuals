@@ -120,7 +120,7 @@ Cardchain query bank balances $CARDCHAIN_WALLET_ADDRESS
 To create your validator run command below
 ```
 Cardchain tx staking create-validator \
-  --amount 100000ubpf \
+  --amount 1000000ubpf \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
