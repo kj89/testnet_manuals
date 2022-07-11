@@ -61,6 +61,7 @@ pigeon evm keys import ~/.pigeon/keys/evm/eth-main
 ## Load ETH_SIGNER_KEY into bash_profile
 ```
 echo "export ETH_SIGNING_KEY=0x$(cat .pigeon/keys/evm/eth-main/*  | jq -r .address | head -n 1)" >> $HOME/.bash_profile
+source $HOME/.bash_profile
 ```
 
 ## Create configuration file
