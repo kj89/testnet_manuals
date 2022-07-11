@@ -12,7 +12,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/177979901-4ac785e2-08c3-4d61-83df-b451a2ed9e68.png">
 </p>
 
-# aura node setup for mainnet — euphoria-1
+# aura node setup for testnet — euphoria-1
 
 Official documentation:
 >- [Validator setup instructions](https://docs.aura.app/run-a-node)
@@ -32,13 +32,13 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
  - 3x CPUs; the faster clock speed the better
  - 4GB RAM
  - 80GB Disk
- - Permanent Internet connection (traffic will be minimal during mainnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
+ - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
 ### Recommended Hardware Requirements 
  - 4x CPUs; the faster clock speed the better
  - 8GB RAM
  - 200GB of storage (SSD or NVME)
- - Permanent Internet connection (traffic will be minimal during mainnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
+ - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
 ## Set up your aura fullnode
 ### Option 1 (automatic)
