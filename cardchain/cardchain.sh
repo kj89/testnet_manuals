@@ -66,7 +66,7 @@ Cardchain config node tcp://localhost:${CARDCHAIN_PORT}657
 Cardchain init $NODENAME --chain-id $CARDCHAIN_CHAIN_ID
 
 # download genesis and addrbook
-cp $HOME/Testnet1/genesis.json $HOME/.Cardchain/config/genesis.json
+wget -qO $HOME/.Cardchain/config/genesis.json "https://raw.githubusercontent.com/DecentralCardGame/Testnet1/main/genesis.json"
 
 # set peers and seeds
 SEEDS=""
