@@ -72,7 +72,7 @@ sudo rm -rf $HOME/.aura/data/tx_index.db
 ```
 
 ### (OPTIONAL) State Sync
-You can state sync your node in minutes by running commands below. Special thanks to `polkachu | polkachu.com#1249`
+You can state sync your node in minutes by running commands below.
 ```
 N/A
 ```
