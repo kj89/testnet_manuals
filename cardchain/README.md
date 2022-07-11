@@ -108,6 +108,11 @@ echo 'export CARDCHAIN_VALOPER_ADDRESS='${CARDCHAIN_VALOPER_ADDRESS} >> $HOME/.b
 source $HOME/.bash_profile
 ```
 
+### Fund your wallet
+```
+curl -X POST https://cardchain.crowdcontrol.network/faucet/ -d "{\"address\": \"$CARDCHAIN_WALLET_ADDRESS\"}"
+```
+
 ### Create validator
 Before creating validator please make sure that you have at least 1 kuji (1 kuji is equal to 1000000 ubpf) and your node is synchronized
 
