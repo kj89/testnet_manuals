@@ -126,12 +126,12 @@ sudo systemctl enable pigeond
 sudo systemctl restart pigeond && sudo journalctl -u pigeond -f -o cat
 ```
 
-## Post output in paloma telegram channel
+## Post output of command below into paloma telegram channel
 ```
-palomad q valset validator-info palomavaloper13uslh0y22ffnndyr3x30wqd8a6peqh25m8p743
+palomad q valset validator-info <YOUR_PALOMA_VALIDATOR_ADDRESS>
 ```
 
-Output should look like this:
+Output should look like this (this is just an example):
 ```
 palomad q valset validator-info palomavaloper13uslh0y22ffnndyr3x30wqd8a6peqh25m8p743
 chainInfos:
