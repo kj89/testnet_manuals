@@ -72,7 +72,7 @@ wget -qO $HOME/.aura/config/genesis.json "https://raw.githubusercontent.com/aura
 
 # set peers and seeds
 SEEDS="705e3c2b2b554586976ed88bb27f68e4c4176a33@13.250.223.114:26656,b9243524f659f2ff56691a4b2919c3060b2bb824@13.214.5.1:26656"
-PEERS=""
+PEERS="64fdaa6da59901793beda215679ac2a6549b46b4@144.91.122.166:26656,bfa492255ba40d3422f3078bfd6e55696ba005c0@65.108.101.50:60756,6e36fc042ea8210d34d6c7629586b555ecb84307@51.91.146.110:26656,dff707e0f328221d3bb76f64e8bdb08797bac97a@65.108.43.116:26656,3d6b07bdb11754c8c8512525dac109d8bdee3857@65.21.53.39:56656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.aura/config/config.toml
 
 # set custom ports
