@@ -74,7 +74,17 @@ sudo rm -rf $HOME/.aura/data/tx_index.db
 ### (OPTIONAL) State Sync
 You can state sync your node in minutes by running commands below.
 ```
-N/A
+SNAP_RPC1="https://snapshot-1.euphoria.aura.network:443" \
+&& SNAP_RPC2="https://snapshot-2.euphoria.aura.network:443"
+LATEST_HEIGHT=$(curl -s $SNAP_RPC2/block | jq -r .result.block.header.height) \
+&& BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)) \
+&& TRUST_HASH=$(curl -s "$SNAP_RPC2/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC1,$SNAP_RPC2\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.aura/config/config.toml
+aurad tendermint unsafe-reset-all --home $HOME/.aura
+sudo systemctl restart aurad && journalctl -fu aurad -o cat
 ```
 
 ### Create wallet
