@@ -64,7 +64,7 @@ curl https://get.ignite.com/DecentralCardGame/Cardchain@latest! | sudo bash
 ## Config app
 ```
 Cardchain config chain-id $CARDCHAIN_CHAIN_ID
-Cardchain config keyring-backend file
+Cardchain config keyring-backend test
 Cardchain config node tcp://localhost:${CARDCHAIN_PORT}657
 ```
 
