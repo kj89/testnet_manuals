@@ -125,3 +125,18 @@ sudo systemctl daemon-reload
 sudo systemctl enable pigeond
 sudo systemctl restart pigeond && sudo journalctl -u pigeond -f -o cat
 ```
+
+## Post output in paloma telegram channel
+```
+palomad q valset validator-info palomavaloper13uslh0y22ffnndyr3x30wqd8a6peqh25m8p743
+```
+
+Output should look like this:
+```
+palomad q valset validator-info palomavaloper13uslh0y22ffnndyr3x30wqd8a6peqh25m8p743
+chainInfos:
+- address: 0x63f55bc560E981d53E1f5bb3643e3a96D26fc635
+  chainID: eth-main
+  chainType: EVM
+  pubkey: Y/VbxWDpgdU+H1uzZD46ltJvxjU=
+```
