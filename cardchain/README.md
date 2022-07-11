@@ -21,9 +21,9 @@ Explorer:
 >-  https://Cardchain.explorers.guru/
 
 ## Usefull tools and references
-> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for Cardchain validator](https://github.com/kj89/testnet_manuals/blob/main/Cardchain/monitoring/README.md)
+> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for Cardchain validator](https://github.com/kj89/testnet_manuals/blob/main/cardchain/monitoring/README.md)
 >
-> To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/Cardchain/migrate_validator.md)
+> To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/cardchain/migrate_validator.md)
 
 ## Hardware Requirements
 Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
@@ -44,11 +44,11 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
 ### Option 1 (automatic)
 You can setup your Cardchain fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
-wget -O Cardchain.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/Cardchain/Cardchain.sh && chmod +x Cardchain.sh && ./Cardchain.sh
+wget -O Cardchain.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/cardchain/Cardchain.sh && chmod +x Cardchain.sh && ./Cardchain.sh
 ```
 
 ### Option 2 (manual)
-You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/Cardchain/manual_install.md) if you better prefer setting up node manually
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/cardchain/manual_install.md) if you better prefer setting up node manually
 
 ## Post installation
 
@@ -74,17 +74,7 @@ sudo rm -rf $HOME/.Cardchain/data/tx_index.db
 ### (OPTIONAL) State Sync
 You can state sync your node in minutes by running commands below.
 ```
-SNAP_RPC1="https://snapshot-1.euphoria.Cardchain.network:443" \
-&& SNAP_RPC2="https://snapshot-2.euphoria.Cardchain.network:443"
-LATEST_HEIGHT=$(curl -s $SNAP_RPC2/block | jq -r .result.block.header.height) \
-&& BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)) \
-&& TRUST_HASH=$(curl -s "$SNAP_RPC2/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC1,$SNAP_RPC2\"| ; \
-s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.Cardchain/config/config.toml
-Cardchaind unsafe-reset-all --home $HOME/.Cardchain
-sudo systemctl restart Cardchaind && journalctl -fu Cardchaind -o cat
+N/A
 ```
 
 ### Create wallet
@@ -164,13 +154,13 @@ sudo ufw enable
 ```
 
 ## Monitoring
-To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for Cardchain validator](https://github.com/kj89/testnet_manuals/blob/main/Cardchain/monitoring/README.md)
+To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for Cardchain validator](https://github.com/kj89/testnet_manuals/blob/main/cardchain/monitoring/README.md)
 
 ## Calculate synchronization time
 This script will help you to estimate how much time it will take to fully synchronize your node\
 It measures average blocks per minute that are being synchronized for period of 5 minutes and then gives you results
 ```
-wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/Cardchain/tools/synctime.py && python3 ./synctime.py
+wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/cardchain/tools/synctime.py && python3 ./synctime.py
 ```
 
 ### Get list of validators
