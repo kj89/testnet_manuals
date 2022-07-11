@@ -105,7 +105,7 @@ sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.aura/config/app.toml
 ```
 
-## Set minimum gas price and timeout commit
+## Set minimum gas price
 ```
 sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ueaura\"/" $HOME/.aura/config/app.toml
 ```
@@ -117,7 +117,7 @@ sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.aura/config/config.to
 
 ## Reset chain data
 ```
-aurad tendermint unsafe-reset-all --home $HOME/.aura
+aurad unsafe-reset-all --home $HOME/.aura
 ```
 
 ## Create service
