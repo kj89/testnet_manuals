@@ -94,15 +94,10 @@ Cardchain keys list
 ```
 
 ### Save wallet info
-Add wallet and valoper address into variables 
+Add wallet and valoper address into system variables 
 ```
 CARDCHAIN_WALLET_ADDRESS=$(Cardchain keys show $WALLET -a)
-```
-```
 CARDCHAIN_VALOPER_ADDRESS=$(Cardchain keys show $WALLET --bech val -a)
-```
-Load variables into the system
-```
 echo 'export CARDCHAIN_WALLET_ADDRESS='${CARDCHAIN_WALLET_ADDRESS} >> $HOME/.bash_profile
 echo 'export CARDCHAIN_VALOPER_ADDRESS='${CARDCHAIN_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
