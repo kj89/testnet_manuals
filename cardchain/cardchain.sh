@@ -70,7 +70,7 @@ wget -qO $HOME/.Cardchain/config/genesis.json "https://raw.githubusercontent.com
 
 # set peers and seeds
 SEEDS=""
-PEERS="a506820ea90c5b0ddb9005ef720a121e9f6bbaeb@45.136.28.158:26658"
+PEERS="cd1c88e7829a940fc6332c925943fb0e45588121@138.201.139.175:21106,a9c56a9479bbdb8aa7bfb93bd85907bd4f4a4cca@135.181.154.42:26656,407fd08d831eaec4be840bf762740a72c5c48ea6@159.69.11.174:36656,a506820ea90c5b0ddb9005ef720a121e9f6bbaeb@45.136.28.158:26658,8b376446ae31162449c9749390830b05420bdf55@95.216.223.244:26656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.Cardchain/config/config.toml
 
 # set custom ports
