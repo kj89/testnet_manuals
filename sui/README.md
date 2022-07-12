@@ -15,7 +15,7 @@
 # Sui node setup for devnet
 
 Official documentation:
-- Official manual: https://github.com/MystenLabs/sui/blob/main/doc/src/build/fullnode.md
+- Official manual: https://docs.sui.io/build/fullnode#using-docker-compose
 - Experiment with Sui DevNet: https://docs.sui.io/explore/devnet
 - Check you node health: https://node.sui.zvalid.com/
 
@@ -76,7 +76,7 @@ curl --location --request POST 'http://127.0.0.1:9000/' --header 'Content-Type: 
 ### Get details about a specific transaction
 ```
 curl --location --request POST 'http://127.0.0.1:9000/' --header 'Content-Type: application/json' \
---data-raw '{ "jsonrpc":"2.0", "id":1, "method":"sui_getTransaction", "params":["$RECENT_TXN_FROM_ABOVE"] }' | jq .
+--data-raw '{ "jsonrpc":"2.0", "id":1, "method":"sui_getTransaction", "params":["<RECENT_TXN_FROM_ABOVE>"] }' | jq .
 ```
 
 ## Post installation
