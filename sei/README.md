@@ -50,11 +50,6 @@ wget -O sei.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/s
 ### Option 2 (manual)
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/sei/manual_install.md) if you better prefer setting up node manually
 
-Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
-```
-seid status 2>&1 | jq .SyncInfo
-```
-
 ## Post installation
 
 When installation is finished please load variables into system
