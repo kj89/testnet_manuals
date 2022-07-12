@@ -69,12 +69,14 @@ You should see something similar in the output:
 
 ### Get the five most recent transactions
 ```
-curl --location --request POST 'http://127.0.0.1:9000/' --header 'Content-Type: application/json' --data-raw '{ "jsonrpc":"2.0", "id":1, "method":"sui_getRecentTransactions", "params":[5] }' | jq .
+curl --location --request POST 'http://127.0.0.1:9000/' --header 'Content-Type: application/json' \
+--data-raw '{ "jsonrpc":"2.0", "id":1, "method":"sui_getRecentTransactions", "params":[5] }' | jq .
 ```
 
 ### Get details about a specific transaction
 ```
-curl --location --request POST 'http://127.0.0.1:9000/' --header 'Content-Type: application/json' --data-raw '{ "jsonrpc":"2.0", "id":1, "method":"sui_getTransaction", "params":["$RECENT_TXN_FROM_ABOVE"] }' | jq .
+curl --location --request POST 'http://127.0.0.1:9000/' --header 'Content-Type: application/json' \
+--data-raw '{ "jsonrpc":"2.0", "id":1, "method":"sui_getTransaction", "params":["$RECENT_TXN_FROM_ABOVE"] }' | jq .
 ```
 
 ## Post installation
