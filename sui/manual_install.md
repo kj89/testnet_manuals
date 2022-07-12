@@ -15,72 +15,45 @@
 # Install Sui node
 To setup Sui node follow the steps below
 
-## Update packages
+## 1. Update packages
 ```
 sudo apt update && sudo apt upgrade -y
 ```
 
-## Install dependencies
+## 2. Install dependencies
 ```
-sudo apt install tzdata git ca-certificates curl build-essential libssl-dev pkg-config libclang-dev cmake jq -y --no-install-recommends
-```
-
-## Install yq
-```
-sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && sudo chmod +x /usr/local/bin/yq
+sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && chmod +x /usr/local/bin/yq
+sudo apt-get install jq -y
 ```
 
-## Install Rust
+## 3. Install docker
 ```
-sudo curl https://sh.rustup.rs -sSf | sh -s -- -y
-source $HOME/.cargo/env
-```
-
-## Download and build Sui binaries
-```
-sudo mkdir -p /var/sui
-cd $HOME && rm sui -rf
-git clone https://github.com/MystenLabs/sui.git && cd sui
-git remote add upstream https://github.com/MystenLabs/sui
-git fetch upstream
-git checkout --track upstream/devnet
-cargo build --release -p sui-node
-sudo mv ~/sui/target/release/sui-node /usr/local/bin/
+sudo apt-get install ca-certificates curl gnupg lsb-release -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 ```
 
-## Set configuration
+## 4. Install docker compose
 ```
-wget -O /var/sui/genesis.blob https://github.com/MystenLabs/sui-genesis/raw/main/devnet/genesis.blob
-sudo cp crates/sui-config/data/fullnode-template.yaml /var/sui/fullnode.yaml
-sudo yq e -i '.db-path="/var/sui/db"' /var/sui/fullnode.yaml \
-&& yq e -i '.genesis.genesis-file-location="/var/sui/genesis.blob"' /var/sui/fullnode.yaml \
-&& yq e -i '.metrics-address="0.0.0.0:9184"' /var/sui/fullnode.yaml \
-&& yq e -i '.json-rpc-address="0.0.0.0:9000"' /var/sui/fullnode.yaml
+docker_compose_version=$(wget -qO- https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name")
+sudo wget -O /usr/bin/docker-compose "https://github.com/docker/compose/releases/download/${docker_compose_version}/docker-compose-`uname -s`-`uname -m`"
+sudo chmod +x /usr/bin/docker-compose
 ```
 
-## Create and run service
+## 5. Download configs
 ```
-echo "[Unit]
-Description=Sui Node
-After=network.target
+cd $HOME && rm -rf sui
+mkdir sui && cd sui
+wget -qO docker-compose.yaml https://raw.githubusercontent.com/MystenLabs/sui/main/docker/fullnode/docker-compose.yaml
+wget -qO fullnode-template.yaml https://github.com/MystenLabs/sui/raw/main/crates/sui-config/data/fullnode-template.yaml
+wget -qO genesis.blob https://github.com/MystenLabs/sui-genesis/raw/main/devnet/genesis.blob
+sed -i 's/127.0.0.1/0.0.0.0/' fullnode-template.yaml
+docker-compose down --volumes
+```
 
-[Service]
-User=$USER
-Type=simple
-ExecStart=/usr/local/bin/sui-node --config-path /var/sui/fullnode.yaml
-Restart=on-failure
-LimitNOFILE=65535
-
-[Install]
-WantedBy=multi-user.target" > $HOME/suid.service
-mv $HOME/suid.service /etc/systemd/system/
-
-sudo tee <<EOF >/dev/null /etc/systemd/journald.conf
-Storage=persistent
-EOF
-
-sudo systemctl restart systemd-journald
-sudo systemctl daemon-reload
-sudo systemctl enable suid
-sudo systemctl restart suid
+## 6. Start application
+```
+docker-compose up -d
 ```

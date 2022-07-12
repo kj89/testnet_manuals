@@ -31,17 +31,6 @@ Official documentation:
 
 > Storage requirements will vary based on various factors (age of the chain, transaction rate, etc) although we don't anticipate running a fullnode on devnet will require more than 50 GBs today given it is reset upon each release roughly every two weeks.
 
-## (OPTIONAL) Installation takes more than 10 minutes, so we recommend to run in a screen session
-To create new screen session named `sui`
-```
-screen -S sui
-```
-
-To attach to existing `sui` screen session
-```
-screen -Rd sui
-```
-
 ## Set up your Sui full node
 ### Option 1 (automatic)
 You can setup your Sui full node in minutes by using automated script below
@@ -52,7 +41,10 @@ wget -O sui.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/sui/s
 ### Option 2 (manual)
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/sui/manual_install.md) if you better prefer setting up node manually
 
-## Check status of your node
+## Make tests
+Once the fullnode is up and running, test some of the JSON-RPC interfaces.
+
+### Check status of your node
 ```
 curl -s -X POST http://127.0.0.1:9000 -H 'Content-Type: application/json' -d '{ "jsonrpc":"2.0", "method":"rpc.discover","id":1}' | jq .result.info
 ```
@@ -75,6 +67,16 @@ You should see something similar in the output:
 }
 ```
 
+### Get the five most recent transactions
+```
+curl --location --request POST 'http://127.0.0.1:9000/' --header 'Content-Type: application/json' --data-raw '{ "jsonrpc":"2.0", "id":1, "method":"sui_getRecentTransactions", "params":[5] }' | jq .
+```
+
+### Get details about a specific transaction
+```
+curl --location --request POST 'http://127.0.0.1:9000/' --header 'Content-Type: application/json' --data-raw '{ "jsonrpc":"2.0", "id":1, "method":"sui_getTransaction", "params":["$RECENT_TXN_FROM_ABOVE"] }' | jq .
+```
+
 ## Post installation
 After setting up your Sui node you have to register it in the [Sui Discord](https://discord.gg/b5vWu33f):
 1) navigate to `#📋node-ip-application` channel
@@ -95,27 +97,19 @@ Healthy node should look like this:
 wget -qO update.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/sui/tools/update.sh && chmod +x update.sh && ./update.sh
 ```
 
-## (OPTIONAL) Update configs
-```
-wget -qO update_configs.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/sui/tools/update_configs.sh && chmod +x update_configs.sh && ./update_configs.sh
-```
-
 ## Usefull commands
 Check sui node status
 ```
-service suid status
+docker ps -a
 ```
 
 Check node logs
 ```
-journalctl -u suid -f -o cat
+docker logs -f sui-fullnode-1 --tail 50
 ```
 
 To delete node
 ```
-sudo systemctl stop suid
-sudo systemctl disable suid
-sudo rm -rf ~/sui /var/sui/
-sudo rm /etc/systemd/system/suid.service
+cd $HOME/sui && docker-compose down --volumes
+cd $HOME && rm -rf sui
 ```
-
