@@ -18,24 +18,35 @@ Do this only if you received the confirmation email from Aptos team for your eli
 ## Bootstrapping validator node
 Before joining the testnet, you need to bootstrap your node with the genesis blob and waypoint provided by Aptos Labs team. This will convert your node from test mode to prod mode. AIT2 network Chain ID is 41.
 
-### Prepare Aptos validator node
+### 1. Install yq
+```
+sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && chmod +x /usr/local/bin/yq
+sudo apt-get install jq -y
+```
+
+### 2. Prepare Aptos validator node
 ```
 cd $HOME/testnet
 docker compose down --volumes
 sudo wget -qO genesis.blob https://github.com/aptos-labs/aptos-ait2/raw/main/genesis.blob
 sudo wget -qO waypoint.txt https://raw.githubusercontent.com/aptos-labs/aptos-ait2/main/waypoint.txt
-sudo wget -qO docker-compose.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/AIT2/docker-compose.yaml
+sudo wget -qO docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/docker-compose.yaml
+yq -i '.services.validator.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_6b4d6ff027fc6dc39c633e4f15da2b6a9084eac6}"' docker-compose.yaml
+yq -i '(.services.validator.ports[] | select(. == "80:8080")) = "127.0.0.1:80:8080"' docker-compose.yaml
+yq -i '(.services.validator.ports[] | select(. == "9101:9101")) = "127.0.0.1:9101:9101"' docker-compose.yaml
+yq -i 'del( .services.validator.expose[] | select(. == "80" or . == "9101") )' docker-compose.yaml
 docker compose pull
 docker compose up -d
 ```
 
-### Prepare Aptos fullnode
+### 3. Prepare Aptos fullnode
 ```
 cd $HOME/testnet
 docker compose down --volumes
 sudo wget -qO genesis.blob https://github.com/aptos-labs/aptos-ait2/raw/main/genesis.blob
 sudo wget -qO waypoint.txt https://raw.githubusercontent.com/aptos-labs/aptos-ait2/main/waypoint.txt
-sudo wget -qO docker-compose.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/AIT2/fullnode_docker-compose.yaml
+sudo wget -qO docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/docker-compose-fullnode.yaml
+yq -i '.services.fullnode.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_6b4d6ff027fc6dc39c633e4f15da2b6a9084eac6}"' docker-compose.yaml
 docker compose pull
 docker compose up -d
 ```
@@ -49,13 +60,7 @@ The coin airdrop will happen in batches to make sure we don't have too many node
 https://explorer.devnet.aptos.dev/account/<YOUR_ACCOUNT_ADDRESS>?network=ait2
 ```
 
-### 2. Install yq
-```
-sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && chmod +x /usr/local/bin/yq
-sudo apt-get install jq -y
-```
-
-### 3. Init validator
+### 2. Init validator
 ```
 cd $HOME/testnet
 ACC_PRIVATE_KEY=$(cat $HOME/testnet/private-keys.yaml | yq .account_private_key)
@@ -65,7 +70,7 @@ aptos init --profile ait2 \
 --skip-faucet
 ```
 
-### 4. Check your validator account balance
+### 3. Check your validator account balance
 ```
 aptos account list --profile ait2
 ```
@@ -76,7 +81,7 @@ This will show you the coin balance you have in the validator account. You shoul
   }
 ```
 
-### 5. Register validator candidate on chain
+### 4. Register validator candidate on chain
 ```
 cd $HOME/testnet
 aptos node register-validator-candidate \
@@ -84,12 +89,12 @@ aptos node register-validator-candidate \
 --validator-config-file $NODENAME.yaml
 ```
 
-### 6. Add stake to your validator node
+### 5. Add stake to your validator node
 ```
 aptos node add-stake --amount 100000000 --profile ait2
 ```
 
-### 7. Set lockup time for your stake
+### 6. Set lockup time for your stake
 Longer lockup time will result in more staking reward. Minimal lockup time is 24 hours, and maximal is 5 days.
 ```
 aptos node increase-lockup \
@@ -97,20 +102,20 @@ aptos node increase-lockup \
 --lockup-duration 72h
 ```
 
-### 8. Join validator set
+### 7. Join validator set
 ```
 aptos node join-validator-set --profile ait2
 ```
 ValidatorSet will be updated at every epoch change, which is once every hour. You will only see your node joining the validator set in next epoch. Both Validator and fullnode will start syncing once your validator is in the validator set.
 
-### 9. Check validator set
+### 8. Check validator set
 ```
-aptos node show-validator-set --profile ait2 | jq -r '.Result.pending_active' | grep <YOUR_ACCOUNT_ADDRESS>
+aptos node show-validator-set --profile ait2 | jq -r '.Result.pending_active' | grep $(cat $HOME/testnet/$NODENAME.yaml | yq .account_address)
 ```
 You should be able to see your validator node in "pending_active" list. And when the next epoch change happens, the node will be moved into "active_validators" list. 
 This should happen within one hour from the completion of previous step. During this time, you might see errors like "No connected AptosNet peers", which is normal.
 ```
-aptos node show-validator-set --profile ait2 | jq -r '.Result.active_validators' | grep <YOUR_ACCOUNT_ADDRESS>
+aptos node show-validator-set --profile ait2 | jq -r '.Result.active_validators' | grep $(cat $HOME/testnet/$NODENAME.yaml | yq .account_address)
 ```
 
 ## Verify node connections
