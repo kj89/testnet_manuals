@@ -21,17 +21,6 @@ echo -e "\e[1m\e[32m2. Installing dependencies... \e[0m" && sleep 1
 sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && chmod +x /usr/local/bin/yq
 sudo apt-get install jq -y
 
-echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
-# download binary
-sudo mkdir -p /var/sui
-cd $HOME && rm sui -rf
-git clone https://github.com/MystenLabs/sui.git && cd sui
-git remote add upstream https://github.com/MystenLabs/sui
-git fetch upstream
-git checkout --track upstream/devnet
-cargo build --release -p sui-node
-sudo mv ~/sui/target/release/sui-node /usr/local/bin/
-
 # install docker
 sudo apt-get install ca-certificates curl gnupg lsb-release -y
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
