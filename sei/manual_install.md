@@ -28,7 +28,7 @@ echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export SEI_CHAIN_ID=sei-devnet-1" >> $HOME/.bash_profile
+echo "export SEI_CHAIN_ID=atlantic-1" >> $HOME/.bash_profile
 echo "export SEI_PORT=${SEI_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -78,8 +78,8 @@ seid init $NODENAME --chain-id $SEI_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -qO $HOME/.sei/config/genesis.json "https://raw.githubusercontent.com/sei-protocol/testnet/main/sei-devnet-1/genesis.json"
-wget -qO $HOME/.sei/config/addrbook.json "https://raw.githubusercontent.com/sei-protocol/testnet/main/sei-devnet-1/addrbook.json"
+wget -qO $HOME/.sei/config/genesis.json "https://raw.githubusercontent.com/sei-protocol/testnet/main/sei-incentivized-testnet/genesis.json"
+wget -qO $HOME/.sei/config/addrbook.json "https://raw.githubusercontent.com/sei-protocol/testnet/main/sei-incentivized-testnet/addrbook.json"
 ```
 
 ## Set seeds and peers

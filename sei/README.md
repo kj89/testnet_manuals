@@ -12,10 +12,10 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/169664551-39020c2e-fa95-483b-916b-c52ce4cb907c.png">
 </p>
 
-# sei node setup for Devnet — sei-devnet-1
+# sei node setup for Testnet — atlantic-1
 
 Official documentation:
->- [Validator setup instructions](https://docs.seinetwork.io/nodes-and-validators/joining-devnets)
+>- [Validator setup instructions](https://docs.seinetwork.io/nodes-and-validators/seinami-incentivized-testnet/joining-incentivized-testnet)
 
 Chain explorer:
 >- [Explorer from Nodes.Guru](https://sei.explorers.guru/)
@@ -32,13 +32,13 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
  - 3x CPUs; the faster clock speed the better
  - 4GB RAM
  - 80GB Disk
- - Permanent Internet connection (traffic will be minimal during devnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
+ - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
 ### Recommended Hardware Requirements 
  - 4x CPUs; the faster clock speed the better
  - 8GB RAM
  - 200GB of storage (SSD or NVME)
- - Permanent Internet connection (traffic will be minimal during devnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
+ - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
 ## Set up your sei fullnode
 ### Option 1 (automatic)
@@ -82,7 +82,7 @@ source $HOME/.bash_profile
 ```
 
 ### Fund your wallet
-To top up your wallet join [Sei discord server](https://discord.gg/CSczWRVT) and navigate to **#devnet-faucet** channel
+To top up your wallet join [Sei discord server](https://discord.gg/CSczWRVT) and navigate to **#testnet-faucet** channel
 
 To request a faucet grant:
 ```
