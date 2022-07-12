@@ -82,12 +82,7 @@ source $HOME/.bash_profile
 ```
 
 ### Fund your wallet
-To top up your wallet join [Sei discord server](https://discord.gg/CSczWRVT) and navigate to **#testnet-faucet** channel
-
-To request a faucet grant:
-```
-!faucet <YOUR_WALLET_ADDRESS>
-```
+To create a validator you have to wait. Team will send you tokens once its yoru turn in weekly validator rotation
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 sei (1 sei is equal to 1000000 usei) and your node is synchronized
