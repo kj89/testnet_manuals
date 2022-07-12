@@ -15,7 +15,7 @@
 # Sui node setup for devnet
 
 Official documentation:
-- Official manual: https://docs.sui.io/build/fullnode#using-docker-compose
+- Official manual: https://docs.sui.io/build/fullnode
 - Experiment with Sui DevNet: https://docs.sui.io/explore/devnet
 - Check you node health: https://node.sui.zvalid.com/
 
