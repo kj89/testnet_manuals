@@ -55,6 +55,18 @@ Next you have to make sure your validator is syncing blocks. You can use command
 seid status 2>&1 | jq .SyncInfo
 ```
 
+## Post installation
+
+When installation is finished please load variables into system
+```
+source $HOME/.bash_profile
+```
+
+Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
+```
+seid status 2>&1 | jq .SyncInfo
+```
+
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
