@@ -52,7 +52,7 @@ echo -e "\e[1m\e[32mSui FullNode Started \e[0m"
 echo "=================================================="
 
 echo -e "\e[1m\e[32mCheck node info: \e[0m" 
-echo -e "\e[1m\e[39m    curl -s -X POST http://127.0.0.1:9000/ -H 'Content-Type: application/json' -d '{ "jsonrpc":"2.0", "method":"rpc.discover","id":1}' | jq .result.info | jq . \n \e[0m" 
+echo -e "\e[1m\e[39m    curl -s -X POST http://127.0.0.1:9000/ -H 'Content-Type: application/json' -d '{ "jsonrpc":"2.0", "method":"rpc.discover","id":1}' | jq .result.info \n \e[0m" 
 
 echo -e "\e[1m\e[32mTo view logs: \e[0m" 
 echo -e "\e[1m\e[39m    docker logs -f sui-fullnode-1 --tail 50 \n \e[0m" 
