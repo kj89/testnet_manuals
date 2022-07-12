@@ -39,7 +39,7 @@ docker compose pull
 docker compose up -d
 ```
 
-### 3. Prepare Aptos fullnode
+### 3. (OPTIONAL) Prepare Aptos fullnode (!!!RUN THIS ON YOUR FULLNODE MACHINE ONLY IF YOU HAVE IT!!!)
 ```
 cd $HOME/testnet
 docker compose down --volumes
