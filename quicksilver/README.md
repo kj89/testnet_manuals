@@ -64,6 +64,32 @@ Next you have to make sure your validator is syncing blocks. You can use command
 quicksilverd status 2>&1 | jq .SyncInfo
 ```
 
+## Update Quicksilver from v0.4.0 to v0.4.1
+Once the chain reaches the upgrade height, you will encounter the following panic error message:\
+`ERR UPGRADE "upgrade-v0.4.1" NEEDED at height: 98000`
+```
+cd $HOME
+rm quicksilver -rf
+git clone https://github.com/ingenuity-build/quicksilver.git --branch v0.4.1
+cd quicksilver
+make build
+sudo chmod +x ./build/quicksilverd && sudo mv ./build/quicksilverd /usr/local/bin/quicksilverd
+sudo systemctl restart quicksilverd
+```
+
+## Update Quicksilver from v0.4.1 to v0.4.2
+Once the chain reaches the upgrade height, you will encounter the following panic error message:\
+`ERR UPGRADE "upgrade-v0.4.2" NEEDED at height: 212000`
+```
+cd $HOME
+rm quicksilver -rf
+git clone https://github.com/ingenuity-build/quicksilver.git --branch v0.4.2
+cd quicksilver
+make build
+sudo chmod +x ./build/quicksilverd && sudo mv ./build/quicksilverd /usr/local/bin/quicksilverd
+sudo systemctl restart quicksilverd
+```
+
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
