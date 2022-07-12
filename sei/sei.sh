@@ -74,7 +74,7 @@ wget -qO $HOME/.sei/config/addrbook.json "https://raw.githubusercontent.com/sei-
 
 # set peers and seeds
 SEED="df1f6617ff5acdc85d9daa890300a57a9d956e5e@sei-atlantic-1.seed.rhinostake.com:16660"
-PEERS="38b4d78c7d6582fb170f6c19330a7e37e6964212@194.163.189.114:46656"
+PEERS="38b4d78c7d6582fb170f6c19330a7e37e6964212@194.163.189.114:46656,6c27c768936ff8eebde94fe898b54df71f936e48@47.156.153.124:56656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.sei/config/config.toml
 
 # set custom ports
