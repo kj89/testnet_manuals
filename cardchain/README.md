@@ -44,7 +44,7 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
 ### Option 1 (automatic)
 You can setup your Cardchain fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
-wget -O Cardchain.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/cardchain/Cardchain.sh && chmod +x Cardchain.sh && ./Cardchain.sh
+wget -O cardchain.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/cardchain/cardchain.sh && chmod +x cardchain.sh && ./cardchain.sh
 ```
 
 ### Option 2 (manual)
