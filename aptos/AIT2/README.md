@@ -35,7 +35,7 @@ cd $HOME/testnet
 docker compose down --volumes
 sudo wget -qO genesis.blob https://github.com/aptos-labs/aptos-ait2/raw/main/genesis.blob
 sudo wget -qO waypoint.txt https://raw.githubusercontent.com/aptos-labs/aptos-ait2/main/waypoint.txt
-sudo wget -qO docker-compose.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/AIT2/fullnode_docker-compose.yaml
+sudo wget -qO fullnode.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/AIT2/fullnode_docker-compose.yaml
 docker compose pull
 docker compose up -d
 ```
