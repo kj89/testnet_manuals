@@ -18,7 +18,7 @@ Official documentation:
 >- [Validator setup instructions](https://docs.aura.app/run-a-node)
 
 Explorer:
->-  https://aura.explorers.guru/
+>- https://euphoria.aurascan.io/validators
 
 ## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for aura validator](https://github.com/kj89/testnet_manuals/blob/main/aura/monitoring/README.md)
