@@ -58,7 +58,7 @@ echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 cd $HOME
 git clone https://github.com/Stride-Labs/stride.git
 cd stride
-git checkout afabdb8e17b4a2dac6906b61b80b37c60638a7f0
+git checkout bbd47cf5dc52f75e3689663dc12a406d8ef718a2
 make build
 sudo cp $HOME/stride/build/strided /usr/local/bin
 
