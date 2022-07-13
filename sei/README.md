@@ -286,4 +286,5 @@ sudo rm /etc/systemd/system/sei* -rf
 sudo rm $(which seid) -rf
 sudo rm $HOME/.sei -rf
 sudo rm $HOME/sei-chain -rf
+sed -i '/SEI_/d' ~/.bash_profile
 ```

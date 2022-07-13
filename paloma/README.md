@@ -281,4 +281,5 @@ sudo rm /etc/systemd/system/paloma* -rf
 sudo rm $(which palomad) -rf
 sudo rm $HOME/.paloma* -rf
 sudo rm $HOME/paloma -rf
+sed -i '/PALOMA_/d' ~/.bash_profile
 ```

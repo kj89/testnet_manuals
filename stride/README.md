@@ -346,4 +346,5 @@ sudo rm /etc/systemd/system/stride* -rf
 sudo rm $(which strided) -rf
 sudo rm $HOME/.stride* -rf
 sudo rm $HOME/stride -rf
+sed -i '/STRIDE_/d' ~/.bash_profile
 ```

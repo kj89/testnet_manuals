@@ -304,4 +304,5 @@ sudo rm /etc/systemd/system/deweb* -rf
 sudo rm $(which dewebd) -rf
 sudo rm $HOME/.deweb* -rf
 sudo rm $HOME/deweb -rf
+sed -i '/DEWEB_/d' ~/.bash_profile
 ```

@@ -303,4 +303,5 @@ sudo rm /etc/systemd/system/uptick* -rf
 sudo rm $(which uptickd) -rf
 sudo rm $HOME/.uptickd* -rf
 sudo rm $HOME/uptick -rf
+sed -i '/UPTICK_/d' ~/.bash_profile
 ```

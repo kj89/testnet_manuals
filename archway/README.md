@@ -262,4 +262,5 @@ rm /etc/systemd/system/archway* -rf
 rm $(which archwayd) -rf
 rm $HOME/.archway* -rf
 rm $HOME/archway -rf
+sed -i '/ARCHWAY_/d' ~/.bash_profile
 ```

@@ -296,4 +296,5 @@ rm /etc/systemd/system/defund* -rf
 rm $(which defundd) -rf
 rm $HOME/.defund* -rf
 rm $HOME/defund -rf
+sed -i '/DEFUND_/d' ~/.bash_profile
 ```

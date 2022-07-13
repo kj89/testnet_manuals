@@ -263,4 +263,5 @@ rm /etc/systemd/system/coho* -rf
 rm $(which cohod) -rf
 rm $HOME/.coho* -rf
 rm $HOME/coho -rf
+sed -i '/COHO_/d' ~/.bash_profile
 ```

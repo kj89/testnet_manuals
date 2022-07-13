@@ -283,4 +283,5 @@ rm /etc/systemd/system/celestia-bridge.service
 sudo systemctl daemon-reload
 cd $HOME
 rm -rf .celestia-app .celestia-bridge celestia-app networks
+sed -i '/CELESTIA_/d' ~/.bash_profile
 ```

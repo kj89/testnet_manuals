@@ -298,4 +298,5 @@ sudo rm /etc/systemd/system/kujira* -rf
 sudo rm $(which kujirad) -rf
 sudo rm $HOME/.kujira* -rf
 sudo rm $HOME/kujira -rf
+sed -i '/KUJIRA_/d' ~/.bash_profile
 ```

@@ -137,4 +137,5 @@ rm /etc/systemd/system/gitopia* -rf
 rm $(which gitopiad) -rf
 rm $HOME/.gitopia* -rf
 rm $HOME/gitopia -rf
+sed -i '/GITOPIA_/d' ~/.bash_profile
 ```

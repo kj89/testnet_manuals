@@ -298,4 +298,5 @@ sudo rm /etc/systemd/system/Cardchain* -rf
 sudo rm $(which Cardchain) -rf
 sudo rm $HOME/.Cardchain* -rf
 sudo rm $HOME/Cardchain -rf
+sed -i '/CARDCHAIN_/d' ~/.bash_profile
 ```

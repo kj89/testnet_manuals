@@ -308,4 +308,5 @@ sudo rm /etc/systemd/system/aura* -rf
 sudo rm $(which aurad) -rf
 sudo rm $HOME/.aura* -rf
 sudo rm $HOME/aura -rf
+sed -i '/AURA_/d' ~/.bash_profile
 ```

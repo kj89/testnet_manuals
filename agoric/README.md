@@ -271,4 +271,5 @@ rm /etc/systemd/system/agd.service -rf
 rm $(which agd) -rf
 rm $HOME/.agoric* -rf
 rm $HOME/agoric-sdk -rf
+sed -i '/AGORIC_/d' ~/.bash_profile
 ```
