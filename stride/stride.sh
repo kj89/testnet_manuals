@@ -22,7 +22,7 @@ STRIDE_PORT=16
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export STRIDE_CHAIN_ID=STRIDE" >> $HOME/.bash_profile
+echo "export STRIDE_CHAIN_ID=STRIDE-1" >> $HOME/.bash_profile
 echo "export STRIDE_PORT=${STRIDE_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
@@ -58,7 +58,7 @@ echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 cd $HOME
 git clone https://github.com/Stride-Labs/stride.git
 cd stride
-git checkout bbd47cf5dc52f75e3689663dc12a406d8ef718a2
+git checkout c53f6c562d9d3e098aab5c27303f41ee055572cb
 make build
 sudo cp $HOME/stride/build/strided /usr/local/bin
 
@@ -74,7 +74,7 @@ strided init $NODENAME --chain-id $STRIDE_CHAIN_ID
 wget -qO $HOME/.stride/config/genesis.json "https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/genesis.json"
 
 # set peers and seeds
-SEEDS="209c8fc143ddb7424307ea250d6a3538384eb032@seedv1.poolparty.stridenet.co:26656"
+SEEDS="baee9ccc2496c2e3bebd54d369c3b788f9473be9@seedv1.poolparty.stridenet.co:26656"
 PEERS=""
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.stride/config/config.toml
 
