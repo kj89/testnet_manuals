@@ -36,7 +36,7 @@ docker compose down --volumes
 sudo wget -qO genesis.blob https://github.com/aptos-labs/aptos-ait2/raw/main/genesis.blob
 sudo wget -qO waypoint.txt https://raw.githubusercontent.com/aptos-labs/aptos-ait2/main/waypoint.txt
 sudo wget -qO docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/docker-compose.yaml
-yq -i '.services.validator.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_a0290ec4b34d916ab51e874ae210cf6175a4fa72}"' docker-compose.yaml
+yq -i '.services.validator.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_f5d8013b0a1851da8e078394d83130d3adaf7670}"' docker-compose.yaml
 yq -i '(.services.validator.ports[] | select(. == "80:8080")) = "127.0.0.1:80:8080"' docker-compose.yaml
 yq -i '(.services.validator.ports[] | select(. == "9101:9101")) = "127.0.0.1:9101:9101"' docker-compose.yaml
 yq -i 'del( .services.validator.expose[] | select(. == "80" or . == "9101") )' docker-compose.yaml
@@ -50,7 +50,7 @@ docker compose down --volumes
 sudo wget -qO genesis.blob https://github.com/aptos-labs/aptos-ait2/raw/main/genesis.blob
 sudo wget -qO waypoint.txt https://raw.githubusercontent.com/aptos-labs/aptos-ait2/main/waypoint.txt
 sudo wget -qO docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/docker-compose-fullnode.yaml
-yq -i '.services.fullnode.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_a0290ec4b34d916ab51e874ae210cf6175a4fa72}"' docker-compose.yaml
+yq -i '.services.fullnode.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_f5d8013b0a1851da8e078394d83130d3adaf7670}"' docker-compose.yaml
 docker compose up -d
 ```
 
@@ -149,14 +149,14 @@ You should expect to see this number keep increasing.
 ## Update aptos validator
 ```
 cd $HOME/testnet
-yq -i '.services.validator.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_a0290ec4b34d916ab51e874ae210cf6175a4fa72}"' docker-compose.yaml
+yq -i '.services.validator.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_f5d8013b0a1851da8e078394d83130d3adaf7670}"' docker-compose.yaml
 docker compose up -d
 ```
 
 ## Update aptos fullnode
 ```
 cd $HOME/testnet
-yq -i '.services.fullnode.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_a0290ec4b34d916ab51e874ae210cf6175a4fa72}"' docker-compose.yaml
+yq -i '.services.fullnode.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_f5d8013b0a1851da8e078394d83130d3adaf7670}"' docker-compose.yaml
 docker compose up -d
 ```
 
@@ -164,14 +164,14 @@ docker compose up -d
 ```
 cd $HOME/testnet
 yq -i '.services.validator.logging.options.max-file = "3"' docker-compose.yaml
-yq -i '.services.validator.logging.options.max-size = \"100m\"' docker-compose.yaml
+yq -i '.services.validator.logging.options.max-size = "100m"' docker-compose.yaml
 docker compose down && docker compose up -d
 ```
 
 ## Configure Logging fullnode
 ```
 cd $HOME/testnet
-yq -i '.services.validator.logging.options.max-file = "3"' docker-compose.yaml
-yq -i '.services.validator.logging.options.max-size = \"100m\"' docker-compose.yaml
+yq -i '.services.fullnode.logging.options.max-file = "3"' docker-compose.yaml
+yq -i '.services.fullnode.logging.options.max-size = "100m"' docker-compose.yaml
 docker compose down && docker compose up -d
 ```
