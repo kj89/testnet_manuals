@@ -70,6 +70,7 @@ teritorid init $NODENAME --chain-id $TERITORI_CHAIN_ID
 
 # download genesis and addrbook
 wget -qO $HOME/.teritorid/config/genesis.json "https://raw.githubusercontent.com/TERITORI/teritori-chain/main/testnet/teritori-testnet-v2/genesis.json"
+wget -qO $HOME/.teritorid/config/addrbook.json "https://raw.githubusercontent.com/StakeTake/guidecosmos/main/teritori/teritori-testnet-v2/addrbook.json"
 
 # set peers and seeds
 SEEDS=""
