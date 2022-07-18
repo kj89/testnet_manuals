@@ -97,7 +97,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0utori\"/" $HOME/.t
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.teritorid/config/config.toml
 
 # reset
-teritorid unsafe-reset-all --home $HOME/.teritorid
+teritorid tendermint unsafe-reset-all --home $HOME/.teritorid
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service

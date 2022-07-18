@@ -119,7 +119,7 @@ sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.teritorid/config/conf
 
 ## Reset chain data
 ```
-teritorid unsafe-reset-all --home $HOME/.teritorid
+teritorid tendermint unsafe-reset-all --home $HOME/.teritorid
 ```
 
 ## Create service
