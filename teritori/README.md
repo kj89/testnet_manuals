@@ -72,20 +72,7 @@ sudo rm -rf $HOME/.teritori/data/tx_index.db
 ```
 
 ### (OPTIONAL) State Sync
-You can state sync your node in minutes by running commands below.
-```
-SNAP_RPC1="https://snapshot-1.euphoria.teritori.network:443" \
-&& SNAP_RPC2="https://snapshot-2.euphoria.teritori.network:443"
-LATEST_HEIGHT=$(curl -s $SNAP_RPC2/block | jq -r .result.block.header.height) \
-&& BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)) \
-&& TRUST_HASH=$(curl -s "$SNAP_RPC2/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC1,$SNAP_RPC2\"| ; \
-s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.teritori/config/config.toml
-teritorid unsafe-reset-all --home $HOME/.teritori
-sudo systemctl restart teritorid && journalctl -fu teritorid -o cat
-```
+N/A
 
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
@@ -107,19 +94,29 @@ teritorid keys list
 Add wallet and valoper address into variables 
 ```
 TERITORI_WALLET_ADDRESS=$(teritorid keys show $WALLET -a)
-```
-```
 TERITORI_VALOPER_ADDRESS=$(teritorid keys show $WALLET --bech val -a)
-```
-Load variables into the system
-```
 echo 'export TERITORI_WALLET_ADDRESS='${TERITORI_WALLET_ADDRESS} >> $HOME/.bash_profile
 echo 'export TERITORI_VALOPER_ADDRESS='${TERITORI_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
+### Fund your wallet
+In order to create validator first you need to fund your wallet with testnet tokens.
+To top up your wallet join [Teritori discord server](https://discord.gg/neBFH8Se) and navigate to:
+- **#faucet** to request test tokens
+
+To request a faucet grant:
+```
+$request <YOUR_WALLET_ADDRESS>
+```
+
+To check wallet balance:
+```
+$balance <YOUR_WALLET_ADDRESS>
+```
+
 ### Create validator
-Before creating validator please make sure that you have at least 1 kuji (1 kuji is equal to 1000000 ueteritori) and your node is synchronized
+Before creating validator please make sure that you have at least 1 kuji (1 kuji is equal to 1000000 utori) and your node is synchronized
 
 To check your wallet balance:
 ```
@@ -130,7 +127,7 @@ teritorid query bank balances $TERITORI_WALLET_ADDRESS
 To create your validator run command below
 ```
 teritorid tx staking create-validator \
-  --amount 100000ueteritori \
+  --amount 100000utori \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
@@ -249,7 +246,7 @@ teritorid query bank balances $TERITORI_WALLET_ADDRESS
 
 Transfer funds
 ```
-teritorid tx bank send $TERITORI_WALLET_ADDRESS <TO_TERITORI_WALLET_ADDRESS> 10000000ueteritori
+teritorid tx bank send $TERITORI_WALLET_ADDRESS <TO_TERITORI_WALLET_ADDRESS> 10000000utori
 ```
 
 ### Voting
@@ -260,12 +257,12 @@ teritorid tx gov vote 1 yes --from $WALLET --chain-id=$TERITORI_CHAIN_ID
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-teritorid tx staking delegate $TERITORI_VALOPER_ADDRESS 10000000ueteritori --from=$WALLET --chain-id=$TERITORI_CHAIN_ID --gas=auto
+teritorid tx staking delegate $TERITORI_VALOPER_ADDRESS 10000000utori --from=$WALLET --chain-id=$TERITORI_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-teritorid tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ueteritori --from=$WALLET --chain-id=$TERITORI_CHAIN_ID --gas=auto
+teritorid tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000utori --from=$WALLET --chain-id=$TERITORI_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards

@@ -24,8 +24,8 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `ueteritori` for teritori testnet. You can find it in genesis file |
-| **bench_prefix** | Prefix for chain addresses, for example, `teritori` for teritori testnet. You can find it in public addresses like this **teritori**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **bond_denom** | Denominated token name, for example, `utori` for teritori testnet. You can find it in genesis file |
+| **bench_prefix** | Prefix for chain addresses, for example, `tori` for teritori testnet. You can find it in public addresses like this **tori**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
 
 make sure following ports are open:
 - `9100` (node-exporter)
@@ -79,7 +79,7 @@ To add validator use command with specified `VALIDATOR_IP`, `TERITORI_VALOPER_AD
 $HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP TERITORI_VALOPER_ADDRESS TERITORI_WALLET_ADDRESS PROJECT_NAME
 ```
 
-> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 teritorivaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete teritori1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc teritori```
+> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 torivaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete tori1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc teritori```
 
 To add more validators just run command above with validator values
 
