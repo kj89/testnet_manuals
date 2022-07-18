@@ -15,10 +15,10 @@
 # teritori node setup for testnet — teritori-testnet-v2
 
 Official documentation:
->- [Validator setup instructions](https://docs.teritori.app/run-a-node)
+>- [Validator setup instructions](https://docs.teritorid.app/run-a-node)
 
 Explorer:
->- https://euphoria.teritoriscan.io/validators
+>- https://euphoria.teritoridscan.io/validators
 
 ## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for teritori validator](https://github.com/kj89/testnet_manuals/blob/main/teritori/monitoring/README.md)
@@ -65,10 +65,10 @@ teritorid status 2>&1 | jq .SyncInfo
 ### (OPTIONAL) Disable and cleanup indexing
 ```
 indexer="null"
-sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.teritori/config/config.toml
+sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.teritorid/config/config.toml
 sudo systemctl restart teritorid
 sleep 3
-sudo rm -rf $HOME/.teritori/data/tx_index.db
+sudo rm -rf $HOME/.teritorid/data/tx_index.db
 ```
 
 ### (OPTIONAL) State Sync
@@ -303,7 +303,7 @@ sudo systemctl stop teritorid
 sudo systemctl disable teritorid
 sudo rm /etc/systemd/system/teritori* -rf
 sudo rm $(which teritorid) -rf
-sudo rm $HOME/.teritori* -rf
+sudo rm $HOME/.teritorid* -rf
 sudo rm $HOME/teritori -rf
 sed -i '/TERITORI_/d' ~/.bash_profile
 ```
