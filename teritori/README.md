@@ -127,7 +127,7 @@ teritorid query bank balances $TERITORI_WALLET_ADDRESS
 To create your validator run command below
 ```
 teritorid tx staking create-validator \
-  --amount 100000utori \
+  --amount 1000000utori \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
