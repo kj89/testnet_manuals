@@ -26,6 +26,8 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 |---------------|-------------|
 | **bond_denom** | Denominated token name, for example, `utia` for celestia mamaki testnet. You can find it in genesis file |
 | **bench_prefix** | Prefix for chain addresses, for example, `celestia` for celestia mamaki testnet. You can find it in public addresses like this **celestia**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file. Default value is `26657` |
+| **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file. Default value is `9090` |
 
 make sure following ports are open:
 - `9100` (node-exporter)
