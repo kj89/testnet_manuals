@@ -14,9 +14,8 @@
 
 # agoric node setup for testnet — agoricollinet-11
 
-
 Explorer:
-> https://agoric.explorers.guru
+> https://ollinet.explorer.agoric.net/
 
 ## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for agoric validator](https://github.com/kj89/testnet_manuals/blob/main/agoric/monitoring/README.md)
@@ -238,9 +237,9 @@ Edit validator
 ```
 ag0 tx staking edit-validator \
 --moniker=$NODENAME \
---identity=<your_keybase_id> \
---website="<your_website>" \
---details="<your_validator_description>" \
+--identity=1C5ACD2EEF363C3A \
+--website="http://kjnodes.com" \
+--details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
 --chain-id=$CHAIN_ID \
 --from=$WALLET
 ```
