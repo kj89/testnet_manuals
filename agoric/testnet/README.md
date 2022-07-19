@@ -96,7 +96,7 @@ ag0 tx staking create-validator \
   --commission-max-rate "0.2" \
   --commission-rate "0.07" \
   --min-self-delegation "1" \
-  --pubkey  $(ag0 show-validator) \
+  --pubkey  $(ag0 tendermint show-validator) \
   --moniker $NODENAME \
   --chain-id $CHAIN_ID
 ```
