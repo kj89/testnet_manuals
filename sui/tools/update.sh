@@ -6,4 +6,5 @@ wget -qO fullnode-template.yaml https://github.com/MystenLabs/sui/raw/main/crate
 wget -qO genesis.blob https://github.com/MystenLabs/sui-genesis/raw/main/devnet/genesis.blob
 sed -i 's/127.0.0.1/0.0.0.0/' fullnode-template.yaml
 docker-compose down --volumes
+docker-compose pull
 docker-compose up -d
