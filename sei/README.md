@@ -62,6 +62,18 @@ Next you have to make sure your validator is syncing blocks. You can use command
 seid status 2>&1 | jq .SyncInfo
 ```
 
+### Data snapshot
+```
+sudo systemctl stop seid.service; \
+seid tendermint unsafe-reset-all --home $HOME/.sei
+cd $HOME/.sei; rm -rf data wasm
+wget http://173.212.215.104/sei-snap-619300.tar
+tar xvf sei-snap-619300.tar
+wget -q -O $HOME/.sei/config/addrbook.json http://173.212.215.104/addrbook.json
+rm sei-snap-619300.tar
+sudo systemctl restart seid.service && sudo journalctl -u seid.service -f -o cat
+```
+
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
