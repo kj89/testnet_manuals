@@ -175,3 +175,30 @@ yq -i '.services.fullnode.logging.options.max-file = "3"' docker-compose.yaml
 yq -i '.services.fullnode.logging.options.max-size = "100m"' docker-compose.yaml
 docker compose down && docker compose up -d
 ```
+
+## Configure round_initial_timeout_ms
+```
+cd $HOME/testnet
+yq -i '.consensus.round_initial_timeout_ms = 2000' validator.yaml
+docker compose down && docker compose up -d
+```
+
+## Usefull commands
+Get Aptos stake expiration date and time
+```
+date -u -d @$(aptos account list --profile ait2 | jq -r '.Result |.[3] | .locked_until_secs') +"%Y-%m-%d %H:%M:%S"
+```
+
+Get current date and time
+```
+date +"%Y-%m-%d %H:%M:%S"
+```
+
+Get time left
+```
+lockup_end_time=$(aptos account list --profile ait2 | jq -r '.Result |.[3] | .locked_until_secs')
+current_time=$(date +%s)
+time_left=$(echo "$current_time - $lockup_end_time" | bc)
+time_left=$((-time_left))
+printf '%02dh:%02dm:%02ds\n' $((time_left/3600)) $((time_left%3600/60)) $((time_left%60))
+```
