@@ -139,8 +139,8 @@ Now lets do some operations with objects
 ### Merge two objects into one
 ```
 JSON=$(sui client gas --json | jq -r)
-FIRST_OBJECT_ID=$(sui client gas --json | jq -r .[0].id.id)
-SECOND_OBJECT_ID=$(sui client gas --json | jq -r .[1].id.id)
+FIRST_OBJECT_ID=$(echo $JSON | jq -r .[0].id.id)
+SECOND_OBJECT_ID=$(echo $JSON | jq -r .[1].id.id)
 sui client merge-coin --primary-coin ${FIRST_OBJECT_ID} --coin-to-merge ${SECOND_OBJECT_ID} --gas-budget 1000
 ```
 
@@ -183,12 +183,6 @@ Check node logs
 docker logs -f sui-fullnode-1 --tail 50
 ```
 
-To delete node
-```
-cd $HOME/sui && docker-compose down --volumes
-cd $HOME && rm -rf sui
-```
-
 ## Usefull commands for sui
 Check Sui version
 ```
@@ -204,6 +198,8 @@ wget -qO update.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/s
 Copy your keys into `$HOME/.sui/sui_config/` directory and restart the node
 
 ## Delete your node
+```
 rm -rf /usr/local/bin/{sui,sui-node,sui-faucet}
 cd $HOME/.sui && docker-compose down --volumes
 cd $HOME && rm -rf .sui
+```
