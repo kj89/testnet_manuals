@@ -15,6 +15,13 @@
 # Set up a relayer / ibc channel with another testnet
 In current example we will learn how to set up IBC relayer between two cosmos chains
 
+## Preparation before you start
+Before setting up relayer you need to make sure you already have:
+1. Fully synchronized RPC nodes for each Cosmos project you want to connect
+2. RPC enpoints should be exposed and available from hermes instance
+3. Indexing is set to `kv` and is enabled on each node
+4. For each chain you will need to have seperate wallets that are funded with tokens. This wallets will be used to do all relayer stuff
+
 ## Update system
 ```
 sudo apt update && sudo apt upgrade -y
