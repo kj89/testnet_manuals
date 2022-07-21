@@ -175,21 +175,20 @@ We can see that two first objects are now merged into one and gas has been payed
 ## Usefull commands for sui fullnode
 Check sui node status
 ```
-docker ps -a
+systemctl status suid
 ```
 
 Check node logs
 ```
-docker logs -f sui-fullnode-1 --tail 50
+journalctl -fu suid -o cat
 ```
 
-## Usefull commands for sui
-Check Sui version
+Check sui client version
 ```
 sui --version
 ```
 
-Update Sui version
+Update sui version
 ```
 wget -qO update.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/sui/tools/update.sh && chmod +x update.sh && ./update.sh
 ```
@@ -199,7 +198,7 @@ Copy your keys into `$HOME/.sui/sui_config/` directory and restart the node
 
 ## Delete your node
 ```
-rm -rf /usr/local/bin/{sui,sui-node,sui-faucet}
-cd $HOME/.sui && docker-compose down --volumes
-cd $HOME && rm -rf .sui
+systemctl stop suid
+systemctl disable suid
+rm -rf $HOME/.sui /usr/local/bin/sui*
 ```
