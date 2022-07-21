@@ -18,7 +18,7 @@ Official documentation:
 >- [Validator setup instructions](https://github.com/Stride-Labs/testnet)
 
 Explorer:
->-  https://poolparty.stride.zone/
+>-  https://stride.explorers.guru
 
 ## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for stride validator](https://github.com/kj89/testnet_manuals/blob/main/stride/monitoring/README.md)
