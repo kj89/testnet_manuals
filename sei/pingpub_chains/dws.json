@@ -4,7 +4,7 @@
     "api": ["http://46.38.243.16:14317"],
     "rpc": ["http://46.38.243.16:14657"],
     "snapshot_provider": "",
-    "sdk_version": "0.44.3",
+    "sdk_version": "0.45.0",
     "coin_type": "118",
     "min_tx_fee": "200",
     "addr_prefix": "deweb",

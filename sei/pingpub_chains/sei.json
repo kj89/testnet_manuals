@@ -4,7 +4,7 @@
     "api": ["http://159.69.214.69:12317"], 
     "rpc": ["http://159.69.214.69:12657"],
     "snapshot_provider": "",
-    "sdk_version": "0.42.6",
+    "sdk_version": "0.45.4",
     "coin_type": "505",
     "min_tx_fee": "800",
     "addr_prefix": "sei",
