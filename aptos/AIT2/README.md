@@ -202,3 +202,31 @@ time_left=$(echo "$current_time - $lockup_end_time" | bc)
 time_left=$((-time_left))
 printf '%02dh:%02dm:%02ds\n' $((time_left/3600)) $((time_left%3600/60)) $((time_left%60))
 ```
+
+## Leaving Validator Set
+A node can choose to leave validator set at anytime, or it would happen automatically when there's not sufficient stake on the validator account. To leave validator set, you can perform the following steps:
+
+### 1. Leave validator set (will take effect in next epoch)
+```
+aptos node leave-validator-set --profile ait2
+```
+### 2. Unlock the stake amount as you want. (will take effect in next epoch)
+```
+aptos node unlock-stake --amount 100000000 --profile ait2
+```
+### 3. Withdraw stake back to your account. (This will withdraw all the unlocked stake from your validator staking pool)
+```
+aptos node withdraw-stake --profile ait2
+```
+
+Once you're done withdrawing your fund, now you can safely shutdown the node
+
+## Shutdown and delete your Node for Incentivized Testnet
+>Before you proceed with this step make sure you have backed up your node identity files: `private-keys.yaml`, `validator-identity.yaml`, `validator-full-node-identity.yaml`
+
+### Stop your node and remove the data volumes
+```
+cd $HOME/testnet
+docker compose down --volumes
+cd $HOME && rm -rf testnet
+```
