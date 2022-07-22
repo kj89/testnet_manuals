@@ -21,8 +21,23 @@ cd $HOME && rm $HOME/sei-chain -rf
 git clone https://github.com/sei-protocol/sei-chain.git && cd $HOME/sei-chain
 git checkout 1.0.7beta-postfix
 make install
-mv ~/go/bin/seid /usr/local/bin/seid
 systemctl restart seid && journalctl -fu seid -o cat
+
+sudo tee /etc/systemd/system/seid.service > /dev/null <<EOF
+[Unit]
+Description=sei
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which seid) start --home $HOME/.sei
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
 ```
 
 !!! DO NOT UPGRADE BEFORE CHAIN RECHES THE BLOCK `836963`!!!
