@@ -61,7 +61,7 @@ fi
 ```
 cd $HOME
 git clone https://github.com/sei-protocol/sei-chain.git && cd sei-chain
-git checkout 1.0.7beta-postfix
+git checkout 1.0.6beta
 make install 
 ```
 
