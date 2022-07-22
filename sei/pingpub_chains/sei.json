@@ -1,7 +1,7 @@
 {
     "chain_name": "SEI",
     "coingecko": "",
-    "api": ["http://159.69.214.69:12317"], 
+    "api": ["https://sei.api.kjnodes.com"], 
     "rpc": ["http://159.69.214.69:12657"],
     "snapshot_provider": "",
     "sdk_version": "0.45.4",
