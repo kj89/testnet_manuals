@@ -8,7 +8,7 @@
     "coin_type": "505",
     "min_tx_fee": "800",
     "addr_prefix": "sei",
-    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/logos/sei.png"
+    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/logos/sei.png",
     "assets": [{
         "base": "usei",
         "symbol": "SEI",
