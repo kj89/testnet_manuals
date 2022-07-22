@@ -1,8 +1,8 @@
 {
     "chain_name": "UPTICK",
     "coingecko": "",
-    "api": ["http://46.38.243.16::15317"],
-    "rpc": ["http://46.38.243.16::15657"],
+    "api": ["http://46.38.243.16:15317"],
+    "rpc": ["http://46.38.243.16:15657"],
     "snapshot_provider": "",
     "sdk_version": "0.44.3",
     "coin_type": "118",
