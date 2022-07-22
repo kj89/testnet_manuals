@@ -46,23 +46,19 @@ cd explorer
 
 ## 4. Cleanup predefined chains
 ```
-rm src/chains/mainnet/*
+rm $HOME/explorer/src/chains/mainnet/*
 ```
 
 ## 5. Add testnet chains
 ```
-wget -qO src/chains/mainnet/dws.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/dws.json
-wget -qO src/chains/mainnet/sei.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/sei.json
-wget -qO src/chains/mainnet/uptick.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/uptick.json
+wget -qO $HOME/explorer/src/chains/mainnet/dws.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/dws.json
+wget -qO $HOME/explorer/src/chains/mainnet/sei.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/sei.json
+wget -qO $HOME/explorer/src/chains/mainnet/uptick.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/uptick.json
 ```
 
 ## 4. Build ping.pub
 ```
 yarn && yarn build
-cp -r ./dist/* /var/www/html
-systemctl restart nginx
+cp -r $HOME/explorer/dist/* /var/www/html
+sudo systemctl restart nginx
 ```
-
-## 
-rm src/chains/mainnet/*
-nano src/chains/mainnet/sei.json

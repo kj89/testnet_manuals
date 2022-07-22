@@ -16,8 +16,8 @@
 
 ## Set up vars
 ```
-CHAIN_NAME=sei
-API_PORT=12317
+CHAIN_NAME=dws
+API_PORT=14317
 ```
 
 ## Update packages
@@ -25,9 +25,9 @@ API_PORT=12317
 sudo apt update && sudo apt upgrade -y
 ```
 
-## Install nginx
+## Install nginx and certbot
 ```
-sudo apt install nginx -y
+sudo apt install nginx certbot python3-certbot-nginx -y
 ```
 
 ## Set up config
@@ -49,11 +49,6 @@ server {
         }
 }
 EOF
-```
-
-## Install certbot
-```
-sudo apt install certbot python3-certbot-nginx -y
 ```
 
 ## Obtain our certificates
