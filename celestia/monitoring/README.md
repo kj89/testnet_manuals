@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165403016-113be253-a376-454b-a069-fc6fe0a915e9.png">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/170463282-576375f8-fa1e-4fce-8350-6312b415b50d.png">
 </p>
 
 # Set up monitoring and alerting for celestia validator
@@ -24,10 +24,10 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `utia` for celestia mamaki testnet. You can find it in genesis file |
-| **bench_prefix** | Prefix for chain addresses, for example, `celestia` for celestia mamaki testnet. You can find it in public addresses like this **celestia**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
-| **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file. Default value is `26657` |
-| **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file. Default value is `9090` |
+| **bond_denom** | Denominated token name, for example, `utia` for celestia testnet. You can find it in genesis file |
+| **bench_prefix** | Prefix for chain addresses, for example, `tori` for celestia testnet. You can find it in public addresses like this **tori**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file. Default value for celestia is `19657` |
+| **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file. Default value for celestia is `19090` |
 
 make sure following ports are open:
 - `9100` (node-exporter)
@@ -56,12 +56,12 @@ wget -O install_monitoring.sh https://raw.githubusercontent.com/kj89/cosmos_node
 
 ### Copy _.env.example_ into _.env_
 ```
-cp $HOME/cosmos_node_monitoring/config/.env.example $HOME/cosmos_node_monitoring/config/.env
+sudo cp $HOME/cosmos_node_monitoring/config/.env.example $HOME/cosmos_node_monitoring/config/.env
 ```
 
 ### Update values in _.env_ file
 ```
-vim $HOME/cosmos_node_monitoring/config/.env
+sudo vim $HOME/cosmos_node_monitoring/config/.env
 ```
 
 | KEY | VALUE |
@@ -76,12 +76,12 @@ source $HOME/.bash_profile
 ```
 
 ### Add validator into _prometheus_ configuration file
-To add validator use command with specified `VALIDATOR_IP`, `VALOPER_ADDRESS`, `WALLET_ADDRESS` and `PROJECT_NAME`
+To add validator use command with specified `VALIDATOR_IP`, `CELESTIA_VALOPER_ADDRESS`, `CELESTIA_WALLET_ADDRESS` and `PROJECT_NAME`
 ```
-$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP VALOPER_ADDRESS WALLET_ADDRESS PROJECT_NAME
+$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP CELESTIA_VALOPER_ADDRESS CELESTIA_WALLET_ADDRESS PROJECT_NAME
 ```
 
-> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 celestiavaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete celestia1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc celestia```
+> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 torivaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete tori1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc celestia```
 
 To add more validators just run command above with validator values
 
@@ -89,7 +89,7 @@ To add more validators just run command above with validator values
 Deploy the monitoring stack
 ```
 cd $HOME/cosmos_node_monitoring
-docker compose up -d
+sudo docker compose up -d
 ```
 
 ports used:
@@ -138,7 +138,7 @@ ports used:
 ### Test alerts
 1. For simple test you can stop `node-exporter` service for 5 minutes. It should trigger alert
 ```
-systemctl stop node_exporter
+sudo systemctl stop node_exporter
 ```
 2. You will see message from bot firing
 
@@ -146,7 +146,7 @@ systemctl stop node_exporter
 
 3. Now you can start `node-exporter` service back
 ```
-systemctl start node_exporter
+sudo systemctl start node_exporter
 ```
 4. You will get confirmation from bot that issue is resolved
 
@@ -173,8 +173,8 @@ Grafana dashboard is devided into 4 sections:
 ## Cleanup all container data
 ```
 cd $HOME/cosmos_node_monitoring
-docker compose down
-docker volume prune -f
+sudo docker compose down
+sudo docker volume prune -f
 ```
 
 ## Reference list
