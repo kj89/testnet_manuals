@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "=================================================="
+
 echo -e "\033[0;35m"
 echo " :::    ::: ::::::::::: ::::    :::  ::::::::  :::::::::  :::::::::: ::::::::  ";
 echo " :+:   :+:      :+:     :+:+:   :+: :+:    :+: :+:    :+: :+:       :+:    :+: ";
@@ -9,7 +9,7 @@ echo " +#+  +#+       +#+     +#+  +#+#+# +#+    +#+ +#+    +#+ +#+             
 echo " #+#   #+#  #+# #+#     #+#   #+#+# #+#    #+# #+#    #+# #+#       #+#    #+# ";
 echo " ###    ###  #####      ###    ####  ########  #########  ########## ########  ";
 echo -e "\e[0m"
-echo "=================================================="
+
 sleep 2
 
 source $HOME/.bash_profile
@@ -73,13 +73,13 @@ echo -e "\e[1m\e[32m8. Starting Aptos FullNode ... \e[0m" && sleep 1
 
 docker compose up -d
 
-echo "=================================================="
+
 
 echo -e "\e[1m\e[32mAptos FullNode Started \e[0m"
 echo -e "\e[1m\e[92m Peer Id: \e[0m" $PEER_ID
 echo -e "\e[1m\e[92m Private Key:  \e[0m" $KEY
 
-echo "=================================================="
+
 
 echo -e "\e[1m\e[32mVerify initial synchronization: \e[0m" 
 echo -e "\e[1m\e[39m    curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep type \n \e[0m" 

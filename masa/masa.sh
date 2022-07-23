@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "=================================================="
+
 echo -e "\033[0;35m"
 echo " :::    ::: ::::::::::: ::::    :::  ::::::::  :::::::::  :::::::::: ::::::::  ";
 echo " :+:   :+:      :+:     :+:+:   :+: :+:    :+: :+:    :+: :+:       :+:    :+: ";
@@ -9,7 +9,7 @@ echo " +#+  +#+       +#+     +#+  +#+#+# +#+    +#+ +#+    +#+ +#+             
 echo " #+#   #+#  #+# #+#     #+#   #+#+# #+#    #+# #+#    #+# #+#       #+#    #+# ";
 echo " ###    ###  #####      ###    ####  ########  #########  ########## ########  ";
 echo -e "\e[0m"
-echo "=================================================="
+
 sleep 2
 
 . ~/.bashrc
@@ -100,11 +100,11 @@ MASA_NODEKEY=$(cat $HOME/masa-node-v1.0/data/geth/nodekey)
 MASA_ENODE=$(geth attach ipc:$HOME/masa-node-v1.0/data/geth.ipc --exec web3.admin.nodeInfo.enode | sed 's/^.//;s/.$//')
 
 echo -e "\e[1m\e[32mMasa started \e[0m"
-echo "=================================================="
+
 echo -e "Your node name: \e[32m$MASA_NODENAME\e[39m"
 echo -e "Your enode: \e[32m$MASA_ENODE\e[39m"
 echo -e "Your node key: \e[32m$MASA_NODEKEY\e[39m"
-echo "=================================================="
+
 
 echo -e "\e[1m\e[32mTo open geth: \e[0m" 
 echo -e "\e[1m\e[39m    geth attach ipc:$HOME/masa-node-v1.0/data/geth.ipc \n \e[0m" 

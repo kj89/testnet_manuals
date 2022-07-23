@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "=================================================="
+
 echo -e "\033[0;35m"
 echo " :::    ::: ::::::::::: ::::    :::  ::::::::  :::::::::  :::::::::: ::::::::  ";
 echo " :+:   :+:      :+:     :+:+:   :+: :+:    :+: :+:    :+: :+:       :+:    :+: ";
@@ -9,7 +9,7 @@ echo " +#+  +#+       +#+     +#+  +#+#+# +#+    +#+ +#+    +#+ +#+             
 echo " #+#   #+#  #+# #+#     #+#   #+#+# #+#    #+# #+#    #+# #+#       #+#    #+# ";
 echo " ###    ###  #####      ###    ####  ########  #########  ########## ########  ";
 echo -e "\e[0m"
-echo "=================================================="
+
 sleep 2
 
 # set vars
@@ -34,7 +34,7 @@ echo -e "\e[1m\e[32m1. Updating dependencies... \e[0m" && sleep 1
 sudo apt update && sudo apt upgrade -y
 sudo apt install jq -y
 
-echo "=================================================="
+
 
 echo -e "\e[1m\e[32m2. Checking if Docker is installed... \e[0m" && sleep 1
 
@@ -68,11 +68,11 @@ echo -e "\e[1m\e[32m5. Starting Archway ... \e[0m" && sleep 1
 docker run --restart=always -d -it --network host --name archway -v $HOME/.archway:/root/.archway archwaynetwork/archwayd:torii start --x-crisis-skip-assert-invariants
 echo "alias archwayd='docker exec -it archway archwayd'" >> $HOME/.bash_profile
 
-echo "=================================================="
+
 
 echo -e "\e[1m\e[32mArchway Started \e[0m"
 
-echo "=================================================="
+
 
 echo -e "\e[1m\e[32mTo check sync status: \e[0m" 
 echo -e "\e[1m\e[39m    curl -s localhost:26657/status | jq .result | jq .sync_info \n \e[0m" 

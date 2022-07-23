@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "=================================================="
+
 echo -e "\033[0;35m"
 echo " :::    ::: ::::::::::: ::::    :::  ::::::::  :::::::::  :::::::::: ::::::::  ";
 echo " :+:   :+:      :+:     :+:+:   :+: :+:    :+: :+:    :+: :+:       :+:    :+: ";
@@ -9,7 +9,7 @@ echo " +#+  +#+       +#+     +#+  +#+#+# +#+    +#+ +#+    +#+ +#+             
 echo " #+#   #+#  #+# #+#     #+#   #+#+# #+#    #+# #+#    #+# #+#       #+#    #+# ";
 echo " ###    ###  #####      ###    ####  ########  #########  ########## ########  ";
 echo -e "\e[0m"
-echo "=================================================="
+
 sleep 2
 
 # set vars
@@ -100,10 +100,10 @@ aptos genesis generate-genesis --local-repository-dir ~/$WORKSPACE --output-dir 
 # run docker compose
 docker compose up -d
 
-echo "=================================================="
+
 echo -e "\e[1m\e[32mAptos Validator Node Started \e[0m"
 echo -e "Please backup key files \e[1m\e[32m$NODENAME.yaml, validator-identity.yaml, validator-full-node-identity.yaml \e[0mlocated in: \e[1m\e[32m~/$WORKSPACE\e[0m"
-echo "=================================================="
+
 
 echo -e "\e[1m\e[32mVerify initial synchronization: \e[0m" 
 echo -e "\e[1m\e[39m    curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep type \n \e[0m" 
