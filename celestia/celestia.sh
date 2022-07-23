@@ -77,7 +77,7 @@ celestia-appd config node tcp://localhost:${CELESTIA_PORT}657
 celestia-appd init $NODENAME --chain-id $CELESTIA_CHAIN_ID
 
 # download genesis and addrbook
-cp $HOME/networks/$CHAIN_ID/genesis.json $HOME/.celestia-app/config
+cp $HOME/networks/$CELESTIA_CHAIN_ID/genesis.json $HOME/.celestia-app/config
 
 # set seeds, peers and boot nodes
 BOOTSTRAP_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mamaki/bootstrap-peers.txt | tr -d '\n')

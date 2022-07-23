@@ -89,7 +89,7 @@ celestia-appd init $NODENAME --chain-id $CELESTIA_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-cp $HOME/networks/$CHAIN_ID/genesis.json $HOME/.celestia-app/config
+cp $HOME/networks/$CELESTIA_CHAIN_ID/genesis.json $HOME/.celestia-app/config
 ```
 
 ## Set seeds, peers and boot nodes
