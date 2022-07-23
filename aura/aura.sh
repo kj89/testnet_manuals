@@ -61,7 +61,7 @@ make install
 
 # config
 aurad config chain-id $AURA_CHAIN_ID
-aurad config keyring-backend file
+aurad config keyring-backend test
 aurad config node tcp://localhost:${AURA_PORT}657
 
 # init
