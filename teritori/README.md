@@ -129,7 +129,7 @@ $balance <YOUR_WALLET_ADDRESS>
 ```
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 kuji (1 kuji is equal to 1000000 utori) and your node is synchronized
+Before creating validator please make sure that you have at least 1 tori (1 tori is equal to 1000000 utori) and your node is synchronized
 
 To check your wallet balance:
 ```
