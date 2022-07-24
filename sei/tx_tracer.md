@@ -56,7 +56,7 @@ wget -qO $HOME/explorer/src/chains/mainnet/sei.json https://raw.githubuserconten
 wget -qO $HOME/explorer/src/chains/mainnet/uptick.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/uptick.json
 ```
 
-## 4. Build ping.pub
+## 6. Build ping.pub
 ```
 yarn && yarn build
 cp -r $HOME/explorer/dist/* /var/www/html
