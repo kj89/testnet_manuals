@@ -163,6 +163,6 @@ EOF
 ## Register and start service
 ```
 sudo systemctl daemon-reload
-sudo systemctl enable ag0
-sudo systemctl restart ag0
+sudo systemctl enable agoricd
+sudo systemctl restart agoricd
 ```
