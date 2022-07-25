@@ -17,7 +17,7 @@ If you want to setup fullnode manually follow the steps below
 
 ## Save network configuration to file
 ```
-curl https://emerynet.agoric.net/network-config > $HOME/agoric/chain.json
+curl https://emerynet.agoric.net/network-config > $HOME/chain.json
 ```
 
 ## Setting up vars
@@ -40,7 +40,7 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bs
 ```
 echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 echo "export WALLET=wallet" >> $HOME/.bash_profile
-echo "export CHAIN_ID=$(jq -r .chainName < $HOME/agoric/chain.json)" >> $HOME/.bash_profile
+echo "export CHAIN_ID=$(jq -r .chainName < $HOME/chain.json)" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
