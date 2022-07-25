@@ -96,7 +96,6 @@ curl https://emerynet.rpc.agoric.net/genesis | jq .result.genesis > $HOME/.agori
 ## Set seeds and peers
 ```
 peers=$(jq '.peers | join(",")' < $HOME/chain.json)
-peers="fb86a0993c694c981a28fa1ebd1fd692f345348b@35.226.232.179:26656,f30a36fe5f5048a482d83c3bb873e1c64aa617aa@35.226.248.0:26656,686de39b047e38db41b42cf676eb68335d81fca7@139.59.146.53:27656,09c077f40c2384b64a5d7800a539d12a300e16d1@95.216.208.150:29656"
 seeds=$(jq '.seeds | join(",")' < $HOME/chain.json)
 sed -i.bak -e "s/^seeds *=.*/seeds = $seeds/; s/^persistent_peers *=.*/persistent_peers = $peers/" $HOME/.agoric/config/config.toml
 ```
