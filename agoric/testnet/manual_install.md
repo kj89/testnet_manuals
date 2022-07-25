@@ -17,7 +17,7 @@ If you want to setup fullnode manually follow the steps below
 
 ## Save network configuration to file
 ```
-curl https://ollinet.agoric.net/network-config > $HOME/agoric/chain.json
+curl https://emerynet.agoric.net/network-config > $HOME/agoric/chain.json
 ```
 
 ## Setting up vars
@@ -71,7 +71,7 @@ fi
 ```
 git clone https://github.com/Agoric/ag0
 cd ag0
-git checkout agoric-upgrade-5
+git checkout agoric-upgrade-6
 make build
 . $HOME/.bash_profile
 cp $HOME/ag0/build/ag0 /usr/local/bin
@@ -90,7 +90,7 @@ ag0 init $NODENAME --chain-id $CHAIN_ID
 
 ## Download genesis file
 ```
-curl https://ollinet.rpc.agoric.net/genesis | jq .result.genesis > $HOME/.agoric/config/genesis.json 
+curl https://emerynet.rpc.agoric.net/genesis | jq .result.genesis > $HOME/.agoric/config/genesis.json 
 ```
 
 ## Set seeds and peers

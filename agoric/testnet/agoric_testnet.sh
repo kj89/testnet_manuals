@@ -14,7 +14,7 @@ echo -e "\e[0m"
 sleep 2
 
 # download network configuration
-curl https://ollinet.agoric.net/network-config > $HOME/chain.json
+curl https://emerynet.agoric.net/network-config > $HOME/chain.json
 
 # set vars
 if [ ! $NODENAME ]; then
@@ -58,7 +58,7 @@ echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 git clone https://github.com/Agoric/ag0
 cd ag0
-git checkout agoric-upgrade-5
+git checkout agoric-upgrade-6
 make build
 . $HOME/.bash_profile
 cp $HOME/ag0/build/ag0 /usr/local/bin
@@ -71,7 +71,7 @@ ag0 config keyring-backend test
 ag0 init $NODENAME --chain-id $CHAIN_ID
 
 # download genesis
-curl https://ollinet.rpc.agoric.net/genesis | jq .result.genesis > $HOME/.agoric/config/genesis.json 
+curl https://emerynet.rpc.agoric.net/genesis | jq .result.genesis > $HOME/.agoric/config/genesis.json 
 
 # set peers and seeds
 peers=$(jq '.peers | join(",")' < $HOME/chain.json)
