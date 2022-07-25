@@ -1,8 +1,8 @@
 {
     "chain_name": "DWS",
     "coingecko": "",
-    "api": ["https://dws.api.kjnodes.com"],
-    "rpc": ["http://46.38.243.16:14657"],
+    "api": ["https://<YOUR_API_ENDPOINT>"],
+    "rpc": ["http://<YOUR_API_ENDPOINT>"],
     "snapshot_provider": "",
     "sdk_version": "0.45.0",
     "coin_type": "118",

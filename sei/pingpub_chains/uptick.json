@@ -1,8 +1,8 @@
 {
     "chain_name": "UPTICK",
     "coingecko": "",
-    "api": ["https://uptick.api.kjnodes.com"],
-    "rpc": ["http://46.38.243.16:15657"],
+    "api": ["https://<YOUR_API_ENDPOINT>"],
+    "rpc": ["http://<YOUR_API_ENDPOINT>"],
     "snapshot_provider": "",
     "sdk_version": "0.45.3",
     "coin_type": "118",

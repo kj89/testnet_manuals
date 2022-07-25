@@ -1,8 +1,8 @@
 {
     "chain_name": "SEI",
     "coingecko": "",
-    "api": ["https://sei.api.kjnodes.com"], 
-    "rpc": ["http://159.69.214.69:12657"],
+    "api": ["https://<YOUR_API_ENDPOINT>"],
+    "rpc": ["http://<YOUR_API_ENDPOINT>"],
     "snapshot_provider": "",
     "sdk_version": "0.45.4",
     "coin_type": "505",
