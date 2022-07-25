@@ -12,7 +12,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/177323789-e6be59ae-0dfa-4e86-b3a8-028a4f0c465c.png">
 </p>
 
-# SubQuery node setup for Frontier Testnet
+# SubQuery node setup for Frontier Testnet [ENDED]
 
 Official documentation:
 - frontier dashboard: https://frontier.subquery.network
