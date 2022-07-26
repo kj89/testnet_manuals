@@ -71,7 +71,10 @@ source $HOME/.bash_profile
 
 ### Fund your wallet
 In order to create validator first you need to fund your wallet with testnet tokens.
-To top up your wallet navigate to https://emerynet.faucet.agoric.net/ and input your <YOUR_WALLET_ADDRESS>
+To top up your wallet:
+- navigate to https://emerynet.faucet.agoric.net/
+- input your <YOUR_WALLET_ADDRESS>
+- check `delegate` and press `Submit` button
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 bld (1 bld is equal to 1000000 ubld) and your node is synchronized
