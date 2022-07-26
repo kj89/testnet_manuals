@@ -60,7 +60,6 @@ ag0 keys list
 ```
 
 ### Save wallet info
-
 Load wallet and valoper variables into system
 ```
 WALLET_ADDRESS=$(ag0 keys show $WALLET -a)
@@ -69,6 +68,10 @@ echo 'export WALLET_ADDRESS='${WALLET_ADDRESS} >> $HOME/.bash_profile
 echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
+
+### Fund your wallet
+In order to create validator first you need to fund your wallet with testnet tokens.
+To top up your wallet navigate to https://emerynet.faucet.agoric.net/ and input your <YOUR_WALLET_ADDRESS>
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 bld (1 bld is equal to 1000000 ubld) and your node is synchronized
