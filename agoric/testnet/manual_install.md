@@ -97,7 +97,7 @@ curl https://emerynet.rpc.agoric.net/genesis | jq .result.genesis > $HOME/.agori
 ```
 PEERS=$(jq '.peers | join(",")' < $HOME/chain.json)
 SEEDS=$(jq '.seeds | join(",")' < $HOME/chain.json)
-sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.agoric/config/config.toml
+sed -i -e "s/^seeds *=.*/seeds = $SEEDS/; s/^persistent_peers *=.*/persistent_peers = $PEERS/" $HOME/.agoric/config/config.toml
 ```
 
 # Fix `Error: failed to parse log level`
