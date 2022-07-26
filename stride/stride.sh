@@ -22,7 +22,7 @@ STRIDE_PORT=16
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export STRIDE_CHAIN_ID=STRIDE-1" >> $HOME/.bash_profile
+echo "export STRIDE_CHAIN_ID=STRIDE-TESTNET-2" >> $HOME/.bash_profile
 echo "export STRIDE_PORT=${STRIDE_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
@@ -59,7 +59,7 @@ echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 cd $HOME
 git clone https://github.com/Stride-Labs/stride.git
 cd stride
-git checkout c53f6c562d9d3e098aab5c27303f41ee055572cb
+git checkout 74ed6930a24d014cccd40aa880fc2f00b77f1f2f
 make build
 sudo cp $HOME/stride/build/strided /usr/local/bin
 

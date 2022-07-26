@@ -1,6 +1,6 @@
 {
   "genesis_time": "2022-07-13T18:44:47.206560145Z",
-  "chain_id": "STRIDE-1",
+  "chain_id": "STRIDE-TESTNET-2",
   "initial_height": "1",
   "consensus_params": {
     "block": {

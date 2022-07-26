@@ -74,8 +74,8 @@ sudo rm -rf $HOME/.stride/data/tx_index.db
 ### (OPTIONAL) State Sync
 You can state sync your node in minutes by running commands below
 ```
-SNAP_RPC1="stride-node2.poolparty.stridenet.co:26657" \
-&& SNAP_RPC2="stride-node3.poolparty.stridenet.co:26657"
+SNAP_RPC1="stride-node1.poolparty.stridenet.co:26657" \
+&& SNAP_RPC2="stride-node1.poolparty.stridenet.co:26657"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC2/block | jq -r .result.block.header.height) \
 && BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)) \
 && TRUST_HASH=$(curl -s "$SNAP_RPC2/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
