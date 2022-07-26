@@ -141,22 +141,22 @@ curl -sS http://localhost:26657/net_info | jq -r '.result.peers[] | "\(.node_inf
 ### Service management
 Check logs
 ```
-journalctl -fu ag0 -o cat
+journalctl -fu agoricd -o cat
 ```
 
 Start service
 ```
-systemctl start ag0
+systemctl start agoricd
 ```
 
 Stop service
 ```
-systemctl stop ag0
+systemctl stop agoricd
 ```
 
 Restart service
 ```
-systemctl restart ag0
+systemctl restart agoricd
 ```
 
 ### Node info
