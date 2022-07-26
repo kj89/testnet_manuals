@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/181006710-74674466-35ad-4f1c-9fd6-7cbe528d8973.png">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/181009137-722edf99-d4ab-417e-8e61-d872e5c3d110.png">
 </p>
 
 This file contains an overview of the published and draft challenges for Stake Wars. We plan to release new challenges every few days, and this file will be constantly updated to include the new challenges tha are coming up.
