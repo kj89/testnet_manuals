@@ -39,18 +39,23 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bs
 ## Save and import variables into system
 ```
 echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
-echo "export WALLET=wallet" >> $HOME/.bash_profile
+if [ ! $WALLET ]; then
+	echo "export WALLET=wallet" >> $HOME/.bash_profile
+fi
 echo "export CHAIN_ID=$(jq -r .chainName < $HOME/chain.json)" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
 ## Install node.js
 ```
+if ! [ -x "$(command -v node)" ]; then
 curl https://deb.nodesource.com/setup_14.x | sudo bash
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt update && sudo apt upgrade -y
 sudo apt install nodejs=14.* yarn build-essential jq -y
+sleep 1
+fi
 ```
 
 ## Install go

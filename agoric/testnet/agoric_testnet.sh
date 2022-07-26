@@ -21,7 +21,9 @@ if [ ! $NODENAME ]; then
 	read -p "Enter node name: " NODENAME
 	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
 fi
-echo "export WALLET=wallet" >> $HOME/.bash_profile
+if [ ! $WALLET ]; then
+	echo "export WALLET=wallet" >> $HOME/.bash_profile
+fi
 source $HOME/.bash_profile
 
 echo -e "\e[1m\e[32m1. Updating packages... \e[0m" && sleep 1
@@ -33,23 +35,26 @@ echo -e "\e[1m\e[32m2. Installing dependencies... \e[0m" && sleep 1
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu gcc git jq chrony liblz4-tool -y
 
 # install node.js
+if ! [ -x "$(command -v node)" ]; then
 curl https://deb.nodesource.com/setup_14.x | sudo bash
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt update && sudo apt upgrade -y
 sudo apt install nodejs=14.* yarn build-essential jq -y
 sleep 1
+fi
 
 # install go
-ver="1.18.2"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
-source ~/.bash_profile
-go version
+if ! [ -x "$(command -v go)" ]; then
+  ver="1.18.2"
+  cd $HOME
+  wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+  sudo rm -rf /usr/local/go
+  sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+  rm "go$ver.linux-amd64.tar.gz"
+  echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile
+  source ~/.bash_profile
+fi
 
 # get chain id
 echo "export CHAIN_ID=$(jq -r .chainName < $HOME/chain.json)" >> $HOME/.bash_profile
