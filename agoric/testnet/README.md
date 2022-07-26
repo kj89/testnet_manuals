@@ -60,18 +60,11 @@ ag0 keys list
 ```
 
 ### Save wallet info
-Add wallet address
+
+Load wallet and valoper variables into system
 ```
 WALLET_ADDRESS=$(ag0 keys show $WALLET -a)
-```
-
-Add valoper address
-```
 VALOPER_ADDRESS=$(ag0 keys show $WALLET --bech val -a)
-```
-
-Load variables into system
-```
 echo 'export WALLET_ADDRESS='${WALLET_ADDRESS} >> $HOME/.bash_profile
 echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
