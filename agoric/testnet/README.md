@@ -12,7 +12,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/167032367-fee4380e-7678-43e0-9206-36d72b32b8ae.png">
 </p>
 
-# agoric node setup for testnet — agoric-emerynet-1
+# agoric node setup for testnet — agoric-emerynet-2
 
 Explorer:
 > https://ollinet.explorer.agoric.net/
