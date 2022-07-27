@@ -15,7 +15,7 @@
 # agoric node setup for testnet — agoric-emerynet-2
 
 Explorer:
-> https://ollinet.explorer.agoric.net/
+> https://emerynet.explorer.agoric.net/
 
 ## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for agoric validator](https://github.com/kj89/testnet_manuals/blob/main/agoric/monitoring/README.md)
