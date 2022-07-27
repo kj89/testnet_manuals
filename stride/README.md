@@ -161,7 +161,7 @@ If your record has the attribute `isClaimable=true`, they're ready to be claimed
 ### Claim tokens
 After your tokens have unbonded, they can be claimed by triggering the claim process. 
 ```
-strided tx stakeibc claim-undelegated-tokens GAIA 5 --chain-id $STRIDE_CHAIN_ID --from $WALLET
+strided tx stakeibc claim-undelegated-tokens GAIA 5 $STRIDE_WALLET_ADDRESS --chain-id $STRIDE_CHAIN_ID --from $WALLET
 ```
 > Note: this function triggers claims in a FIFO queue, meaning if your claim is 20th in line, you'll have process other claims before seeing your tokens appear in your account.
 
