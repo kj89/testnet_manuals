@@ -12,7 +12,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/177221972-75fcf1b3-6e95-44dd-b43e-e32377685af8.png">
 </p>
 
-# stride node setup for mainnet — STRIDE
+# stride node setup for testnet — STRIDE
 
 Official documentation:
 >- [Validator setup instructions](https://github.com/Stride-Labs/testnet)
@@ -32,13 +32,13 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
  - 4x CPUs; the faster clock speed the better
  - 8GB RAM
  - 100GB of storage (SSD or NVME)
- - Permanent Internet connection (traffic will be minimal during mainnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
+ - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
 ### Recommended Hardware Requirements 
  - 4x CPUs; the faster clock speed the better
  - 32GB RAM
  - 200GB of storage (SSD or NVME)
- - Permanent Internet connection (traffic will be minimal during mainnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
+ - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
 ## Set up your stride fullnode
 ### Option 1 (automatic)

@@ -11,7 +11,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/177221972-75fcf1b3-6e95-44dd-b43e-e32377685af8.png">
 </p>
 
-# Generate stride Mainnet Gentx
+# Generate stride testnet Gentx
 
 ## Setting up vars
 Here you have to put name of your moniker (validator) that will be visible in explorer
@@ -66,7 +66,7 @@ strided config keyring-backend test
 strided init $NODENAME --chain-id $CHAIN_ID
 ```
 
-## Recover or create new wallet for mainnet
+## Recover or create new wallet for testnet
 Option 1 - generate new wallet
 ```
 strided keys add $WALLET
@@ -103,7 +103,7 @@ strided gentx $WALLET 99000000ustrd \
 ## Submit PR with Gentx
 1. Copy the contents of ${HOME}/.strided/config/gentx/gentx-XXXXXXXX.json.
 2. Fork https://github.com/Team-stride/networks
-3. Create a file gentx-{{VALIDATOR_NAME}}.json under the `networks/mainnet/gentx` folder in the forked repo, paste the copied text into the file.
+3. Create a file gentx-{{VALIDATOR_NAME}}.json under the `networks/testnet/gentx` folder in the forked repo, paste the copied text into the file.
 4. Create a Pull Request to the main branch of the repository
 
 ### Await further instructions!

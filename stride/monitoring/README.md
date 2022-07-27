@@ -24,8 +24,8 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `ustrd` for stride mainnet. You can find it in genesis file |
-| **bench_prefix** | Prefix for chain addresses, for example, `stride` for stride mainnet. You can find it in public addresses like this **stride**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **bond_denom** | Denominated token name, for example, `ustrd` for stride testnet. You can find it in genesis file |
+| **bench_prefix** | Prefix for chain addresses, for example, `stride` for stride testnet. You can find it in public addresses like this **stride**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
 | **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file. Default value for stride is `16657` |
 | **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file. Default value for stride is `16090` |
 
