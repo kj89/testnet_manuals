@@ -60,7 +60,7 @@ fi
 ## Download and build binaries
 ```
 cd $HOME
-git clone https://github.com/gaia-Labs/gaia.git
+git clone https://github.com/Stride-Labs/gaia.git
 cd gaia
 git checkout 5b47714dd5607993a1a91f2b06a6d92cbb504721
 make build
