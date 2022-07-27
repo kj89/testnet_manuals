@@ -81,13 +81,13 @@ gaiad init $NODENAME --chain-id $GAIA_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -qO $HOME/.gaia/config/genesis.json "https://raw.githubusercontent.com/gaia-Labs/testnet/main/poolparty/genesis.json"
+wget -qO $HOME/.gaia/config/genesis.json "https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/gaia/gaia_genesis.json"
 ```
 
 ## Set seeds and peers
 ```
 SEEDS=""
-PEERS="98ed4fbbaf04cb21076dcac959d91b2efa75d02c@gaia.poolparty.stridenet.co:26656"
+PEERS="5b1bd3fb081c79b7bdc5c1fd0a3d90928437266a@78.107.234.44:36656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.gaia/config/config.toml
 ```
 
