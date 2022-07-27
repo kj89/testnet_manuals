@@ -74,17 +74,7 @@ sudo rm -rf $HOME/.stride/data/tx_index.db
 ### (OPTIONAL) State Sync
 You can state sync your node in minutes by running commands below
 ```
-SNAP_RPC1="stride-node1.poolparty.stridenet.co:26657" \
-&& SNAP_RPC2="stride-node1.poolparty.stridenet.co:26657"
-LATEST_HEIGHT=$(curl -s $SNAP_RPC2/block | jq -r .result.block.header.height) \
-&& BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)) \
-&& TRUST_HASH=$(curl -s "$SNAP_RPC2/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC1,$SNAP_RPC2\"| ; \
-s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.stride/config/config.toml
-strided tendermint unsafe-reset-all --home $HOME/.stride
-sudo systemctl restart strided && journalctl -fu strided -o cat
+N/A
 ```
 
 ### Create wallet
