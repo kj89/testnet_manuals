@@ -18,7 +18,7 @@ Official documentation:
 >- [Validator setup instructions](https://github.com/juno-Labs/testnet)
 
 Explorer:
->-  https://juno.explorers.guru
+>-  https://testnet.juno.explorers.guru/
 
 ## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for juno validator](https://github.com/kj89/testnet_manuals/blob/main/juno/monitoring/README.md)
@@ -71,12 +71,6 @@ sleep 3
 sudo rm -rf $HOME/.juno/data/tx_index.db
 ```
 
-### (OPTIONAL) State Sync
-You can state sync your node in minutes by running commands below
-```
-N/A
-```
-
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
@@ -105,12 +99,12 @@ source $HOME/.bash_profile
 
 ### Fund your wallet
 In order to create validator first you need to fund your wallet with testnet tokens.
-To top up your wallet join [juno discord server](https://discord.gg/n6KrK77t) and navigate to:
-- **#token-faucet** to request test tokens
+To top up your wallet join [juno discord server](https://discord.gg/8F59kZfw) and navigate to:
+- **#faucet** to request test tokens
 
 To request a faucet grant:
 ```
-$faucet-juno:<YOUR_WALLET_ADDRESS>
+$request <YOUR_WALLET_ADDRESS>
 ```
 
 ### Create validator
