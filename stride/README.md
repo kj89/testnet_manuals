@@ -62,15 +62,6 @@ Next you have to make sure your validator is syncing blocks. You can use command
 strided status 2>&1 | jq .SyncInfo
 ```
 
-### (OPTIONAL) Disable and cleanup indexing
-```
-indexer="null"
-sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.stride/config/config.toml
-sudo systemctl restart strided
-sleep 3
-sudo rm -rf $HOME/.stride/data/tx_index.db
-```
-
 ### (OPTIONAL) State Sync
 You can state sync your node in minutes by running commands below
 ```

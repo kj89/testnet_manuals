@@ -18,12 +18,7 @@ Official documentation:
 >- [Validator setup instructions](https://github.com/Stride-Labs/testnet)
 
 Explorer:
->-  https://gaia.explorers.guru
-
-## Usefull tools and references
-> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for gaia validator](https://github.com/kj89/testnet_manuals/blob/main/gaia/monitoring/README.md)
->
-> To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/gaia/migrate_validator.md)
+>- https://poolparty.stride.zone/
 
 ## Hardware Requirements
 Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
@@ -44,11 +39,11 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
 ### Option 1 (automatic)
 You can setup your gaia fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
-wget -O gaia.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/gaia/gaia.sh && chmod +x gaia.sh && ./gaia.sh
+wget -O gaia.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/stride/GAIA/gaia.sh && chmod +x gaia.sh && ./gaia.sh
 ```
 
 ### Option 2 (manual)
-You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/gaia/manual_install.md) if you better prefer setting up node manually
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/stride/GAIA/manual_install.md) if you better prefer setting up node manually
 
 ## Post installation
 
@@ -60,15 +55,6 @@ source $HOME/.bash_profile
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
 gaiad status 2>&1 | jq .SyncInfo
-```
-
-### (OPTIONAL) Disable and cleanup indexing
-```
-indexer="null"
-sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.gaia/config/config.toml
-sudo systemctl restart gaiad
-sleep 3
-sudo rm -rf $HOME/.gaia/data/tx_index.db
 ```
 
 ### (OPTIONAL) State Sync
