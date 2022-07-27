@@ -64,14 +64,19 @@ seid status 2>&1 | jq .SyncInfo
 
 ### Data snapshot
 ```
-sudo systemctl stop seid.service; \
-seid tendermint unsafe-reset-all --home $HOME/.sei
-cd $HOME/.sei; rm -rf data wasm
-wget http://173.212.215.104/sei-snap-619300.tar
-tar xvf sei-snap-619300.tar
-wget -q -O $HOME/.sei/config/addrbook.json http://173.212.215.104/addrbook.json
-rm sei-snap-619300.tar
-sudo systemctl restart seid.service && sudo journalctl -u seid.service -f -o cat
+sudo apt update
+sudo apt install lz4 -y
+sudo systemctl stop seid
+seid tendermint unsafe-reset-all --home $HOME/.sei --keep-addr-book
+
+cd $HOME/.sei
+rm -rf data
+
+SNAP_NAME=$(curl -s https://snapshots1-testnet.nodejumper.io/sei-testnet/ | egrep -o ">atlantic-1.*\.tar.lz4" | tr -d ">")
+curl https://snapshots1-testnet.nodejumper.io/sei-testnet/${SNAP_NAME} | lz4 -dc - | tar -xf -
+
+sudo systemctl restart seid
+sudo journalctl -u seid -f --no-hostname -o cat
 ```
 
 ### Create wallet
