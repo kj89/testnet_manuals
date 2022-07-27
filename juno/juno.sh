@@ -22,7 +22,7 @@ JUNO_PORT=22
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export JUNO_CHAIN_ID=uni-2" >> $HOME/.bash_profile
+echo "export JUNO_CHAIN_ID=uni-3" >> $HOME/.bash_profile
 echo "export JUNO_PORT=${JUNO_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
