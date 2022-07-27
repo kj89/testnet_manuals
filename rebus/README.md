@@ -15,10 +15,10 @@
 # rebus node setup for mainnet — rebus
 
 Official documentation:
->- [Validator setup instructions](https://github.com/rebus-Labs/testnet)
+>- N/A
 
 Explorer:
->-  https://rebus.explorers.guru
+>- N/A
 
 ## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for rebus validator](https://github.com/kj89/testnet_manuals/blob/main/rebus/monitoring/README.md)
@@ -74,17 +74,7 @@ sudo rm -rf $HOME/.rebusd/data/tx_index.db
 ### (OPTIONAL) State Sync
 You can state sync your node in minutes by running commands below
 ```
-SNAP_RPC1="rebus-node1.poolparty.rebusdnet.co:26657" \
-&& SNAP_RPC2="rebus-node1.poolparty.rebusdnet.co:26657"
-LATEST_HEIGHT=$(curl -s $SNAP_RPC2/block | jq -r .result.block.header.height) \
-&& BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)) \
-&& TRUST_HASH=$(curl -s "$SNAP_RPC2/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC1,$SNAP_RPC2\"| ; \
-s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.rebusd/config/config.toml
-rebusd tendermint unsafe-reset-all --home $HOME/.rebusd
-sudo systemctl restart rebusd && journalctl -fu rebusd -o cat
+N/A
 ```
 
 ### Create wallet
