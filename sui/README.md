@@ -139,8 +139,8 @@ Now lets do some operations with objects
 ### Merge two objects into one
 ```
 JSON=$(sui client gas --json | jq -r)
-FIRST_OBJECT_ID=$(echo $JSON | jq -r .[0].id.id)
-SECOND_OBJECT_ID=$(echo $JSON | jq -r .[1].id.id)
+FIRST_OBJECT_ID=$(echo $JSON | jq -r .[0].info.id)
+SECOND_OBJECT_ID=$(echo $JSON | jq -r .[1].info.id)
 sui client merge-coin --primary-coin ${FIRST_OBJECT_ID} --coin-to-merge ${SECOND_OBJECT_ID} --gas-budget 1000
 ```
 
