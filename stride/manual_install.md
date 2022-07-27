@@ -62,7 +62,7 @@ fi
 cd $HOME
 git clone https://github.com/Stride-Labs/stride.git
 cd stride
-git checkout 74ed6930a24d014cccd40aa880fc2f00b77f1f2f
+git checkout 3cb77a79f74e0b797df5611674c3fbd000dfeaa1
 make build
 sudo cp $HOME/stride/build/strided /usr/local/bin
 ```
@@ -86,8 +86,8 @@ wget -qO $HOME/.stride/config/genesis.json "https://raw.githubusercontent.com/St
 
 ## Set seeds and peers
 ```
-SEEDS="" #baee9ccc2496c2e3bebd54d369c3b788f9473be9@seedv1.poolparty.stridenet.co:26656
-PEERS="21f8d9c493f5de8f61f56dd315ef91009a3e8913@stride-node1.poolparty.stridenet.co:26656"
+SEEDS="c0b278cbfb15674e1949e7e5ae51627cb2a2d0a9@seedv2.poolparty.stridenet.co:26656"
+PEERS=""
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.stride/config/config.toml
 ```
 
