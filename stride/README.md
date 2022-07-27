@@ -161,7 +161,8 @@ If your record has the attribute `isClaimable=true`, they're ready to be claimed
 ### Claim tokens
 After your tokens have unbonded, they can be claimed by triggering the claim process. 
 ```
-strided tx stakeibc claim-undelegated-tokens GAIA 5 $STRIDE_WALLET_ADDRESS --chain-id $STRIDE_CHAIN_ID --from $WALLET
+EPOCH=$(strided q records list-user-redemption-record --output json | jq --arg WALLET_ADDRESS "$STRIDE_WALLET_ADDRESS" '.UserRedemptionRecord | map(select(.sender == $WALLET_ADDRESS))' | jq .[].id |  awk -F[.] '{print $2}')
+strided tx stakeibc claim-undelegated-tokens GAIA $EPOCH $STRIDE_WALLET_ADDRESS --chain-id $STRIDE_CHAIN_ID --from $WALLET
 ```
 > Note: this function triggers claims in a FIFO queue, meaning if your claim is 20th in line, you'll have process other claims before seeing your tokens appear in your account.
 
