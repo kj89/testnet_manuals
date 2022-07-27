@@ -45,8 +45,9 @@ source $HOME/.bash_profile
 strided config chain-id $STRIDE_CHAIN_ID
 ```
 
-## Reset chain data
+## Reset chain data and disable state sync
 ```
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1false|" $HOME/.stride/config/config.toml
 strided tendermint unsafe-reset-all --home $HOME/.stride
 ```
 
