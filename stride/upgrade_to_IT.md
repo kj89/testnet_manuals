@@ -54,3 +54,32 @@ strided tendermint unsafe-reset-all --home $HOME/.stride
 ```
 sudo systemctl start strided && journalctl -fu strided -o cat
 ```
+
+## Check your wallet balance
+```
+strided query bank balances $STRIDE_WALLET_ADDRESS
+```
+
+## Create your validator
+```
+strided tx staking create-validator \
+  --amount 10000000ustrd \
+  --from $WALLET \
+  --commission-max-change-rate "0.01" \
+  --commission-max-rate "0.2" \
+  --commission-rate "0.07" \
+  --min-self-delegation "1" \
+  --pubkey  $(strided tendermint show-validator) \
+  --moniker $NODENAME \
+  --chain-id $STRIDE_CHAIN_ID
+```
+
+## Delegate to your validator
+```
+strided tx staking delegate $STRIDE_VALOPER_ADDRESS <AMOUNT>ustrd --from=$WALLET --chain-id=$STRIDE_CHAIN_ID --gas=auto
+```
+
+## Check active validator list
+```
+strided q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
+```
