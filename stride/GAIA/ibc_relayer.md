@@ -37,7 +37,7 @@ sudo apt install unzip -y
 ## Set up variables
 All settings below are just example for IBC Relayer between stride `STRIDE-TESTNET-2` and juno `GAIA` testnets. Please fill with your own values.
 ```
-RELAYER_NAME='kjnodes'
+RELAYER_NAME='kjnodes#8455' # add your Discord username here
 ```
 
 ### Chain A
@@ -47,7 +47,7 @@ RPC_ADDR_A='127.0.0.1:16657'
 GRPC_ADDR_A='127.0.0.1:16090'
 ACCOUNT_PREFIX_A='stride'
 TRUSTING_PERIOD_A='8hours'
-DENOM_A='ustrd'
+DENOM_A='uatom'
 MNEMONIC_A='speed rival market sure decade call silly flush derive story state menu inflict catalog habit swallow anxiety lumber siege fuel engage kite dad harsh'
 ```
 
@@ -133,7 +133,7 @@ clock_drift = '5s'
 max_block_time = '30s'
 trusting_period = '${TRUSTING_PERIOD_A}'
 trust_threshold = { numerator = '1', denominator = '3' }
-memo_prefix = '${RELAYER_NAME} Relayer'
+memo_prefix = '${RELAYER_NAME}'
 [chains.packet_filter]
 policy = 'allow'
 list = [
@@ -162,7 +162,7 @@ clock_drift = '5s'
 max_block_time = '30s'
 trusting_period = '${TRUSTING_PERIOD_B}'
 trust_threshold = { numerator = '1', denominator = '3' }
-memo_prefix = '${RELAYER_NAME} Relayer'
+memo_prefix = '${RELAYER_NAME}'
 [chains.packet_filter]
 policy = 'allow'
 list = [
