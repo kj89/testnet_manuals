@@ -122,8 +122,8 @@ port = 3001
 [[chains]]
 ### CHAIN_A ###
 id = '${CHAIN_ID_A}'
-rpc_addr = 'http://${RPC_ADDR_A}/'
-grpc_addr = 'http://${GRPC_ADDR_A}/'
+rpc_addr = 'http://${RPC_ADDR_A}'
+grpc_addr = 'http://${GRPC_ADDR_A}'
 websocket_addr = 'ws://${RPC_ADDR_A}/websocket'
 rpc_timeout = '10s'
 account_prefix = '${ACCOUNT_PREFIX_A}'
@@ -145,8 +145,8 @@ memo_prefix = '${RELAYER_NAME} Relayer'
 [[chains]]
 ### CHAIN_B ###
 id = '${CHAIN_ID_B}'
-rpc_addr = 'http://${RPC_ADDR_B}/'
-grpc_addr = 'http://${GRPC_ADDR_B}/'
+rpc_addr = 'http://${RPC_ADDR_B}'
+grpc_addr = 'http://${GRPC_ADDR_B}'
 websocket_addr = 'ws://${RPC_ADDR_B}/websocket'
 rpc_timeout = '10s'
 account_prefix = '${ACCOUNT_PREFIX_B}'
