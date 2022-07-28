@@ -121,7 +121,7 @@ gaiad query bank balances $GAIA_WALLET_ADDRESS
 To create your validator run command below
 ```
 gaiad tx staking create-validator \
-  --amount 10000000uatom \
+  --amount 1000000uatom \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
