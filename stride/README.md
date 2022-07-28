@@ -148,7 +148,7 @@ strided tx stakeibc liquid-stake 1000 uatom --from $WALLET --chain-id $STRIDE_CH
 ### Redeem stake
 After accruing some staking rewards, you can unstake your tokens. Currently, the unbonding period on our Gaia (Cosmos Hub) testnet is around 30 minutes.
 ```
-strided tx stakeibc redeem-stake 999 GAIA <cosmos_address_you_want_to_redeem_to> --chain-id $STRIDE_CHAIN_ID --from $WALLET
+strided tx stakeibc redeem-stake 1000 GAIA <COSMOS_ADDRESS_YOU_WANT_TO_REDEEM_TO> --chain-id $STRIDE_CHAIN_ID --from $WALLET
 ```
 
 ### Check if tokens are claimable
@@ -161,8 +161,21 @@ If your record has the attribute `isClaimable=true`, they're ready to be claimed
 ### Claim tokens
 After your tokens have unbonded, they can be claimed by triggering the claim process. 
 ```
-EPOCH=$(strided q records list-user-redemption-record --output json | jq --arg WALLET_ADDRESS "$STRIDE_WALLET_ADDRESS" '.UserRedemptionRecord | map(select(.sender == $WALLET_ADDRESS))' | jq .[].id |  awk -F[.] '{print $2}')
-strided tx stakeibc claim-undelegated-tokens GAIA $EPOCH $STRIDE_WALLET_ADDRESS --chain-id $STRIDE_CHAIN_ID --from $WALLET
+RECORD=$(strided q records list-user-redemption-record --output json | jq --arg WALLET_ADDRESS "$STRIDE_WALLET_ADDRESS" '.UserRedemptionRecord | map(select(.sender == $WALLET_ADDRESS))')
+for row in $(echo "${RECORD}" | jq -r '.[] | @base64'); do
+    _jq() {
+     echo ${row} | base64 --decode | jq -r ${1}
+    }
+   if [ $(_jq '.isClaimable') = true ]
+   then
+     ZONE=$(echo $(_jq '.hostZoneId'))
+	 EPOCH=$(echo $(_jq '.epochNumber'))
+	 SENDER=$(echo $(_jq '.sender'))
+	 echo -e "Claiming \e[1m\e[32m$ZONE.$EPOCH.$SENDER\e[0m..."
+	 # strided tx stakeibc claim-undelegated-tokens $ZONE $EPOCH $SENDER --chain-id $STRIDE_CHAIN_ID --from $WALLET --yes
+	 sleep 10
+   fi
+done
 ```
 > Note: this function triggers claims in a FIFO queue, meaning if your claim is 20th in line, you'll have process other claims before seeing your tokens appear in your account.
 
