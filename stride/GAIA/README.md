@@ -110,7 +110,7 @@ $faucet-atom:<GAIA_WALLET_ADDRESS>
 ```
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 strd (1 strd is equal to 1000000 ustrd) and your node is synchronized
+Before creating validator please make sure that you have at least 1 atom (1 atom is equal to 1000000 uatom) and your node is synchronized
 
 To check your wallet balance:
 ```
@@ -121,7 +121,7 @@ gaiad query bank balances $GAIA_WALLET_ADDRESS
 To create your validator run command below
 ```
 gaiad tx staking create-validator \
-  --amount 10000000ustrd \
+  --amount 10000000uatom \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
@@ -245,7 +245,7 @@ gaiad query bank balances $GAIA_WALLET_ADDRESS
 
 Transfer funds
 ```
-gaiad tx bank send $GAIA_WALLET_ADDRESS <TO_GAIA_WALLET_ADDRESS> 10000000ustrd
+gaiad tx bank send $GAIA_WALLET_ADDRESS <TO_GAIA_WALLET_ADDRESS> 10000000uatom
 ```
 
 ### Voting
@@ -256,12 +256,12 @@ gaiad tx gov vote 1 yes --from $WALLET --chain-id=$GAIA_CHAIN_ID
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-gaiad tx staking delegate $GAIA_VALOPER_ADDRESS 10000000ustrd --from=$WALLET --chain-id=$GAIA_CHAIN_ID --gas=auto
+gaiad tx staking delegate $GAIA_VALOPER_ADDRESS 10000000uatom --from=$WALLET --chain-id=$GAIA_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-gaiad tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ustrd --from=$WALLET --chain-id=$GAIA_CHAIN_ID --gas=auto
+gaiad tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000uatom --from=$WALLET --chain-id=$GAIA_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
