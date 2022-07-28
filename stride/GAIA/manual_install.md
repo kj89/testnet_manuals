@@ -87,7 +87,7 @@ wget -qO $HOME/.gaia/config/genesis.json "https://raw.githubusercontent.com/Stri
 ## Set seeds and peers
 ```
 SEEDS=""
-PEERS="5b1bd3fb081c79b7bdc5c1fd0a3d90928437266a@78.107.234.44:36656"
+PEERS="5892701ed528e73739c418631ead085a58b57567@23.88.100.175:46656,7e064f383fa83ae20095957f61c12b8ebf728f35@34.132.243.128:26656,5b1bd3fb081c79b7bdc5c1fd0a3d90928437266a@78.107.234.44:36656,b8948a13a8953f864ff43fa31ede14a21e44efdc@88.208.57.200:26656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.gaia/config/config.toml
 ```
 
