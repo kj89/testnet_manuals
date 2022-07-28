@@ -106,7 +106,7 @@ To top up your wallet join [Stride discord server](https://discord.gg/n6KrK77t) 
 
 To request a faucet grant:
 ```
-$faucet-gaia:<YOUR_WALLET_ADDRESS>
+$faucet-atom:<GAIA_WALLET_ADDRESS>
 ```
 
 ### Create validator

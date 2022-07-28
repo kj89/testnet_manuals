@@ -111,7 +111,7 @@ To top up your wallet join [Stride discord server](https://discord.gg/n6KrK77t) 
 
 To request a faucet grant:
 ```
-$faucet-stride:<YOUR_WALLET_ADDRESS>
+$faucet-stride:<STRIDE_WALLET_ADDRESS>
 ```
 
 ### Create validator
