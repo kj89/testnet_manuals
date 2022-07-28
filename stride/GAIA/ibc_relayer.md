@@ -22,7 +22,7 @@ Before setting up relayer you need to make sure you already have:
 1.2 [GAIA node setup guide](https://github.com/kj89/testnet_manuals/tree/main/stride/GAIA/README.md)
 2. RPC enpoints should be exposed and available from hermes instance
 3. Indexing is set to `kv` and is enabled on each node
-4. For each chain you will need to have wallets that are funded with tokens. This wallets will be used to do all relayer stuff
+4. For each chain you will need to have wallets that are funded with tokens. This wallets will be used to do all relayer stuff and pay commission
 
 ## Update system
 ```
@@ -331,3 +331,7 @@ journalctl -u hermesd -f -o cat
 2022-07-27T22:44:20.902820Z  INFO ThreadId(453) packet_cmd{src_chain=GAIA src_port=icahost src_channel=channel-4 dst_chain=STRIDE-TESTNET-2}:relay{odata=d169839a ->Destination @0-16135; len=1}: [Async~>STRIDE-TESTNET-2] response(s): 1; Ok:150EEF4C0EB3EF413115C192C7A5575190AA1E0B8EFC8A52389E556C16A71C57
 2022-07-27T22:44:20.902852Z  INFO ThreadId(453) packet_cmd{src_chain=GAIA src_port=icahost src_channel=channel-4 dst_chain=STRIDE-TESTNET-2}:relay{odata=d169839a ->Destination @0-16135; len=1}: success
 ```
+
+You also should see `Update Client (Ibc)` transactions appearing in the explorer https://stride.explorers.guru/account/<STRIDE_WALLET_ADDRESS>
+
+![image](https://user-images.githubusercontent.com/50621007/181440643-3cc002e0-50a5-4591-9758-b2bafcda699e.png)
