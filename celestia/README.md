@@ -65,11 +65,14 @@ sudo rm -rf $HOME/.celestia-app/data/tx_index.db
 
 ### (OPTIONAL) Use Quick Sync by restoring data from snapshot
 ```
+systemctl stop celestia-appd
+celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 cd $HOME
 rm -rf ~/.celestia-app/data
 mkdir -p ~/.celestia-app/data
 SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | egrep -o ">mamaki.*tar" | tr -d ">")
 wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - -C ~/.celestia-app/data/
+systemctl restart celestia-appd && journalctl -fu celestia-appd -o cat
 ```
 
 ### Create wallet
