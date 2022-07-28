@@ -18,8 +18,8 @@ In current example we will learn how to set up IBC relayer between two cosmos ch
 ## Preparation before you start
 Before setting up relayer you need to make sure you already have:
 1. Fully synchronized RPC nodes for each Cosmos project you want to connect
-1.1 [Stride node setup guide](https://github.com/kj89/testnet_manuals/blob/main/stride/README.md)
-1.2 [GAIA node setup guide](https://github.com/kj89/testnet_manuals/tree/main/stride/GAIA/README.md)
+- [Stride node setup guide](https://github.com/kj89/testnet_manuals/blob/main/stride/README.md)
+- [GAIA node setup guide](https://github.com/kj89/testnet_manuals/tree/main/stride/GAIA/README.md)
 2. RPC enpoints should be exposed and available from hermes instance
 3. Indexing is set to `kv` and is enabled on each node
 4. For each chain you will need to have wallets that are funded with tokens. This wallets will be used to do all relayer stuff and pay commission
