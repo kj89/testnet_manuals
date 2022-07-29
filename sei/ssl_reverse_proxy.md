@@ -62,11 +62,6 @@ ln -s /etc/nginx/sites-available/${CHAIN_NAME}.api.kjnodes.com.conf /etc/nginx/s
 sudo certbot --nginx -d ${CHAIN_NAME}.api.kjnodes.com --register-unsafely-without-email
 ```
 
-## Rename default file to match domain
-```
-mv /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/${CHAIN_NAME}.api.kjnodes.com.conf
-```
-
 ## Reload nginx
 ```
 systemctl reload nginx.service
