@@ -16,8 +16,8 @@
 
 ## Set up vars
 ```
-CHAIN_NAME=dws
-API_PORT=14317
+CHAIN_NAME=stride
+API_PORT=16317
 ```
 
 ## Update packages
@@ -30,9 +30,14 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install nginx certbot python3-certbot-nginx -y
 ```
 
+## Cleanup default settings
+```
+rm -f /etc/nginx/sites-{available,enabled}/default
+```
+
 ## Set up config
 ```
-sudo tee /etc/nginx/sites-enabled/default > /dev/null <<EOF
+sudo tee /etc/nginx/sites-available/${CHAIN_NAME}.api.kjnodes.com.conf > /dev/null <<EOF
 server {
         listen 80 default_server;
         listen [::]:80 default_server;
@@ -49,6 +54,7 @@ server {
         }
 }
 EOF
+ln -s /etc/nginx/sites-available/${CHAIN_NAME}.api.kjnodes.com.conf /etc/nginx/sites-enabled/${CHAIN_NAME}.api.kjnodes.com.conf
 ```
 
 ## Obtain our certificates
