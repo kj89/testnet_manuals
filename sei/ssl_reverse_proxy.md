@@ -32,7 +32,7 @@ sudo apt install nginx certbot python3-certbot-nginx -y
 
 ## Cleanup default settings
 ```
-rm -f /etc/nginx/sites-{available,enabled}/default
+sudo rm -f /etc/nginx/sites-{available,enabled}/default
 ```
 
 ## Set up config
@@ -54,7 +54,11 @@ server {
         }
 }
 EOF
-ln -s /etc/nginx/sites-available/${CHAIN_NAME}.api.kjnodes.com.conf /etc/nginx/sites-enabled/${CHAIN_NAME}.api.kjnodes.com.conf
+```
+
+## Make a symlink
+```
+sudo ln -s /etc/nginx/sites-available/${CHAIN_NAME}.api.kjnodes.com.conf /etc/nginx/sites-enabled/${CHAIN_NAME}.api.kjnodes.com.conf
 ```
 
 ## Obtain our certificates
@@ -64,5 +68,5 @@ sudo certbot --nginx -d ${CHAIN_NAME}.api.kjnodes.com --register-unsafely-withou
 
 ## Reload nginx
 ```
-systemctl reload nginx.service
+sudo systemctl reload nginx.service
 ```
