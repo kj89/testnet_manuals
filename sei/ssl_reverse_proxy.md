@@ -16,8 +16,8 @@
 
 ## Set up vars
 ```
-CHAIN_NAME=stride
-API_PORT=16317
+CHAIN_NAME=dws
+API_PORT=14317
 ```
 
 ## Update packages
@@ -39,8 +39,8 @@ sudo rm -f /etc/nginx/sites-{available,enabled}/default
 ```
 sudo tee /etc/nginx/sites-available/${CHAIN_NAME}.api.kjnodes.com.conf > /dev/null <<EOF
 server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
+        listen 80;
+        listen [::]:80;
 
         server_name ${CHAIN_NAME}.api.kjnodes.com;
 
