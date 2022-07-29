@@ -61,12 +61,12 @@ EOF
 sudo ln -s /etc/nginx/sites-available/${CHAIN_NAME}.api.kjnodes.com.conf /etc/nginx/sites-enabled/${CHAIN_NAME}.api.kjnodes.com.conf
 ```
 
-## Obtain our certificates
-```
-sudo certbot --nginx -d ${CHAIN_NAME}.api.kjnodes.com --register-unsafely-without-email
-```
-
 ## Reload nginx
 ```
 sudo systemctl reload nginx.service
+```
+
+## Obtain our certificates
+```
+sudo certbot --nginx --register-unsafely-without-email
 ```
