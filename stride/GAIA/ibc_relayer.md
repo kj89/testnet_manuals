@@ -125,7 +125,7 @@ address_type = { derivation = 'cosmos' }
 store_prefix = 'ibc'
 default_gas = 100000
 max_gas = 2500000
-gas_price = { price = 0.001, denom = '${DENOM_A}' }
+gas_price = { price = 0.0025, denom = '${DENOM_A}' }
 gas_multiplier = 1.1
 max_msg_num = 30
 max_tx_size = 2097152
@@ -154,7 +154,7 @@ address_type = { derivation = 'cosmos' }
 store_prefix = 'ibc'
 default_gas = 100000
 max_gas = 2500000
-gas_price = { price = 0.001, denom = '${DENOM_B}' }
+gas_price = { price = 0.0025, denom = '${DENOM_B}' }
 gas_multiplier = 1.1
 max_msg_num = 30
 max_tx_size = 2097152
