@@ -1,0 +1,19 @@
+{
+    "chain_name": "AURA",
+    "coingecko": "",
+    "api": ["https://<YOUR_API_ENDPOINT>"],
+    "rpc": ["http://<YOUR_API_ENDPOINT>"],
+    "snapshot_provider": "",
+    "sdk_version": "0.45.3",
+    "coin_type": "118",
+    "min_tx_fee": "200",
+    "addr_prefix": "aura",
+    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/logos/aura.png",
+    "assets": [{
+        "base": "ueaura",
+        "symbol": "AURA",
+        "exponent": "6",
+        "coingecko_id": "",
+        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/logos/aura.png"
+    }]
+}
