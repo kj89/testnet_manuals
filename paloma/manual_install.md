@@ -59,7 +59,7 @@ fi
 
 ## Download and build binaries
 ```
-wget -O - https://github.com/palomachain/paloma/releases/download/v0.4.0-alpha/paloma_0.4.0-alpha_Linux_x86_64.tar.gz | \
+wget -O - https://github.com/palomachain/paloma/releases/download/v0.4.1-alpha/paloma_0.4.1-alpha_Linux_x86_64.tar.gz | \
 sudo tar -C /usr/local/bin -xvzf - palomad
 sudo chmod +x /usr/local/bin/palomad
 sudo wget -P /usr/lib https://github.com/CosmWasm/wasmvm/raw/main/api/libwasmvm.x86_64.so
@@ -86,7 +86,7 @@ wget -O ~/.paloma/config/addrbook.json https://raw.githubusercontent.com/palomac
 ## Set seeds and peers
 ```
 SEEDS=""
-PEERS"8fab1d100d1c01de299788758d31d36c321c23b5@144.202.103.140:26656"
+PEERS="8fab1d100d1c01de299788758d31d36c321c23b5@144.202.103.140:26656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.paloma/config/config.toml
 ```
 
