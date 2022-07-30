@@ -75,7 +75,7 @@ wget -O ~/.paloma/config/addrbook.json https://raw.githubusercontent.com/palomac
 
 # set peers and seeds
 SEEDS=""
-PEERS"8fab1d100d1c01de299788758d31d36c321c23b5@144.202.103.140:26656"
+PEERS="8fab1d100d1c01de299788758d31d36c321c23b5@144.202.103.140:26656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.paloma/config/config.toml
 
 # set custom ports
