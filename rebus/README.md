@@ -105,17 +105,17 @@ source $HOME/.bash_profile
 
 ### Fund your wallet
 In order to create validator first you need to fund your wallet with testnet tokens.
-To top up your wallet join [rebus discord server](https://discord.gg/97qe8u7t) and navigate to:
+To top up your wallet join [rebus discord server](https://discord.gg/TEMPynVy) and navigate to:
 - **#faucet** to request test tokens
 
 To request a faucet grant:
 ```
-$faucet:<YOUR_WALLET_ADDRESS>
+$request <YOUR_WALLET_ADDRESS>
 ```
 
 To check wallet balance:
 ```
-$balance:<YOUR_WALLET_ADDRESS>
+$balance <YOUR_WALLET_ADDRESS>
 ```
 
 ### Create validator
