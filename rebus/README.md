@@ -119,7 +119,7 @@ $balance:<YOUR_WALLET_ADDRESS>
 ```
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 strd (1 strd is equal to 1000000 ustrd) and your node is synchronized
+Before creating validator please make sure that you have at least 1 strd (1 strd is equal to 1000000 arebus) and your node is synchronized
 
 To check your wallet balance:
 ```
@@ -130,7 +130,7 @@ rebusd query bank balances $REBUS_WALLET_ADDRESS
 To create your validator run command below
 ```
 rebusd tx staking create-validator \
-  --amount 10000000ustrd \
+  --amount 10000000arebus \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
@@ -282,7 +282,7 @@ rebusd query bank balances $REBUS_WALLET_ADDRESS
 
 Transfer funds
 ```
-rebusd tx bank send $REBUS_WALLET_ADDRESS <TO_REBUS_WALLET_ADDRESS> 10000000ustrd
+rebusd tx bank send $REBUS_WALLET_ADDRESS <TO_REBUS_WALLET_ADDRESS> 10000000arebus
 ```
 
 ### Voting
@@ -293,12 +293,12 @@ rebusd tx gov vote 1 yes --from $WALLET --chain-id=$REBUS_CHAIN_ID
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-rebusd tx staking delegate $REBUS_VALOPER_ADDRESS 10000000ustrd --from=$WALLET --chain-id=$REBUS_CHAIN_ID --gas=auto
+rebusd tx staking delegate $REBUS_VALOPER_ADDRESS 10000000arebus --from=$WALLET --chain-id=$REBUS_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-rebusd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ustrd --from=$WALLET --chain-id=$REBUS_CHAIN_ID --gas=auto
+rebusd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000arebus --from=$WALLET --chain-id=$REBUS_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
