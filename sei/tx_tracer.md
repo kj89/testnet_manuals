@@ -55,11 +55,10 @@ wget -qO $HOME/explorer/src/chains/mainnet/dws.json https://raw.githubuserconten
 wget -qO $HOME/explorer/src/chains/mainnet/sei.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/sei.json
 wget -qO $HOME/explorer/src/chains/mainnet/uptick.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/uptick.json
 wget -qO $HOME/explorer/src/chains/mainnet/cardchain.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/cardchain.json
-wget -qO $HOME/explorer/src/chains/mainnet/stride.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/stride.json
 wget -qO $HOME/explorer/src/chains/mainnet/teritori.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/teritori.json
 wget -qO $HOME/explorer/src/chains/mainnet/paloma.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/paloma.json
-wget -qO $HOME/explorer/src/chains/mainnet/celestia.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/celestia.json
 wget -qO $HOME/explorer/src/chains/mainnet/aura.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/aura.json
+wget -qO $HOME/explorer/src/chains/mainnet/rebus.json https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/rebus.json
 ```
 
 ## 6. Build ping.pub
