@@ -9,16 +9,16 @@
 </p>
 
 <p align="center">
-  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/177221972-75fcf1b3-6e95-44dd-b43e-e32377685af8.png">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/182218818-f686aebb-6e48-47e1-96a2-e0d8faf44acb.png">
 </p>
 
-# rebus node setup for mainnet — rebus
+# rebus node setup for testnet — reb_3333-1
 
 Official documentation:
->- N/A
+>- https://github.com/rebuschain/rebus.testnet/tree/master/rebus_3333-1
 
 Explorer:
->- N/A
+>- https://explorer.kjnodes.com/REBUS
 
 ## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for rebus validator](https://github.com/kj89/testnet_manuals/blob/main/rebus/monitoring/README.md)
@@ -32,13 +32,13 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
  - 4x CPUs; the faster clock speed the better
  - 8GB RAM
  - 100GB of storage (SSD or NVME)
- - Permanent Internet connection (traffic will be minimal during mainnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
+ - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
 ### Recommended Hardware Requirements 
  - 4x CPUs; the faster clock speed the better
  - 32GB RAM
  - 200GB of storage (SSD or NVME)
- - Permanent Internet connection (traffic will be minimal during mainnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
+ - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
 ## Set up your rebus fullnode
 ### Option 1 (automatic)
