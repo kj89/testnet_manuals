@@ -1,0 +1,19 @@
+{
+    "chain_name": "REBUS",
+    "coingecko": "",
+    "api": ["https://<YOUR_API_ENDPOINT>"],
+    "rpc": ["http://<YOUR_API_ENDPOINT>"],
+    "snapshot_provider": "",
+    "sdk_version": "0.45.3",
+    "coin_type": "118",
+    "min_tx_fee": "200",
+    "addr_prefix": "rebus",
+    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/logos/rebus.png",
+    "assets": [{
+        "base": "arebus",
+        "symbol": "REBUS",
+        "exponent": "6",
+        "coingecko_id": "",
+        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/logos/rebus.png"
+    }]
+}
