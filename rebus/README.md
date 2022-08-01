@@ -25,18 +25,9 @@ Explorer:
 >
 > To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/rebus/migrate_validator.md)
 
-## Hardware Requirements
-Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
-
-### Minimum Hardware Requirements
- - 4x CPUs; the faster clock speed the better
- - 8GB RAM
- - 100GB of storage (SSD or NVME)
- - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
-
-### Recommended Hardware Requirements 
- - 4x CPUs; the faster clock speed the better
- - 32GB RAM
+## Recommended Hardware Requirements 
+ - 2x CPUs; the faster clock speed the better
+ - 16GB RAM
  - 200GB of storage (SSD or NVME)
  - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
