@@ -144,28 +144,14 @@ strided tx stakeibc redeem-stake 1000 GAIA <COSMOS_ADDRESS_YOU_WANT_TO_REDEEM_TO
 ### Check if tokens are claimable
 If you'd like to see whether your tokens are ready to be claimed, look for your `UserRedemptionRecord` keyed by `<your_stride_account>`. 
 ```
-strided q records list-user-redemption-record --output json | jq --arg WALLET_ADDRESS "$STRIDE_WALLET_ADDRESS" '.UserRedemptionRecord | map(select(.sender == $WALLET_ADDRESS))'
+strided q records list-user-redemption-record --limit 10000 --output json | jq --arg WALLET_ADDRESS "$STRIDE_WALLET_ADDRESS" '.UserRedemptionRecord | map(select(.sender == $WALLET_ADDRESS))'
 ```
 If your record has the attribute `isClaimable=true`, they're ready to be claimed!
 
 ### Claim tokens
 After your tokens have unbonded, they can be claimed by triggering the claim process. 
 ```
-RECORD=$(strided q records list-user-redemption-record --output json | jq --arg WALLET_ADDRESS "$STRIDE_WALLET_ADDRESS" '.UserRedemptionRecord | map(select(.sender == $WALLET_ADDRESS))')
-for row in $(echo "${RECORD}" | jq -r '.[] | @base64'); do
-    _jq() {
-     echo ${row} | base64 --decode | jq -r ${1}
-    }
-   if [ $(_jq '.isClaimable') = true ]
-   then
-     ZONE=$(echo $(_jq '.hostZoneId'))
-     EPOCH=$(echo $(_jq '.epochNumber'))
-     SENDER=$(echo $(_jq '.sender'))
-     echo -e "Claiming \e[1m\e[32m$ZONE.$EPOCH.$SENDER\e[0m..."
-     strided tx stakeibc claim-undelegated-tokens $ZONE $EPOCH $SENDER --chain-id $STRIDE_CHAIN_ID --from $WALLET --yes
-     sleep 10
-   fi
-done
+wget -O claim.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/stride/tools/claim.sh && chmod +x claim.sh && ./claim.sh
 ```
 > Note: this function triggers claims in a FIFO queue, meaning if your claim is 20th in line, you'll have process other claims before seeing your tokens appear in your account.
 
