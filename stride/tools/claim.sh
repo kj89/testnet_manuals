@@ -1,7 +1,7 @@
 #!/bin/bash
-RECORDS=$(strided q records list-user-redemption-record --limit 10000 --output json | jq --arg WALLET_ADDRESS "$STRIDE_WALLET_ADDRESS" '.UserRedemptionRecord | map(select(.sender == $WALLET_ADDRESS and .isClaimable == true))')
+RECORDS=$(strided q records list-user-redemption-record --limit 10000 --output json | jq --arg WALLET_ADDRESS "$$1" '.UserRedemptionRecord | map(select(.sender == $WALLET_ADDRESS and .isClaimable == true))')
 RECORDS_COUNT=$(echo $RECORDS | jq length)
-echo -e "\e[1m\e[32m$RECORDS_COUNT\e[0m claimable records found for sender \e[1m\e[32m$STRIDE_WALLET_ADDRESS\e[0m..."
+echo -e "\e[1m\e[32m$RECORDS_COUNT\e[0m claimable records found for sender \e[1m\e[32m$$1\e[0m..."
 sleep 3
 for row in $(echo "${RECORDS}" | jq -r '.[] | @base64'); do
     _jq() {
