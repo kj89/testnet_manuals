@@ -8,6 +8,7 @@ echo -e "$GREEN_COLOR YOUR NODE WILL BE UPDATED TO VERSION: $VERSION ON BLOCK NU
 for((;;)); do
 height=$(ag0 status |& jq -r ."SyncInfo"."latest_block_height")
 if ((height>=$BLOCK)); then
+sudo systemctl stop agoricd
 cd $HOME && rm $HOME/ag0 -rf
 git clone https://github.com/Agoric/ag0
 cd ag0

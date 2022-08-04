@@ -17,12 +17,12 @@
 Once the chain reaches the upgrade height, you will encounter the following panic error message:\
 `ERR UPGRADE "agoric-upgrade-7" NEEDED at height: 146039`
 ```
+sudo systemctl stop agoricd
 cd $HOME && rm $HOME/ag0 -rf
 git clone https://github.com/Agoric/ag0
 cd ag0
 git checkout agoric-upgrade-7
 make build
-. $HOME/.bash_profile
 cp $HOME/ag0/build/ag0 /usr/local/bin
 systemctl restart agoricd && journalctl -fu agoricd -o cat
 ```
