@@ -6,7 +6,7 @@ BLOCK=146039
 VERSION=agoric-upgrade-7
 echo -e "$GREEN_COLOR YOUR NODE WILL BE UPDATED TO VERSION: $VERSION ON BLOCK NUMBER: $BLOCK $NO_COLOR\n"
 for((;;)); do
-height=$(seid status |& jq -r ."SyncInfo"."latest_block_height")
+height=$(ag0 status |& jq -r ."SyncInfo"."latest_block_height")
 if ((height>=$BLOCK)); then
 cd $HOME && rm $HOME/ag0 -rf
 git clone https://github.com/Agoric/ag0
@@ -22,11 +22,11 @@ for (( timer=60; timer>0; timer-- ))
                 printf "* second restart after sleep for ${RED_COLOR}%02d${NO_COLOR} sec\r" $timer
                 sleep 1
         done
-height=$(seid status |& jq -r ."SyncInfo"."latest_block_height")
+height=$(ag0 status |& jq -r ."SyncInfo"."latest_block_height")
 if ((height>$BLOCK)); then
 echo -e "$GREEN_COLOR YOUR NODE WAS SUCCESFULLY UPDATED TO VERSION: $VERSION $NO_COLOR\n"
 fi
-seid version --long | head
+ag0 version --long | head
 break
 else
 echo $height
