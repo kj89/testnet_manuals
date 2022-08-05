@@ -12,24 +12,32 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/169664551-39020c2e-fa95-483b-916b-c52ce4cb907c.png">
 </p>
 
-# Chain upgrade from 1.0.6beta-val-count-fix to 1.0.7beta-postfix
-## (OPTION 1) Manual upgrade
-Once the chain reaches the upgrade height, you will encounter the following panic error message:\
-`ERR UPGRADE "upgrade-1.0.7beta-postfix" NEEDED at height: 836963`
-```
-cd $HOME && rm $HOME/sei-chain -rf
-git clone https://github.com/sei-protocol/sei-chain.git && cd $HOME/sei-chain
-git checkout 1.0.7beta-postfix
-make install
+# Price Oracle Script
+This is a simple oracle script that fetchs market prices of different token pairs from the CoinGecko. Sei team will add multiple price sources in this script so that Sei can decentralize the oracle prices.
 
-sudo tee /etc/systemd/system/seid.service > /dev/null <<EOF
+## Install coingecko api
+```
+git clone https://github.com/man-c/pycoingecko.git
+cd pycoingecko
+python3 setup.py install
+```
+
+## Set coins to fetch
+```
+COINS='cosmos','usd-coin'
+```
+
+## Create service
+```
+sudo tee /etc/systemd/system/price_feeder.service > /dev/null <<EOF
 [Unit]
 Description=sei
 After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which seid) start --home $HOME/.sei
+WorkingDirectory=$HOME/sei-chain/scripts/oracle
+ExecStart=python3 -u price_feeder.py $WALLET 0 $SEI_CHAIN_ID $COINS --node http://localhost:${SEI_PORT}657
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
@@ -37,16 +45,16 @@ LimitNOFILE=65535
 [Install]
 WantedBy=multi-user.target
 EOF
+```
 
+## Run service
+```
 sudo systemctl daemon-reload
-systemctl restart seid && journalctl -fu seid -o cat
+sudo systemctl enable price_feeder
+sudo systemctl restart price_feeder
 ```
 
-!!! DO NOT UPGRADE BEFORE CHAIN RECHES THE BLOCK `836963`!!!
-
-### (OPTION 2) Automatic upgrade
-As an alternative we have prepared script that should update your binary when block height is reached
-Run this in a `screen` so it will not get stopped when session disconnected 😉
+## Check service logs
 ```
-wget -O sei_upgrade_107beta-postfix.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/tools/sei_upgrade_107beta-postfix.sh && chmod +x sei_upgrade_107beta-postfix.sh && ./sei_upgrade_107beta-postfix.sh
+journalctl -fu price_feeder
 ```
