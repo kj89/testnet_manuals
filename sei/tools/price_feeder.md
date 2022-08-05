@@ -15,7 +15,7 @@
 # Price Oracle Script
 This is a simple oracle script that fetchs market prices of different token pairs from the CoinGecko. Sei team will add multiple price sources in this script so that Sei can decentralize the oracle prices.
 
-## Price feeder usage
+Price feeder usage:
 ```
 usage: price_feeder.py [-h] [--binary BINARY] [--node NODE] [--salt SALT] [--interval INTERVAL] [--valoper VALOPER] key password chain_id coins
 
