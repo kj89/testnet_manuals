@@ -79,3 +79,16 @@ sudo systemctl restart price_feeder
 ```
 journalctl -fu price_feeder
 ```
+
+Successful logs should look like:
+```
+submitting price feeds  1usei,10.67uatom,1.001uusdc 1usei,10.67uatom,1.001uusdc
+sleep for 3...
+submitting price feeds  1usei,10.67uatom,1.001uusdc 1usei,10.67uatom,1.001uusdc
+submitting price feeds  1usei,10.67uatom,1.001uusdc 1usei,10.67uatom,1.001uusdc
+sleep for 3...
+```
+
+Also to make sure price feeder is sending transactions you can check your wallet transaction history in explorer
+
+![image](https://user-images.githubusercontent.com/50621007/183050984-b17e6879-e7ff-42f4-885c-5115b7101f35.png)
