@@ -59,3 +59,11 @@ curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep 
 ```
 docker restart aptos-fullnode
 ```
+
+### Delete node
+```
+docker stop aptos-fullnode
+docker rm aptos-fullnode -f
+docker volume rm aptos-fullnode -f
+cd $HOME && rm aptos-fullnode -rf
+```
