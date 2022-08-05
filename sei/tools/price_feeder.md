@@ -15,6 +15,27 @@
 # Price Oracle Script
 This is a simple oracle script that fetchs market prices of different token pairs from the CoinGecko. Sei team will add multiple price sources in this script so that Sei can decentralize the oracle prices.
 
+## Price feeder usage
+```
+usage: price_feeder.py [-h] [--binary BINARY] [--node NODE] [--salt SALT] [--interval INTERVAL] [--valoper VALOPER] key password chain_id coins
+
+positional arguments:
+  key                  Your wallet (key) name
+  password             The keychain password
+  chain_id             Chain id
+  coins                The coins to use
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --binary BINARY      Your seid binary path
+  --node NODE          The node to contact
+  --salt SALT          The salt to use
+  --interval INTERVAL  How long time to sleep between price checks
+  --valoper VALOPER    Validator address if using separate feeder account
+```
+
+> Example: `python3 -u price_feeder.py my_wallet_name my_wallet_password atlantic-1 cosmos,usd-coin --node http://localhost:12657`
+
 ## Install coingecko api
 ```
 git clone https://github.com/man-c/pycoingecko.git
