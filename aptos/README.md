@@ -19,7 +19,6 @@ Official documents:
 Usefull tools:
 > To find latest block height use [Aptos Network Dashboard](https://status.devnet.aptos.dev/)\
 > To check your node health status try [Aptos Node Informer](http://node-tools.net/aptos/tester/)\
-> To migrate your fullnode to another machine read [Migrate your fullnode to another machine](https://github.com/kj89/testnet_manuals/blob/main/aptos/migrate_fullnode.md)
 
 ## Hardware requirements:
 #### For running a production grade Fullnode we recommend the following:
@@ -45,20 +44,10 @@ You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/
 wget -qO update.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/update.sh && chmod +x update.sh && ./update.sh
 ```
 
-## (OPTIONAL) Update configs
-```
-wget -qO update_configs.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/update_configs.sh && chmod +x update_configs.sh && ./update_configs.sh
-```
-
-## Get your node identity and upstream details
-```
-wget -qO get_identity.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/get_identity.sh && chmod +x get_identity.sh && ./get_identity.sh
-```
-
 ## Useful commands
 ### Check Aptos logs
 ```
-docker logs -f aptos-fullnode-1 --tail 50
+docker logs -f aptos-fullnode --tail 50
 ```
 
 ### Check sync status
@@ -68,5 +57,5 @@ curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_state_sync_version | grep 
 
 ### Restart service
 ```
-docker restart aptos-fullnode-1
+docker restart aptos-fullnode
 ```

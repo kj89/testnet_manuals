@@ -20,13 +20,7 @@ If you want to setup fullnode manually follow the steps below
 sudo apt update && sudo apt upgrade -y
 ```
 
-## 2. Install dependencies
-```
-sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && chmod +x /usr/local/bin/yq
-sudo apt-get install jq -y
-```
-
-## 3. Install docker
+## 2. Install docker
 ```
 sudo apt-get install ca-certificates curl gnupg lsb-release -y
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -35,55 +29,16 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 ```
 
-## 4. Install docker compose
+## 3. Download configs
 ```
-mkdir -p ~/.docker/cli-plugins/
-curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
-chmod +x ~/.docker/cli-plugins/docker-compose
-sudo chown $USER /var/run/docker.sock
-```
-
-## 5. Download configs
-```
-mkdir $HOME/aptos && cd $HOME/aptos
-wget -qO docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/docker-compose.yaml
-wget -qO public_full_node.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/public_full_node/public_full_node.yaml
-wget -qO genesis.blob https://devnet.aptoslabs.com/genesis.blob
-wget -qO waypoint.txt https://devnet.aptoslabs.com/waypoint.txt
+mkdir aptos-fullnode && cd aptos-fullnode
+mkdir data && \
+curl -O https://raw.githubusercontent.com/aptos-labs/aptos-core/devnet/config/src/config/test_data/public_full_node.yaml && \
+curl -O https://devnet.aptoslabs.com/waypoint.txt && \
+curl -O https://devnet.aptoslabs.com/genesis.blob
 ```
 
-## 6. Generate or recover your identity keys
-At this step you have two options. You can generate new identity keys or recover from existing ones. Choose option that fits you more
-
-### Option 1 - Generate new identity keys (run commands 
+## 4. Start application
 ```
-wget -qO generate_keys.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/tools/generate_keys.sh && chmod +x generate_keys.sh && ./generate_keys.sh
-```
-
-### Option 2 - Recover your keys
-If you want to recover your keys please fill out identity and run script below
-```
-echo "export KEY=<YOUR_KEY>" >> $HOME/.bash_profile
-echo "export PEER_ID=<YOUR_PEER_ID>" >> $HOME/.bash_profile
-```
-
-## Update configs
-```
-source $HOME/.bash_profile
-yq e -i '.full_node_networks[0].identity.type="from_config"' public_full_node.yaml \
-&& yq e -i '.full_node_networks[0].identity.key="'$KEY'"' public_full_node.yaml \
-&& yq e -i '.full_node_networks[0].identity.peer_id="'$PEER_ID'"' public_full_node.yaml \
-&& yq e -i '.full_node_networks[0].listen_address = "/ip4/0.0.0.0/tcp/6180"' public_full_node.yaml \
-&& yq -i '.services.fullnode.ports += "6180:6180"' docker-compose.yaml
-```
-
-## Update seeds
-```
-wget -qO seeds.yaml https://raw.githubusercontent.com/kj89/testnet_manuals/main/aptos/seeds.yaml
-yq ea -i 'select(fileIndex==0).full_node_networks[0].seeds = select(fileIndex==1).seeds | select(fileIndex==0)' $HOME/aptos/public_full_node.yaml seeds.yaml
-```
-
-# Start application
-```
-docker compose up -d
+docker run --pull=always -d -p 8080:8080 -p 9101:9101 -v $(pwd):/opt/aptos/etc -v $(pwd)/data:/opt/aptos/data --workdir /opt/aptos/etc --name=aptos-fullnode aptoslabs/validator:devnet aptos-node -f /opt/aptos/etc/public_full_node.yaml
 ```
