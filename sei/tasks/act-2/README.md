@@ -20,6 +20,7 @@ https://3pgv.notion.site/b7a73a18ef444b9483b5601bf833bae8?v=9111c2c97f2842c5aa75
 Task Sumbission form:
 https://forms.gle/YwZCK4mPiDjPkMdp6
 
+---
 ## Mission #1 - Connect wallet to Seinami Testnet (5 points)
 
 ### Acceptance criteria:
@@ -44,6 +45,7 @@ Please submit your wallet address and a screenshot that contains your wallet ad
 
 5. Fill up the submission form: https://forms.gle/YwZCK4mPiDjPkMdp6
 
+---
 ## Mission #2 - Place limit order on Vortex (long or short in any market) (5 points)
 
 ### Acceptance criteria:
@@ -79,6 +81,7 @@ Please submit a txhash of your position to the form. **Each discord, email and 
 
 7. Fill up the submission form: https://forms.gle/YwZCK4mPiDjPkMdp6
 
+---
 ## Mission #3 - Place market order on Vortex (long or short in any market) (5 points)
 
 ### Acceptance criteria:
@@ -91,14 +94,26 @@ Please submit a txhash of your position to the form. **Each discord, email and 
 
 2. Follow the same instructions described in the task above and fill up the submission form: https://forms.gle/YwZCK4mPiDjPkMdp6
 
+---
 ## Mission #4 - Place multiple Long/Short orders in one transaction (bundled order placement) in any market on Vortex. Currently this needs to be done via CLI (10 points)
 
 ### Acceptance criteria:
 Please submit a txhash of your position to the form. **Each discord, email and wallet address combination will only be counted once.**
 
 ### Instructions:
-N/A
+1. Community member `zoia queen#7436` has created great [instructions](https://craving-for-knowledge.gitbook.io/craving_for_knowledge/proekty/sei/act-2-missions/place-multiple-orders-in-one-transaction) on how to complete this task.
 
+2. After completing the instructions mentioned in a guide above you should find your multiple transaction in the explorer
+
+![image](https://user-images.githubusercontent.com/50621007/183267541-04855244-351e-4c7f-8256-789e3e3eaf14.png)
+
+3. If transaction was successful you also will see your orders updated in the Vortex app
+
+![image](https://user-images.githubusercontent.com/50621007/183267571-9e8ee95a-7730-43eb-b5f0-c387d52e26a9.png)
+
+11. Fill up the submission form: https://forms.gle/YwZCK4mPiDjPkMdp6
+
+---
 ## Mission #5 - Transfer aUSDC from ethereum testnet to sei atlantic-1 (5 points)
 
 ### Acceptance criteria:
@@ -151,6 +166,7 @@ Please submit a txhash of your position to the form. **Each discord, email and 
 
 11. Fill up the submission form: https://forms.gle/YwZCK4mPiDjPkMdp6
 
+---
 ## Mission #6 - Withdraw collateral from Vortex (5 points)
 
 ### Acceptance criteria:
@@ -159,6 +175,7 @@ Please submit a txhash to the form. **Each discord, email and wallet address co
 ### Instructions:
 N/A
 
+---
 ## Mission #7 - Get liquidated on Vortex (5 points)
 
 ### Acceptance criteria:
@@ -167,6 +184,7 @@ Please submit a txhash to the form. **Each discord, email and wallet address co
 ### Instructions:
 N/A
 
+---
 ## Mission #8 - # Vortex UI Suggestions/Bug (10 points)
 
 ### Acceptance criteria:
@@ -175,6 +193,7 @@ Please submit valid suggestions to the form. **You will be rewarded only if the
 ### Instructions:
 N/A
 
+---
 ## Mission #9 - Report a backend bug  (20/30/40 points)
 
 ### Acceptance criteria:
@@ -183,6 +202,7 @@ Reward varies according to bug severity
 ### Instructions:
 N/A
 
+---
 ## Mission #10 - Deploy a DeFi-related smart contract via governance proposal (50 points)
 
 ### Acceptance criteria:
@@ -191,6 +211,7 @@ Please follow [this instruction](https://docs.seinetwork.io/smart-contracts-and-
 ### Instructions:
 N/A
 
+---
 ## Mission #11 - Withdraw collateral from Vortex (5 points)
 
 ### Acceptance criteria:
@@ -199,6 +220,7 @@ Please submit a txhash to the form. **Each discord, email and wallet address co
 ### Instructions:
 N/A
 
+---
 ## Mission #12 - Have 100 unique users interact with your deployed smart contract (20 points)
 
 ### Acceptance criteria:
@@ -207,6 +229,7 @@ Please submit the 100 txnes’ txhash, and separate them with comma to the form.
 ### Instructions:
 N/A
 
+---
 ## Mission #13 - Contribute code or documentation to sei network (Variable)
 
 ### Acceptance criteria:
