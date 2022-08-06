@@ -14,6 +14,12 @@
 
 # Sei Testnet Act-2
 
+Act-2 Mission details:
+https://3pgv.notion.site/b7a73a18ef444b9483b5601bf833bae8?v=9111c2c97f2842c5aa75b8d5e5b00a1e
+
+Task Sumbission form:
+https://forms.gle/YwZCK4mPiDjPkMdp6
+
 ## Mission #1 - Connect wallet to Seinami Testnet (5 points)
 
 ### Acceptance criteria:
