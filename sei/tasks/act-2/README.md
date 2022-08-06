@@ -105,7 +105,51 @@ N/A
 Please submit a txhash of your position to the form. **Each discord, email and wallet address combination will only be counted once.**
 
 ### Instructions:
-N/A
+1. Create new wallet in Metamask extension and switch to `Ropsten Test Network`
+
+![image](https://user-images.githubusercontent.com/50621007/183260817-a289f38a-45d9-499d-86d9-608d5c369849.png)
+
+2. Top up your wallet with testnet tokens. Navigate to `#atlantic-1-faucet` channel and request for tokens
+```
+!faucet ethereum <YOUR_WALLET_ADDRESS>
+```
+
+![image](https://user-images.githubusercontent.com/50621007/183261119-c7199248-636b-416d-8704-86bd055f196a.png)
+
+3. Navigate to https://faucet.egorfine.com/ and use daucet to get some testnet ETH. Funds should arive within half an hour.
+
+![image](https://user-images.githubusercontent.com/50621007/183260909-979bc476-76ec-406e-96d6-fa7c45957ff3.png)
+
+4. Import custom aUSDC token into your Metamask wallet
+- Token Contract Address - `0x526f0A95EDC3DF4CBDB7bb37d4F7Ed451dB8e369`
+
+![image](https://user-images.githubusercontent.com/50621007/183261025-ae470d62-f580-44dd-a444-a47fb1ea4a39.png)
+
+5. You should see your 0.85 aUSDC that you got from discord faucet
+
+![image](https://user-images.githubusercontent.com/50621007/183261251-099fbdce-f8fd-4e46-adef-8236af316ce9.png)
+
+6. Navigate to https://trade.vortexprotocol.io/bridge, input your `Sei Testnet` wallet address and get `aUSDC Deposit Address`
+
+![image](https://user-images.githubusercontent.com/50621007/183261323-f0ed341c-010e-433c-b60d-028ded8f88da.png)
+
+7. It will generate `Deposit Address` where we should send our tokens using Metamask wallet
+
+![image](https://user-images.githubusercontent.com/50621007/183261383-4276939c-69fb-4c7d-b392-837964353848.png)
+
+8. Send your 0.85 aUSDC to `Deposit Address`
+
+![image](https://user-images.githubusercontent.com/50621007/183261569-007f230e-0793-43c9-ad13-5210f7f0a669.png)
+
+9. Save the transaction id. You will have to provide it in the form together with the prove screenshot that funds have arrived to your `Sei Testnet` wallet
+
+![image](https://user-images.githubusercontent.com/50621007/183265268-10ad628d-c03c-4bcc-9c6f-f0e3de4d0752.png)
+
+10. It can take up to 30 minutes for funds to arrive to your `Sei Testnet` wallet. Remember that moving fund through the bridge will cost you commission.
+
+![image](https://user-images.githubusercontent.com/50621007/183264031-379ab68f-b4f6-4dc2-86fa-57753a06341a.png)
+
+11. Fill up the submission form: https://forms.gle/YwZCK4mPiDjPkMdp6
 
 ## Mission #6 - Withdraw collateral from Vortex (5 points)
 
