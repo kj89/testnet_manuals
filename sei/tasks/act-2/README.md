@@ -101,9 +101,9 @@ Please submit a txhash of your position to the form. **Each discord, email and 
 Please submit a txhash of your position to the form. **Each discord, email and wallet address combination will only be counted once.**
 
 ### Instructions:
-1. Community member `zoia queen#7436` has created great [instructions](https://craving-for-knowledge.gitbook.io/craving_for_knowledge/proekty/sei/act-2-missions/place-multiple-orders-in-one-transaction) on how to complete this task.
+1. Community member `zoia queen#7436` have shared great [instructions](https://craving-for-knowledge.gitbook.io/craving_for_knowledge/proekty/sei/act-2-missions/place-multiple-orders-in-one-transaction) to complete this task.
 
-2. After completing the instructions mentioned in a guide above you should find your multiple transaction in the explorer
+2. After completing the instructions mentioned in a guide above, you should find your multiple transaction in the explorer
 
 ![image](https://user-images.githubusercontent.com/50621007/183267541-04855244-351e-4c7f-8256-789e3e3eaf14.png)
 
