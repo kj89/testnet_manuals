@@ -263,7 +263,7 @@ Examples:
 > NOTE: This will delete your relayer from the machine!
 ```
 sudo systemctl stop relayerd
-sudo systemctl enable relayerd
+sudo systemctl disable relayerd
 sudo rm /etc/systemd/system/relayerd* -rf
 sudo rm $(which rly) -rf
 sudo rm -rf $HOME/.relayer
