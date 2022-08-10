@@ -272,4 +272,5 @@ rm /etc/systemd/system/agoricd.service -rf
 rm $(which ag0) -rf
 rm $HOME/.agoric* -rf
 rm $HOME/ag0 -rf
+sed -i '/emerynet/d' ~/.bash_profile
 ```
