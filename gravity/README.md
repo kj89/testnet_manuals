@@ -65,23 +65,23 @@ source $HOME/.bash_profile
 
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
-gravityd status 2>&1 | jq .SyncInfo --node http://localhost:24657
+gravityd status 2>&1 | jq .SyncInfo
 ```
 
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
-gravityd keys add $WALLET --node http://localhost:24657
+gravityd keys add $WALLET
 ```
 
 (OPTIONAL) To recover your wallet using seed phrase
 ```
-gravityd keys add $WALLET --recover --node http://localhost:24657
+gravityd keys add $WALLET --recover
 ```
 
 To get current list of wallets
 ```
-gravityd keys list --node http://localhost:24657
+gravityd keys list
 ```
 
 ### Save wallet info
@@ -99,7 +99,7 @@ Before creating validator please make sure that you have at least 1 strd (1 strd
 
 To check your wallet balance:
 ```
-gravityd query bank balances $GRAVITY_WALLET_ADDRESS --node http://localhost:24657
+gravityd query bank balances $GRAVITY_WALLET_ADDRESS
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
@@ -114,8 +114,7 @@ gravityd tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(gravityd tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id $GRAVITY_CHAIN_ID \
-  --node http://localhost:24657
+  --chain-id $GRAVITY_CHAIN_ID
 ```
 
 ## Security
@@ -190,22 +189,22 @@ sudo systemctl restart gravityd
 ### Node info
 Synchronization info
 ```
-gravityd status 2>&1 | jq .SyncInfo --node http://localhost:24657
+gravityd status 2>&1 | jq .SyncInfo
 ```
 
 Validator info
 ```
-gravityd status 2>&1 | jq .ValidatorInfo --node http://localhost:24657
+gravityd status 2>&1 | jq .ValidatorInfo
 ```
 
 Node info
 ```
-gravityd status 2>&1 | jq .NodeInfo --node http://localhost:24657
+gravityd status 2>&1 | jq .NodeInfo
 ```
 
 Show node id
 ```
-gravityd tendermint show-node-id --node http://localhost:24657
+gravityd tendermint show-node-id
 ```
 
 ### Wallet operations
@@ -216,48 +215,48 @@ gravityd keys list
 
 Recover wallet
 ```
-gravityd keys add $WALLET --recover --node http://localhost:24657
+gravityd keys add $WALLET --recover
 ```
 
 Delete wallet
 ```
-gravityd keys delete $WALLET --node http://localhost:24657
+gravityd keys delete $WALLET
 ```
 
 Get wallet balance
 ```
-gravityd query bank balances $GRAVITY_WALLET_ADDRESS --node http://localhost:24657
+gravityd query bank balances $GRAVITY_WALLET_ADDRESS
 ```
 
 Transfer funds
 ```
-gravityd tx bank send $GRAVITY_WALLET_ADDRESS <TO_GRAVITY_WALLET_ADDRESS> 10000000ugraviton --node http://localhost:24657
+gravityd tx bank send $GRAVITY_WALLET_ADDRESS <TO_GRAVITY_WALLET_ADDRESS> 10000000ugraviton
 ```
 
 ### Voting
 ```
-gravityd tx gov vote 1 yes --from $WALLET --chain-id=$GRAVITY_CHAIN_ID --node http://localhost:24657
+gravityd tx gov vote 1 yes --from $WALLET --chain-id=$GRAVITY_CHAIN_ID
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-gravityd tx staking delegate $GRAVITY_VALOPER_ADDRESS 10000000ugraviton --from=$WALLET --chain-id=$GRAVITY_CHAIN_ID --gas=auto --node http://localhost:24657
+gravityd tx staking delegate $GRAVITY_VALOPER_ADDRESS 10000000ugraviton --from=$WALLET --chain-id=$GRAVITY_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-gravityd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ugraviton --from=$WALLET --chain-id=$GRAVITY_CHAIN_ID --gas=auto --node http://localhost:24657
+gravityd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ugraviton --from=$WALLET --chain-id=$GRAVITY_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
 ```
-gravityd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$GRAVITY_CHAIN_ID --gas=auto --node http://localhost:24657
+gravityd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$GRAVITY_CHAIN_ID --gas=auto
 ```
 
 Withdraw rewards with commision
 ```
-gravityd tx distribution withdraw-rewards $GRAVITY_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$GRAVITY_CHAIN_ID --node http://localhost:24657
+gravityd tx distribution withdraw-rewards $GRAVITY_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$GRAVITY_CHAIN_ID
 ```
 
 ### Validator management
@@ -269,8 +268,7 @@ gravityd tx staking edit-validator \
   --website="<your_website>" \
   --details="<your_validator_description>" \
   --chain-id=$GRAVITY_CHAIN_ID \
-  --from=$WALLET \
-  --node http://localhost:24657
+  --from=$WALLET
 ```
 
 Unjail validator
@@ -280,7 +278,7 @@ gravityd tx slashing unjail \
   --from=$WALLET \
   --chain-id=$GRAVITY_CHAIN_ID \
   --gas=auto \
-  --node http://localhost:24657
+  
 ```
 
 ### Delete node
