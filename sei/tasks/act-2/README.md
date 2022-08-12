@@ -33,7 +33,7 @@ https://forms.gle/YwZCK4mPiDjPkMdp6
 Please submit your wallet address and a screenshot that contains your wallet address to the form. **Each discord, email and wallet address combination will only be counted once.**
 
 ### Instructions:
-1. Create new wallet in Keplr extension
+1. Use the same wallet you used for Act-1
 
 ![image](https://user-images.githubusercontent.com/50621007/183244332-9b5013a6-d87b-4e9b-b842-91551ab4f9ee.png)
 
