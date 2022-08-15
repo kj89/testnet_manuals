@@ -224,7 +224,12 @@ ag0 tx gov vote 1 yes --from $WALLET --chain-id=$CHAIN_ID
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-ag0 tx staking delegate $VALOPER_ADDRESS 10000000ubld --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+ag0 tx staking delegate $VALOPER_ADDRESS 750000000ubld --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+```
+
+Unbound stake
+```
+ag0 tx staking unbond $VALOPER_ADDRESS 750000000ubld --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
