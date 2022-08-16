@@ -20,6 +20,12 @@
 
 # Kujira Oracle Guide
 
+### Introduction
+Validators are required to submit price feeds for the on-chain oracle. The price-feeder app can get price data from multiple providers and submit oracle votes to perform this duty.
+
+### Requirements
+price-feeder needs access to a running node's RPC and gRPC ports. This guide assumes you have it on the same machine and uses localhost with default ports 13657 and 13090. Change these in config.toml as needed.
+
 ## 1. Update system
 ```
 sudo apt update && sudo apt upgrade -y
@@ -46,21 +52,22 @@ sdk: v0.45.6
 go: go1.18.2 linux/amd64
 ```
 
-## 4. Create the wallet and a password for the keyring.
+## 4. Create oracle wallet
+This wallet will be relatively insecure, only store the funds you need to send votes.
+
+### (OPTION 1) Generate new wallet
 ```
 kujirad keys add oracle
 ```
-or
+### (OPTION 2) Recover  wallet
 ```
 kujirad keys add oracle --recover
 ```
 
 ## 5. Load oracle address into system variables
-step 1
 ```
 KUJIRA_ORACLE_ADDRESS=$(kujirad keys show oracle -a)
 ```
-step 2
 ```
 echo 'export KUJIRA_ORACLE_ADDRESS='${KUJIRA_ORACLE_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
