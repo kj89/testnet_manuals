@@ -199,6 +199,11 @@ Update sui version
 wget -qO update.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/sui/tools/update.sh && chmod +x update.sh && ./update.sh
 ```
 
+Update sui version with database cleanup
+```
+wget -qO update_db_cleanup.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/sui/tools/update_db_cleanup.sh && chmod +x update_db_cleanup.sh && ./update_db_cleanup.sh
+```
+
 ## Recover your keys
 Copy your keys into `$HOME/.sui/sui_config/` directory and restart the node
 
