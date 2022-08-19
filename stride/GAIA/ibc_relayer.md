@@ -41,14 +41,14 @@ sudo apt install unzip -y
 ```
 
 ## Set up variables
-All settings below are just example for IBC Relayer between stride `STRIDE-TESTNET-2` and juno `GAIA` testnets. Please fill with your own values.
+All settings below are just example for IBC Relayer between stride `STRIDE-TESTNET-4` and juno `GAIA` testnets. Please fill with your own values.
 ```
 RELAYER_NAME='kjnodes#8455' # add your Discord username here
 ```
 
 ### Chain A
 ```
-CHAIN_ID_A='STRIDE-TESTNET-2'
+CHAIN_ID_A='STRIDE-TESTNET-4'
 RPC_ADDR_A='127.0.0.1:16657'
 GRPC_ADDR_A='127.0.0.1:16090'
 ACCOUNT_PREFIX_A='stride'
@@ -187,8 +187,8 @@ hermes health-check
 Healthy output should look like:
 ```
 2022-07-21T19:38:15.571398Z  INFO ThreadId(01) using default configuration from '/root/.hermes/config.toml'
-2022-07-21T19:38:15.573884Z  INFO ThreadId(01) [STRIDE-TESTNET-2] performing health check...
-2022-07-21T19:38:15.614273Z  INFO ThreadId(01) chain is healthy chain=STRIDE-TESTNET-2
+2022-07-21T19:38:15.573884Z  INFO ThreadId(01) [STRIDE-TESTNET-4] performing health check...
+2022-07-21T19:38:15.614273Z  INFO ThreadId(01) chain is healthy chain=STRIDE-TESTNET-4
 2022-07-21T19:38:15.614313Z  INFO ThreadId(01) [GAIA] performing health check...
 2022-07-21T19:38:15.627747Z  INFO ThreadId(01) chain is healthy chain=GAIA
 Success: performed health check for all chains in the config
@@ -210,7 +210,7 @@ hermes keys add --chain ${CHAIN_ID_B} --mnemonic-file $HOME/.hermes/${CHAIN_ID_B
 Successful output should look like:
 ```
 2022-07-21T19:54:13.778550Z  INFO ThreadId(01) using default configuration from '/root/.hermes/config.toml'
-Success: Restored key 'wallet' (stride1eardm7w7v9el9d3khkwlj9stdj9hexnfv8pea8) on chain STRIDE-TESTNET-2
+Success: Restored key 'wallet' (stride1eardm7w7v9el9d3khkwlj9stdj9hexnfv8pea8) on chain STRIDE-TESTNET-4
 2022-07-21T19:54:14.956171Z  INFO ThreadId(01) using default configuration from '/root/.hermes/config.toml'
 Success: Restored key 'wallet' (juno1ypnerpxuqezq2vfqxm74ddkuqnektveezh5uaa) on chain GAIA
 ```
@@ -246,7 +246,7 @@ journalctl -u hermesd -f -o cat
 ## Successfull logs should look like this:
 ```
 2022-07-27T22:43:08.019651Z  INFO ThreadId(01) Scanned chains:
-2022-07-27T22:43:08.019675Z  INFO ThreadId(01) # Chain: STRIDE-TESTNET-2
+2022-07-27T22:43:08.019675Z  INFO ThreadId(01) # Chain: STRIDE-TESTNET-4
   - Client: 07-tendermint-0
     * Connection: connection-0
       | State: OPEN
@@ -296,46 +296,46 @@ journalctl -u hermesd -f -o cat
         | Port: icahost
         | State: OPEN
         | Counterparty: channel-1
-2022-07-27T22:43:08.020020Z  INFO ThreadId(01) connection is Open, state on destination chain is Open chain=STRIDE-TESTNET-2 connection=connection-0 counterparty_chain=GAIA
-2022-07-27T22:43:08.020035Z  INFO ThreadId(01) connection is already open, not spawning Connection worker chain=STRIDE-TESTNET-2 connection=connection-0
-2022-07-27T22:43:08.020045Z  INFO ThreadId(01) no connection workers were spawn chain=STRIDE-TESTNET-2 connection=connection-0
-2022-07-27T22:43:08.020052Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=STRIDE-TESTNET-2 counterparty_chain=GAIA channel=channel-0
-2022-07-27T22:43:08.024013Z  INFO ThreadId(01) spawned client worker: client::GAIA->STRIDE-TESTNET-2:07-tendermint-0
-2022-07-27T22:43:08.028421Z  INFO ThreadId(01) done spawning channel workers chain=STRIDE-TESTNET-2 channel=channel-0
-2022-07-27T22:43:08.028473Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=STRIDE-TESTNET-2 counterparty_chain=GAIA channel=channel-1
-2022-07-27T22:43:08.031579Z  INFO ThreadId(01) done spawning channel workers chain=STRIDE-TESTNET-2 channel=channel-1
-2022-07-27T22:43:08.031606Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=STRIDE-TESTNET-2 counterparty_chain=GAIA channel=channel-2
-2022-07-27T22:43:08.034669Z  INFO ThreadId(01) done spawning channel workers chain=STRIDE-TESTNET-2 channel=channel-2
-2022-07-27T22:43:08.034698Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=STRIDE-TESTNET-2 counterparty_chain=GAIA channel=channel-3
-2022-07-27T22:43:08.037346Z  INFO ThreadId(01) done spawning channel workers chain=STRIDE-TESTNET-2 channel=channel-3
-2022-07-27T22:43:08.037363Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=STRIDE-TESTNET-2 counterparty_chain=GAIA channel=channel-4
-2022-07-27T22:43:08.041229Z  INFO ThreadId(01) done spawning channel workers chain=STRIDE-TESTNET-2 channel=channel-4
-2022-07-27T22:43:08.041412Z  INFO ThreadId(01) spawning Wallet worker: wallet::STRIDE-TESTNET-2
-2022-07-27T22:43:08.041445Z  INFO ThreadId(01) connection is Open, state on destination chain is Open chain=GAIA connection=connection-0 counterparty_chain=STRIDE-TESTNET-2
+2022-07-27T22:43:08.020020Z  INFO ThreadId(01) connection is Open, state on destination chain is Open chain=STRIDE-TESTNET-4 connection=connection-0 counterparty_chain=GAIA
+2022-07-27T22:43:08.020035Z  INFO ThreadId(01) connection is already open, not spawning Connection worker chain=STRIDE-TESTNET-4 connection=connection-0
+2022-07-27T22:43:08.020045Z  INFO ThreadId(01) no connection workers were spawn chain=STRIDE-TESTNET-4 connection=connection-0
+2022-07-27T22:43:08.020052Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=STRIDE-TESTNET-4 counterparty_chain=GAIA channel=channel-0
+2022-07-27T22:43:08.024013Z  INFO ThreadId(01) spawned client worker: client::GAIA->STRIDE-TESTNET-4:07-tendermint-0
+2022-07-27T22:43:08.028421Z  INFO ThreadId(01) done spawning channel workers chain=STRIDE-TESTNET-4 channel=channel-0
+2022-07-27T22:43:08.028473Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=STRIDE-TESTNET-4 counterparty_chain=GAIA channel=channel-1
+2022-07-27T22:43:08.031579Z  INFO ThreadId(01) done spawning channel workers chain=STRIDE-TESTNET-4 channel=channel-1
+2022-07-27T22:43:08.031606Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=STRIDE-TESTNET-4 counterparty_chain=GAIA channel=channel-2
+2022-07-27T22:43:08.034669Z  INFO ThreadId(01) done spawning channel workers chain=STRIDE-TESTNET-4 channel=channel-2
+2022-07-27T22:43:08.034698Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=STRIDE-TESTNET-4 counterparty_chain=GAIA channel=channel-3
+2022-07-27T22:43:08.037346Z  INFO ThreadId(01) done spawning channel workers chain=STRIDE-TESTNET-4 channel=channel-3
+2022-07-27T22:43:08.037363Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=STRIDE-TESTNET-4 counterparty_chain=GAIA channel=channel-4
+2022-07-27T22:43:08.041229Z  INFO ThreadId(01) done spawning channel workers chain=STRIDE-TESTNET-4 channel=channel-4
+2022-07-27T22:43:08.041412Z  INFO ThreadId(01) spawning Wallet worker: wallet::STRIDE-TESTNET-4
+2022-07-27T22:43:08.041445Z  INFO ThreadId(01) connection is Open, state on destination chain is Open chain=GAIA connection=connection-0 counterparty_chain=STRIDE-TESTNET-4
 2022-07-27T22:43:08.041453Z  INFO ThreadId(01) connection is already open, not spawning Connection worker chain=GAIA connection=connection-0
 2022-07-27T22:43:08.041462Z  INFO ThreadId(01) no connection workers were spawn chain=GAIA connection=connection-0
-2022-07-27T22:43:08.041470Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=GAIA counterparty_chain=STRIDE-TESTNET-2 channel=channel-0
-2022-07-27T22:43:08.048399Z  INFO ThreadId(01) spawned client worker: client::STRIDE-TESTNET-2->GAIA:07-tendermint-0
+2022-07-27T22:43:08.041470Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=GAIA counterparty_chain=STRIDE-TESTNET-4 channel=channel-0
+2022-07-27T22:43:08.048399Z  INFO ThreadId(01) spawned client worker: client::STRIDE-TESTNET-4->GAIA:07-tendermint-0
 2022-07-27T22:43:08.053737Z  INFO ThreadId(01) done spawning channel workers chain=GAIA channel=channel-0
-2022-07-27T22:43:08.053770Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=GAIA counterparty_chain=STRIDE-TESTNET-2 channel=channel-1
+2022-07-27T22:43:08.053770Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=GAIA counterparty_chain=STRIDE-TESTNET-4 channel=channel-1
 2022-07-27T22:43:08.057395Z  INFO ThreadId(01) done spawning channel workers chain=GAIA channel=channel-1
-2022-07-27T22:43:08.057441Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=GAIA counterparty_chain=STRIDE-TESTNET-2 channel=channel-2
+2022-07-27T22:43:08.057441Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=GAIA counterparty_chain=STRIDE-TESTNET-4 channel=channel-2
 2022-07-27T22:43:08.061244Z  INFO ThreadId(01) done spawning channel workers chain=GAIA channel=channel-2
-2022-07-27T22:43:08.061296Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=GAIA counterparty_chain=STRIDE-TESTNET-2 channel=channel-3
+2022-07-27T22:43:08.061296Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=GAIA counterparty_chain=STRIDE-TESTNET-4 channel=channel-3
 2022-07-27T22:43:08.064713Z  INFO ThreadId(01) done spawning channel workers chain=GAIA channel=channel-3
-2022-07-27T22:43:08.064742Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=GAIA counterparty_chain=STRIDE-TESTNET-2 channel=channel-4
+2022-07-27T22:43:08.064742Z  INFO ThreadId(01) channel is OPEN, state on destination chain is OPEN chain=GAIA counterparty_chain=STRIDE-TESTNET-4 channel=channel-4
 2022-07-27T22:43:08.071960Z  INFO ThreadId(01) done spawning channel workers chain=GAIA channel=channel-4
 2022-07-27T22:43:08.072413Z  INFO ThreadId(01) spawning Wallet worker: wallet::GAIA
 2022-07-27T22:43:08.079299Z  INFO ThreadId(01) Hermes has started
-2022-07-27T22:43:43.479282Z ERROR ThreadId(56) [STRIDE-TESTNET-2] error during batch processing: supervisor was not able to spawn chain runtime: missing chain config for 'uni-3' in configuration file
-2022-07-27T22:44:11.376229Z  INFO ThreadId(442) packet_cmd{src_chain=STRIDE-TESTNET-2 src_port=icacontroller-GAIA.DELEGATION src_channel=channel-1 dst_chain=GAIA}: pulled packet data for 0 events; events_total=1 events_left=0
-2022-07-27T22:44:12.592627Z  INFO ThreadId(442) packet_cmd{src_chain=STRIDE-TESTNET-2 src_port=icacontroller-GAIA.DELEGATION src_channel=channel-1 dst_chain=GAIA}:relay{odata=d9ab28da ->Destination @2-11522; len=1}: assembled batch of 2 message(s)
-2022-07-27T22:44:12.762428Z  INFO ThreadId(442) packet_cmd{src_chain=STRIDE-TESTNET-2 src_port=icacontroller-GAIA.DELEGATION src_channel=channel-1 dst_chain=GAIA}:relay{odata=d9ab28da ->Destination @2-11522; len=1}: [Async~>GAIA] response(s): 1; Ok:36394BDD136B8E2400D0DFE00735C7D688069E467F281EFE76D3943871FD8D04
-2022-07-27T22:44:12.762463Z  INFO ThreadId(442) packet_cmd{src_chain=STRIDE-TESTNET-2 src_port=icacontroller-GAIA.DELEGATION src_channel=channel-1 dst_chain=GAIA}:relay{odata=d9ab28da ->Destination @2-11522; len=1}: success
-2022-07-27T22:44:20.873424Z  INFO ThreadId(453) packet_cmd{src_chain=GAIA src_port=icahost src_channel=channel-4 dst_chain=STRIDE-TESTNET-2}: pulled packet data for 0 events; events_total=1 events_left=0
-2022-07-27T22:44:20.895913Z  INFO ThreadId(453) packet_cmd{src_chain=GAIA src_port=icahost src_channel=channel-4 dst_chain=STRIDE-TESTNET-2}:relay{odata=d169839a ->Destination @0-16135; len=1}: assembled batch of 2 message(s)
-2022-07-27T22:44:20.902820Z  INFO ThreadId(453) packet_cmd{src_chain=GAIA src_port=icahost src_channel=channel-4 dst_chain=STRIDE-TESTNET-2}:relay{odata=d169839a ->Destination @0-16135; len=1}: [Async~>STRIDE-TESTNET-2] response(s): 1; Ok:150EEF4C0EB3EF413115C192C7A5575190AA1E0B8EFC8A52389E556C16A71C57
-2022-07-27T22:44:20.902852Z  INFO ThreadId(453) packet_cmd{src_chain=GAIA src_port=icahost src_channel=channel-4 dst_chain=STRIDE-TESTNET-2}:relay{odata=d169839a ->Destination @0-16135; len=1}: success
+2022-07-27T22:43:43.479282Z ERROR ThreadId(56) [STRIDE-TESTNET-4] error during batch processing: supervisor was not able to spawn chain runtime: missing chain config for 'uni-3' in configuration file
+2022-07-27T22:44:11.376229Z  INFO ThreadId(442) packet_cmd{src_chain=STRIDE-TESTNET-4 src_port=icacontroller-GAIA.DELEGATION src_channel=channel-1 dst_chain=GAIA}: pulled packet data for 0 events; events_total=1 events_left=0
+2022-07-27T22:44:12.592627Z  INFO ThreadId(442) packet_cmd{src_chain=STRIDE-TESTNET-4 src_port=icacontroller-GAIA.DELEGATION src_channel=channel-1 dst_chain=GAIA}:relay{odata=d9ab28da ->Destination @2-11522; len=1}: assembled batch of 2 message(s)
+2022-07-27T22:44:12.762428Z  INFO ThreadId(442) packet_cmd{src_chain=STRIDE-TESTNET-4 src_port=icacontroller-GAIA.DELEGATION src_channel=channel-1 dst_chain=GAIA}:relay{odata=d9ab28da ->Destination @2-11522; len=1}: [Async~>GAIA] response(s): 1; Ok:36394BDD136B8E2400D0DFE00735C7D688069E467F281EFE76D3943871FD8D04
+2022-07-27T22:44:12.762463Z  INFO ThreadId(442) packet_cmd{src_chain=STRIDE-TESTNET-4 src_port=icacontroller-GAIA.DELEGATION src_channel=channel-1 dst_chain=GAIA}:relay{odata=d9ab28da ->Destination @2-11522; len=1}: success
+2022-07-27T22:44:20.873424Z  INFO ThreadId(453) packet_cmd{src_chain=GAIA src_port=icahost src_channel=channel-4 dst_chain=STRIDE-TESTNET-4}: pulled packet data for 0 events; events_total=1 events_left=0
+2022-07-27T22:44:20.895913Z  INFO ThreadId(453) packet_cmd{src_chain=GAIA src_port=icahost src_channel=channel-4 dst_chain=STRIDE-TESTNET-4}:relay{odata=d169839a ->Destination @0-16135; len=1}: assembled batch of 2 message(s)
+2022-07-27T22:44:20.902820Z  INFO ThreadId(453) packet_cmd{src_chain=GAIA src_port=icahost src_channel=channel-4 dst_chain=STRIDE-TESTNET-4}:relay{odata=d169839a ->Destination @0-16135; len=1}: [Async~>STRIDE-TESTNET-4] response(s): 1; Ok:150EEF4C0EB3EF413115C192C7A5575190AA1E0B8EFC8A52389E556C16A71C57
+2022-07-27T22:44:20.902852Z  INFO ThreadId(453) packet_cmd{src_chain=GAIA src_port=icahost src_channel=channel-4 dst_chain=STRIDE-TESTNET-4}:relay{odata=d169839a ->Destination @0-16135; len=1}: success
 ```
 
 You also should see `Update Client (Ibc)` transactions appearing in the explorer https://stride.explorers.guru/account/<STRIDE_WALLET_ADDRESS>
