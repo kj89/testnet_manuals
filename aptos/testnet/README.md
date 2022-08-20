@@ -72,6 +72,10 @@ source $HOME/.bash_profile
 1. Come back to the Aptos Community page and register your node by clicking on Step 4: `NODE REGISTRATION` button.
 
 2. Provide the details of your validator node on this node registration screen, all the public key information you need is in the `~/$WORKSPACE/keys/public-keys.yaml` file (please don't enter anything from private keys).
+```
+cat ~/$WORKSPACE/keys/public-keys.yaml
+```
+
 - *OWNER KEY*: the first wallet public key. From `Settings -> Credentials`
 - *CONSENSUS KEY*: **consensus_public_key** from `public-keys.yaml`
 - *CONSENSUS POP*: **consensus_proof_of_possession** from `public-keys.yaml`
