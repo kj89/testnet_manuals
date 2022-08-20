@@ -112,8 +112,5 @@ echo -e "\e[1m\e[39m    curl 127.0.0.1:9101/metrics 2> /dev/null | grep aptos_st
 echo -e "\e[1m\e[32mTo view validator node logs: \e[0m" 
 echo -e "\e[1m\e[39m    docker logs -f testnet-validator-1 --tail 50 \n \e[0m" 
 
-echo -e "\e[1m\e[32mTo restart: \e[0m" 
-echo -e "\e[1m\e[39m    docker-compose restart \n \e[0m" 
-
 echo -e "\e[1m\e[32mTo view keys: \e[0m" 
 echo -e "\e[1m\e[39m    cat ~/$WORKSPACE/keys/public-keys.yaml \n \e[0m" 

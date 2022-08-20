@@ -108,7 +108,7 @@ docker restart testnet-validator-1
 ## Clean up preveous installation
 (**WARNING!**) Before this step make sure you have backed up your Aptos keys as this step will completely remove your Aptos working directory
 ```
-cd ~/$WORKSPACE && docker compose down; cd
+cd ~/$WORKSPACE && docker-compose down; cd
 rm ~/$WORKSPACE -rf
 docker volume rm aptos-validator
 unset NODENAME
