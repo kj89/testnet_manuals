@@ -1,3 +1,25 @@
+<p style="font-size:14px" align="right">
+<a href="https://t.me/kjnotes" target="_blank">Join our telegram <img src="https://user-images.githubusercontent.com/50621007/183283867-56b4d69f-bc6e-4939-b00a-72aa019d1aea.png" width="30"/></a>
+<a href="https://discord.gg/JqQNcwff2e" target="_blank">Join our discord <img src="https://user-images.githubusercontent.com/50621007/176236430-53b0f4de-41ff-41f7-92a1-4233890a90c8.png" width="30"/></a>
+<a href="https://kjnodes.com/" target="_blank">Visit our website <img src="https://user-images.githubusercontent.com/50621007/168689709-7e537ca6-b6b8-4adc-9bd0-186ea4ea4aed.png" width="30"/></a>
+</p>
+
+<p style="font-size:14px" align="right">
+<a href="https://hetzner.cloud/?ref=y8pQKS2nNy7i" target="_blank">Deploy your VPS using our referral link to get 20€ bonus <img src="https://user-images.githubusercontent.com/50621007/174612278-11716b2a-d662-487e-8085-3686278dd869.png" width="30"/></a>
+</p>
+<p style="font-size:14px" align="right">
+<a href="https://m.do.co/c/17b61545ca3a" target="_blank">Deploy your VPS using our referral link to get 100$ free bonus for 60 days <img src="https://user-images.githubusercontent.com/50621007/183284313-adf81164-6db4-4284-9ea0-bcb841936350.png" width="30"/></a>
+</p>
+<p style="font-size:14px" align="right">
+<a href="https://www.vultr.com/?ref=7418642" target="_blank">Deploy your VPS using our referral link to get 100$ free bonus <img src="https://user-images.githubusercontent.com/50621007/183284971-86057dc2-2009-4d40-a1d4-f0901637033a.png" width="30"/></a>
+</p>
+
+<p align="center">
+  <img width="100" height="auto" src="https://user-images.githubusercontent.com/50621007/165930080-4f541b46-1ae3-461c-acc9-de72d7ab93b7.png">
+</p>
+
+![image](https://user-images.githubusercontent.com/50621007/185746675-68afb222-02c7-4759-be04-930116c9745e.png)
+
 # Aptos AIT3 Registration
 
 To participate in the AIT-3 program, follow the below steps. Use these steps as a checklist to keep track of your progress. Click on the links in each step for a detailed documentation.
@@ -76,18 +98,22 @@ source $HOME/.bash_profile
 cat ~/$WORKSPACE/keys/public-keys.yaml
 ```
 
+![image](https://user-images.githubusercontent.com/50621007/185745845-7a507495-bc86-4c66-ac49-d8a6273c4fb9.png)
+
 - *OWNER KEY*: the first wallet public key. From `Settings -> Credentials`
 - *CONSENSUS KEY*: **consensus_public_key** from `public-keys.yaml`
 - *CONSENSUS POP*: **consensus_proof_of_possession** from `public-keys.yaml`
 - *ACCOUNT KEY*: **account_public_key** from `public-keys.yaml`
 - *VALIDATOR NETWORK KEY*: **validator_network_public_key** from `public-keys.yaml`
 
+![image](https://user-images.githubusercontent.com/50621007/185746074-4bc199a5-19d3-45ad-b506-dfa584b6b294.png)
+
 4. Next, click on VALIDATE NODE. If your node passes healthcheck, you will be prompted to complete the identity verification process.
 > The Aptos team will perform a node health check on your validator, using the Node Health Checker. When Aptos confirms that your node is healthy, you will be asked to complete the KYC process.
 
-5. Wait for the selection announcement. If you are selected, the Aptos team will airdrop coins into your owner wallet address. If you do not see airdropped coins in your owner wallet, you were not selected.
+![image](https://user-images.githubusercontent.com/50621007/185746723-87d7476a-9a01-4cbc-bbec-3922468e59c8.png)
 
-6. If you are selected, then proceed to Iniatilize staking pool step.
+5. Wait for the selection announcement. If you are selected, the Aptos team will airdrop coins into your owner wallet address. If you do not see airdropped coins in your owner wallet, you were not selected.
 
 ## Useful commands
 ### Check validator node logs
