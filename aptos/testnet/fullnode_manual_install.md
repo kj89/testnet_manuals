@@ -37,10 +37,9 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 
 ## 3. Install docker compose
 ```
-mkdir -p ~/.docker/cli-plugins/
-curl -SL https://github.com/docker/compose/releases/download/v2.6.1/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
-chmod +x ~/.docker/cli-plugins/docker-compose
-sudo chown $USER /var/run/docker.sock
+docker_compose_version=$(wget -qO- https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name")
+sudo wget -O /usr/bin/docker-compose "https://github.com/docker/compose/releases/download/${docker_compose_version}/docker-compose-`uname -s`-`uname -m`"
+sudo chmod +x /usr/bin/docker-compose
 ```
 
 ## 4. Install fullnode node
@@ -73,7 +72,7 @@ Press `Ctrl + X` then press `Y` and `Enter` to save changes to file
 
 ### Run docker compose
 ```
-docker compose up -d
+docker-compose up -d
 ```
 
 ## 5. Connect to your validator node and update your validator config
@@ -89,7 +88,7 @@ aptos genesis set-validator-configuration \
 Restart docker compose
 ```
 cd ~/$WORKSPACE
-docker compose restart
+docker-compose restart
 ```
 
 ## Useful commands

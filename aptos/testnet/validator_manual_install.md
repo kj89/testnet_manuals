@@ -56,15 +56,14 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 
 ## 4. Install docker compose
 ```
-mkdir -p ~/.docker/cli-plugins/
-curl -SL https://github.com/docker/compose/releases/download/v2.6.1/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
-chmod +x ~/.docker/cli-plugins/docker-compose
-sudo chown $USER /var/run/docker.sock
+docker_compose_version=$(wget -qO- https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name")
+sudo wget -O /usr/bin/docker-compose "https://github.com/docker/compose/releases/download/${docker_compose_version}/docker-compose-`uname -s`-`uname -m`"
+sudo chmod +x /usr/bin/docker-compose
 ```
 
 ## 5. Download Aptos CLI
 ```
-wget -qO aptos-cli.zip https://github.com/aptos-labs/aptos-core/releases/download/aptos-cli-0.2.0/aptos-cli-0.2.0-Ubuntu-x86_64.zip
+wget -qO aptos-cli.zip https://github.com/aptos-labs/aptos-core/releases/download/aptos-cli-v0.3.1/aptos-cli-0.3.1-Ubuntu-x86_64.zip
 sudo unzip -o aptos-cli.zip -d /usr/local/bin
 chmod +x /usr/local/bin/aptos
 rm aptos-cli.zip
@@ -84,49 +83,56 @@ wget -qO validator.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/
 ```
 
 ### Generate keys
-This will create three files: `$NODENAME.yaml`, `validator-identity.yaml`, `validator-full-node-identity.yaml` for you.
+This will create four key files under `~/$WORKSPACE/keys` directory: `public-keys.yaml`, `private-keys.yaml`, `validator-identity.yaml` and `validator-full-node-identity.yaml`
 ```
-aptos genesis generate-keys --output-dir ~/$WORKSPACE
+aptos genesis generate-keys --output-dir ~/$WORKSPACE/keys
 ```
 **IMPORTANT**: *Backup your key files somewhere safe. These key files are important for you to establish ownership of your node, 
 and you will use this information to claim your rewards later if eligible. Never share those keys with anyone else.*
 
 ### Configure validator
-> *The --full-node-host flag is optional* Only use it if you plan or already have installed fullnode on a seperate server
+This will create two YAML files in the `~/$WORKSPACE/$USERNAME` directory: `owner.yaml` and `operator.yaml`
 ```
 aptos genesis set-validator-configuration \
-  --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE \
-  --username $NODENAME \
-  --validator-host $PUBLIC_IP:6180
+    --local-repository-dir ~/$WORKSPACE \
+    --username $NODENAME \
+    --owner-public-identity-file ~/$WORKSPACE/keys/public-keys.yaml \
+    --validator-host $PUBLIC_IP:6180 \
+    --stake-amount 100000000000000
 ```
-  
+> *The --full-node-host flag is optional* Only use it if you plan or already have installed fullnode on a seperate server
+
 ### Create layout file
+Layout template file defines the node in the Aptos validatorSet.
 ```
 sudo tee layout.yaml > /dev/null <<EOF
 ---
-root_key: "F22409A93D1CD12D2FC92B5F8EB84CDCD24C348E32B3E7A720F3D2E288E63394"
+root_key: "D04470F43AB6AEAA4EB616B72128881EEF77346F2075FFE68E14BA7DEBD8095E"
 users:
   - $NODENAME
-chain_id: 40
-min_stake: 0
-max_stake: 100000
-min_lockup_duration_secs: 0
-max_lockup_duration_secs: 2592000
-epoch_duration_secs: 86400
-initial_lockup_timestamp: 1656615600
-min_price_per_gas_unit: 1
-allow_new_validators: true
+chain_id: 43
+allow_new_validators: false
+epoch_duration_secs: 7200
+is_test: true
+min_stake: 100000000000000
+min_voting_threshold: 100000000000000
+max_stake: 100000000000000000
+recurring_lockup_duration_secs: 86400
+required_proposer_stake: 100000000000000
+rewards_apy_percentage: 10
+voting_duration_secs: 43200
+voting_power_increase_limit: 20
 EOF
 ```
+> Please make sure you use the same root public key as shown in the example and same chain ID, those config will be used during registration to verify your node.
 
 ### Download Aptos Framework
 ```
-wget -qO framework.zip https://github.com/aptos-labs/aptos-core/releases/download/aptos-framework-v0.2.0/framework.zip
-unzip -o framework.zip
-rm framework.zip
+wget -qO framework.mrb https://github.com/aptos-labs/aptos-core/releases/download/aptos-framework-v0.3.0/framework.mrb -P ~/$WORKSPACE
 ```
 
 ### Compile genesis blob and waypoint
+This will create two files in your working directory: `genesis.blob` and `waypoint.txt`
 ```
 aptos genesis generate-genesis --local-repository-dir ~/$WORKSPACE --output-dir ~/$WORKSPACE
 ```
