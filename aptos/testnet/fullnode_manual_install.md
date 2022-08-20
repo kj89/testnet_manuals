@@ -26,7 +26,12 @@ If you want to install fullnode you have to do it on seperate server
 sudo apt update && sudo apt upgrade -y
 ```
 
-## 2. Install docker
+## 2. Install dependencies
+```
+sudo apt-get install jq unzip -y
+```
+
+## 3. Install docker
 ```
 sudo apt-get install ca-certificates curl gnupg lsb-release -y
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -35,14 +40,14 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 ```
 
-## 3. Install docker compose
+## 4. Install docker compose
 ```
 docker_compose_version=$(wget -qO- https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name")
 sudo wget -O /usr/bin/docker-compose "https://github.com/docker/compose/releases/download/${docker_compose_version}/docker-compose-`uname -s`-`uname -m`"
 sudo chmod +x /usr/bin/docker-compose
 ```
 
-## 4. Install fullnode node
+## 5. Install fullnode node
 ### Create directory
 ```
 mkdir ~/testnet && cd ~/testnet
@@ -75,7 +80,7 @@ Press `Ctrl + X` then press `Y` and `Enter` to save changes to file
 docker-compose up -d
 ```
 
-## 5. Connect to your validator node and update your validator config
+## 6. Connect to your validator node and update your validator config
 Change `<YOUR_FULLNODE_IP>` to you fullnode public ip
 ```
 aptos genesis set-validator-configuration \
