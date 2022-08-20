@@ -139,5 +139,5 @@ aptos genesis generate-genesis --local-repository-dir ~/$WORKSPACE --output-dir 
 
 ### Run docker compose
 ```
-docker compose up -d
+docker-compose up -d
 ```
