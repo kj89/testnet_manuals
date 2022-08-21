@@ -84,9 +84,11 @@ docker-compose up -d
 Change `<YOUR_FULLNODE_IP>` to you fullnode public ip
 ```
 aptos genesis set-validator-configuration \
-    --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE \
+    --local-repository-dir ~/$WORKSPACE \
     --username $NODENAME \
+    --owner-public-identity-file ~/$WORKSPACE/keys/public-keys.yaml \
     --validator-host $PUBLIC_IP:6180 \
+    --stake-amount 100000000000000 \
     --full-node-host <YOUR_FULLNODE_IP>:6182
 ```
 
