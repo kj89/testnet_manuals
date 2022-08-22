@@ -85,7 +85,7 @@ source $HOME/.bash_profile
 
 ### Check your node health
 1. Navigate to https://ait.aptos-node.info/
-2. Enter your node public IP address
+2. Enter your node public IP address and change `API port` to `80`
 3. You should see data like in example below:
 
 ![image](https://user-images.githubusercontent.com/50621007/185860777-2731d375-61fd-4b2a-9c58-929bb9e6ad9b.png)
