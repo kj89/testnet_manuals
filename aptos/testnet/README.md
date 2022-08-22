@@ -84,11 +84,11 @@ source $HOME/.bash_profile
 ```
 
 ### Check your node health
-1. Navigate to https://node.aptos.zvalid.com/
+1. Navigate to https://ait.aptos-node.info/
 2. Enter your node public IP address
 3. You should see data like in example below:
 
-![image](https://user-images.githubusercontent.com/50621007/176846383-7ebe2df6-17ec-41c6-bd34-d7c796761a36.png)
+![image](https://user-images.githubusercontent.com/50621007/185860777-2731d375-61fd-4b2a-9c58-929bb9e6ad9b.png)
 
 ### Register your validator node
 1. Come back to the Aptos Community page and register your node by clicking on Step 4: `NODE REGISTRATION` button.
