@@ -146,3 +146,12 @@ chainInfos:
   chainType: EVM
   pubkey: Y/VbxWDpgdU+H1uzZD46ltJvxjU=
 ```
+
+# Remove pigeon (use on your own risk!)
+```
+sudo systemctl stop pigeond
+sudo systemctl disable pigeond
+sudo rm /etc/systemd/system/pigeon* -rf
+sudo rm $(which pigeon) -rf
+sudo rm $HOME/.pigeon* -rf
+```
