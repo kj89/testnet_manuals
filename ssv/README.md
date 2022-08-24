@@ -30,15 +30,15 @@ wget -O install.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/s
 ## Set up SSV operator
 ### Create user and give persmissions to docker group
 ```
-adduser <USERNAME>
-usermod -aG sudo <USERNAME>
-sudo usermod -aG docker <USERNAME>
+adduser ssv
+usermod -aG sudo ssv
+sudo usermod -aG docker ssv
 newgrp docker
 ```
 
 ### Login as user created above
 ```
-sudo su - <USERNAME>
+sudo su - ssv
 ```
 
 ### Clone eth-docker repository to ssv folder and run config
