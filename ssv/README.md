@@ -28,9 +28,13 @@ wget -O install.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/s
 ```
 
 ## Set up SSV operator
-### Create user and give persmissions to docker group
+### Create user
 ```
 adduser ssv
+```
+
+### Give persmissions to docker group
+```
 usermod -aG sudo ssv
 sudo usermod -aG docker ssv
 newgrp docker
@@ -49,12 +53,12 @@ cd ~ && git clone https://github.com/eth-educators/eth-docker.git ssv && cd ssv
 
 ### SSV stack configuration
 *Select eth clients you prefer to use*
-* Network: `Prater Testnet`
+* Network: `Gorli Prater Testnet`
 * Deployment type: `Blox SSV node`
 * Consensus client: `Lighthouse (Rust)`
 * Execution client: `Geth (Go)`
 * Go to infura and create new ETH2 project. In project settings you will find endpoints for Prater(eth2)
-* Lighthouse rapid sync: `yes --> <infura_eth2_prater_https_endpoint>`
+* CL rapid sync: `yes --> <infura_eth2_prater_https_endpoint>`
 * Grafana: `yes`
 
 ### Generate operator keys
@@ -128,7 +132,7 @@ If(!(test-path $path))
 	# Use TLS1.2 as security protocol as older powershell use tls 1.0 by default
 	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 	# Download deposit app
-	Invoke-WebRequest -Uri "https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.2.0/eth2deposit-cli-256ea21-windows-amd64.zip" -OutFile "$path/temp.zip"
+	Invoke-WebRequest -Uri "https://github.com/ethereum/staking-deposit-cli/releases/download/v2.3.0/staking_deposit-cli-76ed782-windows-amd64.zip" -OutFile "$path/temp.zip"
 	# Load ZIP methods
 	Add-Type -AssemblyName System.IO.Compression.FileSystem
 	# Open ZIP archive for reading
