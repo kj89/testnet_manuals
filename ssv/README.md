@@ -144,10 +144,21 @@ If(!(test-path $path))
 		}
 	# Close ZIP file
 	$zip.Dispose()
+    Remove-Item $path/temp.zip -Force
 }
 cd $path
+
+# Generate new validator key folder
+$val_number = (Get-ChildItem -Directory $path | Measure-Object).Count + 1
+New-Item -Path $path -Name $val_number -ItemType "directory"
+
 # Run deposit.exe
-Start-Process -Wait -FilePath "deposit.exe" -ArgumentList 'new-mnemonic --num_validators 1 --chain prater' -PassThru
+$process = Start-Process -Wait -FilePath "deposit.exe" -ArgumentList "new-mnemonic --mnemonic_language English --num_validators 1 --chain prater --folder $path/$val_number" -PassThru
+If($process.ExitCode -ne 0)
+{
+    Remove-Item $path/$val_number -Force -Recurse
+}
+
 
 ```
 
