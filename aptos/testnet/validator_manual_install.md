@@ -43,6 +43,7 @@ sudo apt update && sudo apt upgrade -y
 ## 2. Install dependencies
 ```
 sudo apt-get install jq unzip -y
+sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 && chmod +x /usr/local/bin/yq
 ```
 
 ## 3. Install docker
