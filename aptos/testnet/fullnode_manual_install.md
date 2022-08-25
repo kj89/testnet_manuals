@@ -60,6 +60,12 @@ wget -qO docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-
 wget -qO fullnode.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/fullnode.yaml
 ```
 
+### Set logging settings
+```
+yq -i '.services.fullnode.logging.options.max-file = "3"' docker-compose.yaml
+yq -i '.services.fullnode.logging.options.max-size = "100m"' docker-compose.yaml
+```
+
 ### Edit fullnode.yaml file to update the IP address for Validator node
 Open fullnode.yaml file in nano editor
 ```

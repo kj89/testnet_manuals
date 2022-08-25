@@ -83,6 +83,12 @@ wget -qO docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-
 wget -qO validator.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/validator.yaml
 ```
 
+### Set logging settings
+```
+yq -i '.services.validator.logging.options.max-file = "3"' docker-compose.yaml
+yq -i '.services.validator.logging.options.max-size = "100m"' docker-compose.yaml
+```
+
 ### Generate keys
 This will create four key files under `~/$WORKSPACE/keys` directory: `public-keys.yaml`, `private-keys.yaml`, `validator-identity.yaml` and `validator-full-node-identity.yaml`
 ```
