@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo -e "\e[1m\e[32mUpdating Sui fullnode... \e[0m" && sleep 1
 systemctl stop suid
 wget -qO $HOME/.sui/fullnode.yaml https://github.com/MystenLabs/sui/raw/main/crates/sui-config/data/fullnode-template.yaml
