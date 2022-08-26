@@ -23,7 +23,9 @@
 ## Prerequisites
 
 ### Install exporters on validator node
-First of all you will have to install exporters on validator node. For that you can use one-liner below
+First of all you will have to install exporters on your fullnode or validator node. For that you can use one-liner below
+> **Warning**
+> It is strongly recommended to avoid installing `cosmos-exporter` on your validator node as it can consume a lot of CPU time.
 ```
 wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_monitoring/master/install_exporters.sh && chmod +x install_exporters.sh && ./install_exporters.sh
 ```
