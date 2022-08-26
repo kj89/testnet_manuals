@@ -76,7 +76,7 @@ sudo tee $HOME/.pigeon/config.yaml > /dev/null <<EOF
 loop-timeout: 5s
 
 paloma:
-  chain-id: paloma-testnet-8
+  chain-id: paloma-testnet-9
   call-timeout: 20s
   keyring-dir: $HOME/.paloma
   keyring-type: test
