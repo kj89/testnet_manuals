@@ -66,7 +66,7 @@ fi
 ## Download and build binaries
 ```
 git clone https://github.com/aura-nw/aura && cd aura
-git checkout euphoria
+git checkout euphoria_4027003
 make install
 ```
 

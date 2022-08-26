@@ -56,7 +56,7 @@ go version
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 git clone https://github.com/aura-nw/aura && cd aura
-git checkout euphoria
+git checkout euphoria_4027003
 make install
 
 # config
