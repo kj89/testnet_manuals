@@ -164,19 +164,19 @@ sudo systemctl start node_exporter
 Grafana dashboard is devided into 4 sections:
 - **Validator health** - main stats for validator health. connected peers and missed blocks
 
-![image](https://user-images.githubusercontent.com/50621007/160629676-bc3c4f0f-66df-4a5f-9844-dca308072e7a.png)
+![image](https://user-images.githubusercontent.com/50621007/186962833-2da1ac6d-f875-4f2c-a7f9-8fafa814f234.png)
 
 - **Chain health** - summary of chain health stats and list of top validators missing blocks
 
-![image](https://user-images.githubusercontent.com/50621007/160629937-52253f35-8782-4dd2-80cc-ad31d0231a84.png)
+![image](https://user-images.githubusercontent.com/50621007/186962715-b152dbaa-1f94-472f-bb80-cbef3bdc54c7.png)
 
 - **Validator stats** - information about validator such as rank, bounded tokens, comission, delegations and rewards
 
-![image](https://user-images.githubusercontent.com/50621007/160630119-0abad099-b138-4f61-9e73-49506c2295ff.png)
+![image](https://user-images.githubusercontent.com/50621007/186962797-1388f331-3123-4ee0-88d4-d719cb52012c.png)
 
 - **Hardware health** - system hardware metrics. cpu, ram, network usage
 
-![image](https://user-images.githubusercontent.com/50621007/160630213-5e92b3ce-92c9-4f48-8856-383ca884b621.png)
+![image](https://user-images.githubusercontent.com/50621007/186962639-a937c0c6-116b-4d8f-9049-2376006e4fca.png)
 
 ## Cleanup all container data
 ```
