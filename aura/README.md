@@ -81,7 +81,7 @@ sudo rm -rf $HOME/.aura/data/tx_index.db
 You can state sync your node in minutes by running commands below.
 ```
 SNAP_RPC1="https://snapshot-1.euphoria.aura.network:443" \
-&& SNAP_RPC2="https://snapshot-2.euphoria.aura.network:443"
+&& SNAP_RPC2="https://snapshot-1.euphoria.aura.network:443"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC2/block | jq -r .result.block.header.height) \
 && BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)) \
 && TRUST_HASH=$(curl -s "$SNAP_RPC2/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
