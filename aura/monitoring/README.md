@@ -82,9 +82,9 @@ source $HOME/.bash_profile
 ```
 
 ### Add validator into _prometheus_ configuration file
-To add validator use command with specified `VALIDATOR_IP`, `AURA_VALOPER_ADDRESS`, `AURA_WALLET_ADDRESS` and `PROJECT_NAME`
+To add validator use command with specified `VALIDATOR_IP`, `AURA_PROM_PORT`, `AURA_VALOPER_ADDRESS`, `AURA_WALLET_ADDRESS` and `PROJECT_NAME`
 ```
-$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP PROM_PORT AURA_VALOPER_ADDRESS AURA_WALLET_ADDRESS PROJECT_NAME
+$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP AURA_PROM_PORT AURA_VALOPER_ADDRESS AURA_WALLET_ADDRESS PROJECT_NAME
 ```
 
 > example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 17660 auravaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete aura1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc aura```

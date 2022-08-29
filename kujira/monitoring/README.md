@@ -39,7 +39,7 @@ make sure following ports are open:
 - `9100` (node-exporter)
 - `9300` (cosmos-exporter)
 
-prometheus metrics should be `enabled` and port `26660` should be available on validator instance
+prometheus metrics should be `enabled` and port `13660` should be available on validator instance
 
 To enable prometheus you have to run command below and after that please restart service to apply changes
 ```
@@ -82,12 +82,12 @@ source $HOME/.bash_profile
 ```
 
 ### Add validator into _prometheus_ configuration file
-To add validator use command with specified `VALIDATOR_IP`, `KUJIRA_VALOPER_ADDRESS`, `KUJIRA_WALLET_ADDRESS` and `PROJECT_NAME`
+To add validator use command with specified `VALIDATOR_IP`, `KUJIRA_PROM_PORT`, `KUJIRA_VALOPER_ADDRESS`, `KUJIRA_WALLET_ADDRESS` and `PROJECT_NAME`
 ```
-$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP KUJIRA_VALOPER_ADDRESS KUJIRA_WALLET_ADDRESS PROJECT_NAME
+$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP KUJIRA_PROM_PORT KUJIRA_VALOPER_ADDRESS KUJIRA_WALLET_ADDRESS PROJECT_NAME
 ```
 
-> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 kujiravaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete kujira1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc kujira```
+> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 13660 kujiravaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete kujira1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc kujira```
 
 To add more validators just run command above with validator values
 
