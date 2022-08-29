@@ -115,6 +115,7 @@ After=network-online.target
 [Service]
 User=$USER
 ExecStart=$(which palomad) start --home $HOME/.paloma
+Environment=PIGEON_HEALTHCHECK_PORT=5757
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
