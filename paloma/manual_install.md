@@ -34,7 +34,7 @@ echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export PALOMA_CHAIN_ID=paloma-testnet-9" >> $HOME/.bash_profile
+echo "export PALOMA_CHAIN_ID=paloma-testnet-10" >> $HOME/.bash_profile
 echo "export PALOMA_PORT=${PALOMA_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -65,7 +65,7 @@ fi
 
 ## Download and build binaries
 ```
-wget -O - https://github.com/palomachain/paloma/releases/download/v0.7.0/paloma_Linux_x86_64.tar.gz | \
+wget -O - https://github.com/palomachain/paloma/releases/download/v0.8.1/paloma_Linux_x86_64.tar.gz | \
 sudo tar -C /usr/local/bin -xvzf - palomad
 sudo chmod +x /usr/local/bin/palomad
 sudo wget -P /usr/lib https://github.com/CosmWasm/wasmvm/raw/main/api/libwasmvm.x86_64.so
@@ -85,14 +85,14 @@ palomad init $NODENAME --chain-id $PALOMA_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -O ~/.paloma/config/genesis.json https://raw.githubusercontent.com/palomachain/testnet/master/paloma-testnet-9/genesis.json
-wget -O ~/.paloma/config/addrbook.json https://raw.githubusercontent.com/palomachain/testnet/master/paloma-testnet-9/addrbook.json
+wget -O ~/.paloma/config/genesis.json https://raw.githubusercontent.com/palomachain/testnet/master/paloma-testnet-10/genesis.json
+wget -O ~/.paloma/config/addrbook.json https://raw.githubusercontent.com/palomachain/testnet/master/paloma-testnet-10/addrbook.json
 ```
 
 ## Set seeds and peers
 ```
 SEEDS=""
-PEERS=""
+PEERS="ec0e8d63e8fc0871daaae1466cecea4f2b92e9e2@144.202.103.140:26656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.paloma/config/config.toml
 ```
 
