@@ -79,6 +79,12 @@ Set up your Petra wallet owner address
 OWNER_ADDRESS=<PETRA_WALLET_OWNER_ADDRESS>
 ```
 
+Load variables into system
+```bash
+echo "export OWNER_ADDRESS=${OWNER_ADDRESS}" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
 Prepare configruation files and run docker
 ```bash
 cd $HOME/$WORKSPACE
@@ -151,7 +157,6 @@ This will show you the coin balance you have in the validator account. You shoul
 
 ### 4. Update validator network addresses on chain
 ```bash
-OWNER_ADDRESS=$(cat $HOME/$WORKSPACE/keys/validator-identity.yaml | yq .account_address)
 aptos node update-validator-network-addresses  \
 --pool-address $OWNER_ADDRESS \
 --operator-config-file ~/$WORKSPACE/$NODENAME/operator.yaml \
