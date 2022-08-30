@@ -97,7 +97,7 @@ docker compose up -d
 ```
 
 ### 4. (OPTIONAL) Prepare Aptos fullnode 
-> **Warning** **RUN THIS ON YOUR FULLNODE MACHINE ONLY IF YOU HAVE IT!**\
+> **Warning** **RUN THIS ON YOUR FULLNODE MACHINE ONLY IF YOU HAVE IT!**
 ```
 cd $HOME/testnet
 docker-compose down --volumes
