@@ -22,7 +22,7 @@ SEI_PORT=12
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export SEI_CHAIN_ID=atlantic-sub-2" >> $HOME/.bash_profile
+echo "export SEI_CHAIN_ID=atlantic-sub-1" >> $HOME/.bash_profile
 echo "export SEI_PORT=${SEI_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
@@ -69,7 +69,7 @@ seid config node tcp://localhost:${SEI_PORT}657
 seid init $NODENAME --chain-id $SEI_CHAIN_ID
 
 # download genesis and addrbook
-wget -qO $HOME/.sei/config/genesis.json "https://raw.githubusercontent.com/sei-protocol/testnet/main/atlantic-subchains/atlantic-sub-2/genesis.json"
+wget -qO $HOME/.sei/config/genesis.json "https://raw.githubusercontent.com/sei-protocol/testnet/main/atlantic-subchains/atlantic-sub-1/genesis.json"
 
 # set peers and seeds
 SEEDS=""
