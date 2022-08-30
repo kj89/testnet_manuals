@@ -26,6 +26,36 @@ Do this only if you received the confirmation email from Aptos team for your eli
 >
 >Status page: https://community.aptoslabs.com/it3
 
+## Initialize staking pool
+
+![image](https://user-images.githubusercontent.com/50621007/187426972-c3fa0d36-2cd7-4cc1-9ff1-30142a8b4b34.png)
+
+> **Warning** **BEFORE YOU PROCEED**
+> Proceed to the below steps only if you are selected to participate in the AIT-3.
+
+1. Confirm that you received the token from the Aptos team by checking the balance of your Petra wallet. Make sure you are connected to the AIT-3 network by click `Settings → Network`.
+
+2. Create another wallet address for the voter. See [the above Step 4: Create the wallet using Petra](https://aptos.dev/nodes/ait/steps-in-ait3/#create-wallet) to create a wallet on Petra. This step is optional. You can use the owner wallet account as voter wallet as well. However, the best practice is to have a dedicate voting account so that you do not need to access your owner key frequently for governance operations.
+
+3. Next you will stake and delegate.
+
+> **Note** **READ THE STAKING DOCUMENT**
+> Make sure you read the Staking documentation before proceeding further.
+
+You will begin by initializing the staking pool and delegating to the operator and the voter.
+
+- From the Chrome browser, go to the **[Staking section](https://explorer.devnet.aptos.dev/proposals/staking?network=ait3)** of the Aptos Governance page for AIT-3.
+- Make sure the wallet is connected with your owner account.
+- Provide the following inputs:
+  - Staking Amount: `100000000000000` (1 million Aptos coin with 8 decimals)
+  - Operator Address: The address of your operator account. This is the `operator_account_address` from the `operator.yaml` file, under `~/$WORKSPACE/$NODENAME` folder.
+  - Voter Address: The wallet address of your voter.
+- Click **SUBMIT**. You will see a green snackbar indicating that the transaction is successful.
+
+4. Next, as the owner, using Petra wallet, transfer `50000` coin each to your operator address and voter wallet address. Both the operator and the voter will use these funds to pay the gas fees while validating and voting.
+
+5. Proceed to **Bootstrapping validator node**
+
 ## Bootstrapping validator node
 Before joining the testnet, you need to bootstrap your node with the genesis blob and waypoint provided by Aptos Labs team. This will convert your node from test mode to prod mode. AIT3 network Chain ID is 47.
 
