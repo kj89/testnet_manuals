@@ -160,6 +160,7 @@ This will show you the coin balance you have in the validator account. You shoul
 
 ### 4. Update validator network addresses on chain
 ```bash
+cd $HOME/$WORKSPACE
 aptos node update-validator-network-addresses  \
 --pool-address $OWNER_ADDRESS \
 --operator-config-file ~/$WORKSPACE/$NODENAME/operator.yaml \
@@ -185,6 +186,7 @@ Output:
 
 ### 5. Update validator consensus key on chain
 ```bash
+cd $HOME/$WORKSPACE
 aptos node update-consensus-key  \
   --pool-address $OWNER_ADDRESS \
   --operator-config-file ~/$WORKSPACE/$NODENAME/operator.yaml \
@@ -210,6 +212,7 @@ Output:
 
 ### 6. Join validator set
 ```bash
+cd $HOME/$WORKSPACE
 aptos node join-validator-set \
   --pool-address $OWNER_ADDRESS \
   --profile ait3-operator \
@@ -236,11 +239,13 @@ ValidatorSet will be updated at every epoch change, which is once every 2 hours.
 
 ### 7. Check validator set
 ```bash
+cd $HOME/$WORKSPACE
 aptos node show-validator-set --profile ait3-operator | jq -r ".Result.pending_active[]? | select(.addr == \"$OWNER_ADDRESS\")"
 ```
 You should be able to see your validator node in "pending_active" list. And when the next epoch change happens, the node will be moved into "active_validators" list. 
 This should happen within one hour from the completion of previous step. During this time, you might see errors like "No connected AptosNet peers", which is normal.
 ```bash
+cd $HOME/$WORKSPACE
 aptos node show-validator-set --profile ait3-operator | jq -r ".Result.active_validators[]? | select(.addr == \"$OWNER_ADDRESS\")"
 ```
 
@@ -252,7 +257,7 @@ You can check the details about node liveness definition here. Once your validat
 curl 127.0.0.1:9101/metrics 2> /dev/null | grep "aptos_connections{.*\"Validator\".*}"
 ```
 The command will output the number of inbound and outbound connections of your Validator node. For example:
-```bash
+```
 aptos_connections{direction="inbound",network_id="Validator",peer_id="2a40eeab",role_type="validator"} 5
 aptos_connections{direction="outbound",network_id="Validator",peer_id="2a40eeab",role_type="validator"} 2
 ```
