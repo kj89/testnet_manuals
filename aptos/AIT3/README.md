@@ -133,9 +133,9 @@ https://explorer.devnet.aptos.dev/account/<YOUR_ACCOUNT_ADDRESS>?network=ait3
 cd $HOME/$WORKSPACE
 ACC_PRIVATE_KEY=$(cat $HOME/$WORKSPACE/keys/private-keys.yaml | yq .account_private_key)
 aptos init --profile ait3-operator \
---private-key $ACC_PRIVATE_KEY \
---rest-url http://ait3.aptosdev.com \
---skip-faucet
+  --private-key $ACC_PRIVATE_KEY \
+  --rest-url http://ait3.aptosdev.com \
+  --skip-faucet
 ```
 
 Output:
@@ -162,9 +162,9 @@ This will show you the coin balance you have in the validator account. You shoul
 ```bash
 cd $HOME/$WORKSPACE
 aptos node update-validator-network-addresses  \
---pool-address $OWNER_ADDRESS \
---operator-config-file ~/$WORKSPACE/$NODENAME/operator.yaml \
---profile ait3-operator
+  --pool-address $OWNER_ADDRESS \
+  --operator-config-file ~/$WORKSPACE/$NODENAME/operator.yaml \
+  --profile ait3-operator
 ```
 
 Output:
