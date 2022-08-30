@@ -50,6 +50,9 @@ You will begin by initializing the staking pool and delegating to the operator a
   - Staking Amount: `100000000000000` (1 million Aptos coin with 8 decimals)
   - Operator Address: The address of your operator account. This is the `operator_account_address` from the `operator.yaml` file, under `~/$WORKSPACE/$NODENAME` folder.
   - Voter Address: The wallet address of your voter.
+
+![image](https://user-images.githubusercontent.com/50621007/187432341-db51b7f0-f137-4f70-8ef9-eab2962d7c46.png)
+
 - Click **SUBMIT**. You will see a green snackbar indicating that the transaction is successful.
 
 4. Next, as the owner, using Petra wallet, transfer `50000` coin each to your operator address and voter wallet address. Both the operator and the voter will use these funds to pay the gas fees while validating and voting.
