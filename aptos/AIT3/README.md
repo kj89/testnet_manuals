@@ -265,7 +265,7 @@ As long as one of the metrics is greater than zero, your node is connected to at
 
 ### 2. You can also check if your node is connected to AptosLabs's node, replace <Aptos Peer ID> with the peer ID shared by Aptos team.
 ```bash
-curl 127.0.0.1:9101/metrics 2> /dev/null | grep "aptos_network_peer_connected{.*remote_peer_id=\"83424ccb\".*}"
+curl 127.0.0.1:9101/metrics 2> /dev/null | grep "aptos_network_peer_connected{.*remote_peer_id=\"f326fd30\".*}"
 ```
 Once your node state sync to the latest version, you can also check if consensus is making progress, and your node is proposing
 ```bash
