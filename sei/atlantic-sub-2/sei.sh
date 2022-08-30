@@ -69,7 +69,7 @@ seid config node tcp://localhost:${SEI_PORT}657
 seid init $NODENAME --chain-id $SEI_CHAIN_ID
 
 # download genesis and addrbook
-wget -qO $HOME/.sei/config/genesis.json "https://github.com/sei-protocol/testnet/blob/main/atlantic-subchains/atlantic-sub-2/genesis.json"
+wget -qO $HOME/.sei/config/genesis.json "https://raw.githubusercontent.com/sei-protocol/testnet/main/atlantic-subchains/atlantic-sub-2/genesis.json"
 
 # set peers and seeds
 SEEDS=""
