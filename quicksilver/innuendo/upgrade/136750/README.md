@@ -25,7 +25,7 @@ Once the chain reaches the upgrade height, you will encounter the following pani
 ```
 sudo systemctl stop quicksilverd
 cd $HOME && rm quicksilver -rf
-git clone https://github.com/ingenuity-build/quicksilver.git --branch innuendo1
+git clone https://github.com/ingenuity-build/quicksilver.git --branch v0.6.3
 cd quicksilver
 make build
 sudo chmod +x ./build/quicksilverd && sudo mv ./build/quicksilverd /usr/local/bin/quicksilverd
