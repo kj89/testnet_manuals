@@ -236,12 +236,12 @@ ValidatorSet will be updated at every epoch change, which is once every 2 hours.
 
 ### 7. Check validator set
 ```bash
-aptos node show-validator-set --profile ait3-operator | jq -r ".Result.pending_active[] | select(.addr == \"$OWNER_ADDRESS\")"
+aptos node show-validator-set --profile ait3-operator | jq -r ".Result.pending_active[]? | select(.addr == \"$OWNER_ADDRESS\")"
 ```
 You should be able to see your validator node in "pending_active" list. And when the next epoch change happens, the node will be moved into "active_validators" list. 
 This should happen within one hour from the completion of previous step. During this time, you might see errors like "No connected AptosNet peers", which is normal.
 ```bash
-aptos node show-validator-set --profile ait3-operator | jq -r ".Result.active_validators[] | select(.addr == \"$OWNER_ADDRESS\")"
+aptos node show-validator-set --profile ait3-operator | jq -r ".Result.active_validators[]? | select(.addr == \"$OWNER_ADDRESS\")"
 ```
 
 ## Verify node connections
