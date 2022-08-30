@@ -141,8 +141,8 @@ Output:
 aptos account list --profile ait3-operator 
 ```
 This will show you the coin balance you have in the validator account. You should be able to see something like:
-```
-...json
+```json
+...
 "coin": {
   "value": "5000"
 },
