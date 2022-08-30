@@ -36,7 +36,7 @@ sudo apt-get install jq -y
 ```
 
 ### 2. Prepare Aptos validator node
-Set up your petra wallet owner address
+Set up your Petra wallet owner address
 ```
 owner_address=<PETRA_WALLET_OWNER_ADDRESS>
 ```
@@ -50,11 +50,13 @@ docker-compose down --volumes
 sudo wget -qO genesis.blob https://github.com/aptos-labs/aptos-ait3/raw/main/genesis.blob
 sudo wget -qO waypoint.txt https://raw.githubusercontent.com/aptos-labs/aptos-ait3/main/waypoint.txt
 sudo wget -qO docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/docker-compose.yaml
-yq ".account_address = \"$owner_address\"" keys/validator-identity.yaml
+yq -i.bak ".account_address = \"$owner_address\"" keys/validator-identity.yaml
 yq -i '.services.validator.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_b2228f286b5fe7631dee62690ae5d1087017e20d}"' docker-compose.yaml
 yq -i '(.services.validator.ports[] | select(. == "80:8080")) = "127.0.0.1:80:8080"' docker-compose.yaml
 yq -i '(.services.validator.ports[] | select(. == "9101:9101")) = "127.0.0.1:9101:9101"' docker-compose.yaml
 yq -i 'del( .services.validator.expose[] | select(. == "80" or . == "9101") )' docker-compose.yaml
+yq -i '.services.validator.logging.options.max-file = "3"' docker-compose.yaml
+yq -i '.services.validator.logging.options.max-size = "100m"' docker-compose.yaml
 docker compose up -d
 ```
 
@@ -66,7 +68,9 @@ sudo wget -qO genesis.blob https://github.com/aptos-labs/aptos-ait3/raw/main/gen
 sudo wget -qO waypoint.txt https://raw.githubusercontent.com/aptos-labs/aptos-ait3/main/waypoint.txt
 sudo wget -qO docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/docker-compose-fullnode.yaml
 yq -i '.services.fullnode.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_b2228f286b5fe7631dee62690ae5d1087017e20d}"' docker-compose.yaml
-docker compose up -d
+yq -i '.services.fullnode.logging.options.max-file = "3"' docker-compose.yaml
+yq -i '.services.fullnode.logging.options.max-size = "100m"' docker-compose.yaml
+docker-compose up -d
 ```
 
 ## Joining Validator Set
