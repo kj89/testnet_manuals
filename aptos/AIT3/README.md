@@ -35,20 +35,28 @@ sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/downloa
 sudo apt-get install jq -y
 ```
 
-### 2. Prepare Aptos validator node
+### 2. Update Aptos CLI
+```
+wget -qO aptos-cli.zip https://github.com/aptos-labs/aptos-core/releases/download/aptos-cli-v0.3.1a/aptos-cli-0.3.2-Ubuntu-x86_64.zip
+sudo unzip -o aptos-cli.zip -d /usr/local/bin
+chmod +x /usr/local/bin/aptos
+rm aptos-cli.zip
+```
+
+### 3. Prepare Aptos validator node
 Set up your Petra wallet owner address
 ```
-owner_address=<PETRA_WALLET_OWNER_ADDRESS>
+OWNER_ADDRESS=<PETRA_WALLET_OWNER_ADDRESS>
 ```
 
 Prepare configruation files and run docker
 ```
-cd $HOME/testnet
+cd $HOME/$WORKSPACE
 docker-compose down --volumes
 sudo wget -qO genesis.blob https://github.com/aptos-labs/aptos-ait3/raw/main/genesis.blob
 sudo wget -qO waypoint.txt https://raw.githubusercontent.com/aptos-labs/aptos-ait3/main/waypoint.txt
 sudo wget -qO docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/docker-compose.yaml
-yq -i ".account_address = \"$owner_address\"" keys/validator-identity.yaml
+yq -i ".account_address = \"$OWNER_ADDRESS\"" keys/validator-identity.yaml
 yq -i '.services.validator.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_b2228f286b5fe7631dee62690ae5d1087017e20d}"' docker-compose.yaml
 yq -i '(.services.validator.ports[] | select(. == "80:8080")) = "127.0.0.1:80:8080"' docker-compose.yaml
 yq -i '(.services.validator.ports[] | select(. == "9101:9101")) = "127.0.0.1:9101:9101"' docker-compose.yaml
@@ -58,9 +66,9 @@ yq -i '.services.validator.logging.options.max-size = "100m"' docker-compose.yam
 docker compose up -d
 ```
 
-### 3. (OPTIONAL) Prepare Aptos fullnode (!!!RUN THIS ON YOUR FULLNODE MACHINE ONLY IF YOU HAVE IT!!!)
+### 4. (OPTIONAL) Prepare Aptos fullnode (!!!RUN THIS ON YOUR FULLNODE MACHINE ONLY IF YOU HAVE IT!!!)
 ```
-cd $HOME/testnet
+cd $HOME/$WORKSPACE
 docker compose down --volumes
 sudo wget -qO genesis.blob https://github.com/aptos-labs/aptos-ait3/raw/main/genesis.blob
 sudo wget -qO waypoint.txt https://raw.githubusercontent.com/aptos-labs/aptos-ait3/main/waypoint.txt
@@ -82,60 +90,120 @@ https://explorer.devnet.aptos.dev/account/<YOUR_ACCOUNT_ADDRESS>?network=ait3
 
 ### 2. Init validator
 ```
-cd $HOME/testnet
-ACC_PRIVATE_KEY=$(cat $HOME/testnet/private-keys.yaml | yq .account_private_key)
-aptos init --profile ait3 \
+cd $HOME/$WORKSPACE
+ACC_PRIVATE_KEY=$(cat $HOME/$WORKSPACE/keys/private-keys.yaml | yq .account_private_key)
+aptos init --profile ait3-operator \
 --private-key $ACC_PRIVATE_KEY \
 --rest-url http://ait3.aptosdev.com \
 --skip-faucet
 ```
 
+Output:
+```
+{
+  "Result": "Success"
+}
+```
+
 ### 3. Check your validator account balance
 ```
-aptos account list --profile ait3
+aptos account list --profile ait3-operator 
 ```
 This will show you the coin balance you have in the validator account. You should be able to see something like:
 ```
+...
 "coin": {
-    "value": "100100000"
+  "value": "5000"
+},
+...
+```
+
+### 4. Update validator network addresses on chain
+```
+OWNER_ADDRESS=$(cat $HOME/$WORKSPACE/keys/validator-identity.yaml | yq .account_address)
+aptos node update-validator-network-addresses  \
+--pool-address $OWNER_ADDRESS \
+--operator-config-file ~/$WORKSPACE/$NODENAME/operator.yaml \
+--profile ait3-operator
+```
+
+Output:
+```
+{
+  "Result": {
+    "transaction_hash": "0x8d39485fcf413215ff3bd08ef312f0c3a434459536e359cdf3158c044018b813",
+    "gas_used": 99,
+    "gas_unit_price": 1,
+    "sender": "bbc95fd36de8dca25432742b9c7306aacd6934c6bfb5354c5b67850b5b68afb1",
+    "sequence_number": 1,
+    "success": true,
+    "timestamp_us": 1661856127240106,
+    "version": 387504,
+    "vm_status": "Executed successfully"
   }
+}
 ```
 
-### 4. Register validator candidate on chain
+### 5. Update validator consensus key on chain
 ```
-cd $HOME/testnet
-aptos node register-validator-candidate \
---profile ait3 \
---validator-config-file $NODENAME.yaml
-```
-
-### 5. Add stake to your validator node
-```
-aptos node add-stake --amount 100000000 --profile ait3
+aptos node update-consensus-key  \
+  --pool-address $OWNER_ADDRESS \
+  --operator-config-file ~/$WORKSPACE/$NODENAME/operator.yaml \
+  --profile ait3-operator
 ```
 
-### 6. Set lockup time for your stake
-Longer lockup time will result in more staking reward. Minimal lockup time is 24 hours, and maximal is 5 days.
+Output:
 ```
-aptos node increase-lockup \
---profile ait3 \
---lockup-duration 72h
+{
+  "Result": {
+    "transaction_hash": "0xd80d3f25b9c4bdba63e095357145d48cd2aaab1de19f14882ac237dd4701f6db",
+    "gas_used": 104,
+    "gas_unit_price": 1,
+    "sender": "bbc95fd36de8dca25432742b9c7306aacd6934c6bfb5354c5b67850b5b68afb1",
+    "sequence_number": 2,
+    "success": true,
+    "timestamp_us": 1661856360125096,
+    "version": 389109,
+    "vm_status": "Executed successfully"
+  }
+}
 ```
 
-### 7. Join validator set
+### 6. Join validator set
 ```
-aptos node join-validator-set --profile ait3
+aptos node join-validator-set \
+  --pool-address $OWNER_ADDRESS \
+  --profile ait3-operator \
+  --max-gas 20000
 ```
-ValidatorSet will be updated at every epoch change, which is once every hour. You will only see your node joining the validator set in next epoch. Both Validator and fullnode will start syncing once your validator is in the validator set.
 
-### 8. Check validator set
+Output:
 ```
-aptos node show-validator-set --profile ait3 | jq -r '.Result.pending_active' | grep $(cat $HOME/testnet/$NODENAME.yaml | yq .account_address)
+
+{
+  "Result": {
+    "transaction_hash": "0x5d702e4d58f31a0edf7e55db7a34118ebcda42f9a3ceeda5087621ec50f1f8d2",
+    "gas_used": 1815,
+    "gas_unit_price": 1,
+    "sender": "bbc95fd36de8dca25432742b9c7306aacd6934c6bfb5354c5b67850b5b68afb1",
+    "sequence_number": 6,
+    "success": true,
+    "timestamp_us": 1661856737106161,
+    "version": 391698,
+    "vm_status": "Executed successfully"
+  }
+}
+```
+ValidatorSet will be updated at every epoch change, which is once every 2 hours. You will only see your node joining the validator set in next epoch. Both Validator and fullnode will start syncing once your validator is in the validator set.
+
+### 7. Check validator set
+```
+aptos node show-validator-set --profile ait3-operator | jq -r ".Result.pending_active[] | select(.addr == \"$OWNER_ADDRESS\")"
 ```
 You should be able to see your validator node in "pending_active" list. And when the next epoch change happens, the node will be moved into "active_validators" list. 
 This should happen within one hour from the completion of previous step. During this time, you might see errors like "No connected AptosNet peers", which is normal.
 ```
-aptos node show-validator-set --profile ait3 | jq -r '.Result.active_validators' | grep $(cat $HOME/testnet/$NODENAME.yaml | yq .account_address)
+aptos node show-validator-set --profile ait3-operator | jq -r ".Result.active_validators[] | select(.addr == \"$OWNER_ADDRESS\")"
 ```
 
 ## Verify node connections
@@ -165,21 +233,21 @@ You should expect to see this number keep increasing.
 
 ## Update aptos validator
 ```
-cd $HOME/testnet
+cd $HOME/$WORKSPACE
 yq -i '.services.validator.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_b2228f286b5fe7631dee62690ae5d1087017e20d}"' docker-compose.yaml
 docker compose up -d
 ```
 
 ## Update aptos fullnode
 ```
-cd $HOME/testnet
+cd $HOME/$WORKSPACE
 yq -i '.services.fullnode.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_b2228f286b5fe7631dee62690ae5d1087017e20d}"' docker-compose.yaml
 docker compose up -d
 ```
 
 ## Configure Logging validator
 ```
-cd $HOME/testnet
+cd $HOME/$WORKSPACE
 yq -i '.services.validator.logging.options.max-file = "3"' docker-compose.yaml
 yq -i '.services.validator.logging.options.max-size = "100m"' docker-compose.yaml
 docker compose down && docker compose up -d
@@ -187,7 +255,7 @@ docker compose down && docker compose up -d
 
 ## Configure Logging fullnode
 ```
-cd $HOME/testnet
+cd $HOME/$WORKSPACE
 yq -i '.services.fullnode.logging.options.max-file = "3"' docker-compose.yaml
 yq -i '.services.fullnode.logging.options.max-size = "100m"' docker-compose.yaml
 docker compose down && docker compose up -d
@@ -195,7 +263,7 @@ docker compose down && docker compose up -d
 
 ## Configure round_initial_timeout_ms
 ```
-cd $HOME/testnet
+cd $HOME/$WORKSPACE
 yq -i '.consensus.round_initial_timeout_ms = 2000' validator.yaml
 docker compose down && docker compose up -d
 ```
@@ -203,7 +271,7 @@ docker compose down && docker compose up -d
 ## Usefull commands
 Get Aptos stake expiration date and time
 ```
-date -u -d @$(aptos account list --profile ait3 | jq -r '.Result |.[3] | .locked_until_secs') +"%Y-%m-%d %H:%M:%S"
+date -u -d @$(aptos account list --profile ait3-operator | jq -r '.Result |.[3] | .locked_until_secs') +"%Y-%m-%d %H:%M:%S"
 ```
 
 Get current date and time
@@ -213,7 +281,7 @@ date +"%Y-%m-%d %H:%M:%S"
 
 Get time left
 ```
-lockup_end_time=$(aptos account list --profile ait3 | jq -r '.Result |.[3] | .locked_until_secs')
+lockup_end_time=$(aptos account list --profile ait3-operator | jq -r '.Result |.[3] | .locked_until_secs')
 current_time=$(date +%s)
 time_left=$(echo "$current_time - $lockup_end_time" | bc)
 time_left=$((-time_left))
@@ -243,7 +311,7 @@ Once you're done withdrawing your fund, now you can safely shutdown the node
 
 ### Stop your node and remove the data volumes
 ```
-cd $HOME/testnet
+cd $HOME/$WORKSPACE
 docker compose down --volumes
-cd $HOME && rm -rf testnet
+cd $HOME && rm -rf $WORKSPACE
 ```
