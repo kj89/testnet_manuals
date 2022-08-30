@@ -30,7 +30,7 @@ Do this only if you received the confirmation email from Aptos team for your eli
 
 ![image](https://user-images.githubusercontent.com/50621007/187426972-c3fa0d36-2cd7-4cc1-9ff1-30142a8b4b34.png)
 
-> **Warning** **BEFORE YOU PROCEED**
+> **Warning** **BEFORE YOU PROCEED**\
 > Proceed to the below steps only if you are selected to participate in the AIT-3.
 
 1. Confirm that you received the token from the Aptos team by checking the balance of your Petra wallet. Make sure you are connected to the AIT-3 network by click `Settings → Network`.
@@ -39,7 +39,7 @@ Do this only if you received the confirmation email from Aptos team for your eli
 
 3. Next you will stake and delegate.
 
-> **Note** **READ THE STAKING DOCUMENT**
+> **Note** **READ THE STAKING DOCUMENT**\
 > Make sure you read the Staking documentation before proceeding further.
 
 You will begin by initializing the staking pool and delegating to the operator and the voter.
@@ -96,7 +96,8 @@ yq -i '.services.validator.logging.options.max-size = "100m"' docker-compose.yam
 docker compose up -d
 ```
 
-### 4. (OPTIONAL) Prepare Aptos fullnode (!!!RUN THIS ON YOUR FULLNODE MACHINE ONLY IF YOU HAVE IT!!!)
+### 4. (OPTIONAL) Prepare Aptos fullnode 
+> **Warning** **RUN THIS ON YOUR FULLNODE MACHINE ONLY IF YOU HAVE IT!**\
 ```
 cd $HOME/testnet
 docker-compose down --volumes
