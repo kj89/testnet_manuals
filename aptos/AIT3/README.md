@@ -321,7 +321,8 @@ aptos node withdraw-stake --profile ait3
 Once you're done withdrawing your fund, now you can safely shutdown the node
 
 ## Shutdown and delete your Node for Incentivized Testnet
->Before you proceed with this step make sure you have backed up your node identity files: `private-keys.yaml`, `validator-identity.yaml`, `validator-full-node-identity.yaml`
+> **Warning** **BEFORE YOU PROCEED**\
+> Make sure you have backed up your node identity files: `private-keys.yaml`, `validator-identity.yaml`, `validator-full-node-identity.yaml`
 
 ### Stop your node and remove the data volumes
 ```bash
