@@ -102,7 +102,7 @@ yq -i '(.services.validator.ports[] | select(. == "9101:9101")) = "127.0.0.1:910
 yq -i 'del( .services.validator.expose[] | select(. == "80" or . == "9101") )' docker-compose.yaml
 yq -i '.services.validator.logging.options.max-file = "3"' docker-compose.yaml
 yq -i '.services.validator.logging.options.max-size = "100m"' docker-compose.yaml
-docker compose up -d
+docker-compose up -d
 ```
 
 ### 4. (OPTIONAL) Prepare Aptos fullnode 
@@ -278,21 +278,21 @@ You should expect to see this number keep increasing.
 ```bash
 cd $HOME/$WORKSPACE
 yq -i '.services.validator.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_b2228f286b5fe7631dee62690ae5d1087017e20d}"' docker-compose.yaml
-docker compose up -d
+docker-compose up -d
 ```
 
 ## Update aptos fullnode
 ```bash
 cd $HOME/$WORKSPACE
 yq -i '.services.fullnode.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_b2228f286b5fe7631dee62690ae5d1087017e20d}"' docker-compose.yaml
-docker compose up -d
+docker-compose up -d
 ```
 
 ## Configure round_initial_timeout_ms
 ```bash
 cd $HOME/$WORKSPACE
 yq -i '.consensus.round_initial_timeout_ms = 2000' validator.yaml
-docker compose down && docker compose up -d
+docker-compose down && docker-compose up -d
 ```
 
 ## Usefull commands
@@ -340,6 +340,6 @@ Once you're done withdrawing your fund, now you can safely shutdown the node
 ### Stop your node and remove the data volumes
 ```bash
 cd $HOME/$WORKSPACE
-docker compose down --volumes
+docker-compose down --volumes
 cd $HOME && rm -rf $WORKSPACE
 ```
