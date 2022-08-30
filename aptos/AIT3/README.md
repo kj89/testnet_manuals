@@ -60,13 +60,13 @@ You will begin by initializing the staking pool and delegating to the operator a
 Before joining the testnet, you need to bootstrap your node with the genesis blob and waypoint provided by Aptos Labs team. This will convert your node from test mode to prod mode. AIT3 network Chain ID is 47.
 
 ### 1. Install yq
-```
+```bash
 sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.27.3/yq_linux_amd64 && chmod +x /usr/local/bin/yq
 sudo apt-get install jq -y
 ```
 
 ### 2. Update Aptos CLI
-```
+```bash
 wget -qO aptos-cli.zip https://github.com/aptos-labs/aptos-core/releases/download/aptos-cli-v0.3.1a/aptos-cli-0.3.2-Ubuntu-x86_64.zip
 sudo unzip -o aptos-cli.zip -d /usr/local/bin
 chmod +x /usr/local/bin/aptos
@@ -75,12 +75,12 @@ rm aptos-cli.zip
 
 ### 3. Prepare Aptos validator node
 Set up your Petra wallet owner address
-```
+```bash
 OWNER_ADDRESS=<PETRA_WALLET_OWNER_ADDRESS>
 ```
 
 Prepare configruation files and run docker
-```
+```bash
 cd $HOME/$WORKSPACE
 docker-compose down --volumes
 sudo wget -qO genesis.blob https://github.com/aptos-labs/aptos-ait3/raw/main/genesis.blob
@@ -98,7 +98,7 @@ docker compose up -d
 
 ### 4. (OPTIONAL) Prepare Aptos fullnode 
 > **Warning** **RUN THIS ON YOUR FULLNODE MACHINE ONLY IF YOU HAVE IT!**
-```
+```bash
 cd $HOME/testnet
 docker-compose down --volumes
 sudo wget -qO genesis.blob https://github.com/aptos-labs/aptos-ait3/raw/main/genesis.blob
@@ -120,7 +120,7 @@ https://explorer.devnet.aptos.dev/account/<YOUR_ACCOUNT_ADDRESS>?network=ait3
 ```
 
 ### 2. Init validator
-```
+```bash
 cd $HOME/$WORKSPACE
 ACC_PRIVATE_KEY=$(cat $HOME/$WORKSPACE/keys/private-keys.yaml | yq .account_private_key)
 aptos init --profile ait3-operator \
@@ -130,19 +130,19 @@ aptos init --profile ait3-operator \
 ```
 
 Output:
-```
+```json
 {
   "Result": "Success"
 }
 ```
 
 ### 3. Check your validator account balance
-```
+```bash
 aptos account list --profile ait3-operator 
 ```
 This will show you the coin balance you have in the validator account. You should be able to see something like:
 ```
-...
+...json
 "coin": {
   "value": "5000"
 },
@@ -150,7 +150,7 @@ This will show you the coin balance you have in the validator account. You shoul
 ```
 
 ### 4. Update validator network addresses on chain
-```
+```bash
 OWNER_ADDRESS=$(cat $HOME/$WORKSPACE/keys/validator-identity.yaml | yq .account_address)
 aptos node update-validator-network-addresses  \
 --pool-address $OWNER_ADDRESS \
@@ -159,7 +159,7 @@ aptos node update-validator-network-addresses  \
 ```
 
 Output:
-```
+```json
 {
   "Result": {
     "transaction_hash": "0x8d39485fcf413215ff3bd08ef312f0c3a434459536e359cdf3158c044018b813",
@@ -176,7 +176,7 @@ Output:
 ```
 
 ### 5. Update validator consensus key on chain
-```
+```bash
 aptos node update-consensus-key  \
   --pool-address $OWNER_ADDRESS \
   --operator-config-file ~/$WORKSPACE/$NODENAME/operator.yaml \
@@ -184,7 +184,7 @@ aptos node update-consensus-key  \
 ```
 
 Output:
-```
+```json
 {
   "Result": {
     "transaction_hash": "0xd80d3f25b9c4bdba63e095357145d48cd2aaab1de19f14882ac237dd4701f6db",
@@ -201,7 +201,7 @@ Output:
 ```
 
 ### 6. Join validator set
-```
+```bash
 aptos node join-validator-set \
   --pool-address $OWNER_ADDRESS \
   --profile ait3-operator \
@@ -209,8 +209,7 @@ aptos node join-validator-set \
 ```
 
 Output:
-```
-
+```json
 {
   "Result": {
     "transaction_hash": "0x5d702e4d58f31a0edf7e55db7a34118ebcda42f9a3ceeda5087621ec50f1f8d2",
@@ -228,12 +227,12 @@ Output:
 ValidatorSet will be updated at every epoch change, which is once every 2 hours. You will only see your node joining the validator set in next epoch. Both Validator and fullnode will start syncing once your validator is in the validator set.
 
 ### 7. Check validator set
-```
+```bash
 aptos node show-validator-set --profile ait3-operator | jq -r ".Result.pending_active[] | select(.addr == \"$OWNER_ADDRESS\")"
 ```
 You should be able to see your validator node in "pending_active" list. And when the next epoch change happens, the node will be moved into "active_validators" list. 
 This should happen within one hour from the completion of previous step. During this time, you might see errors like "No connected AptosNet peers", which is normal.
-```
+```bash
 aptos node show-validator-set --profile ait3-operator | jq -r ".Result.active_validators[] | select(.addr == \"$OWNER_ADDRESS\")"
 ```
 
@@ -241,59 +240,43 @@ aptos node show-validator-set --profile ait3-operator | jq -r ".Result.active_va
 You can check the details about node liveness definition here. Once your validator node joined the validator set, you can verify the correctness following those steps:
 
 ### 1. Verify that your node is connecting to other peers on testnet. (Replace 127.0.0.1 with your Validator IP/DNS if deployed on the cloud)
-```
+```bash
 curl 127.0.0.1:9101/metrics 2> /dev/null | grep "aptos_connections{.*\"Validator\".*}"
 ```
 The command will output the number of inbound and outbound connections of your Validator node. For example:
-```
+```bash
 aptos_connections{direction="inbound",network_id="Validator",peer_id="2a40eeab",role_type="validator"} 5
 aptos_connections{direction="outbound",network_id="Validator",peer_id="2a40eeab",role_type="validator"} 2
 ```
 As long as one of the metrics is greater than zero, your node is connected to at least one of the peers on the testnet.
 
 ### 2. You can also check if your node is connected to AptosLabs's node, replace <Aptos Peer ID> with the peer ID shared by Aptos team.
-```
+```bash
 curl 127.0.0.1:9101/metrics 2> /dev/null | grep "aptos_network_peer_connected{.*remote_peer_id=\"83424ccb\".*}"
 ```
 Once your node state sync to the latest version, you can also check if consensus is making progress, and your node is proposing
-```
+```bash
 curl 127.0.0.1:9101/metrics 2> /dev/null | grep "aptos_consensus_current_round"
 curl 127.0.0.1:9101/metrics 2> /dev/null | grep "aptos_consensus_proposals_count"
 ```
 You should expect to see this number keep increasing.
 
 ## Update aptos validator
-```
+```bash
 cd $HOME/$WORKSPACE
 yq -i '.services.validator.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_b2228f286b5fe7631dee62690ae5d1087017e20d}"' docker-compose.yaml
 docker compose up -d
 ```
 
 ## Update aptos fullnode
-```
+```bash
 cd $HOME/$WORKSPACE
 yq -i '.services.fullnode.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_b2228f286b5fe7631dee62690ae5d1087017e20d}"' docker-compose.yaml
 docker compose up -d
 ```
 
-## Configure Logging validator
-```
-cd $HOME/$WORKSPACE
-yq -i '.services.validator.logging.options.max-file = "3"' docker-compose.yaml
-yq -i '.services.validator.logging.options.max-size = "100m"' docker-compose.yaml
-docker compose down && docker compose up -d
-```
-
-## Configure Logging fullnode
-```
-cd $HOME/$WORKSPACE
-yq -i '.services.fullnode.logging.options.max-file = "3"' docker-compose.yaml
-yq -i '.services.fullnode.logging.options.max-size = "100m"' docker-compose.yaml
-docker compose down && docker compose up -d
-```
-
 ## Configure round_initial_timeout_ms
-```
+```bash
 cd $HOME/$WORKSPACE
 yq -i '.consensus.round_initial_timeout_ms = 2000' validator.yaml
 docker compose down && docker compose up -d
@@ -301,17 +284,17 @@ docker compose down && docker compose up -d
 
 ## Usefull commands
 Get Aptos stake expiration date and time
-```
+```bash
 date -u -d @$(aptos account list --profile ait3-operator | jq -r '.Result |.[3] | .locked_until_secs') +"%Y-%m-%d %H:%M:%S"
 ```
 
 Get current date and time
-```
+```bash
 date +"%Y-%m-%d %H:%M:%S"
 ```
 
 Get time left
-```
+```bash
 lockup_end_time=$(aptos account list --profile ait3-operator | jq -r '.Result |.[3] | .locked_until_secs')
 current_time=$(date +%s)
 time_left=$(echo "$current_time - $lockup_end_time" | bc)
@@ -323,15 +306,15 @@ printf '%02dh:%02dm:%02ds\n' $((time_left/3600)) $((time_left%3600/60)) $((time_
 A node can choose to leave validator set at anytime, or it would happen automatically when there's not sufficient stake on the validator account. To leave validator set, you can perform the following steps:
 
 ### 1. Leave validator set (will take effect in next epoch)
-```
+```bash
 aptos node leave-validator-set --profile ait3
 ```
 ### 2. Unlock the stake amount as you want. (will take effect in next epoch)
-```
+```bash
 aptos node unlock-stake --amount 100000000 --profile ait3
 ```
 ### 3. Withdraw stake back to your account. (This will withdraw all the unlocked stake from your validator staking pool)
-```
+```bash
 aptos node withdraw-stake --profile ait3
 ```
 
@@ -341,7 +324,7 @@ Once you're done withdrawing your fund, now you can safely shutdown the node
 >Before you proceed with this step make sure you have backed up your node identity files: `private-keys.yaml`, `validator-identity.yaml`, `validator-full-node-identity.yaml`
 
 ### Stop your node and remove the data volumes
-```
+```bash
 cd $HOME/$WORKSPACE
 docker compose down --volumes
 cd $HOME && rm -rf $WORKSPACE
