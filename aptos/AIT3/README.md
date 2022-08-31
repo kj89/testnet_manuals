@@ -343,3 +343,63 @@ cd $HOME/$WORKSPACE
 docker-compose down --volumes
 cd $HOME && rm -rf $WORKSPACE
 ```
+
+# AIT3 are incentivizing people who run VFNs alongside their validators. To get the reward, you must meet the following criteria:
+* Have your VFN registered on chain in the validator set.
+* Run your VFN with the API enabled, listening on either port 80, 8080, or 443 (for https).
+* Pass the evaluation performed by our Node Health Checker for the majority of the AIT. We will be checking continuously!
+
+> ** Note **
+> We’re only just starting to track this now, so it’s not too late to start running a VFN!
+
+## Q: How do I check myself whether the VFN is meeting the criteria?
+## A: Check using the Node Health Checker:
+```bash
+FULLNODE_IP=<YOUR_FULLNODE_IP>
+FULLNODE_API_PORT=80
+```
+
+1. Query NHC
+```bash
+curl "https://node-checker.prod.gcp.aptosdev.com/check_node?node_url=http://${FULLNODE_IP}&api_port=${FULLNODE_API_PORT}&baseline_configuration_name=ait3_vfn" > /tmp/nhc_out
+```
+
+2. Check that your node is healthy
+```bash
+cat /tmp/nhc_out | jq .summary_explanation
+```
+
+Successful output:
+```json
+"100: Awesome!"
+```
+
+> ** Note **
+> Make sure the address you’re using for the check is the same address registered in the validator set.
+
+## Q: What if it doesn’t say “100: Awesome”?
+## A: Read the output of /tmp/nhc_out, it should tell you what is wrong. Likely your VFN is down, the API is disabled, or the API is running on a port besides 80, 8080, or 443.
+
+## Q: How do I know what VFN I registered on chain?
+## A: Unfortunately we don’t have a good way to do that right now, but we have CLI improvements coming.
+
+## Q: Okay what if I don’t know then?
+## A: You can update the VFN you’ve registered in the validator set with this command:
+```bash
+aptos node update-validator-network-addresses  \
+  --pool-address <owner-address> \
+  --full-node-host <fullnode-host:port>\
+  --full-node-network-public-key <fullnode-public-key> \
+  --profile ait3-operator
+```
+
+## Q: What if I didn’t register a VFN at all and I want to run one?
+## A: Run your VFN then register it using this above command.
+
+## Q: How do I learn more about what NHC is doing?
+## A: Check out these articles:
+- https://aptos.dev/nodes/node-health-checker
+- https://aptos.dev/nodes/node-health-checker-faq
+
+## Q: Do I have to run a VFN as part of AIT3?
+## A: You don't have to, but you should if you want to gain the reward of an extra 200 Aptos tokens. 
