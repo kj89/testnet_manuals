@@ -57,8 +57,8 @@ git clone https://github.com/Agoric/ag0
 cd ag0
 git checkout agoric-upgrade-7
 make build
-cp $HOME/ag0/build/ag0 /usr/local/bin
-systemctl restart agoricd && journalctl -fu agoricd -o cat
+sudo cp $HOME/ag0/build/ag0 /usr/local/bin
+sudo systemctl restart agoricd && journalctl -fu agoricd -o cat
 ```
 
 ### State sync your node
@@ -72,6 +72,8 @@ s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
 s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" $HOME/.agoric/config/config.toml
+
+ag0 tendermint unsafe-reset-all --home $HOME/.agoric
 ```
 
 ### Create wallet
@@ -296,11 +298,11 @@ ag0 tx slashing unjail \
 ### Delete node
 This commands will completely remove node from server. Use at your own risk!
 ```
-systemctl stop agoricd
-systemctl disable agoricd
-rm /etc/systemd/system/agoricd.service -rf
-rm $(which ag0) -rf
-rm $HOME/.agoric* -rf
-rm $HOME/ag0 -rf
-sed -i '/emerynet/d' ~/.bash_profile
+sudo systemctl stop agoricd
+sudo systemctl disable agoricd
+sudo rm /etc/systemd/system/agoricd.service -rf
+sudo rm $(which ag0) -rf
+sudo rm $HOME/.agoric* -rf
+sudo rm $HOME/ag0 -rf
+sudo sed -i '/emerynet/d' ~/.bash_profile
 ```

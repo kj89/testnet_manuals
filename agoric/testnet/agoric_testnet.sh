@@ -66,7 +66,7 @@ cd ag0
 git checkout agoric-upgrade-6
 make build
 . $HOME/.bash_profile
-cp $HOME/ag0/build/ag0 /usr/local/bin
+sudo cp $HOME/ag0/build/ag0 /usr/local/bin
 
 # config
 ag0 config chain-id $CHAIN_ID
@@ -109,7 +109,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ubld\"/" $HOME/.ag
 ag0 unsafe-reset-all
 
 # create service
-tee /etc/systemd/system/agoricd.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/agoricd.service > /dev/null <<EOF
 [Unit]
 Description=Agoric Cosmos daemon
 After=network-online.target
