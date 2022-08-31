@@ -58,7 +58,6 @@ cd ag0
 git checkout agoric-upgrade-7
 make build
 sudo cp $HOME/ag0/build/ag0 /usr/local/bin
-sudo systemctl restart agoricd && journalctl -fu agoricd -o cat
 ```
 
 ### State sync your node
@@ -74,6 +73,7 @@ s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
 s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" $HOME/.agoric/config/config.toml
 
 ag0 tendermint unsafe-reset-all --home $HOME/.agoric
+sudo systemctl restart agoricd && journalctl -fu agoricd -o cat
 ```
 
 ### Create wallet
