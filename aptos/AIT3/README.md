@@ -349,7 +349,7 @@ cd $HOME && rm -rf $WORKSPACE
 * Run your VFN with the API enabled, listening on either port 80, 8080, or 443 (for https).
 * Pass the evaluation performed by our Node Health Checker for the majority of the AIT. We will be checking continuously!
 
-> ** Note **
+> **Note**
 > We’re only just starting to track this now, so it’s not too late to start running a VFN!
 
 ## Q: How do I check myself whether the VFN is meeting the criteria?
@@ -374,7 +374,7 @@ Successful output:
 "100: Awesome!"
 ```
 
-> ** Note **
+> **Note**
 > Make sure the address you’re using for the check is the same address registered in the validator set.
 
 ## Q: What if it doesn’t say “100: Awesome”?
