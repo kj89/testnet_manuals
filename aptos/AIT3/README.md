@@ -352,7 +352,7 @@ cd $HOME && rm -rf $WORKSPACE
 > **Note**
 > We’re only just starting to track this now, so it’s not too late to start running a VFN!
 
-**Q: How do I check myself whether the VFN is meeting the criteria?**
+**Q: How do I check myself whether the VFN is meeting the criteria?**\
 **A: Check using the Node Health Checker:**
 ```bash
 FULLNODE_IP=<YOUR_FULLNODE_IP>
@@ -377,13 +377,13 @@ Successful output:
 > **Note**
 > Make sure the address you’re using for the check is the same address registered in the validator set.
 
-**Q: What if it doesn’t say “100: Awesome”?**
+**Q: What if it doesn’t say “100: Awesome”?**\
 **A: Read the output of /tmp/nhc_out, it should tell you what is wrong. Likely your VFN is down, the API is disabled, or the API is running on a port besides 80, 8080, or 443.**
 
-**Q: How do I know what VFN I registered on chain?**
+**Q: How do I know what VFN I registered on chain?**\
 **A: Unfortunately we don’t have a good way to do that right now, but we have CLI improvements coming.**
 
-**Q: Okay what if I don’t know then?**
+**Q: Okay what if I don’t know then?**\
 **A: You can update the VFN you’ve registered in the validator set with this command:**
 ```bash
 aptos node update-validator-network-addresses  \
@@ -393,13 +393,13 @@ aptos node update-validator-network-addresses  \
   --profile ait3-operator
 ```
 
-**Q: What if I didn’t register a VFN at all and I want to run one?**
+**Q: What if I didn’t register a VFN at all and I want to run one?**\
 **A: Run your VFN then register it using this above command.**
 
-**Q: How do I learn more about what NHC is doing?**
+**Q: How do I learn more about what NHC is doing?**\
 **A: Check out these articles:**
 - https://aptos.dev/nodes/node-health-checker
 - https://aptos.dev/nodes/node-health-checker-faq
 
-**Q: Do I have to run a VFN as part of AIT3?**
+**Q: Do I have to run a VFN as part of AIT3?**\
 **A: You don't have to, but you should if you want to gain the reward of an extra 200 Aptos tokens.**
