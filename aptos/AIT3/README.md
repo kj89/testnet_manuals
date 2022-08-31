@@ -102,6 +102,8 @@ yq -i '(.services.validator.ports[] | select(. == "9101:9101")) = "127.0.0.1:910
 yq -i 'del( .services.validator.expose[] | select(. == "80" or . == "9101") )' docker-compose.yaml
 yq -i '.services.validator.logging.options.max-file = "3"' docker-compose.yaml
 yq -i '.services.validator.logging.options.max-size = "100m"' docker-compose.yaml
+yq -i '.services.validator.ulimits.nofile.soft = 100000' $HOME/testnet/docker-compose.yaml
+yq -i '.services.validator.ulimits.nofile.hard = 100000' $HOME/testnet/docker-compose.yaml
 docker-compose up -d
 ```
 
@@ -116,6 +118,8 @@ sudo wget -qO docker-compose.yaml https://raw.githubusercontent.com/aptos-labs/a
 yq -i '.services.fullnode.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_4219d75c57115805f0faf0ad07c17becf6580202}"' docker-compose.yaml
 yq -i '.services.fullnode.logging.options.max-file = "3"' docker-compose.yaml
 yq -i '.services.fullnode.logging.options.max-size = "100m"' docker-compose.yaml
+yq -i '.services.fullnode.ulimits.nofile.soft = 100000' $HOME/testnet/docker-compose.yaml
+yq -i '.services.fullnode.ulimits.nofile.hard = 100000' $HOME/testnet/docker-compose.yaml
 docker-compose up -d
 ```
 
@@ -313,6 +317,19 @@ current_time=$(date +%s)
 time_left=$(echo "$current_time - $lockup_end_time" | bc)
 time_left=$((-time_left))
 printf '%02dh:%02dm:%02ds\n' $((time_left/3600)) $((time_left%3600/60)) $((time_left%60))
+```
+
+
+Increase open file limit for validator node
+```bash
+yq -i '.services.validator.ulimits.nofile.soft = 100000' $HOME/testnet/docker-compose.yaml
+yq -i '.services.validator.ulimits.nofile.hard = 100000' $HOME/testnet/docker-compose.yaml
+```
+
+Increase open file limit for fullnode
+```bash
+yq -i '.services.fullnode.ulimits.nofile.soft = 100000' $HOME/testnet/docker-compose.yaml
+yq -i '.services.fullnode.ulimits.nofile.hard = 100000' $HOME/testnet/docker-compose.yaml
 ```
 
 ## Leaving Validator Set
