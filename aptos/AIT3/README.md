@@ -24,7 +24,7 @@ Do this only if you received the confirmation email from Aptos team for your eli
 ## Official documentation and tools
 >Official docs: https://aptos.dev/nodes/ait/connect-to-testnet/
 >
->Status page: https://community.aptoslabs.com/it3
+>Status page: https://aptoslabs.com/leaderboard/it3
 
 ## Initialize staking pool
 
