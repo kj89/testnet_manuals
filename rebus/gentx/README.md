@@ -17,7 +17,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/182218818-f686aebb-6e48-47e1-96a2-e0d8faf44acb.png">
 </p>
 
-# Generate rebus testnet gentx
+# Generate rebus mainnet gentx
 
 ## Setting up vars
 Here you have to put name of your moniker (validator) that will be visible in explorer
@@ -74,7 +74,7 @@ rebusd config keyring-backend test
 rebusd init $NODENAME --chain-id $CHAIN_ID
 ```
 
-## Recover or create new wallet for testnet
+## Recover or create new wallet for mainnet
 Option 1 - generate new wallet
 ```
 rebusd keys add $WALLET --coin-type 118 —-algo secp256k1
