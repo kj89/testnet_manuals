@@ -29,7 +29,7 @@ Save and import variables into system
 ```
 echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 echo "export WALLET=wallet" >> $HOME/.bash_profile
-echo "export CHAIN_ID=reb_3333-1" >> $HOME/.bash_profile
+echo "export CHAIN_ID=reb_1111-1" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -59,7 +59,7 @@ source ~/.bash_profile
 ```
 cd $HOME
 git clone https://github.com/rebuschain/rebus.core.git 
-cd rebus.core && git checkout testnet
+cd rebus.core && git checkout master
 make install
 ```
 
@@ -77,12 +77,12 @@ rebusd init $NODENAME --chain-id $CHAIN_ID
 ## Recover or create new wallet for testnet
 Option 1 - generate new wallet
 ```
-rebusd keys add $WALLET
+rebusd keys add $WALLET --coin-type 118 —-algo secp256k1
 ```
 
 Option 2 - recover existing wallet
 ```
-rebusd keys add $WALLET --recover
+rebusd keys add $WALLET --recover --coin-type 118 —-algo secp256k1
 ```
 
 ## Add genesis account
@@ -107,8 +107,8 @@ rebusd gentx $WALLET 100000000000000000000arebus \
 
 ## Submit PR with Gentx
 1. Copy the contents of ${HOME}/.rebusdd/config/gentx/gentx-XXXXXXXX.json.
-2. Fork https://github.com/rebuschain/rebus.testnet
-3. Create a file <VALIDATOR_NAME>.json under the `rebus_3333-1/gentxs/` folder in the forked repo, paste the copied text into the file.
+2. Fork https://github.com/rebuschain/rebus.mainnet
+3. Create a file `<VALIDATOR_NAME>.json` under the `reb_1111-1/gentxs/` folder in the forked repo, paste the copied text into the file.
 4. Create a Pull Request to the main branch of the repository
 
 ### Await further instructions!
