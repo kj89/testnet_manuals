@@ -106,7 +106,7 @@ rebusd gentx $WALLET 100000000000000000000arebus \
 - contents of `$HOME/.rebusd/config/*`
 
 ## Submit PR with Gentx
-1. Copy the contents of ${HOME}/.rebusdd/config/gentx/gentx-XXXXXXXX.json.
+1. Copy the contents of ${HOME}/.rebusd/config/gentx/gentx-XXXXXXXX.json.
 2. Fork https://github.com/rebuschain/rebus.mainnet
 3. Create a file `<VALIDATOR_NAME>.json` under the `reb_1111-1/gentxs/` folder in the forked repo, paste the copied text into the file.
 4. Create a Pull Request to the main branch of the repository
