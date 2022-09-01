@@ -77,12 +77,12 @@ rebusd init $NODENAME --chain-id $CHAIN_ID
 ## Recover or create new wallet for mainnet
 Option 1 - generate new wallet
 ```
-rebusd keys add $WALLET --coin-type 118 —-algo secp256k1
+rebusd keys add $WALLET --coin-type 118 --algo secp256k1
 ```
 
 Option 2 - recover existing wallet
 ```
-rebusd keys add $WALLET --recover --coin-type 118 —-algo secp256k1
+rebusd keys add $WALLET --recover --coin-type 118 --algo secp256k1
 ```
 
 ## Add genesis account
