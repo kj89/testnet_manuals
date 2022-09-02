@@ -332,6 +332,18 @@ yq -i '.services.fullnode.ulimits.nofile.soft = 100000' $HOME/testnet/docker-com
 yq -i '.services.fullnode.ulimits.nofile.hard = 100000' $HOME/testnet/docker-compose.yaml
 ```
 
+reduce disk size using state-sync on validator node
+```
+yq -i '.services.validator.state_sync.state_sync_driver.bootstrapping_mode = DownloadLatestStates' $HOME/testnet/docker-compose.yaml
+yq -i '.services.validator.state_sync.data_streaming_service.max_concurrent_requests = 3' $HOME/testnet/docker-compose.yaml
+```
+
+reduce disk size using state-sync on fullnode
+```
+yq -i '.services.fullnode.state_sync.state_sync_driver.bootstrapping_mode = DownloadLatestStates' $HOME/testnet/docker-compose.yaml
+yq -i '.services.fullnode.state_sync.data_streaming_service.max_concurrent_requests = 3' $HOME/testnet/docker-compose.yaml
+```
+
 ## Leaving Validator Set
 A node can choose to leave validator set at anytime, or it would happen automatically when there's not sufficient stake on the validator account. To leave validator set, you can perform the following steps:
 
