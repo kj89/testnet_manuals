@@ -111,7 +111,7 @@ quicksilverd gentx $WALLET 50000000uqck \
 ## Submit PR with Gentx
 1. Copy the contents of ${HOME}/.quicksilverd/config/gentx/gentx-XXXXXXXX.json.
 2. Fork https://github.com/ingenuity-build/mainnet
-3. Create a file gentx-{{VALIDATOR_NAME}}.json under the `gentxs` folder in the forked repo, paste the copied text into the file.
+3. Create a file <VALIDATOR_NAME>.json under the `gentxs` folder in the forked repo, paste the copied text into the file.
 4. Create a Pull Request to the main branch of the repository
 
 ### Await further instructions!
