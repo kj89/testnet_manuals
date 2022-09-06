@@ -1,39 +1,29 @@
 #!/bin/bash
 
-echo -e "\033[0;35m"
-echo " :::    ::: ::::::::::: ::::    :::  ::::::::  :::::::::  :::::::::: ::::::::  ";
-echo " :+:   :+:      :+:     :+:+:   :+: :+:    :+: :+:    :+: :+:       :+:    :+: ";
-echo " +:+  +:+       +:+     :+:+:+  +:+ +:+    +:+ +:+    +:+ +:+       +:+        ";
-echo " +#++:++        +#+     +#+ +:+ +#+ +#+    +:+ +#+    +:+ +#++:++#  +#++:++#++ ";
-echo " +#+  +#+       +#+     +#+  +#+#+# +#+    +#+ +#+    +#+ +#+              +#+ ";
-echo " #+#   #+#  #+# #+#     #+#   #+#+# #+#    #+# #+#    #+# #+#       #+#    #+# ";
-echo " ###    ###  #####      ###    ####  ########  #########  ########## ########  ";
-echo -e "\e[0m"
-
 sleep 2
 
 # set vars
-echo -e "\e[1m\e[32mReplace <NODENAME> below with the name of your node\e[0m"
-if [ ! $NODENAME ]; then
-	read -p "Enter node name: " NODENAME
-	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
+echo -e "\e[1m\e[32mReplace <SUBNODENAME> below with the name of your node\e[0m"
+if [ ! $SUBNODENAME ]; then
+	read -p "Enter node name: " SUBNODENAME
+	echo 'export SUBNODENAME='$SUBNODENAME >> $HOME/.bash_profile
 fi
-echo -e "\e[1m\e[32mReplace <WALLET_ADDRESS> below with your account address from Polkadot.js wallet\e[0m"
-if [ ! $WALLET_ADDRESS ]; then
-	read -p "Enter wallet address: " WALLET_ADDRESS
-	echo 'export WALLET_ADDRESS='$WALLET_ADDRESS >> $HOME/.bash_profile
+echo -e "\e[1m\e[32mReplace <SUBWALLET_ADDRESS> below with your account address from Polkadot.js wallet\e[0m"
+if [ ! $SUBWALLET_ADDRESS ]; then
+	read -p "Enter wallet address: " SUBWALLET_ADDRESS
+	echo 'export SUBWALLET_ADDRESS='$SUBWALLET_ADDRESS >> $HOME/.bash_profile
 fi
-echo -e "\e[1m\e[32mReplace <PLOT_SIZE> with plot size in gigabytes or terabytes, for instance 100G or 2T (but leave at least 10G of disk space for node)\e[0m"
-if [ ! $PLOT_SIZE ]; then
-	read -p "Enter plot size: " PLOT_SIZE
-	echo 'export PLOT_SIZE='$PLOT_SIZE >> $HOME/.bash_profile
+echo -e "\e[1m\e[32mReplace <SUBPLOT_SIZE> with plot size in gigabytes or terabytes, for instance 100G or 2T (but leave at least 10G of disk space for node)\e[0m"
+if [ ! $SUBPLOT_SIZE ]; then
+	read -p "Enter plot size: " SUBPLOT_SIZE
+	echo 'export SUBPLOT_SIZE='$SUBPLOT_SIZE >> $HOME/.bash_profile
 fi
 source ~/.bash_profile
 
 echo '================================================='
-echo -e "Your node name: \e[1m\e[32m$NODENAME\e[0m"
-echo -e "Your wallet name: \e[1m\e[32m$WALLET_ADDRESS\e[0m"
-echo -e "Your plot size: \e[1m\e[32m$PLOT_SIZE\e[0m"
+echo -e "Your node name: \e[1m\e[32m$SUBNODENAME\e[0m"
+echo -e "Your wallet name: \e[1m\e[32m$SUBWALLET_ADDRESS\e[0m"
+echo -e "Your plot size: \e[1m\e[32m$SUBPLOT_SIZE\e[0m"
 echo -e '================================================='
 sleep 3
 
@@ -48,9 +38,8 @@ sudo apt install curl jq ocl-icd-opencl-dev libopencl-clang-dev libgomp1 -y
 # update executables
 cd $HOME
 rm -rf subspace-*
-APP_VERSION=$(curl -s https://api.github.com/repos/subspace/subspace/releases/latest | jq -r ".tag_name" | sed "s/runtime-/""/g")
-wget -O subspace-node https://github.com/subspace/subspace/releases/download/${APP_VERSION}/subspace-node-ubuntu-x86_64-${APP_VERSION}
-wget -O subspace-farmer https://github.com/subspace/subspace/releases/download/${APP_VERSION}/subspace-farmer-ubuntu-x86_64-${APP_VERSION}
+wget -O subspace-node https://github.com/subspace/subspace/releases/download/gemini-2a-2022-sep-06/subspace-node-ubuntu-x86_64-gemini-2a-2022-sep-06
+wget -O subspace-farmer https://github.com/subspace/subspace/releases/download/gemini-2a-2022-sep-06/subspace-farmer-ubuntu-x86_64-gemini-2a-2022-sep-06
 chmod +x subspace-*
 mv subspace-* /usr/local/bin/
 
@@ -64,12 +53,11 @@ After=network.target
 Type=simple
 User=$USER
 ExecStart=$(which subspace-node) \\
---chain="gemini-1" \\
+--chain="gemini-2a" \\
 --execution="wasm" \\
---pruning=1024 \\
---keep-blocks=1024 \\
+--state-pruning="archive" \\
 --validator \\
---name="$NODENAME"
+--name="$SUBNODENAME"
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
@@ -86,8 +74,8 @@ After=network.target
 Type=simple
 User=$USER
 ExecStart=$(which subspace-farmer) farm \\
---reward-address=$WALLET_ADDRESS \\
---plot-size=$PLOT_SIZE
+--reward-address=$SUBWALLET_ADDRESS \\
+--plot-size=$SUBPLOT_SIZE
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=10000
