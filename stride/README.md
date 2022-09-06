@@ -41,9 +41,9 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
  - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
 ### Recommended Hardware Requirements 
- - 4x CPUs; the faster clock speed the better
- - 32GB RAM
- - 200GB of storage (SSD or NVME)
+ - 8x CPUs; the faster clock speed the better
+ - 64GB RAM
+ - 1TB of storage (SSD or NVME)
  - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
 ## Set up your stride fullnode
