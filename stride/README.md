@@ -18,7 +18,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/183283696-d1c4192b-f594-45bb-b589-15a5e57a795c.png">
 </p>
 
-# stride node setup for testnet — STRIDE
+# stride node setup for mainnet — stride-1
 
 Official documentation:
 >- [Validator setup instructions](https://github.com/Stride-Labs/testnet)
@@ -98,16 +98,6 @@ STRIDE_VALOPER_ADDRESS=$(strided keys show $WALLET --bech val -a)
 echo 'export STRIDE_WALLET_ADDRESS='${STRIDE_WALLET_ADDRESS} >> $HOME/.bash_profile
 echo 'export STRIDE_VALOPER_ADDRESS='${STRIDE_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
-```
-
-### Fund your wallet
-In order to create validator first you need to fund your wallet with testnet tokens.
-To top up your wallet join [Stride discord server](https://discord.gg/n6KrK77t) and navigate to:
-- **#token-faucet** to request test tokens
-
-To request a faucet grant:
-```
-$faucet-stride:<STRIDE_WALLET_ADDRESS>
 ```
 
 ### Create validator
