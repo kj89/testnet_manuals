@@ -25,6 +25,7 @@ Once the chain reaches the upgrade height, you will encounter the following pani
 ```
 sudo systemctl stop gravityd
 cd $HOME
+rm gravity-bin -rf
 mkdir gravity-bin && cd gravity-bin
 wget -O gravityd https://github.com/Gravity-Bridge/Gravity-Bridge/releases/download/v1.7.0/gravity-linux-amd64
 wget -O gbt https://github.com/Gravity-Bridge/Gravity-Bridge/releases/download/v1.7.0/gbt
