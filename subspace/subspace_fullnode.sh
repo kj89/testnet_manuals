@@ -87,7 +87,7 @@ sudo systemctl restart systemd-journald
 sudo systemctl daemon-reload
 sudo systemctl enable subspaced subspaced-farmer
 subspace-farmer wipe
-subspace-node purge-chain --chain gemini-1 -y
+subspace-node purge-chain --chain gemini-2a -y
 sleep 5
 systemctl restart subspaced
 sleep 20
