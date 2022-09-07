@@ -39,5 +39,5 @@ systemctl restart agoricd && journalctl -fu agoricd -o cat
 As an alternative we have prepared script that should update your binary when block height is reached
 Run this in a `screen` so it will not get stopped when session disconnected 😉
 ```
-wget -O agoric-upgrade-7.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/testnet/tools/agoric-upgrade-7.sh && chmod +x agoric-upgrade-7.sh && ./agoric-upgrade-7.sh
+wget -O upgrade.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/emerynet/upgrade/146039/upgrade.sh && chmod +x upgrade.sh && ./upgrade.sh
 ```

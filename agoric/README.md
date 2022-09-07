@@ -18,13 +18,11 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/167032367-fee4380e-7678-43e0-9206-36d72b32b8ae.png">
 </p>
 
-# agoric node setup for devnet — agoricdev-11
+# agoric node setup for mainnet — agoric-3
 
-Official documentation:
-> [Validator Guide for Devnet](https://github.com/Agoric/agoric-sdk/wiki/Validator-Guide-for-Devnet)
 
 Explorer:
-> https://devnet.explorer.agoric.net/
+> https://agoric.explorers.guru
 
 ## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for agoric validator](https://github.com/kj89/testnet_manuals/blob/main/agoric/monitoring/README.md)
@@ -35,7 +33,7 @@ Explorer:
 ### Option 1 (automatic)
 You can setup your agoric fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
-wget -O agoric_devnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/agoric_devnet.sh && chmod +x agoric_devnet.sh && ./agoric_devnet.sh
+wget -O agoric_mainnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/mainnet/agoric_mainnet.sh && chmod +x agoric_mainnet.sh && ./agoric_mainnet.sh
 ```
 
 ### Option 2 (manual)
@@ -49,34 +47,49 @@ source $HOME/.bash_profile
 
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
-agd status 2>&1 | jq .SyncInfo
+ag0 status 2>&1 | jq .SyncInfo
+```
+
+### (OPTIONAL) Restore using snapshot provided by polkachu
+```
+json=$(curl -qs --request GET --get "https://polkachu.com/api/v1/chains/agoric/snapshot" --header "Content-Type: application/json" --header "Accept: application/json")
+snapshot_url=$(echo $json | jq -r .snapshot.url)
+snapshot_name=$(echo $json | jq -r .snapshot.name)
+snapshot_block=$(echo $json | jq -r .snapshot.block_height)
+echo -e "\e[1m\e[32mDownloading $snapshot_name (block height: $snapshot_block) from $snapshot_url...\e[0m"
+wget -O $snapshot_name $snapshot_url
+sudo systemctl stop agoricd
+ag0 unsafe-reset-all
+lz4 -c -d $snapshot_name  | tar -x -C $HOME/.agoric
+rm -v $snapshot_name
+sudo systemctl start agoricd
 ```
 
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
-agd keys add $WALLET
+ag0 keys add $WALLET
 ```
 
 (OPTIONAL) To recover your wallet using seed phrase
 ```
-agd keys add $WALLET --recover
+ag0 keys add $WALLET --recover
 ```
 
 To get current list of wallets
 ```
-agd keys list
+ag0 keys list
 ```
 
 ### Save wallet info
 Add wallet address
 ```
-WALLET_ADDRESS=$(agd keys show $WALLET -a)
+WALLET_ADDRESS=$(ag0 keys show $WALLET -a)
 ```
 
 Add valoper address
 ```
-VALOPER_ADDRESS=$(agd keys show $WALLET --bech val -a)
+VALOPER_ADDRESS=$(ag0 keys show $WALLET --bech val -a)
 ```
 
 Load variables into system
@@ -86,31 +99,25 @@ echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
-### Top up your wallet balance using faucet
-To get free tokens in agoricdev-11 testnet:
-* navigate to [Agoric official discord](https://agoric.com/discord)
-* open `#faucet` channel under `DEVELOPMENT` category 
-* input command: `!faucet client <WALLET_ADDRESS>`
-
 ### Create validator
 Before creating validator please make sure that you have at least 1 bld (1 bld is equal to 1000000 ubld) and your node is synchronized
 
 To check your wallet balance:
 ```
-agd query bank balances $WALLET_ADDRESS
+ag0 query bank balances $WALLET_ADDRESS
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
 To create your validator run command below
 ```
-agd tx staking create-validator \
+ag0 tx staking create-validator \
   --amount 1000000ubld \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
   --commission-rate "0.07" \
   --min-self-delegation "1" \
-  --pubkey  $(agd show-validator) \
+  --pubkey  $(ag0 show-validator) \
   --moniker $NODENAME \
   --chain-id $CHAIN_ID
 ```
@@ -133,7 +140,7 @@ sudo ufw default allow outgoing
 sudo ufw default deny incoming
 sudo ufw allow ssh/tcp
 sudo ufw limit ssh/tcp
-sudo ufw allow 26656,26660,26657,1317/tcp
+sudo ufw allow 26656,26660/tcp
 sudo ufw enable
 ```
 
@@ -156,101 +163,101 @@ curl -sS http://localhost:26657/net_info | jq -r '.result.peers[] | "\(.node_inf
 ### Service management
 Check logs
 ```
-journalctl -fu agd -o cat
+journalctl -fu ag0 -o cat
 ```
 
 Start service
 ```
-systemctl start agd
+systemctl start ag0
 ```
 
 Stop service
 ```
-systemctl stop agd
+systemctl stop ag0
 ```
 
 Restart service
 ```
-systemctl restart agd
+systemctl restart ag0
 ```
 
 ### Node info
 Synchronization info
 ```
-agd status 2>&1 | jq .SyncInfo
+ag0 status 2>&1 | jq .SyncInfo
 ```
 
 Validator info
 ```
-agd status 2>&1 | jq .ValidatorInfo
+ag0 status 2>&1 | jq .ValidatorInfo
 ```
 
 Node info
 ```
-agd status 2>&1 | jq .NodeInfo
+ag0 status 2>&1 | jq .NodeInfo
 ```
 
 Show node id
 ```
-agd show-node-id
+ag0 show-node-id
 ```
 
 ### Wallet operations
 List of wallets
 ```
-agd keys list
+ag0 keys list
 ```
 
 Recover wallet
 ```
-agd keys add $WALLET --recover
+ag0 keys add $WALLET --recover
 ```
 
 Delete wallet
 ```
-agd keys delete $WALLET
+ag0 keys delete $WALLET
 ```
 
 Get wallet balance
 ```
-agd query bank balances $WALLET_ADDRESS
+ag0 query bank balances $WALLET_ADDRESS
 ```
 
 Transfer funds
 ```
-agd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000ubld
+ag0 tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000ubld
 ```
 
 ### Voting
 ```
-agd tx gov vote 1 yes --from $WALLET --chain-id=$CHAIN_ID
+ag0 tx gov vote 1 yes --from $WALLET --chain-id=$CHAIN_ID
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-agd tx staking delegate $VALOPER_ADDRESS 10000000ubld --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+ag0 tx staking delegate $VALOPER_ADDRESS 10000000ubld --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-agd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ubld --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+ag0 tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ubld --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
 ```
-agd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+ag0 tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
 ```
 
 Withdraw rewards with commision
 ```
-agd tx distribution withdraw-rewards $VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$CHAIN_ID
+ag0 tx distribution withdraw-rewards $VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$CHAIN_ID
 ```
 
 ### Validator management
 Edit validator
 ```
-agd tx staking edit-validator \
+ag0 tx staking edit-validator \
 --moniker=$NODENAME \
 --identity=<your_keybase_id> \
 --website="<your_website>" \
@@ -261,7 +268,7 @@ agd tx staking edit-validator \
 
 Unjail validator
 ```
-agd tx slashing unjail \
+ag0 tx slashing unjail \
   --broadcast-mode=block \
   --from=$WALLET \
   --chain-id=$CHAIN_ID \
@@ -271,11 +278,10 @@ agd tx slashing unjail \
 ### Delete node
 This commands will completely remove node from server. Use at your own risk!
 ```
-systemctl stop agd
-systemctl disable agd
-rm /etc/systemd/system/agd.service -rf
-rm $(which agd) -rf
+systemctl stop ag0
+systemctl disable ag0
+rm /etc/systemd/system/ag0.service -rf
+rm $(which ag0) -rf
 rm $HOME/.agoric* -rf
-rm $HOME/agoric-sdk -rf
-sed -i '/AGORIC_/d' ~/.bash_profile
+rm $HOME/ag0 -rf
 ```
