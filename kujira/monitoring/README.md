@@ -87,7 +87,7 @@ To add validator use command with specified `VALIDATOR_IP`, `KUJIRA_PROM_PORT`, 
 $HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP KUJIRA_PROM_PORT KUJIRA_VALOPER_ADDRESS KUJIRA_WALLET_ADDRESS PROJECT_NAME
 ```
 
-> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 13660 kujiravaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete kujira1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc kujira```
+> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 27660 kujiravaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete kujira1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc kujira```
 
 To add more validators just run command above with validator values
 
@@ -95,7 +95,7 @@ To add more validators just run command above with validator values
 Deploy the monitoring stack
 ```
 cd $HOME/cosmos_node_monitoring
-sudo docker compose up -d
+docker compose up -d
 ```
 
 ports used:

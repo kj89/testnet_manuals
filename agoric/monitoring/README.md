@@ -32,14 +32,14 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 |---------------|-------------|
 | **bond_denom** | Denominated token name, for example, `ubld` for agoric bld testnet. You can find it in genesis file |
 | **bench_prefix** | Prefix for chain addresses, for example, `agoric` for agoric bld testnet. You can find it in public addresses like this **agoric**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
-| **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file. Default value is `26657` |
-| **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file. Default value is `9090` |
+| **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file. Default value for agoric is `27657` |
+| **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file. Default value for agoric is `27090` |
 
 make sure following ports are open:
 - `9100` (node-exporter)
 - `9300` (cosmos-exporter)
 
-prometheus metrics should be `enabled` and port `26660` should be available on validator instance
+prometheus metrics should be `enabled` and port `27660` should be available on validator instance
 
 To enable prometheus you have to run command below and after that please restart service to apply changes
 ```
@@ -82,20 +82,20 @@ source $HOME/.bash_profile
 ```
 
 ### Add validator into _prometheus_ configuration file
-To add validator use command with specified `VALIDATOR_IP`, `VALOPER_ADDRESS`, `WALLET_ADDRESS` and `PROJECT_NAME`
+To add validator use command with specified `VALIDATOR_IP`, `AGORIC_PROM_PORT`, `VALOPER_ADDRESS`, `WALLET_ADDRESS` and `PROJECT_NAME`
 ```
-$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP VALOPER_ADDRESS WALLET_ADDRESS PROJECT_NAME
+$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP AGORIC_PROM_PORT VALOPER_ADDRESS WALLET_ADDRESS PROJECT_NAME
 ```
 
 > example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 agoricvaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete agoric1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc agoric```
 
 To add more validators just run command above with validator values
 
-### Run docker compose
+### Run docker-compose
 Deploy the monitoring stack
 ```
 cd $HOME/cosmos_node_monitoring
-docker compose up -d
+docker-compose up -d
 ```
 
 ports used:
@@ -179,7 +179,7 @@ Grafana dashboard is devided into 4 sections:
 ## Cleanup all container data
 ```
 cd $HOME/cosmos_node_monitoring
-docker compose down
+docker-compose down
 docker volume prune -f
 ```
 
