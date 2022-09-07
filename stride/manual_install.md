@@ -68,7 +68,7 @@ fi
 cd $HOME
 git clone https://github.com/Stride-Labs/stride.git
 cd stride
-git checkout bf1e6ead4bf3d448f239b7c9dc6ad1058c2fcd39
+git checkout v1.0.2
 make build
 sudo cp $HOME/stride/build/strided /usr/local/bin
 ```
