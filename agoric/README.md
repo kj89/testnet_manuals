@@ -84,18 +84,18 @@ ag0 keys list
 ### Save wallet info
 Add wallet address
 ```
-WALLET_ADDRESS=$(ag0 keys show $WALLET -a)
+AGORIC_WALLET_ADDRESS=$(ag0 keys show $WALLET -a)
 ```
 
 Add valoper address
 ```
-VALOPER_ADDRESS=$(ag0 keys show $WALLET --bech val -a)
+AGORIC_VALOPER_ADDRESS=$(ag0 keys show $WALLET --bech val -a)
 ```
 
 Load variables into system
 ```
-echo 'export WALLET_ADDRESS='${WALLET_ADDRESS} >> $HOME/.bash_profile
-echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
+echo 'export AGORIC_WALLET_ADDRESS='${AGORIC_WALLET_ADDRESS} >> $HOME/.bash_profile
+echo 'export AGORIC_VALOPER_ADDRESS='${AGORIC_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
