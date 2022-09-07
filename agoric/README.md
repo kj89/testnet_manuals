@@ -33,7 +33,7 @@ Explorer:
 ### Option 1 (automatic)
 You can setup your agoric fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
-wget -O agoric.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/mainnet/agoric.sh && chmod +x agoric.sh && ./agoric.sh
+wget -O agoric.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/agoric.sh && chmod +x agoric.sh && ./agoric.sh
 ```
 
 ### Option 2 (manual)
