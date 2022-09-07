@@ -91,11 +91,11 @@ $HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP KUJIRA_PROM_PORT KUJI
 
 To add more validators just run command above with validator values
 
-### Run docker compose
+### Run docker-compose
 Deploy the monitoring stack
 ```
 cd $HOME/cosmos_node_monitoring
-docker compose up -d
+docker-compose up -d
 ```
 
 ports used:
@@ -179,7 +179,7 @@ Grafana dashboard is devided into 4 sections:
 ## Cleanup all container data
 ```
 cd $HOME/cosmos_node_monitoring
-sudo docker compose down
+sudo docker-compose down
 sudo docker volume prune -f
 ```
 
