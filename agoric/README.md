@@ -59,7 +59,7 @@ snapshot_block=$(echo $json | jq -r .snapshot.block_height)
 echo -e "\e[1m\e[32mDownloading $snapshot_name (block height: $snapshot_block) from $snapshot_url...\e[0m"
 wget -O $snapshot_name $snapshot_url
 sudo systemctl stop agoricd
-ag0 unsafe-reset-all
+ag0 tendermint unsafe-reset-all --home $HOME/.agoric
 lz4 -c -d $snapshot_name  | tar -x -C $HOME/.agoric
 rm -v $snapshot_name
 sudo systemctl start agoricd
