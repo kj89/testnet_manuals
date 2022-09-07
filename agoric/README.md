@@ -33,7 +33,7 @@ Explorer:
 ### Option 1 (automatic)
 You can setup your agoric fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
-wget -O agoric_mainnet.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/mainnet/agoric_mainnet.sh && chmod +x agoric_mainnet.sh && ./agoric_mainnet.sh
+wget -O agoric.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/agoric/mainnet/agoric.sh && chmod +x agoric.sh && ./agoric.sh
 ```
 
 ### Option 2 (manual)
@@ -156,7 +156,7 @@ wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/
 
 ## Get currently connected peer list with ids
 ```
-curl -sS http://localhost:26657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
+curl -sS http://localhost:${AGORIC_PORT}657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
 
 ## Usefull commands
