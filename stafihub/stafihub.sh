@@ -80,3 +80,4 @@ sudo mv $HOME/stafihubd.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable stafihubd
 sudo systemctl restart stafihubd
+journalctl -fu stafihubd -o cat
