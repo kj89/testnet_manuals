@@ -37,6 +37,8 @@ make install
 rm $HOME/.stafihub/config/genesis.json
 stafihubd init $STAFI_NODENAME --chain-id $STAFI_CHAIN_ID
 stafihubd config chain-id $STAFI_CHAIN_ID
+stafihubd config keyring-backend test
+stafihubd config node tcp://localhost:${STAFI_PORT}657
 
 
 stafihubd tendermint unsafe-reset-all --home ~/.stafihub
