@@ -18,14 +18,6 @@ source ~/.bash_profile
 sudo apt update && sudo apt upgrade -y
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu gcc git jq chrony liblz4-tool -y
 
-#INSTALL GO
-wget https://golang.org/dl/go1.18.3.linux-amd64.tar.gz; \
-rm -rv /usr/local/go; \
-tar -C /usr/local -xzf go1.18.3.linux-amd64.tar.gz && \
-rm -v go1.18.3.linux-amd64.tar.gz && \
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.bash_profile && \
-source ~/.bash_profile && \
-go version
 
 rm -rf $HOME/stafihub $HOME/.stafihub
 cd $HOME
