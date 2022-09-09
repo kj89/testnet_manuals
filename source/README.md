@@ -27,11 +27,11 @@ Explorer:
 >-  https://source.explorers.guru/
 
 ## Usefull tools and references
-> To generate gentx for sourcechain-testnet testnet please navigate to [Generate gentx for sourcechain-testnet testnet](https://github.com/kj89/testnet_manuals/blob/main/source/innuendo/gentx/README.md)
+> To generate gentx for sourcechain-testnet testnet please navigate to [Generate gentx for sourcechain-testnet testnet](https://github.com/kj89/testnet_manuals/blob/main/source/gentx/README.md)
 >
-> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for source validator](https://github.com/kj89/testnet_manuals/blob/main/source/innuendo/monitoring/README.md)
+> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for source validator](https://github.com/kj89/testnet_manuals/blob/main/source/monitoring/README.md)
 >
-> To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/source/innuendo/migrate_validator.md)
+> To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/source/migrate_validator.md)
 
 ## Hardware Requirements
 Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
@@ -52,11 +52,11 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
 ### Option 1 (automatic)
 You can setup your source fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
-wget -O source.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/source/innuendo/source.sh && chmod +x source.sh && ./source.sh
+wget -O source.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/source/source.sh && chmod +x source.sh && ./source.sh
 ```
 
 ### Option 2 (manual)
-You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/source/innuendo/manual_install.md) if you better prefer setting up node manually
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/source/manual_install.md) if you better prefer setting up node manually
 
 ## Post installation
 
@@ -145,13 +145,13 @@ sudo ufw enable
 ```
 
 ## Monitoring
-To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for source validator](https://github.com/kj89/testnet_manuals/blob/main/source/innuendo/monitoring/README.md)
+To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for source validator](https://github.com/kj89/testnet_manuals/blob/main/source/monitoring/README.md)
 
 ## Calculate synchronization time
 This script will help you to estimate how much time it will take to fully synchronize your node\
 It measures average blocks per minute that are being synchronized for period of 5 minutes and then gives you results
 ```
-wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/source/innuendo/tools/synctime.py && python3 ./synctime.py
+wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/source/tools/synctime.py && python3 ./synctime.py
 ```
 
 ### Get list of validators
