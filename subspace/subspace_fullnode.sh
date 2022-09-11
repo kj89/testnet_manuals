@@ -64,7 +64,7 @@ After=network.target
 Type=simple
 User=$USER
 ExecStart=$(which subspace-node) \\
---chain="gemini-1" \\
+--chain="gemini-2a" \\
 --execution="wasm" \\
 --pruning=1024 \\
 --keep-blocks=1024 \\
@@ -99,7 +99,7 @@ sudo systemctl restart systemd-journald
 sudo systemctl daemon-reload
 sudo systemctl enable subspaced subspaced-farmer
 subspace-farmer wipe
-subspace-node purge-chain --chain gemini-1 -y
+subspace-node purge-chain --chain gemini-2a -y
 sleep 5
 systemctl restart subspaced
 sleep 20

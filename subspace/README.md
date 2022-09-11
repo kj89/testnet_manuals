@@ -22,8 +22,8 @@
 
 Official documentation:
 - Official manual: https://github.com/subspace/subspace/blob/main/docs/farming.md
-- Telemetry: https://telemetry.subspace.network/#list/0x9ee86eefc3cc61c71a7751bba7f25e442da2512f408e6286153b3ccc055dccf0
-- Block explorer: https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fna.gemini-1b.subspace.network%2Fws#/explorer
+- Telemetry: https://telemetry.subspace.network/#list/0x43d10ffd50990380ffe6c9392145431d630ae67e89dbc9c014cac2a417759101
+- Block explorer: https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Feu-1.gemini-2a.subspace.network%2Fws#/explorer
 
 ## Minimum Specifications
 - CPU: 2 CPU
@@ -42,7 +42,7 @@ If you have a server with no firewall, there is nothing to be done, but otherwis
 ## Create Polkadot.js wallet
 To create polkadot wallet:
 1. Download and install [Browser Extension](https://polkadot.js.org/extension/)
-2. Navigate to [Subspace Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Feu.gemini-1b.subspace.network%2Fws#/accounts) and press `Add account` button
+2. Navigate to [Subspace Explorer](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Feu-1.gemini-2a.subspace.network%2Fws#/accounts) and press `Add account` button
 3. Save `mnemonic` and create wallet
 4. This will generate wallet address that you will have to use later. Example of wallet address: `st7QseTESMmUYcT5aftRJZ3jg357MsaAa93CFQL5UKsyGEk53`
 
@@ -95,7 +95,7 @@ sudo apt update && sudo apt install ocl-icd-opencl-dev libopencl-clang-dev libgo
 If you were running a node previously, and want to switch to a new snapshot, please perform these steps and then follow the guideline again:
 ```
 subspace-farmer wipe
-subspace-node purge-chain --chain gemini-1 -y
+subspace-node purge-chain --chain gemini-2a -y
 systemctl restart subspaced
 sleep 30
 systemctl restart subspaced-farmer
