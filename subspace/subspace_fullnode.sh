@@ -24,6 +24,7 @@ if [ ! $WALLET_ADDRESS ]; then
 	echo 'export WALLET_ADDRESS='$WALLET_ADDRESS >> $HOME/.bash_profile
 fi
 echo -e "\e[1m\e[32mReplace <PLOT_SIZE> with plot size in gigabytes or terabytes, for instance 100G or 2T (but leave at least 10G of disk space for node)\e[0m"
+echo -e "\e[1m\e[31mDefault plot size will be set to 100 GB maximum (farmers may change their plot size to be less than 100 GB, but not greater)\e[0m"
 if [ ! $PLOT_SIZE ]; then
 	read -p "Enter plot size: " PLOT_SIZE
 	echo 'export PLOT_SIZE='$PLOT_SIZE >> $HOME/.bash_profile
@@ -113,7 +114,7 @@ if [[ `service subspaced status | grep active` =~ "running" ]]; then
 else
   echo -e "Your Subspace node \e[31mwas not installed correctly\e[39m, please reinstall."
 fi
-echo -e "Check your node logs: \e[journalctl -fu subspaced -o cat\e[39m"
+echo -e "Check your node logs: \e[32journalctl -fu subspaced -o cat\e[39m"
 sleep 2
 echo "==================================================="
 echo -e '\e[32mCheck farmer status\e[39m' && sleep 1
