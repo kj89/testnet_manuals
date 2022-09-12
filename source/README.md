@@ -109,7 +109,14 @@ source $HOME/.bash_profile
 ```
 
 ### Fund your wallet
-Ask team for testnet tokens
+In order to create validator first you need to fund your wallet with testnet tokens.
+To top up your wallet join [Source discord server](https://discord.gg/mBZe8X4eW5) and navigate to:
+- **#faucet** channel
+
+To request a faucet grant:
+```
+$request <YOUR_WALLET_ADDRESS>
+```
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 qck (1 qck is equal to 1000000 usource) and your node is synchronized
