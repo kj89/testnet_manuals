@@ -18,13 +18,13 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/182218818-f686aebb-6e48-47e1-96a2-e0d8faf44acb.png">
 </p>
 
-# rebus node setup for testnet — reb_3333-1
+# rebus node setup for mainnet — reb_1111-1
 
 Official documentation:
->- https://github.com/rebuschain/rebus.testnet/tree/master/rebus_3333-1
+>- https://github.com/rebuschain/rebus.mainnet/tree/master/reb_1111-1
 
 Explorer:
->- https://explorer.kjnodes.com/REBUS
+>- https://rebus.explorers.guru
 
 ## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for rebus validator](https://github.com/kj89/testnet_manuals/blob/main/rebus/monitoring/README.md)
