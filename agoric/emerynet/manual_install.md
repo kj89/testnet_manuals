@@ -95,7 +95,7 @@ sudo cp $HOME/ag0/build/ag0 /usr/local/bin
 ## Config app
 ```
 ag0 config chain-id $AGORIC_CHAIN_ID
-ag0 config keyring-backend file
+ag0 config keyring-backend test
 ag0 config node tcp://localhost:${AGORIC_PORT}657
 ```
 
