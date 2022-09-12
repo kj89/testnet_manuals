@@ -36,7 +36,9 @@ echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 
 cd $HOME
-rm -rf deweb
+systemctl stop dewebd
+systemctl disable dewebd
+rm -rf deweb .deweb
 git clone https://github.com/deweb-services/deweb.git
 cd deweb
 git checkout v0.3
