@@ -21,10 +21,10 @@
 # Quicksilver node setup for Testnet — sourcechain-testnet
 
 Official documentation:
->- [Validator setup instructions](https://github.com/ingenuity-build/testnets)
+>- [Validator setup instructions](https://github.com/obajay/nodes-Guides/tree/main/Source)
 
 Explorer:
->-  https://source.explorers.guru/
+>-  https://explorer.testnet.sourceprotocol.io
 
 ## Usefull tools and references
 > To generate gentx for sourcechain-testnet testnet please navigate to [Generate gentx for sourcechain-testnet testnet](https://github.com/kj89/testnet_manuals/blob/main/source/gentx/README.md)
@@ -68,6 +68,18 @@ source $HOME/.bash_profile
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
 sourced status 2>&1 | jq .SyncInfo
+```
+
+## Snapshot 06.09.22 (0.1 GB) block height --> 2226618
+```
+sudo systemctl stop sourced
+rm -rf $HOME/.source/data/
+mkdir $HOME/.source/data/
+cd $HOME
+wget http://116.202.236.115:8000/sourcedata.tar.gz
+tar -C $HOME/ -zxvf sourcedata.tar.gz --strip-components 1
+rm sourcedata.tar.gz
+sudo systemctl restart sourced && journalctl -u sourced -f -o cat
 ```
 
 ### Create wallet
