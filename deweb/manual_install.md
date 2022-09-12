@@ -133,7 +133,7 @@ sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.deweb/config/config.t
 
 ## Reset chain data
 ```
-dewebd unsafe-reset-all
+dewebd tendermint unsafe-reset-all --home $HOME/.deweb
 ```
 
 ## Create service
@@ -145,7 +145,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which dewebd) start
+ExecStart=$(which dewebd) start --home $HOME/.deweb
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535

@@ -103,7 +103,7 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0udws\"/" $HOME/.de
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.deweb/config/config.toml
 
 # reset
-dewebd unsafe-reset-all
+dewebd tendermint unsafe-reset-all --home $HOME/.deweb
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
@@ -114,7 +114,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which dewebd) start
+ExecStart=$(which dewebd) start --home $HOME/.deweb
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
