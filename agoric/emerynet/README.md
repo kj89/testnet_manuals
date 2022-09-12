@@ -95,10 +95,10 @@ ag0 keys list
 ### Save wallet info
 Load wallet and valoper variables into system
 ```
-WALLET_ADDRESS=$(ag0 keys show $WALLET -a)
-VALOPER_ADDRESS=$(ag0 keys show $WALLET --bech val -a)
-echo 'export WALLET_ADDRESS='${WALLET_ADDRESS} >> $HOME/.bash_profile
-echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
+AGORIC_WALLET_ADDRESS=$(ag0 keys show $WALLET -a)
+AGORIC_VALOPER_ADDRESS=$(ag0 keys show $WALLET --bech val -a)
+echo 'export AGORIC_WALLET_ADDRESS='${AGORIC_WALLET_ADDRESS} >> $HOME/.bash_profile
+echo 'export AGORIC_VALOPER_ADDRESS='${AGORIC_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -106,7 +106,7 @@ source $HOME/.bash_profile
 In order to create validator first you need to fund your wallet with testnet tokens.
 To top up your wallet:
 - navigate to https://emerynet.faucet.agoric.net/
-- input your <YOUR_WALLET_ADDRESS>
+- input your <YOUR_AGORIC_WALLET_ADDRESS>
 - check `delegate` and press `Submit` button
 
 ### Create validator
@@ -114,7 +114,7 @@ Before creating validator please make sure that you have at least 1 bld (1 bld i
 
 To check your wallet balance:
 ```
-ag0 query bank balances $WALLET_ADDRESS
+ag0 query bank balances $AGORIC_WALLET_ADDRESS
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
@@ -129,7 +129,7 @@ ag0 tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(ag0 tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id $CHAIN_ID
+  --chain-id $AGORIC_CHAIN_ID
 ```
 
 ## Security
@@ -235,43 +235,43 @@ ag0 keys delete $WALLET
 
 Get wallet balance
 ```
-ag0 query bank balances $WALLET_ADDRESS
+ag0 query bank balances $AGORIC_WALLET_ADDRESS
 ```
 
 Transfer funds
 ```
-ag0 tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000ubld
+ag0 tx bank send $AGORIC_WALLET_ADDRESS <TO_AGORIC_WALLET_ADDRESS> 10000000ubld
 ```
 
 ### Voting
 ```
-ag0 tx gov vote 1 yes --from $WALLET --chain-id=$CHAIN_ID
+ag0 tx gov vote 1 yes --from $WALLET --chain-id=$AGORIC_CHAIN_ID
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-ag0 tx staking delegate $VALOPER_ADDRESS 750000000ubld --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+ag0 tx staking delegate $AGORIC_VALOPER_ADDRESS 750000000ubld --from=$WALLET --chain-id=$AGORIC_CHAIN_ID --gas=auto
 ```
 
 Unbound stake
 ```
-ag0 tx staking unbond $VALOPER_ADDRESS 750000000ubld --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+ag0 tx staking unbond $AGORIC_VALOPER_ADDRESS 750000000ubld --from=$WALLET --chain-id=$AGORIC_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-ag0 tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ubld --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+ag0 tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ubld --from=$WALLET --chain-id=$AGORIC_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
 ```
-ag0 tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+ag0 tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$AGORIC_CHAIN_ID --gas=auto
 ```
 
 Withdraw rewards with commision
 ```
-ag0 tx distribution withdraw-rewards $VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$CHAIN_ID
+ag0 tx distribution withdraw-rewards $AGORIC_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$AGORIC_CHAIN_ID
 ```
 
 ### Validator management
@@ -282,7 +282,7 @@ ag0 tx staking edit-validator \
 --identity=1C5ACD2EEF363C3A \
 --website="http://kjnodes.com" \
 --details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
---chain-id=$CHAIN_ID \
+--chain-id=$AGORIC_CHAIN_ID \
 --from=$WALLET
 ```
 
@@ -291,7 +291,7 @@ Unjail validator
 ag0 tx slashing unjail \
   --broadcast-mode=block \
   --from=$WALLET \
-  --chain-id=$CHAIN_ID \
+  --chain-id=$AGORIC_CHAIN_ID \
   --gas=auto
 ```
 
