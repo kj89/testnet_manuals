@@ -70,7 +70,8 @@ Next you have to make sure your validator is syncing blocks. You can use command
 sourced status 2>&1 | jq .SyncInfo
 ```
 
-## Snapshot 06.09.22 (0.1 GB) block height --> 2226618
+## Snapshot 06.09.22 (0.1 GB) block height --> 2226618 from community member obajay
+Source: https://github.com/obajay/StateSync-snapshots/blob/main/Source/README.md
 ```
 sudo systemctl stop sourced
 rm -rf $HOME/.source/data/
