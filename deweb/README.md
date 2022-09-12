@@ -18,7 +18,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/166676803-ee125d04-dfe2-4c92-8f0c-8af357aad691.png">
 </p>
 
-# deweb node setup for Testnet — deweb-testnet-1
+# deweb node setup for Testnet — deweb-testnet-2
 
 Official documentation:
 >- [Validator setup instructions](https://docs.deweb.services/guides/validator-setup-guide)
