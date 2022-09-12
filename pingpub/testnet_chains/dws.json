@@ -8,12 +8,12 @@
     "coin_type": "118",
     "min_tx_fee": "200",
     "addr_prefix": "deweb",
-    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/logos/dws.png",
+    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/dws.png",
     "assets": [{
         "base": "udws",
         "symbol": "DWS",
         "exponent": "6",
         "coingecko_id": "",
-        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/logos/dws.png"
+        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/dws.png"
     }]
 }

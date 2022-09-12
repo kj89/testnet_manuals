@@ -8,12 +8,12 @@
     "coin_type": "118",
     "min_tx_fee": "200",
     "addr_prefix": "paloma",
-    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/logos/paloma.png",
+    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/paloma.png",
     "assets": [{
         "base": "ugrain",
         "symbol": "PALOMA",
         "exponent": "6",
         "coingecko_id": "",
-        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/logos/paloma.png"
+        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/paloma.png"
     }]
 }

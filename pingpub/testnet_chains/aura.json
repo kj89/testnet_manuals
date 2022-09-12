@@ -8,12 +8,12 @@
     "coin_type": "118",
     "min_tx_fee": "200",
     "addr_prefix": "aura",
-    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/logos/aura.png",
+    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/aura.png",
     "assets": [{
         "base": "ueaura",
         "symbol": "AURA",
         "exponent": "6",
         "coingecko_id": "",
-        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/sei/pingpub_chains/logos/aura.png"
+        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/aura.png"
     }]
 }
