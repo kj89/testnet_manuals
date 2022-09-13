@@ -106,7 +106,7 @@ if [[ `service subspaced status | grep active` =~ "running" ]]; then
 else
   echo -e "Your Subspace node \e[31mwas not installed correctly\e[39m, please reinstall."
 fi
-echo -e "Check your node logs: \e[32journalctl -fu subspaced -o cat\e[39m"
+echo -e "Check your node logs: \e[32mjournalctl -fu subspaced -o cat\e[39m"
 sleep 2
 echo "==================================================="
 echo -e '\e[32mCheck farmer status\e[39m' && sleep 1
