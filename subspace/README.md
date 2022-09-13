@@ -61,7 +61,7 @@ wget -O subspace.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/
 ```
 
 ### Option 2 (manual)
-You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/subspace/manual_install_fullnode.md) if you better prefer setting up node manually
+You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/subspace/manual_install.md) if you better prefer setting up node manually
 
 ## Check you node in the telemetry
 When you have finished setting up your node and farmer:
