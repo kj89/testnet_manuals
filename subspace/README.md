@@ -24,6 +24,7 @@
 Date: September 20, 2022 \
 Time: 3pm UTC \
 Official Instructions: https://docs.subspace.network/ 
+More info about testnet: https://forum.subspace.network/t/gemini-ii-incentivized-testnet-will-be-live-on-sep-20/675
 
 Gemini II Configuration Summary
 - Initial history will be set to 5 GB
