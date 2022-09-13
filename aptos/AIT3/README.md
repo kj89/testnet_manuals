@@ -438,15 +438,51 @@ aptos node update-validator-network-addresses  \
 # Node updates
 
 ## Update Aptos validator
-```
+```bash
 cd $HOME/testnet
 yq -i '.services.validator.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_fe8e49af8f515c93914c2e6399f7e97c9b764446}"' docker-compose.yaml
 docker-compose up -d
 ```
 
 ## Update Aptos fullnode
-```
+```bash
 cd $HOME/testnet
 yq -i '.services.fullnode.image = "${VALIDATOR_IMAGE_REPO:-aptoslabs/validator}:${IMAGE_TAG:-testnet_fe8e49af8f515c93914c2e6399f7e97c9b764446}"' docker-compose.yaml
 docker-compose up -d
+```
+
+# Shutdown nodes for Incentivized Testnet
+Follow these instructions when you need to take down the validator node and cleanup the resources used by the node. \
+Before you shutdown the node, you should make sure to leave validator set first.
+
+## 1. Leave validator set (will take effect in next epoch)
+```bash
+aptos node leave-validator-set --profile ait3-operator --pool-address $OWNER_ADDRESS --max-gas 10000
+```
+
+Output:
+```json
+{
+  "Result": {
+    "transaction_hash": "0x9aa39b8ad6371e16c4a86be6514c4440bfeb91ba9e832a459b17014c9b210b64",
+    "gas_used": 3995,
+    "gas_unit_price": 1,
+    "sender": "bbc95fd36de8dca25432742b9c7306aacd6934c6bfb5354c5b67850b5b68afb1",
+    "sequence_number": 8,
+    "success": true,
+    "timestamp_us": 1663048128331882,
+    "version": 646632465,
+    "vm_status": "Executed successfully"
+  }
+}
+```
+
+## 2. Shutdown and delete your Node for Incentivized Testnet
+>**Warning** Before you proceed with this step make sure you have backed up your node key files
+
+## Stop your node and remove the data volumes
+```bash
+cd $HOME/testnet
+docker-compose down --volumes
+cd $HOME && rm -rf testnet
 ```
