@@ -18,7 +18,17 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/171398816-7e0432f4-4d39-42ad-a72e-cd8dd008028f.png">
 </p>
 
-# Subspace node setup for Gemini 2 Non-Incentivized Testnet
+# Subspace node setup for Gemini 2 Incentivized Testnet
+
+# Information
+Date: September 20, 2022 \
+Time: 3pm UTC \
+Official Instructions: https://docs.subspace.network/ 
+
+Gemini II Configuration Summary
+- Initial history will be set to 5 GB
+- Max plot size for farming is 100 GB for each farmer node
+- Additional 50 GB required to account for chain history growth
 
 Official documentation:
 - Official manual: https://github.com/subspace/subspace/blob/main/docs/farming.md
