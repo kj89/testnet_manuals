@@ -35,15 +35,10 @@ Official documentation:
 - Telemetry: https://telemetry.subspace.network/#list/0x43d10ffd50990380ffe6c9392145431d630ae67e89dbc9c014cac2a417759101
 - Block explorer: https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Feu-1.gemini-2a.subspace.network%2Fws#/explorer
 
-## Minimum Specifications
-- CPU: 2 CPU
-- Memory: 4 GB RAM
-- Disk: 50 GB SSD Storage
-
 ## Recommended hardware requirements
 - CPU: 4 CPU
 - Memory: 8 GB RAM
-- Disk: 200 GB SSD Storage
+- Disk: 160 GB SSD Storage
 
 ## Required ports
 Currently, TCP port `30333` needs to be exposed for node to work properly.
