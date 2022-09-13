@@ -32,7 +32,7 @@ To setup Subspace node follow the steps below
 ```
 NODENAME=<YOUR_NODENAME>
 WALLET_ADDRESS=<YOUR_WALLET_ADDRESS>
-PLOT_SIZE=<YOUR_PLOT_SIZE>
+PLOT_SIZE=100G
 ```
 
 Save and import variables into system
