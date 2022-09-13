@@ -59,7 +59,7 @@ You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/
 
 ## Check you node in the telemetry
 When you have finished setting up your node and farmer:
-1. Navigate to [Subspace Gemini 1 Telemetry](https://telemetry.subspace.network/#list/0x9ee86eefc3cc61c71a7751bba7f25e442da2512f408e6286153b3ccc055dccf0)
+1. Navigate to [Subspace Gemini 2 Telemetry](https://telemetry.subspace.network/#list/0x43d10ffd50990380ffe6c9392145431d630ae67e89dbc9c014cac2a417759101)
 2. And start typing your node name that you privided before
 3. You should see yourself in the list like in the image below
 
@@ -132,7 +132,7 @@ You should see something similar in the logs:
 2022-02-03 10:52:23 Subspace
 2022-02-03 10:52:23 ✌️  version 0.1.0-35cf6f5-x86_64-ubuntu
 2022-02-03 10:52:23 ❤️  by Subspace Labs <https://subspace.network>, 2021-2022
-2022-02-03 10:52:23 📋 Chain specification: Subspace Gemini 1
+2022-02-03 10:52:23 📋 Chain specification: Subspace Gemini 2
 2022-02-03 10:52:23 🏷  Node name: YOUR_FANCY_NAME
 2022-02-03 10:52:23 👤 Role: AUTHORITY
 2022-02-03 10:52:23 💾 Database: RocksDb at /home/X/.local/share/subspace-node-x86_64-ubuntu-20.04-snapshot-2022-jan-05/chains/subspace_test/db/full
