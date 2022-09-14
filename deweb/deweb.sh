@@ -1,5 +1,17 @@
 #!/bin/bash
 
+
+echo -e "\033[1;36m"
+echo " ::::::'##:'########:'########:'########::'####:'##::::'## ";
+echo " :::::: ##: ##.....::... ##..:: ##.... ##:. ##::. ##::'## ";
+echo " :::::: ##: ##:::::::::: ##:::: ##:::: ##:: ##:::. ##'## ";
+echo " :::::: ##: ######:::::: ##:::: ########::: ##::::. ### ";
+echo " '##::: ##: ##...::::::: ##:::: ##.. ##:::: ##:::: ## ## ";
+echo "  ##::: ##: ##:::::::::: ##:::: ##::. ##::: ##::: ##:. ## ";
+echo " . ######:: ########:::: ##:::: ##:::. ##:'####: ##:::. ## ";
+echo " :......:::........:::::..:::::..:::::..::....::..:::::..::";
+echo -e "\e[0m"
+
 sleep 2
 
 # set vars
@@ -11,7 +23,7 @@ DEWEB_PORT=14
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export DEWEB_CHAIN_ID=deweb-testnet-2" >> $HOME/.bash_profile
+echo "export DEWEB_CHAIN_ID=deweb-testnet-3" >> $HOME/.bash_profile
 echo "export DEWEB_PORT=${DEWEB_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
