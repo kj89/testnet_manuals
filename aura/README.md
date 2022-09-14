@@ -89,7 +89,7 @@ sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC1,$SNAP_RPC2\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.aura/config/config.toml
-aurad unsafe-reset-all --home $HOME/.aura
+aurad tendermint unsafe-reset-all --home $HOME/.aura
 sudo systemctl restart aurad && journalctl -fu aurad -o cat
 ```
 
