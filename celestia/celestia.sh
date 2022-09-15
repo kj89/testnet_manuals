@@ -1,22 +1,23 @@
 #!/bin/bash
 
-echo -e "\033[0;35m"
-echo " :::    ::: ::::::::::: ::::    :::  ::::::::  :::::::::  :::::::::: ::::::::  ";
-echo " :+:   :+:      :+:     :+:+:   :+: :+:    :+: :+:    :+: :+:       :+:    :+: ";
-echo " +:+  +:+       +:+     :+:+:+  +:+ +:+    +:+ +:+    +:+ +:+       +:+        ";
-echo " +#++:++        +#+     +#+ +:+ +#+ +#+    +:+ +#+    +:+ +#++:++#  +#++:++#++ ";
-echo " +#+  +#+       +#+     +#+  +#+#+# +#+    +#+ +#+    +#+ +#+              +#+ ";
-echo " #+#   #+#  #+# #+#     #+#   #+#+# #+#    #+# #+#    #+# #+#       #+#    #+# ";
-echo " ###    ###  #####      ###    ####  ########  #########  ########## ########  ";
+echo -e "\033[1;36m"
+echo " ::::::'##:'########:'########:'########::'####:'##::::'## ";
+echo " :::::: ##: ##.....::... ##..:: ##.... ##:. ##::. ##::'## ";
+echo " :::::: ##: ##:::::::::: ##:::: ##:::: ##:: ##:::. ##'## ";
+echo " :::::: ##: ######:::::: ##:::: ########::: ##::::. ### ";
+echo " '##::: ##: ##...::::::: ##:::: ##.. ##:::: ##:::: ## ## ";
+echo "  ##::: ##: ##:::::::::: ##:::: ##::. ##::: ##::: ##:. ## ";
+echo " . ######:: ########:::: ##:::: ##:::. ##:'####: ##:::. ## ";
+echo " :......:::........:::::..:::::..:::::..::....::..:::::..::";
 echo -e "\e[0m"
 
 
 sleep 2
 
 # set vars
-if [ ! $NODENAME ]; then
-	read -p "Enter node name: " NODENAME
-	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
+if [ ! $CLST_NODENAME ]; then
+	read -p "Enter node name: " CLST_NODENAME
+	echo 'export CLST_NODENAME='$CLST_NODENAME >> $HOME/.bash_profile
 fi
 CELESTIA_PORT=20
 if [ ! $WALLET ]; then
@@ -27,7 +28,7 @@ echo "export CELESTIA_PORT=${CELESTIA_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 echo '================================================='
-echo -e "Your node name: \e[1m\e[32m$NODENAME\e[0m"
+echo -e "Your node name: \e[1m\e[32m$CLST_NODENAME\e[0m"
 echo -e "Your wallet name: \e[1m\e[32m$WALLET\e[0m"
 echo -e "Your chain name: \e[1m\e[32m$CELESTIA_CHAIN_ID\e[0m"
 echo -e "Your port: \e[1m\e[32m$CELESTIA_PORT\e[0m"
@@ -74,7 +75,7 @@ celestia-appd config keyring-backend test
 celestia-appd config node tcp://localhost:${CELESTIA_PORT}657
 
 # init
-celestia-appd init $NODENAME --chain-id $CELESTIA_CHAIN_ID
+celestia-appd init $CLST_NODENAME --chain-id $CELESTIA_CHAIN_ID
 
 # download genesis and addrbook
 cp $HOME/networks/$CELESTIA_CHAIN_ID/genesis.json $HOME/.celestia-app/config
@@ -104,7 +105,7 @@ sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${C
 pruning="custom"
 pruning_keep_recent="100"
 pruning_keep_every="0"
-pruning_interval="50"
+pruning_interval="10"
 sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.celestia-app/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.celestia-app/config/app.toml
 sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.celestia-app/config/app.toml
@@ -121,7 +122,7 @@ celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
-sudo tee /etc/systemd/system/celestia-appd.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/celestiad.service > /dev/null <<EOF
 [Unit]
 Description=celestia
 After=network-online.target
@@ -139,9 +140,9 @@ EOF
 
 # start service
 sudo systemctl daemon-reload
-sudo systemctl enable celestia-appd
-sudo systemctl restart celestia-appd
+sudo systemctl enable celestiad
+sudo systemctl restart celestiad
 
 echo '=============== SETUP FINISHED ==================='
-echo -e 'To check logs: \e[1m\e[32mjournalctl -u celestia-appd -f -o cat\e[0m'
+echo -e 'To check logs: \e[1m\e[32mjournalctl -u celestiad -f -o cat\e[0m'
 echo -e "To check sync status: \e[1m\e[32mcurl -s localhost:${CELESTIA_PORT}657/status | jq .result.sync_info\e[0m"
