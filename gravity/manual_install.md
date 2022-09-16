@@ -67,8 +67,8 @@ fi
 ```
 cd $HOME
 mkdir gravity-bin && cd gravity-bin
-wget -O gravityd https://github.com/Gravity-Bridge/Gravity-Bridge/releases/download/v1.6.7/gravity-linux-amd64
-wget -O gbt https://github.com/Gravity-Bridge/Gravity-Bridge/releases/download/v1.6.7/gbt
+wget -O gravityd https://github.com/Gravity-Bridge/Gravity-Bridge/releases/download/v1.7.1/gravity-linux-amd64
+wget -O gbt https://github.com/Gravity-Bridge/Gravity-Bridge/releases/download/v1.7.1/gbt
 chmod +x *
 sudo mv * /usr/bin/
 ```
