@@ -68,10 +68,13 @@ Next you have to make sure your validator is syncing blocks. You can use command
 osmosisd status 2>&1 | jq .SyncInfo
 ```
 
-### (OPTIONAL) State Sync
-You can state sync your node in minutes by running commands below
+### (OPTIONAL) Snapshot
+You can download snapshot to synchronize your node in minutes by running commands below
 ```
-N/A
+sudo systemctl stop osmosisd
+osmosisd tendermint unsafe-reset-all --home $HOME/.osmosisd
+curl -o - -L https://snapshots1.polkachu.com/snapshots/osmosis/osmosis_6042709.tar.lz4 | lz4 -c -d - | tar -x -C $HOME/.osmosisd
+sudo systemctl start osmosisd && journalctl -fu osmosisd -o cat
 ```
 
 ### Create wallet
