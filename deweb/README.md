@@ -117,7 +117,7 @@ To top up your wallet join DWS discord server and navigate to:
 
 To request a faucet grant:
 ```
-$request <YOUR_WALLET_ADDRESS> menkar
+$request <YOUR_WALLET_ADDRESS> sirius
 ```
 
 ### Create validator
