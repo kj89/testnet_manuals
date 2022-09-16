@@ -23,7 +23,7 @@ DEWEB_PORT=14
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export DEWEB_CHAIN_ID=deweb-testnet-3" >> $HOME/.bash_profile
+echo "export DEWEB_CHAIN_ID=deweb-testnet-sirius" >> $HOME/.bash_profile
 echo "export DEWEB_PORT=${DEWEB_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
@@ -53,7 +53,7 @@ systemctl disable dewebd
 rm -rf deweb .deweb
 git clone https://github.com/deweb-services/deweb.git
 cd deweb
-git checkout v0.3
+git checkout v0.3.1
 make build
 sudo cp build/dewebd /usr/local/bin/dewebd
 
