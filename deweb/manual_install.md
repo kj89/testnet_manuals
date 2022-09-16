@@ -34,7 +34,7 @@ echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export DEWEB_CHAIN_ID=deweb-testnet-2" >> $HOME/.bash_profile
+echo "export DEWEB_CHAIN_ID=deweb-testnet-sirius" >> $HOME/.bash_profile
 echo "export DEWEB_PORT=${DEWEB_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -68,7 +68,7 @@ fi
 cd $HOME
 git clone https://github.com/deweb-services/deweb.git
 cd deweb
-git checkout v0.3
+git checkout v0.3.1
 make build
 sudo cp build/dewebd /usr/local/bin/dewebd
 ```
@@ -92,8 +92,8 @@ wget -qO $HOME/.deweb/config/genesis.json "https://raw.githubusercontent.com/dew
 
 ## Set seeds and peers
 ```
-SEEDS="08b7968ec375444f86912c2d9c3d28e04a5f14c4@seed1.deweb.services:26656"
-PEERS=""
+SEEDS=""
+PEERS="da6130e91acde648d23dda2847587f2cee86fb14@213.136.92.246:46656,f0232a1aa46bff410723655b2b2bdd785a30ec57@116.202.236.115:21046,857c09b91a95ae50946645293e6ab29c72dffb3a@65.108.43.116:56130"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.deweb/config/config.toml
 ```
 
