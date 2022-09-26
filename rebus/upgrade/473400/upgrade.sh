@@ -15,7 +15,7 @@ for((;;)); do
 		git checkout v0.2.0
 		make install
 		echo "restart the system..."
-		sudo systemctl restart rebusd && journalctl -fu rebusd -o cat
+		sudo systemctl restart rebusd
 
 		for (( timer=60; timer>0; timer-- )); do
 			printf "* second restart after sleep for ${RED_COLOR}%02d${NO_COLOR} sec\r" $timer
