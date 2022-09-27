@@ -1,0 +1,18 @@
+{
+    "chain_name": "NOIS",
+    "coingecko": "",
+    "api": ["https://nois-testnet.api.kjnodes.com"],
+    "snapshot_provider": "",
+    "sdk_version": "0.45.0",
+    "coin_type": "118",
+    "min_tx_fee": "200",
+    "addr_prefix": "nois",
+    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/nois.png",
+    "assets": [{
+        "base": "unois",
+        "symbol": "NOIS",
+        "exponent": "6",
+        "coingecko_id": "",
+        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/nois.png"
+    }]
+}
