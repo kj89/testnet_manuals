@@ -74,7 +74,7 @@ hid-noded config keyring-backend test
 hid-noded init $NODENAME --chain-id $CHAIN_ID
 ```
 
-## Recover or create new wallet for mainnet
+## Recover or create new wallet for testnet
 Option 1 - generate new wallet
 ```
 hid-noded keys add $WALLET
