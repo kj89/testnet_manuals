@@ -299,7 +299,7 @@ sudo systemctl stop hid-noded
 sudo systemctl disable hid-noded
 sudo rm /etc/systemd/system/hypersign* -rf
 sudo rm $(which hid-noded) -rf
-sudo rm $HOME/.hid-noded* -rf
+sudo rm $HOME/.hid-node* -rf
 sudo rm $HOME/hypersign -rf
 sed -i '/HYPERSIGN_/d' ~/.bash_profile
 ```
@@ -312,10 +312,10 @@ pruning_keep_every="2000"
 pruning_interval="50"
 snapshot_interval="2000"
 snapshot_keep_recent="5"
-sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.hid-noded/config/app.toml
-sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.hid-noded/config/app.toml
-sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.hid-noded/config/app.toml
-sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.hid-noded/config/app.toml
-sed -i -e "s/^snapshot-interval *=.*/snapshot-interval = \"$snapshot_interval\"/" $HOME/.hid-noded/config/app.toml
-sed -i -e "s/^snapshot-keep-recent *=.*/snapshot-keep-recent = \"$snapshot_keep_recent\"/" $HOME/.hid-noded/config/app.toml
+sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.hid-node/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.hid-node/config/app.toml
+sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.hid-node/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.hid-node/config/app.toml
+sed -i -e "s/^snapshot-interval *=.*/snapshot-interval = \"$snapshot_interval\"/" $HOME/.hid-node/config/app.toml
+sed -i -e "s/^snapshot-keep-recent *=.*/snapshot-keep-recent = \"$snapshot_keep_recent\"/" $HOME/.hid-node/config/app.toml
 ```
