@@ -90,7 +90,7 @@ sudo systemctl start hid-noded
 ### 9. Make sure your validator is not jailed
 #### To unjail your validator
 ```
-hid-noded tx slashing unjail --chain-id $NOIS_CHAIN_ID --from mykey --gas=auto -y
+hid-noded tx slashing unjail --chain-id $HYPERSIGN_CHAIN_ID --from mykey --gas=auto -y
 ```
 
 ### 10. After you ensure your validator is producing blocks and is healthy you can shut down old validator server

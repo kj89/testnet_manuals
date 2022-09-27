@@ -18,19 +18,19 @@ if [ ! $NODENAME ]; then
 	read -p "Enter node name: " NODENAME
 	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
 fi
-NOIS_PORT=31
+HYPERSIGN_PORT=31
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export NOIS_CHAIN_ID=jagrat" >> $HOME/.bash_profile
-echo "export NOIS_PORT=${NOIS_PORT}" >> $HOME/.bash_profile
+echo "export HYPERSIGN_CHAIN_ID=jagrat" >> $HOME/.bash_profile
+echo "export HYPERSIGN_PORT=${HYPERSIGN_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 echo '================================================='
 echo -e "Your node name: \e[1m\e[32m$NODENAME\e[0m"
 echo -e "Your wallet name: \e[1m\e[32m$WALLET\e[0m"
-echo -e "Your chain name: \e[1m\e[32m$NOIS_CHAIN_ID\e[0m"
-echo -e "Your port: \e[1m\e[32m$NOIS_PORT\e[0m"
+echo -e "Your chain name: \e[1m\e[32m$HYPERSIGN_CHAIN_ID\e[0m"
+echo -e "Your port: \e[1m\e[32m$HYPERSIGN_PORT\e[0m"
 echo '================================================='
 sleep 2
 
@@ -62,12 +62,12 @@ cd hid-node
 make install
 
 # config
-hid-noded config chain-id $NOIS_CHAIN_ID
+hid-noded config chain-id $HYPERSIGN_CHAIN_ID
 hid-noded config keyring-backend test
-hid-noded config node tcp://localhost:${NOIS_PORT}657
+hid-noded config node tcp://localhost:${HYPERSIGN_PORT}657
 
 # init
-hid-noded init $NODENAME --chain-id $NOIS_CHAIN_ID
+hid-noded init $NODENAME --chain-id $HYPERSIGN_CHAIN_ID
 
 # download genesis and addrbook
 wget -qO $HOME/.hid-noded/config/genesis.json "https://raw.githubusercontent.com/hypersign-protocol/networks/master/testnet/jagrat/final_genesis.json"
@@ -78,8 +78,8 @@ PEERS="7991e99ee8c05906a2161d8b47d826240da5c5d2@network.jagart.hypersign.id:2665
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.hid-noded/config/config.toml
 
 # set custom ports
-sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${NOIS_PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${NOIS_PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${NOIS_PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${NOIS_PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${NOIS_PORT}660\"%" $HOME/.hid-noded/config/config.toml
-sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${NOIS_PORT}317\"%; s%^address = \":8080\"%address = \":${NOIS_PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${NOIS_PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${NOIS_PORT}091\"%" $HOME/.hid-noded/config/app.toml
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${HYPERSIGN_PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${HYPERSIGN_PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${HYPERSIGN_PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${HYPERSIGN_PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${HYPERSIGN_PORT}660\"%" $HOME/.hid-noded/config/config.toml
+sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${HYPERSIGN_PORT}317\"%; s%^address = \":8080\"%address = \":${HYPERSIGN_PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${HYPERSIGN_PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${HYPERSIGN_PORT}091\"%" $HOME/.hid-noded/config/app.toml
 
 # config pruning
 pruning="custom"
@@ -125,4 +125,4 @@ sudo systemctl restart hid-noded
 
 echo '=============== SETUP FINISHED ==================='
 echo -e 'To check logs: \e[1m\e[32mjournalctl -u hid-noded -f -o cat\e[0m'
-echo -e "To check sync status: \e[1m\e[32mcurl -s localhost:${NOIS_PORT}657/status | jq .result.sync_info\e[0m"
+echo -e "To check sync status: \e[1m\e[32mcurl -s localhost:${HYPERSIGN_PORT}657/status | jq .result.sync_info\e[0m"

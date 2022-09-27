@@ -93,10 +93,10 @@ hid-noded keys list
 ### Save wallet info
 Add wallet and valoper address into variables 
 ```
-NOIS_WALLET_ADDRESS=$(hid-noded keys show $WALLET -a)
-NOIS_VALOPER_ADDRESS=$(hid-noded keys show $WALLET --bech val -a)
-echo 'export NOIS_WALLET_ADDRESS='${NOIS_WALLET_ADDRESS} >> $HOME/.bash_profile
-echo 'export NOIS_VALOPER_ADDRESS='${NOIS_VALOPER_ADDRESS} >> $HOME/.bash_profile
+HYPERSIGN_WALLET_ADDRESS=$(hid-noded keys show $WALLET -a)
+HYPERSIGN_VALOPER_ADDRESS=$(hid-noded keys show $WALLET --bech val -a)
+echo 'export HYPERSIGN_WALLET_ADDRESS='${HYPERSIGN_WALLET_ADDRESS} >> $HOME/.bash_profile
+echo 'export HYPERSIGN_VALOPER_ADDRESS='${HYPERSIGN_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -111,7 +111,7 @@ Before creating validator please make sure that you have at least 1 strd (1 strd
 
 To check your wallet balance:
 ```
-hid-noded query bank balances $NOIS_WALLET_ADDRESS
+hid-noded query bank balances $HYPERSIGN_WALLET_ADDRESS
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
@@ -126,7 +126,7 @@ hid-noded tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(hid-noded tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id $NOIS_CHAIN_ID
+  --chain-id $HYPERSIGN_CHAIN_ID
 ```
 
 ## Security
@@ -147,7 +147,7 @@ sudo ufw default allow outgoing
 sudo ufw default deny incoming
 sudo ufw allow ssh/tcp
 sudo ufw limit ssh/tcp
-sudo ufw allow ${NOIS_PORT}656,${NOIS_PORT}660/tcp
+sudo ufw allow ${HYPERSIGN_PORT}656,${HYPERSIGN_PORT}660/tcp
 sudo ufw enable
 ```
 
@@ -163,7 +163,7 @@ wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/
 
 ### Check your validator key
 ```
-[[ $(hid-noded q staking validator $NOIS_VALOPER_ADDRESS -oj | jq -r .consensus_pubkey.key) = $(hid-noded status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+[[ $(hid-noded q staking validator $HYPERSIGN_VALOPER_ADDRESS -oj | jq -r .consensus_pubkey.key) = $(hid-noded status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
 ```
 
 ### Get list of validators
@@ -173,7 +173,7 @@ hid-noded q staking validators -oj --limit=3000 | jq '.validators[] | select(.st
 
 ## Get currently connected peer list with ids
 ```
-curl -sS http://localhost:${NOIS_PORT}657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
+curl -sS http://localhost:${HYPERSIGN_PORT}657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
 
 ## Usefull commands
@@ -237,38 +237,38 @@ hid-noded keys delete $WALLET
 
 Get wallet balance
 ```
-hid-noded query bank balances $NOIS_WALLET_ADDRESS
+hid-noded query bank balances $HYPERSIGN_WALLET_ADDRESS
 ```
 
 Transfer funds
 ```
-hid-noded tx bank send $NOIS_WALLET_ADDRESS <TO_NOIS_WALLET_ADDRESS> 10000000uhid
+hid-noded tx bank send $HYPERSIGN_WALLET_ADDRESS <TO_HYPERSIGN_WALLET_ADDRESS> 10000000uhid
 ```
 
 ### Voting
 ```
-hid-noded tx gov vote 1 yes --from $WALLET --chain-id=$NOIS_CHAIN_ID
+hid-noded tx gov vote 1 yes --from $WALLET --chain-id=$HYPERSIGN_CHAIN_ID
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-hid-noded tx staking delegate $NOIS_VALOPER_ADDRESS 10000000uhid --from=$WALLET --chain-id=$NOIS_CHAIN_ID --gas=auto
+hid-noded tx staking delegate $HYPERSIGN_VALOPER_ADDRESS 10000000uhid --from=$WALLET --chain-id=$HYPERSIGN_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-hid-noded tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000uhid --from=$WALLET --chain-id=$NOIS_CHAIN_ID --gas=auto
+hid-noded tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000uhid --from=$WALLET --chain-id=$HYPERSIGN_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
 ```
-hid-noded tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$NOIS_CHAIN_ID --gas=auto
+hid-noded tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$HYPERSIGN_CHAIN_ID --gas=auto
 ```
 
 Withdraw rewards with commision
 ```
-hid-noded tx distribution withdraw-rewards $NOIS_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$NOIS_CHAIN_ID
+hid-noded tx distribution withdraw-rewards $HYPERSIGN_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$HYPERSIGN_CHAIN_ID
 ```
 
 ### Validator management
@@ -279,7 +279,7 @@ hid-noded tx staking edit-validator \
   --identity=<your_keybase_id> \
   --website="<your_website>" \
   --details="<your_validator_description>" \
-  --chain-id=$NOIS_CHAIN_ID \
+  --chain-id=$HYPERSIGN_CHAIN_ID \
   --from=$WALLET
 ```
 
@@ -288,7 +288,7 @@ Unjail validator
 hid-noded tx slashing unjail \
   --broadcast-mode=block \
   --from=$WALLET \
-  --chain-id=$NOIS_CHAIN_ID \
+  --chain-id=$HYPERSIGN_CHAIN_ID \
   --gas=auto
 ```
 
@@ -301,7 +301,7 @@ sudo rm /etc/systemd/system/hypersign* -rf
 sudo rm $(which hid-noded) -rf
 sudo rm $HOME/.hid-noded* -rf
 sudo rm $HOME/hypersign -rf
-sed -i '/NOIS_/d' ~/.bash_profile
+sed -i '/HYPERSIGN_/d' ~/.bash_profile
 ```
 
 ### Pruning for state sync node
