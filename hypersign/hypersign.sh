@@ -70,7 +70,7 @@ hid-noded config node tcp://localhost:${NOIS_PORT}657
 hid-noded init $NODENAME --chain-id $NOIS_CHAIN_ID
 
 # download genesis and addrbook
-wget -qO $HOME/.hid-noded/config/genesis.json "https://github.com/hypersign-protocol/networks/blob/master/testnet/jagrat/final_genesis.json"
+wget -qO $HOME/.hid-noded/config/genesis.json "https://raw.githubusercontent.com/hypersign-protocol/networks/master/testnet/jagrat/final_genesis.json"
 
 # set peers and seeds
 SEEDS=""

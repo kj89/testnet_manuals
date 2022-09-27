@@ -85,7 +85,7 @@ hid-noded init $NODENAME --chain-id $HYPERSIGN_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -qO $HOME/.hid-noded/config/genesis.json "https://github.com/hypersign-protocol/networks/blob/master/testnet/jagrat/final_genesis.json"
+wget -qO $HOME/.hid-noded/config/genesis.json "https://raw.githubusercontent.com/hypersign-protocol/networks/master/testnet/jagrat/final_genesis.json"
 ```
 
 ## Set seeds and peers
