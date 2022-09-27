@@ -47,7 +47,7 @@ source $HOME/.bash_profile
 
 ## Download and build binaries
 ```
-wget -O - https://github.com/palomachain/pigeon/releases/download/v0.8.0/pigeon_Linux_x86_64.tar.gz | \
+wget -O - https://github.com/palomachain/pigeon/releases/download/v0.8.1/pigeon_Linux_x86_64.tar.gz | \
 tar -C /usr/local/bin -xvzf - pigeon
 chmod +x /usr/local/bin/pigeon
 mkdir ~/.pigeon
