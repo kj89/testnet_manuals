@@ -34,7 +34,7 @@ echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export TERITORI_CHAIN_ID=teritori-testnet-v2" >> $HOME/.bash_profile
+echo "export TERITORI_CHAIN_ID=teritori-testnet-v3" >> $HOME/.bash_profile
 echo "export TERITORI_PORT=${TERITORI_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -67,7 +67,7 @@ fi
 ```
 git clone https://github.com/TERITORI/teritori-chain
 cd teritori-chain
-git checkout teritori-testnet-v2
+git checkout teritori-testnet-v3
 make install
 ```
 
@@ -85,8 +85,8 @@ teritorid init $NODENAME --chain-id $TERITORI_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -qO $HOME/.teritorid/config/genesis.json "https://raw.githubusercontent.com/TERITORI/teritori-chain/main/testnet/teritori-testnet-v2/genesis.json"
-wget -qO $HOME/.teritorid/config/addrbook.json "https://raw.githubusercontent.com/StakeTake/guidecosmos/main/teritori/teritori-testnet-v2/addrbook.json"
+wget -qO $HOME/.teritorid/config/genesis.json "https://raw.githubusercontent.com/TERITORI/teritori-chain/main/testnet/teritori-testnet-v3/genesis.json"
+wget -qO $HOME/.teritorid/config/addrbook.json "https://raw.githubusercontent.com/StakeTake/guidecosmos/main/teritori/teritori-testnet-v3/addrbook.json"
 ```
 
 ## Set seeds and peers
