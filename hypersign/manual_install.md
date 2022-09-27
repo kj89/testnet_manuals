@@ -71,13 +71,6 @@ cd hid-node
 make install
 ```
 
-## Config app
-```
-hid-noded config chain-id $HYPERSIGN_CHAIN_ID
-hid-noded config keyring-backend test
-hid-noded config node tcp://localhost:${HYPERSIGN_PORT}657
-```
-
 ## Init app
 ```
 hid-noded init $NODENAME --chain-id $HYPERSIGN_CHAIN_ID
