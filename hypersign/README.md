@@ -300,7 +300,7 @@ sudo systemctl disable hid-noded
 sudo rm /etc/systemd/system/hypersign* -rf
 sudo rm $(which hid-noded) -rf
 sudo rm $HOME/.hid-node* -rf
-sudo rm $HOME/hypersign -rf
+sudo rm $HOME/hid-node -rf
 sed -i '/HYPERSIGN_/d' ~/.bash_profile
 ```
 
