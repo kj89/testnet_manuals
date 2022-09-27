@@ -34,7 +34,7 @@ echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export QUICKSILVER_CHAIN_ID=innuendo-2" >> $HOME/.bash_profile
+echo "export QUICKSILVER_CHAIN_ID=innuendo-3" >> $HOME/.bash_profile
 echo "export QUICKSILVER_PORT=${QUICKSILVER_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
