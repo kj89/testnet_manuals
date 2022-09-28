@@ -327,19 +327,3 @@ sudo rm $HOME/.ollo* -rf
 sudo rm $HOME/ollo -rf
 sed -i '/OLLO_/d' ~/.bash_profile
 ```
-
-### Pruning for state sync node
-```
-pruning="custom"
-pruning_keep_recent="100"
-pruning_keep_every="2000"
-pruning_interval="50"
-snapshot_interval="2000"
-snapshot_keep_recent="5"
-sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.ollo/config/app.toml
-sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.ollo/config/app.toml
-sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.ollo/config/app.toml
-sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.ollo/config/app.toml
-sed -i -e "s/^snapshot-interval *=.*/snapshot-interval = \"$snapshot_interval\"/" $HOME/.ollo/config/app.toml
-sed -i -e "s/^snapshot-keep-recent *=.*/snapshot-keep-recent = \"$snapshot_keep_recent\"/" $HOME/.ollo/config/app.toml
-```
