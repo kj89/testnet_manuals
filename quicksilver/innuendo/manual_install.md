@@ -67,7 +67,7 @@ fi
 ```
 cd $HOME
 rm quicksilver -rf
-sudo wget -O /usr/local/bin/quicksilverd https://github.com/ingenuity-build/testnets/releases/download/v0.9.0/quicksilverd-v0.9.1-amd64
+sudo wget -O $(which quicksilverd) https://github.com/ingenuity-build/testnets/releases/download/v0.9.0/quicksilverd-v0.9.2-amd64
 ```
 
 ## Config app

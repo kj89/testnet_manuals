@@ -58,7 +58,7 @@ echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 cd $HOME
 rm quicksilver -rf
-sudo wget -O /usr/local/bin/quicksilverd https://github.com/ingenuity-build/testnets/releases/download/v0.9.0/quicksilverd-v0.9.1-amd64
+sudo wget -O $(which quicksilverd) https://github.com/ingenuity-build/testnets/releases/download/v0.9.0/quicksilverd-v0.9.2-amd64
 
 # config
 quicksilverd config chain-id $QUICKSILVER_CHAIN_ID
