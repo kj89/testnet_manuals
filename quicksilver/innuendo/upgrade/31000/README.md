@@ -19,6 +19,8 @@
 </p>
 
 # Chain upgrade to commit v0.9.2
+> **Note** **Block Countdown can be found [here](https://quicksilver.explorers.guru/block/31000)**
+
 ## (OPTION 1) Manual upgrade
 Once the chain reaches the upgrade height, you will encounter the following panic error message:\
 `ERR UPGRADE "xxx" NEEDED at height: 31000`
