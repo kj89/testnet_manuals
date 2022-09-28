@@ -19,6 +19,8 @@
 </p>
 
 # Chain upgrade to v0.6.0
+> **Note** **Block Countdown can be found [here](https://kujira.explorers.guru/block/3495000)**
+
 ## (OPTION 1) Manual upgrade
 Once the chain reaches the upgrade height, you will encounter the following panic error message:\
 `ERR UPGRADE "xxx" NEEDED at height: 3495000`
