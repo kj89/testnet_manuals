@@ -103,6 +103,12 @@ source $HOME/.bash_profile
 ### Fund your wallet
 In order to create validator first you need to fund your wallet with testnet tokens. \
 You can request testnet tokens from the OLLO testnet faucet in the [OLLO Discord](https://discord.gg/My4BEPcAgP)
+- Get verified
+- Get `Testnet Explorers role` in `#roles` channel
+- Move to `#testnet-faucet` and request tokens
+```
+!request YOUR_WALLET_ADDRESS
+```
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 strd (1 strd is equal to 1000000 uollo) and your node is synchronized
