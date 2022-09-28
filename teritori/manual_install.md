@@ -85,14 +85,13 @@ teritorid init $NODENAME --chain-id $TERITORI_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -qO $HOME/.teritorid/config/genesis.json "https://raw.githubusercontent.com/TERITORI/teritori-chain/main/testnet/teritori-testnet-v3/genesis.json"
-wget -qO $HOME/.teritorid/config/addrbook.json "https://raw.githubusercontent.com/StakeTake/guidecosmos/main/teritori/teritori-testnet-v3/addrbook.json"
+wget -qO $HOME/.teritorid/config/genesis.json "https://github.com/TERITORI/teritori-chain/raw/mainnet/testnet/teritori-testnet-v3/genesis.json"
 ```
 
 ## Set seeds and peers
 ```
 SEEDS=""
-PEERS="ccc59b8a55f9c6e7a24bd693e2796f781ea3a670@65.108.227.133:27656,5ae1012f9b0f4672d8152de903d115dd2f1a3ee3@65.21.170.3:27656,22101a61b235e607d5d0ad51b698d7511ebf87e2@65.108.43.227:26796,15dd94f68c450da2c3b7c60b6364e3dce6f0cbf2@185.193.66.68:26641,620045eefca07f38537caf87af6b4e3a38f6214c@65.109.2.212:26656,9d709483ac8dbbe4adf19eb1b4732531254a2045@116.202.236.115:21096,6131a9f944b27bf5a7c74022289697ba3889b502@78.46.16.236:11134"
+PEERS="5ae1012f9b0f4672d8152de903d115dd2f1a3ee3@65.21.170.3:27656,15dd94f68c450da2c3b7c60b6364e3dce6f0cbf2@185.193.66.68:26641,620045eefca07f38537caf87af6b4e3a38f6214c@65.109.2.212:26656,ccc59b8a55f9c6e7a24bd693e2796f781ea3a670@65.108.227.133:27656,9d709483ac8dbbe4adf19eb1b4732531254a2045@116.202.236.115:26656,22101a61b235e607d5d0ad51b698d7511ebf87e2@65.108.43.227:26796,953ac98024e17267d77c6755ecc0e21b4b1e6365@65.109.17.86:36656,356fbd3263e387bea0528ac4bbbc89a83d52e9fa@65.21.134.202:26736,80e8ddb64add1bd41560ff6053fb0aa39614fde8@18.219.76.76:26656,a97eb7a4f3d857f1ff82265d2905fc0762a6bfd4@135.125.5.31:54256"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.teritorid/config/config.toml
 ```
 
