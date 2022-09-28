@@ -101,13 +101,8 @@ source $HOME/.bash_profile
 ```
 
 ### Fund your wallet
-In order to create validator first you need to fund your wallet with testnet tokens.
-```
-curl --header "Content-Type: application/json" \
---request POST \
---data '{"denom":"uollo","address":"'$OLLO_WALLET_ADDRESS'"}' \
-http://faucet.ollolabs.com/credit
-```
+In order to create validator first you need to fund your wallet with testnet tokens. \
+You can request testnet tokens from the OLLO testnet faucet in the [OLLO Discord](https://discord.gg/My4BEPcAgP)
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 strd (1 strd is equal to 1000000 uollo) and your node is synchronized
