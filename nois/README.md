@@ -126,7 +126,7 @@ http://faucet.noislabs.com/credit
 ```
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 strd (1 strd is equal to 1000000 unois) and your node is synchronized
+Before creating validator please make sure that you have at least 1 nois (1 nois is equal to 1000000 unois) and your node is synchronized
 
 To check your wallet balance:
 ```
