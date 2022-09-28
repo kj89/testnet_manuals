@@ -131,7 +131,7 @@ You can request testnet tokens from the OLLO testnet faucet in the [OLLO Discord
 ```
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 strd (1 strd is equal to 1000000 uollo) and your node is synchronized
+Before creating validator please make sure that you have at least 1 strd (1 strd is equal to 1000000 utollo) and your node is synchronized
 
 To check your wallet balance:
 ```
@@ -142,7 +142,7 @@ ollod query bank balances $OLLO_WALLET_ADDRESS
 To create your validator run command below
 ```
 ollod tx staking create-validator \
-  --amount 100000000uollo \
+  --amount 2000000utollo \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
@@ -150,6 +150,9 @@ ollod tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(ollod tendermint show-validator) \
   --moniker $NODENAME \
+  --identity=1C5ACD2EEF363C3A \
+  --website="http://kjnodes.com" \
+  --details="Providing professional staking services with high performance and availability" \
   --chain-id $OLLO_CHAIN_ID
 ```
 
@@ -266,7 +269,7 @@ ollod query bank balances $OLLO_WALLET_ADDRESS
 
 Transfer funds
 ```
-ollod tx bank send $OLLO_WALLET_ADDRESS <TO_OLLO_WALLET_ADDRESS> 10000000uollo
+ollod tx bank send $OLLO_WALLET_ADDRESS <TO_OLLO_WALLET_ADDRESS> 10000000utollo
 ```
 
 ### Voting
@@ -277,12 +280,12 @@ ollod tx gov vote 1 yes --from $WALLET --chain-id=$OLLO_CHAIN_ID
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-ollod tx staking delegate $OLLO_VALOPER_ADDRESS 10000000uollo --from=$WALLET --chain-id=$OLLO_CHAIN_ID --gas=auto
+ollod tx staking delegate $OLLO_VALOPER_ADDRESS 10000000utollo --from=$WALLET --chain-id=$OLLO_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-ollod tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000uollo --from=$WALLET --chain-id=$OLLO_CHAIN_ID --gas=auto
+ollod tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000utollo --from=$WALLET --chain-id=$OLLO_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
