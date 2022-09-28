@@ -150,9 +150,6 @@ ollod tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(ollod tendermint show-validator) \
   --moniker $NODENAME \
-  --identity=1C5ACD2EEF363C3A \
-  --website="http://kjnodes.com" \
-  --details="Providing professional staking services with high performance and availability" \
   --chain-id $OLLO_CHAIN_ID
 ```
 
