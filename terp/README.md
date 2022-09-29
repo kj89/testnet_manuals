@@ -118,7 +118,7 @@ terpd query bank balances $TERP_WALLET_ADDRESS
 To create your validator run command below
 ```
 terpd tx staking create-validator \
-  --amount 100000000uterpx \
+  --amount 10000000uterpx \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
