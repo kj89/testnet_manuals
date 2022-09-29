@@ -122,10 +122,11 @@ trust_threshold = { numerator = '1', denominator = '3' }
 [chains.packet_filter]
 policy = 'allow'
 list = [
-  ['transfer', 'channel-326'], # Stride
+  ['transfer', 'channel-0'], # Cosmos
+  ['transfer', 'channel-144'], # Gravity
   ['transfer', 'channel-259'], # Kujira
   ['transfer', 'channel-320'], # Agoric
-  ['transfer', 'channel-144'], # Gravity
+  ['transfer', 'channel-326'], # Stride
 ]
 
 ### STRIDE ###
@@ -155,6 +156,7 @@ trust_threshold = { numerator = '1', denominator = '3' }
 [chains.packet_filter]
 policy = 'allow'
 list = [
+  ['transfer', 'channel-0'], # Cosmos
   ['transfer', 'channel-5'], # Osmosis
   ['transfer', 'channel-8'], # Kujira
 ]
@@ -186,6 +188,7 @@ trust_threshold = { numerator = '1', denominator = '3' }
 [chains.packet_filter]
 policy = 'allow'
 list = [
+  ['transfer', 'channel-0'], # Cosmos
   ['transfer', 'channel-3'], # Osmosis
   ['transfer', 'channel-32'], # Stride
 ]
@@ -217,6 +220,7 @@ trust_threshold = { numerator = '1', denominator = '3' }
 [chains.packet_filter]
 policy = 'allow'
 list = [
+  ['transfer', 'channel-0'], # Cosmos
   ['transfer', 'channel-1'], # Osmosis
   ['transfer', 'channel-4'], # Gravity
 ]
@@ -248,8 +252,43 @@ trust_threshold = { numerator = '1', denominator = '3' }
 [chains.packet_filter]
 policy = 'allow'
 list = [
-  ['transfer', 'channel-91'], # Agoric
   ['transfer', 'channel-10'], # Osmosis
+  ['transfer', 'channel-17'], # Cosmos
+  ['transfer', 'channel-91'], # Agoric
+]
+
+### COSMOS ###
+[[chains]]
+id = 'cosmoshub-4'
+rpc_addr = 'http://127.0.0.1:34657'
+grpc_addr = 'http://127.0.0.1:34090'
+websocket_addr = 'ws://127.0.0.1:34657/websocket'
+
+rpc_timeout = '20s'
+account_prefix = 'cosmos'
+key_name = 'relayer'
+address_type = { derivation = 'cosmos' }
+store_prefix = 'ibc'
+default_gas = 300000
+max_gas = 3500000
+gas_price = { price = 0.0025, denom = 'uatom' }
+gas_multiplier = 1.3
+max_msg_num = 30
+max_tx_size = 180000
+clock_drift = '10s'
+max_block_time = '10s'
+trusting_period = '14days'
+memo_prefix = 'Relayed by kjnodes'
+trust_threshold = { numerator = '1', denominator = '3' }
+
+[chains.packet_filter]
+policy = 'allow'
+list = [
+  ['transfer', 'channel-141'], # Osmosis
+  ['transfer', 'channel-281'], # Gravity Bridge
+  ['transfer', 'channel-343'], # Kujira
+  ['transfer', 'channel-374'], # Agoric
+  ['transfer', 'channel-391'], # Stride
 ]
 EOF
 ```
