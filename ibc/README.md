@@ -158,7 +158,7 @@ policy = 'allow'
 list = [
   ['transfer', 'channel-0'], # Cosmos
   ['transfer', 'channel-5'], # Osmosis
-  ['transfer', 'channel-8'], # Kujira
+#  ['transfer', 'channel-8'], # Kujira
 ]
 
 ### KUJIRA ###
@@ -190,7 +190,7 @@ policy = 'allow'
 list = [
   ['transfer', 'channel-0'], # Cosmos
   ['transfer', 'channel-3'], # Osmosis
-  ['transfer', 'channel-32'], # Stride
+#  ['transfer', 'channel-32'], # Stride
 ]
 
 ### AGORIC ###
