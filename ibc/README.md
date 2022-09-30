@@ -122,10 +122,10 @@ trust_threshold = { numerator = '1', denominator = '3' }
 [chains.packet_filter]
 policy = 'allow'
 list = [
-  ['transfer', 'channel-0'], # Cosmos
+#  ['transfer', 'channel-0'], # Cosmos
   ['transfer', 'channel-144'], # Gravity
   ['transfer', 'channel-259'], # Kujira
-  ['transfer', 'channel-320'], # Agoric
+#  ['transfer', 'channel-320'], # Agoric
   ['transfer', 'channel-326'], # Stride
 ]
 
@@ -284,10 +284,10 @@ trust_threshold = { numerator = '1', denominator = '3' }
 [chains.packet_filter]
 policy = 'allow'
 list = [
-  ['transfer', 'channel-141'], # Osmosis
+#  ['transfer', 'channel-141'], # Osmosis
   ['transfer', 'channel-281'], # Gravity Bridge
   ['transfer', 'channel-343'], # Kujira
-  ['transfer', 'channel-374'], # Agoric
+#  ['transfer', 'channel-374'], # Agoric
   ['transfer', 'channel-391'], # Stride
 ]
 EOF
