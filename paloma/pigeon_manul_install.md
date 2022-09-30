@@ -58,15 +58,18 @@ mkdir ~/.pigeon
 Use the same password you have defined earlier in `ETH_PASSWORD`
 ```
 pigeon evm keys generate-new $HOME/.pigeon/keys/evm/eth-main
+pigeon evm keys generate-new $HOME/.pigeon/keys/evm/bnb-main
 ```
 ### (OPTION 2) Import existing keys
 ```
 pigeon evm keys import ~/.pigeon/keys/evm/eth-main
+pigeon evm keys import ~/.pigeon/keys/evm/bnb-main
 ```
 
 ## Load ETH_SIGNER_KEY into bash_profile
 ```
-echo "export ETH_SIGNING_KEY=0x$(cat .pigeon/keys/evm/eth-main/*  | jq -r .address | head -n 1)" >> $HOME/.bash_profile
+echo "export ETH_SIGNING_KEY=0x$(cat $HOME/.pigeon/keys/evm/eth-main/*  | jq -r .address | head -n 1)" >> $HOME/.bash_profile
+echo "export BSC_SIGNING_KEY=0x$(cat $HOME/.pigeon/keys/evm/bnb-main/*  | jq -r .address | head -n 1)" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -84,7 +87,7 @@ paloma:
   keyring-pass-env-name: PASSWORD
   signing-key: ${WALLET}
   base-rpc-url: http://localhost:${PALOMA_PORT}657
-  gas-adjustment: 1.5
+  gas-adjustment: 2.0
   gas-prices: 0.001ugrain
   account-prefix: paloma
 
@@ -95,6 +98,13 @@ evm:
     keyring-pass-env-name: PASSWORD
     signing-key: ${ETH_SIGNING_KEY}
     keyring-dir: $HOME/.pigeon/keys/evm/eth-main
+  bnb-main:
+    chain-id: 56
+    base-rpc-url: ${BSC_RPC_URL}
+    keyring-pass-env-name: PASSWORD
+    signing-key: ${BSC_SIGNING_KEY}
+    keyring-dir: $HOME/.pigeon/keys/evm/bnb-main
+    gas-adjustment: 1.2
 EOF
 ```
 
