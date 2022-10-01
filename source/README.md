@@ -18,7 +18,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/189353069-b9796464-574d-4903-b639-163fd0191ec9.png">
 </p>
 
-# Quicksilver node setup for Testnet — sourcechain-testnet
+# Source node setup for Testnet — sourcechain-testnet
 
 Official documentation:
 >- [Validator setup instructions](https://github.com/obajay/nodes-Guides/tree/main/Source)
