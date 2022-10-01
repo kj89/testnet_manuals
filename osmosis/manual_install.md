@@ -66,7 +66,7 @@ fi
 ## Download and build binaries
 ```
 cd $HOME
-git clone https://github.com/osmosis-labs/osmosis.git -B v11.0.1
+git clone https://github.com/osmosis-labs/osmosis.git v12.0.0
 cd osmosis
 make install
 ```
