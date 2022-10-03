@@ -34,7 +34,7 @@ echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export TERITORI_CHAIN_ID=teritori-testnet-v3" >> $HOME/.bash_profile
+echo "export TERITORI_CHAIN_ID=teritori-1" >> $HOME/.bash_profile
 echo "export TERITORI_PORT=${TERITORI_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -67,7 +67,7 @@ fi
 ```
 git clone https://github.com/TERITORI/teritori-chain
 cd teritori-chain
-git checkout b412a5a1d4853382ab9abea59e1777b8e8fcc7fc
+git checkout v1.1.2
 make install
 ```
 
@@ -85,13 +85,13 @@ teritorid init $NODENAME --chain-id $TERITORI_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -qO $HOME/.teritorid/config/genesis.json "https://github.com/TERITORI/teritori-chain/raw/mainnet/testnet/teritori-testnet-v3/genesis.json"
+wget -qO $HOME/.teritorid/config/genesis.json "https://media.githubusercontent.com/media/TERITORI/teritori-chain/v1.1.2/mainnet/teritori-1/genesis.json"
 ```
 
 ## Set seeds and peers
 ```
 SEEDS=""
-PEERS="5ae1012f9b0f4672d8152de903d115dd2f1a3ee3@65.21.170.3:27656,15dd94f68c450da2c3b7c60b6364e3dce6f0cbf2@185.193.66.68:26641,620045eefca07f38537caf87af6b4e3a38f6214c@65.109.2.212:26656,ccc59b8a55f9c6e7a24bd693e2796f781ea3a670@65.108.227.133:27656,9d709483ac8dbbe4adf19eb1b4732531254a2045@116.202.236.115:26656,22101a61b235e607d5d0ad51b698d7511ebf87e2@65.108.43.227:26796,953ac98024e17267d77c6755ecc0e21b4b1e6365@65.109.17.86:36656,356fbd3263e387bea0528ac4bbbc89a83d52e9fa@65.21.134.202:26736,80e8ddb64add1bd41560ff6053fb0aa39614fde8@18.219.76.76:26656,a97eb7a4f3d857f1ff82265d2905fc0762a6bfd4@135.125.5.31:54256"
+PEERS="3069b058b5ed85c3cdb2cf18fb1d255d966b53af@193.149.187.8:26656,a06fbbb9ace823ae28a696a91daa2d0644653c28@65.21.32.200:26756,d856120f262134ebf13e1d2632d778b69e704208@65.108.4.188:15956,20e1000e88125698264454a884812746c2eb4807@seeds.lavenderfive.com:15956"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.teritorid/config/config.toml
 ```
 

@@ -18,10 +18,10 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/179568169-a81fb8a8-12d2-4865-aa91-3dba7649d54e.png">
 </p>
 
-# teritori node setup for testnet — teritori-testnet-v3
+# teritori node setup for testnet — teritori-1
 
 Official documentation:
->- [Validator setup instructions](https://github.com/TERITORI/teritori-chain/blob/main/testnet/teritori-testnet-v3/README.md)
+>- [Validator setup instructions](https://github.com/TERITORI/teritori-chain/blob/main/testnet/teritori-1/README.md)
 
 Explorer:
 >- https://teritori.explorers.guru/
