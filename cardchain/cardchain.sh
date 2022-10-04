@@ -66,11 +66,11 @@ Cardchain config node tcp://localhost:${CARDCHAIN_PORT}657
 Cardchain init $NODENAME --chain-id $CARDCHAIN_CHAIN_ID
 
 # download genesis and addrbook
-wget -qO $HOME/.Cardchain/config/genesis.json "https://raw.githubusercontent.com/DecentralCardGame/Testnet1/main/genesis.json"
+wget -qO $HOME/.Cardchain/config/genesis.json "https://raw.githubusercontent.com/DecentralCardGame/Testnet/main/genesis.json"
 
 # set peers and seeds
 SEEDS=""
-PEERS="61f05a01167b1aec59275f74c3d7c3dc7e9388d4@45.136.28.158:26658"
+PEERS="752cfbb39a24007f7316725e7bbc34c845e7c5f1@45.136.28.158:26658"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.Cardchain/config/config.toml
 
 # set custom ports
