@@ -2,7 +2,7 @@
 GREEN_COLOR='\033[0;32m'
 RED_COLOR='\033[0;31m'
 NO_COLOR='\033[0m'
-BLOCK=2344300
+BLOCK=8871251
 VERSION=1.1.0beta
 echo -e "$GREEN_COLOR YOUR NODE WILL BE UPDATED TO VERSION: $VERSION ON BLOCK NUMBER: $BLOCK $NO_COLOR\n"
 for((;;)); do
@@ -11,7 +11,7 @@ for((;;)); do
 
 		cd $HOME && rm $HOME/sei-chain -rf
 		git clone https://github.com/sei-protocol/sei-chain.git && cd $HOME/sei-chain
-		git checkout 1.2.0beta
+		git checkout 1.2.2beta
 		make install
 		sudo systemctl restart seid
 
