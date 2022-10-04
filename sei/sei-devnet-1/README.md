@@ -65,9 +65,33 @@ Next you have to make sure your validator is syncing blocks. You can use command
 seid status 2>&1 | jq .SyncInfo
 ```
 
-### Data snapshot
+### State sync
 ```
-N/A
+sudo systemctl stop seid
+
+cp $HOME/.sei/data/priv_validator_state.json $HOME/.sei/priv_validator_state.json.backup
+seid tendermint unsafe-reset-all --home $HOME/.sei --keep-addr-book
+
+SNAP_RPC="https://sei-devnet.brocha.in:443"
+
+LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
+TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+
+echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
+
+peers="27238e2f804bf28a14c186a2e0f0ceaae0d2588f@sei-devnet.p2p.brocha.in:30519"
+sed -i 's|^persistent_peers *=.*|persistent_peers = "'$peers'"|' $HOME/.sei/config/config.toml
+
+sed -i -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/.sei/config/config.toml
+
+mv $HOME/.sei/priv_validator_state.json.backup $HOME/.sei/data/priv_validator_state.json
+
+sudo systemctl restart seid
+sudo journalctl -u seid -f --no-hostname -o cat
 ```
 
 ### Create wallet

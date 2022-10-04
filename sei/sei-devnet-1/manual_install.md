@@ -92,7 +92,7 @@ wget -qO $HOME/.sei/config/genesis.json "https://raw.githubusercontent.com/sei-p
 ## Set seeds and peers
 ```
 SEEDS=""
-PEERS=""
+PEERS="27238e2f804bf28a14c186a2e0f0ceaae0d2588f@sei-devnet.p2p.brocha.in:30519"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.sei/config/config.toml
 ```
 
