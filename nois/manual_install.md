@@ -34,7 +34,7 @@ echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export NOIS_CHAIN_ID=nois-testnet-002" >> $HOME/.bash_profile
+echo "export NOIS_CHAIN_ID=nois-testnet-003" >> $HOME/.bash_profile
 echo "export NOIS_PORT=${NOIS_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -86,13 +86,13 @@ noisd init $NODENAME --chain-id $NOIS_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -qO $HOME/.noisd/config/genesis.json "https://raw.githubusercontent.com/noislabs/testnets/main/nois-testnet-002/genesis.json"
+wget -qO $HOME/.noisd/config/genesis.json "https://raw.githubusercontent.com/noislabs/testnets/main/nois-testnet-003/genesis.json"
 ```
 
 ## Set seeds and peers
 ```
 SEEDS=""
-PEERS="a1222dfb8641e0cb55615b75e0122d5695be1f35@node-0.noisdlabs.com:26656,cf16671c00eec9a9a047a5c6aa8510cb681b64b8@node-3.noisdlabs.com:26656"
+PEERS="bf5bbdf9ac1ccd72d7b29c3fbcc7e99ff89fd053@node-0.noislabs.com:26656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.noisd/config/config.toml
 ```
 
