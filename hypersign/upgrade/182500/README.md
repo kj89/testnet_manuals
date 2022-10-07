@@ -15,11 +15,11 @@
 </p>
 
 <p align="center">
-  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/172356220-b8326ceb-9950-4226-b66e-da69099aaf6e.png">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/189590189-369a8e4d-97a6-4c1e-97cc-6a9586c3697e.png">
 </p>
 
 # Chain upgrade to v0.1.1
-> **Note** **Block Countdown can be found [here](https://kujira.explorers.guru/block/182500)**
+> **Note** **Block Countdown can be found [here](https://explorer.kjnodes.com/hypersign/gov/2)**
 
 ## (OPTION 1) Manual upgrade
 Once the chain reaches the upgrade height, you will encounter the following panic error message:\
