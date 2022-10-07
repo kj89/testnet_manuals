@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/192454529-b8070948-6592-4022-96d9-b2adf7169243.png">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/194469665-36158a7f-b85b-4048-baa4-87199508d3f0.png">
 </p>
 
 # nois node setup for testnet — nois-testnet-002
