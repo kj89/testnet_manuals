@@ -107,6 +107,24 @@ providers = [
 ]
 quote = "USD"
 
+[[currency_pairs]]
+base = "BTC"
+providers = [
+  "binance",
+  "kraken",
+  "coinbase"
+]
+quote = "USD"
+
+[[currency_pairs]]
+base = "ETH"
+providers = [
+  "binance",
+  "kraken",
+  "coinbase"
+]
+quote = "USD"
+
 [account]
 address = "${KUJIRA_ORACLE_ADDRESS}"
 chain_id = "${KUJIRA_CHAIN_ID}"
