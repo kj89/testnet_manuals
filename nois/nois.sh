@@ -59,7 +59,7 @@ echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 cd $HOME
 git clone https://github.com/noislabs/full-node.git 
 cd full-node/full-node/
-./setup.sh
+./build.sh
 mv out/noisd $HOME/go/bin/
 
 # config

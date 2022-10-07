@@ -68,7 +68,7 @@ fi
 cd $HOME
 git clone https://github.com/noislabs/full-node.git 
 cd full-node/full-node/
-./setup.sh
+./build.sh
 mv out/noisd $HOME/go/bin/
 ```
 

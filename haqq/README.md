@@ -120,7 +120,7 @@ https://testedge2.haqq.network/
 ```
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 strd (1 strd is equal to 1000000 aislm) and your node is synchronized
+Before creating validator please make sure that you have at least 1 strd (1 strd is equal to 1000000 aISLM) and your node is synchronized
 
 To check your wallet balance:
 ```
@@ -131,7 +131,7 @@ haqqd query bank balances $HAQQ_WALLET_ADDRESS
 To create your validator run command below
 ```
 haqqd tx staking create-validator \
-  --amount 100000000aislm \
+  --amount 100000000aISLM \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
@@ -255,7 +255,7 @@ haqqd query bank balances $HAQQ_WALLET_ADDRESS
 
 Transfer funds
 ```
-haqqd tx bank send $HAQQ_WALLET_ADDRESS <TO_HAQQ_WALLET_ADDRESS> 10000000aislm
+haqqd tx bank send $HAQQ_WALLET_ADDRESS <TO_HAQQ_WALLET_ADDRESS> 10000000aISLM
 ```
 
 ### Voting
@@ -266,12 +266,12 @@ haqqd tx gov vote 1 yes --from $WALLET --chain-id=$HAQQ_CHAIN_ID
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-haqqd tx staking delegate $HAQQ_VALOPER_ADDRESS 10000000aislm --from=$WALLET --chain-id=$HAQQ_CHAIN_ID --gas=auto
+haqqd tx staking delegate $HAQQ_VALOPER_ADDRESS 10000000aISLM --from=$WALLET --chain-id=$HAQQ_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-haqqd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000aislm --from=$WALLET --chain-id=$HAQQ_CHAIN_ID --gas=auto
+haqqd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000aISLM --from=$WALLET --chain-id=$HAQQ_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards

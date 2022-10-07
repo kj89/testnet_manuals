@@ -30,7 +30,7 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `aislm` for haqq testnet. You can find it in genesis file |
+| **bond_denom** | Denominated token name, for example, `aISLM` for haqq testnet. You can find it in genesis file |
 | **bench_prefix** | Prefix for chain addresses, for example, `haqq` for haqq testnet. You can find it in public addresses like this **haqq**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
 | **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file. Default value for haqq is `35657` |
 | **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file. Default value for haqq is `35090` |
