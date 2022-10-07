@@ -68,10 +68,23 @@ Next you have to make sure your validator is syncing blocks. You can use command
 haqqd status 2>&1 | jq .SyncInfo
 ```
 
-### (OPTIONAL) State Sync
+### (OPTIONAL) Snapshot
 You can state sync your node in minutes by running commands below
 ```
-N/A
+sudo systemctl stop haqqd
+rm -rf $HOME/.haqqd/data/
+mkdir $HOME/.haqqd/data/
+
+cd $HOME
+wget http://88.198.34.226:7150/haqqddata.tar.gz
+
+tar -C $HOME/ -zxvf haqqddata.tar.gz --strip-components 1
+wget -O $HOME/.haqqd/data/priv_validator_state.json "https://raw.githubusercontent.com/obajay/StateSync-snapshots/main/Canto/priv_validator_state.json"
+cd && cat .haqqd/data/priv_validator_state.json
+
+cd $HOME
+rm haqqddata.tar.gz
+systemctl restart haqqd && journalctl -u haqqd -f -o cat
 ```
 
 ### Create wallet

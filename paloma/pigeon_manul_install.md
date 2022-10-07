@@ -80,7 +80,7 @@ loop-timeout: 5s
 health-check-port: 5757
 
 paloma:
-  chain-id: paloma-testnet-11
+  chain-id: paloma-testnet-12
   call-timeout: 20s
   keyring-dir: $HOME/.paloma
   keyring-type: test
