@@ -11,7 +11,7 @@
     "assets": [{
         "base": "aISLM",
         "symbol": "HAQQ",
-        "exponent": "6",
+        "exponent": "18",
         "coingecko_id": "",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/haqq.png"
     }]
