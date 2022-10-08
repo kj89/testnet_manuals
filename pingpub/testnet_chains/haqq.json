@@ -10,7 +10,7 @@
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/haqq.png",
     "assets": [{
         "base": "aISLM",
-        "symbol": "HAQQ",
+        "symbol": "ISLM",
         "exponent": "18",
         "coingecko_id": "",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/haqq.png"
