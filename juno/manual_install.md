@@ -34,7 +34,7 @@ echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export JUNO_CHAIN_ID=uni-3" >> $HOME/.bash_profile
+echo "export JUNO_CHAIN_ID=uni-5" >> $HOME/.bash_profile
 echo "export JUNO_PORT=${JUNO_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -68,7 +68,7 @@ fi
 cd $HOME
 git clone https://github.com/CosmosContracts/juno
 cd juno
-git checkout v7.0.0-beta.2
+git checkout v9.0.0
 make build && make install
 ```
 
