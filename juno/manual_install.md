@@ -71,6 +71,16 @@ cd juno
 git checkout v9.0.0
 make build && make install
 ```
+## Check that you have the right Juno version installed:
+```
+junod version --long
+name: juno
+server_name: junod
+version: v9.0.0
+commit: e6f9629538a88edf11aa7e7ed3d68c61f8e96aa6
+build_tags: netgo,ledger
+```
+
 
 ## Config app
 ```
