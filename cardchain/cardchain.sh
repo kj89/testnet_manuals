@@ -62,12 +62,12 @@ sudo mv Cardchaind /usr/local/bin/
 sudo rm Cardchain_latest_linux_amd64.tar.gz
 
 # config
-Cardchain config chain-id $CARDCHAIN_CHAIN_ID
-Cardchain config keyring-backend test
-Cardchain config node tcp://localhost:${CARDCHAIN_PORT}657
+Cardchaind config chain-id $CARDCHAIN_CHAIN_ID
+Cardchaind config keyring-backend test
+Cardchaind config node tcp://localhost:${CARDCHAIN_PORT}657
 
 # init
-Cardchain init $NODENAME --chain-id $CARDCHAIN_CHAIN_ID
+Cardchaind init $NODENAME --chain-id $CARDCHAIN_CHAIN_ID
 
 # download genesis and addrbook
 sudo cp $HOME/Testnet/genesis.json $HOME/.Cardchain/config/genesis.json
@@ -98,18 +98,18 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ubpf\"/" $HOME/.Ca
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.Cardchain/config/config.toml
 
 # reset
-Cardchain unsafe-reset-all --home $HOME/.Cardchain
+Cardchaind unsafe-reset-all --home $HOME/.Cardchain
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
-sudo tee /etc/systemd/system/Cardchain.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/Cardchaind.service > /dev/null <<EOF
 [Unit]
 Description=Cardchain
 After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which Cardchain) start --home $HOME/.Cardchain
+ExecStart=$(which Cardchaind) start --home $HOME/.Cardchain
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
@@ -120,9 +120,9 @@ EOF
 
 # start service
 sudo systemctl daemon-reload
-sudo systemctl enable Cardchain
-sudo systemctl restart Cardchain
+sudo systemctl enable Cardchaind
+sudo systemctl restart Cardchaind
 
 echo '=============== SETUP FINISHED ==================='
-echo -e 'To check logs: \e[1m\e[32mjournalctl -u Cardchain -f -o cat\e[0m'
+echo -e 'To check logs: \e[1m\e[32mjournalctl -u Cardchaind -f -o cat\e[0m'
 echo -e "To check sync status: \e[1m\e[32mcurl -s localhost:${CARDCHAIN_PORT}657/status | jq .result.sync_info\e[0m"

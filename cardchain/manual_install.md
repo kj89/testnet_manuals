@@ -74,14 +74,14 @@ sudo rm Cardchain_latest_linux_amd64.tar.gz
 
 ## Config app
 ```
-Cardchain config chain-id $CARDCHAIN_CHAIN_ID
-Cardchain config keyring-backend test
-Cardchain config node tcp://localhost:${CARDCHAIN_PORT}657
+Cardchaind config chain-id $CARDCHAIN_CHAIN_ID
+Cardchaind config keyring-backend test
+Cardchaind config node tcp://localhost:${CARDCHAIN_PORT}657
 ```
 
 ## Init app
 ```
-Cardchain init $NODENAME --chain-id $CARDCHAIN_CHAIN_ID
+Cardchaind init $NODENAME --chain-id $CARDCHAIN_CHAIN_ID
 ```
 
 ## Download genesis and addrbook
@@ -126,19 +126,19 @@ sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.Cardchain/config/conf
 
 ## Reset chain data
 ```
-Cardchain unsafe-reset-all --home $HOME/.Cardchain
+Cardchaind unsafe-reset-all --home $HOME/.Cardchain
 ```
 
 ## Create service
 ```
-sudo tee /etc/systemd/system/Cardchain.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/Cardchaind.service > /dev/null <<EOF
 [Unit]
 Description=Cardchain
 After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which Cardchain) start --home $HOME/.Cardchain
+ExecStart=$(which Cardchaind) start --home $HOME/.Cardchain
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
@@ -151,6 +151,6 @@ EOF
 ## Register and start service
 ```
 sudo systemctl daemon-reload
-sudo systemctl enable Cardchain
-sudo systemctl restart Cardchain && sudo journalctl -u Cardchain -f -o cat
+sudo systemctl enable Cardchaind
+sudo systemctl restart Cardchaind && sudo journalctl -u Cardchaind -f -o cat
 ```
