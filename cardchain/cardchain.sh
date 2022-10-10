@@ -22,7 +22,7 @@ CARDCHAIN_PORT=18
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export CARDCHAIN_CHAIN_ID=Cardchain" >> $HOME/.bash_profile
+echo "export CARDCHAIN_CHAIN_ID=Testnet3" >> $HOME/.bash_profile
 echo "export CARDCHAIN_PORT=${CARDCHAIN_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
@@ -55,7 +55,11 @@ go version
 
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
-curl https://get.ignite.com/DecentralCardGame/Cardchain@latest! | sudo bash
+wget https://github.com/DecentralCardGame/Cardchain/releases/download/v0.81/Cardchain_latest_linux_amd64.tar.gz
+tar xzf Cardchain_latest_linux_amd64.tar.gz
+chmod 775 Cardchaind
+sudo mv Cardchaind /usr/local/bin/
+sudo rm Cardchain_latest_linux_amd64.tar.gz
 
 # config
 Cardchain config chain-id $CARDCHAIN_CHAIN_ID
@@ -66,11 +70,11 @@ Cardchain config node tcp://localhost:${CARDCHAIN_PORT}657
 Cardchain init $NODENAME --chain-id $CARDCHAIN_CHAIN_ID
 
 # download genesis and addrbook
-wget -qO $HOME/.Cardchain/config/genesis.json "https://raw.githubusercontent.com/DecentralCardGame/Testnet/main/genesis.json"
+sudo cp $HOME/Testnet/genesis.json $HOME/.Cardchain/config/genesis.json
 
 # set peers and seeds
 SEEDS=""
-PEERS="752cfbb39a24007f7316725e7bbc34c845e7c5f1@45.136.28.158:26658"
+PEERS="56d11635447fa77163f31119945e731c55e256a4@45.136.28.158:26658"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.Cardchain/config/config.toml
 
 # set custom ports
