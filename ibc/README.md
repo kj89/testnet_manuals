@@ -127,6 +127,7 @@ list = [
   ['transfer', 'channel-259'], # Kujira
 #  ['transfer', 'channel-320'], # Agoric
   ['transfer', 'channel-326'], # Stride
+  ['transfer', 'channel-362'], # Teritori
 ]
 
 ### STRIDE ###
@@ -290,6 +291,38 @@ list = [
 #  ['transfer', 'channel-374'], # Agoric
   ['transfer', 'channel-391'], # Stride
 ]
+
+
+### TERITORI ###
+[[chains]]
+id = 'teritori-1'
+rpc_addr = 'http://127.0.0.1:19657'
+grpc_addr = 'http://127.0.0.1:19090'
+websocket_addr = 'ws://127.0.0.1:19657/websocket'
+
+rpc_timeout = '20s'
+account_prefix = 'tori'
+key_name = 'relayer'
+address_type = { derivation = 'cosmos' }
+store_prefix = 'ibc'
+default_gas = 100000
+max_gas = 3500000
+gas_price = { price = 0.000, denom = 'utori' }
+gas_multiplier = 1.2
+max_msg_num = 30
+max_tx_size = 1800000
+clock_drift = '15s'
+max_block_time = '10s'
+trusting_period = '7days'
+memo_prefix = 'Relayed by kjnodes'
+trust_threshold = { numerator = '1', denominator = '3' }
+
+[chains.packet_filter]
+policy = 'allow'
+list = [
+  ['transfer', 'channel-0'], # Osmosis
+]
+
 EOF
 ```
 
@@ -321,8 +354,8 @@ SUCCESS performed health check for all chains in the config
 ## Recover wallets using mnemonic files
 Before you proceed with this step, please make sure you have created and funded with tokens seperate wallets on each chain
 ```
- MNEMONIC='mnemonic phrase words goes here'
-CHAIN_ID=stride-1
+ MNEMONIC='word scare connect prison angry jazz help panther museum hope antenna all voyage fame shiver sing life zone era abstract busy bamboo own dune'
+CHAIN_ID=teritori-1
 sudo tee $HOME/.hermes/${CHAIN_ID}.mnemonic > /dev/null <<EOF
 ${MNEMONIC}
 EOF
