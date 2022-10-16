@@ -58,8 +58,8 @@ echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 cd $HOME
 mkdir gravity-bin && cd gravity-bin
-wget -O gravityd https://github.com/Gravity-Bridge/Gravity-Bridge/releases/download/v1.6.7/gravity-linux-amd64
-wget -O gbt https://github.com/Gravity-Bridge/Gravity-Bridge/releases/download/v1.6.7/gbt
+wget -O gravityd https://github.com/Gravity-Bridge/Gravity-Bridge/releases/download/v1.7.2/gravity-linux-amd64
+wget -O gbt https://github.com/Gravity-Bridge/Gravity-Bridge/releases/download/v1.7.2/gbt
 chmod +x *
 sudo mv * /usr/bin/
 
