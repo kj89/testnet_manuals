@@ -95,7 +95,41 @@ enabled = true
 host = '0.0.0.0'
 port = 3001
 
-### OSMOSIS ###
+############################################################### COSMOS ###############################################################
+[[chains]]
+id = 'cosmoshub-4'
+rpc_addr = 'http://127.0.0.1:34657'
+grpc_addr = 'http://127.0.0.1:34090'
+websocket_addr = 'ws://127.0.0.1:34657/websocket'
+
+rpc_timeout = '20s'
+account_prefix = 'cosmos'
+key_name = 'relayer'
+address_type = { derivation = 'cosmos' }
+store_prefix = 'ibc'
+default_gas = 300000
+max_gas = 3500000
+gas_price = { price = 0.00005, denom = 'uatom' }
+gas_multiplier = 1.3
+max_msg_num = 30
+max_tx_size = 180000
+clock_drift = '10s'
+max_block_time = '10s'
+trusting_period = '14days'
+memo_prefix = 'Relayed by kjnodes'
+trust_threshold = { numerator = '1', denominator = '3' }
+
+[chains.packet_filter]
+policy = 'allow'
+list = [
+#  ['transfer', 'channel-141'], # Osmosis
+  ['transfer', 'channel-281'], # Gravity Bridge
+  ['transfer', 'channel-343'], # Kujira
+  ['transfer', 'channel-374'], # Agoric
+  ['transfer', 'channel-391'], # Stride
+]
+
+############################################################### OSMOSIS ###############################################################
 [[chains]]
 id = 'osmosis-1'
 rpc_addr = 'http://127.0.0.1:29657'
@@ -109,7 +143,7 @@ address_type = { derivation = 'cosmos' }
 store_prefix = 'ibc'
 default_gas = 400000
 max_gas = 120000000
-gas_price = { price = 0.000, denom = 'uosmo' }
+gas_price = { price = 0.0025, denom = 'uosmo' }
 gas_multiplier = 1.5
 max_msg_num = 30
 max_tx_size = 1800000
@@ -125,12 +159,44 @@ list = [
 #  ['transfer', 'channel-0'], # Cosmos
   ['transfer', 'channel-144'], # Gravity
   ['transfer', 'channel-259'], # Kujira
-#  ['transfer', 'channel-320'], # Agoric
+  ['transfer', 'channel-320'], # Agoric
   ['transfer', 'channel-326'], # Stride
   ['transfer', 'channel-362'], # Teritori
 ]
 
-### STRIDE ###
+############################################################### GRAVITY BRIDGE ###############################################################
+[[chains]]
+id = 'gravity-bridge-3'
+rpc_addr = 'http://127.0.0.1:26657'
+grpc_addr = 'http://127.0.0.1:26090'
+websocket_addr = 'ws://127.0.0.1:26657/websocket'
+
+rpc_timeout = '20s'
+account_prefix = 'gravity'
+key_name = 'relayer'
+address_type = { derivation = 'cosmos' }
+store_prefix = 'ibc'
+default_gas = 300000
+max_gas = 5000000
+gas_price = { price = 0.0261, denom = 'ugraviton' }
+gas_multiplier = 1.4
+max_msg_num = 30
+max_tx_size = 1800000
+clock_drift = '15s'
+max_block_time = '10s'
+trusting_period = '7days'
+memo_prefix = 'Relayed by kjnodes'
+trust_threshold = { numerator = '1', denominator = '3' }
+
+[chains.packet_filter]
+policy = 'allow'
+list = [
+  ['transfer', 'channel-10'], # Osmosis
+  ['transfer', 'channel-17'], # Cosmos
+  ['transfer', 'channel-91'], # Agoric
+]
+
+############################################################### STRIDE ###############################################################
 [[chains]]
 id = 'stride-1'
 rpc_addr = 'http://127.0.0.1:16657'
@@ -162,7 +228,7 @@ list = [
 #  ['transfer', 'channel-8'], # Kujira
 ]
 
-### KUJIRA ###
+############################################################### KUJIRA ###############################################################
 [[chains]]
 id = 'kaiyo-1'
 rpc_addr = 'http://127.0.0.1:13657'
@@ -194,7 +260,7 @@ list = [
 #  ['transfer', 'channel-32'], # Stride
 ]
 
-### AGORIC ###
+############################################################### AGORIC ###############################################################
 [[chains]]
 id = 'agoric-3'
 rpc_addr = 'http://127.0.0.1:27657'
@@ -208,7 +274,7 @@ address_type = { derivation = 'cosmos' }
 store_prefix = 'ibc'
 default_gas = 300000
 max_gas =  1000000
-gas_price = { price = 0.000, denom = 'ubld' }
+gas_price = { price = 0.001, denom = 'ubld' }
 gas_multiplier = 1.2
 max_msg_num = 30
 max_tx_size = 1800000
@@ -226,74 +292,7 @@ list = [
   ['transfer', 'channel-4'], # Gravity
 ]
 
-### GRAVITY BRIDGE ###
-[[chains]]
-id = 'gravity-bridge-3'
-rpc_addr = 'http://127.0.0.1:26657'
-grpc_addr = 'http://127.0.0.1:26090'
-websocket_addr = 'ws://127.0.0.1:26657/websocket'
-
-rpc_timeout = '20s'
-account_prefix = 'gravity'
-key_name = 'relayer'
-address_type = { derivation = 'cosmos' }
-store_prefix = 'ibc'
-default_gas = 300000
-max_gas = 5000000
-gas_price = { price = 0.000, denom = 'ugraviton' }
-gas_multiplier = 1.4
-max_msg_num = 30
-max_tx_size = 1800000
-clock_drift = '15s'
-max_block_time = '10s'
-trusting_period = '7days'
-memo_prefix = 'Relayed by kjnodes'
-trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
-policy = 'allow'
-list = [
-  ['transfer', 'channel-10'], # Osmosis
-  ['transfer', 'channel-17'], # Cosmos
-  ['transfer', 'channel-91'], # Agoric
-]
-
-### COSMOS ###
-[[chains]]
-id = 'cosmoshub-4'
-rpc_addr = 'http://127.0.0.1:34657'
-grpc_addr = 'http://127.0.0.1:34090'
-websocket_addr = 'ws://127.0.0.1:34657/websocket'
-
-rpc_timeout = '20s'
-account_prefix = 'cosmos'
-key_name = 'relayer'
-address_type = { derivation = 'cosmos' }
-store_prefix = 'ibc'
-default_gas = 300000
-max_gas = 3500000
-gas_price = { price = 0.0025, denom = 'uatom' }
-gas_multiplier = 1.3
-max_msg_num = 30
-max_tx_size = 180000
-clock_drift = '10s'
-max_block_time = '10s'
-trusting_period = '14days'
-memo_prefix = 'Relayed by kjnodes'
-trust_threshold = { numerator = '1', denominator = '3' }
-
-[chains.packet_filter]
-policy = 'allow'
-list = [
-#  ['transfer', 'channel-141'], # Osmosis
-  ['transfer', 'channel-281'], # Gravity Bridge
-  ['transfer', 'channel-343'], # Kujira
-#  ['transfer', 'channel-374'], # Agoric
-  ['transfer', 'channel-391'], # Stride
-]
-
-
-### TERITORI ###
+############################################################### TERITORI ###############################################################
 [[chains]]
 id = 'teritori-1'
 rpc_addr = 'http://127.0.0.1:19657'
@@ -307,10 +306,10 @@ address_type = { derivation = 'cosmos' }
 store_prefix = 'ibc'
 default_gas = 100000
 max_gas = 3500000
-gas_price = { price = 0.000, denom = 'utori' }
+gas_price = { price = 0.01, denom = 'utori' }
 gas_multiplier = 1.2
-max_msg_num = 30
-max_tx_size = 1800000
+max_msg_num = 10
+max_tx_size = 800000
 clock_drift = '15s'
 max_block_time = '10s'
 trusting_period = '7days'
