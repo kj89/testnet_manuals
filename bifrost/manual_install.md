@@ -40,7 +40,7 @@ sudo apt update && sudo apt upgrade -y
 
 ## Install dependencies
 ```
-sudo apt install curl build-essential git wget npm nodejs jq make gcc tmux -y
+sudo apt install curl build-essential git wget npm nodejs jq make gcc tmux python3 python3-pip -y
 ```
 
 ## Create chain data directory
@@ -72,6 +72,8 @@ ExecStart=$(which bifrost-node) \\
 --base-path /var/lib/bifrost-data \\
 --chain /var/lib/bifrost-data/bifrost-testnet.json \\
 --port 30333 \\
+--ws-port 9944 \\
+--rpc-port 9933 \\
 --validator \\
 --state-cache-size 0 \\
 --runtime-cache-size 64 \\
@@ -96,5 +98,3 @@ sudo systemctl restart bifrostd
 ```
 journalctl -fu bifrostd -o cat
 ```
-
-

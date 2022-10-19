@@ -57,6 +57,114 @@ curl -s -X POST http://localhost:9933 -H "Content-Type: application/json" --data
 curl -s -X POST http://localhost:9933 -H "Content-Type: application/json" --data '{"id":1, "jsonrpc":"2.0", "method": "system_health", "params":[]}' | jq .result.peers
 ```
 
+## Register node
+### Clone bifrost-node repository and install tools
+```
+cd $HOME
+git clone https://github.com/bifrost-platform/bifrost-node.git
+cd bifrost-node/
+npm install
+npm audit fix
+```
+
+### (OPTION 1) Register Basic Node
+```
+npm run join_validators -- \
+  --controllerPrivate "0xYOUR_CONTROLLER_PRIVATE_KEY" \
+  --stashPrivate "0xYOUR_STASH_PRIVATE_KEY" \
+  --bond "50000"
+```
+
+### (OPTION 2) Register Full Node
+```
+npm run join_validators -- \
+  --controllerPrivate "0xYOUR_CONTROLLER_PRIVATE_KEY" \
+  --stashPrivate "0xYOUR_STASH_PRIVATE_KEY" \
+  --bond "50000"
+```
+
+**Note** Add `0x` before every private key
+
+## Run Relayer
+### Install relayer software
+```
+git clone https://github.com/bifrost-platform/bifrost-relayer
+cd bifrost-relayer
+pip install -r relayer/requirements.txt
+```
+
+### Set up configuration
+```
+sudo tee configs/entity.relayer.private.json > /dev/null <<EOF
+{
+    "entity": {
+      "secret_hex": "0xYOUR_RELAYER__PRIVATE_KEY"
+    },
+    "oracle_config": {
+      "bitcoin_block_hash": {
+          "name": "bitcoinblockhash",
+          "url": "BITCOIN_MAINNET_RPC_ACCESS_URL",
+          "auth_id": "AUTH_ID_FOR_BASIC_AUTH",
+          "auth_password": "PASSWORD_FOR_BASIC_AUTH",
+          "collection_period_sec": 120
+        },
+      "asset_prices": {
+        "urls": {
+          "Coingecko": "https://api.coingecko.com/api/v3/",
+          "Upbit": "https://api.upbit.com/v1/",
+          "Chainlink": "ETHEREUM_MAINNET_RPC_ACCESS_URL"
+        }
+      }
+	  },
+   "bifrost": {
+        "url_with_access_key": "127.0.0.1:9933"
+    },
+    "ethereum": {
+        "url_with_access_key": "GOERLI_TESTNET_RPC_ACCESS_URL"
+    },
+    "binance": {
+        "url_with_access_key": "BINANCE_TESTNET_RPC_ACCESS_URL"
+    },
+    "polygon": {
+        "url_with_access_key": "POLYGON_TESTNET_RPC_ACCESS_URL"
+    }
+}
+EOF
+```
+
+### Register systemd service
+```
+sudo tee <<EOF >/dev/null /etc/systemd/system/bifrost-relayer.service
+[Unit]
+Description=Bifrost relayer Daemon
+After=network.target
+[Service]
+Type=simple
+User=$USER
+WorkingDirectory=$HOME/bifrost-relayer
+ExecStart=$HOME/bifrost-relayer/relayer-launcher.py launch
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+### Run bifrost-relayer service
+```
+sudo systemctl restart systemd-journald
+sudo systemctl daemon-reload
+sudo systemctl enable bifrost-relayer
+sudo systemctl restart bifrost-relayer
+```
+
+### Check relayer logs
+```
+journalctl -fu bifrost-relayer -o cat
+```
+
+
 ## Useful commands
 Check node version
 ```
