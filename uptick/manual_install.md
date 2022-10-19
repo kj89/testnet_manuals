@@ -113,7 +113,7 @@ sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.uptickd/config/config
 
 ## Config pruning
 ```
-pruning="custom"
+pruning="nothing"
 pruning_keep_recent="100"
 pruning_keep_every="0"
 pruning_interval="50"
