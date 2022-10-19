@@ -90,7 +90,7 @@ npm run join_validators -- \
 ```
 git clone https://github.com/bifrost-platform/bifrost-relayer
 cd bifrost-relayer
-pip install -r relayer/requirements.txt
+pip install -r requirements.txt
 ```
 
 ### Set up configuration
@@ -117,7 +117,7 @@ sudo tee configs/entity.relayer.private.json > /dev/null <<EOF
       }
 	  },
    "bifrost": {
-        "url_with_access_key": "127.0.0.1:9933"
+        "url_with_access_key": "http://127.0.0.1:9933"
     },
     "ethereum": {
         "url_with_access_key": "GOERLI_TESTNET_RPC_ACCESS_URL"
@@ -142,7 +142,7 @@ After=network.target
 Type=simple
 User=$USER
 WorkingDirectory=$HOME/bifrost-relayer
-ExecStart=$HOME/bifrost-relayer/relayer-launcher.py launch
+ExecStart=$(which python3) $HOME/bifrost-relayer/relayer-launcher.py launch
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
