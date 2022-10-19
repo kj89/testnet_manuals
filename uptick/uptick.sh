@@ -22,7 +22,7 @@ UPTICK_PORT=15
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export UPTICK_CHAIN_ID=uptick_7776-1" >> $HOME/.bash_profile
+echo "export UPTICK_CHAIN_ID=uptick_7000-1" >> $HOME/.bash_profile
 echo "export UPTICK_PORT=${UPTICK_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
@@ -57,7 +57,6 @@ echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 cd $HOME
 git clone https://github.com/UptickNetwork/uptick.git && cd uptick
-git checkout v0.2.0
 make install
 
 # config
@@ -68,13 +67,20 @@ uptickd config node tcp://localhost:${UPTICK_PORT}657
 # init
 uptickd init $NODENAME --chain-id $UPTICK_CHAIN_ID
 
-# download genesis and addrbook
-wget -qO $HOME/.uptickd/config/genesis.json "https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7776-1/genesis.json"
+# restore data
+cd  $HOME/.uptickd
+rm -rf data
+wget https://download.uptick.network/download/uptick/testnet/node/data/data.tar.gz
+tar -zxvf data.tar.gz
 
+# download configuration
+curl -o $HOME/.uptickd/config/config.toml https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7000-1/config.toml
+curl -o $HOME/.uptickd/config/genesis.json https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7000-1/genesis.json
+curl -o $HOME/.uptickd/config/app.toml https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7000-1/app.toml
 
 # set peers and seeds
-SEEDS=$(curl -sL https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7776-1/seeds.txt | tr '\n' ',')
-PEERS=$(curl -sL https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7776-1/peers.txt | tr '\n' ',')
+SEEDS=$(curl -sL https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7000-1/seeds.txt | tr '\n' ',')
+PEERS=$(curl -sL https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7000-1/peers.txt | tr '\n' ',')
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.uptickd/config/config.toml
 
 # set custom ports

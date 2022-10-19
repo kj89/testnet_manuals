@@ -18,7 +18,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/171044333-016e348d-1d96-4d00-8dce-f7de45aa9f84.png">
 </p>
 
-# uptick node setup for Testnet — uptick_7776-1
+# uptick node setup for Testnet — uptick_7000-1
 
 Official documentation:
 >- [Validator setup instructions](https://docs.uptick.network/testnet/)
