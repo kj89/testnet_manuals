@@ -68,6 +68,7 @@ fi
 cd $HOME
 git clone https://github.com/terpnetwork/terp-core.git
 cd terp-core
+git checkout v0.1.1-stable
 make install
 ```
 
