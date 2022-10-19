@@ -131,7 +131,7 @@ uptickd query bank balances $UPTICK_WALLET_ADDRESS
 To create your validator run command below
 ```
 uptickd tx staking create-validator \
-  --amount 1000000auptick \
+  --amount 5000000000000000000auptick \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
@@ -139,7 +139,8 @@ uptickd tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(uptickd tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id $UPTICK_CHAIN_ID
+  --chain-id $UPTICK_CHAIN_ID \
+  --gas=auto
 ```
 
 ## Security
@@ -250,23 +251,23 @@ uptickd query bank balances $UPTICK_WALLET_ADDRESS
 
 Transfer funds
 ```
-uptickd tx bank send $UPTICK_WALLET_ADDRESS <TO_UPTICK_WALLET_ADDRESS> 10000000auptick
+uptickd tx bank send $UPTICK_WALLET_ADDRESS <TO_UPTICK_WALLET_ADDRESS> 5000000000000000000auptick --gas=auto
 ```
 
 ### Voting
 ```
-uptickd tx gov vote 1 yes --from $WALLET --chain-id=$UPTICK_CHAIN_ID
+uptickd tx gov vote 1 yes --from $WALLET --chain-id=$UPTICK_CHAIN_ID --gas=auto
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-uptickd tx staking delegate $UPTICK_VALOPER_ADDRESS 10000000auptick --from=$WALLET --chain-id=$UPTICK_CHAIN_ID --gas=auto
+uptickd tx staking delegate $UPTICK_VALOPER_ADDRESS 5000000000000000000auptick --from=$WALLET --chain-id=$UPTICK_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-uptickd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000auptick --from=$WALLET --chain-id=$UPTICK_CHAIN_ID --gas=auto
+uptickd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 5000000000000000000auptick --from=$WALLET --chain-id=$UPTICK_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
@@ -276,7 +277,7 @@ uptickd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$UPTICK_C
 
 Withdraw rewards with commision
 ```
-uptickd tx distribution withdraw-rewards $UPTICK_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$UPTICK_CHAIN_ID
+uptickd tx distribution withdraw-rewards $UPTICK_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$UPTICK_CHAIN_ID --gas=auto
 ```
 
 ### Validator management
@@ -288,7 +289,8 @@ uptickd tx staking edit-validator \
   --website="<your_website>" \
   --details="<your_validator_description>" \
   --chain-id=$UPTICK_CHAIN_ID \
-  --from=$WALLET
+  --from=$WALLET \
+  --gas=auto
 ```
 
 Unjail validator
