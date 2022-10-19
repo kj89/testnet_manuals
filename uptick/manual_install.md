@@ -82,14 +82,6 @@ uptickd config node tcp://localhost:${UPTICK_PORT}657
 uptickd init $NODENAME --chain-id $UPTICK_CHAIN_ID
 ```
 
-## Restore data
-```
-cd  $HOME/.uptickd
-rm -rf data
-wget https://download.uptick.network/download/uptick/testnet/node/data/data.tar.gz
-tar -zxvf data.tar.gz
-```
-
 ### Download configuration
 ```
 curl -o $HOME/.uptickd/config/config.toml https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7000-1/config.toml
@@ -138,9 +130,13 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0auptick\"/" $HOME/
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.uptickd/config/config.toml
 ```
 
-## Reset chain data
+## Restore data
 ```
-uptickd tendermint unsafe-reset-all --home $HOME/.uptickd
+cd  $HOME/.uptickd
+rm -rf data
+wget -O data.tar.gz https://download.uptick.network/download/uptick/testnet/node/data/data.tar.gz
+tar -zxvf data.tar.gz
+rm -rf data.tar.gz
 ```
 
 ## Create service

@@ -67,12 +67,6 @@ uptickd config node tcp://localhost:${UPTICK_PORT}657
 # init
 uptickd init $NODENAME --chain-id $UPTICK_CHAIN_ID
 
-# restore data
-cd  $HOME/.uptickd
-rm -rf data
-wget https://download.uptick.network/download/uptick/testnet/node/data/data.tar.gz
-tar -zxvf data.tar.gz
-
 # download configuration
 curl -o $HOME/.uptickd/config/config.toml https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7000-1/config.toml
 curl -o $HOME/.uptickd/config/genesis.json https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7000-1/genesis.json
@@ -107,8 +101,12 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0auptick\"/" $HOME/
 # enable prometheus
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.uptickd/config/config.toml
 
-# reset
-uptickd tendermint unsafe-reset-all --home $HOME/.uptickd
+# restore data
+cd  $HOME/.uptickd
+rm -rf data
+wget -O data.tar.gz https://download.uptick.network/download/uptick/testnet/node/data/data.tar.gz
+tar -zxvf data.tar.gz
+rm -rf data.tar.gz
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
