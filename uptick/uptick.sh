@@ -56,8 +56,10 @@ go version
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 cd $HOME
-git clone https://github.com/UptickNetwork/uptick.git && cd uptick
-make install
+wget https://download.uptick.network/download/uptick/testnet/release/v0.2.3/v0.2.3.tar.gz
+tar -zxvf v0.2.3.tar.gz
+sudo chmod +x uptick-v0.2.3/linux/uptickd
+sudo mv uptick-v0.2.3/linux/uptickd $HOME/go/bin/
 
 # config
 uptickd config chain-id $UPTICK_CHAIN_ID

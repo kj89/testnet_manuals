@@ -66,8 +66,10 @@ fi
 ## Download and build binaries
 ```
 cd $HOME
-git clone https://github.com/UptickNetwork/uptick.git && cd uptick
-make install
+wget https://download.uptick.network/download/uptick/testnet/release/v0.2.3/v0.2.3.tar.gz
+tar -zxvf v0.2.3.tar.gz
+sudo chmod +x uptick-v0.2.3/linux/uptickd
+sudo mv uptick-v0.2.3/linux/uptickd $HOME/go/bin/
 ```
 
 ## Config app
