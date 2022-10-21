@@ -56,7 +56,7 @@ go version
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 cd $HOME
-wget https://download.uptick.network/download/uptick/testnet/release/v0.2.3/v0.2.3.tar.gz
+wget https://download.uptick.network/download/uptick/testnet/release/v0.2.3/v0.2.3.tar.gz --no-check-certificate
 tar -zxvf v0.2.3.tar.gz
 sudo chmod +x uptick-v0.2.3/linux/uptickd
 sudo mv uptick-v0.2.3/linux/uptickd $HOME/go/bin/
