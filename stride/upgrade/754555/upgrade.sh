@@ -2,8 +2,8 @@
 GREEN_COLOR='\033[0;32m'
 RED_COLOR='\033[0;31m'
 NO_COLOR='\033[0m'
-BLOCK=155420
-VERSION=4ec1b0ca818561cef04f8e6df84069b14399590e
+BLOCK=754555
+VERSION=v2.0.0
 echo -e "$GREEN_COLOR YOUR NODE WILL BE UPDATED TO VERSION: $VERSION ON BLOCK NUMBER: $BLOCK $NO_COLOR\n"
 for((;;)); do
 	height=$(strided status |& jq -r ."SyncInfo"."latest_block_height")
@@ -12,7 +12,7 @@ for((;;)); do
 		sudo systemctl stop strided
 		cd $HOME && rm -rf stride
 		git clone https://github.com/Stride-Labs/stride.git && cd stride
-		git checkout 4ec1b0ca818561cef04f8e6df84069b14399590e
+		git checkout v2.0.0
 		make build
 		sudo mv build/strided $(which strided)
 		echo "restart the system..."
