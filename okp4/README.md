@@ -21,7 +21,7 @@
 # okp4 node setup for testnet — okp4-nemeton
 
 Official documentation:
->- [Validator setup instructions](https://github.com/okp4/okp4d)
+>- [Validator setup instructions](https://docs.okp4.network/docs/nodes/run-node)
 
 Explorer:
 >-  https://explorer.kjnodes.com/okp4
