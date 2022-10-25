@@ -27,7 +27,7 @@ Once the chain reaches the upgrade height, you will encounter the following pani
 ```
 sudo systemctl stop kujirad
 cd $HOME && rm -rf core
-git clone https://github.com/Team-Kujira/core.git --branch v0.6.0
+git clone https://github.com/Team-Kujira/core.git --branch v0.6.4
 cd core
 make install
 sudo systemctl restart kujirad && journalctl -fu kujirad -o cat
