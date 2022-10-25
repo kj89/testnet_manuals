@@ -21,7 +21,7 @@
 # Migrate your validator to another machine
 
 ### 1. Run a new full node on a new machine
-To setup full node you can follow my guide [ollo node setup for testnet](https://github.com/kj89/testnet_manuals/blob/main/ollo/README.md)
+To setup full node you can follow my guide [okp4 node setup for testnet](https://github.com/kj89/testnet_manuals/blob/main/okp4/README.md)
 
 ### 2. Confirm that you have the recovery seed phrase information for the active key running on the old machine
 

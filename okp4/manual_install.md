@@ -133,7 +133,7 @@ okp4d tendermint unsafe-reset-all --home $HOME/.okp4d
 ```
 sudo tee /etc/systemd/system/okp4d.service > /dev/null <<EOF
 [Unit]
-Description=ollo
+Description=okp4
 After=network-online.target
 
 [Service]
