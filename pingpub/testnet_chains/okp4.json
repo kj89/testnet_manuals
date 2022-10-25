@@ -1,0 +1,19 @@
+{
+    "chain_name": "OKP4",
+    "coingecko": "",
+    "api": ["https://okp4-testnet.api.kjnodes.com"],
+	"rpc": ["https://okp4-testnet.rpc.kjnodes.com"],
+    "snapshot_provider": "",
+    "sdk_version": "0.45.0",
+    "coin_type": "118",
+    "min_tx_fee": "200",
+    "addr_prefix": "okp4",
+    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/okp4.png",
+    "assets": [{
+        "base": "uknow",
+        "symbol": "KNOW",
+        "exponent": "6",
+        "coingecko_id": "",
+        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/okp4.png"
+    }]
+}
