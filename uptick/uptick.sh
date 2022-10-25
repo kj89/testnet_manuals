@@ -107,7 +107,7 @@ sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.uptickd/config/config
 # restore data
 cd  $HOME/.uptickd
 rm -rf data
-wget -O data.tar.gz https://download.uptick.network/download/uptick/testnet/node/data/data.tar.gz
+wget -O data.tar.gz https://download.uptick.network/download/uptick/testnet/node/data/data.tar.gz --no-check-certificate
 tar -zxvf data.tar.gz
 rm -rf data.tar.gz
 
