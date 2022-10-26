@@ -29,8 +29,9 @@ sudo systemctl stop haqqd
 cd $HOME && rm -rf haqq
 git clone https://github.com/haqq-network/haqq.git
 cd haqq
-git checkout 1.2.0
-make install
+git checkout v1.2.1
+make build
+sudo mv ./build/haqqd $(which haqqd)
 sudo systemctl restart haqqd && journalctl -fu haqqd -o cat
 ```
 

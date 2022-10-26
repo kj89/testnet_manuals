@@ -14,7 +14,8 @@ for((;;)); do
 		git clone https://github.com/haqq-network/haqq.git
 		cd haqq
 		git checkout $VERSION
-		make install
+		make build
+		sudo mv ./build/haqqd $(which haqqd)
 		sudo systemctl restart haqqd && journalctl -fu haqqd -o cat
 
 		for (( timer=60; timer>0; timer-- )); do
