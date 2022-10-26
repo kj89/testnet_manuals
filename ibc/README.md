@@ -234,6 +234,7 @@ id = 'kaiyo-1'
 rpc_addr = 'http://127.0.0.1:13657'
 grpc_addr = 'http://127.0.0.1:13090'
 websocket_addr = 'ws://127.0.0.1:13657/websocket'
+fee_granter = 'kujira1vkje22mayn72r0a7kna6agv0sqm6k94ry9k6dd'
 
 rpc_timeout = '30s'
 account_prefix = 'kujira'
