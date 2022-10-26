@@ -106,7 +106,7 @@ echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
 sudo tee /etc/systemd/system/mande-chaind.service > /dev/null <<EOF
 [Unit]
-Description=canine
+Description=mande
 After=network-online.target
 
 [Service]

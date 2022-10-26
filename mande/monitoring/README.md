@@ -18,7 +18,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/198132772-046c91e1-dbf4-4cd4-8170-21c65b612632.png">
 </p>
 
-# Set up monitoring and alerting for canine validator
+# Set up monitoring and alerting for mande validator
 
 ## Prerequisites
 
@@ -30,10 +30,10 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `mand` for canine testnet. You can find it in genesis file |
-| **bench_prefix** | Prefix for chain addresses, for example, `canine` for canine testnet. You can find it in public addresses like this **canine**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
-| **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file. Default value for canine is `38657` |
-| **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file. Default value for canine is `38090` |
+| **bond_denom** | Denominated token name, for example, `mand` for mande testnet. You can find it in genesis file |
+| **bench_prefix** | Prefix for chain addresses, for example, `mande` for mande testnet. You can find it in public addresses like this **mande**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file. Default value for mande is `38657` |
+| **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file. Default value for mande is `38090` |
 
 make sure following ports are open:
 - `9100` (node-exporter)
@@ -87,7 +87,7 @@ To add validator use command with specified `VALIDATOR_IP`, `MANDE_VALOPER_ADDRE
 $HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP MANDE_VALOPER_ADDRESS MANDE_WALLET_ADDRESS PROJECT_NAME
 ```
 
-> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 caninevaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete canine1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc canine```
+> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 mandevaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete mande1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc mande```
 
 To add more validators just run command above with validator values
 

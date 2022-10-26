@@ -134,7 +134,7 @@ mande-chaind tendermint unsafe-reset-all --home $HOME/.mande-chain
 ```
 sudo tee /etc/systemd/system/mande-chaind.service > /dev/null <<EOF
 [Unit]
-Description=canine
+Description=mande
 After=network-online.target
 
 [Service]
