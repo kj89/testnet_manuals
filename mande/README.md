@@ -117,7 +117,7 @@ source $HOME/.bash_profile
 ```
 
 ### Fund your wallet
-Navigate to https://faucet.mande-chain.network and paste your wallet address
+Navigate to https://discord.gg/ms3tWhedvp `#faucet-requests` channel
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 know (1 know is equal to 1000000 mand) and your node is synchronized
