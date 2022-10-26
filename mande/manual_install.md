@@ -88,7 +88,6 @@ mande-chaind init $NODENAME --chain-id $MANDE_CHAIN_ID
 ```
 wget -qO $HOME/.mande-chain/config/genesis.json "https://raw.githubusercontent.com/mande-labs/testnet-1/main/genesis.json"
 wget -qO $HOME/.mande-chain/config/addrbook.json "https://raw.githubusercontent.com/obajay/nodes-Guides/main/Mande%20Chain/addrbook.json"
-
 ```
 
 ## Set seeds and peers

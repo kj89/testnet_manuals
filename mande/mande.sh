@@ -57,10 +57,10 @@ fi
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 cd $HOME
-git clone https://github.com/JackalLabs/canine-chain.git
-cd canine-chain
-git checkout v1.1.1
-make install
+curl -OL https://github.com/mande-labs/testnet-1/raw/main/mande-chaind
+mkdir -p $HOME/go/bin
+mv mande-chaind /$HOME/go/bin/
+chmod 744 /$HOME/go/bin/mande-chaind
 
 # config
 mande-chaind config chain-id $MANDE_CHAIN_ID
@@ -71,11 +71,12 @@ mande-chaind config node tcp://localhost:${MANDE_PORT}657
 mande-chaind init $NODENAME --chain-id $MANDE_CHAIN_ID
 
 # download genesis and addrbook
-wget -qO $HOME/.mande-chain/config/genesis.json "https://raw.githubusercontent.com/JackalLabs/woof/master/genesis/woof-final.json"
+wget -qO $HOME/.mande-chain/config/genesis.json "https://raw.githubusercontent.com/mande-labs/testnet-1/main/genesis.json"
+wget -qO $HOME/.mande-chain/config/addrbook.json "https://raw.githubusercontent.com/obajay/nodes-Guides/main/Mande%20Chain/addrbook.json"
 
 # set peers and seeds
-SEEDS="052c498dd1cc603b4d32f772035b6a8ca902def3@23.88.73.211:26656,0bdeaaa237b41e3b964a027a110c6ab5bf561177@209.34.206.38:26656,bf7ee27a24e7d5f45653206fbbda8c4b716b74b1@89.58.38.59:26656,9eecc498dd2542c862f5bfb84ed7d2e1e3d922ab@34.201.48.14:26656,bf62b185eef3c185f8ebf81d5cf54bdc064b21d8@85.10.216.157:26656,43e800018a5b52ba119a5410ff45cbeb63182cc8@207.244.127.5:26656,942087a9665e8235f8037d0b9d2a3f8a8c3d562b@104.207.138.181:26656,9d0094606fe8748f1c06b494f7c0cbbd44808ec6@131.153.59.6:26656,6071fe2fc7e4f49caa4b1fd1cfe19007152312e0@34.76.87.33:26656,3f58d7c35ad55ef6cea94f7aa2ffe79df1c01768@78.107.253.133:26656,46cb18ca32ad7329cb82a10316087794ef12150f@185.107.57.74:26656"
-PEERS=""
+SEEDS="cd3e4f5b7f5680bbd86a96b38bc122aa46668399@34.171.132.212:26656"
+PEERS="6780b2648bd2eb6adca2ca92a03a25b216d4f36b@34.170.16.69:26656,a3e3e20528604b26b792055be84e3fd4de70533b@38.242.199.93:24656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.mande-chain/config/config.toml
 
 # set custom ports
