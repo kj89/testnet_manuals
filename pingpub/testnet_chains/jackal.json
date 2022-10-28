@@ -1,0 +1,19 @@
+{
+    "chain_name": "JACKAL",
+    "coingecko": "",
+    "api": ["https://jackal-mainnet.api.kjnodes.com"],
+    "rpc": ["http://jackal-mainnet.rpc.kjnodes.com"],
+    "snapshot_provider": "",
+    "sdk_version": "0.45.3",
+    "coin_type": "118",
+    "min_tx_fee": "200",
+    "addr_prefix": "jkl",
+    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/jackal.png",
+    "assets": [{
+        "base": "ujkl",
+        "symbol": "JKL",
+        "exponent": "6",
+        "coingecko_id": "",
+        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/jackal.png"
+    }]
+}
