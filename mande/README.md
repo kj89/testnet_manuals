@@ -71,9 +71,10 @@ mande-chaind status 2>&1 | jq .SyncInfo
 ### (OPTIONAL) State Sync
 You can state sync your node in minutes by running commands below
 ```
-SNAP_RPC=http://38.242.199.93:24657
-peers="a3e3e20528604b26b792055be84e3fd4de70533b@38.242.199.93:24656"
-sed -i.bak -e  "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/.mande-chain/config/config.toml
+systemctl stop mande-chaind
+SNAP_RPC=https://mande-testnet-rpc.jambulmerah.dev:443
+peers="a3e3e20528604b26b792055be84e3fd4de70533b@38.242.199.93:24656" 
+sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.mande-chain/config/config.toml
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 500)); \
 TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
@@ -85,9 +86,8 @@ s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
 s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" $HOME/.mande-chain/config/config.toml
-
 mande-chaind tendermint unsafe-reset-all --home /root/.mande-chain --keep-addr-book
-systemctl restart mande-chaind && journalctl -u mande-chaind -f -o cat
+sudo systemctl restart mande-chaind && journalctl -u mande-chaind -f -o cat
 ```
 
 ### Create wallet
