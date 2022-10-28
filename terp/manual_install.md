@@ -86,7 +86,7 @@ terpd init $NODENAME --chain-id $TERP_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -qO $HOME/.terp/config/genesis.json "https://raw.githubusercontent.com/terpnetwork/test-net/master/athena-2/genesis.json "
+wget -qO $HOME/.terp/config/genesis.json "https://raw.githubusercontent.com/terpnetwork/test-net/master/athena-2/genesis.json"
 ```
 
 ## Set seeds and peers
