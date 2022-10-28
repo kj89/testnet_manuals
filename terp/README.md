@@ -18,7 +18,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/192942503-d3df529e-1ca8-465e-a110-5d4a0c4f438e.png">
 </p>
 
-# terp node setup for testnet — athena-1
+# terp node setup for testnet — athena-2
 
 Official documentation:
 >- [Validator setup instructions](https://github.com/terpnetwork/terp-core)
