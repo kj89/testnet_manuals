@@ -68,7 +68,7 @@ Next you have to make sure your validator is syncing blocks. You can use command
 canined status 2>&1 | jq .SyncInfo
 ```
 
-### (OPTIONAL) Snapshot from nodejumper.io
+### (OPTIONAL) State Sync
 You can state sync your node in minutes by running commands below
 ```
 N/A
@@ -101,7 +101,7 @@ source $HOME/.bash_profile
 ```
 
 ### Fund your wallet
-Navigate to https://faucet.canine.network and paste your wallet address
+You can buy JKL on https://frontier.osmosis.zone
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 jkl (1 jkl is equal to 1000000 ujkl) and your node is synchronized
