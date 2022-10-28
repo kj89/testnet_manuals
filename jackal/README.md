@@ -50,7 +50,7 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
 ### Option 1 (automatic)
 You can setup your canine fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
-wget -O canine.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/jackal/canine.sh && chmod +x canine.sh && ./canine.sh
+wget -O jackal.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/jackal/jackal.sh && chmod +x jackal.sh && ./jackal.sh
 ```
 
 ### Option 2 (manual)
@@ -104,7 +104,7 @@ source $HOME/.bash_profile
 Navigate to https://faucet.canine.network and paste your wallet address
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 know (1 know is equal to 1000000 ujkl) and your node is synchronized
+Before creating validator please make sure that you have at least 1 jkl (1 jkl is equal to 1000000 ujkl) and your node is synchronized
 
 To check your wallet balance:
 ```
