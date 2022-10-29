@@ -19,7 +19,7 @@
 </p>
 
 # Chain upgrade to v1.2.0
-> **Note** **Block Countdown can be found [here](https://jackal.explorers.guru/block/118040)**
+> **Note** **Block Countdown can be found [here](https://explorer.kjnodes.com/jackal/gov/1)**
 
 ## (OPTION 1) Manual upgrade
 Once the chain reaches the upgrade height, you will encounter the following panic error message:\
