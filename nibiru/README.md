@@ -89,6 +89,19 @@ sudo systemctl restart nibid
 sudo journalctl -u nibid -f --no-hostname -o cat
 ```
 
+### Update block time parameters
+```
+CONFIG_TOML="$HOME/.nibid/config/config.toml"
+sed -i 's/timeout_propose =.*/timeout_propose = "100ms"/g' $CONFIG_TOML
+sed -i 's/timeout_propose_delta =.*/timeout_propose_delta = "500ms"/g' $CONFIG_TOML
+sed -i 's/timeout_prevote =.*/timeout_prevote = "100ms"/g' $CONFIG_TOML
+sed -i 's/timeout_prevote_delta =.*/timeout_prevote_delta = "500ms"/g' $CONFIG_TOML
+sed -i 's/timeout_precommit =.*/timeout_precommit = "100ms"/g' $CONFIG_TOML
+sed -i 's/timeout_precommit_delta =.*/timeout_precommit_delta = "500ms"/g' $CONFIG_TOML
+sed -i 's/timeout_commit =.*/timeout_commit = "1s"/g' $CONFIG_TOML
+sed -i 's/skip_timeout_commit =.*/skip_timeout_commit = false/g' $CONFIG_TOML
+```
+
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
