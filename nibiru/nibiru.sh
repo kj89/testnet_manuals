@@ -71,7 +71,7 @@ nibid config node tcp://localhost:${NIBIRU_PORT}657
 nibid init $NODENAME --chain-id $NIBIRU_CHAIN_ID
 
 # download genesis and addrbook
-curl -s https://rpc.testnet-1.nibiru.fi/genesis | jq -r .result.genesis > genesis.json
+curl -s https://rpc.testnet-1.nibiru.fi/genesis | jq -r .result.genesis > $HOME/.nibid/config/genesis.json
 
 # set peers and seeds
 SEEDS=""
