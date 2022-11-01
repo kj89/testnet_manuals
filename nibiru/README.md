@@ -18,16 +18,16 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/199199328-32dcdc7c-db06-4519-827f-6c6af09228f9.png">
 </p>
 
-# nibi node setup for testnet — nibiru-testnet-1
+# nibiru node setup for testnet — nibiru-testnet-1
 
 Official documentation:
 >- [Validator setup instructions](https://docs.nibiru.fi/run-nodes/testnet/)
 
 Explorer:
->-  https://explorer.kjnodes.com/nibi
+>-  https://explorer.kjnodes.com/nibiru
 
 ## Usefull tools and references
-> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for nibi validator](https://github.com/kj89/testnet_manuals/blob/main/nibiru/monitoring/README.md)
+> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for nibiru validator](https://github.com/kj89/testnet_manuals/blob/main/nibiru/monitoring/README.md)
 >
 > To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/nibiru/migrate_validator.md)
 
@@ -46,9 +46,9 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
  - 1TB of storage (SSD or NVME)
  - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
-## Set up your nibi fullnode
+## Set up your nibiru fullnode
 ### Option 1 (automatic)
-You can setup your nibi fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
+You can setup your nibiru fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
 wget -O nibiru.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/nibiru/nibiru.sh && chmod +x nibiru.sh && ./nibiru.sh
 ```
