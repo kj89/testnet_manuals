@@ -162,6 +162,7 @@ list = [
   ['transfer', 'channel-320'], # Agoric
   ['transfer', 'channel-326'], # Stride
   ['transfer', 'channel-362'], # Teritori
+  ['transfer', 'channel-412'], # Jackal
 ]
 
 ############################################################### GRAVITY BRIDGE ###############################################################
@@ -275,7 +276,7 @@ address_type = { derivation = 'cosmos' }
 store_prefix = 'ibc'
 default_gas = 500000
 max_gas =  15000000
-gas_price = { price = 0.025, denom = 'ubld' }
+gas_price = { price = 0.001, denom = 'ubld' }
 gas_multiplier = 1.7
 max_msg_num = 30
 max_tx_size = 800000
@@ -308,6 +309,36 @@ store_prefix = 'ibc'
 default_gas = 1000000
 max_gas = 35000000
 gas_price = { price = 0.01, denom = 'utori' }
+gas_multiplier = 1.2
+max_msg_num = 30
+max_tx_size = 800000
+clock_drift = '5s'
+max_block_time = '30s'
+trusting_period = '7days'
+memo_prefix = 'Relayed by kjnodes'
+trust_threshold = { numerator = '1', denominator = '3' }
+
+[chains.packet_filter]
+policy = 'allow'
+list = [
+  ['transfer', 'channel-0'], # Osmosis
+]
+
+############################################################### JACKAL ###############################################################
+[[chains]]
+id = 'jackal-1'
+rpc_addr = 'http://127.0.0.1:37657'
+grpc_addr = 'http://127.0.0.1:37090'
+websocket_addr = 'ws://127.0.0.1:37657/websocket'
+
+rpc_timeout = '30s'
+account_prefix = 'jkl'
+key_name = 'relayer'
+address_type = { derivation = 'cosmos' }
+store_prefix = 'ibc'
+default_gas = 1000000
+max_gas = 35000000
+gas_price = { price = 0.0005, denom = 'ujkl' }
 gas_multiplier = 1.2
 max_msg_num = 30
 max_tx_size = 800000
