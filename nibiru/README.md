@@ -103,8 +103,7 @@ source $HOME/.bash_profile
 ### Fund your wallet
 In order to create validator first you need to fund your wallet with testnet tokens.
 ```
-FAUCET_URL="https://faucet.testnet-1.nibiru.fi/"
-curl -X POST -d '{"address": "'"$NOIS_WALLET_ADDRESS"'", "coins": ["10000000unibi","100000000000unusd"]}' $FAUCET_URL
+curl -X POST -d '{"address": "'"$NIBIRU_WALLET_ADDRESS"'", "coins": ["10000000unibi","100000000000unusd"]}' https://faucet.testnet-1.nibiru.fi/
 ```
 
 ### Create validator
