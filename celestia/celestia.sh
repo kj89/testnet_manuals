@@ -59,8 +59,7 @@ cd $HOME
 rm -rf celestia-app
 git clone https://github.com/celestiaorg/celestia-app.git
 cd celestia-app
-APP_VERSION=$(curl -s https://api.github.com/repos/celestiaorg/celestia-app/releases/latest | jq -r ".tag_name")
-git checkout tags/$APP_VERSION -b $APP_VERSION
+git checkout v0.6.0
 make install
 
 # download network tools
