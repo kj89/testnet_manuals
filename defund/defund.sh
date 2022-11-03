@@ -18,14 +18,19 @@ if [ ! $NODENAME ]; then
 	read -p "Enter node name: " NODENAME
 	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
 fi
-echo "export WALLET=wallet" >> $HOME/.bash_profile
-echo "export CHAIN_ID=defund-private-1" >> $HOME/.bash_profile
+DEFUND_PORT=40
+if [ ! $WALLET ]; then
+	echo "export WALLET=wallet" >> $HOME/.bash_profile
+fi
+echo "export DEFUND_CHAIN_ID=defund-private-2" >> $HOME/.bash_profile
+echo "export DEFUND_PORT=${DEFUND_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 echo '================================================='
-echo 'Your node name: ' $NODENAME
-echo 'Your wallet name: ' $WALLET
-echo 'Your chain name: ' $CHAIN_ID
+echo -e "Your node name: \e[1m\e[32m$NODENAME\e[0m"
+echo -e "Your wallet name: \e[1m\e[32m$WALLET\e[0m"
+echo -e "Your chain name: \e[1m\e[32m$DEFUND_CHAIN_ID\e[0m"
+echo -e "Your port: \e[1m\e[32m$DEFUND_PORT\e[0m"
 echo '================================================='
 sleep 2
 
@@ -35,7 +40,7 @@ sudo apt update && sudo apt upgrade -y
 
 echo -e "\e[1m\e[32m2. Installing dependencies... \e[0m" && sleep 1
 # packages
-sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu gcc git jq chrony liblz4-tool -y
+sudo apt install curl build-essential git wget jq make gcc tmux chrony -y
 
 # install go
 if ! [ -x "$(command -v go)" ]; then
@@ -51,73 +56,68 @@ fi
 
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
-cd $HOME
-git clone https://github.com/defund-labs/defund
+cd $HOME && rm -rf defund
+git clone https://github.com/defund-labs/defund.git
 cd defund
+git checkout v0.1.0
 make install
 
 # config
-defundd config chain-id $CHAIN_ID
-defundd config keyring-backend file
+defundd config chain-id $DEFUND_CHAIN_ID
+defundd config keyring-backend test
+defundd config node tcp://localhost:${DEFUND_PORT}657
 
 # init
-defundd init $NODENAME --chain-id $CHAIN_ID
+defundd init $NODENAME --chain-id $DEFUND_CHAIN_ID
 
-# download addrbook and genesis
-wget -qO $HOME/.defund/config/genesis.json "https://raw.githubusercontent.com/defund-labs/defund/163e2669b6870aa26b73d843312b22c9948b29c6/testnet/private/genesis.json"
-wget -qO $HOME/.defund/config/addrbook.json "https://raw.githubusercontent.com/kj89/testnet_manuals/main/defund/addrbook.json"
-
-# set minimum gas price
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ufetf\"/" $HOME/.defund/config/app.toml
+# download genesis and addrbook
+wget -qO $HOME/.defund/config/genesis.json "https://raw.githubusercontent.com/defund-labs/testnet/main/defund-private-2/genesis.json"
 
 # set peers and seeds
-SEEDS="8e1590558d8fede2f8c9405b7ef550ff455ce842@51.79.30.9:26656,bfffaf3b2c38292bd0aa2a3efe59f210f49b5793@51.91.208.71:26656,106c6974096ca8224f20a85396155979dbd2fb09@198.244.141.176:26656"
-PEERS="1a4f0f016ffc8f6814835dc20f5bb7050b2eac90@38.242.239.25:26656,1bb2bee27bf4bec8d66733b21d5c83a9787ecc51@5.189.154.161:26656,5a63b4c492d05e29f7457ea995e6247c79ecf4ca@62.171.177.143:26656,d4a297941d3c3a0cb0f54c6adf1bcbdc706b15ec@62.171.162.201:26656,65296c9968fbeca4d9d2a6c1f5dc4f04f6686580@45.88.188.158:26656,2db5d89ae038a9340733584c793dd39af2287e31@65.108.201.154:2070,1211a8e7aac5a7251c390ec76b85a56a67c25fdf@94.130.200.168:36156,509e915bb4f0a7fae2071de3c126bf467736f45d@65.108.140.212:26656,0f4c9898124564b0090b2f1c59a1312e92231c71@65.108.103.236:27656,c5b45ca6d5a902bfc28a3f7ac1e8bfeb2e113961@168.119.67.71:62036"
+SEEDS="85279852bd306c385402185e0125dffeed36bf22@38.146.3.194:26656,09ce2d3fc0fdc9d1e879888e7d72ae0fefef6e3d@65.108.105.48:11256"
+PEERS=""
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.defund/config/config.toml
 
-# enable prometheus
-sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.defund/config/config.toml
-
-# add external (if dont use sentry), port is default
-# external_address=$(wget -qO- eth0.me)
-# sed -i -e "s/^external_address = \"\"/external_address = \"$external_address:26656\"/" $HOME/.defund/config/config.toml
+# set custom ports
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${DEFUND_PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${DEFUND_PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${DEFUND_PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${DEFUND_PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${DEFUND_PORT}660\"%" $HOME/.defund/config/config.toml
+sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${DEFUND_PORT}317\"%; s%^address = \":8080\"%address = \":${DEFUND_PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${DEFUND_PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${DEFUND_PORT}091\"%; s%^address = \"0.0.0.0:8545\"%address = \"0.0.0.0:${DEFUND_PORT}545\"%; s%^ws-address = \"0.0.0.0:8546\"%ws-address = \"0.0.0.0:${DEFUND_PORT}546\"%" $HOME/.defund/config/app.toml
 
 # config pruning
 pruning="custom"
 pruning_keep_recent="100"
 pruning_keep_every="0"
-pruning_interval="10"
-
+pruning_interval="50"
 sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.defund/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.defund/config/app.toml
 sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.defund/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.defund/config/app.toml
 
-# disable indexing
-sed -i.bak -e "s/indexer *=.*/indexer = \"null\"/g" $HOME/.defund/config/config.toml
-sed -i "s/index-events=.*/index-events=[\"tx.hash\",\"tx.height\",\"block.height\"]/g" $HOME/.defund/config/app.toml
+# set minimum gas price and timeout commit
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ufetf\"/" $HOME/.defund/config/app.toml
+
+# enable prometheus
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.defund/config/config.toml
 
 # reset
-defundd tendermint unsafe-reset-all
+defundd tendermint unsafe-reset-all --home $HOME/.defund
 
 echo -e "\e[1m\e[32m4. Starting service... \e[0m" && sleep 1
 # create service
-tee $HOME/defundd.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/defundd.service > /dev/null <<EOF
 [Unit]
-Description=defundd
-After=network.target
+Description=defund service
+After=network-online.target
+
 [Service]
-Type=simple
 User=$USER
-ExecStart=$(which defundd) start
+ExecStart=$(which defundd) start --home $HOME/.defund
 Restart=on-failure
-RestartSec=10
+RestartSec=3
 LimitNOFILE=65535
+
 [Install]
 WantedBy=multi-user.target
 EOF
-
-sudo mv $HOME/defundd.service /etc/systemd/system/
 
 # start service
 sudo systemctl daemon-reload
@@ -126,4 +126,4 @@ sudo systemctl restart defundd
 
 echo '=============== SETUP FINISHED ==================='
 echo -e 'To check logs: \e[1m\e[32mjournalctl -u defundd -f -o cat\e[0m'
-echo -e 'To check sync status: \e[1m\e[32mcurl -s localhost:26657/status | jq .result.sync_info\e[0m'
+echo -e "To check sync status: \e[1m\e[32mcurl -s localhost:${DEFUND_PORT}657/status | jq .result.sync_info\e[0m"

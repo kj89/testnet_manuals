@@ -18,20 +18,33 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/171904810-664af00a-e78a-4602-b66b-20bfd874fa82.png">
 </p>
 
-# defund node setup for Testnet — defund-private-1
+# defund node setup for testnet — defund-private-2
 
 Official documentation:
->- [Validator setup instructions](https://github.com/defund-labs/defund/blob/main/testnet/private/validators.md)
->- [DeFund Tokenomics](https://medium.com/defund-finance/detf-token-economics-release-schedule-78a8d32713a5)
->- [FundDrop Breakdown](https://medium.com/defund-finance/airdrop-d-c2685d282858)
+>- [Validator setup instructions](https://github.com/defund-labs/testnet/blob/main/defund-private-2/README.md)
 
 Explorer:
->-  https://defund.explorers.guru/
+>-  https://explorer.kjnodes.com/defund
 
 ## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for defund validator](https://github.com/kj89/testnet_manuals/blob/main/defund/monitoring/README.md)
 >
 > To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/defund/migrate_validator.md)
+
+## Hardware Requirements
+Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
+
+### Minimum Hardware Requirements
+ - 4x CPUs; the faster clock speed the better
+ - 8GB RAM
+ - 100GB of storage (SSD or NVME)
+ - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
+
+### Recommended Hardware Requirements 
+ - 8x CPUs; the faster clock speed the better
+ - 64GB RAM
+ - 1TB of storage (SSD or NVME)
+ - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
 ## Set up your defund fullnode
 ### Option 1 (automatic)
@@ -43,7 +56,8 @@ wget -O defund.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/de
 ### Option 2 (manual)
 You can follow [manual guide](https://github.com/kj89/testnet_manuals/blob/main/defund/manual_install.md) if you better prefer setting up node manually
 
-### Post installation
+## Post installation
+
 When installation is finished please load variables into system
 ```
 source $HOME/.bash_profile
@@ -54,27 +68,10 @@ Next you have to make sure your validator is syncing blocks. You can use command
 defundd status 2>&1 | jq .SyncInfo
 ```
 
-## If your node is experiencing slow synchronization please try commands below:
+### (OPTIONAL) State-Sync
+You can state sync your node in minutes by running commands below
 ```
-sed -i.bak -e "s/indexer *=.*/indexer = \"null\"/g" $HOME/.defund/config/config.toml
-sed -i "s/index-events=.*/index-events=[\"tx.hash\",\"tx.height\",\"block.height\"]/g" $HOME/.defund/config/app.toml
-systemctl restart defundd
-```
-![image](https://user-images.githubusercontent.com/50621007/170612347-40eb0075-c239-4c35-a7ec-716606bd4df9.png)
-
-## Sync your node
-### Using snapshot
-**Simo | Active Nodes#3233** are providing with light weighted snapshots. Try to search Discord for latest snapshot from this guy.
-```
-systemctl stop defundd
-cd ~/.defund/
-cp data/priv_validator_state.json .
-rm -rf data
-wget http://repository.activenodes.io/snapshots/defund-private-1_2022-07-04.tar.gz
-tar xzvf defund*.tar.gz
-rm defund*.tar.gz
-mv priv_validator_state.json data/
-systemctl start defundd
+N/A
 ```
 
 ### Create wallet
@@ -94,42 +91,34 @@ defundd keys list
 ```
 
 ### Save wallet info
-Add wallet address
+Add wallet and valoper address into variables 
 ```
-WALLET_ADDRESS=$(defundd keys show $WALLET -a)
-```
-
-Add valoper address
-```
-VALOPER_ADDRESS=$(defundd keys show $WALLET --bech val -a)
-```
-
-Load variables into system
-```
-echo 'export WALLET_ADDRESS='${WALLET_ADDRESS} >> $HOME/.bash_profile
-echo 'export VALOPER_ADDRESS='${VALOPER_ADDRESS} >> $HOME/.bash_profile
+DEFUND_WALLET_ADDRESS=$(defundd keys show $WALLET -a)
+DEFUND_VALOPER_ADDRESS=$(defundd keys show $WALLET --bech val -a)
+echo 'export DEFUND_WALLET_ADDRESS='${DEFUND_WALLET_ADDRESS} >> $HOME/.bash_profile
+echo 'export DEFUND_VALOPER_ADDRESS='${DEFUND_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
-### Top up your wallet balance using faucet
-To get 20 free tokens in defund-private-1 testnet:
-* navigate to https://bitszn.com/faucets.html
-* switch to `COSMOS` tab and select `DeFund.Finance Testnet`
-* input your wallet address and click `Request`
+### Fund your wallet
+In order to create validator first you need to fund your wallet with testnet tokens.
+```
+N/A
+```
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 fetf (1 fetf is equal to 1000000 ufetf) and your node is synchronized
 
 To check your wallet balance:
 ```
-defundd query bank balances $WALLET_ADDRESS
+defundd query bank balances $DEFUND_WALLET_ADDRESS
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
 To create your validator run command below
 ```
 defundd tx staking create-validator \
-  --amount 1000000ufetf \
+  --amount 2000000ufetf \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
@@ -137,7 +126,7 @@ defundd tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(defundd tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id $CHAIN_ID
+  --chain-id $DEFUND_CHAIN_ID
 ```
 
 ## Security
@@ -158,7 +147,7 @@ sudo ufw default allow outgoing
 sudo ufw default deny incoming
 sudo ufw allow ssh/tcp
 sudo ufw limit ssh/tcp
-sudo ufw allow 26656,26660/tcp
+sudo ufw allow ${DEFUND_PORT}656,${DEFUND_PORT}660/tcp
 sudo ufw enable
 ```
 
@@ -172,9 +161,19 @@ It measures average blocks per minute that are being synchronized for period of 
 wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/defund/tools/synctime.py && python3 ./synctime.py
 ```
 
+### Check your validator key
+```
+[[ $(defundd q staking validator $DEFUND_VALOPER_ADDRESS -oj | jq -r .consensus_pubkey.key) = $(defundd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
+
+### Get list of validators
+```
+defundd q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
+```
+
 ## Get currently connected peer list with ids
 ```
-curl -sS http://localhost:26657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
+curl -sS http://localhost:${DEFUND_PORT}657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
 
 ## Usefull commands
@@ -186,17 +185,17 @@ journalctl -fu defundd -o cat
 
 Start service
 ```
-systemctl start defundd
+sudo systemctl start defundd
 ```
 
 Stop service
 ```
-systemctl stop defundd
+sudo systemctl stop defundd
 ```
 
 Restart service
 ```
-systemctl restart defundd
+sudo systemctl restart defundd
 ```
 
 ### Node info
@@ -238,50 +237,50 @@ defundd keys delete $WALLET
 
 Get wallet balance
 ```
-defundd query bank balances $WALLET_ADDRESS
+defundd query bank balances $DEFUND_WALLET_ADDRESS
 ```
 
 Transfer funds
 ```
-defundd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 10000000ufetf
+defundd tx bank send $DEFUND_WALLET_ADDRESS <TO_DEFUND_WALLET_ADDRESS> 10000000ufetf
 ```
 
 ### Voting
 ```
-defundd tx gov vote 1 yes --from $WALLET --chain-id=$CHAIN_ID
+defundd tx gov vote 1 yes --from $WALLET --chain-id=$DEFUND_CHAIN_ID
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-defundd tx staking delegate $VALOPER_ADDRESS 10000000ufetf --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+defundd tx staking delegate $DEFUND_VALOPER_ADDRESS 10000000ufetf --from=$WALLET --chain-id=$DEFUND_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-defundd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ufetf --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+defundd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ufetf --from=$WALLET --chain-id=$DEFUND_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
 ```
-defundd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_ID --gas=auto
+defundd tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$DEFUND_CHAIN_ID --gas=auto
 ```
 
 Withdraw rewards with commision
 ```
-defundd tx distribution withdraw-rewards $VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$CHAIN_ID
+defundd tx distribution withdraw-rewards $DEFUND_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$DEFUND_CHAIN_ID
 ```
 
 ### Validator management
 Edit validator
 ```
 defundd tx staking edit-validator \
---moniker=$NODENAME \
---identity=<your_keybase_id> \
---website="<your_website>" \
---details="<your_validator_description>" \
---chain-id=$CHAIN_ID \
---from=$WALLET
+  --moniker=$NODENAME \
+  --identity=<your_keybase_id> \
+  --website="<your_website>" \
+  --details="<your_validator_description>" \
+  --chain-id=$DEFUND_CHAIN_ID \
+  --from=$WALLET
 ```
 
 Unjail validator
@@ -289,18 +288,18 @@ Unjail validator
 defundd tx slashing unjail \
   --broadcast-mode=block \
   --from=$WALLET \
-  --chain-id=$CHAIN_ID \
+  --chain-id=$DEFUND_CHAIN_ID \
   --gas=auto
 ```
 
 ### Delete node
 This commands will completely remove node from server. Use at your own risk!
 ```
-systemctl stop defundd
-systemctl disable defundd
-rm /etc/systemd/system/defund* -rf
-rm $(which defundd) -rf
-rm $HOME/.defund* -rf
-rm $HOME/defund -rf
+sudo systemctl stop defundd
+sudo systemctl disable defundd
+sudo rm /etc/systemd/system/defund* -rf
+sudo rm $(which defundd) -rf
+sudo rm $HOME/.defund* -rf
+sudo rm $HOME/defund -rf
 sed -i '/DEFUND_/d' ~/.bash_profile
 ```
