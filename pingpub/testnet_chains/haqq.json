@@ -1,9 +1,7 @@
 {
     "chain_name": "HAQQ",
-    "coingecko": "",
     "api": ["https://haqq-testnet.api.kjnodes.com"],
-    "snapshot_provider": "",
-    "sdk_version": "0.45.6",
+    "rpc": ["https://haqq-testnet.rpc.kjnodes.com"],
     "coin_type": "118",
     "min_tx_fee": "200",
     "addr_prefix": "haqq",
@@ -12,7 +10,6 @@
         "base": "aISLM",
         "symbol": "ISLM",
         "exponent": "18",
-        "coingecko_id": "",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/haqq.png"
     }]
 }

@@ -1,19 +1,15 @@
 {
     "chain_name": "UPTICK",
-    "coingecko": "",
     "api": ["https://uptick-testnet.api.kjnodes.com"],
-	"rpc": ["https://uptick-testnet.rpc.kjnodes.com"],
-    "snapshot_provider": "",
-    "sdk_version": "0.45.3",
+    "rpc": ["https://uptick-testnet.rpc.kjnodes.com"],
     "coin_type": "118",
     "min_tx_fee": "200",
     "addr_prefix": "uptick",
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/uptick.png",
     "assets": [{
-        "base": "auptick",
+        "base": "uuptickx",
         "symbol": "UPTICK",
-        "exponent": "6",
-        "coingecko_id": "",
+        "exponent": "18",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/uptick.png"
     }]
 }

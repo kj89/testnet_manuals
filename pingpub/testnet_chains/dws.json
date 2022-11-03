@@ -1,10 +1,7 @@
 {
     "chain_name": "DWS",
-    "coingecko": "",
-    "api": ["https://<YOUR_API_ENDPOINT>"],
-    "rpc": ["http://<YOUR_API_ENDPOINT>"],
-    "snapshot_provider": "",
-    "sdk_version": "0.45.0",
+    "api": ["https://dws-testnet.api.kjnodes.com"],
+    "rpc": ["https://dws-testnet.rpc.kjnodes.com"],
     "coin_type": "118",
     "min_tx_fee": "200",
     "addr_prefix": "deweb",
@@ -13,7 +10,6 @@
         "base": "udws",
         "symbol": "DWS",
         "exponent": "6",
-        "coingecko_id": "",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/dws.png"
     }]
 }

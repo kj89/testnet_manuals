@@ -1,18 +1,15 @@
 {
     "chain_name": "HYPERSIGN",
-    "coingecko": "",
     "api": ["https://hypersign-testnet.api.kjnodes.com"],
-    "snapshot_provider": "",
-    "sdk_version": "0.45.0",
+    "rpc": ["https://hypersign-testnet.rpc.kjnodes.com"],
     "coin_type": "118",
     "min_tx_fee": "200",
     "addr_prefix": "hid",
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/hypersign.png",
     "assets": [{
         "base": "uhid",
-        "symbol": "HYPERSIGN",
+        "symbol": "HID",
         "exponent": "6",
-        "coingecko_id": "",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/hypersign.png"
     }]
 }

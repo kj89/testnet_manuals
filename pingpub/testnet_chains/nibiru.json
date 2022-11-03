@@ -1,10 +1,7 @@
 {
     "chain_name": "NIBIRU",
-    "coingecko": "",
     "api": ["https://nibiru-testnet.api.kjnodes.com"],
-	"rpc": ["https://nibiru-testnet.rpc.kjnodes.com"],
-    "snapshot_provider": "",
-    "sdk_version": "0.45.0",
+    "rpc": ["https://nibiru-testnet.rpc.kjnodes.com"],
     "coin_type": "118",
     "min_tx_fee": "200",
     "addr_prefix": "nibi",
@@ -13,7 +10,6 @@
         "base": "unibi",
         "symbol": "NIBI",
         "exponent": "6",
-        "coingecko_id": "",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/nibiru.png"
     }]
 }

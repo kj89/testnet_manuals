@@ -1,19 +1,15 @@
 {
     "chain_name": "CELESTIA",
-    "coingecko": "",
-    "api": ["https://<YOUR_API_ENDPOINT>"],
-    "rpc": ["http://<YOUR_API_ENDPOINT>"],
-    "snapshot_provider": "",
-    "sdk_version": "0.45.3",
+    "api": ["https://celestia-testnet.api.kjnodes.com"],
+    "rpc": ["https://celestia-testnet.rpc.kjnodes.com"],
     "coin_type": "118",
     "min_tx_fee": "200",
     "addr_prefix": "celestia",
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/celestia.png",
     "assets": [{
         "base": "utia",
-        "symbol": "CELESTIA",
+        "symbol": "TIA",
         "exponent": "6",
-        "coingecko_id": "",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/celestia.png"
     }]
 }

@@ -1,19 +1,15 @@
 {
     "chain_name": "PALOMA",
-    "coingecko": "",
-    "api": ["https://<YOUR_API_ENDPOINT>"],
-    "rpc": ["http://<YOUR_API_ENDPOINT>"],
-    "snapshot_provider": "",
-    "sdk_version": "0.45.3",
+    "api": ["https://paloma-testnet.api.kjnodes.com"],
+    "rpc": ["https://paloma-testnet.rpc.kjnodes.com"],
     "coin_type": "118",
     "min_tx_fee": "200",
     "addr_prefix": "paloma",
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/paloma.png",
     "assets": [{
         "base": "ugrain",
-        "symbol": "PALOMA",
+        "symbol": "GRAIN",
         "exponent": "6",
-        "coingecko_id": "",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/paloma.png"
     }]
 }

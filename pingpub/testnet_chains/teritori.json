@@ -1,19 +1,15 @@
 {
     "chain_name": "TERITORI",
-    "coingecko": "",
-    "api": ["https://<YOUR_API_ENDPOINT>"],
-    "rpc": ["http://<YOUR_API_ENDPOINT>"],
-    "snapshot_provider": "",
-    "sdk_version": "0.45.3",
+    "api": ["https://teritori-testnet.api.kjnodes.com"],
+    "rpc": ["https://teritori-testnet.rpc.kjnodes.com"],
     "coin_type": "118",
     "min_tx_fee": "200",
     "addr_prefix": "tori",
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/teritori.png",
     "assets": [{
         "base": "utori",
-        "symbol": "TERITORI",
+        "symbol": "TORI",
         "exponent": "6",
-        "coingecko_id": "",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/teritori.png"
     }]
 }

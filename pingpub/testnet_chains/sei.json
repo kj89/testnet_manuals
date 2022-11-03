@@ -1,19 +1,15 @@
 {
     "chain_name": "SEI",
-    "coingecko": "",
-    "api": ["https://<YOUR_API_ENDPOINT>"],
-    "rpc": ["http://<YOUR_API_ENDPOINT>"],
-    "snapshot_provider": "",
-    "sdk_version": "0.45.4",
-    "coin_type": "505",
-    "min_tx_fee": "800",
+    "api": ["https://sei-testnet.api.kjnodes.com"],
+    "rpc": ["https://sei-testnet.rpc.kjnodes.com"],
+    "coin_type": "118",
+    "min_tx_fee": "200",
     "addr_prefix": "sei",
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/sei.png",
     "assets": [{
         "base": "usei",
         "symbol": "SEI",
-        "exponent": "6", 
-        "coingecko_id": "",
+        "exponent": "6",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/sei.png"
     }]
 }

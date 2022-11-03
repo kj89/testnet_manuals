@@ -1,18 +1,15 @@
 {
     "chain_name": "TERP",
-    "coingecko": "",
     "api": ["https://terp-testnet.api.kjnodes.com"],
-    "snapshot_provider": "",
-    "sdk_version": "0.45.0",
+    "rpc": ["https://terp-testnet.rpc.kjnodes.com"],
     "coin_type": "118",
     "min_tx_fee": "200",
     "addr_prefix": "terp",
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/terp.png",
     "assets": [{
         "base": "uterpx",
-        "symbol": "TERP",
+        "symbol": "TERPX",
         "exponent": "6",
-        "coingecko_id": "",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/terp.png"
     }]
 }
