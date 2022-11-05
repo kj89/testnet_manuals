@@ -22,7 +22,7 @@ OLLO_PORT=32
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export OLLO_CHAIN_ID=ollo-testnet-0" >> $HOME/.bash_profile
+echo "export OLLO_CHAIN_ID=ollo-testnet-1" >> $HOME/.bash_profile
 echo "export OLLO_PORT=${OLLO_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
@@ -56,9 +56,10 @@ fi
 
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
-cd $HOME
-git clone https://github.com/OllO-Station/ollo.git
+cd $HOME && rm -rf ollo
+git clone https://github.com/OLLO-Station/ollo.git
 cd ollo
+git checkout v0.0.1
 make install
 
 # config
@@ -70,11 +71,11 @@ ollod config node tcp://localhost:${OLLO_PORT}657
 ollod init $NODENAME --chain-id $OLLO_CHAIN_ID
 
 # download genesis and addrbook
-curl https://raw.githubusercontent.com/OllO-Station/ollo/master/networks/ollo-testnet-0/genesis.json | jq .result.genesis > $HOME/.ollo/config/genesis.json
+wget -qO $HOME/.ollo/config/genesis.json "https://raw.githubusercontent.com/OllO-Station/networks/master/ollo-testnet-1/genesis.json"
 
 # set peers and seeds
 SEEDS=""
-PEERS="2a8f0fada8b8b71b8154cf30ce44aebea1b5fe3d@145.239.31.245:26656,1173fe561814f1ecb8b8f19d1769b87cd576897f@185.173.157.251:26656,489daf96446f104d822fae34cd4aa7a9b5cebf65@65.21.131.215:26626,f43435894d3ae6382c9cf95c63fec523a2686345@167.235.145.255:26656,2eeb90b696ba9a62a8ad9561f39c1b75473515eb@77.37.176.99:26656,9a3e2725e02d1c420a5d500fa17ce0ef45ddc9e8@65.109.30.117:29656,91f1889f22975294cfbfa0c1661c63150d2b9355@65.108.140.222:30656,d38fcf79871189c2c430473a7e04bd69aeb812c2@78.107.234.44:16656,f795505ac42f18e55e65c02bb7107b08d83ad837@65.109.17.86:37656,6368702dd71e69035dff6f7830eb45b2bae92d53@65.109.57.161:15656"
+PEERS="a99fc4e81770ca32d574cac2e8680dccc9b55f74@18.144.61.148:26656,70ba32724461c7ed4ec8d6ddc8b5e0b1cfb9e237@54.219.57.63:26656,7864a2e4b42e5af76a83a8b644b9172fa1e40fa5@52.8.174.235:26656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.ollo/config/config.toml
 
 # set custom ports
