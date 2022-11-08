@@ -1,7 +1,7 @@
 {
     "chain_name": "JACKAL",
-    "api": ["https://jackal-mainnet.api.kjnodes.com"],
-    "rpc": ["https://jackal-mainnet.rpc.kjnodes.com"],
+    "api": ["https://jackal.api.kjnodes.com"],
+    "rpc": ["https://jackal.rpc.kjnodes.com"],
     "coin_type": "118",
     "min_tx_fee": "200",
     "addr_prefix": "jkl",
