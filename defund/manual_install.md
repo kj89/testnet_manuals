@@ -34,7 +34,7 @@ echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export DEFUND_CHAIN_ID=defund-private-2" >> $HOME/.bash_profile
+echo "export DEFUND_CHAIN_ID=defund-private-3" >> $HOME/.bash_profile
 echo "export DEFUND_PORT=${DEFUND_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -86,7 +86,9 @@ defundd init $NODENAME --chain-id $DEFUND_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -qO $HOME/.defund/config/genesis.json "https://raw.githubusercontent.com/defund-labs/testnet/main/defund-private-2/genesis.json"
+wget -O defund-private-3-gensis.tar.gz https://github.com/defund-labs/testnet/raw/main/defund-private-3/defund-private-3-gensis.tar.gz
+sudo tar -xvzf defund-private-3-gensis.tar.gz -C $HOME/.defund/config
+rm defund-private-3-gensis.tar.gz
 ```
 
 ## Set seeds and peers

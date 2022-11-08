@@ -18,10 +18,10 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/171904810-664af00a-e78a-4602-b66b-20bfd874fa82.png">
 </p>
 
-# defund node setup for testnet — defund-private-2
+# defund node setup for testnet — defund-private-3
 
 Official documentation:
->- [Validator setup instructions](https://github.com/defund-labs/testnet/blob/main/defund-private-2/README.md)
+>- [Validator setup instructions](https://github.com/defund-labs/testnet/blob/main/defund-private-3/README.md)
 
 Explorer:
 >-  https://explorer.kjnodes.com/defund
