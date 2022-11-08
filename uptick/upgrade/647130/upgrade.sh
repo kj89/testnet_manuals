@@ -15,7 +15,7 @@ for((;;)); do
 		tar -zxvf $VERSION.tar.gz
 		sudo chmod +x uptick-linux-amd64-$VERSION/uptickd
 		sudo mv uptick-linux-amd64-$VERSION/uptickd $(which uptickd)
-		rm -rf $VERSION.tar.gz uptick-$VERSION
+		rm -rf $VERSION.tar.gz uptick-linux-amd64-$VERSION
 		sudo systemctl restart uptickd && journalctl -fu uptickd -o cat
 
 		for (( timer=60; timer>0; timer-- )); do
