@@ -30,8 +30,8 @@ sudo systemctl stop uptickd
 cd $HOME
 wget -qO $VERSION.tar.gz https://github.com/UptickNetwork/uptick/releases/download/$VERSION/uptick-linux-amd64-$VERSION.tar.gz --no-check-certificate
 tar -zxvf $VERSION.tar.gz
-sudo chmod +x uptick-$VERSION/linux/uptickd
-sudo mv uptick-$VERSION/linux/uptickd $(which uptickd)
+sudo chmod +x uptick-linux-amd64-$VERSION/uptickd
+sudo mv uptick-linux-amd64-$VERSION/uptickd $(which uptickd)
 rm -rf $VERSION.tar.gz uptick-$VERSION
 sudo systemctl restart uptickd && journalctl -fu uptickd -o cat
 ```
