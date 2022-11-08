@@ -11,7 +11,7 @@ for((;;)); do
 
 		sudo systemctl stop uptickd
 		cd $HOME
-		wget -qO $VERSION.tar.gz https://download.uptick.network/download/uptick/testnet/release/$VERSION/$VERSION.tar.gz --no-check-certificate
+		wget -qO $VERSION.tar.gz https://github.com/UptickNetwork/uptick/releases/download/$VERSION/uptick-linux-amd64-$VERSION.tar.gz --no-check-certificate
 		tar -zxvf $VERSION.tar.gz
 		sudo chmod +x uptick-$VERSION/linux/uptickd
 		sudo mv uptick-$VERSION/linux/uptickd $(which uptickd)
