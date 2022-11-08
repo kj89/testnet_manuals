@@ -37,5 +37,5 @@ sudo systemctl restart quicksilverd && journalctl -fu quicksilverd -o cat
 As an alternative we have prepared script that should update your binary when block height is reached
 Run this in a `screen` so it will not get stopped when session disconnected 😉
 ```
-wget -O upgrade.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/quicksilver/upgrade/621500/upgrade.sh && chmod +x upgrade.sh && ./upgrade.sh
+wget -O upgrade.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/quicksilver/innuendo/upgrade/621500/upgrade.sh && chmod +x upgrade.sh && ./upgrade.sh
 ```
