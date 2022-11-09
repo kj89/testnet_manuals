@@ -82,7 +82,7 @@ kujirad tx oracle set-feeder $KUJIRA_ORACLE_ADDRESS --from $WALLET --fees 250uku
 ```
 mkdir $HOME/.kujira-price-feeder
 sudo tee $HOME/.kujira-price-feeder/config.toml > /dev/null <<EOF
-gas_adjustment = 1.5
+gas_adjustment = 1.7
 gas_prices = "0.00125ukuji"
 enable_server = true
 enable_voter = true
