@@ -15,44 +15,44 @@
 </p>
 
 <p align="center">
-  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/198128163-97607b9a-32cf-45c3-b4bc-73f9ba4471bc.png">
+  <img height="100" height="auto" src="https://github.com/kj89/testnet_manuals/raw/main/pingpub/logos/gitopia.png">
 </p>
 
 # Migrate your validator to another machine
 
 ### 1. Run a new full node on a new machine
-To setup full node you can follow my guide [canine node setup for testnet](https://github.com/kj89/testnet_manuals/blob/main/jackal/README.md)
+To setup full node you can follow my guide [gitopia node setup for testnet](https://github.com/kj89/testnet_manuals/blob/main/jackal/README.md)
 
 ### 2. Confirm that you have the recovery seed phrase information for the active key running on the old machine
 
 #### To backup your key
 ```
-canined keys export mykey
+gitopiad keys export mykey
 ```
 > _This prints the private key that you can then paste into the file `mykey.backup`_
 
 #### To get list of keys
 ```
-canined keys list
+gitopiad keys list
 ```
 
 ### 3. Recover the active key of the old machine on the new machine
 
 #### This can be done with the mnemonics
 ```
-canined keys add mykey --recover
+gitopiad keys add mykey --recover
 ```
 
 #### Or with the backup file `mykey.backup` from the previous step
 ```
-canined keys import mykey mykey.backup
+gitopiad keys import mykey mykey.backup
 ```
 
 ### 4. Wait for the new full node on the new machine to finish catching-up
 
 #### To check synchronization status
 ```
-canined status 2>&1 | jq .SyncInfo
+gitopiad status 2>&1 | jq .SyncInfo
 ```
 > _`catching_up` should be equal to `false`_
 
@@ -63,34 +63,34 @@ canined status 2>&1 | jq .SyncInfo
 
 #### Stop and disable service on old machine
 ```
-sudo systemctl stop canined
-sudo systemctl disable canined
+sudo systemctl stop gitopiad
+sudo systemctl disable gitopiad
 ```
 > _The validator should start missing blocks at this point_
 
 ### 6. Stop service on new machine
 ```
-sudo systemctl stop canined
+sudo systemctl stop gitopiad
 ```
 
 ### 7. Move the validator's private key from the old machine to the new machine
-#### Private key is located in: `~/.canine/config/priv_validator_key.json`
+#### Private key is located in: `~/.gitopia/config/priv_validator_key.json`
 
 > _After being copied, the key `priv_validator_key.json` should then be removed from the old node's config directory to prevent double-signing if the node were to start back up_
 ```
-sudo mv ~/.canine/config/priv_validator_key.json ~/.canine/bak_priv_validator_key.json
+sudo mv ~/.gitopia/config/priv_validator_key.json ~/.gitopia/bak_priv_validator_key.json
 ```
 
 ### 8. Start service on a new validator node
 ```
-sudo systemctl start canined
+sudo systemctl start gitopiad
 ```
 > _The new node should start signing blocks once caught-up_
 
 ### 9. Make sure your validator is not jailed
 #### To unjail your validator
 ```
-canined tx slashing unjail --chain-id $JACKAL_CHAIN_ID --from mykey --gas=auto -y
+gitopiad tx slashing unjail --chain-id $GITOPIA_CHAIN_ID --from mykey --gas=auto -y
 ```
 
 ### 10. After you ensure your validator is producing blocks and is healthy you can shut down old validator server

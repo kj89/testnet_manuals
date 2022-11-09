@@ -15,19 +15,19 @@
 </p>
 
 <p align="center">
-  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/198128163-97607b9a-32cf-45c3-b4bc-73f9ba4471bc.png">
+  <img height="100" height="auto" src="https://github.com/kj89/testnet_manuals/raw/main/pingpub/logos/gitopia.png">
 </p>
 
-# canine node setup for mainnet — jackal-1
+# gitopia node setup for testnet — gitopia-janus-testnet-2
 
 Official documentation:
->- [Validator setup instructions](https://docs.jackaldao.com/docs/nodes/nodes/mainnet)
+>- [Validator setup instructions](https://docs.gitopia.com/installation/index.html)
 
 Explorer:
->-  https://explorer.kjnodes.com/canine
+>-  https://explorer.kjnodes.com/gitopia
 
 ## Usefull tools and references
-> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for canine validator](https://github.com/kj89/testnet_manuals/blob/main/jackal/monitoring/README.md)
+> To set up monitoring for your validator node navigate to [Set up monitoring and alerting for gitopia validator](https://github.com/kj89/testnet_manuals/blob/main/jackal/monitoring/README.md)
 >
 > To migrate your validator to another machine read [Migrate your validator to another machine](https://github.com/kj89/testnet_manuals/blob/main/jackal/migrate_validator.md)
 
@@ -46,9 +46,9 @@ Like any Cosmos-SDK chain, the hardware requirements are pretty modest.
  - 1TB of storage (SSD or NVME)
  - Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 
-## Set up your canine fullnode
+## Set up your gitopia fullnode
 ### Option 1 (automatic)
-You can setup your canine fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
+You can setup your gitopia fullnode in few minutes by using automated script below. It will prompt you to input your validator node name!
 ```
 wget -O jackal.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/jackal/jackal.sh && chmod +x jackal.sh && ./jackal.sh
 ```
@@ -65,7 +65,7 @@ source $HOME/.bash_profile
 
 Next you have to make sure your validator is syncing blocks. You can use command below to check synchronization status
 ```
-canined status 2>&1 | jq .SyncInfo
+gitopiad status 2>&1 | jq .SyncInfo
 ```
 
 ### (OPTIONAL) State Sync
@@ -77,53 +77,55 @@ N/A
 ### Create wallet
 To create new wallet you can use command below. Don’t forget to save the mnemonic
 ```
-canined keys add $WALLET
+gitopiad keys add $WALLET
 ```
 
 (OPTIONAL) To recover your wallet using seed phrase
 ```
-canined keys add $WALLET --recover
+gitopiad keys add $WALLET --recover
 ```
 
 To get current list of wallets
 ```
-canined keys list
+gitopiad keys list
 ```
 
 ### Save wallet info
 Add wallet and valoper address into variables 
 ```
-JACKAL_WALLET_ADDRESS=$(canined keys show $WALLET -a)
-JACKAL_VALOPER_ADDRESS=$(canined keys show $WALLET --bech val -a)
-echo 'export JACKAL_WALLET_ADDRESS='${JACKAL_WALLET_ADDRESS} >> $HOME/.bash_profile
-echo 'export JACKAL_VALOPER_ADDRESS='${JACKAL_VALOPER_ADDRESS} >> $HOME/.bash_profile
+GITOPIA_WALLET_ADDRESS=$(gitopiad keys show $WALLET -a)
+GITOPIA_VALOPER_ADDRESS=$(gitopiad keys show $WALLET --bech val -a)
+echo 'export GITOPIA_WALLET_ADDRESS='${GITOPIA_WALLET_ADDRESS} >> $HOME/.bash_profile
+echo 'export GITOPIA_VALOPER_ADDRESS='${GITOPIA_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
 ### Fund your wallet
-You can buy JKL on https://frontier.osmosis.zone
+```
+N/A
+```
 
 ### Create validator
 Before creating validator please make sure that you have at least 1 jkl (1 jkl is equal to 1000000 ujkl) and your node is synchronized
 
 To check your wallet balance:
 ```
-canined query bank balances $JACKAL_WALLET_ADDRESS
+gitopiad query bank balances $GITOPIA_WALLET_ADDRESS
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
 To create your validator run command below
 ```
-canined tx staking create-validator \
+gitopiad tx staking create-validator \
   --amount 1000000ujkl \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
   --commission-rate "0.07" \
   --min-self-delegation "1" \
-  --pubkey  $(canined tendermint show-validator) \
+  --pubkey  $(gitopiad tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id $JACKAL_CHAIN_ID
+  --chain-id $GITOPIA_CHAIN_ID
 ```
 
 ## Security
@@ -144,12 +146,12 @@ sudo ufw default allow outgoing
 sudo ufw default deny incoming
 sudo ufw allow ssh/tcp
 sudo ufw limit ssh/tcp
-sudo ufw allow ${JACKAL_PORT}656,${JACKAL_PORT}660/tcp
+sudo ufw allow ${GITOPIA_PORT}656,${GITOPIA_PORT}660/tcp
 sudo ufw enable
 ```
 
 ## Monitoring
-To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for canine validator](https://github.com/kj89/testnet_manuals/blob/main/jackal/monitoring/README.md)
+To monitor and get alerted about your validator health status you can use my guide on [Set up monitoring and alerting for gitopia validator](https://github.com/kj89/testnet_manuals/blob/main/jackal/monitoring/README.md)
 
 ## Calculate synchronization time
 This script will help you to estimate how much time it will take to fully synchronize your node\
@@ -160,143 +162,143 @@ wget -O synctime.py https://raw.githubusercontent.com/kj89/testnet_manuals/main/
 
 ### Check your validator key
 ```
-[[ $(canined q staking validator $JACKAL_VALOPER_ADDRESS -oj | jq -r .consensus_pubkey.key) = $(canined status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+[[ $(gitopiad q staking validator $GITOPIA_VALOPER_ADDRESS -oj | jq -r .consensus_pubkey.key) = $(gitopiad status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
 ```
 
 ### Get list of validators
 ```
-canined q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
+gitopiad q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
 ```
 
 ## Get currently connected peer list with ids
 ```
-curl -sS http://localhost:${JACKAL_PORT}657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
+curl -sS http://localhost:${GITOPIA_PORT}657/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
 ```
 
 ## Usefull commands
 ### Service management
 Check logs
 ```
-journalctl -fu canined -o cat
+journalctl -fu gitopiad -o cat
 ```
 
 Start service
 ```
-sudo systemctl start canined
+sudo systemctl start gitopiad
 ```
 
 Stop service
 ```
-sudo systemctl stop canined
+sudo systemctl stop gitopiad
 ```
 
 Restart service
 ```
-sudo systemctl restart canined
+sudo systemctl restart gitopiad
 ```
 
 ### Node info
 Synchronization info
 ```
-canined status 2>&1 | jq .SyncInfo
+gitopiad status 2>&1 | jq .SyncInfo
 ```
 
 Validator info
 ```
-canined status 2>&1 | jq .ValidatorInfo
+gitopiad status 2>&1 | jq .ValidatorInfo
 ```
 
 Node info
 ```
-canined status 2>&1 | jq .NodeInfo
+gitopiad status 2>&1 | jq .NodeInfo
 ```
 
 Show node id
 ```
-canined tendermint show-node-id
+gitopiad tendermint show-node-id
 ```
 
 ### Wallet operations
 List of wallets
 ```
-canined keys list
+gitopiad keys list
 ```
 
 Recover wallet
 ```
-canined keys add $WALLET --recover
+gitopiad keys add $WALLET --recover
 ```
 
 Delete wallet
 ```
-canined keys delete $WALLET
+gitopiad keys delete $WALLET
 ```
 
 Get wallet balance
 ```
-canined query bank balances $JACKAL_WALLET_ADDRESS
+gitopiad query bank balances $GITOPIA_WALLET_ADDRESS
 ```
 
 Transfer funds
 ```
-canined tx bank send $JACKAL_WALLET_ADDRESS <TO_JACKAL_WALLET_ADDRESS> 10000000ujkl
+gitopiad tx bank send $GITOPIA_WALLET_ADDRESS <TO_GITOPIA_WALLET_ADDRESS> 10000000ujkl
 ```
 
 ### Voting
 ```
-canined tx gov vote 1 yes --from $WALLET --chain-id=$JACKAL_CHAIN_ID
+gitopiad tx gov vote 1 yes --from $WALLET --chain-id=$GITOPIA_CHAIN_ID
 ```
 
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-canined tx staking delegate $JACKAL_VALOPER_ADDRESS 10000000ujkl --from=$WALLET --chain-id=$JACKAL_CHAIN_ID --gas=auto
+gitopiad tx staking delegate $GITOPIA_VALOPER_ADDRESS 10000000ujkl --from=$WALLET --chain-id=$GITOPIA_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-canined tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ujkl --from=$WALLET --chain-id=$JACKAL_CHAIN_ID --gas=auto
+gitopiad tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ujkl --from=$WALLET --chain-id=$GITOPIA_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
 ```
-canined tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$JACKAL_CHAIN_ID --gas=auto
+gitopiad tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$GITOPIA_CHAIN_ID --gas=auto
 ```
 
 Withdraw rewards with commision
 ```
-canined tx distribution withdraw-rewards $JACKAL_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$JACKAL_CHAIN_ID
+gitopiad tx distribution withdraw-rewards $GITOPIA_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$GITOPIA_CHAIN_ID
 ```
 
 ### Validator management
 Edit validator
 ```
-canined tx staking edit-validator \
+gitopiad tx staking edit-validator \
   --moniker=$NODENAME \
   --identity=<your_keybase_id> \
   --website="<your_website>" \
   --details="<your_validator_description>" \
-  --chain-id=$JACKAL_CHAIN_ID \
+  --chain-id=$GITOPIA_CHAIN_ID \
   --from=$WALLET
 ```
 
 Unjail validator
 ```
-canined tx slashing unjail \
+gitopiad tx slashing unjail \
   --broadcast-mode=block \
   --from=$WALLET \
-  --chain-id=$JACKAL_CHAIN_ID \
+  --chain-id=$GITOPIA_CHAIN_ID \
   --gas=auto
 ```
 
 ### Delete node
 This commands will completely remove node from server. Use at your own risk!
 ```
-sudo systemctl stop canined
-sudo systemctl disable canined
-sudo rm /etc/systemd/system/canine* -rf
-sudo rm $(which canined) -rf
-sudo rm $HOME/.canine* -rf
-sudo rm $HOME/canine -rf
-sed -i '/JACKAL_/d' ~/.bash_profile
+sudo systemctl stop gitopiad
+sudo systemctl disable gitopiad
+sudo rm /etc/systemd/system/gitopia* -rf
+sudo rm $(which gitopiad) -rf
+sudo rm $HOME/.gitopia* -rf
+sudo rm $HOME/gitopia -rf
+sed -i '/GITOPIA_/d' ~/.bash_profile
 ```

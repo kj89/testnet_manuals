@@ -15,10 +15,10 @@
 </p>
 
 <p align="center">
-  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/198128163-97607b9a-32cf-45c3-b4bc-73f9ba4471bc.png">
+  <img height="100" height="auto" src="https://github.com/kj89/testnet_manuals/raw/main/pingpub/logos/gitopia.png">
 </p>
 
-# Set up monitoring and alerting for canine validator
+# Set up monitoring and alerting for gitopia validator
 
 ## Prerequisites
 
@@ -30,10 +30,10 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `ujkl` for canine testnet. You can find it in genesis file |
-| **bench_prefix** | Prefix for chain addresses, for example, `canine` for canine testnet. You can find it in public addresses like this **canine**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
-| **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file. Default value for canine is `37657` |
-| **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file. Default value for canine is `37090` |
+| **bond_denom** | Denominated token name, for example, `ujkl` for gitopia testnet. You can find it in genesis file |
+| **bench_prefix** | Prefix for chain addresses, for example, `gitopia` for gitopia testnet. You can find it in public addresses like this **gitopia**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file. Default value for gitopia is `41657` |
+| **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file. Default value for gitopia is `41090` |
 
 make sure following ports are open:
 - `9100` (node-exporter)
@@ -44,7 +44,7 @@ prometheus metrics should be `enabled` and port `26660` should be available on v
 To enable prometheus you have to run command below and after that please restart service to apply changes
 ```
 # enable prometheus
-sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.canine/config/config.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.gitopia/config/config.toml
 ```
 
 ## Deployment
@@ -82,12 +82,12 @@ source $HOME/.bash_profile
 ```
 
 ### Add validator into _prometheus_ configuration file
-To add validator use command with specified `VALIDATOR_IP`, `JACKAL_VALOPER_ADDRESS`, `JACKAL_WALLET_ADDRESS` and `PROJECT_NAME`
+To add validator use command with specified `VALIDATOR_IP`, `GITOPIA_VALOPER_ADDRESS`, `GITOPIA_WALLET_ADDRESS` and `PROJECT_NAME`
 ```
-$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP JACKAL_VALOPER_ADDRESS JACKAL_WALLET_ADDRESS PROJECT_NAME
+$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP GITOPIA_VALOPER_ADDRESS GITOPIA_WALLET_ADDRESS PROJECT_NAME
 ```
 
-> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 caninevaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete canine1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc canine```
+> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 gitopiavaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete gitopia1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc gitopia```
 
 To add more validators just run command above with validator values
 
