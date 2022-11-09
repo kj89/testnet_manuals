@@ -106,7 +106,7 @@ N/A
 ```
 
 ### Create validator
-Before creating validator please make sure that you have at least 1 jkl (1 jkl is equal to 1000000 ujkl) and your node is synchronized
+Before creating validator please make sure that you have at least 1 tlore (1 tlore is equal to 1000000 utlore) and your node is synchronized
 
 To check your wallet balance:
 ```
@@ -117,7 +117,7 @@ gitopiad query bank balances $GITOPIA_WALLET_ADDRESS
 To create your validator run command below
 ```
 gitopiad tx staking create-validator \
-  --amount 1000000ujkl \
+  --amount 1000000utlore \
   --from $WALLET \
   --commission-max-change-rate "0.01" \
   --commission-max-rate "0.2" \
@@ -241,7 +241,7 @@ gitopiad query bank balances $GITOPIA_WALLET_ADDRESS
 
 Transfer funds
 ```
-gitopiad tx bank send $GITOPIA_WALLET_ADDRESS <TO_GITOPIA_WALLET_ADDRESS> 10000000ujkl
+gitopiad tx bank send $GITOPIA_WALLET_ADDRESS <TO_GITOPIA_WALLET_ADDRESS> 10000000utlore
 ```
 
 ### Voting
@@ -252,12 +252,12 @@ gitopiad tx gov vote 1 yes --from $WALLET --chain-id=$GITOPIA_CHAIN_ID
 ### Staking, Delegation and Rewards
 Delegate stake
 ```
-gitopiad tx staking delegate $GITOPIA_VALOPER_ADDRESS 10000000ujkl --from=$WALLET --chain-id=$GITOPIA_CHAIN_ID --gas=auto
+gitopiad tx staking delegate $GITOPIA_VALOPER_ADDRESS 10000000utlore --from=$WALLET --chain-id=$GITOPIA_CHAIN_ID --gas=auto
 ```
 
 Redelegate stake from validator to another validator
 ```
-gitopiad tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ujkl --from=$WALLET --chain-id=$GITOPIA_CHAIN_ID --gas=auto
+gitopiad tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000utlore --from=$WALLET --chain-id=$GITOPIA_CHAIN_ID --gas=auto
 ```
 
 Withdraw all rewards
