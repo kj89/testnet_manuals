@@ -6,7 +6,7 @@ BLOCK=667000
 VERSION=v0.1.3
 echo -e "$GREEN_COLOR YOUR NODE WILL BE UPDATED TO VERSION: $VERSION ON BLOCK NUMBER: $BLOCK $NO_COLOR\n"
 for((;;)); do
-	height=$(hid-noded status |& jq -r ."SyncInfo"."latest_block_height")
+	height=$(hid-noded status --node tcp://localhost:31657 |& jq -r ."SyncInfo"."latest_block_height")
 	if ((height>=$BLOCK)); then
 
 		sudo systemctl stop hid-noded
@@ -21,7 +21,7 @@ for((;;)); do
 			printf "* second restart after sleep for ${RED_COLOR}%02d${NO_COLOR} sec\r" $timer
 			sleep 1
 		done
-		height=$(hid-noded status |& jq -r ."SyncInfo"."latest_block_height")
+		height=$(hid-noded status --node tcp://localhost:31657 |& jq -r ."SyncInfo"."latest_block_height")
 		if ((height>$BLOCK)); then
 			echo -e "$GREEN_COLOR YOUR NODE WAS SUCCESFULLY UPDATED TO VERSION: $VERSION $NO_COLOR\n"
 		fi
