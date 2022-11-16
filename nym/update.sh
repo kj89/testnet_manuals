@@ -6,14 +6,14 @@ sleep 1
 echo "Rust installation"
 sudo curl https://sh.rustup.rs -sSf | sh -s -- -y
 source $HOME/.cargo/env
-echo "Downloading new binaries (v1.0.1)"
+echo "Downloading new binaries (v1.1.0)"
 cd $HOME
 rm -rf nym
 git clone https://github.com/nymtech/nym.git
 cd nym
 git reset --hard
 git pull
-git checkout tags/v1.0.1
+git checkout tags/v1.1.0
 cargo build -p nym-mixnode --release
 sudo mv target/release/nym-mixnode /usr/local/bin/
 version=$(nym-mixnode --version | grep "version" | awk '{print $4}' | sed 's/.$//')
