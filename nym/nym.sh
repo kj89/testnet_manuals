@@ -69,7 +69,7 @@ StartLimitBurst=10
 
 [Service]
 User=$USER
-ExecStart=/usr/bin/nym-mixnode run --id '$NODENAME'
+ExecStart=$(which nym-mixnode) run --id '$NODENAME'
 KillSignal=SIGINT
 Restart=on-failure
 RestartSec=30
