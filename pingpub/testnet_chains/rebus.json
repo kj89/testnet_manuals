@@ -1,7 +1,7 @@
 {
     "chain_name": "REBUS",
-    "api": ["https://rebus-mainnet.api.kjnodes.com"],
-    "rpc": ["https://rebus-mainnet.rpc.kjnodes.com"],
+    "api": ["https://rebus.api.kjnodes.com"],
+    "rpc": ["https://rebus.rpc.kjnodes.com"],
     "coin_type": "118",
     "min_tx_fee": "200",
     "addr_prefix": "rebus",
