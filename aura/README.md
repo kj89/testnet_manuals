@@ -18,7 +18,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/177979901-4ac785e2-08c3-4d61-83df-b451a2ed9e68.png">
 </p>
 
-# aura node setup for testnet — euphoria-1
+# aura node setup for testnet — euphoria-2
 
 Official documentation:
 >- [Validator setup instructions](https://docs.aura.app/run-a-node)

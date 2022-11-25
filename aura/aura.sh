@@ -22,7 +22,7 @@ AURA_PORT=17
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export AURA_CHAIN_ID=euphoria-1" >> $HOME/.bash_profile
+echo "export AURA_CHAIN_ID=euphoria-2" >> $HOME/.bash_profile
 echo "export AURA_PORT=${AURA_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
@@ -56,7 +56,7 @@ go version
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 git clone https://github.com/aura-nw/aura && cd aura
-git checkout euphoria_4027003
+git checkout euphoria_v0.4.1
 make install
 
 # config
@@ -68,11 +68,11 @@ aurad config node tcp://localhost:${AURA_PORT}657
 aurad init $NODENAME --chain-id $AURA_CHAIN_ID
 
 # download genesis and addrbook
-wget -qO $HOME/.aura/config/genesis.json "https://raw.githubusercontent.com/aura-nw/testnets/main/euphoria-1/genesis.json"
+wget -qO $HOME/.aura/config/genesis.json "https://snapshots.kjnodes.com/aura-testnet/genesis.json"
 
 # set peers and seeds
-SEEDS="705e3c2b2b554586976ed88bb27f68e4c4176a33@13.250.223.114:26656,b9243524f659f2ff56691a4b2919c3060b2bb824@13.214.5.1:26656"
-PEERS="ca57fb351699ec368127973f246ab04381b726d2@135.181.154.42:36656,a8f02c61ae74b646c323ac5c98a1eae6a4770141@116.202.112.175:26656,64fdaa6da59901793beda215679ac2a6549b46b4@144.91.122.166:26656,bf9bd3bf988f9c869416d8254678f8dc0123bf14@178.18.252.197:26656,bfa492255ba40d3422f3078bfd6e55696ba005c0@65.108.101.50:60756,3d6b07bdb11754c8c8512525dac109d8bdee3857@65.21.53.39:56656,2e1407476ad3566eb11ac92ad1df4782c7ba83dd@18.143.61.108:26656,7812205773ac30f3d47200ac2391c79896c60135@54.254.220.113:26656,6e36fc042ea8210d34d6c7629586b555ecb84307@51.91.146.110:26656,594f32a7496097e5c8cecd23156862e714c9a729@144.76.224.246:56656,679b953c7f95ca4445e9284a2ecdcf58360ccc76@38.242.215.194:26656,a1f4205a10d99a56a47842bc9091182e5c039ea6@185.144.99.246:26656,7241697d037363bf542d096e5a01308377d5f0a9@51.222.244.75:20356,7f68aa91cc4b6cbbc781ee1d23879324299140d9@13.215.141.96:26656"
+SEEDS="3f472746f46493309650e5a033076689996c8881@aura-testnet.rpc.kjnodes.com:17659"
+PEERS=""
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.aura/config/config.toml
 
 # set custom ports
