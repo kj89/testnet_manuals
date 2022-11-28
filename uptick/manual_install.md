@@ -67,7 +67,7 @@ fi
 ```
 cd $HOME
 git clone https://github.com/UptickNetwork/uptick.git
-cd deweb
+cd uptick
 git checkout v0.2.4
 make install
 ```
