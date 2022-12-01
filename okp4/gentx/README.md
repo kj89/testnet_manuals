@@ -29,7 +29,7 @@ Save and import variables into system
 ```
 echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 echo "export WALLET=wallet" >> $HOME/.bash_profile
-echo "export CHAIN_ID=kaiyo-1" >> $HOME/.bash_profile
+echo "export CHAIN_ID=okp4-nemeton-1" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
