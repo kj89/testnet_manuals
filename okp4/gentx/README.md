@@ -98,7 +98,7 @@ okp4d gentx $WALLET 10000000000uknow \
 --chain-id $CHAIN_ID \
 --moniker=$NODENAME \
 --commission-max-change-rate=0.01 \
---commission-max-rate=0.20 \
+--commission-max-rate=0.1 \
 --commission-rate=0.05 \
 --details="<your_validator_description>" \
 --security-contact="<your_email>" \
