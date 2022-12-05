@@ -94,7 +94,7 @@ marsd genesis add-account $WALLET_ADDRESS 1000000umars
 
 ## Generate gentx
 ```
-marsd gentx $WALLET 9000000000umars \
+marsd genesis gentx $WALLET 1000000umars \
 --chain-id $CHAIN_ID \
 --moniker=$NODENAME \
 --commission-max-change-rate=0.01 \
