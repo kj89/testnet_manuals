@@ -89,12 +89,12 @@ marsd keys add $WALLET --recover
 ## Add genesis account
 ```
 WALLET_ADDRESS=$(marsd keys show $WALLET -a)
-marsd add-genesis-account $WALLET_ADDRESS 1000000umars
+marsd genesis add-account validator 1000000umars
 ```
 
 ## Generate gentx
 ```
-marsd gentx $WALLET 9000000000umars \
+marsd gentx $WALLET 1000000umars \
 --chain-id $CHAIN_ID \
 --moniker=$NODENAME \
 --commission-max-change-rate=0.01 \
