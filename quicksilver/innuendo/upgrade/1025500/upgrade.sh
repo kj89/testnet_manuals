@@ -11,7 +11,7 @@ for((;;)); do
 
 		sudo systemctl stop quicksilverd
 		cd $HOME
-		sudo wget -O $(which quicksilverd) https://github.com/ingenuity-build/testnets/releases/download/v0.10.0/quicksilverd-v0.10.4-amd64
+		sudo wget -O $(which quicksilverd) https://github.com/ingenuity-build/testnets/releases/download/v0.10.0/quicksilverd-v0.10.4-2-amd64
 		sudo systemctl restart quicksilverd && journalctl -fu quicksilverd -o cat
 
 		for (( timer=60; timer>0; timer-- )); do
