@@ -99,13 +99,33 @@ base = "USDT"
 threshold = "2"
 
 [[currency_pairs]]
-base = "ATOM"
-providers = ["binance", "kraken", "osmosis"]
+base = "USDT"
+providers = ["binance", "kraken", "coinbase"]
 quote = "USD"
 
 [[currency_pairs]]
-base = "DOT"
-providers = ["binance", "kraken", "coinbase"]
+base = "BNB"
+providers = ["binance"]
+quote = "USD"
+
+[[currency_pairs]]
+base = "BNB"
+providers = ["huobi", "mexc"]
+quote = "USDT"
+
+[[currency_pairs]]
+base = "ATOM"
+providers = ["binance", "kraken", "coinbase", "osmosis"]
+quote = "USD"
+
+[[currency_pairs]]
+base = "BTC"
+providers = ["huobi"]
+quote = "USDT"
+
+[[currency_pairs]]
+base = "BTC"
+providers = ["binance", "coinbase"]
 quote = "USD"
 
 [[currency_pairs]]
@@ -114,7 +134,7 @@ providers = ["binance", "kraken", "coinbase"]
 quote = "USD"
 
 [[currency_pairs]]
-base = "BTC"
+base = "DOT"
 providers = ["binance", "kraken", "coinbase"]
 quote = "USD"
 
@@ -144,7 +164,7 @@ type = "prometheus"
 
 [[provider_endpoints]]
 name = "binance"
-rest = "https://api1.binance.com"
+rest = "https://api.binance.com"
 websocket = "stream.binance.com:9443"
 EOF
 ```
