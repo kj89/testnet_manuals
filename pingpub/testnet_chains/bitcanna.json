@@ -1,0 +1,15 @@
+{
+    "chain_name": "BITCANNA",
+    "api": ["https://bitcanna.api.kjnodes.com"],
+    "rpc": ["https://bitcanna.rpc.kjnodes.com"],
+    "coin_type": "118",
+    "min_tx_fee": "200",
+    "addr_prefix": "bcna",
+    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/bitcanna.png",
+    "assets": [{
+        "base": "ubcna",
+        "symbol": "BCNA",
+        "exponent": "6",
+        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/bitcanna.png"
+    }]
+}
