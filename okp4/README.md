@@ -18,7 +18,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/197729389-6460f284-75c8-4df9-b329-055bb64a16ed.png">
 </p>
 
-# okp4 node setup for testnet — okp4-nemeton
+# okp4 node setup for testnet — okp4-nemeton-1
 
 Official documentation:
 >- [Validator setup instructions](https://docs.okp4.network/docs/nodes/run-node)
@@ -79,7 +79,7 @@ okp4d tendermint unsafe-reset-all --home $HOME/.okp4d --keep-addr-book
 rm -rf $HOME/.okp4d/data 
 rm -rf $HOME/.okp4d/wasm
 
-SNAP_NAME=$(curl -s https://snapshots2-testnet.nodejumper.io/okp4-testnet/ | egrep -o ">okp4-nemeton.*\.tar.lz4" | tr -d ">")
+SNAP_NAME=$(curl -s https://snapshots2-testnet.nodejumper.io/okp4-testnet/ | egrep -o ">okp4-nemeton-1.*\.tar.lz4" | tr -d ">")
 curl https://snapshots2-testnet.nodejumper.io/okp4-testnet/${SNAP_NAME} | lz4 -dc - | tar -xf - -C $HOME/.okp4d
 
 mv $HOME/.okp4d/priv_validator_state.json.backup $HOME/.okp4d/data/priv_validator_state.json

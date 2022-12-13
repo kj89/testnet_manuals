@@ -22,7 +22,7 @@ OKP4_PORT=36
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export OKP4_CHAIN_ID=okp4-nemeton" >> $HOME/.bash_profile
+echo "export OKP4_CHAIN_ID=okp4-nemeton-1" >> $HOME/.bash_profile
 echo "export OKP4_PORT=${OKP4_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
@@ -59,7 +59,7 @@ echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 cd $HOME
 git clone https://github.com/okp4/okp4d.git
 cd okp4d
-git checkout v2.2.0
+git checkout v3.0.0
 make install
 
 # config
@@ -71,11 +71,11 @@ okp4d config node tcp://localhost:${OKP4_PORT}657
 okp4d init $NODENAME --chain-id $OKP4_CHAIN_ID
 
 # download genesis and addrbook
-wget -qO $HOME/.okp4d/config/genesis.json "https://raw.githubusercontent.com/okp4/networks/main/chains/nemeton/genesis.json"
+wget -qO $HOME/.okp4d/config/genesis.json "https://raw.githubusercontent.com/okp4/networks/main/chains/nemeton-1/genesis.json"
 
 # set peers and seeds
-SEEDS="8e1590558d8fede2f8c9405b7ef550ff455ce842@51.79.30.9:26656,bfffaf3b2c38292bd0aa2a3efe59f210f49b5793@51.91.208.71:26656,106c6974096ca8224f20a85396155979dbd2fb09@198.244.141.176:26656,a7f1dcf7441761b0e0e1f8c6fdc79d3904c22c01@38.242.150.63:36656"
-PEERS="994c9398e55947b2f1f45f33fbdbffcbcad655db@okp4-testnet.nodejumper.io:29656"
+SEEDS=""
+PEERS=""
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.okp4d/config/config.toml
 
 # set custom ports
