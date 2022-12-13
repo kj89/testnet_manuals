@@ -10,7 +10,7 @@ for((;;)); do
 	if ((height>=$BLOCK)); then
 
 		sudo systemctl stop hid-noded
-		cd $HOME && rm -rf core
+		cd $HOME && rm -rf hid-node
 		git clone https://github.com/hypersign-protocol/hid-node.git
 		cd hid-node
 		git checkout $VERSION

@@ -26,7 +26,7 @@ Once the chain reaches the upgrade height, you will encounter the following pani
 `ERR UPGRADE "xxx" NEEDED at height: 667000`
 ```
 sudo systemctl stop hid-noded
-cd $HOME && rm -rf core
+cd $HOME && rm -rf hid-node
 git clone https://github.com/hypersign-protocol/hid-node.git
 cd hid-node
 git checkout v0.1.3

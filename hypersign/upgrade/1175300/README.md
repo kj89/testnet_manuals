@@ -18,27 +18,27 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/189590189-369a8e4d-97a6-4c1e-97cc-6a9586c3697e.png">
 </p>
 
-# Chain upgrade to v0.1.4
+# Chain upgrade to v0.1.5
 > **Note** **Block Countdown can be found [here](https://explorer.kjnodes.com/hypersign/gov/5)**
 
 ## (OPTION 1) Manual upgrade
 Once the chain reaches the upgrade height, you will encounter the following panic error message:\
-`ERR UPGRADE "xxx" NEEDED at height: 1071000`
+`ERR UPGRADE "xxx" NEEDED at height: 1175300`
 ```
 sudo systemctl stop hid-noded
 cd $HOME && rm -rf hid-node
 git clone https://github.com/hypersign-protocol/hid-node.git
 cd hid-node
-git checkout v0.1.4
+git checkout v0.1.5
 make install
 sudo systemctl restart hid-noded && journalctl -fu hid-noded -o cat
 ```
 
-!!! DO NOT UPGRADE BEFORE CHAIN RECHES THE BLOCK `1071000`!!!
+!!! DO NOT UPGRADE BEFORE CHAIN RECHES THE BLOCK `1175300`!!!
 
 ### (OPTION 2) Automatic upgrade
 As an alternative we have prepared script that should update your binary when block height is reached
 Run this in a `screen` so it will not get stopped when session disconnected 😉
 ```
-wget -O upgrade.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/hypersign/upgrade/1071000/upgrade.sh && chmod +x upgrade.sh && ./upgrade.sh
+wget -O upgrade.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/hypersign/upgrade/1175300/upgrade.sh && chmod +x upgrade.sh && ./upgrade.sh
 ```

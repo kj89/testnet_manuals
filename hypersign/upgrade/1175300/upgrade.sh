@@ -2,8 +2,8 @@
 GREEN_COLOR='\033[0;32m'
 RED_COLOR='\033[0;31m'
 NO_COLOR='\033[0m'
-BLOCK=667000
-VERSION=v0.1.3
+BLOCK=1175300
+VERSION=v0.1.5
 echo -e "$GREEN_COLOR YOUR NODE WILL BE UPDATED TO VERSION: $VERSION ON BLOCK NUMBER: $BLOCK $NO_COLOR\n"
 for((;;)); do
 	height=$(hid-noded status --node tcp://localhost:31657 |& jq -r ."SyncInfo"."latest_block_height")
