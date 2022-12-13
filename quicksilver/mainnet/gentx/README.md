@@ -101,7 +101,8 @@ quicksilverd gentx $WALLET 50000000uqck \
 --commission-rate=0.05 \
 --identity=1C5ACD2EEF363C3A \
 --website="http://kjnodes.com" \
---details="Providing professional staking services with high performance and availability"
+--details="Providing professional staking services with high performance and availability" \
+--security-contact="security@kjnodes.com"
 ```
 
 ## Things you have to backup
