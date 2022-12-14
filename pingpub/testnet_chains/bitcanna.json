@@ -10,6 +10,7 @@
         "base": "ubcna",
         "symbol": "BCNA",
         "exponent": "6",
+		"coingecko_id": "bitcanna",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/bitcanna.png"
     }]
 }
