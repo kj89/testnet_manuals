@@ -1,0 +1,15 @@
+{
+    "chain_name": "NOLUS",
+    "api": ["https://nolus-testnet.api.kjnodes.com"],
+    "rpc": ["https://nolus-testnet.rpc.kjnodes.com"],
+    "coin_type": "118",
+    "min_tx_fee": "200",
+    "addr_prefix": "nolus",
+    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/nolus.png",
+    "assets": [{
+        "base": "unls",
+        "symbol": "NLS",
+        "exponent": "6",
+        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/nolus.png"
+    }]
+}
