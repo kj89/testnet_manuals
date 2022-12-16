@@ -18,7 +18,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/170463282-576375f8-fa1e-4fce-8350-6312b415b50d.png">
 </p>
 
-# Celestia node setup for testnet — mamaki
+# Celestia node setup for testnet — mocha
 
 Official documentation:
 - https://docs.celestia.org/nodes/overview
@@ -28,9 +28,6 @@ Explorer:
 
 Manual guides:
 - [Run Validator and Bridge Node on same machine](https://github.com/kj89/testnet_manuals/blob/main/celestia/manual_install.md)
-- [Run Bridge Node seperately](https://github.com/kj89/testnet_manuals/blob/main/celestia/manual_bridge.md)
-- [Run Light Node seperately](https://github.com/kj89/testnet_manuals/blob/main/celestia/manual_light.md)
-- [Run Full Node seperately](https://github.com/kj89/testnet_manuals/blob/main/celestia/manual_full.md)
 
 ## Hardware requirements
 - Memory: 8 GB RAM
@@ -71,14 +68,12 @@ sudo rm -rf $HOME/.celestia-app/data/tx_index.db
 
 ### (OPTIONAL) Use Quick Sync by restoring data from snapshot
 ```
-systemctl stop celestia-appd
-celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
-cd $HOME
-rm -rf ~/.celestia-app/data
-mkdir -p ~/.celestia-app/data
-SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | egrep -o ">mamaki.*tar" | tr -d ">")
-wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - -C ~/.celestia-app/data/
-systemctl restart celestia-appd && journalctl -fu celestia-appd -o cat
+sudo systemctl stop celestia-appd
+cp $HOME/.celestia-app/data/priv_validator_state.json $HOME/.celestia-app/priv_validator_state.json.backup
+rm -rf $HOME/.celestia-app/data
+curl -L https://snapshots.kjnodes.com/celestia-testnet/snapshot_latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.celestia-app
+mv $HOME/.celestia-app/priv_validator_state.json.backup $HOME/.celestia-app/data/priv_validator_state.json
+sudo systemctl start celestia-appd && journalctl -u celestia-appd -f --no-hostname -o cat
 ```
 
 ### Create wallet
@@ -131,7 +126,7 @@ celestia-appd query bank balances $CELESTIA_WALLET_ADDRESS
 ```
 > If your wallet does not show any balance than probably your node is still syncing. Please wait until it finish to synchronize and then continue 
 
-To create your validator run command below
+#### Create new validator
 ```
 celestia-appd tx staking create-validator \
   --amount 1000000utia \
@@ -142,8 +137,18 @@ celestia-appd tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(celestia-appd tendermint show-validator) \
   --moniker $NODENAME \
-  --chain-id $CELESTIA_CHAIN_ID
+  --chain-id $CELESTIA_CHAIN_ID \
+  --evm-address="YOUR_EVM_ADDRESS" \
+  --orchestrator-address="YOUR_ORCHESTRATOR_ADDRESS" \
+  --gas-adjustment=1.4 \
+  --gas=auto \
+  --fees=1000utia \
+  -y
 ```
+
+> `--evm-address`: This flag should contain a 0x EVM address. Here, you can add any Ethereum-based address to this flag. You can also modify it later if you decide to switch addresses.
+>
+> `--orchestrator-address`: This flag should contain a newly-generated celestia1 Celestia address. Validators certainly can use their existing Celestia addresses here but it is recommended to create a new one.
 
 ## Security
 To protect you keys please make sure you follow basic security rules
