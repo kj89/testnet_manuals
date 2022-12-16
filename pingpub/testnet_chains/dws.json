@@ -2,14 +2,14 @@
     "chain_name": "DWS",
     "api": ["https://dws-testnet.api.kjnodes.com"],
     "rpc": ["https://dws-testnet.rpc.kjnodes.com"],
-    "coin_type": "118",
-    "min_tx_fee": "200",
+    "coin_type": 118,
+    "min_tx_fee": 200,
     "addr_prefix": "deweb",
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/dws.png",
     "assets": [{
         "base": "udws",
         "symbol": "DWS",
-        "exponent": "6",
+        "exponent": 6,
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/dws.png"
     }]
 }

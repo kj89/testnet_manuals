@@ -2,14 +2,14 @@
     "chain_name": "SEI",
     "api": ["https://sei-testnet.api.kjnodes.com"],
     "rpc": ["https://sei-testnet.rpc.kjnodes.com"],
-    "coin_type": "118",
-    "min_tx_fee": "200",
+    "coin_type": 118,
+    "min_tx_fee": 200,
     "addr_prefix": "sei",
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/sei.png",
     "assets": [{
         "base": "usei",
         "symbol": "SEI",
-        "exponent": "6",
+        "exponent": 6,
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/sei.png"
     }]
 }

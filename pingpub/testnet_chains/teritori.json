@@ -2,14 +2,14 @@
     "chain_name": "TERITORI",
     "api": ["https://teritori-testnet.api.kjnodes.com"],
     "rpc": ["https://teritori-testnet.rpc.kjnodes.com"],
-    "coin_type": "118",
-    "min_tx_fee": "200",
+    "coin_type": 118,
+    "min_tx_fee": 200,
     "addr_prefix": "tori",
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/teritori.png",
     "assets": [{
         "base": "utori",
         "symbol": "TORI",
-        "exponent": "6",
+        "exponent": 6,
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/teritori.png"
     }]
 }

@@ -2,14 +2,14 @@
     "chain_name": "TERP",
     "api": ["https://terp-testnet.api.kjnodes.com"],
     "rpc": ["https://terp-testnet.rpc.kjnodes.com"],
-    "coin_type": "118",
-    "min_tx_fee": "200",
+    "coin_type": 118,
+    "min_tx_fee": 200,
     "addr_prefix": "terp",
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/terp.png",
     "assets": [{
         "base": "uterpx",
         "symbol": "TERPX",
-        "exponent": "6",
+        "exponent": 6,
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/terp.png"
     }]
 }

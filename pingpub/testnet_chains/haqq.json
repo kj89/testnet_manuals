@@ -2,14 +2,14 @@
     "chain_name": "HAQQ",
     "api": ["https://haqq-testnet.api.kjnodes.com"],
     "rpc": ["https://haqq-testnet.rpc.kjnodes.com"],
-    "coin_type": "118",
-    "min_tx_fee": "200",
+    "coin_type": 118,
+    "min_tx_fee": 200,
     "addr_prefix": "haqq",
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/haqq.png",
     "assets": [{
         "base": "aISLM",
         "symbol": "ISLM",
-        "exponent": "18",
+        "exponent": 18,
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/haqq.png"
     }]
 }

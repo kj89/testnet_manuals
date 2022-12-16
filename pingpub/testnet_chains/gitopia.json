@@ -2,14 +2,14 @@
     "chain_name": "GITOPIA",
     "api": ["https://gitopia-testnet.api.kjnodes.com"],
     "rpc": ["https://gitopia-testnet.rpc.kjnodes.com"],
-    "coin_type": "118",
-    "min_tx_fee": "200",
+    "coin_type": 118,
+    "min_tx_fee": 200,
     "addr_prefix": "gitopia",
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/gitopia.png",
     "assets": [{
         "base": "0.025utlore",
         "symbol": "TLORE",
-        "exponent": "6",
+        "exponent": 6,
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/gitopia.png"
     }]
 }

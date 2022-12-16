@@ -2,14 +2,14 @@
     "chain_name": "REBUS",
     "api": ["https://rebus.api.kjnodes.com"],
     "rpc": ["https://rebus.rpc.kjnodes.com"],
-    "coin_type": "118",
-    "min_tx_fee": "200",
+    "coin_type": 118,
+    "min_tx_fee": 200,
     "addr_prefix": "rebus",
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/rebus.png",
     "assets": [{
         "base": "arebus",
         "symbol": "REBUS",
-        "exponent": "18",
+        "exponent": 18,
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/rebus.png"
     }]
 }

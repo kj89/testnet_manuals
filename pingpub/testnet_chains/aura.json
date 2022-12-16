@@ -2,14 +2,14 @@
     "chain_name": "AURA",
     "api": ["https://aura-testnet.api.kjnodes.com"],
     "rpc": ["https://aura-testnet.rpc.kjnodes.com"],
-    "coin_type": "118",
-    "min_tx_fee": "200",
+    "coin_type": 118,
+    "min_tx_fee": 200,
     "addr_prefix": "aura",
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/aura.png",
     "assets": [{
         "base": "ueaura",
         "symbol": "AURA",
-        "exponent": "6",
+        "exponent": 6,
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/aura.png"
     }]
 }
