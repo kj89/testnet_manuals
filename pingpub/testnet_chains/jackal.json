@@ -10,6 +10,7 @@
         "base": "ujkl",
         "symbol": "JKL",
         "exponent": 6,
+		"coingecko_id": "jackal-protocol",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/jackal.png"
     }]
 }
