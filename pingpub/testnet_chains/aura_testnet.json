@@ -1,5 +1,5 @@
 {
-    "chain_name": "AURA",
+    "chain_name": "AURA-TEST",
     "api": ["https://aura-testnet.api.kjnodes.com"],
     "rpc": ["https://aura-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

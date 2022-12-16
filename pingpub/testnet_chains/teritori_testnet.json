@@ -1,5 +1,5 @@
 {
-    "chain_name": "TERITORI",
+    "chain_name": "TERITORI-TEST",
     "api": ["https://teritori-testnet.api.kjnodes.com"],
     "rpc": ["https://teritori-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

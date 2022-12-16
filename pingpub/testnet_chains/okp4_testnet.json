@@ -1,5 +1,5 @@
 {
-    "chain_name": "OKP4",
+    "chain_name": "OKP4-TEST",
     "api": ["https://okp4-testnet.api.kjnodes.com"],
     "rpc": ["https://okp4-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

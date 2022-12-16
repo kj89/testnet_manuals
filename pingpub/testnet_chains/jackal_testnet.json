@@ -1,5 +1,5 @@
 {
-    "chain_name": "JACKAL-TESTNET",
+    "chain_name": "JACKAL-TEST",
     "api": ["https://jackal-testnet.api.kjnodes.com"],
     "rpc": ["https://jackal-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

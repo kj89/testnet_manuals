@@ -1,5 +1,5 @@
 {
-    "chain_name": "DWS",
+    "chain_name": "DWS-TEST",
     "api": ["https://dws-testnet.api.kjnodes.com"],
     "rpc": ["https://dws-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

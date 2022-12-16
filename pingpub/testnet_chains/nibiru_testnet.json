@@ -1,5 +1,5 @@
 {
-    "chain_name": "NIBIRU",
+    "chain_name": "NIBIRU-TEST",
     "api": ["https://nibiru-testnet.api.kjnodes.com"],
     "rpc": ["https://nibiru-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

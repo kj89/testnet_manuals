@@ -1,5 +1,5 @@
 {
-    "chain_name": "HAQQ",
+    "chain_name": "HAQQ-TEST",
     "api": ["https://haqq-testnet.api.kjnodes.com"],
     "rpc": ["https://haqq-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

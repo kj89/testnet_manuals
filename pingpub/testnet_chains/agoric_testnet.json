@@ -1,5 +1,5 @@
 {
-    "chain_name": "AGORIC",
+    "chain_name": "AGORIC-TEST",
     "api": ["https://agoric-testnet.api.kjnodes.com"],
     "rpc": ["https://agoric-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

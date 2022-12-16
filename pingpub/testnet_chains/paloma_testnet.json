@@ -1,5 +1,5 @@
 {
-    "chain_name": "PALOMA",
+    "chain_name": "PALOMA-TEST",
     "api": ["https://paloma-testnet.api.kjnodes.com"],
     "rpc": ["https://paloma-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

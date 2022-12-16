@@ -1,5 +1,5 @@
 {
-    "chain_name": "SEI",
+    "chain_name": "SEI-TEST",
     "api": ["https://sei-testnet.api.kjnodes.com"],
     "rpc": ["https://sei-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

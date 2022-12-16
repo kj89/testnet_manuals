@@ -1,5 +1,5 @@
 {
-    "chain_name": "QUICKSILVER",
+    "chain_name": "QUICKSILVER-TEST",
     "api": ["https://quicksilver-testnet.api.kjnodes.com"],
     "rpc": ["https://quicksilver-testnet.rpc.kjnodes.com"],
     "coin_type": 118,
