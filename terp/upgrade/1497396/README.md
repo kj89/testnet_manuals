@@ -43,6 +43,26 @@ Wait for new genesis file with updated structure beeing deployed by the Terp tea
 curl -s  https://raw.githubusercontent.com/terpnetwork/test-net/master/athena-2/0.2.0/genesis.json > ~/.terp/config/genesis.json
 ```
 
+Mark the upgrade as done upon hitting the planned upgrade height
+```
+sudo tee /etc/systemd/system/terpd.service > /dev/null <<EOF
+[Unit]
+Description=terp
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which terpd) start --home $HOME/.terp --unsafe-skip-upgrades 1497396
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo systemctl daemon-reload
+```
+
 Start the service
 ```
 sudo systemctl start terpd && journalctl -fu terpd -o cat
