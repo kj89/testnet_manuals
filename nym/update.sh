@@ -6,8 +6,8 @@ sleep 1
 echo "Rust installation"
 sudo curl https://sh.rustup.rs -sSf | sh -s -- -y
 source $HOME/.cargo/env
-echo "Downloading new binaries (v1.1.2)"
-sudo wget -O $(which nym-mixnode) https://github.com/nymtech/nym/releases/download/nym-binaries-v1.1.2/nym-mixnode
+echo "Downloading new binaries (v1.1.4)"
+sudo wget -O $(which nym-mixnode) https://github.com/nymtech/nym/releases/download/nym-binaries-v1.1.4/nym-mixnode
 version=$(nym-mixnode --version | grep "version" | awk '{print $4}' | sed 's/.$//')
 echo "Current mixnode version:" $version
 echo "Initialize your mixmode"
