@@ -33,7 +33,7 @@ git checkout v0.2.0
 make install
 ```
 
-Check version, should be 0.2.0
+Check version, should return 0.2.0
 ```
 terpd version
 ```
