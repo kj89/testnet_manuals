@@ -31,14 +31,22 @@ git clone https://github.com/terpnetwork/terp-core.git
 cd terp-core
 git checkout v0.2.0
 make install
-sudo systemctl restart terpd && journalctl -fu terpd -o cat
 ```
 
-!!! DO NOT UPGRADE BEFORE CHAIN RECHES THE BLOCK `1497396`!!!
+Check version, should be 0.2.0
+```
+terpd version
+```
 
-### (OPTION 2) Automatic upgrade
-As an alternative we have prepared script that should update your binary when block height is reached
-Run this in a `screen` so it will not get stopped when session disconnected 😉
+Wait for new genesis file with updated structure beeing deployed by the Terp team
 ```
-wget -O upgrade.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/terp/upgrade/1497396/upgrade.sh && chmod +x upgrade.sh && ./upgrade.sh
+curl -s  https://raw.githubusercontent.com/terpnetwork/test-net/master/athena-2/0.2.0/genesis.json > ~/.terp/config/genesis.json
 ```
+
+Start the service
+```
+sudo systemctl start terpd && journalctl -fu terpd -o cat
+```
+
+> **Warning**
+> !!! DO NOT UPGRADE BEFORE CHAIN RECHES THE BLOCK `1497396`!!!
