@@ -1,0 +1,15 @@
+{
+    "chain_name": "LAVA-TEST",
+    "api": ["https://lava-testnet.api.kjnodes.com"],
+    "rpc": ["https://lava-testnet.rpc.kjnodes.com"],
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "lava",
+    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/lava.png",
+    "assets": [{
+        "base": "uelava",
+        "symbol": "AURA",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/lava.png"
+    }]
+}
