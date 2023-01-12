@@ -4,11 +4,11 @@
     "rpc": ["https://lava-testnet.rpc.kjnodes.com"],
     "coin_type": 118,
     "min_tx_fee": 200,
-    "addr_prefix": "lava",
+    "addr_prefix": "lava@",
     "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/lava.png",
     "assets": [{
-        "base": "uelava",
-        "symbol": "AURA",
+        "base": "ulava",
+        "symbol": "LAVA",
         "exponent": 6,
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/lava.png"
     }]
