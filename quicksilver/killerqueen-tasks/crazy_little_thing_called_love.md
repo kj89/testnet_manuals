@@ -24,8 +24,8 @@ This sould be installed and executed on `ica` cosmos validator node
 ## Install hermes
 ```
 cd ~
-wget https://github.com/informalsystems/ibc-rs/releases/download/v0.15.0/hermes-v0.15.0-x86_64-unknown-linux-gnu.zip
-unzip hermes-v0.15.0-x86_64-unknown-linux-gnu.zip
+wget https://github.com/informalsystems/hermes/releases/download/v1.2.0/hermes-v1.2.0-x86_64-unknown-linux-gnu.zip
+unzip hermes-v1.2.0-x86_64-unknown-linux-gnu.zip
 sudo mv hermes /usr/local/bin
 hermes version
 ```

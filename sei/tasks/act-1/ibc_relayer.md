@@ -78,8 +78,8 @@ MNEMONIC_B='shaft pave alone age dolphin lab brave trick fatigue vivid social wo
 ## Download Hermes
 ```
 cd $HOME
-wget https://github.com/informalsystems/ibc-rs/releases/download/v1.0.0-rc.0/hermes-v1.0.0-rc.0-x86_64-unknown-linux-gnu.zip
-unzip hermes-v1.0.0-rc.0-x86_64-unknown-linux-gnu.zip
+wget https://github.com/informalsystems/hermes/releases/download/v1.2.0/hermes-v1.2.0-x86_64-unknown-linux-gnu.zip
+unzip hermes-v1.2.0-x86_64-unknown-linux-gnu.zip
 sudo mv hermes /usr/local/bin
 hermes version
 ```
