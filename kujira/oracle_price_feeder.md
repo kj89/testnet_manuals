@@ -104,13 +104,23 @@ providers = ["binance", "kraken", "coinbase"]
 quote = "USD"
 
 [[currency_pairs]]
+base = "USDC"
+providers = ["binance", "kraken"]
+quote = "USD"
+
+[[currency_pairs]]
 base = "BNB"
 providers = ["binance"]
 quote = "USD"
 
 [[currency_pairs]]
+base = "USDC"
+providers = ["okx", "coinbase"]
+quote = "USDT"
+
+[[currency_pairs]]
 base = "BNB"
-providers = ["huobi", "gate"]
+providers = ["huobi", "okx"]
 quote = "USDT"
 
 [[currency_pairs]]
@@ -127,6 +137,17 @@ quote = "USDT"
 base = "BTC"
 providers = ["binance", "coinbase"]
 quote = "USD"
+
+[[currency_pairs]]
+base = "LUNA"
+providers = ["gate", "okx"]
+quote = "USDT"
+
+[[currency_pairs]]
+base = "LUNA"
+providers = ["mexc"]
+quote = "USDC"
+
 
 [[currency_pairs]]
 base = "ETH"
