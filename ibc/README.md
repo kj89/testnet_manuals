@@ -32,11 +32,6 @@ Before setting up relayer you need to make sure you already have:
 sudo apt update && sudo apt upgrade -y
 ```
 
-## Install dependencies
-```
-sudo apt install unzip -y
-```
-
 ## Make hermes home dir
 ```
 mkdir $HOME/.hermes
@@ -44,9 +39,9 @@ mkdir $HOME/.hermes
 
 ## Download Hermes
 ```
-wget https://github.com/informalsystems/ibc-rs/releases/download/v1.0.0/hermes-v1.0.0-x86_64-unknown-linux-gnu.tar.gz
+wget -nv https://github.com/informalsystems/hermes/releases/download/v1.2.0/hermes-v1.2.0-x86_64-unknown-linux-gnu.tar.gz
 mkdir -p $HOME/.hermes/bin
-tar -C $HOME/.hermes/bin/ -vxzf hermes-v1.0.0-x86_64-unknown-linux-gnu.tar.gz
+tar -C $HOME/.hermes/bin/ -vxzf hermes-v1.2.0-x86_64-unknown-linux-gnu.tar.gz
 echo 'export PATH="$HOME/.hermes/bin:$PATH"' >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
