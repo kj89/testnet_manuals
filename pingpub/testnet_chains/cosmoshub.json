@@ -1,5 +1,5 @@
 {
-    "chain_name": "COSMOS-HUB",
+    "chain_name": "COSMOSHUB",
     "api": ["https://cosmoshub.api.kjnodes.com"],
     "rpc": ["https://cosmoshub.rpc.kjnodes.com"],
     "coin_type": 118,

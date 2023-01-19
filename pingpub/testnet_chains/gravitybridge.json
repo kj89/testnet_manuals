@@ -1,5 +1,5 @@
 {
-    "chain_name": "GRAVITY-BRIDGE",
+    "chain_name": "GRAVITYBRIDGE",
     "api": ["https://gravitybridge.api.kjnodes.com"],
     "rpc": ["https://gravitybridge.rpc.kjnodes.com"],
     "coin_type": 118,
