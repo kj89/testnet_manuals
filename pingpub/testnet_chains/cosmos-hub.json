@@ -10,7 +10,7 @@
         "base": "uatom",
         "symbol": "ATOM",
         "exponent": 6,
-		"coingecko_id": "cosmoshub",
+		"coingecko_id": "cosmos",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/cosmoshub.png"
     }]
 }
