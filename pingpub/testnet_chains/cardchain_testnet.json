@@ -1,5 +1,5 @@
 {
-    "chain_name": "CARDCHAIN-TEST",
+    "chain_name": "CARDCHAIN-TESTNET",
     "api": ["https://cardchain-testnet.api.kjnodes.com"],
     "rpc": ["https://cardchain-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

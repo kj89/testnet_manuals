@@ -1,5 +1,5 @@
 {
-    "chain_name": "HYPERSIGN-TEST",
+    "chain_name": "HYPERSIGN-TESTNET",
     "api": ["https://hypersign-testnet.api.kjnodes.com"],
     "rpc": ["https://hypersign-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

@@ -1,5 +1,5 @@
 {
-    "chain_name": "LAVA-TEST",
+    "chain_name": "LAVA-TESTNET",
     "api": ["https://lava-testnet.api.kjnodes.com"],
     "rpc": ["https://lava-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

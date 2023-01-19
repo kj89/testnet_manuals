@@ -1,5 +1,5 @@
 {
-    "chain_name": "GITOPIA-TEST",
+    "chain_name": "GITOPIA-TESTNET",
     "api": ["https://gitopia-testnet.api.kjnodes.com"],
     "rpc": ["https://gitopia-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

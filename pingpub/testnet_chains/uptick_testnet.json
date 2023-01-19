@@ -1,5 +1,5 @@
 {
-    "chain_name": "UPTICK-TEST",
+    "chain_name": "UPTICK-TESTNET",
     "api": ["https://uptick-testnet.api.kjnodes.com"],
     "rpc": ["https://uptick-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

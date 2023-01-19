@@ -1,5 +1,5 @@
 {
-    "chain_name": "OLLO-TEST",
+    "chain_name": "OLLO-TESTNET",
     "api": ["https://ollo-testnet.api.kjnodes.com"],
     "rpc": ["https://ollo-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

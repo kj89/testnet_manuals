@@ -1,0 +1,16 @@
+{
+    "chain_name": "GRAVITY-BRIDGE",
+    "api": ["https://gravitybridge.api.kjnodes.com"],
+    "rpc": ["https://gravitybridge.rpc.kjnodes.com"],
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "gravity",
+    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/gravitybridge.png",
+    "assets": [{
+        "base": "ugraviton",
+        "symbol": "GRAVITON",
+        "exponent": 6,
+		"coingecko_id": "graviton",
+        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/gravitybridge.png"
+    }]
+}

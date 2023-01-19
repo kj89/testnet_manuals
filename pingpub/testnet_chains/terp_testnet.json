@@ -1,5 +1,5 @@
 {
-    "chain_name": "TERP-TEST",
+    "chain_name": "TERP-TESTNET",
     "api": ["https://terp-testnet.api.kjnodes.com"],
     "rpc": ["https://terp-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

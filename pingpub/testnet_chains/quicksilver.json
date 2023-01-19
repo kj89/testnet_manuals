@@ -1,7 +1,7 @@
 {
-    "chain_name": "QUICKSILVER-TESTNET",
-    "api": ["https://quicksilver-testnet.api.kjnodes.com"],
-    "rpc": ["https://quicksilver-testnet.rpc.kjnodes.com"],
+    "chain_name": "QUICKSILVER",
+    "api": ["https://quicksilver.api.kjnodes.com"],
+    "rpc": ["https://quicksilver.rpc.kjnodes.com"],
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "quick",
@@ -10,6 +10,7 @@
         "base": "uqck",
         "symbol": "QCK",
         "exponent": 6,
+        "coingecko_id": "quicksilver",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/quicksilver.png"
     }]
 }

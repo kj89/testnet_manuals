@@ -1,0 +1,16 @@
+{
+    "chain_name": "COSMOS-HUB",
+    "api": ["https://cosmoshub.api.kjnodes.com"],
+    "rpc": ["https://cosmoshub.rpc.kjnodes.com"],
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "cosmos",
+    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/cosmoshub.png",
+    "assets": [{
+        "base": "uatom",
+        "symbol": "ATOM",
+        "exponent": 6,
+		"coingecko_id": "cosmoshub",
+        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/cosmoshub.png"
+    }]
+}

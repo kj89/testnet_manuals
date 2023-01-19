@@ -1,5 +1,5 @@
 {
-    "chain_name": "SOURCE-TEST",
+    "chain_name": "SOURCE-TESTNET",
     "api": ["https://source-testnet.api.kjnodes.com"],
     "rpc": ["https://source-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

@@ -1,5 +1,5 @@
 {
-    "chain_name": "NOLUS-TEST",
+    "chain_name": "NOLUS-TESTNET",
     "api": ["https://nolus-testnet.api.kjnodes.com"],
     "rpc": ["https://nolus-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

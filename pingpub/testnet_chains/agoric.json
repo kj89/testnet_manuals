@@ -1,7 +1,7 @@
 {
-    "chain_name": "AGORIC-TESTNET",
-    "api": ["https://agoric-testnet.api.kjnodes.com"],
-    "rpc": ["https://agoric-testnet.rpc.kjnodes.com"],
+    "chain_name": "AGORIC",
+    "api": ["https://agoric.api.kjnodes.com"],
+    "rpc": ["https://agoric.rpc.kjnodes.com"],
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "agoric",
@@ -10,6 +10,7 @@
         "base": "ubld",
         "symbol": "BLD",
         "exponent": 6,
+		"coingecko_id": "agoric",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/agoric.png"
     }]
 }

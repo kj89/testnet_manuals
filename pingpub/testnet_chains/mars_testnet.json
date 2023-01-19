@@ -1,5 +1,5 @@
 {
-    "chain_name": "MARS-TEST",
+    "chain_name": "MARS-TESTNET",
     "api": ["https://mars-testnet.api.kjnodes.com"],
     "rpc": ["https://mars-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

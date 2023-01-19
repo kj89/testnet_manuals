@@ -1,5 +1,5 @@
 {
-    "chain_name": "NOIS-TEST",
+    "chain_name": "NOIS-TESTNET",
     "api": ["https://nois-testnet.api.kjnodes.com"],
     "rpc": ["https://nois-testnet.rpc.kjnodes.com"],
     "coin_type": 118,

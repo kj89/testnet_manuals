@@ -1,7 +1,7 @@
 {
-    "chain_name": "TERITORI-TESTNET",
-    "api": ["https://teritori-testnet.api.kjnodes.com"],
-    "rpc": ["https://teritori-testnet.rpc.kjnodes.com"],
+    "chain_name": "TERITORI",
+    "api": ["https://teritori.api.kjnodes.com"],
+    "rpc": ["https://teritori.rpc.kjnodes.com"],
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "tori",
@@ -10,6 +10,7 @@
         "base": "utori",
         "symbol": "TORI",
         "exponent": 6,
+		"coingecko_id": "teritori",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/teritori.png"
     }]
 }

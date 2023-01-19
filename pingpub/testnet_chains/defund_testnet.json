@@ -1,5 +1,5 @@
 {
-    "chain_name": "DEFUND-TEST",
+    "chain_name": "DEFUND-TESTNET",
     "api": ["https://defund-testnet.api.kjnodes.com"],
     "rpc": ["https://defund-testnet.rpc.kjnodes.com"],
     "coin_type": 118,
