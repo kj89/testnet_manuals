@@ -380,13 +380,12 @@ SUCCESS performed health check for all chains in the config
 ## Recover wallets using mnemonic files
 Before you proceed with this step, please make sure you have created and funded with tokens seperate wallets on each chain
 ```
- MNEMONIC='word scare connect prison angry jazz help panther museum hope antenna all voyage fame shiver sing life zone era abstract busy bamboo own dune'
+MNEMONIC='word scare connect prison angry jazz help panther museum hope antenna all voyage fame shiver sing life zone era abstract busy bamboo own dune'
 CHAIN_ID=teritori-1
-sudo tee $HOME/.hermes/${CHAIN_ID}.mnemonic > /dev/null <<EOF
-${MNEMONIC}
-EOF
-hermes keys add --chain ${CHAIN_ID} --mnemonic-file $HOME/.hermes/${CHAIN_ID}.mnemonic
-rm $HOME/.hermes/${CHAIN_ID}.mnemonic
+
+echo "$MNEMONIC" > $HOME/.hermes.mnemonic
+hermes keys add --chain "$CHAIN_ID" --mnemonic-file $HOME/.hermes.mnemonic
+rm $HOME/.hermes.mnemonic
 ```
 
 Successful output should look like:
