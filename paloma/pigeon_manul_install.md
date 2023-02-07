@@ -29,25 +29,27 @@ To get `ETH_RPC_URL` register at https://www.alchemy.com/ and create new Ethereu
 ## Setting up vars
 ```
 ETH_RPC_URL=<YOUR_ETH_MAINNET_RPC_URL>
-ETH_PASSWORD=<ETH_KEY_PASSWORD>
+BSC_RPC_URL=<YOUR_BSC_MAINNET_RPC_URL>
+MATIC_RPC_URL=<YOUR_MATIC_MAINNET_RPC_URL>
+KEY_PASSWORD=<KEY_PASSWORD>
 ```
 
 Example
 ```
 ETH_RPC_URL=https://eth-mainnet.g.alchemy.com/v2/UTv.....
-ETH_PASSWORD=mysecurepassword
+KEY_PASSWORD=mysecurepassword
 ```
 
 Save and import variables into system
 ```
 echo "export ETH_RPC_URL=${ETH_RPC_URL}" >> $HOME/.bash_profile
-echo "export ETH_PASSWORD=${ETH_PASSWORD}" >> $HOME/.bash_profile
+echo "export KEY_PASSWORD=${KEY_PASSWORD}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
 ## Download and build binaries
 ```
-wget -O - https://github.com/palomachain/pigeon/releases/download/v0.12.0/pigeon_Linux_x86_64.tar.gz | \
+wget -O - https://github.com/palomachain/pigeon/releases/download/v0.11.5/pigeon_Linux_x86_64.tar.gz | \
 tar -C /usr/local/bin -xvzf - pigeon
 chmod +x /usr/local/bin/pigeon
 mkdir ~/.pigeon
@@ -55,21 +57,24 @@ mkdir ~/.pigeon
 
 ## Set up your EVM keys
 ### (OPTION 1) Generate new keys
-Use the same password you have defined earlier in `ETH_PASSWORD`
+Use the same password you have defined earlier in `KEY_PASSWORD`
 ```
 pigeon evm keys generate-new $HOME/.pigeon/keys/evm/eth-main
 pigeon evm keys generate-new $HOME/.pigeon/keys/evm/bnb-main
+pigeon evm keys generate-new $HOME/.pigeon/keys/evm/matic-main
 ```
 ### (OPTION 2) Import existing keys
 ```
 pigeon evm keys import ~/.pigeon/keys/evm/eth-main
 pigeon evm keys import ~/.pigeon/keys/evm/bnb-main
+pigeon evm keys import ~/.pigeon/keys/evm/matic-main
 ```
 
 ## Load ETH_SIGNER_KEY into bash_profile
 ```
 echo "export ETH_SIGNING_KEY=0x$(cat $HOME/.pigeon/keys/evm/eth-main/*  | jq -r .address | head -n 1)" >> $HOME/.bash_profile
 echo "export BSC_SIGNING_KEY=0x$(cat $HOME/.pigeon/keys/evm/bnb-main/*  | jq -r .address | head -n 1)" >> $HOME/.bash_profile
+echo "export MATIC_SIGNING_KEY=0x$(cat $HOME/.pigeon/keys/evm/matic-main/*  | jq -r .address | head -n 1)" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -80,7 +85,7 @@ loop-timeout: 5s
 health-check-port: 5757
 
 paloma:
-  chain-id: paloma-testnet-13
+  chain-id: messenger
   call-timeout: 20s
   keyring-dir: $HOME/.paloma
   keyring-type: test
@@ -105,13 +110,20 @@ evm:
     signing-key: ${BSC_SIGNING_KEY}
     keyring-dir: $HOME/.pigeon/keys/evm/bnb-main
     gas-adjustment: 1.2
+  matic-main:
+    chain-id: 137
+    base-rpc-url: ${MATIC_RPC_URL}
+    keyring-pass-env-name: PASSWORD
+    signing-key: ${MATIC_SIGNING_KEY}
+    keyring-dir: $HOME/.pigeon/keys/evm/matic-main
+    gas-adjustment: 1.2
 EOF
 ```
 
 ## Set .env file
 ```
 sudo tee $HOME/.pigeon/.env > /dev/null <<EOF
-PASSWORD=$ETH_PASSWORD
+PASSWORD=$KEY_PASSWORD
 EOF
 ```
 
