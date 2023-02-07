@@ -29,7 +29,7 @@ Save and import variables into system
 ```
 echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 echo "export WALLET=wallet" >> $HOME/.bash_profile
-echo "export CHAIN_ID=cumulet" >> $HOME/.bash_profile
+echo "export CHAIN_ID=messenger" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -59,7 +59,7 @@ source ~/.bash_profile
 ```
 cd $HOME
 git clone https://github.com/palomachain/paloma.git
-cd hub
+cd paloma
 git checkout v0.11.6
 make install
 ```
@@ -89,20 +89,20 @@ palomad keys add $WALLET --recover
 ## Add genesis account
 ```
 WALLET_ADDRESS=$(palomad keys show $WALLET -a)
-palomad genesis add-account $WALLET_ADDRESS 10000000ugrain
+palomad add-genesis-account $WALLET_ADDRESS 10000000ugrain
 ```
 
 ## Generate gentx
 ```
-palomad genesis gentx $WALLET 10000000ugrain \
+palomad gentx $WALLET 9000000ugrain \
 --chain-id $CHAIN_ID \
 --moniker=$NODENAME \
 --commission-max-change-rate=0.01 \
 --commission-max-rate=1.0 \
 --commission-rate=0.05 \
---identity="" \
---website="" \
---details="" \
+--identity=1C5ACD2EEF363C3A \
+--website="http://kjnodes.com" \
+--details="Providing professional staking services with high performance and availability" \
 --min-self-delegation=1
 ```
 
