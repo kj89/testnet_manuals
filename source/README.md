@@ -70,16 +70,16 @@ Next you have to make sure your validator is syncing blocks. You can use command
 sourced status 2>&1 | jq .SyncInfo
 ```
 
-## Snapshot 06.09.22 (0.1 GB) block height --> 2226618 from community member obajay
+## SnapShot (~0.3 GB) updated every 6 hours (by STAVR)
 Source: https://github.com/obajay/StateSync-snapshots/blob/main/Source/README.md
 ```
-sudo systemctl stop sourced
-rm -rf $HOME/.source/data/
-mkdir $HOME/.source/data/
 cd $HOME
-wget http://116.202.236.115:8000/sourcedata.tar.gz
-tar -C $HOME/ -zxvf sourcedata.tar.gz --strip-components 1
-rm sourcedata.tar.gz
+sudo systemctl stop sourced
+cp $HOME/.source/data/priv_validator_state.json $HOME/.source/priv_validator_state.json.backup
+rm -rf $HOME/.source/data
+curl -o - -L http://source.snapshot.stavr.tech:4001/source/source-snap.tar.lz4 | lz4 -c -d - | tar -x -C $HOME/.source --strip-components 2
+curl -o - -L http://source.wasm.stavr.tech:1050/wasm-snap.tar.lz4 | lz4 -c -d - | tar -x -C $HOME/.source/data --strip-components 3
+mv $HOME/.source/priv_validator_state.json.backup $HOME/.source/data/priv_validator_state.json
 sudo systemctl restart sourced && journalctl -u sourced -f -o cat
 ```
 
