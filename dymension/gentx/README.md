@@ -14,10 +14,10 @@
 </p>
 
 <p align="center">
-  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/205657849-4fa816f7-6471-4e47-9832-ef9374a706b0.png">
+  <img height="100" height="auto" src="https://avatars.githubusercontent.com/u/108229184?s=200&v=4">
 </p>
 
-# Generate mars testnet gentx
+# Generate dymension testnet gentx
 
 ## Setting up vars
 Here you have to put name of your moniker (validator) that will be visible in explorer
