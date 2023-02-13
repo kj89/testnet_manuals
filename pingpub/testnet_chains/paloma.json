@@ -1,0 +1,15 @@
+{
+    "chain_name": "PALOMA",
+    "api": ["https://paloma.api.kjnodes.com"],
+    "rpc": ["https://paloma.rpc.kjnodes.com"],
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "paloma",
+    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/paloma.png",
+    "assets": [{
+        "base": "ugrain",
+        "symbol": "GRAIN",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/paloma.png"
+    }]
+}
