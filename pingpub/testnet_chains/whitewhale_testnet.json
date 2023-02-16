@@ -1,0 +1,15 @@
+{
+    "chain_name": "WHITEWHALE-TESTNET",
+    "api": ["https://whitewhale-testnet.api.kjnodes.com"],
+    "rpc": ["https://whitewhale-testnet.rpc.kjnodes.com"],
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "migaloo",
+    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/whitewhale.png",
+    "assets": [{
+        "base": "uwhale",
+        "symbol": "WHALE",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/whitewhale.png"
+    }]
+}
