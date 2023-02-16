@@ -18,55 +18,27 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/192942503-d3df529e-1ca8-465e-a110-5d4a0c4f438e.png">
 </p>
 
-# Chain upgrade to v0.2.0
-> **Note** **Block Countdown can be found [here](https://explorer.kjnodes.com/terp-test/gov/2)**
+# Chain upgrade to v0.4.0
+> **Note** **Block Countdown can be found [here](https://explorer.kjnodes.com/terp/gov/39)**
 
 ## (OPTION 1) Manual upgrade
 Once the chain reaches the upgrade height, you will encounter the following panic error message:\
-`ERR UPGRADE "xxx" NEEDED at height: 1497396`
+`ERR UPGRADE "xxx" NEEDED at height: 782686`
 ```
 sudo systemctl stop terpd
 cd $HOME && rm -rf terp-core
 git clone https://github.com/terpnetwork/terp-core.git
 cd terp-core
-git checkout v0.2.0
+git checkout v0.4.0
 make install
+sudo systemctl restart terpd && journalctl -fu terpd -o cat
 ```
 
-Check version, should return 0.2.0
-```
-terpd version
-```
+!!! DO NOT UPGRADE BEFORE CHAIN RECHES THE BLOCK `782686`!!!
 
-Wait for new genesis file with updated structure beeing deployed by the Terp team
+### (OPTION 2) Automatic upgrade
+As an alternative we have prepared script that should update your binary when block height is reached
+Run this in a `screen` so it will not get stopped when session disconnected 😉
 ```
-curl -s  https://raw.githubusercontent.com/terpnetwork/test-net/master/athena-2/0.2.0/genesis.json > ~/.terp/config/genesis.json
+wget -O upgrade.sh https://raw.githubusercontent.com/kj89/testnet_manuals/main/terp/upgrade/782686/upgrade.sh && chmod +x upgrade.sh && ./upgrade.sh
 ```
-
-Mark the upgrade as done upon hitting the planned upgrade height
-```
-sudo tee /etc/systemd/system/terpd.service > /dev/null <<EOF
-[Unit]
-Description=terp
-After=network-online.target
-
-[Service]
-User=$USER
-ExecStart=$(which terpd) start --home $HOME/.terp --unsafe-skip-upgrades 1497396
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=65535
-
-[Install]
-WantedBy=multi-user.target
-EOF
-sudo systemctl daemon-reload
-```
-
-Start the service
-```
-sudo systemctl start terpd && journalctl -fu terpd -o cat
-```
-
-> **Warning**
-> !!! DO NOT UPGRADE BEFORE CHAIN RECHES THE BLOCK `1497396`!!!
