@@ -24,7 +24,7 @@ Official documentation:
 >- [Validator setup instructions](https://docs.okp4.network/docs/nodes/run-node)
 
 Explorer:
->-  https://explorer.kjnodes.com/okp4
+>-  https://explorer.kjnodes.com/okp4-testnet
 
 ## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for okp4 validator](https://github.com/kj89/testnet_manuals/blob/main/okp4/monitoring/README.md)
