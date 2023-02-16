@@ -19,7 +19,7 @@
 </p>
 
 # Chain upgrade to v0.4.0
-> **Note** **Block Countdown can be found [here](https://explorer.kjnodes.com/terp/gov/39)**
+> **Note** **Block Countdown can be found [here](https://explorer.kjnodes.com/terp-testnet/gov/39)**
 
 ## (OPTION 1) Manual upgrade
 Once the chain reaches the upgrade height, you will encounter the following panic error message:\
