@@ -10,6 +10,7 @@
         "base": "uwhale",
         "symbol": "WHALE",
         "exponent": 6,
+		"coingecko_id": "white-whale",
         "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/whitewhale.png"
     }]
 }
