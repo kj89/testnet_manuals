@@ -5,12 +5,12 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "rebus",
-    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/rebus.png",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/rebus.png",
     "assets": [{
         "base": "arebus",
         "symbol": "REBUS",
         "exponent": 18,
 		"coingecko_id": "rebus",
-        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/rebus.png"
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/rebus.png"
     }]
 }

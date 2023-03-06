@@ -5,12 +5,12 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "cosmos",
-    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/cosmoshub.png",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/cosmoshub.png",
     "assets": [{
         "base": "uatom",
         "symbol": "ATOM",
         "exponent": 6,
 		"coingecko_id": "cosmos",
-        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/cosmoshub.png"
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/cosmoshub.png"
     }]
 }

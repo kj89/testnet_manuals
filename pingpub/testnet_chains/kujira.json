@@ -5,12 +5,12 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "kujira",
-    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/kujira.png",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/kujira.png",
     "assets": [{
         "base": "ukuji",
         "symbol": "KUJI",
         "exponent": 6,
 		"coingecko_id": "kujira",
-        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/kujira.png"
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/kujira.png"
     }]
 }

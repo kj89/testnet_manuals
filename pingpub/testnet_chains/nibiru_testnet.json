@@ -5,11 +5,11 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "nibi",
-    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/nibiru.png",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/nibiru.png",
     "assets": [{
         "base": "unibi",
         "symbol": "NIBI",
         "exponent": 6,
-        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/nibiru.png"
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/nibiru.png"
     }]
 }

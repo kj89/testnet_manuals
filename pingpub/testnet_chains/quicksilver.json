@@ -5,12 +5,12 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "quick",
-    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/quicksilver.png",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/quicksilver.png",
     "assets": [{
         "base": "uqck",
         "symbol": "QCK",
         "exponent": 6,
         "coingecko_id": "quicksilver",
-        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/quicksilver.png"
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/quicksilver.png"
     }]
 }

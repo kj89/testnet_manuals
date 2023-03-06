@@ -5,11 +5,11 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "ollo",
-    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/ollo.png",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/ollo.png",
     "assets": [{
         "base": "utollo",
         "symbol": "TOLLO",
         "exponent": 6,
-        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/ollo.png"
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/ollo.png"
     }]
 }

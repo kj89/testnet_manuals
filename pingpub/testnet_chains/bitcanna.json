@@ -5,12 +5,12 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "bcna",
-    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/bitcanna.png",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/bitcanna.png",
     "assets": [{
         "base": "ubcna",
         "symbol": "BCNA",
         "exponent": 6,
 		"coingecko_id": "bitcanna",
-        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/bitcanna.png"
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/bitcanna.png"
     }]
 }

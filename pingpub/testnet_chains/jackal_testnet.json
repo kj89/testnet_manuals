@@ -5,11 +5,11 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "jkl",
-    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/jackal.png",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/jackal.png",
     "assets": [{
         "base": "ujkl",
         "symbol": "JKL",
         "exponent": 6,
-        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/jackal.png"
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/jackal.png"
     }]
 }

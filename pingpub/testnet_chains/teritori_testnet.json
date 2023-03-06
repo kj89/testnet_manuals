@@ -5,11 +5,11 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "tori",
-    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/teritori.png",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/teritori.png",
     "assets": [{
         "base": "utori",
         "symbol": "TORI",
         "exponent": 6,
-        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/teritori.png"
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/teritori.png"
     }]
 }

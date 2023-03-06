@@ -5,12 +5,12 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "agoric",
-    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/agoric.png",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/agoric.png",
     "assets": [{
         "base": "ubld",
         "symbol": "BLD",
         "exponent": 6,
 		"coingecko_id": "agoric",
-        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/agoric.png"
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/agoric.png"
     }]
 }

@@ -5,11 +5,11 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "haqq",
-    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/haqq.png",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/haqq.png",
     "assets": [{
         "base": "aISLM",
         "symbol": "ISLM",
         "exponent": 18,
-        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/haqq.png"
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/haqq.png"
     }]
 }

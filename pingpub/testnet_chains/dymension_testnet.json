@@ -5,11 +5,11 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "dym",
-    "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/dymension.png",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/dymension.png",
     "assets": [{
         "base": "udym",
         "symbol": "DYM",
         "exponent": 6,
-        "logo": "https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/dymension.png"
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/dymension.png"
     }]
 }
