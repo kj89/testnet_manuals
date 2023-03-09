@@ -1,0 +1,15 @@
+{
+    "chain_name": "OJO-TESTNET",
+    "api": ["https://ojo-testnet.api.kjnodes.com"],
+    "rpc": ["https://ojo-testnet.rpc.kjnodes.com"],
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "ojo",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/ojo.png",
+    "assets": [{
+        "base": "uojo",
+        "symbol": "OJO",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/ojo.png"
+    }]
+}
