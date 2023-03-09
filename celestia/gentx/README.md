@@ -75,7 +75,7 @@ celestia-appd keys add wallet --recover
 ## Add genesis account
 ```
 WALLET_ADDRESS=$(celestia-appd keys show wallet -a)
-celestia-appd add-genesis-account $WALLET_ADDRESS 5000001000000utia
+celestia-appd add-genesis-account $WALLET_ADDRESS 5000000000000utia
 ```
 
 ## Generate gentx
