@@ -17,7 +17,7 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/170463282-576375f8-fa1e-4fce-8350-6312b415b50d.png">
 </p>
 
-# Generate Celestia itn gentx
+# Generate Celestia ITN gentx
 
 ## Setting up vars
 Set up your Moniker (validator name) and EVM address
