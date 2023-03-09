@@ -20,7 +20,7 @@
 # Generate Celestia itn gentx
 
 ## Setting up vars
-Here you have to put name of your moniker (validator) that will be visible in explorer
+Set up your Moniker (validator name) and EVM address
 ```
 NODENAME=<YOUR_MONIKER_NAME_GOES_HERE>
 EVM_ADDRESS=<YOUR_ETH_ADDRESS_GOES_HERE>
