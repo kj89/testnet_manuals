@@ -82,9 +82,9 @@ aurad add-genesis-account $WALLET_ADDRESS 100000000uaura
 aurad gentx wallet 100000000uaura  \
 --chain-id xstaxy-1 \
 --moniker=$NODENAME \
---identity=1C5ACD2EEF363C3A \
---website="http://kjnodes.com" \
---details="Trusted and reliable Proof-of-Stake validator across Cosmos universe." \
+--identity="" \
+--website="" \
+--details="" \
 --commission-max-change-rate=0.01 \
 --commission-max-rate=1.0 \
 --commission-rate=0.05 \
