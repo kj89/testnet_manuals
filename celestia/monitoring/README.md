@@ -4,21 +4,11 @@
 <a href="https://kjnodes.com/" target="_blank">Visit our website <img src="https://user-images.githubusercontent.com/50621007/168689709-7e537ca6-b6b8-4adc-9bd0-186ea4ea4aed.png" width="30"/></a>
 </p>
 
-<p style="font-size:14px" align="right">
-<a href="https://hetzner.cloud/?ref=y8pQKS2nNy7i" target="_blank">Deploy your VPS using our referral link to get 20€ bonus <img src="https://user-images.githubusercontent.com/50621007/174612278-11716b2a-d662-487e-8085-3686278dd869.png" width="30"/></a>
-</p>
-<p style="font-size:14px" align="right">
-<a href="https://m.do.co/c/17b61545ca3a" target="_blank">Deploy your VPS using our referral link to get 100$ free bonus for 60 days <img src="https://user-images.githubusercontent.com/50621007/183284313-adf81164-6db4-4284-9ea0-bcb841936350.png" width="30"/></a>
-</p>
-<p style="font-size:14px" align="right">
-<a href="https://www.vultr.com/?ref=7418642" target="_blank">Deploy your VPS using our referral link to get 100$ free bonus <img src="https://user-images.githubusercontent.com/50621007/183284971-86057dc2-2009-4d40-a1d4-f0901637033a.png" width="30"/></a>
-</p>
-
 <p align="center">
-  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/170463282-576375f8-fa1e-4fce-8350-6312b415b50d.png">
+  <img height="100" height="auto" src="https://raw.githubusercontent.com/kj89/testnet_manuals/main/pingpub/logos/celestia.png">
 </p>
 
-# Set up monitoring and alerting for celestia validator
+# Set up monitoring dashboard and alerting for Celestia validator
 
 ## Prerequisites
 
@@ -31,9 +21,9 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 | KEY |VALUE |
 |---------------|-------------|
 | **bond_denom** | Denominated token name, for example, `utia` for celestia testnet. You can find it in genesis file |
-| **bench_prefix** | Prefix for chain addresses, for example, `tori` for celestia testnet. You can find it in public addresses like this **tori**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
-| **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file. Default value for celestia is `19657` |
-| **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file. Default value for celestia is `19090` |
+| **bench_prefix** | Prefix for chain addresses, for example, `celestia` for celestia testnet. You can find it in public addresses like this **celestia**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file. Default value for celestia is `20657` |
+| **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file. Default value for celestia is `20090` |
 
 make sure following ports are open:
 - `9100` (node-exporter)
@@ -44,7 +34,7 @@ prometheus metrics should be `enabled` and port `26660` should be available on v
 To enable prometheus you have to run command below and after that please restart service to apply changes
 ```
 # enable prometheus
-sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.celestia-app/config/config.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.celestiad/config/config.toml
 ```
 
 ## Deployment
@@ -82,12 +72,12 @@ source $HOME/.bash_profile
 ```
 
 ### Add validator into _prometheus_ configuration file
-To add validator use command with specified `VALIDATOR_IP`, `CELESTIA_VALOPER_ADDRESS`, `CELESTIA_WALLET_ADDRESS` and `PROJECT_NAME`
+To add validator use command with specified `VALIDATOR_IP`, `PROM_PORT`, `CELESTIA_VALOPER_ADDRESS`, `CELESTIA_WALLET_ADDRESS` and `PROJECT_NAME`
 ```
-$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP CELESTIA_VALOPER_ADDRESS CELESTIA_WALLET_ADDRESS PROJECT_NAME
+$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP PROM_PORT CELESTIA_VALOPER_ADDRESS CELESTIA_WALLET_ADDRESS PROJECT_NAME
 ```
 
-> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 torivaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete tori1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc celestia```
+> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 20660 celestiavaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete celestia1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc celestia```
 
 To add more validators just run command above with validator values
 
