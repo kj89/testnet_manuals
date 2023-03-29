@@ -34,7 +34,7 @@ echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export NOIS_CHAIN_ID=nois-testnet-003" >> $HOME/.bash_profile
+echo "export NOIS_CHAIN_ID=nois-testnet-004" >> $HOME/.bash_profile
 echo "export NOIS_PORT=${NOIS_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -66,9 +66,9 @@ fi
 ## Download and build binaries
 ```
 cd $HOME
-git clone https://github.com/noislabs/full-node.git 
-cd full-node/full-node/
-./build.sh
+git clone https://github.com/noislabs/noisd.git
+cd noisd
+make build
 mv out/noisd $HOME/go/bin/
 ```
 
@@ -86,13 +86,13 @@ noisd init $NODENAME --chain-id $NOIS_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -qO $HOME/.noisd/config/genesis.json "https://raw.githubusercontent.com/noislabs/testnets/main/nois-testnet-003/genesis.json"
+wget -qO $HOME/.noisd/config/genesis.json "https://raw.githubusercontent.com/noislabs/networks/nois-testnet-004.final.2/nois-testnet-004/genesis.json"
 ```
 
 ## Set seeds and peers
 ```
-SEEDS=""
-PEERS="bf5bbdf9ac1ccd72d7b29c3fbcc7e99ff89fd053@node-0.noislabs.com:26656"
+SEEDS="ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:17356,babc3f3f7804933265ec9c40ad94f4da8e9e0017@testnet-seed.rhinostake.com:17356"
+PEERS=""
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.noisd/config/config.toml
 ```
 

@@ -22,7 +22,7 @@ NOIS_PORT=30
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export NOIS_CHAIN_ID=nois-testnet-003" >> $HOME/.bash_profile
+echo "export NOIS_CHAIN_ID=nois-testnet-004" >> $HOME/.bash_profile
 echo "export NOIS_PORT=${NOIS_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
@@ -57,7 +57,7 @@ fi
 echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 # download binary
 cd $HOME
-git clone https://github.com/noislabs/full-node.git 
+git clone https://github.com/noislabs/noisd.git
 cd full-node/full-node/
 ./build.sh
 mv out/noisd $HOME/go/bin/
@@ -71,7 +71,7 @@ noisd config node tcp://localhost:${NOIS_PORT}657
 noisd init $NODENAME --chain-id $NOIS_CHAIN_ID
 
 # download genesis and addrbook
-wget -qO $HOME/.noisd/config/genesis.json "https://raw.githubusercontent.com/noislabs/testnets/main/nois-testnet-003/genesis.json"
+wget -qO $HOME/.noisd/config/genesis.json "https://raw.githubusercontent.com/noislabs/networks/nois-testnet-004.final.2/nois-testnet-004/genesis.json"
 
 # set peers and seeds
 SEEDS=""

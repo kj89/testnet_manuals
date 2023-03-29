@@ -1,0 +1,15 @@
+{
+    "chain_name": "NOIS",
+    "api": ["https://nois.api.kjnodes.com"],
+    "rpc": ["https://nois.rpc.kjnodes.com"],
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "nois",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/nois.png",
+    "assets": [{
+        "base": "unois",
+        "symbol": "NOIS",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/nois.png"
+    }]
+}

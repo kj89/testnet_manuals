@@ -1,0 +1,15 @@
+{
+    "chain_name": "ALTHEA-TESTNET",
+    "api": ["https://althea-testnet.api.kjnodes.com"],
+    "rpc": ["https://althea-testnet.rpc.kjnodes.com"],
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "althea",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/althea.png",
+    "assets": [{
+        "base": "ualthea",
+        "symbol": "ALTHEA",
+        "exponent": 18,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/althea.png"
+    }]
+}
