@@ -56,9 +56,6 @@ server {
                 add_header Access-Control-Allow-Headers * always;
                 add_header Access-Control-Max-Age 3600;
                 add_header Access-Control-Expose-Headers Content-Length;
-                proxy_pass http://127.0.0.1:33317;
-        }
-
                 proxy_pass http://127.0.0.1:${API_PORT};
         }
 }
