@@ -138,7 +138,7 @@ sudo systemctl stop node_exporter
 ```
 2. You will see message from bot firing
 
-![image](https://user-images.githubusercontent.com/50621007/161050843-889edc5e-4e27-4778-9010-b9e9e861cc74.png)
+![image](https://user-images.githubusercontent.com/50621007/229495464-fd2040d5-e7f3-4d46-8f73-1bcb26b6964c.png)
 
 3. Now you can start `node-exporter` service back
 ```
@@ -156,15 +156,15 @@ Grafana dashboard is devided into 4 sections:
 
 - **Chain health** - summary of chain health stats and list of top validators missing blocks
 
-![image](https://user-images.githubusercontent.com/50621007/160629937-52253f35-8782-4dd2-80cc-ad31d0231a84.png)
+![image](https://user-images.githubusercontent.com/50621007/229495511-a8970929-ff0d-4071-834a-35a647845d9e.png)
 
 - **Validator stats** - information about validator such as rank, bounded tokens, comission, delegations and rewards
 
-![image](https://user-images.githubusercontent.com/50621007/160630119-0abad099-b138-4f61-9e73-49506c2295ff.png)
+![image](https://user-images.githubusercontent.com/50621007/229495618-0b1add77-aa3d-4604-a67f-c79b851a3e51.png)
 
 - **Hardware health** - system hardware metrics. cpu, ram, network usage
 
-![image](https://user-images.githubusercontent.com/50621007/160630213-5e92b3ce-92c9-4f48-8856-383ca884b621.png)
+![image](https://user-images.githubusercontent.com/50621007/229495703-5ae63a7c-a854-4709-b7e1-4ef59bab46fd.png)
 
 ## Cleanup all container data
 ```
