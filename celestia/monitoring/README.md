@@ -138,7 +138,7 @@ sudo systemctl stop node_exporter
 ```
 2. You will see message from bot firing
 
-![image](https://user-images.githubusercontent.com/50621007/229495464-fd2040d5-e7f3-4d46-8f73-1bcb26b6964c.png)
+![image](https://user-images.githubusercontent.com/50621007/161050843-889edc5e-4e27-4778-9010-b9e9e861cc74.png)
 
 3. Now you can start `node-exporter` service back
 ```
@@ -152,7 +152,7 @@ sudo systemctl start node_exporter
 Grafana dashboard is devided into 4 sections:
 - **Validator health** - main stats for validator health. connected peers and missed blocks
 
-![image](https://user-images.githubusercontent.com/50621007/160629676-bc3c4f0f-66df-4a5f-9844-dca308072e7a.png)
+![image](https://user-images.githubusercontent.com/50621007/229495464-fd2040d5-e7f3-4d46-8f73-1bcb26b6964c.png)
 
 - **Chain health** - summary of chain health stats and list of top validators missing blocks
 
