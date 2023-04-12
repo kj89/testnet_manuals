@@ -281,7 +281,7 @@ ag0 tx staking edit-validator \
 --moniker=$NODENAME \
 --identity=1C5ACD2EEF363C3A \
 --website="http://kjnodes.com" \
---details="Providing professional staking services with high performance and availability. Find me at Discord: kjnodes#8455 and Telegram: @kjnodes" \
+--details="Trusted and reliable Proof-of-Stake validator across Cosmos universe" \
 --chain-id=$AGORIC_CHAIN_ID \
 --from=$WALLET
 ```
