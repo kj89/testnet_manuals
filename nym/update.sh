@@ -4,7 +4,7 @@ wallet=$(nym-mixnode node-details --id $node_id | grep "wallet address:" | awk '
 sleep 1
 echo "You are running mixnode version" $version "with id" $node_id
 sleep 1
-echo "Downloading new binaries (v1.1.6)"
+echo "Downloading new binaries (v1.1.18)"
 sudo wget -O $(which nym-mixnode) https://github.com/nymtech/nym/releases/download/nym-binaries-v1.1.4/nym-mixnode
 version=$(nym-mixnode --version | grep "Build Version" | awk '{print $3}')
 echo "Current mixnode version:" $version
