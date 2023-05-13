@@ -1,0 +1,15 @@
+{
+    "chain_name": "CASCADIA-TESTNET",
+    "api": ["https://cascadia-testnet.api.kjnodes.com"],
+    "rpc": ["https://cascadia-testnet.rpc.kjnodes.com"],
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "cascadia",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/cascadia.png",
+    "assets": [{
+        "base": "aCC",
+        "symbol": "CC",
+        "exponent": 18,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/cascadia.png"
+    }]
+}

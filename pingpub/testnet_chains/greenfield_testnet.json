@@ -1,0 +1,15 @@
+{
+    "chain_name": "GREENFIELD-TESTNET",
+    "api": ["https://greenfield-testnet.api.kjnodes.com"],
+    "rpc": ["https://greenfield-testnet.rpc.kjnodes.com"],
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "0x",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/greenfield.png",
+    "assets": [{
+        "base": "BNB",
+        "symbol": "BNB",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/greenfield.png"
+    }]
+}

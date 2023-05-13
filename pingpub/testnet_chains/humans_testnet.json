@@ -1,0 +1,15 @@
+{
+    "chain_name": "HUMANS-TESTNET",
+    "api": ["https://humans-testnet.api.kjnodes.com"],
+    "rpc": ["https://humans-testnet.rpc.kjnodes.com"],
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "human",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/humans.png",
+    "assets": [{
+        "base": "aheart",
+        "symbol": "HEART",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/humans.png"
+    }]
+}

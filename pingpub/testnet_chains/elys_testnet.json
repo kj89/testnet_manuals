@@ -1,0 +1,15 @@
+{
+    "chain_name": "ELYS-TESTNET",
+    "api": ["https://elys-testnet.api.kjnodes.com"],
+    "rpc": ["https://elys-testnet.rpc.kjnodes.com"],
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "elys",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/elys.png",
+    "assets": [{
+        "base": "uelys",
+        "symbol": "ELYS",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/elys.png"
+    }]
+}

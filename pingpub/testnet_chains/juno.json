@@ -1,0 +1,15 @@
+{
+    "chain_name": "JUNO",
+    "api": ["https://juno.api.kjnodes.com"],
+    "rpc": ["https://juno.rpc.kjnodes.com"],
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "juno",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/juno.png",
+    "assets": [{
+        "base": "ujuno",
+        "symbol": "JUNO",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/juno.png"
+    }]
+}

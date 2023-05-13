@@ -1,0 +1,15 @@
+{
+    "chain_name": "COMPOSABLE-TESTNET",
+    "api": ["https://composable-testnet.api.kjnodes.com"],
+    "rpc": ["https://composable-testnet.rpc.kjnodes.com"],
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "banksy",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/composable.png",
+    "assets": [{
+        "base": "ubanksy",
+        "symbol": "BANKSY",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/composable.png"
+    }]
+}

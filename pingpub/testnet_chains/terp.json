@@ -1,0 +1,15 @@
+{
+    "chain_name": "TERP",
+    "api": ["https://terp.api.kjnodes.com"],
+    "rpc": ["https://terp.rpc.kjnodes.com"],
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "terp",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/terp.png",
+    "assets": [{
+        "base": "uthiol",
+        "symbol": "THIOL",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/terp.png"
+    }]
+}

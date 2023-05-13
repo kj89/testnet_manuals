@@ -34,7 +34,7 @@ echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export TERP_CHAIN_ID=athena-2" >> $HOME/.bash_profile
+echo "export TERP_CHAIN_ID=morocco-1" >> $HOME/.bash_profile
 echo "export TERP_PORT=${TERP_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -52,7 +52,7 @@ sudo apt install curl build-essential git wget jq make gcc tmux chrony -y
 ## Install go
 ```
 if ! [ -x "$(command -v go)" ]; then
-  ver="1.18.2"
+  ver="1.20.3"
   cd $HOME
   wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
   sudo rm -rf /usr/local/go
@@ -68,7 +68,7 @@ fi
 cd $HOME && rm -rf terp-core
 git clone https://github.com/terpnetwork/terp-core.git
 cd terp-core
-git checkout v0.1.2
+git checkout v1.0.0
 make install
 ```
 
@@ -86,13 +86,13 @@ terpd init $NODENAME --chain-id $TERP_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-wget -qO $HOME/.terp/config/genesis.json "https://raw.githubusercontent.com/terpnetwork/test-net/master/athena-2/genesis.json"
+wget -qO $HOME/.terp/config/genesis.json "https://raw.githubusercontent.com/terpnetwork/mainnet/main/morocco-1/genesis.json"
 ```
 
 ## Set seeds and peers
 ```
-SEEDS=""
-PEERS="a35d972b7fdb964e922c4df42befdb0fa8ae2679@185.214.134.154:36656,08a0f07da691a2d18d26e35eaa22ec784d1440cd@194.163.164.52:56656,84d770b9c4d10c734fd9ec5753ab19d4693ecbcd@116.202.236.115:21316,2f0f98eb3965cc9949073b1f0e75a5e55be44ed2@65.109.28.177:21856"
+SEEDS="c71e63b5da517984d55d36d00dc0dc2413d0ce03@seed.terp.network:26656"
+PEERS=""
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.terp/config/config.toml
 ```
 
@@ -116,7 +116,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 
 ## Set minimum gas price and timeout commit
 ```
-sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0uterpx\"/" $HOME/.terp/config/app.toml
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0thiol\"/" $HOME/.terp/config/app.toml
 ```
 
 ## Enable prometheus

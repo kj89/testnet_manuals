@@ -1,7 +1,7 @@
 {
     "chain_name": "GRAVITYBRIDGE",
-    "api": ["https://gravitybridge.api.kjnodes.com"],
-    "rpc": ["https://gravitybridge.rpc.kjnodes.com"],
+    "api": ["https://gravitychain.io:1317"],
+    "rpc": ["https://gravitychain.io:26657"],
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "gravity",
