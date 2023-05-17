@@ -9,7 +9,7 @@
     "assets": [{
         "base": "aheart",
         "symbol": "HEART",
-        "exponent": 6,
+        "exponent": 18,
         "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/humans.png"
     }]
 }
