@@ -60,7 +60,7 @@ nolusd keys add wallet --recover
 ## Add genesis account
 ```
 WALLET_ADDRESS=$(nolusd keys show wallet -a)
-nolusd add-genesis-account wallet 10000000unls
+nolusd add-genesis-account $WALLET_ADDRESS 10000000unls
 ```
 
 ## Generate gentx
