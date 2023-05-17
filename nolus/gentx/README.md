@@ -41,7 +41,7 @@ nolusd config keyring-backend os
 ```
 
 ## Init node
-Replace <YOUR_MONIKER> with your validator name
+Replace `<YOUR_MONIKER>` with your validator name
 ```
 nolusd init <YOUR_MONIKER> --chain-id pirin-1
 ```
@@ -64,7 +64,7 @@ nolusd add-genesis-account wallet 10000000unls
 ```
 
 ## Generate gentx
-Replace <YOUR_MONIKER> with your validator name and fill up the rest validator details like <YOUR_KEYBASE_ID>, <YOUR_WEBSITE>, <YOUR_VALIDATOR_DETAILS>, <YOUR_CONTACT_EMAIL>
+Replace `<YOUR_MONIKER>` with your validator name and fill up the rest validator details.
 ```
 nolusd gentx wallet 1000000unls \
 --chain-id pirin-1 \
