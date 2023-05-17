@@ -21,7 +21,7 @@ eval $(echo 'export PATH=$PATH:/usr/local/go/bin' | sudo tee /etc/profile.d/gola
 eval $(echo 'export PATH=$PATH:$HOME/go/bin' | tee -a $HOME/.profile)
 ```
 
-## Download and build binaries
+## Download and install binaries
 ```
 # Clone project repository
 cd $HOME
