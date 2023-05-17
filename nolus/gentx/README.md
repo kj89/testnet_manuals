@@ -30,7 +30,7 @@ git clone https://github.com/Nolus-Protocol/nolus-core.git
 cd nolus-core
 git checkout v0.3.0
 
-# Build binaries
+# Install binaries
 make install
 ```
 
