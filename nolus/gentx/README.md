@@ -77,7 +77,7 @@ nolusd add-genesis-account wallet 10000000unls
 ```
 
 ## Generate gentx
-Replace <YOUR_MONIKER> with your validator name
+Replace <YOUR_MONIKER> with your validator name and fill up the rest validator details like <YOUR_KEYBASE_ID>, <YOUR_WEBSITE>, <YOUR_VALIDATOR_DETAILS>, <YOUR_CONTACT_EMAIL>
 ```
 nolusd gentx wallet 1000000unls \
 --chain-id pirin-1 \
@@ -87,7 +87,7 @@ nolusd gentx wallet 1000000unls \
 --commission-rate=0.05 \
 --identity="<YOUR_KEYBASE_ID>" \
 --website="<YOUR_WEBSITE>" \
---details="<YOUR_DETAILS>" \
+--details="<YOUR_VALIDATOR_DETAILS>" \
 --security-contact="<YOUR_CONTACT_EMAIL>" \
 --min-self-delegation=1
 ```
