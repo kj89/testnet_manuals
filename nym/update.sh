@@ -1,9 +1,10 @@
 node_id=$(systemctl cat nym-mixnode | grep id | awk '{print $4}' | sed 's/.$//' | sed 's/^.//')
-version=$(nym-mixnode --version | grep "version" | awk '{print $4}' | sed 's/.$//')
+version=$(nym-mixnode --version | grep "Build Version" | awk '{print $3}')
 wallet=$(nym-mixnode node-details --id $node_id | grep "wallet address:" | awk '{print $7}')
 sleep 1
 echo "You are running mixnode version" $version "with id" $node_id
 sleep 1
+sudo systemctl stop nym-mixnode
 echo "Downloading new binaries (v1.1.18)"
 sudo wget -O $(which nym-mixnode) https://github.com/nymtech/nym/releases/download/nym-binaries-v1.1.18/nym-mixnode
 version=$(nym-mixnode --version | grep "Build Version" | awk '{print $3}')
