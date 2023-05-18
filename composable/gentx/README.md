@@ -4,7 +4,7 @@
   <img height="100" height="auto" src="https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/composable.png">
 </p>
 
-# Generate Composable Finance testnet gentx
+# Generate gentx for Composable Finance banksy-testnet-2
 
 ## Update system and install build tools
 ```
