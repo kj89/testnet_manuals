@@ -2,6 +2,7 @@
     "chain_name": "STARGAZE",
     "api": ["https://stargaze.api.kjnodes.com"],
     "rpc": ["https://stargaze.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.14",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "stars",

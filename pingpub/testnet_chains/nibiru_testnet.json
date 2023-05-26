@@ -2,6 +2,7 @@
     "chain_name": "NIBIRU-TESTNET",
     "api": ["https://nibiru-testnet.api.kjnodes.com"],
     "rpc": ["https://nibiru-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.12",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "nibi",

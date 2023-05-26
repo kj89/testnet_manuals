@@ -2,6 +2,7 @@
     "chain_name": "QUASAR",
     "api": ["https://quasar.api.kjnodes.com"],
     "rpc": ["https://quasar.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.14",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "quasar",

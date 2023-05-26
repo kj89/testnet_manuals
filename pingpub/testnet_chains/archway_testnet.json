@@ -2,6 +2,7 @@
     "chain_name": "ARCHWAY-TESTNET",
     "api": ["https://archway-testnet.api.kjnodes.com"],
     "rpc": ["https://archway-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.14",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "archway",

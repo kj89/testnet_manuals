@@ -2,6 +2,7 @@
     "chain_name": "TERITORI-TESTNET",
     "api": ["https://teritori-testnet.api.kjnodes.com"],
     "rpc": ["https://teritori-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.9",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "tori",

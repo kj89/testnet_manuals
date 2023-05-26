@@ -2,6 +2,7 @@
     "chain_name": "CARDCHAIN-TESTNET",
     "api": ["https://cardchain-testnet.api.kjnodes.com"],
     "rpc": ["https://cardchain-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.44.5",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "cc",

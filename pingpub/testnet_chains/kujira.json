@@ -2,6 +2,7 @@
     "chain_name": "KUJIRA",
     "api": ["https://kujira.api.kjnodes.com"],
     "rpc": ["https://kujira.rpc.kjnodes.com"],
+	"sdk_version": "v0.46.11",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "kujira",

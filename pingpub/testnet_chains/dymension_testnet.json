@@ -2,6 +2,7 @@
     "chain_name": "DYMENSION-TESTNET",
     "api": ["https://dymension-testnet.api.kjnodes.com"],
     "rpc": ["https://dymension-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.10",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "dym",

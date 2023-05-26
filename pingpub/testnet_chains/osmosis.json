@@ -2,6 +2,7 @@
     "chain_name": "OSMOSIS",
     "api": ["https://osmosis.api.kjnodes.com"],
     "rpc": ["https://osmosis.rpc.kjnodes.com"],
+	"sdk_version": "v0.46.10",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "osmo",

@@ -2,6 +2,7 @@
     "chain_name": "BITCANNA",
     "api": ["https://bitcanna.api.kjnodes.com"],
     "rpc": ["https://bitcanna.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.15",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "bcna",

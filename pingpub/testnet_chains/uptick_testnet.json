@@ -2,6 +2,7 @@
     "chain_name": "UPTICK-TESTNET",
     "api": ["https://uptick-testnet.api.kjnodes.com"],
     "rpc": ["https://uptick-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.46.5",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "uptick",

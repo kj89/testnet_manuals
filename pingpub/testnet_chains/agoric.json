@@ -2,6 +2,7 @@
     "chain_name": "AGORIC",
     "api": ["https://agoric.api.kjnodes.com"],
     "rpc": ["https://agoric.rpc.kjnodes.com"],
+    "sdk_version": "v0.45.11",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "agoric",

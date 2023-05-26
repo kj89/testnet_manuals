@@ -2,6 +2,7 @@
     "chain_name": "OLLO-TESTNET",
     "api": ["https://ollo-testnet.api.kjnodes.com"],
     "rpc": ["https://ollo-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.46.3",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "ollo",

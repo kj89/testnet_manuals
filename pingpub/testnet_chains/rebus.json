@@ -2,6 +2,7 @@
     "chain_name": "REBUS",
     "api": ["https://api.rebuschain.com:1317"],
     "rpc": ["https://api.rebuschain.com:26657"],
+	"sdk_version": "v0.45.10",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "rebus",

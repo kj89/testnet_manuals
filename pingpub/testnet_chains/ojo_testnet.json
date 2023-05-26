@@ -2,6 +2,7 @@
     "chain_name": "OJO-TESTNET",
     "api": ["https://ojo-testnet.api.kjnodes.com"],
     "rpc": ["https://ojo-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.46.7",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "ojo",

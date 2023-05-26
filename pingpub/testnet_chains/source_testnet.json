@@ -2,6 +2,7 @@
     "chain_name": "SOURCE-TESTNET",
     "api": ["https://source-testnet.api.kjnodes.com"],
     "rpc": ["https://source-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.1",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "source",

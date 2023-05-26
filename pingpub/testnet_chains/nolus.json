@@ -1,7 +1,7 @@
 {
-    "chain_name": "NOLUS-TESTNET",
-    "api": ["https://nolus-testnet.api.kjnodes.com"],
-    "rpc": ["https://nolus-testnet.rpc.kjnodes.com"],
+    "chain_name": "NOLUS",
+    "api": ["https://nolus.api.kjnodes.com"],
+    "rpc": ["https://nolus.rpc.kjnodes.com"],
 	"sdk_version": "v0.45.15",
     "coin_type": 118,
     "min_tx_fee": 200,
