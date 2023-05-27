@@ -4,7 +4,7 @@
   <img height="100" height="auto" src="https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/composable.png">
 </p>
 
-# Generate gentx for Composable Finance banksy-testnet-2
+# Generate gentx for Composable Finance banksy-testnet-3
 
 ## Update system and install build tools
 ```
@@ -28,7 +28,7 @@ cd $HOME
 rm -rf composable-testnet
 git clone https://github.com/notional-labs/composable-testnet.git
 cd composable-testnet
-git checkout v2.3.1
+git checkout v2.3.4
 
 # Install binaries
 make install
@@ -36,13 +36,13 @@ make install
 
 ## Config app
 ```
-banksyd config chain-id banksy-testnet-2
+banksyd config chain-id banksy-testnet-3
 ```
 
 ## Init node
 Replace `<YOUR_MONIKER>` with your validator name
 ```
-banksyd init <YOUR_MONIKER> --chain-id banksy-testnet-2
+banksyd init <YOUR_MONIKER> --chain-id banksy-testnet-3
 ```
 
 ## Recover or create new wallet for testnet
@@ -59,19 +59,19 @@ banksyd keys add wallet --recover
 ## Add genesis account
 ```
 WALLET_ADDRESS=$(banksyd keys show wallet -a)
-banksyd add-genesis-account $WALLET_ADDRESS 1000000upica
+banksyd add-genesis-account $WALLET_ADDRESS 10000000000000000ppica
 ```
 
 ## Generate gentx
 Replace `<YOUR_MONIKER>` with your validator name and fill up the rest of validator details like website, keybase id and contack email address.
 ```
-banksyd gentx wallet 1000000upica \
+banksyd gentx wallet 10000000000000000ppica \
 --moniker="<YOUR_MONIKER>" \
 --identity="<YOUR_KEYBASE_ID>" \
 --website="<YOUR_WEBSITE>" \
 --details="<YOUR_VALIDATOR_DETAILS>" \
 --security-contact="<YOUR_CONTACT_EMAIL>" \
---chain-id banksy-testnet-2 \
+--chain-id banksy-testnet-3 \
 --commission-max-change-rate=0.01 \
 --commission-max-rate=0.20 \
 --commission-rate=0.05 \
@@ -85,7 +85,7 @@ banksyd gentx wallet 1000000upica \
 ## Submit PR with Gentx
 1. Copy the contents of ${HOME}/.banksy/config/gentx/gentx-XXXXXXXX.json.
 2. Fork https://github.com/notional-labs/composable-networks
-3. Create a file `gentx-<YOUR_MONIKER>.json` under the `testnet-2/gentxs` folder in the forked repo, paste the copied text into the file.
+3. Create a file `gentx-<YOUR_MONIKER>.json` under the `banksy-testnet-3/gentxs` folder in the forked repo, paste the copied text into the file.
 4. Create a Pull Request to the main branch of the repository
 
 ### Await further instructions!
