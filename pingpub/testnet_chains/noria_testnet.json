@@ -1,0 +1,16 @@
+{
+    "chain_name": "NORIA-TESTNET",
+    "api": ["https://noria-testnet.api.kjnodes.com"],
+    "rpc": ["https://noria-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.47.2",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "noria",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/noria.png",
+    "assets": [{
+        "base": "ucrd",
+        "symbol": "CRD",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/noria.png"
+    }]
+}

@@ -8,9 +8,9 @@
     "addr_prefix": "banksy",
     "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/composable.png",
     "assets": [{
-        "base": "ubanksy",
-        "symbol": "BANKSY",
-        "exponent": 6,
+        "base": "ppica",
+        "symbol": "PICA",
+        "exponent": 18,
         "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/composable.png"
     }]
 }

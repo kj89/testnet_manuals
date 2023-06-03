@@ -1,0 +1,16 @@
+{
+    "chain_name": "ZETA-TESTNET",
+    "api": ["https://zetachain-testnet.api.kjnodes.com"],
+    "rpc": ["https://zetachain-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.46.8",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "zeta",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/zetachain.png",
+    "assets": [{
+        "base": "azeta",
+        "symbol": "ZETA",
+        "exponent": 18,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/zetachain.png"
+    }]
+}

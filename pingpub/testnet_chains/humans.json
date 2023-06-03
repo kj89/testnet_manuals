@@ -1,0 +1,16 @@
+{
+    "chain_name": "HUMANS",
+    "api": ["https://humans.api.kjnodes.com"],
+    "rpc": ["https://humans.rpc.kjnodes.com"],
+	"sdk_version": "v0.46.11",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "human",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/humans.png",
+    "assets": [{
+        "base": "aheart",
+        "symbol": "HEART",
+        "exponent": 18,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/humans.png"
+    }]
+}
