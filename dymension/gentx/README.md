@@ -29,7 +29,7 @@ Save and import variables into system
 ```
 echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 echo "export WALLET=wallet" >> $HOME/.bash_profile
-echo "export CHAIN_ID=35-C" >> $HOME/.bash_profile
+echo "export CHAIN_ID=froopyland_100-1" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -45,7 +45,7 @@ sudo apt-get install make build-essential gcc git jq chrony -y
 
 ## Install go
 ```
-ver="1.18.2"
+ver="1.18.10"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -60,7 +60,7 @@ source ~/.bash_profile
 cd $HOME
 git clone https://github.com/dymensionxyz/dymension.git
 cd dymension
-git checkout v0.2.0-beta
+git checkout v1.0.1-beta
 make install
 ```
 
@@ -89,12 +89,12 @@ dymd keys add $WALLET --recover
 ## Add genesis account
 ```
 WALLET_ADDRESS=$(dymd keys show $WALLET -a)
-dymd add-genesis-account $WALLET_ADDRESS 600000000000udym
+dymd add-genesis-account $WALLET_ADDRESS 6000000000000000000udym
 ```
 
 ## Generate gentx
 ```
-dymd gentx $WALLET 500000000000udym \
+dymd gentx $WALLET 5000000000000000000udym \
 --chain-id $CHAIN_ID \
 --moniker=$NODENAME \
 --commission-max-change-rate=0.01 \
@@ -113,7 +113,7 @@ dymd gentx $WALLET 500000000000udym \
 ## Submit PR with Gentx
 1. Copy the contents of ${HOME}/.dymension/config/gentx/gentx-XXXXXXXX.json.
 2. Fork https://github.com/dymensionXYZ/testnets
-3. Create a file `gentx-<VALIDATOR_NAME>.json` under the `dymension-hub/35-C/gentx` folder in the forked repo, paste the copied text into the file.
+3. Create a file `gentx-<VALIDATOR_NAME>.json` under the `dymension-hub/froopyland_100-1/gentx` folder in the forked repo, paste the copied text into the file.
 4. Create a Pull Request to the main branch of the repository
 
 ### Await further instructions!

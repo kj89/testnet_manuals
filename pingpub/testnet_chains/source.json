@@ -1,0 +1,16 @@
+{
+    "chain_name": "SOURCE",
+    "api": ["https://source.api.kjnodes.com"],
+    "rpc": ["https://source.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.1",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "source",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/source.png",
+    "assets": [{
+        "base": "usource",
+        "symbol": "SOURCE",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/source.png"
+    }]
+}

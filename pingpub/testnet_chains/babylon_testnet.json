@@ -1,0 +1,16 @@
+{
+    "chain_name": "BABYLON-TESTNET",
+    "api": ["https://babylon-testnet.api.kjnodes.com"],
+    "rpc": ["https://babylon-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.47.3",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "bbn",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/babylon.png",
+    "assets": [{
+        "base": "ubbn",
+        "symbol": "BBN",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/babylon.png"
+    }]
+}

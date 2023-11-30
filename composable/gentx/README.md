@@ -4,7 +4,7 @@
   <img height="100" height="auto" src="https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/composable.png">
 </p>
 
-# Generate gentx for Composable Finance banksy-testnet-3
+# Generate gentx for Composable Finance centauri-1
 
 ## Update system and install build tools
 ```
@@ -25,10 +25,10 @@ eval $(echo 'export PATH=$PATH:$HOME/go/bin' | tee -a $HOME/.profile)
 ```
 # Clone project repository
 cd $HOME
-rm -rf composable-testnet
-git clone https://github.com/notional-labs/composable-testnet.git
-cd composable-testnet
-git checkout v2.3.4
+rm -rf composable-centauri
+git clone https://github.com/notional-labs/composable-centauri
+cd composable-centauri 
+git checkout v2.3.5
 
 # Install binaries
 make install
@@ -36,13 +36,13 @@ make install
 
 ## Config app
 ```
-banksyd config chain-id banksy-testnet-3
+banksyd config chain-id centauri-1
 ```
 
 ## Init node
 Replace `<YOUR_MONIKER>` with your validator name
 ```
-banksyd init <YOUR_MONIKER> --chain-id banksy-testnet-3
+banksyd init <YOUR_MONIKER> --chain-id centauri-1
 ```
 
 ## Recover or create new wallet for testnet
@@ -59,19 +59,19 @@ banksyd keys add wallet --recover
 ## Add genesis account
 ```
 WALLET_ADDRESS=$(banksyd keys show wallet -a)
-banksyd add-genesis-account $WALLET_ADDRESS 10000000000000000ppica
+banksyd add-genesis-account $WALLET_ADDRESS 50000000000000ppica
 ```
 
 ## Generate gentx
 Replace `<YOUR_MONIKER>` with your validator name and fill up the rest of validator details like website, keybase id and contack email address.
 ```
-banksyd gentx wallet 10000000000000000ppica \
+banksyd gentx wallet 50000000000000ppica \
 --moniker="<YOUR_MONIKER>" \
 --identity="<YOUR_KEYBASE_ID>" \
 --website="<YOUR_WEBSITE>" \
 --details="<YOUR_VALIDATOR_DETAILS>" \
 --security-contact="<YOUR_CONTACT_EMAIL>" \
---chain-id banksy-testnet-3 \
+--chain-id centauri-1 \
 --commission-max-change-rate=0.01 \
 --commission-max-rate=0.20 \
 --commission-rate=0.05 \
@@ -85,7 +85,7 @@ banksyd gentx wallet 10000000000000000ppica \
 ## Submit PR with Gentx
 1. Copy the contents of ${HOME}/.banksy/config/gentx/gentx-XXXXXXXX.json.
 2. Fork https://github.com/notional-labs/composable-networks
-3. Create a file `gentx-<YOUR_MONIKER>.json` under the `banksy-testnet-3/gentxs` folder in the forked repo, paste the copied text into the file.
+3. Create a file `gentx-<YOUR_MONIKER>.json` under the `mainnet/gentxs` folder in the forked repo, paste the copied text into the file.
 4. Create a Pull Request to the main branch of the repository
 
 ### Await further instructions!

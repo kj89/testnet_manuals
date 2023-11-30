@@ -1,7 +1,7 @@
 {
-    "chain_name": "COMPOSABLE-TESTNET",
-    "api": ["https://composable-testnet.api.kjnodes.com"],
-    "rpc": ["https://composable-testnet.rpc.kjnodes.com"],
+    "chain_name": "COMPOSABLE",
+    "api": ["https://composable.api.kjnodes.com"],
+    "rpc": ["https://composable.rpc.kjnodes.com"],
 	"sdk_version": "v0.47.1",
     "coin_type": 118,
     "min_tx_fee": 200,

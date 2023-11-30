@@ -1,0 +1,17 @@
+{
+    "chain_name": "OSMOSIS-TESTNET",
+    "api": ["https://osmosis-testnet.api.kjnodes.com"],
+    "rpc": ["https://osmosis-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.46.10",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "osmo",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/osmosis.png",
+    "assets": [{
+        "base": "uosmo",
+        "symbol": "OSMO",
+        "exponent": 6,
+		"coingecko_id": "osmosis",
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/osmosis.png"
+    }]
+}

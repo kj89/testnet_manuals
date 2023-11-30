@@ -1,0 +1,17 @@
+{
+    "chain_name": "IRIS",
+    "api": ["https://iris.api.kjnodes.com"],
+    "rpc": ["https://iris.rpc.kjnodes.com"],
+	"sdk_version": "v0.46.9",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "iaa",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/iris.png",
+    "assets": [{
+        "base": "uiris",
+        "symbol": "IRIS",
+        "exponent": 6,
+		"coingecko_id": "iris-network",
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/iris.png"
+    }]
+}

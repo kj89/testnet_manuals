@@ -1,0 +1,16 @@
+{
+    "chain_name": "CELESTIA",
+    "api": ["https://celestia.api.kjnodes.com"],
+    "rpc": ["https://celestia.rpc.kjnodes.com"],
+	"sdk_version": "v0.46.7",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "celestia",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/celestia.png",
+    "assets": [{
+        "base": "utia",
+        "symbol": "TIA",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/celestia.png"
+    }]
+}

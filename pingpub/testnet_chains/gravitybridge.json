@@ -2,6 +2,7 @@
     "chain_name": "GRAVITYBRIDGE",
     "api": ["https://gravitychain.io:1317"],
     "rpc": ["https://gravitychain.io:26657"],
+	"sdk_version": "v0.45.16",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "gravity",

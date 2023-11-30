@@ -1,0 +1,17 @@
+{
+    "chain_name": "BAND-TESTNET",
+    "api": ["https://band-testnet.api.kjnodes.com"],
+    "rpc": ["https://band-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.16",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "band",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/band.png",
+    "assets": [{
+        "base": "uband",
+        "symbol": "BAND",
+        "exponent": 6,
+		"coingecko_id": "band-protocol",
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/band.png"
+    }]
+}

@@ -1,0 +1,17 @@
+{
+    "chain_name": "EVMOS-TESTNET",
+    "api": ["https://evmos-testnet.api.kjnodes.com"],
+    "rpc": ["https://evmos-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.46.12",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "evmos",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/evmos.png",
+    "assets": [{
+        "base": "atevmos",
+        "symbol": "TEVMOS",
+        "exponent": 18,
+		"coingecko_id": "evmos",
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/evmos.png"
+    }]
+}

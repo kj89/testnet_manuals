@@ -1,0 +1,16 @@
+{
+    "chain_name": "ARCHWAY",
+    "api": ["https://archway.api.kjnodes.com"],
+    "rpc": ["https://archway.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.14",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "archway",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/archway.png",
+    "assets": [{
+        "base": "aarch",
+        "symbol": "ARCH",
+        "exponent": 18,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/archway.png"
+    }]
+}

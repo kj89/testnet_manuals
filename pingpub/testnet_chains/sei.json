@@ -1,0 +1,17 @@
+{
+    "chain_name": "SEI",
+    "api": ["https://sei.api.kjnodes.com"],
+    "rpc": ["https://sei.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.10",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "sei",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/sei.png",
+    "assets": [{
+        "base": "usei",
+        "symbol": "SEI",
+        "exponent": 6,
+		"coingecko_id": "sei-network",
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/sei.png"
+    }]
+}

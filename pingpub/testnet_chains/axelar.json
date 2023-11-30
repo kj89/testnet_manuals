@@ -1,0 +1,17 @@
+{
+    "chain_name": "AXELAR",
+    "api": ["https://axelar.api.kjnodes.com"],
+    "rpc": ["https://axelar.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.11",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "axelar",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/axelar.png",
+    "assets": [{
+        "base": "uaxl",
+        "symbol": "AXL",
+        "exponent": 6,
+		"coingecko_id": "axelar",
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/axelar.png"
+    }]
+}

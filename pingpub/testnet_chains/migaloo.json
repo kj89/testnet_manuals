@@ -4,7 +4,6 @@
     "rpc": ["https://migaloo.rpc.kjnodes.com"],
 	"sdk_version": "v0.46.12",
     "coin_type": 118,
-    "min_tx_fee": 200,
     "addr_prefix": "migaloo",
     "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/migaloo.png",
     "assets": [{

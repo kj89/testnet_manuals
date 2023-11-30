@@ -1,0 +1,17 @@
+{
+    "chain_name": "EVMOS",
+    "api": ["https://evmos.api.kjnodes.com"],
+    "rpc": ["https://evmos.rpc.kjnodes.com"],
+	"sdk_version": "v0.46.12",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "evmos",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/evmos.png",
+    "assets": [{
+        "base": "aevmos",
+        "symbol": "EVMOS",
+        "exponent": 18,
+		"coingecko_id": "evmos",
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/evmos.png"
+    }]
+}

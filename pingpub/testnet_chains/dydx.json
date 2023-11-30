@@ -1,0 +1,17 @@
+{
+    "chain_name": "DYDX",
+    "api": ["https://dydx.api.kjnodes.com"],
+    "rpc": ["https://dydx.rpc.kjnodes.com"],
+	"sdk_version": "v0.46.12",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "dydx",
+    "logo": "https://services.kjnodes.com/assets/images/logos/dydx.png",
+    "assets": [{
+        "base": "adydx",
+        "symbol": "dydx",
+        "exponent": 18,
+		"coingecko_id": "dydx",
+        "logo": "https://services.kjnodes.com/assets/images/logos/dydx.png"
+    }]
+}

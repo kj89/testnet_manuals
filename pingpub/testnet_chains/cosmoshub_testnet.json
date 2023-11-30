@@ -1,0 +1,17 @@
+{
+    "chain_name": "COSMOSHUB-TESTNET",
+    "api": ["https://cosmoshub-testnet.api.kjnodes.com"],
+    "rpc": ["https://cosmoshub-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.15",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "cosmos",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/cosmoshub.png",
+    "assets": [{
+        "base": "uatom",
+        "symbol": "ATOM",
+        "exponent": 6,
+		"coingecko_id": "cosmos",
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/cosmoshub.png"
+    }]
+}

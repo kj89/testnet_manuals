@@ -1,5 +1,5 @@
 {
-    "chain_name": "ZETA-TESTNET",
+    "chain_name": "ZETACHAIN-TESTNET",
     "api": ["https://zetachain-testnet.api.kjnodes.com"],
     "rpc": ["https://zetachain-testnet.rpc.kjnodes.com"],
 	"sdk_version": "v0.46.8",

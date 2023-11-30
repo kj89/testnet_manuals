@@ -1,0 +1,16 @@
+{
+    "chain_name": "NIBIRU",
+    "api": ["https://nibiru.api.kjnodes.com"],
+    "rpc": ["https://nibiru.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.12",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "nibi",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/nibiru.png",
+    "assets": [{
+        "base": "unibi",
+        "symbol": "NIBI",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/nibiru.png"
+    }]
+}

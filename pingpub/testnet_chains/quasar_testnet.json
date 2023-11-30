@@ -1,0 +1,16 @@
+{
+    "chain_name": "QUASAR-TESTNET",
+    "api": ["https://quasar-testnet.api.kjnodes.com"],
+    "rpc": ["https://quasar-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.14",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "quasar",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/quasar.png",
+    "assets": [{
+        "base": "uqsr",
+        "symbol": "QSR",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/quasar.png"
+    }]
+}

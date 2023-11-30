@@ -1,0 +1,17 @@
+{
+    "chain_name": "UMEE-TESTNET",
+    "api": ["https://umee-testnet.api.kjnodes.com"],
+    "rpc": ["https://umee-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.46.13",
+    "coin_type": 118,
+    "min_tx_fee": 200,
+    "addr_prefix": "umee",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/umee.png",
+    "assets": [{
+        "base": "uumee",
+        "symbol": "UMEE",
+        "exponent": 6,
+		"coingecko_id": "umee",
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/umee.png"
+    }]
+}

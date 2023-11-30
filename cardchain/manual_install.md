@@ -34,42 +34,47 @@ echo "export NODENAME=$NODENAME" >> $HOME/.bash_profile
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export CARDCHAIN_CHAIN_ID=Testnet3" >> $HOME/.bash_profile
+echo "export CARDCHAIN_CHAIN_ID=cardtestnet-4" >> $HOME/.bash_profile
 echo "export CARDCHAIN_PORT=${CARDCHAIN_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
 ## Update packages
 ```
-sudo apt update && sudo apt upgrade -y
-```
-
-## Install dependencies
-```
-sudo apt install curl build-essential git wget jq make gcc tmux chrony -y
+sudo apt -q update
+sudo apt -qy install curl git jq lz4 build-essential
+sudo apt -qy upgrade
 ```
 
 ## Install go
 ```
-if ! [ -x "$(command -v go)" ]; then
-  ver="1.18.2"
-  cd $HOME
-  wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-  sudo rm -rf /usr/local/go
-  sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-  rm "go$ver.linux-amd64.tar.gz"
-  echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> ~/.bash_profile
-  source ~/.bash_profile
-fi
+sudo rm -rf /usr/local/go
+curl -Ls https://go.dev/dl/go1.21.3.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
+eval $(echo 'export PATH=$PATH:/usr/local/go/bin' | sudo tee /etc/profile.d/golang.sh)
+eval $(echo 'export PATH=$PATH:$HOME/go/bin' | tee -a $HOME/.profile)
 ```
 
 ## Download and build binaries
 ```
-wget https://github.com/DecentralCardGame/Cardchain/releases/download/v0.81/Cardchain_latest_linux_amd64.tar.gz
-tar xzf Cardchain_latest_linux_amd64.tar.gz
-chmod 775 Cardchaind
-sudo mv Cardchaind /usr/local/bin/
-sudo rm Cardchain_latest_linux_amd64.tar.gz
+# Clone project repository
+cd $HOME
+rm -rf Cardchain
+git clone https://github.com/DecentralCardGame/Cardchain.git
+cd Cardchain
+git checkout v0.9.0
+
+# Build binaries
+make build
+
+# Prepare binaries for Cosmovisor
+mkdir -p $HOME/.Cardchain/cosmovisor/genesis/bin
+mv build/seid $HOME/.Cardchain/cosmovisor/genesis/bin/
+rm -rf build
+
+# Create application symlinks
+sudo ln -s $HOME/.Cardchain/cosmovisor/genesis $HOME/.Cardchain/cosmovisor/current -f
+sudo ln -s $HOME/.Cardchain/cosmovisor/current/bin/seid /usr/local/bin/seid -f
+
 ```
 
 ## Config app
@@ -86,7 +91,7 @@ Cardchaind init $NODENAME --chain-id $CARDCHAIN_CHAIN_ID
 
 ## Download genesis and addrbook
 ```
-sudo cp $HOME/Testnet/genesis.json $HOME/.Cardchain/config/genesis.json
+wget -qO $HOME/.Cardchain/config/genesis.json "http://45.136.28.158:3000/genesis.json"
 ```
 
 ## Set seeds and peers

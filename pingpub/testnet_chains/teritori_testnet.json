@@ -2,15 +2,28 @@
     "chain_name": "TERITORI-TESTNET",
     "api": ["https://teritori-testnet.api.kjnodes.com"],
     "rpc": ["https://teritori-testnet.rpc.kjnodes.com"],
-	"sdk_version": "v0.45.9",
+    "sdk_version": "v0.45.9",
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "tori",
     "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/teritori.png",
+    "keplr_price_step": {
+        "low": 0,
+        "average": 0.025
+        "high": 0.04
+    },
+    "keplr_features": [
+        "stargate",
+        "ibc-transfer",
+        "cosmwasm",
+        "no-legacy-stdTx",
+        "ibc-go"
+    ],
     "assets": [{
         "base": "utori",
         "symbol": "TORI",
         "exponent": 6,
+        "coingecko_id": "teritori",
         "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/teritori.png"
     }]
 }
