@@ -1,0 +1,15 @@
+{
+    "chain_name": "UNION-TESTNET",
+    "api": ["https://union-testnet.api.kjnodes.com"],
+    "rpc": ["https://union-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.47.4",
+    "coin_type": 118,
+    "addr_prefix": "union",
+    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/union.png",
+    "assets": [{
+        "base": "muno",
+        "symbol": "UNO",
+        "exponent": 6,
+        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/union.png"
+    }]
+}
