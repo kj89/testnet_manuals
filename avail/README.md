@@ -117,7 +117,6 @@ curl -s -X POST http://localhost:9933 -H "Content-Type: application/json" --data
 To upgrade your node to new binaries, please run the coommand below:
 ```
 cd $HOME && sudo rm -rf data-avail
-sudo rm -rf 
 APP_VERSION=$(curl -s https://api.github.com/repos/availproject/avail/releases/latest | jq -r ".tag_name")
 wget -O data-avail.tar.gz https://github.com/availproject/avail/releases/download/${APP_VERSION}/x86_64-ubuntu-2204-data-avail.tar.gz
 sudo tar zxvf data-avail.tar.gz

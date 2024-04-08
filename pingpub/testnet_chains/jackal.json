@@ -6,12 +6,12 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "jkl",
-    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/jackal.png",
+    "logo": "https://services.kjnodes.com/assets/images/logos/jackal.png",
     "assets": [{
         "base": "ujkl",
         "symbol": "JKL",
         "exponent": 6,
 		"coingecko_id": "jackal-protocol",
-        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/jackal.png"
+        "logo": "https://services.kjnodes.com/assets/images/logos/jackal.png"
     }]
 }

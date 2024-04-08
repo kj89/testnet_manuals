@@ -1,0 +1,14 @@
+{
+    "chain_name": "SWISSTRONIK-TESTNET",
+    "api": ["https://swisstronik-testnet.api.kjnodes.com"],
+    "rpc": ["https://swisstronik-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.47.5",
+    "addr_prefix": "swtr",
+    "logo": "https://services.kjnodes.com/assets/images/logos/swisstronik.png",
+    "assets": [{
+        "base": "SWTR",
+        "symbol": "uswtr",
+        "exponent": 18,
+        "logo": "https://services.kjnodes.com/assets/images/logos/swisstronik.png"
+    }]
+}

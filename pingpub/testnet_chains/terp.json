@@ -6,11 +6,11 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "terp",
-    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/terp.png",
+    "logo": "https://services.kjnodes.com/assets/images/logos/terp.png",
     "assets": [{
         "base": "uthiol",
         "symbol": "THIOL",
         "exponent": 6,
-        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/terp.png"
+        "logo": "https://services.kjnodes.com/assets/images/logos/terp.png"
     }]
 }

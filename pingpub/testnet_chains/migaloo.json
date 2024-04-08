@@ -5,12 +5,12 @@
 	"sdk_version": "v0.46.12",
     "coin_type": 118,
     "addr_prefix": "migaloo",
-    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/migaloo.png",
+    "logo": "https://services.kjnodes.com/assets/images/logos/migaloo.png",
     "assets": [{
         "base": "uwhale",
         "symbol": "WHALE",
         "exponent": 6,
 		"coingecko_id": "white-whale",
-        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/migaloo.png"
+        "logo": "https://services.kjnodes.com/assets/images/logos/migaloo.png"
     }]
 }

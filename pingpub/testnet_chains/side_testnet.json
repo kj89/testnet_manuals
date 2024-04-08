@@ -1,0 +1,14 @@
+{
+    "chain_name": "SIDE-TESTNET",
+    "api": ["https://side-testnet.api.kjnodes.com"],
+    "rpc": ["https://side-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.5",
+    "addr_prefix": "side",
+    "logo": "https://services.kjnodes.com/assets/images/logos/side.png",
+    "assets": [{
+        "base": "uside",
+        "symbol": "side",
+        "exponent": 6,
+        "logo": "https://services.kjnodes.com/assets/images/logos/side.png"
+    }]
+}

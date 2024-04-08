@@ -6,11 +6,11 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "althea",
-    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/althea.png",
+    "logo": "https://services.kjnodes.com/assets/images/logos/althea.png",
     "assets": [{
         "base": "ualthea",
         "symbol": "ALTHEA",
         "exponent": 18,
-        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/althea.png"
+        "logo": "https://services.kjnodes.com/assets/images/logos/althea.png"
     }]
 }

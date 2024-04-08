@@ -6,12 +6,12 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "sei",
-    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/sei.png",
+    "logo": "https://services.kjnodes.com/assets/images/logos/sei.png",
     "assets": [{
         "base": "usei",
         "symbol": "SEI",
         "exponent": 6,
 		"coingecko_id": "sei-network",
-        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/sei.png"
+        "logo": "https://services.kjnodes.com/assets/images/logos/sei.png"
     }]
 }

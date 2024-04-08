@@ -6,11 +6,11 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "zeta",
-    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/zetachain.png",
+    "logo": "https://services.kjnodes.com/assets/images/logos/zetachain.png",
     "assets": [{
         "base": "azeta",
         "symbol": "ZETA",
         "exponent": 18,
-        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/zetachain.png"
+        "logo": "https://services.kjnodes.com/assets/images/logos/zetachain.png"
     }]
 }

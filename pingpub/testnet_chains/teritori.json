@@ -6,12 +6,12 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "tori",
-    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/teritori.png",
+    "logo": "https://services.kjnodes.com/assets/images/logos/teritori.png",
     "assets": [{
         "base": "utori",
         "symbol": "TORI",
         "exponent": 6,
 		"coingecko_id": "teritori",
-        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/teritori.png"
+        "logo": "https://services.kjnodes.com/assets/images/logos/teritori.png"
     }]
 }

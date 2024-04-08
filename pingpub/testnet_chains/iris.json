@@ -6,12 +6,12 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "iaa",
-    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/iris.png",
+    "logo": "https://services.kjnodes.com/assets/images/logos/iris.png",
     "assets": [{
         "base": "uiris",
         "symbol": "IRIS",
         "exponent": 6,
 		"coingecko_id": "iris-network",
-        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/iris.png"
+        "logo": "https://services.kjnodes.com/assets/images/logos/iris.png"
     }]
 }

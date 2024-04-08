@@ -6,12 +6,12 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "band",
-    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/band.png",
+    "logo": "https://services.kjnodes.com/assets/images/logos/band.png",
     "assets": [{
         "base": "uband",
         "symbol": "BAND",
         "exponent": 6,
 		"coingecko_id": "band-protocol",
-        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/band.png"
+        "logo": "https://services.kjnodes.com/assets/images/logos/band.png"
     }]
 }

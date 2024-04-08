@@ -1,0 +1,14 @@
+{
+    "chain_name": "SEDA-TESTNET",
+    "api": ["https://seda-testnet.api.kjnodes.com"],
+    "rpc": ["https://seda-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.5",
+    "addr_prefix": "seda",
+    "logo": "https://services.kjnodes.com/assets/images/logos/seda.png",
+    "assets": [{
+        "base": "aseda",
+        "symbol": "SEDA",
+        "exponent": 18,
+        "logo": "https://services.kjnodes.com/assets/images/logos/seda.png"
+    }]
+}

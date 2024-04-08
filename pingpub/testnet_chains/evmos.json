@@ -6,12 +6,12 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "evmos",
-    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/evmos.png",
+    "logo": "https://services.kjnodes.com/assets/images/logos/evmos.png",
     "assets": [{
         "base": "aevmos",
         "symbol": "EVMOS",
         "exponent": 18,
 		"coingecko_id": "evmos",
-        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/evmos.png"
+        "logo": "https://services.kjnodes.com/assets/images/logos/evmos.png"
     }]
 }

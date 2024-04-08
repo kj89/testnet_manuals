@@ -6,11 +6,11 @@
     "coin_type": 118,
     "min_tx_fee": 200,
     "addr_prefix": "elys",
-    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/elys.png",
+    "logo": "https://services.kjnodes.com/assets/images/logos/elys.png",
     "assets": [{
         "base": "uelys",
         "symbol": "ELYS",
         "exponent": 6,
-        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/elys.png"
+        "logo": "https://services.kjnodes.com/assets/images/logos/elys.png"
     }]
 }

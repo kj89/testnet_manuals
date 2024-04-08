@@ -1,0 +1,14 @@
+{
+    "chain_name": "SOARCHAIN-TESTNET",
+    "api": ["https://soarchain-testnet.api.kjnodes.com"],
+    "rpc": ["https://soarchain-testnet.rpc.kjnodes.com"],
+	"sdk_version": "v0.45.5",
+    "addr_prefix": "soar",
+    "logo": "https://services.kjnodes.com/assets/images/logos/soarchain.png",
+    "assets": [{
+        "base": "utmotus",
+        "symbol": "TMOTUS",
+        "exponent": 6,
+        "logo": "https://services.kjnodes.com/assets/images/logos/soarchain.png"
+    }]
+}

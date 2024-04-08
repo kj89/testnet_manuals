@@ -5,11 +5,11 @@
 	"sdk_version": "v0.45.12",
     "coin_type": 118,
     "addr_prefix": "andr",
-    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/andromeda.png",
+    "logo": "https://services.kjnodes.com/assets/images/logos/andromeda.png",
     "assets": [{
         "base": "uandr",
         "symbol": "ANDR",
         "exponent": 6,
-        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/andromeda.png"
+        "logo": "https://services.kjnodes.com/assets/images/logos/andromeda.png"
     }]
 }

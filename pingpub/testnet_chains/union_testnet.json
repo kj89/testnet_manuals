@@ -5,11 +5,11 @@
 	"sdk_version": "v0.47.4",
     "coin_type": 118,
     "addr_prefix": "union",
-    "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/union.png",
+    "logo": "https://services.kjnodes.com/assets/images/logos/union.png",
     "assets": [{
         "base": "muno",
         "symbol": "UNO",
         "exponent": 6,
-        "logo": "https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/union.png"
+        "logo": "https://services.kjnodes.com/assets/images/logos/union.png"
     }]
 }
