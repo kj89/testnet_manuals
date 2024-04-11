@@ -18,9 +18,8 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/167032367-fee4380e-7678-43e0-9206-36d72b32b8ae.png">
 </p>
 
-# Migrate your validator to another machine
-
-### 1. Run a new full node on a new machine
+# Migrate your validator to another mMachine
+### 1. Run a new full node on a new mMchine
 To setup full node you can follow my guide [agoric node setup for Testnet — agoricdev-11](https://github.com/kj89/testnet_manuals/blob/main/agoric/README.md)
 
 ### 2. Confirm that you have the recovery seed phrase information for the active key running on the old machine
