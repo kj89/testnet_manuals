@@ -22,7 +22,7 @@ JUNO_PORT=22
 if [ ! $WALLET ]; then
 	echo "export WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export JUNO_CHAIN_ID=uni-3" >> $HOME/.bash_profile
+echo "export JUNO_CHAIN_ID=uni-6" >> $HOME/.bash_profile
 echo "export JUNO_PORT=${JUNO_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
@@ -44,7 +44,7 @@ sudo apt install curl build-essential git wget jq make gcc tmux chrony -y
 
 # install go
 if ! [ -x "$(command -v go)" ]; then
-  ver="1.18.2"
+  ver="1.23.4"
   cd $HOME
   wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
   sudo rm -rf /usr/local/go
@@ -59,7 +59,7 @@ echo -e "\e[1m\e[32m3. Downloading and building binaries... \e[0m" && sleep 1
 cd $HOME
 git clone https://github.com/CosmosContracts/juno
 cd juno
-git checkout v7.0.0-beta.2
+git checkout v28.0.1
 make build && make install
 
 # config
@@ -71,11 +71,11 @@ junod config node tcp://localhost:${JUNO_PORT}657
 junod init $NODENAME --chain-id $JUNO_CHAIN_ID
 
 # download genesis and addrbook
-wget -qO $HOME/.juno/config/genesis.json "https://raw.githubusercontent.com/CosmosContracts/testnets/main/uni-3/genesis.json"
+wget -qO $HOME/.juno/config/genesis.json "https://raw.githubusercontent.com/CosmosContracts/testnets/refs/heads/main/uni-6/genesis.json"
 
 # set peers and seeds
-SEEDS=""
-PEERS="26709b3d89548a865ccfd2efac34ef3e9a5b2bc4@135.181.59.162:26656"
+SEEDS="ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:12656"
+PEERS="ac9dd6db1d34c15b1de212b0c0c240615bfc2941@135.181.229.110:49656,60aba467cf6542af854d03dc3a7353ebe2c07a14@65.21.112.220:3020,6a6ec365ae1af5484185fca05911eb25b8b6073a@65.108.237.74:26656"
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.juno/config/config.toml
 
 # enable state sync

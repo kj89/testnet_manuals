@@ -18,13 +18,13 @@
   <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/181202199-ec65c529-8f92-4083-9841-77e48e47ba03.png">
 </p>
 
-# juno node setup for testnet — uni-3
+# juno node setup for testnet — uni-6
 
 Official documentation:
 >- [Validator setup instructions](https://github.com/juno-Labs/testnet)
 
 Explorer:
->-  https://testnet.juno.explorers.guru/
+>-  https://explorer.stavr.tech/Juno-Testnet
 
 ## Usefull tools and references
 > To set up monitoring for your validator node navigate to [Set up monitoring and alerting for juno validator](https://github.com/kj89/testnet_manuals/blob/main/juno/monitoring/README.md)
